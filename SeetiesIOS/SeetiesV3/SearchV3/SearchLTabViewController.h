@@ -19,17 +19,9 @@ typedef void (^DidSelectCollectionOpenViewBlock)(DraftModel* model);
 @property(nonatomic,copy)DidSelectCollectionRowBlock didSelectDisplayCollectionRowBlock;
 @property(nonatomic,copy)DidSelectCollectionOpenViewBlock didSelectCollectionOpenViewBlock;
 @property(nonatomic,assign)SearchListingType searchListingType;
-@property(nonatomic,strong)ProfileViewController* profileViewController;
 
-@property(nonatomic,strong)NSString* getSearchText;
-@property(nonatomic,strong)NSString* LocationName;
+-(void)refreshRequest:(NSString*)keyword Latitude:(NSString*)latitude Longtitude:(NSString*)longtitude CurrentLatitude:(NSString*)currLatitude CurrentLongtitude:(NSString*)currLongtitude googleDetails:(SearchLocationDetailModel*)googleDetailModel;
 
-@property(nonatomic,strong)NSString* Getlat;
-@property(nonatomic,strong)NSString* Getlong;
+-(void)refreshRequestWithText:(NSString*)keyword;
 
-@property(nonatomic,strong)NSString* GetCurrentlat;
-@property(nonatomic,strong)NSString* GetCurrentLong;
-
-
--(void)refreshRequest;
 @end

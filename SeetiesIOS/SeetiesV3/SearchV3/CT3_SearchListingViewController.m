@@ -11,6 +11,9 @@
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
 }
+
+@property(nonatomic)SearchLocationDetailModel* googleLocationDetailModel;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UIView *ibLocationView;
@@ -23,18 +26,28 @@
 @property (nonatomic,strong)SearchManager* sManager;
 @property(nonatomic,assign)ProfileViewType profileType;
 
-@property(nonatomic,strong)AddCollectionDataViewController* collectPostToCollectionVC;
 
+@property(nonatomic,strong)SearchLTabViewController *shopListingTableViewController;
+@property(nonatomic,strong)SearchLTabViewController *collectionListingTableViewController;
+@property(nonatomic,strong)SearchLTabViewController *PostsListingTableViewController;
+@property(nonatomic,strong)SearchLTabViewController *SeetizensListingTableViewController;
+
+@property(nonatomic,strong)AddCollectionDataViewController* collectPostToCollectionVC;
+@property(nonatomic,strong)ProfileViewController* profileViewController;
+@property(nonatomic,strong)CollectionViewController* collectionViewController;
+@property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;
 @end
 
 @implementation CT3_SearchListingViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self InitSelfView];
     self.sManager = [SearchManager Instance];
-    [self performSearch];
+    self.ibSearchText.text = self.keyword;
+    [self refreshSearch];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,15 +57,12 @@
 -(void)InitSelfView{
     //self.ibScrollView.contentSize = CGSizeMake(850, 50);
     
-    self.GetCurrentlat = @([[SearchManager Instance]getAppLocation].coordinate.latitude).stringValue;
-    self.GetCurrentLong = @([[SearchManager Instance]getAppLocation].coordinate.longitude).stringValue;
-    
     self.ibLocationText.delegate = self;
     self.ibSearchText.delegate = self;
     self.ibSearchText.placeholder = LocalisedString(@"Search");
     self.ibLocationText.placeholder = LocalisedString(@"Add a location?");
-    self.ibSearchText.text = self.SearchText;
-    self.ibLocationText.text = self.LocationName;
+    self.ibSearchText.text = self.keyword;
+    self.ibLocationText.text = self.locationName;
     
     CGRect frame = [Utils getDeviceScreenSize];
     [self.ibScrollView setWidth:frame.size.width];
@@ -106,100 +116,12 @@
             break;
     }
 }
--(SearchLTabViewController*)shopListingTableViewController{
-    if(!_shopListingTableViewController)
-    {
-        _shopListingTableViewController = [SearchLTabViewController new];
-        _shopListingTableViewController.searchListingType = SearchListingTypeShop;
-    }
-    return _shopListingTableViewController;
-}
--(SearchLTabViewController*)collectionListingTableViewController{
-    if(!_collectionListingTableViewController)
-    {
-        _collectionListingTableViewController = [SearchLTabViewController new];
-        _collectionListingTableViewController.searchListingType = SearchsListingTypeCollections;
-        _collectionListingTableViewController.getSearchText = self.ibSearchText.text;
-        __weak typeof (self)weakSelf = self;
-        
-        _collectionListingTableViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
-        {
-           // [weakSelf showCollectionDisplayViewWithCollectionID:model.collection_id ProfileType:ProfileViewTypeOthers];
-            _collectionViewController = nil;
-            [weakSelf.collectionViewController GetCollectionID:model.collection_id GetPermision:@"Others" GetUserUid:model.user_info.uid];
-            [weakSelf.navigationController pushViewController:weakSelf.collectionViewController animated:YES];
-        };
-        
 
-    }
-    return _collectionListingTableViewController;
-}
--(SearchLTabViewController*)PostsListingTableViewController{
-    if(!_PostsListingTableViewController)
-    {
-        _PostsListingTableViewController = [SearchLTabViewController new];
-        _PostsListingTableViewController.searchListingType = SearchsListingTypePosts;
-        _PostsListingTableViewController.getSearchText = self.ibSearchText.text;
-        _PostsListingTableViewController.Getlat = self.Getlat;
-        _PostsListingTableViewController.Getlong = self.Getlong;
-        _PostsListingTableViewController.GetCurrentlat = self.GetCurrentlat;
-        _PostsListingTableViewController.GetCurrentLong = self.GetCurrentLong;
-        
-        __weak typeof (self)weakSelf = self;
-        
-        _PostsListingTableViewController.didSelectPostsRowBlock = ^(NSString* postid)
-        {
-            _feedV2DetailViewController = nil;
-            [weakSelf.feedV2DetailViewController GetPostID:postid];
-            [weakSelf.navigationController pushViewController:weakSelf.feedV2DetailViewController animated:YES];
-            
-        };
-        
-        _PostsListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)
-        {
-            _profileViewController = nil;
-            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
-            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
-            
-        };
-        _PostsListingTableViewController.didSelectCollectionOpenViewBlock = ^(DraftModel* model)
-        {
-            _collectPostToCollectionVC = nil;
-            [weakSelf.navigationController presentViewController:weakSelf.collectPostToCollectionVC animated:YES completion:^{
-                PhotoModel*pModel;
-                if (![Utils isArrayNull:model.arrPhotos]) {
-                    pModel = model.arrPhotos[0];
-                }
-                [weakSelf.collectPostToCollectionVC GetPostID:model.post_id GetImageData:pModel.imageURL];
-            }];
-        };
-    }
-    return _PostsListingTableViewController;
-}
--(SearchLTabViewController*)SeetizensListingTableViewController{
-    if(!_SeetizensListingTableViewController)
-    {
-        _SeetizensListingTableViewController = [SearchLTabViewController new];
-        _SeetizensListingTableViewController.searchListingType = SearchsListingTypeSeetizens;
-        _SeetizensListingTableViewController.getSearchText = self.ibSearchText.text;
-        __weak typeof (self)weakSelf = self;
-        
-        _SeetizensListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)
-        {
-            _profileViewController = nil;
-            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
-            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
-            
-        };
-    }
-    return _SeetizensListingTableViewController;
-}
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField == self.ibLocationText) {
         NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        NSLog(@"newString is %@",newString);
-        NSLog(@"found");
+     
         if ([newString length] >= 2) {
            [self getGoogleSearchPlaces];
         }else{
@@ -240,23 +162,11 @@
     if (textField == self.ibSearchText) {
         self.ibLocationView.hidden = YES;
         
-        if ([self.ibSearchText.text length] == 0) {
-
-        }else{
-            
-            self.PostsListingTableViewController.getSearchText = self.ibSearchText.text;
-            _PostsListingTableViewController.Getlat = self.Getlat;
-            _PostsListingTableViewController.Getlong = self.Getlong;
-            _PostsListingTableViewController.GetCurrentlat = self.GetCurrentlat;
-            _PostsListingTableViewController.GetCurrentLong = self.GetCurrentLong;
-            
-            self.SeetizensListingTableViewController.getSearchText = self.ibSearchText.text;
-            self.collectionListingTableViewController.getSearchText = self.ibSearchText.text;
-            [self.PostsListingTableViewController refreshRequest];
-            [self.SeetizensListingTableViewController refreshRequest];
-            [self.collectionListingTableViewController refreshRequest];
- 
+       
+        if (![Utils isStringNull:self.ibSearchText.text]) {
+            [self refreshSearch];
         }
+
     }else if(textField == self.ibLocationText){
         if (![self.ibLocationText.text isEqualToString:@""]) {
             [self getGoogleSearchPlaces];
@@ -266,11 +176,12 @@
     return YES;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
      return self.searchModel.predictions.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
@@ -301,21 +212,8 @@
     [self processDataForGoogleLocation:indexPath];
 }
 
--(void)getGoogleSearchPlaces
-{
-    [self.sManager getSearchLocationFromGoogle:self.location input:self.ibLocationText.text completionBlock:^(id object) {
-        if (object) {
-            self.searchModel = [[DataManager Instance]googleSearchModel];
-            [self refreshViewGoogle];
-        }
-    }];
-    
-}
--(void)refreshViewGoogle
-{
-    
-    [self.ibLocationTableView reloadData];
-}
+
+
 -(void)initWithLocation:(CLLocation*)location
 {
     [LoadingManager show];
@@ -333,7 +231,6 @@
             
             self.location = currentLocation;
             [self getGoogleSearchPlaces];
-            
             
         } errorBlock:^(NSString *status) {
             
@@ -360,8 +257,44 @@
     NSDictionary* dict = model.terms[0];
     self.ibLocationText.text = dict[@"value"];
     
+   
+
+    
 }
 #pragma mark - Request Sever
+
+//-(void)requestServerForSearchCollection:(NSString*)keyword
+//{
+//    CLLocation* location = [[SearchManager Instance]getAppLocation];
+//    NSDictionary* dict = @{@"offset" : @"",
+//                           @"limit" : @"",
+//                           @"keyword" : keyword,
+//                           @"token" : [Utils getAppToken],
+//                           @"lat" : @(location.coordinate.latitude).stringValue,
+//                           @"lng" : @(location.coordinate.longitude).stringValue,
+//                           @"address_components" : @"",
+//                           @"place_id" : @"",
+//                           
+//                           };
+//    
+//    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeSearchShops param:dict appendString:nil completeHandler:^(id object) {
+//
+//        
+//    } errorBlock:^(id object) {
+//        
+//    }];
+//}
+-(void)getGoogleSearchPlaces
+{
+    [self.sManager getSearchLocationFromGoogle:self.location input:self.ibLocationText.text completionBlock:^(id object) {
+        if (object) {
+            self.searchModel = [[DataManager Instance]googleSearchModel];
+            [self.ibLocationTableView reloadData];
+            
+        }
+    }];
+    
+}
 -(void)requestForGoogleMapDetails:(NSString*)placeID
 {
     
@@ -369,25 +302,32 @@
     
     [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
         
-        SearchLocationDetailModel* googleSearchDetailModel = [[DataManager Instance] googleSearchDetailModel];
+        SearchLocationDetailModel* googleSearchDetailModel = [[ConnectionManager dataManager] googleSearchDetailModel];
         
         RecommendationVenueModel* recommendationVenueModel  = [RecommendationVenueModel new];
-        SLog(@"recommendationVenueModel == %@",recommendationVenueModel);
         [recommendationVenueModel processGoogleModel:googleSearchDetailModel];
         
-        self.Getlat = recommendationVenueModel.lat;
-        self.Getlong = recommendationVenueModel.lng;
+        self.googleLocationDetailModel = googleSearchDetailModel;
+
+        self.locationLatitude = recommendationVenueModel.lat;
+        self.locationLongtitude = recommendationVenueModel.lng;
         
         [self.ibSearchText resignFirstResponder];
         [self.ibLocationText resignFirstResponder];
         self.ibLocationView.hidden = YES;
-//        if (self.didSelectOnLocationBlock) {
+        
+       [self refreshSearch];
+        
+        
+        //        if (self.didSelectOnLocationBlock) {
 //            self.didSelectOnLocationBlock(recommendationVenueModel);
 //        }
         
     } errorBlock:nil];
     
 }
+
+#pragma mark - Show View
 -(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel ProfileType:(ProfileViewType)profileType
 {
     _collectionViewController = nil;
@@ -401,6 +341,94 @@
     }
     
     [self.navigationController pushViewController:self.collectionViewController animated:YES];
+}
+
+#pragma mark - Declaration
+-(SearchLTabViewController*)shopListingTableViewController{
+    if(!_shopListingTableViewController)
+    {
+        _shopListingTableViewController = [SearchLTabViewController new];
+        _shopListingTableViewController.searchListingType = SearchListingTypeShop;
+    }
+    return _shopListingTableViewController;
+}
+-(SearchLTabViewController*)collectionListingTableViewController{
+    if(!_collectionListingTableViewController)
+    {
+        _collectionListingTableViewController = [SearchLTabViewController new];
+        _collectionListingTableViewController.searchListingType = SearchsListingTypeCollections;
+        // [_collectionListingTableViewController refreshRequestWithText:self.ibSearchText.text];
+        __weak typeof (self)weakSelf = self;
+        
+        _collectionListingTableViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
+        {
+            // [weakSelf showCollectionDisplayViewWithCollectionID:model.collection_id ProfileType:ProfileViewTypeOthers];
+            _collectionViewController = nil;
+            [weakSelf.collectionViewController GetCollectionID:model.collection_id GetPermision:@"Others" GetUserUid:model.user_info.uid];
+            [weakSelf.navigationController pushViewController:weakSelf.collectionViewController animated:YES];
+        };
+        
+        
+    }
+    return _collectionListingTableViewController;
+}
+-(SearchLTabViewController*)PostsListingTableViewController{
+    if(!_PostsListingTableViewController)
+    {
+        _PostsListingTableViewController = [SearchLTabViewController new];
+        _PostsListingTableViewController.searchListingType = SearchsListingTypePosts;
+        
+        // [_PostsListingTableViewController refreshRequest:self.ibSearchText.text Latitude:self.Getlat Longtitude:self.Getlong CurrentLatitude:self.GetCurrentlat CurrentLongtitude:self.GetCurrentLong];
+        
+        __weak typeof (self)weakSelf = self;
+        
+        _PostsListingTableViewController.didSelectPostsRowBlock = ^(NSString* postid)
+        {
+            _feedV2DetailViewController = nil;
+            [weakSelf.feedV2DetailViewController GetPostID:postid];
+            [weakSelf.navigationController pushViewController:weakSelf.feedV2DetailViewController animated:YES];
+            
+        };
+        
+        _PostsListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)
+        {
+            _profileViewController = nil;
+            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+            
+        };
+        _PostsListingTableViewController.didSelectCollectionOpenViewBlock = ^(DraftModel* model)
+        {
+            _collectPostToCollectionVC = nil;
+            [weakSelf.navigationController presentViewController:weakSelf.collectPostToCollectionVC animated:YES completion:^{
+                PhotoModel*pModel;
+                if (![Utils isArrayNull:model.arrPhotos]) {
+                    pModel = model.arrPhotos[0];
+                }
+                [weakSelf.collectPostToCollectionVC GetPostID:model.post_id GetImageData:pModel.imageURL];
+            }];
+        };
+    }
+    return _PostsListingTableViewController;
+}
+-(SearchLTabViewController*)SeetizensListingTableViewController{
+    if(!_SeetizensListingTableViewController)
+    {
+        _SeetizensListingTableViewController = [SearchLTabViewController new];
+        _SeetizensListingTableViewController.searchListingType = SearchsListingTypeSeetizens;
+        
+        // [_SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
+        __weak typeof (self)weakSelf = self;
+        
+        _SeetizensListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)
+        {
+            _profileViewController = nil;
+            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+            
+        };
+    }
+    return _SeetizensListingTableViewController;
 }
 -(FeedV2DetailViewController*)feedV2DetailViewController
 {
@@ -432,4 +460,17 @@
     }
     return _collectPostToCollectionVC;
 }
+
+-(void)refreshSearch
+{
+    CLLocation* currentLocation = [[SearchManager Instance]getAppLocation];
+
+    [self.PostsListingTableViewController refreshRequest:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude CurrentLatitude:@(currentLocation.coordinate.latitude).stringValue CurrentLongtitude:@(currentLocation.coordinate.longitude).stringValue googleDetails:self.googleLocationDetailModel];
+
+    //  [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
+    
+
+   // [self.collectionListingTableViewController refreshRequest:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude CurrentLatitude:@(currentLocation.coordinate.latitude).stringValue CurrentLongtitude:@(currentLocation.coordinate.longitude).stringValue googleDetails:self.googleLocationDetailModel];
+}
+
 @end

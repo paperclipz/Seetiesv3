@@ -16,14 +16,26 @@
 {
     BOOL isMiddleOfCallingServer;
 }
+@property(nonatomic,strong)NSString* locationLatitude;
+@property(nonatomic,strong)NSString* locationLongtitude;
+@property(nonatomic,strong)NSString* keyword;
+@property(nonatomic,strong)NSString* locationName;
+@property(nonatomic,strong)SearchLocationDetailModel* googleLocationDetailModel;
+
+
+
+@property(nonatomic,strong)NSString* currentLatitude;
+@property(nonatomic,strong)NSString* currentLongtitude;
+
+
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constFilterHeight;
 @property (weak, nonatomic) IBOutlet UIView *FilterView;
 
-
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
 @property(nonatomic,strong)UsersModel* usersModel;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
+@property(nonatomic,strong)ProfileViewController* profileViewController;
 
 
 
@@ -47,7 +59,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initSelfView];
-    [self refreshRequest];
+    
+    self.locationLatitude = @"";
+    self.locationLongtitude = @"";
+    self.currentLatitude = @"";
+    self.currentLongtitude = @"";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,23 +74,6 @@
 {
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
-    
-    if ([Utils isStringNull:self.getSearchText]) {
-        self.getSearchText = @"";
-    }
-    if ([Utils isStringNull:self.Getlat]) {
-        self.Getlat = @"";
-    }
-    if ([Utils isStringNull:self.Getlong]) {
-        self.Getlong = @"";
-    }
-    if ([Utils isStringNull:self.GetCurrentlat]) {
-        self.GetCurrentlat= @"";
-    }
-    if ([Utils isStringNull:self.GetCurrentLong]) {
-        self.GetCurrentLong = @"";
-    }
-    
     
     switch (self.searchListingType) {
         default:
@@ -98,7 +97,27 @@
     
     
 }
--(void)refreshRequest{
+
+#pragma mark - initdata
+-(void)refreshRequestWithText:(NSString*)keyword
+{
+    self.keyword = keyword;
+    
+    [self refreshRequest:self.keyword Latitude:@"" Longtitude:@"" CurrentLatitude:@"" CurrentLongtitude:@""googleDetails:nil];
+
+}
+
+-(void)refreshRequest:(NSString*)keyword Latitude:(NSString*)latitude Longtitude:(NSString*)longtitude CurrentLatitude:(NSString*)currLatitude CurrentLongtitude:(NSString*)currLongtitude googleDetails:(SearchLocationDetailModel*)googleDetailModel{
+    
+    self.keyword = keyword;
+    self.locationLatitude = latitude;
+    self.locationLongtitude = longtitude;
+    self.currentLatitude = currLatitude;
+    self.currentLongtitude = currLongtitude;
+    self.googleLocationDetailModel = googleDetailModel;
+    self.arrCollections = nil;
+    [self.ibTableView reloadData];
+    
     switch (self.searchListingType) {
         default:
         case SearchListingTypeShop:
@@ -110,7 +129,7 @@
             [self requestServerForSearchPosts];
             break;
         case SearchsListingTypeSeetizens:
-            [self requestServerForSearchUser];
+          //  [self requestServerForSearchUser];
             break;
     }
 }
@@ -256,8 +275,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-
-    
     switch (self.searchListingType) {
         default:
         case SearchListingTypeShop:
@@ -293,6 +310,8 @@
     }
 }
 
+#pragma mark - Declarations
+
 -(NSMutableArray*)arrPosts
 {
     if(!_arrPosts)
@@ -309,6 +328,7 @@
     }
     return _arrUsers;
 }
+
 -(NSMutableArray*)arrCollections
 {
     if(!_arrCollections)
@@ -317,11 +337,35 @@
     }
     return _arrCollections;
 }
-//Connection
+
+#pragma mark - Request Server
+
+-(void)requestServerForSearchShop
+{
+    NSDictionary* dict = @{};
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeSearchShops param:dict appendString:nil completeHandler:^(id object) {
+        
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+
+-(NSString*)convertStringToEmptyIfItsNull:(NSString*)str
+{
+    if (str) {
+        return str;
+    }
+    else{
+        return @"";
+    }
+
+}
 
 -(void)requestServerForSearchPosts
 {
-    SLog(@"requestServerForSearch work ?");
     
   //  NSDictionary* dict;
     NSString* appendString = @"";
@@ -329,12 +373,12 @@
     NSDictionary* dict = @{@"page":self.userProfilePostModel.userPostData.page?@(self.userProfilePostModel.userPostData.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
-                           @"keyword":self.getSearchText,
+                           @"keyword":[self convertStringToEmptyIfItsNull:self.keyword],
                            @"sort":@"3",
-                           @"lat":self.Getlat,
-                           @"lng":self.Getlong,
-                           @"current_lat":self.GetCurrentlat,
-                           @"current_lng":self.GetCurrentLong
+                           @"lat":[self convertStringToEmptyIfItsNull:self.locationLatitude],
+                           @"lng":[self convertStringToEmptyIfItsNull:self.locationLongtitude],
+                           @"current_lat":[self convertStringToEmptyIfItsNull:self.currentLatitude],
+                           @"current_lng":[self convertStringToEmptyIfItsNull:self.currentLongtitude]
                            };
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchPosts param:dict appendString:appendString completeHandler:^(id object) {
@@ -358,7 +402,7 @@
     NSDictionary* dict = @{@"page":self.usersModel.page?@(self.usersModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
-                           @"keyword":self.getSearchText
+                           @"keyword":self.keyword
                            };
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchUsers param:dict appendString:appendString completeHandler:^(id object) {
@@ -373,22 +417,43 @@
         
     }];
 }
+
 -(void)requestServerForSearchCollection{
     SLog(@"requestServerForSearchCollection work ?");
     
    // NSDictionary* dict;
     //NSString* appendString = [[NSString alloc]initWithFormat:@"collections?token=%@&keyword=%@",[Utils getAppToken],self.getSearchText];
-    NSString* appendString = [[NSString alloc]initWithFormat:@"collections"];
-    NSDictionary* dict = @{@"keyword":self.getSearchText,
+    
+    
+    NSDictionary* dict = @{@"keyword":self.keyword,
                            @"limit":@(ARRAY_LIST_SIZE),
                            @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
                            @"token":[Utils getAppToken],
                            };
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchCollections param:dict appendString:appendString completeHandler:^(id object) {
+    NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+
+    @try {
+        NSDictionary* addressComponent = @{@"country" :self.googleLocationDetailModel.country?self.googleLocationDetailModel.country:@"",
+                                           @"route" : self.googleLocationDetailModel.route?self.googleLocationDetailModel.route:@"",
+                                           @"locality" : self.googleLocationDetailModel.city?self.googleLocationDetailModel.city:@"",
+                                           @"administrative_area_level_x" : @"administrative_area_level_1",
+                                           };
+        
+        [finalDict addEntriesFromDictionary:@{@"address_components" : [Utils convertToJsonString:addressComponent]
+                                              }];
+
+    }
+    @catch (NSException *exception) {
+        SLog(@"error initializing dictionary");
+    }
+    
+    
+    
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchCollections param:finalDict appendString:nil completeHandler:^(id object) {
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
-        self.arrCollections = nil;
-        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
         
         [self.ibTableView reloadData];
         
@@ -533,7 +598,8 @@
     [[ConnectionManager Instance]requestServerWithPut:ServerRequestTypePutCollectPost param:dict appendString:appendString completeHandler:^(id object) {
         
         model.collect = @"1";
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"System") subtitle:LocalisedString(@"Successfully collected to default Collection") type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"System") SubTitle:LocalisedString(@"Successfully collected to default Collection") Type:TSMessageNotificationTypeSuccess];
+
         [self.ibTableView reloadData];
         
     } errorBlock:^(id object) {
@@ -560,7 +626,7 @@
         if (!isMiddleOfCallingServer) {
             
             if (self.searchListingType == SearchsListingTypeCollections) {
-                if (self.userCollectionsModel.total_page > self.userCollectionsModel.page) {
+                if (self.userCollectionsModel.next) {
                     
                     [self requestServerForSearchCollection];
                 }

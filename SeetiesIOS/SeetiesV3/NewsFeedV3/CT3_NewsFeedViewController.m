@@ -128,6 +128,8 @@ static NSCache* heightCache = nil;
 }
 
 - (IBAction)btnSearchClicked:(id)sender {
+    
+    _searchViewV2Controller = nil;
     [self.navigationController pushViewController:self.searchViewV2Controller animated:YES];
 }
 
@@ -1349,7 +1351,7 @@ static NSCache* heightCache = nil;
 {
     
     NSDictionary* dict = @{@"timezone_offset" : [Utils getTimeZone],
-                           @"type" : @"none",
+                           @"type" : model.type,
                            @"lat" : model.latitude,
                            @"lng" : model.longtitude,
                            @"place_id" : model.place_id,

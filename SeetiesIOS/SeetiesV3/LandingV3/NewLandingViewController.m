@@ -29,7 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    // [self initSelfView];
-    
+//    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     [self.view addSubview:self.tabBarController.view];
 
     [self requestServerForLanguageList];

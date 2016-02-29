@@ -14,22 +14,14 @@
 @class CollectionViewController;
 @class SearchLTabViewController;
 @interface CT3_SearchListingViewController : CommonViewController
-@property(nonatomic,strong)SearchLTabViewController *shopListingTableViewController;
-@property(nonatomic,strong)SearchLTabViewController *collectionListingTableViewController;
-@property(nonatomic,strong)SearchLTabViewController *PostsListingTableViewController;
-@property(nonatomic,strong)SearchLTabViewController *SeetizensListingTableViewController;
 
-@property(nonatomic,strong)ProfileViewController* profileViewController;
-@property(nonatomic,strong)CollectionViewController* collectionViewController;
-@property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;
 
-@property(nonatomic,strong)NSString* SearchText;
-@property(nonatomic,strong)NSString* LocationName;
 
-@property(nonatomic,strong)NSString* Getlat;
-@property(nonatomic,strong)NSString* Getlong;
-
-@property(nonatomic,strong)NSString* GetCurrentlat;
-@property(nonatomic,strong)NSString* GetCurrentLong;
+@property(nonatomic,strong)NSString* keyword;
+@property(nonatomic,strong)NSString* locationName;
+@property(nonatomic,strong)NSString* locationLatitude;
+@property(nonatomic,strong)NSString* locationLongtitude;
+@property(nonatomic,strong)NSString* currentLatitude;
+@property(nonatomic,strong)NSString* currentLongtitude;
 
 @end

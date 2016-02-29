@@ -11,6 +11,8 @@
 
     BOOL IsQuickCollect;
 }
+@property (weak, nonatomic) IBOutlet UIView *ibContentView;
+@property (weak, nonatomic) IBOutlet UIView *ibOutlineView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
@@ -31,6 +33,10 @@
 - (void)awakeFromNib {
     // Initialization code
     IsQuickCollect = YES;
+    
+    [Utils setRoundBorder:self.ibOutlineView color:LINE_COLOR borderRadius:0.0f];
+    [Utils setRoundBorder:self.ibContentView color:LINE_COLOR borderRadius:0.0f];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

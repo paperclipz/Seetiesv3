@@ -762,18 +762,50 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    [defaults setBool:isDev forKey:KEY_PRODUCTION];
+    NSString* key;
+
+    if (isDev) {
+        key = @"0";
+    }
+    else
+    {
+        key = @"1";
+
+    }
+    [defaults setObject:key forKey:KEY_PRODUCTION];
     
     [defaults synchronize];
 }
 
 +(BOOL)getIsDevelopment
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    BOOL isDev =  [defaults objectForKey:KEY_PRODUCTION];
+    @try {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        NSString* key =  [defaults objectForKey:KEY_PRODUCTION];
+        
+        
+        if ([Utils isStringNull:key]) {
+            return YES;
+        }
+        if ([key isEqualToString:@"0"]) {
+            return YES;
+            
+        }
+        else
+        {
+            return NO;
+            
+        }
 
-    return isDev;
+    }
+    @catch (NSException *exception) {
+        
+        return YES;
+    }
+  
+    
 }
 
 +(NSDictionary*)getSavedUserLocation

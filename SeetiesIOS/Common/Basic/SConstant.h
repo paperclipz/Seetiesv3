@@ -83,7 +83,8 @@ typedef enum
     ServerRequestTypeSearchPosts,
     ServerRequestTypeSearchUsers,
     ServerRequestTypeSearchCollections,
-    
+    ServerRequestTypeSearchShops,
+
     /*User Follower / Following*/
     ServerRequestTypeUserFollower,
     ServerRequestTypeUserFollowing,

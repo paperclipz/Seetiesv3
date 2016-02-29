@@ -76,9 +76,17 @@
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     
-    [Utils setIsDevelopment:isProduction];
-    [Utils saveUserLocation:dict[KEY_LOCATION] Longtitude:dict[KEY_LONGTITUDE] Latitude:dict[KEY_LATITUDE]];
+    
+    @try {
+        [Utils setIsDevelopment:isProduction];
+        [Utils saveUserLocation:dict[KEY_LOCATION] Longtitude:dict[KEY_LONGTITUDE] Latitude:dict[KEY_LATITUDE]];
 
+    }
+    @catch (NSException *exception) {
+        SLog(@"assign validateBeforeLogin fail");
+    }
+   
+   
 }
 
 -(void)initSelfView

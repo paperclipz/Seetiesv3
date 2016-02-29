@@ -146,8 +146,9 @@
 //        [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:latPoint GetCurrentLong:lonPoint];
 //        mySearchBar.text = GetSearchText;
         self.ct3_SearchListingViewController = nil;
-        self.ct3_SearchListingViewController.SearchText = GetSearchText;
-        [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
+        self.ct3_SearchListingViewController.keyword = GetSearchText;
+        [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES onCompletion:^{
+        }];
     }
     
 }
@@ -261,12 +262,12 @@
 //        //[SearchDetailView GetTitle:GetSearchText];
 //        [self.navigationController pushViewController:SearchDetailView animated:YES];
         self.ct3_SearchListingViewController = nil;
-        self.ct3_SearchListingViewController.SearchText = [GetReturnSearchTextArray objectAtIndex:indexPath.row];
-        self.ct3_SearchListingViewController.Getlat = [GetReturnSearchLatArray objectAtIndex:indexPath.row];
-        self.ct3_SearchListingViewController.Getlong = [GetReturnSearchLngArray objectAtIndex:indexPath.row];
-        self.ct3_SearchListingViewController.GetCurrentlat = latPoint;
-        self.ct3_SearchListingViewController.GetCurrentLong = lonPoint;
-        self.ct3_SearchListingViewController.LocationName = [GetReturnSearchAddressArray objectAtIndex:indexPath.row];
+        self.ct3_SearchListingViewController.keyword = [GetReturnSearchTextArray objectAtIndex:indexPath.row];
+        self.ct3_SearchListingViewController.locationLatitude = [GetReturnSearchLatArray objectAtIndex:indexPath.row];
+        self.ct3_SearchListingViewController.locationLongtitude = [GetReturnSearchLngArray objectAtIndex:indexPath.row];
+        self.ct3_SearchListingViewController.currentLatitude = latPoint;
+        self.ct3_SearchListingViewController.currentLongtitude = lonPoint;
+        self.ct3_SearchListingViewController.locationName = [GetReturnSearchAddressArray objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
     
     }
@@ -518,12 +519,12 @@
 //    //[SearchDetailView GetTitle:GetSearchText];
 //    mySearchBar.text = GetSearchText;
     self.ct3_SearchListingViewController = nil;
-    self.ct3_SearchListingViewController.SearchText = GetSearchText;
-    self.ct3_SearchListingViewController.Getlat = [GetReturnSearchLatArray objectAtIndex:getbuttonIDN];
-    self.ct3_SearchListingViewController.Getlong = [GetReturnSearchLngArray objectAtIndex:getbuttonIDN];
-    self.ct3_SearchListingViewController.GetCurrentlat = latPoint;
-    self.ct3_SearchListingViewController.GetCurrentLong = lonPoint;
-    self.ct3_SearchListingViewController.LocationName = [GetReturnSearchAddressArray objectAtIndex:getbuttonIDN];
+    self.ct3_SearchListingViewController.keyword = GetSearchText;
+    self.ct3_SearchListingViewController.locationLatitude = [GetReturnSearchLatArray objectAtIndex:getbuttonIDN];
+    self.ct3_SearchListingViewController.locationLongtitude = [GetReturnSearchLngArray objectAtIndex:getbuttonIDN];
+    self.ct3_SearchListingViewController.currentLatitude = latPoint;
+    self.ct3_SearchListingViewController.currentLongtitude = lonPoint;
+    self.ct3_SearchListingViewController.locationName = [GetReturnSearchAddressArray objectAtIndex:getbuttonIDN];
     [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
 -(IBAction)SearchTextOnlyButtonOnClick:(id)sender{
@@ -537,9 +538,9 @@
 //   // [SearchDetailView GetTitle:GetSearchText];
 //    mySearchBar.text = GetSearchText;
     self.ct3_SearchListingViewController = nil;
-    self.ct3_SearchListingViewController.SearchText = GetSearchText;
-    self.ct3_SearchListingViewController.GetCurrentlat = latPoint;
-    self.ct3_SearchListingViewController.GetCurrentLong = lonPoint;
+    self.ct3_SearchListingViewController.keyword = GetSearchText;
+    self.ct3_SearchListingViewController.currentLatitude = latPoint;
+    self.ct3_SearchListingViewController.currentLongtitude = lonPoint;
     [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
 -(IBAction)SearchGetLocationButtonOnClick:(id)sender{

@@ -520,10 +520,21 @@
             str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
             break;
         case ServerRequestTypeSearchPosts:
-        case ServerRequestTypeSearchUsers:
-        case ServerRequestTypeSearchCollections:
             str = [NSString stringWithFormat:@"%@/search",API_VERION_URL];
+
             break;
+        case ServerRequestTypeSearchUsers:
+            str = [NSString stringWithFormat:@"%@/search/user",API_VERION_URL];
+
+            break;
+        case ServerRequestTypeSearchCollections:
+            str = [NSString stringWithFormat:@"%@/search/collections",API_VERION_URL];
+            break;
+        case ServerRequestTypeSearchShops:
+            str = [NSString stringWithFormat:@"%@/search/shops",API_VERION_URL];
+
+            break;
+            
         case ServerRequestTypeGetHomeCountry:
             str = [NSString stringWithFormat:@"%@/home/countries",API_VERION_URL];
             
@@ -809,7 +820,7 @@
         case ServerRequestTypeSearchCollections:
         {
             
-            NSDictionary* dict = obj[@"data"];
+            NSDictionary* dict = obj[@"data"][@"collections"];
             self.dataManager.userCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
             
         }
