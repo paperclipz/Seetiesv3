@@ -8,7 +8,10 @@
 
 #import "DealDetailsViewController.h"
 
-@interface DealDetailsViewController ()
+@interface DealDetailsViewController (){
+    float contentHeightPadding;
+}
+
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderSubTitleLbl;
 @property (weak, nonatomic) IBOutlet UIView *ibMainContentView;
@@ -51,10 +54,11 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibTnCView;
 @property (weak, nonatomic) IBOutlet UIView *ibTnCContentView;
-@property (weak, nonatomic) IBOutlet UITableView *ibTnCTable;
 @property (weak, nonatomic) IBOutlet UILabel *ibTnCTitle;
 @property (weak, nonatomic) IBOutlet UIButton *ibTnCReadMoreBtn;
+@property (weak, nonatomic) IBOutlet UIView *ibTnCContent;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTnCSeeMoreHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTnCContentHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibDealsView;
 @property (weak, nonatomic) IBOutlet UIView *ibDealsContentView;
@@ -93,6 +97,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.isProcessing = NO;
+    contentHeightPadding = 23.0;
     
     [self.ibAvailabilityTable registerNib:[UINib nibWithNibName:@"DealDetailsAvailabilityCell" bundle:nil] forCellReuseIdentifier:@"DealDetailsAvailabilityCell"];
     [self.ibShopTable registerNib:[UINib nibWithNibName:@"PromoOutletCell" bundle:nil] forCellReuseIdentifier:@"PromoOutletCell"];
@@ -111,6 +116,7 @@
 {
     [self initViewArray];
     [self initSelfView];
+    [LoadingManager show];
     if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
         [self requestServerForDealInfo];
     }
@@ -156,6 +162,7 @@
 #pragma mark - IBAction
 - (IBAction)shopSeeMoreBtnClicked:(id)sender {
     self.seetieShopListingViewController = nil;
+    self.seetieShopListingViewController.title = @"Participate Shops";
     [self.navigationController pushViewController:self.seetieShopListingViewController animated:YES onCompletion:^{
         NSMutableArray *copyOfShopModel = [[NSMutableArray alloc] initWithArray:self.dealModel.shops];
         [self.seetieShopListingViewController initWithArray:copyOfShopModel];
@@ -164,6 +171,7 @@
 
 - (IBAction)nearbyShopSeeMoreBtnClicked:(id)sender {
     self.seetieShopListingViewController = nil;
+    self.seetieShopListingViewController.title = @"Nearby Shops";
     [self.navigationController pushViewController:self.seetieShopListingViewController animated:YES onCompletion:^{
         [self.seetieShopListingViewController initWithArray:self.nearbyShopArray];
     }];
@@ -223,7 +231,7 @@
     self.ibMainContentHeightConstraint.constant = totalHeight;
     [self.view refreshConstraint];
     
-    [self drawBorders];
+//    [self drawBorders];
 }
 
 -(void)updateViews{
@@ -371,7 +379,7 @@
     }
     self.ibRedemptionContentViewHeightConstraint.constant = redemptionYOrigin;
     
-    CGFloat contentHeight = self.ibDealDetailsRedemptionContentView.frame.origin.y + self.ibRedemptionContentViewHeightConstraint.constant + 15;
+    CGFloat contentHeight = self.ibDealDetailsRedemptionContentView.frame.origin.y + self.ibRedemptionContentViewHeightConstraint.constant + contentHeightPadding;
     [self.ibDealDetailsView setHeight:contentHeight];
 }
 
@@ -382,7 +390,7 @@
     float cellHeight = [DealDetailsAvailabilityCell getHeight];
     NSInteger numberOfDays = self.dealModel.redemption_period_in_hour_text.allKeys.count;
     float tableHeight = cellHeight * numberOfDays;
-    CGFloat totalHeight = self.ibAvailabilityTable.frame.origin.y + tableHeight + 15;
+    CGFloat totalHeight = self.ibAvailabilityTable.frame.origin.y + tableHeight + contentHeightPadding;
     
     [self.ibAvailabilityView setHeight:totalHeight];
 }
@@ -395,8 +403,9 @@
     float cellHeight = [PromoOutletCell getHeight];
     NSInteger numberOfShop = self.dealModel.shops.count;
     float tableHeight = cellHeight * numberOfShop;
-    CGFloat totalHeight = self.ibShopTable.frame.origin.y + tableHeight + 15;
+    CGFloat totalHeight = self.ibShopTable.frame.origin.y + tableHeight + contentHeightPadding;
     
+    //Closed for testing, To be opened after testing
 //    if (self.dealModel.shops.count > 3) {
         self.ibShopSeeMoreHeightConstraint.constant = 40;
         self.ibShopSeeMoreBtn.hidden = NO;
@@ -412,31 +421,52 @@
 }
 
 -(void)updateTnCView{
-    [self.ibTnCTable reloadData];
     
-    float cellHeight = 44;
-    NSInteger numberOfTerms = self.dealModel.terms.count;
-    float tableHeight = cellHeight * numberOfTerms;
-    CGFloat totalHeight = self.ibTnCTable.frame.origin.y + tableHeight + 15;
-    
-    if (self.dealModel.terms.count > 5) {
-        self.ibTnCSeeMoreHeightConstraint.constant = 40;
-        self.ibTnCReadMoreBtn.hidden = NO;
-        totalHeight += self.ibTnCSeeMoreHeightConstraint.constant;
+    if ([Utils isArrayNull:self.dealModel.terms]) {
+        [self.ibTnCView setHeight:0];
     }
     else{
-        self.ibTnCSeeMoreHeightConstraint.constant = 0;
-        self.ibTnCReadMoreBtn.hidden = YES;
-        totalHeight += self.ibTnCSeeMoreHeightConstraint.constant;
+        float yOrigin = 0;
+        int count = 0;
+        self.ibTnCContentHeightConstraint.constant = 0;
+        NSDictionary *attr = @{NSFontAttributeName: [UIFont systemFontOfSize:15.0f]};
+        for (NSString *term in self.dealModel.terms) {
+            if (count >= 5) {
+                break;
+            }
+            
+            NSString *formattedTerm = [NSString stringWithFormat:@"- %@", term];
+            CGRect rect = [formattedTerm boundingRectWithSize:CGSizeMake(self.ibTnCContent.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
+            UILabel *tncLbl = [[UILabel alloc]initWithFrame:CGRectMake(8, yOrigin, ceilf(rect.size.width), ceilf(rect.size.height))];
+            tncLbl.font = [UIFont systemFontOfSize:15.0f];
+            tncLbl.numberOfLines = 0;
+            tncLbl.text = formattedTerm;
+            
+            [self.ibTnCContent addSubview:tncLbl];
+            yOrigin += tncLbl.frame.size.height + 10;
+            count++;
+        }
+        self.ibTnCContentHeightConstraint.constant = yOrigin;
+        
+        if (self.dealModel.terms.count > 5) {
+            self.ibTnCSeeMoreHeightConstraint.constant = 40;
+            self.ibTnCReadMoreBtn.hidden = NO;
+            
+        }
+        else{
+            self.ibTnCSeeMoreHeightConstraint.constant = 0;
+            self.ibTnCReadMoreBtn.hidden = YES;
+        }
+        
+        [self.ibTnCView setHeight:self.ibTnCReadMoreBtn.frame.origin.y + self.ibTnCSeeMoreHeightConstraint.constant + contentHeightPadding];
     }
-    
-    [self.ibTnCView setHeight:totalHeight];
 }
 
 -(void)updateNearbyShopView{
     
     if (self.nearbyShopArray.count > 0) {
-        [self.ibNearbyShopView setHeight:265];
+        CGFloat contentHeight = self.ibNearbyShopCollection.frame.origin.y + 180 + contentHeightPadding;
+        [self.ibNearbyShopView setHeight:contentHeight];
     }
     else{
         [self.ibNearbyShopView setHeight:0];
@@ -569,14 +599,6 @@
     else if (tableView == self.ibDealsTable){
         return 3;
     }
-    else if (tableView == self.ibTnCTable){
-        if (self.dealModel.terms.count > 5) {
-            return 5;
-        }
-        else{
-            return self.dealModel.terms.count;
-        }
-    }
     
     return 0;
 }
@@ -592,17 +614,12 @@
     }
     else if (tableView == self.ibShopTable){
         PromoOutletCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PromoOutletCell"];
-        [cell setCellType:NonSelectionOutletCellType];
+        [cell setCellType:PromoOutletCellTypeNonSelection];
         [cell setShopModel:self.dealModel.shops[indexPath.row]];
         return cell;
     }
     else if (tableView == self.ibDealsTable){
         return [tableView dequeueReusableCellWithIdentifier:@"SeDealsFeaturedTblCell"];
-    }
-    else if (tableView == self.ibTnCTable){
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.textLabel.text = [self.dealModel.terms objectAtIndex:indexPath.row];
-        return cell;
     }
     
     return nil;
@@ -617,9 +634,6 @@
     }
     else if (tableView == self.ibDealsTable){
         return [SeDealsFeaturedTblCell getHeight];
-    }
-    else if (tableView == self.ibTnCTable){
-        return 44;
     }
     
     return 44;
@@ -693,6 +707,10 @@
         if (self.dealModel.shops.count == 1) {
             [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
         }
+        else{
+            [self drawBorders];
+            [LoadingManager hide];
+        }
         
     } errorBlock:^(id object) {
         
@@ -752,10 +770,12 @@
         [self.nearbyShopArray addObjectsFromArray:seetieShopModel.shops];
         [self updateViews];
         [self.ibNearbyShopCollection reloadData];
-        
+        [self drawBorders];
+        [LoadingManager hide];
     } errorBlock:^(id object) {
         
     }];
 }
+
 
 @end

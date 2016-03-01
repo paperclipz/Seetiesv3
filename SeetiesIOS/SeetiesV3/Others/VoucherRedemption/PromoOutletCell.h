@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 typedef enum{
-    SelectionOutletCellType,
-    NonSelectionOutletCellType
+    PromoOutletCellTypeSelection,
+    PromoOutletCellTypeNonSelection,
+    PromoOutletCellTypeStatus
 } PromoOutletCellType;
 
 @interface PromoOutletCell : CommonTableViewCell

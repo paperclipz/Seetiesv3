@@ -7,7 +7,7 @@
 //
 
 #import "SeetiShopListingViewController.h"
-#import "SeetiShopListTableViewCell.h"
+#import "PromoOutletCell.h"
 #import "SeetiesShopViewController.h"
 @class SeetiesShopViewController;
 
@@ -40,13 +40,14 @@
     
     self.shoplat = [[SearchManager Instance]getAppLocation].coordinate.latitude;
     self.shopLgn = [[SearchManager Instance]getAppLocation].coordinate.longitude;
+    [self changLanguage];
 }
 
 -(void)initTableViewDelegate
 {
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
-    [self.ibTableView registerClass:[SeetiShopListTableViewCell class] forCellReuseIdentifier:@"SeetiShopListTableViewCell"];
+    [self.ibTableView registerClass:[PromoOutletCell class] forCellReuseIdentifier:@"PromoOutletCell"];
     
 }
 - (void)didReceiveMemoryWarning {
@@ -59,31 +60,17 @@
     return self.arrShopList.count;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [PromoOutletCell getHeight];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SeetiShopListTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeetiShopListTableViewCell"];
+    PromoOutletCell* cell = [tableView dequeueReusableCellWithIdentifier:@"PromoOutletCell"];
     
     SeShopDetailModel* model = self.arrShopList[indexPath.row];
-    
-    if (!model.profile_photo)
-    {
-       // PhotoModel* photoModel = model.arrPhotos[0];
-        [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.profile_photo[@"picture"]] completed:nil];
-
-    }
-    cell.lblTitle.text = model.name;
-   
-    
-    if (self.shoplat==0) {
-        cell.lblDesc.text = [NSString stringWithFormat:@"%@ • %@",model.location.locality,model.location.formatted_address];
-
-    }
-    else{
-        cell.lblDesc.text = [NSString stringWithFormat:@"%@ • %@",[Utils getDistance:model.location.distance Locality:model.location.locality],model.location.formatted_address];
-
-    }
-   
-    [cell setIsOpen:model.location.opening_hours.open_now];
+    [cell setCellType:PromoOutletCellTypeStatus];
+    [cell setShopModel:model];
     
     return cell;
 }
@@ -199,6 +186,6 @@
 #pragma mark - Change Language
 -(void)changLanguage
 {
-    self.lblTitle.text = LocalisedString(@"Nearby Shops");
+    self.lblTitle.text = LocalisedString(self.title);
 }
 @end

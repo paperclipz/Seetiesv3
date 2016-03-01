@@ -112,8 +112,8 @@
             
         case ChooseShopViewType:
             [self.ibShopTable registerClass:[PromoOutletCell class] forCellReuseIdentifier:@"PromoOutletCell"];
-            self.ibShopTable.estimatedRowHeight = [PromoOutletCell getHeight];
-            self.ibShopTable.rowHeight = UITableViewAutomaticDimension;
+//            self.ibShopTable.estimatedRowHeight = [PromoOutletCell getHeight];
+//            self.ibShopTable.rowHeight = UITableViewAutomaticDimension;
             
             int counter = 4;
             float headerAndFooterHeight = 140;
@@ -262,12 +262,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewAutomaticDimension;
+//    return UITableViewAutomaticDimension;
+    return [PromoOutletCell getHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PromoOutletCell *outletCell = [tableView dequeueReusableCellWithIdentifier:@"PromoOutletCell"];
-    [outletCell setCellType:SelectionOutletCellType];
+    [outletCell setCellType:PromoOutletCellTypeSelection];
     SeShopDetailModel *shopModel = [self.shopArray objectAtIndex:indexPath.row];
     [outletCell setShopModel:shopModel];
     

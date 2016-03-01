@@ -20,7 +20,6 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    [self.ibShopImage setRoundedBorder];
 }
 
 -(void)setShopModel:(SeShopDetailModel *)shopModel{
@@ -28,7 +27,7 @@
     
     
     [self.ibShopImage sd_setImageCroppedWithURL:[NSURL URLWithString:self.shopModel.profile_photo[@"picture"]] completed:nil];
-    [self.ibShopImage setRoundedBorder];
+    [Utils setRoundBorder:self.ibShopImage color:LINE_COLOR borderRadius:self.ibShopImage.frame.size.width/2];
     self.ibShopName.text = self.shopModel.name;
 }
 

@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibOutletAddress;
 @property (weak, nonatomic) IBOutlet UIImageView *ibIsSelectedImg;
 @property (weak, nonatomic) IBOutlet UIImageView *ibArrowImg;
+@property (weak, nonatomic) IBOutlet UIImageView *ibIsSeetishopIcon;
+@property (weak, nonatomic) IBOutlet UILabel *ibShopStatusLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibRightViewWidthConstraint;
 
 @property(nonatomic, assign) PromoOutletCellType cellType;
 @property(nonatomic) SeShopDetailModel *shopModel;
@@ -23,19 +26,13 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    if (self.cellType == SelectionOutletCellType) {
-        _ibArrowImg.hidden = YES;
-    }
-    else{
-        _ibArrowImg.hidden = NO;
-    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-    if (self.cellType == SelectionOutletCellType) {
+    if (self.cellType == PromoOutletCellTypeSelection) {
         self.ibIsSelectedImg.hidden = !selected;
     }
     
@@ -44,11 +41,22 @@
 -(void)setCellType:(PromoOutletCellType)cellType{
     _cellType = cellType;
     
-    if (self.cellType == SelectionOutletCellType) {
-        _ibArrowImg.hidden = YES;
+    if (self.cellType == PromoOutletCellTypeSelection) {
+        self.ibArrowImg.hidden = YES;
+        self.ibShopStatusLbl.hidden = YES;
+        self.ibRightViewWidthConstraint.constant = 40;
     }
-    else{
-        _ibArrowImg.hidden = NO;
+    else if(self.cellType == PromoOutletCellTypeNonSelection){
+        self.ibArrowImg.hidden = NO;
+        self.ibShopStatusLbl.hidden = YES;
+        self.ibRightViewWidthConstraint.constant = 40;
+    }
+    else if (self.cellType == PromoOutletCellTypeStatus){
+        self.ibArrowImg.hidden = YES;
+        self.ibShopStatusLbl.hidden = NO;
+        self.ibRightViewWidthConstraint.constant = 70;
+        
+        [self.ibShopStatusLbl setSideCurveBorder];
     }
 }
 
@@ -64,6 +72,8 @@
             [self.ibOutletImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:^(UIImage *image) {
             }];
         }
+        
+        [self.ibOutletImg setRoundedCorners:UIRectCornerAllCorners radius:5.0f];
     }
     @catch (NSException *exception) {
         SLog(@"assign image url fail");

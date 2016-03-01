@@ -193,8 +193,9 @@
         }];
     }
     
-    if (self.seShopModel.profile_photo_images) {
-        [self.ibImgProfile sd_setImageCroppedWithURL:[NSURL URLWithString:self.seShopModel.profile_photo_images[@"m"]] completed:^(UIImage *image){
+    if (self.seShopModel.profile_photo) {
+        
+        [self.ibImgProfile sd_setImageCroppedWithURL:[NSURL URLWithString:self.seShopModel.profile_photo[@"picture"]] completed:^(UIImage *image){
            
             if (!image) {
                 self.ibImgProfile.image = [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];

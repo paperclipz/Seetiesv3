@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DealDetailsViewController">
@@ -58,10 +58,11 @@
                 <outlet property="ibTagContentView" destination="CCZ-ge-ges" id="KyQ-L8-kc1"/>
                 <outlet property="ibTagContentViewWidthConstraint" destination="fes-ZK-3Ir" id="QtV-lp-CA2"/>
                 <outlet property="ibTagScrollViewHeightConstraint" destination="LRD-xH-9jZ" id="5In-Ot-UO0"/>
+                <outlet property="ibTnCContent" destination="AZE-RZ-h5E" id="DQv-Wp-Wo2"/>
+                <outlet property="ibTnCContentHeightConstraint" destination="acb-bq-dPg" id="KaT-ac-eFu"/>
                 <outlet property="ibTnCContentView" destination="Wdy-WY-2Vw" id="kn7-gd-djx"/>
                 <outlet property="ibTnCReadMoreBtn" destination="lQg-Rf-AEv" id="YuN-8E-HeC"/>
                 <outlet property="ibTnCSeeMoreHeightConstraint" destination="6EY-Ff-Rr5" id="sEs-Dl-L7R"/>
-                <outlet property="ibTnCTable" destination="AOW-Nr-rPJ" id="Qxt-hG-8Ic"/>
                 <outlet property="ibTnCTitle" destination="6XK-bF-G9q" id="wGZ-Vm-iVT"/>
                 <outlet property="ibTnCView" destination="NlV-uy-WHx" id="Zew-K3-vyg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -736,16 +737,15 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AOW-Nr-rPJ" userLabel="tnc table">
-                            <rect key="frame" x="8" y="37" width="584" height="508"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZE-RZ-h5E" userLabel="tnc content view">
+                            <rect key="frame" x="8" y="37" width="584" height="128"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="I7R-D5-4Nk"/>
-                                <outlet property="delegate" destination="-1" id="v2j-3u-Ow1"/>
-                            </connections>
-                        </tableView>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="acb-bq-dPg"/>
+                            </constraints>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQg-Rf-AEv" userLabel="read more button">
-                            <rect key="frame" x="0.0" y="545" width="600" height="40"/>
+                            <rect key="frame" x="0.0" y="165" width="600" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="6EY-Ff-Rr5"/>
                             </constraints>
@@ -759,18 +759,17 @@
                         <constraint firstItem="lQg-Rf-AEv" firstAttribute="leading" secondItem="Wdy-WY-2Vw" secondAttribute="leading" id="0YK-eo-sYC"/>
                         <constraint firstAttribute="trailing" secondItem="lQg-Rf-AEv" secondAttribute="trailing" id="60y-PA-ocP"/>
                         <constraint firstItem="6XK-bF-G9q" firstAttribute="top" secondItem="Wdy-WY-2Vw" secondAttribute="top" constant="8" id="7Wc-6P-Q39"/>
-                        <constraint firstAttribute="trailing" secondItem="AOW-Nr-rPJ" secondAttribute="trailing" constant="8" id="EuQ-zU-l0a"/>
-                        <constraint firstItem="AOW-Nr-rPJ" firstAttribute="top" secondItem="6XK-bF-G9q" secondAttribute="bottom" constant="8" id="UhW-5n-QvI"/>
-                        <constraint firstItem="AOW-Nr-rPJ" firstAttribute="leading" secondItem="Wdy-WY-2Vw" secondAttribute="leading" constant="8" id="eSZ-eH-gSi"/>
-                        <constraint firstAttribute="bottom" secondItem="AOW-Nr-rPJ" secondAttribute="bottom" constant="8" id="gtk-JY-FjI"/>
+                        <constraint firstAttribute="trailing" secondItem="AZE-RZ-h5E" secondAttribute="trailing" constant="8" id="OPO-ZE-Fb8"/>
+                        <constraint firstItem="AZE-RZ-h5E" firstAttribute="leading" secondItem="Wdy-WY-2Vw" secondAttribute="leading" constant="8" id="caT-vN-sRI"/>
+                        <constraint firstItem="AZE-RZ-h5E" firstAttribute="top" secondItem="6XK-bF-G9q" secondAttribute="bottom" constant="8" id="clD-y8-Us3"/>
                         <constraint firstAttribute="bottom" secondItem="lQg-Rf-AEv" secondAttribute="bottom" id="h2g-UE-6UG"/>
                         <constraint firstItem="6XK-bF-G9q" firstAttribute="leading" secondItem="Wdy-WY-2Vw" secondAttribute="leading" constant="8" id="mrc-yV-bZA"/>
-                        <constraint firstItem="lQg-Rf-AEv" firstAttribute="top" secondItem="AOW-Nr-rPJ" secondAttribute="bottom" id="oGz-4U-Xqr"/>
+                        <constraint firstItem="lQg-Rf-AEv" firstAttribute="top" secondItem="AZE-RZ-h5E" secondAttribute="bottom" id="pX6-Kn-p8Z"/>
                         <constraint firstAttribute="trailing" secondItem="6XK-bF-G9q" secondAttribute="trailing" constant="8" id="yGG-cp-sp1"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="gtk-JY-FjI"/>
+                            <exclude reference="h2g-UE-6UG"/>
                         </mask>
                     </variation>
                 </view>
@@ -822,7 +821,7 @@
                             </state>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YJE-cJ-kVD" userLabel="deals table">
-                            <rect key="frame" x="0.0" y="48" width="600" height="489"/>
+                            <rect key="frame" x="0.0" y="48" width="600" height="497"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="x6h-Yp-eeh"/>
@@ -834,7 +833,7 @@
                     <constraints>
                         <constraint firstItem="Dez-PV-dHf" firstAttribute="top" secondItem="04T-m5-llz" secondAttribute="top" id="0rx-9C-u4A"/>
                         <constraint firstAttribute="trailing" secondItem="B2r-aF-OtR" secondAttribute="trailing" id="92r-6h-9jw"/>
-                        <constraint firstItem="B2r-aF-OtR" firstAttribute="top" secondItem="YJE-cJ-kVD" secondAttribute="bottom" constant="8" id="Dfq-7r-nPV"/>
+                        <constraint firstItem="B2r-aF-OtR" firstAttribute="top" secondItem="YJE-cJ-kVD" secondAttribute="bottom" id="Dfq-7r-nPV"/>
                         <constraint firstAttribute="trailing" secondItem="Dez-PV-dHf" secondAttribute="trailing" id="HW6-gu-8MJ"/>
                         <constraint firstAttribute="bottom" secondItem="B2r-aF-OtR" secondAttribute="bottom" id="f7D-0J-wla"/>
                         <constraint firstItem="Dez-PV-dHf" firstAttribute="leading" secondItem="04T-m5-llz" secondAttribute="leading" id="hwu-8q-UVE"/>
@@ -904,8 +903,8 @@
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
-                                    <exclude reference="w79-52-Nkz"/>
                                     <exclude reference="BpY-Mn-coh"/>
+                                    <exclude reference="w79-52-Nkz"/>
                                 </mask>
                             </variation>
                         </view>
