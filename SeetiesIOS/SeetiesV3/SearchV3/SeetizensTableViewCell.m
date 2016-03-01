@@ -10,14 +10,19 @@
 @interface SeetizensTableViewCell()
 @property (weak, nonatomic) IBOutlet UIButton *btnFollow;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageUserProfile;
-@property (weak, nonatomic) IBOutlet UILabel *ibLabelUsername;
 @property (strong, nonatomic) UserModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *lblUserName;
+@property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @end
 
 @implementation SeetizensTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    [Utils setRoundBorder:self.btnFollow color:SELECTED_GREEN borderRadius:self.btnFollow.frame.size.height/2];
+    [self.ibImageUserProfile setSideCurveBorder];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -39,11 +44,17 @@
 }
 -(void)initData:(UserModel*)model{
     
-    [self.ibImageUserProfile setSideCurveBorder];
     
-    self.ibLabelUsername.text = model.username;
-   // [self.ibImageUserProfile sd_setImageWithURL:[NSURL URLWithString:model.profile_photo_images]];
-    [self.ibImageUserProfile sd_setImageWithURL:[NSURL URLWithString:model.profile_photo]];
+    @try {
+        self.lblUserName.text = model.username;
+        [self.ibImageUserProfile sd_setImageWithURL:[NSURL URLWithString:model.profile_photo]];
+        self.lblLocation.text = model.location;
+    }
+    @catch (NSException *exception) {
+        SLog(@"initData error");
+    }
+   
+    
     
     
     if (model.following == YES) {

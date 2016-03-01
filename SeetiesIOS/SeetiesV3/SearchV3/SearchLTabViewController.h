@@ -20,7 +20,10 @@ typedef void (^DidSelectCollectionOpenViewBlock)(DraftModel* model);
 @property(nonatomic,copy)DidSelectCollectionOpenViewBlock didSelectCollectionOpenViewBlock;
 @property(nonatomic,assign)SearchListingType searchListingType;
 
--(void)refreshRequest:(NSString*)keyword Latitude:(NSString*)latitude Longtitude:(NSString*)longtitude CurrentLatitude:(NSString*)currLatitude CurrentLongtitude:(NSString*)currLongtitude googleDetails:(SearchLocationDetailModel*)googleDetailModel;
+-(void)refreshRequestWithGoogleDetail:(NSString*)keyword  googleDetails:(SearchLocationDetailModel*)googleDetailModel;
+-(void)refreshRequestWithCoordinate:(NSString*)keyword Latitude:(NSString*)latitude Longtitude:(NSString*)longtitude;
+
+-(void)refreshRequestShop:(NSString*)keyword SeetieshopPlaceID:(NSString*)placeID;
 
 -(void)refreshRequestWithText:(NSString*)keyword;
 

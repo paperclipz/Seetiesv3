@@ -15,7 +15,5 @@
 @interface SeShopsModel : PaginationModel
 
 @property(nonatomic,strong)NSArray<SeShopDetailModel>* shops;
-@property(nonatomic,assign)int total_shops;
-@property(nonatomic,assign)int page;
 
 @end

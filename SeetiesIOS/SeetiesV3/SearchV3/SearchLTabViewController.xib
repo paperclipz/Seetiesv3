@@ -24,6 +24,8 @@
                     <connections>
                         <outlet property="dataSource" destination="-1" id="CZx-MR-0y7"/>
                         <outlet property="delegate" destination="-1" id="3XC-DH-ai5"/>
+                        <outlet property="ibCustomActivityIndicator" destination="Par-hJ-epV" id="AlU-vv-q3f"/>
+                        <outlet property="ibCustomFooterView" destination="9PJ-TN-1Lr" id="4lJ-TU-ES7"/>
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0j-dm-JRQ">
@@ -93,6 +95,23 @@
                     <exclude reference="YEk-si-ACG"/>
                 </mask>
             </variation>
+        </view>
+        <view contentMode="scaleToFill" id="9PJ-TN-1Lr">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Par-hJ-epV">
+                    <rect key="frame" x="150" y="17" width="20" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Par-hJ-epV" firstAttribute="centerX" secondItem="9PJ-TN-1Lr" secondAttribute="centerX" id="8j9-Ti-yOQ"/>
+                <constraint firstItem="Par-hJ-epV" firstAttribute="centerY" secondItem="9PJ-TN-1Lr" secondAttribute="centerY" id="JyX-lz-c3u"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="928" y="-54"/>
         </view>
     </objects>
 </document>
