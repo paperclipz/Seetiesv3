@@ -196,7 +196,7 @@
     }
     
     
-   // SLog(@"\n\n ===== [REQUEST SERVER WITH GET][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
+    SLog(@"\n\n ===== [REQUEST SERVER WITH GET][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
     
     [self.manager GET:fullURL parameters:dict
@@ -1021,6 +1021,14 @@
             //        case ServerRequestTypePostProvisioning:
             //
             //            break;
+            
+        case ServerRequestTypeSearchShops:
+        {
+            NSDictionary *dict = obj[@"data"][@"shops"];
+            self.dataManager.seShopListingModel = [[SeShopsModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+            
         default:
             
             SLog(@"the return result is :%@",obj);

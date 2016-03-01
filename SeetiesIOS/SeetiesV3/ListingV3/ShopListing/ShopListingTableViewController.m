@@ -45,15 +45,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.TabType isEqualToString:@"Shops"]) {
-        
-        if (indexPath.row == 2) {
-            return [ShopTableViewCell getHeightWithoutImage];
-
-        }
-        else{
-            return [ShopTableViewCell getHeight];
-
-        }
+        return [ShopTableViewCell getHeight];
+    
+      
     }else{
         return [ProfilePageCollectionTableViewCell getHeight];
     }

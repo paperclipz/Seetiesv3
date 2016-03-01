@@ -74,7 +74,7 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)SeShopPhotoModel* seShopPhotoModel;
 @property(nonatomic,strong)SeShopDetailModel* seShopDetailModel;
 @property(nonatomic,strong)SeShopsModel* seNearbyShopModel;
-@property(nonatomic,strong)SeShopsModel* seNearbyShopListingModel;
+@property(nonatomic,strong)SeShopsModel* seShopListingModel;
 @property(nonatomic,strong)UsersModel* usersModel;
 @property(nonatomic,strong)DealsModel* dealsModel;
 @property(nonatomic,strong)DealModel* dealModel;

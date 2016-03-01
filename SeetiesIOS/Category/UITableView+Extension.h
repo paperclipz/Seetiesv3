@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface UITableView(Extra)
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *ibCustomActivityIndicator;
+@property (nonatomic, strong) IBOutlet UIView *ibCustomFooterView;
+
 - (void) reloadSectionDU:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation;
+-(void)setupFooterView;
+-(void)startFooterLoadingView;
+-(void)stopFooterLoadingView;
 
 @end

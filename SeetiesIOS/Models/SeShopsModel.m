@@ -8,9 +8,23 @@
 
 #import "SeShopsModel.h"
 
+@interface SeShopsModel()
+
+
+@end
 @implementation SeShopsModel
+
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
 }
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"result" :@"shops"
+                                                       }];
+}
+
+
 @end

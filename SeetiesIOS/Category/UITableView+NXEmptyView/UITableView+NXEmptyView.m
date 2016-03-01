@@ -14,6 +14,7 @@
 static const NSString *NXEmptyViewAssociatedKey = @"NXEmptyViewAssociatedKey";
 static const NSString *NXEmptyViewHideSeparatorLinesAssociatedKey = @"NXEmptyViewHideSeparatorLinesAssociatedKey";
 static const NSString *NXEmptyViewPreviousSeparatorStyleAssociatedKey = @"NXEmptyViewPreviousSeparatorStyleAssociatedKey";
+static const NSString *FOOTER_KEY = @"FooterView_Key";
 
 
 void nxEV_swizzle(Class c, SEL orig, SEL new)
@@ -55,6 +56,12 @@ void nxEV_swizzle(Class c, SEL orig, SEL new)
     return (numberOfRows > 0);
 }
 
+
+- (void) reloadSectionDU:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation {
+    NSRange range = NSMakeRange(section, 1);
+    NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+    [self reloadSections:sectionToReload withRowAnimation:rowAnimation];
+}
 @dynamic nxEV_emptyView;
 - (UIView *)nxEV_emptyView;
 {

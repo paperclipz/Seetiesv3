@@ -16,7 +16,9 @@
 @protocol SePhotoModel
 
 @end
+@protocol DealModel
 
+@end
 @class DraftModel;
 @class SeShopGroupModel;
 
@@ -38,7 +40,7 @@
 @property(nonatomic,strong)NSArray* wallpapers;
 @property(nonatomic,strong)NSDictionary* profile_photo_images;
 @property(nonatomic,strong)NSString* language;
-
+@property(nonatomic,strong)NSArray<DealModel>* deals;
 
 /*for notification purposes*/
 @property(nonatomic,strong)NSString* post_id;

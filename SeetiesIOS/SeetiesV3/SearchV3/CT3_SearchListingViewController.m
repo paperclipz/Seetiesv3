@@ -12,6 +12,8 @@
 
 }
 
+@property(nonatomic,assign)SearchViewType searchType;
+
 @property(nonatomic)SearchLocationDetailModel* googleLocationDetailModel;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
@@ -461,16 +463,43 @@
     return _collectPostToCollectionVC;
 }
 
+#pragma mark Init Data
+
+-(void)setSearchType:(SearchViewType)searchType
+{
+    self.searchType = searchType;
+}
+
 -(void)refreshSearch
 {
-    CLLocation* currentLocation = [[SearchManager Instance]getAppLocation];
-
-    [self.PostsListingTableViewController refreshRequest:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude CurrentLatitude:@(currentLocation.coordinate.latitude).stringValue CurrentLongtitude:@(currentLocation.coordinate.longitude).stringValue googleDetails:self.googleLocationDetailModel];
-
-    //  [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
     
+    //[self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
+    
+    switch (self.searchType) {
+        default:
+        case SearchViewTypeCoordinate:
+          //  [self.PostsListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
+           // [self.collectionListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
+            [self.shopListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
 
-   // [self.collectionListingTableViewController refreshRequest:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude CurrentLatitude:@(currentLocation.coordinate.latitude).stringValue CurrentLongtitude:@(currentLocation.coordinate.longitude).stringValue googleDetails:self.googleLocationDetailModel];
+            
+            break;
+        case SearchViewTypePlaceID:
+            [self.shopListingTableViewController refreshRequestShop:self.ibSearchText.text SeetieshopPlaceID:self.placeID];
+            [self.collectionListingTableViewController refreshRequestShop:self.ibSearchText.text SeetieshopPlaceID:self.placeID];
+            [self.PostsListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
+
+            break;
+        case SearchViewTypeTypeGoogleDetail:
+            [self.PostsListingTableViewController refreshRequestWithGoogleDetail:self.ibSearchText.text googleDetails:self.googleLocationDetailModel];
+            [self.collectionListingTableViewController refreshRequestWithGoogleDetail:self.ibSearchText.text googleDetails:self.googleLocationDetailModel];
+            [self.shopListingTableViewController refreshRequestWithGoogleDetail:self.ibSearchText.text googleDetails:self.googleLocationDetailModel];
+
+
+            break;
+            
+    }
+   
 }
 
 @end
