@@ -71,6 +71,7 @@
     SeShopDetailModel* model = self.arrShopList[indexPath.row];
     [cell setCellType:PromoOutletCellTypeStatus];
     [cell setShopModel:model];
+    [cell drawBorders];
     
     return cell;
 }

@@ -9,6 +9,7 @@
 #import "PromoOutletCell.h"
 
 @interface PromoOutletCell()
+@property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibOutletImg;
 @property (weak, nonatomic) IBOutlet UILabel *ibOutletTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibOutletAddress;
@@ -74,11 +75,27 @@
         }
         
         [self.ibOutletImg setRoundedCorners:UIRectCornerAllCorners radius:5.0f];
+        
+        if (self.cellType == PromoOutletCellTypeStatus) {
+            if (self.shopModel.location.opening_hours.open_now) {
+                self.ibShopStatusLbl.text = LocalisedString(@"OPEN");
+                self.ibShopStatusLbl.backgroundColor = [UIColor colorWithRed:122/255.0f green:210/255.0f blue:27/255.0f alpha:1];
+            }
+            else{
+                self.ibShopStatusLbl.text = LocalisedString(@"CLOSED");
+                self.ibShopStatusLbl.backgroundColor = [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1];
+            }
+        }
     }
     @catch (NSException *exception) {
         SLog(@"assign image url fail");
     }
    
+}
+
+-(void)drawBorders{
+    [self.ibInnerContentView prefix_addUpperBorder:LINE_COLOR];
+    [self.ibInnerContentView prefix_addLowerBorder:LINE_COLOR];
 }
 
 @end

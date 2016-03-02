@@ -20,8 +20,10 @@
                 <outlet property="ibDealDetailsView" destination="C3r-3W-tkp" id="2tv-4z-KQT"/>
                 <outlet property="ibDealsContentView" destination="04T-m5-llz" id="XZ6-h7-I3E"/>
                 <outlet property="ibDealsSeeMoreBtn" destination="B2r-aF-OtR" id="cbA-va-dZ6"/>
+                <outlet property="ibDealsSeeMoreHeightConstraint" destination="o5R-nL-139" id="Ork-CK-efE"/>
                 <outlet property="ibDealsTable" destination="YJE-cJ-kVD" id="C85-HL-YBw"/>
                 <outlet property="ibDealsTitle" destination="Dez-PV-dHf" id="xqH-u6-pV6"/>
+                <outlet property="ibDealsTitleLbl" destination="gns-V6-kyu" id="2yh-iA-Qtl"/>
                 <outlet property="ibDealsView" destination="AQb-yY-UZK" id="agS-OR-Pd5"/>
                 <outlet property="ibFooterIcon" destination="lBQ-Io-JMf" id="OI3-eL-ZdJ"/>
                 <outlet property="ibFooterTitle" destination="mqF-ap-lpb" id="ItA-Jf-7QU"/>
@@ -670,7 +672,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lW3-qG-AMl" userLabel="shop table">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lW3-qG-AMl" userLabel="shop table">
                             <rect key="frame" x="0.0" y="37" width="600" height="508"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
