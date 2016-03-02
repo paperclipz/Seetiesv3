@@ -34,6 +34,7 @@
 @property(nonatomic,strong)NSString* currentLatitude;
 @property(nonatomic,strong)NSString* currentLongtitude;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblCount;
 
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constFilterHeight;
@@ -138,6 +139,7 @@
     self.googleLocationDetailModel = googleDetailModel;
     self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
     self.currentLongtitude = @(currentLocation.coordinate.longitude).stringValue;
+    [self requestRefresh];
 }
 
 -(void)refreshRequestWithCoordinate:(NSString*)keyword Latitude:(NSString*)latitude Longtitude:(NSString*)longtitude{
@@ -215,22 +217,13 @@
         case SearchListingTypeShop:
         {
             ShopTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ShopTableViewCell"];
-            cell.lblLocation.text = @"hello this is a location which every one calls it location and i would like to visit this location wuhuu!!!!!";
-            cell.lblShopName.text = @"sss";
-            
-            
+                        
             SeShopDetailModel* model = self.arrList[indexPath.row];
-            if (indexPath.row%2 == 0) {
-                cell.constBottomHeight.constant = [FeaturedTableViewCell getHeight]*3;
-            }
-//            if (indexPath.row == 2) {
-//                // [cell setIsOpen:model.location.opening_hours.open_now];
-//                
-//                cell.ibDealView.hidden = YES;
-//                
-//            }else{
-//                cell.ibDealView.hidden = NO;
-//            }
+            
+            [cell initData:model];
+            cell.constBottomHeight.constant = [FeaturedTableViewCell getHeight]*model.deals.count;
+            
+            
             
             return cell;
         }
@@ -432,6 +425,7 @@
         
         SeShopsModel* model = [[ConnectionManager dataManager]seShopListingModel];
         
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",model.total_count,LocalisedString(@"Shops")];
         [self.arrList addObjectsFromArray:model.shops];
         [self.ibTableView reloadData];
         isMiddleOfCallingServer = NO;
@@ -480,6 +474,7 @@
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
         [self.arrList addObjectsFromArray:self.userProfilePostModel.recommendations.posts];
         [self.ibTableView reloadData];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.recommendations.total_posts,LocalisedString(@"Posts")];
 
         isMiddleOfCallingServer = NO;
      //   [self.ibTableView stopFooterLoadingView];
@@ -516,6 +511,9 @@
         [self.ibTableView reloadData];
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
+        
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.usersModel.total_result,LocalisedString(@"Users")];
+
 
     } errorBlock:^(id object) {
         
@@ -536,7 +534,6 @@
     }
     isMiddleOfCallingServer = YES;
     
-   // [self.ibTableView startFooterLoadingView];
     NSDictionary* dict = @{@"keyword":self.keyword,
                            @"limit":@(ARRAY_LIST_SIZE),
                            @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
@@ -561,7 +558,7 @@
     }
     
     
-   // [self.ibTableView startFooterLoadingView];
+    [self.ibTableView startFooterLoadingView];
 
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchCollections param:finalDict appendString:nil completeHandler:^(id object) {
@@ -570,12 +567,14 @@
         
         [self.ibTableView reloadData];
         isMiddleOfCallingServer = NO;
-     //   [self.ibTableView stopFooterLoadingView];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_page,LocalisedString(@"Collections")];
+
+        [self.ibTableView stopFooterLoadingView];
 
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
 
-       // [self.ibTableView stopFooterLoadingView];
+        [self.ibTableView stopFooterLoadingView];
 
     }];
 }

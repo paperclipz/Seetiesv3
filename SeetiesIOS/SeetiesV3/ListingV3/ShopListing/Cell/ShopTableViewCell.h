@@ -14,4 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblShopName;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constBottomHeight;
+
+-(void)initData:(SeShopDetailModel*)model;
+
 @end

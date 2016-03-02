@@ -24,4 +24,11 @@
     // Configure the view for the selected state
 }
 
+-(void)initData:(DealModel*)model
+{
+    self.lblDesc.text = model.title;
+    
+    self.lblValue.hidden = !model.is_feature;
+}
+
 @end

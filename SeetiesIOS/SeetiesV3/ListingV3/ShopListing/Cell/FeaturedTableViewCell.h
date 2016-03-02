@@ -11,4 +11,6 @@
 @interface FeaturedTableViewCell : CommonTableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDesc;
+-(void)initData:(DealModel*)model;
+
 @end
