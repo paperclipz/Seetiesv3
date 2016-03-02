@@ -533,13 +533,13 @@
 -(void)refreshSearch
 {
     
-    //[self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
+    [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
     
     switch (self.searchType) {
         default:
         case SearchViewTypeCoordinate:
-          //  [self.PostsListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
-          //  [self.collectionListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
+            [self.PostsListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
+            [self.collectionListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
             [self.shopListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
             
             break;

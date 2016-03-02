@@ -539,8 +539,16 @@
 //    mySearchBar.text = GetSearchText;
     self.ct3_SearchListingViewController = nil;
     self.ct3_SearchListingViewController.keyword = GetSearchText;
-   // self.ct3_SearchListingViewController.currentLatitude = latPoint;
-   // self.ct3_SearchListingViewController.currentLongtitude = lonPoint;
+    
+    @try {
+        self.ct3_SearchListingViewController.locationLatitude = [GetReturnSearchLatArray objectAtIndex:getbuttonIDN];
+        self.ct3_SearchListingViewController.locationLongtitude = [GetReturnSearchLngArray objectAtIndex:getbuttonIDN];
+
+    }
+    @catch (NSException *exception) {
+        
+    }
+    
     [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
 -(IBAction)SearchGetLocationButtonOnClick:(id)sender{
