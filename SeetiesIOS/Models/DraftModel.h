@@ -73,6 +73,8 @@
 @property(nonatomic,strong)NSArray<DraftModel>* posts;
 @property(nonatomic,assign)int list_size;
 @property(nonatomic,assign)int total_posts;
+@property(nonatomic,assign)int total_count;
+
 @property(nonatomic,assign)int total_page;
 @property(nonatomic,assign)int page;
 

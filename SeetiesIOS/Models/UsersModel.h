@@ -32,6 +32,8 @@
 @property(nonatomic,assign)int total_page;
 @property(nonatomic,assign)int total_result;
 @property(nonatomic,assign)int page;
+@property(nonatomic,assign)int total_count;
+
 
 @property(nonatomic,strong)NSString* next;
 @property(nonatomic,strong)NSString* previous;

@@ -45,16 +45,14 @@
 }
 - (IBAction)btnEditClicked:(id)sender {
     
-    if (_btnEditClickedBlock) {
-        
-        if (self.profileType == ProfileViewTypeOwn) {
+    if (self.profileType == ProfileViewTypeOwn) {
+        if (_btnEditClickedBlock) {
             self.btnEditClickedBlock();
-
         }
-        else{
-            if (_btnFollowBlock) {
-                self.btnFollowBlock();
-            }
+    }
+    else{
+        if (_btnFollowBlock) {
+            self.btnFollowBlock();
         }
     }
 }
@@ -80,11 +78,19 @@
     return 190.0f;
 }
 
--(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type
+-(void)initData:(CollectionModel*)model
 {
 
     self.model = model;
-    self.profileType = type;
+    
+    if ([model.user_info.uid isEqualToString:[Utils getUserID]]) {
+        self.profileType = ProfileViewTypeOwn;
+
+    }
+    else{
+        self.profileType = ProfileViewTypeOthers;
+
+    }
     
     self.lblTitle.text = self.model.name;
     self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"Recommendations")];

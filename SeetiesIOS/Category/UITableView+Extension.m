@@ -17,7 +17,7 @@ static const NSString *INDICATOR_KEY = @"indicator_key";
 {
     if (self.ibCustomFooterView) {
         if (self.ibCustomActivityIndicator) {
-            self.ibCustomActivityIndicator.tag = 10;
+           // self.ibCustomActivityIndicator.tag = 10;
             self.ibCustomActivityIndicator.hidesWhenStopped = YES;
 
         }

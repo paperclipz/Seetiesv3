@@ -36,6 +36,10 @@
     
     [Utils setRoundBorder:self.ibOutlineView color:LINE_COLOR borderRadius:0.0f];
     [Utils setRoundBorder:self.ibContentView color:LINE_COLOR borderRadius:0.0f];
+    [self.ibImageUser setSideCurveBorder];
+    [self.ibImageView setImagePlaceHolder];
+    [Utils setRoundBorder:self.ibImageView color:LINE_COLOR borderRadius:5.0f];
+    [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
 
 }
 
@@ -71,32 +75,41 @@
 -(void)initData:(DraftModel*)model
 {
     
-    [self.ibImageUser setSideCurveBorder];
-    [self.ibImageView setImagePlaceHolder];
-    [Utils setRoundBorder:self.ibImageView color:LINE_COLOR borderRadius:5.0f];
-    [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
-    
-    NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+    [model customProcess];
     self.model = model;
     
-    
-    if (![self.model.arrPost isNull]) {
+    @try {
         
-        Post* postModel;
-        for (int i = 0 ; i< self.model.arrPost.count; i++) {
-            postModel = self.model.arrPost[i];
+        NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+
+       
+        //NSString* currentlangCode = model.content_languages[0];
+        if (![self.model.arrCustomPost isNull]) {
             
-            if ([postModel.language isEqualToString:currentlangCode]) {
-                self.lblTitle.text = self.model.contents[currentlangCode][@"title"];
+            Post* postModel;
+            for (int i = 0 ; i< self.model.arrCustomPost.count; i++) {
+                postModel = self.model.arrCustomPost[i];
                 
-                break;
+                if ([postModel.language isEqualToString:currentlangCode]) {
+                    self.lblTitle.text = self.model.contents[currentlangCode][@"title"];
+                    
+                    break;
+                }
             }
+            postModel = self.model.arrCustomPost[0];
+            
+            self.lblTitle.text  = postModel.title;
+            
         }
-        postModel = self.model.arrPost[0];
-        
-        self.lblTitle.text  = postModel.title;
+    }
+    @catch (NSException *exception) {
         
     }
+ 
+
+    
+    
+    
     
     if (model.user_info.following == YES) {
         [self.btnFollow setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
@@ -117,7 +130,13 @@
     }
     
     
-    self.lblLocation.text = self.model.place_name;
+    if ([Utils isStringNull:self.model.place_name]) {
+        self.lblLocation.text = self.model.location.route;
+    }
+    else{
+        self.lblLocation.text = self.model.place_name;
+
+    }
     self.lblUsername.text = self.model.user_info.name;
     
     //    if (self.profileViewType != ProfileViewTypeOthers) {

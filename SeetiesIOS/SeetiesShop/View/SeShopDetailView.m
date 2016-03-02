@@ -504,28 +504,36 @@
 {
     NSDictionary* dict;
     NSString* appendString;
-    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-        
-        dict = @{@"token":[Utils getAppToken],
-                               @"seetishop_id":self.seetiesID,
-                               @"lat" : @(self.shoplat),
-                               @"lng" : @(self.shopLgn),
-                               };
-        appendString = self.seetiesID;
+    
+    @try {
+        if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+            
+            dict = @{@"token":[Utils getAppToken],
+                     @"seetishop_id":self.seetiesID,
+                     @"lat" : @(self.shoplat),
+                     @"lng" : @(self.shopLgn),
+                     };
+            appendString = self.seetiesID;
+            
+        }
+        else{
+            
+            dict = @{@"token":[Utils getAppToken],
+                     @"place_id":self.placeID,
+                     @"post_id" : self.postID,
+                     @"lat" : @(self.shoplat),
+                     @"lng" : @(self.shopLgn),
+                     };
+            
+            appendString = self.placeID;
+            
+        }
 
     }
-    else{
-       
-        dict = @{@"token":[Utils getAppToken],
-                                @"place_id":self.placeID,
-                                @"post_id" : self.postID,
-                                @"lat" : @(self.shoplat),
-                                @"lng" : @(self.shopLgn),
-                 };
+    @catch (NSException *exception) {
         
-        appendString = self.placeID;
-
     }
+  
     
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:dict appendString:appendString completeHandler:^(id object) {

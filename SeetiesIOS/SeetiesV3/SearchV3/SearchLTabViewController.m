@@ -14,6 +14,7 @@
 #import "AddCollectionDataViewController.h"
 #import "UITableView+Extension.h"
 #import "FeaturedTableViewCell.h"
+#import "NSMutableDictionary+Extra.h"
 
 @interface SearchLTabViewController ()
 {
@@ -34,6 +35,7 @@
 @property(nonatomic,strong)NSString* currentLatitude;
 @property(nonatomic,strong)NSString* currentLongtitude;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblCount;
 
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constFilterHeight;
@@ -42,8 +44,10 @@
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
 @property(nonatomic,strong)UsersModel* usersModel;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
-@property(nonatomic,strong)ProfileViewController* profileViewController;
+@property(nonatomic,strong)SeShopsModel* seShopsModel;
 
+@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
+@property(nonatomic,strong)MZFormSheetPresentationViewController* formSheetController;
 
 
 //@property(nonatomic,strong)NSMutableArray* arrPosts;
@@ -90,21 +94,21 @@
     switch (self.searchListingType) {
         default:
         case SearchListingTypeShop:
-            self.constFilterHeight.constant = 50;
+          //  self.constFilterHeight.constant = 50;
             [self.ibTableView registerClass:[ShopTableViewCell class] forCellReuseIdentifier:@"ShopTableViewCell"];
             self.ibTableView.estimatedRowHeight = [ShopTableViewCell getHeight];
             self.ibTableView.rowHeight = UITableViewAutomaticDimension;
             break;
         case SearchsListingTypeCollections:
-            self.constFilterHeight.constant = 0;
+           // self.constFilterHeight.constant = 0;
             [self.ibTableView registerClass:[ProfilePageCollectionTableViewCell class] forCellReuseIdentifier:@"ProfilePageCollectionTableViewCell"];
             break;
         case SearchsListingTypePosts:
-            self.constFilterHeight.constant = 0;
+           // self.constFilterHeight.constant = 0;
             [self.ibTableView registerClass:[PostsTableViewCell class] forCellReuseIdentifier:@"PostsTableViewCell"];
             break;
         case SearchsListingTypeSeetizens:
-            self.constFilterHeight.constant = 0;
+           // self.constFilterHeight.constant = 0;
             [self.ibTableView registerClass:[SeetizensTableViewCell class] forCellReuseIdentifier:@"SeetizensTableViewCell"];
             break;
     }
@@ -138,6 +142,7 @@
     self.googleLocationDetailModel = googleDetailModel;
     self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
     self.currentLongtitude = @(currentLocation.coordinate.longitude).stringValue;
+    [self requestRefresh];
 }
 
 -(void)refreshRequestWithCoordinate:(NSString*)keyword Latitude:(NSString*)latitude Longtitude:(NSString*)longtitude{
@@ -215,22 +220,13 @@
         case SearchListingTypeShop:
         {
             ShopTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ShopTableViewCell"];
-            cell.lblLocation.text = @"hello this is a location which every one calls it location and i would like to visit this location wuhuu!!!!!";
-            cell.lblShopName.text = @"sss";
-            
-            
+                        
             SeShopDetailModel* model = self.arrList[indexPath.row];
-            if (indexPath.row%2 == 0) {
-                cell.constBottomHeight.constant = [FeaturedTableViewCell getHeight]*3;
-            }
-//            if (indexPath.row == 2) {
-//                // [cell setIsOpen:model.location.opening_hours.open_now];
-//                
-//                cell.ibDealView.hidden = YES;
-//                
-//            }else{
-//                cell.ibDealView.hidden = NO;
-//            }
+            
+            [cell initData:model];
+            cell.constBottomHeight.constant = [FeaturedTableViewCell getHeight]*model.deals.count;
+            
+            
             
             return cell;
         }
@@ -241,7 +237,32 @@
             
             @try {
                 CollectionModel* collModel = self.arrList[indexPath.row];
-                [cell initData:collModel profileType:ProfileViewTypeOthers];
+                
+                
+                [cell initData:collModel];
+
+                
+                cell.btnFollowBlock = ^(void)
+                {
+                    [self requestServerToFollowFromOthersCollection:collModel];
+                };
+                
+                cell.btnEditClickedBlock = ^(void)
+                {
+                    
+                    if (self.didSelectEditDisplayCollectionRowBlock) {
+                        self.didSelectEditDisplayCollectionRowBlock(collModel);
+                    }
+                };
+                
+                cell.btnShareClicked = ^(void)
+                {
+                    _shareV2ViewController = nil;
+                    _formSheetController = nil;
+                    [self.shareV2ViewController share:@"" title:collModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
+                    [self presentViewController:self.formSheetController animated:YES completion:nil];
+                };
+
 
             }
             @catch (NSException *exception) {
@@ -329,6 +350,11 @@
             default:
             case SearchListingTypeShop:
             {
+                
+                SeShopDetailModel* model = self.arrList[indexPath.row];
+                if (self.didSelectShopBlock) {
+                    self.didSelectShopBlock(model);
+                }
             }
                 break;
             case SearchsListingTypeCollections:
@@ -368,13 +394,30 @@
 }
 
 #pragma mark - Declarations
--(ProfileViewController*)profileViewController
+-(MZFormSheetPresentationViewController*)formSheetController
 {
-    if(!_profileViewController)
-        _profileViewController = [ProfileViewController new];
     
-    return _profileViewController;
+    if (!_formSheetController) {
+        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+        [naviVC setNavigationBarHidden:YES animated:NO];
+        _formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+        _formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+        _formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+        _formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+        
+    }
+    return _formSheetController;
+    
 }
+-(ShareV2ViewController*)shareV2ViewController
+{
+    if (!_shareV2ViewController) {
+        _shareV2ViewController = [ShareV2ViewController new];
+    }
+    
+    return _shareV2ViewController;
+}
+
 -(NSMutableArray*)arrList
 {
     if(!_arrList)
@@ -411,33 +454,59 @@
 
 #pragma mark - Request Server
 
+
+
 -(void)requestServerForSearchShop
 {
     
     if (isMiddleOfCallingServer) {
         return;
     }
+    
     NSDictionary* dict = @{@"keyword" : self.keyword,
                            @"token" : [Utils getAppToken],
-                           @"offset" : @"",
-                           @"limit" : @"",
-                           @"lat" : @"",
-                           @"lng" : @"",
-                           @"address_components" : @"",
-                           
+                           @"offset" : @(self.seShopsModel.offset + self.seShopsModel.limit),
+                           @"limit" : @(ARRAY_LIST_SIZE),
                            };
     
+    
+    NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+
+    [finalDict appendDictionarywithKey:@"lat" withValue:self.locationLatitude];
+    [finalDict appendDictionarywithKey:@"lng" withValue:self.locationLongtitude];
+    [finalDict appendDictionarywithKey:@"place_id" withValue:self.place_ID];
+
+    
+//    @try {
+//        NSDictionary* addressComponent = @{@"country" :self.googleLocationDetailModel.country?self.googleLocationDetailModel.country:@"",
+//                                           @"route" : self.googleLocationDetailModel.route?self.googleLocationDetailModel.route:@"",
+//                                           @"locality" : self.googleLocationDetailModel.city?self.googleLocationDetailModel.city:@"",
+//                                           @"administrative_area_level_x" : @"administrative_area_level_1",
+//                                           };
+//        
+//      //  [finalDict addEntriesFromDictionary:@{@"address_components" : [Utils convertToJsonString:addressComponent]}];
+//        
+//    }
+//    @catch (NSException *exception) {
+//        SLog(@"error initializing dictionary");
+//    }
+
+    [self.ibTableView startFooterLoadingView];
     isMiddleOfCallingServer = YES;
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeSearchShops param:dict appendString:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeSearchShops param:finalDict appendString:nil completeHandler:^(id object) {
         
         SeShopsModel* model = [[ConnectionManager dataManager]seShopListingModel];
-        
+        self.seShopsModel = model;
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",model.total_count,LocalisedString(@"Shops")];
         [self.arrList addObjectsFromArray:model.shops];
         [self.ibTableView reloadData];
         isMiddleOfCallingServer = NO;
+        [self.ibTableView stopFooterLoadingView];
+
 
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
+        [self.ibTableView stopFooterLoadingView];
 
     }];
 }
@@ -480,6 +549,7 @@
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
         [self.arrList addObjectsFromArray:self.userProfilePostModel.recommendations.posts];
         [self.ibTableView reloadData];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.recommendations.total_count,LocalisedString(@"Posts")];
 
         isMiddleOfCallingServer = NO;
      //   [self.ibTableView stopFooterLoadingView];
@@ -516,6 +586,9 @@
         [self.ibTableView reloadData];
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
+        
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.usersModel.total_count,LocalisedString(@"Users")];
+
 
     } errorBlock:^(id object) {
         
@@ -536,7 +609,6 @@
     }
     isMiddleOfCallingServer = YES;
     
-   // [self.ibTableView startFooterLoadingView];
     NSDictionary* dict = @{@"keyword":self.keyword,
                            @"limit":@(ARRAY_LIST_SIZE),
                            @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
@@ -561,7 +633,7 @@
     }
     
     
-   // [self.ibTableView startFooterLoadingView];
+    [self.ibTableView startFooterLoadingView];
 
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchCollections param:finalDict appendString:nil completeHandler:^(id object) {
@@ -570,12 +642,14 @@
         
         [self.ibTableView reloadData];
         isMiddleOfCallingServer = NO;
-     //   [self.ibTableView stopFooterLoadingView];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_count,LocalisedString(@"Collections")];
+
+        [self.ibTableView stopFooterLoadingView];
 
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
 
-       // [self.ibTableView stopFooterLoadingView];
+        [self.ibTableView stopFooterLoadingView];
 
     }];
 }
@@ -717,6 +791,68 @@
     }];
 }
 
+-(void)requestServerToFollowFromOthersCollection:(CollectionModel*)colModel
+{
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",colModel.user_info.uid,colModel.collection_id];
+    NSDictionary* dict = @{@"uid":colModel.user_info.uid,
+                           @"token":[Utils getAppToken],
+                           @"collection_id":colModel.collection_id
+                           };
+    
+    if (![DataManager isCollectionFollowed:colModel.collection_id isFollowing:colModel.following]) {
+        
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            colModel.following = following;
+            [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
+            [self.ibTableView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+            
+            [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
+            
+        } errorBlock:^(id object) {
+            
+        }];
+        
+    }
+    else{// TO UNFOLLOW
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == [alertView cancelButtonIndex]) {
+                NSLog(@"Cancelled");
+                
+            } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
+                
+                
+                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+                    
+                    NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+                    BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+                    //dont delete the collection instead change the status only
+                    colModel.following = following;
+                    [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
+                    
+                    [self.ibTableView reloadData];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
+                    
+                    
+                } errorBlock:^(id object) {
+                }];
+                
+                
+            }
+        }];
+        
+    }
+}
+
+
+
 
 #pragma mark - UIScrollView Delegate
 
@@ -766,6 +902,18 @@
                     }
                 }
 
+                
+            }
+        
+            else if(self.searchListingType == SearchListingTypeShop){
+                
+                if (!isMiddleOfCallingServer) {
+                    if (self.seShopsModel.paging.next) {
+                        
+                        [self requestServerForSearchShop];
+                    }
+                }
+                
                 
             }
     }

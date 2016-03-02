@@ -67,17 +67,8 @@
     
     CollectionModel* collModel = self.arrCollections[indexPath.row];
     
-    NSString* userID = [Utils getUserID];
+    [cell initData:collModel];
     
-    if ([collModel.user_info.uid isEqualToString:userID]) {
-        
-        [cell initData:collModel profileType:ProfileViewTypeOwn];
-    }
-    
-    else{
-        [cell initData:collModel profileType:ProfileViewTypeOthers];
-        
-    }
     
     __weak CollectionModel* weakModel =collModel;
     

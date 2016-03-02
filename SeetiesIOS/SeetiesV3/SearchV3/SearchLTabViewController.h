@@ -8,16 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "ProfileViewController.h"
-typedef void (^DidSelectUserRowBlock)(NSString *userid);
-typedef void (^DidSelectCollectionRowBlock)(CollectionModel* model);
-typedef void (^DidSelectPostsRowBlock)(NSString *postid);
-typedef void (^DidSelectCollectionOpenViewBlock)(DraftModel* model);
+typedef void (^DidSelectIDBlock)(NSString *userid);
+typedef void (^DidSelectCollectionBlock)(CollectionModel* model);
+typedef void (^DidSelectDraftBlock)(DraftModel* model);
+typedef void (^DidSelectShopBlock)(SeShopDetailModel* model);
+
 @interface SearchLTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property(nonatomic,copy)DidSelectUserRowBlock didSelectUserRowBlock;
-@property(nonatomic,copy)DidSelectPostsRowBlock didSelectPostsRowBlock;
-@property(nonatomic,copy)DidSelectCollectionRowBlock didSelectDisplayCollectionRowBlock;
-@property(nonatomic,copy)DidSelectCollectionOpenViewBlock didSelectCollectionOpenViewBlock;
+@property(nonatomic,copy)DidSelectIDBlock didSelectUserRowBlock;
+@property(nonatomic,copy)DidSelectIDBlock didSelectPostsRowBlock;
+@property(nonatomic,copy)DidSelectShopBlock didSelectShopBlock;
+@property(nonatomic,copy)DidSelectCollectionBlock didSelectDisplayCollectionRowBlock;
+@property(nonatomic,copy)DidSelectCollectionBlock didSelectEditDisplayCollectionRowBlock;
+
+@property(nonatomic,copy)DidSelectDraftBlock didSelectCollectionOpenViewBlock;
 @property(nonatomic,assign)SearchListingType searchListingType;
 
 -(void)refreshRequestWithGoogleDetail:(NSString*)keyword  googleDetails:(SearchLocationDetailModel*)googleDetailModel;

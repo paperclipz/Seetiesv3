@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchLTabViewController">
@@ -10,6 +11,7 @@
                 <outlet property="FilterView" destination="g0j-dm-JRQ" id="fWM-Bd-gIu"/>
                 <outlet property="constFilterHeight" destination="2HV-WH-eer" id="aeD-4m-lXj"/>
                 <outlet property="ibTableView" destination="GY0-TL-oDx" id="emc-wd-SUO"/>
+                <outlet property="lblCount" destination="btj-2p-NSh" id="aHw-N9-mNt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GY0-TL-oDx">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GY0-TL-oDx">
                     <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -26,15 +28,30 @@
                         <outlet property="delegate" destination="-1" id="3XC-DH-ai5"/>
                         <outlet property="ibCustomActivityIndicator" destination="Par-hJ-epV" id="AlU-vv-q3f"/>
                         <outlet property="ibCustomFooterView" destination="9PJ-TN-1Lr" id="4lJ-TU-ES7"/>
+                        <outlet property="nxEV_emptyView" destination="TAe-aU-BDf" id="XDR-zk-YNI"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0j-dm-JRQ">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0j-dm-JRQ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btj-2p-NSh">
+                            <rect key="frame" x="8" y="14" width="295" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="g1v-7v-4GF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="0AA-M4-QFL"/>
                         <constraint firstAttribute="height" constant="50" id="2HV-WH-eer"/>
+                        <constraint firstItem="btj-2p-NSh" firstAttribute="leading" secondItem="g0j-dm-JRQ" secondAttribute="leading" constant="8" id="7Cq-EZ-Zhm"/>
+                        <constraint firstAttribute="trailing" secondItem="btj-2p-NSh" secondAttribute="trailing" constant="17" id="8Ym-T2-JIV"/>
                         <constraint firstAttribute="height" constant="50" id="gqP-xc-vII"/>
+                        <constraint firstItem="btj-2p-NSh" firstAttribute="centerY" secondItem="g0j-dm-JRQ" secondAttribute="centerY" id="rLf-eK-Ime"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -113,5 +130,42 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="928" y="-54"/>
         </view>
+        <view contentMode="scaleToFill" id="TAe-aU-BDf">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be patient!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-gn-LyB">
+                    <rect key="frame" x="252" y="340" width="97" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="EmptyStateImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="6ff-Hq-kSa">
+                    <rect key="frame" x="200" y="100" width="200" height="200"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="6tS-hA-veS"/>
+                        <constraint firstAttribute="height" constant="200" id="QYl-3Q-y7y"/>
+                        <constraint firstAttribute="width" secondItem="6ff-Hq-kSa" secondAttribute="height" multiplier="2:2" id="T4a-DR-Ecc"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="T4a-DR-Ecc"/>
+                        </mask>
+                    </variation>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ehf-gn-LyB" firstAttribute="centerX" secondItem="6ff-Hq-kSa" secondAttribute="centerX" id="TJi-oE-bl4"/>
+                <constraint firstItem="6ff-Hq-kSa" firstAttribute="centerX" secondItem="TAe-aU-BDf" secondAttribute="centerX" id="U6x-NL-3Qg"/>
+                <constraint firstItem="Ehf-gn-LyB" firstAttribute="top" secondItem="6ff-Hq-kSa" secondAttribute="bottom" constant="40" id="cXt-Oi-9GZ"/>
+                <constraint firstItem="6ff-Hq-kSa" firstAttribute="centerY" secondItem="TAe-aU-BDf" secondAttribute="centerY" constant="-100" id="gfo-UA-OHE"/>
+            </constraints>
+            <point key="canvasLocation" x="1357" y="268"/>
+        </view>
     </objects>
+    <resources>
+        <image name="EmptyStateImg.png" width="288" height="288"/>
+    </resources>
 </document>
