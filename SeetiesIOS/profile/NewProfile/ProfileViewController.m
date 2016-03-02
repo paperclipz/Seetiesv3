@@ -621,7 +621,7 @@
             {
                 [self showShareView:colModel];
             };
-            [cell initData:colModel profileType:self.profileViewType];
+            [cell initData:colModel];
             
             return cell;
         }

@@ -8,6 +8,8 @@
 
 #import "CT3_SearchListingViewController.h"
 #import "AddCollectionDataViewController.h"
+#import "SeetiesShopViewController.h"
+
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
 }
@@ -38,6 +40,9 @@
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
 @property(nonatomic, strong)FeedV2DetailViewController* feedV2DetailViewController;
+@property(nonatomic)EditCollectionViewController* editCollectionViewController;
+@property(nonatomic)SeetiesShopViewController* seetiesShopViewController;
+
 @end
 
 @implementation CT3_SearchListingViewController
@@ -330,6 +335,23 @@
 }
 
 #pragma mark - Show View
+
+-(void)showSeetieshopView:(SeShopDetailModel*)model
+{
+    _seetiesShopViewController = nil;
+    
+    if (![Utils isStringNull:model.seetishop_id]) {
+        [self.seetiesShopViewController initDataWithSeetiesID:model.seetishop_id];
+        [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
+
+    }
+    else if(![Utils isStringNull:model.post_id] && ![Utils isStringNull:model.post_id]){
+        [self.seetiesShopViewController initDataPlaceID:model.place_id postID:model.post_id];
+        [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
+
+    }
+}
+
 -(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel ProfileType:(ProfileViewType)profileType
 {
     _collectionViewController = nil;
@@ -345,12 +367,45 @@
     [self.navigationController pushViewController:self.collectionViewController animated:YES];
 }
 
+-(void)showEditCollectionViewWithCollection:(CollectionModel*)model
+{
+    _editCollectionViewController = nil;
+    
+    [self.editCollectionViewController initData:model.collection_id];
+    
+    [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
+}
+
 #pragma mark - Declaration
+
+
+-(SeetiesShopViewController*)seetiesShopViewController
+{
+    if (!_seetiesShopViewController) {
+        _seetiesShopViewController = [SeetiesShopViewController new];
+    }
+    
+    return _seetiesShopViewController;
+}
+-(EditCollectionViewController*)editCollectionViewController
+{
+    if (!_editCollectionViewController) {
+        _editCollectionViewController = [EditCollectionViewController new];
+    }
+    
+    return _editCollectionViewController;
+}
 -(SearchLTabViewController*)shopListingTableViewController{
     if(!_shopListingTableViewController)
     {
         _shopListingTableViewController = [SearchLTabViewController new];
         _shopListingTableViewController.searchListingType = SearchListingTypeShop;
+        
+        __weak typeof (self)weakSelf = self;
+        _shopListingTableViewController.didSelectShopBlock = ^(SeShopDetailModel* model)
+        {
+            [weakSelf showSeetieshopView:model];
+        };
     }
     return _shopListingTableViewController;
 }
@@ -368,6 +423,11 @@
             _collectionViewController = nil;
             [weakSelf.collectionViewController GetCollectionID:model.collection_id GetPermision:@"Others" GetUserUid:model.user_info.uid];
             [weakSelf.navigationController pushViewController:weakSelf.collectionViewController animated:YES];
+        };
+        _collectionListingTableViewController.didSelectEditDisplayCollectionRowBlock = ^(CollectionModel* model)
+        {
+        
+            [weakSelf showEditCollectionViewWithCollection:model];
         };
         
         
@@ -479,9 +539,8 @@
         default:
         case SearchViewTypeCoordinate:
           //  [self.PostsListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
-           // [self.collectionListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
+          //  [self.collectionListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
             [self.shopListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
-
             
             break;
         case SearchViewTypePlaceID:

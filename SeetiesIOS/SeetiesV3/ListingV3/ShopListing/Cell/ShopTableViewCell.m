@@ -11,6 +11,7 @@
 
 @interface ShopTableViewCell()<UITableViewDataSource,UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constDotHeight;
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
@@ -26,7 +27,9 @@
         self.lblShopName.text = self.ssModel.name;
         self.lblLocation.text = [NSString stringWithFormat:@"%@%@",self.ssModel.location.locality,self.ssModel.location.country];
         self.lblStatus.text = self.ssModel.location.opening_hours.open_now?LocalisedString(@"OPEN"):LocalisedString(@"CLOSED");
-        
+        self.lblStatus.backgroundColor = self.ssModel.location.opening_hours.open_now?SELECTED_GREEN : SELECTED_RED;
+
+        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:self.ssModel.profile_photo[@"picture"]]];
 
     }
     @catch (NSException *exception) {
@@ -50,6 +53,9 @@
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[FeaturedTableViewCell class] forCellReuseIdentifier:@"FeaturedTableViewCell"];
     [Utils setRoundBorder:self.lblStatus color:[UIColor clearColor] borderRadius:self.lblStatus.frame.size.height/2];
+    [Utils setRoundBorder:self.ibImageView color:[UIColor clearColor] borderRadius:5.0f];
+
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

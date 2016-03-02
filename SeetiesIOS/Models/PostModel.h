@@ -60,6 +60,7 @@
 @property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
 @property(nonatomic,strong)NSArray<CollectionModel>* arrSuggestedCollection;
 @property(nonatomic,assign)int total_page;
+@property(nonatomic,assign)int total_count;
 @property(nonatomic,assign)int total_result;
 @property(nonatomic,assign)int page;
 

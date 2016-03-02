@@ -135,18 +135,8 @@
     
     CollectionModel* collModel = self.arrCollections[indexPath.row];
     
-    NSString* userID = [Utils getUserID];
-    
-    if ([collModel.user_info.uid isEqualToString:userID]) {
-        
-        [cell initData:collModel profileType:ProfileViewTypeOwn];
-    }
-    
-    else{
-        [cell initData:collModel profileType:ProfileViewTypeOthers];
+    [cell initData:collModel];
 
-    }
-    
     __weak CollectionModel* weakModel =collModel;
     
     cell.btnEditClickedBlock = ^(void)

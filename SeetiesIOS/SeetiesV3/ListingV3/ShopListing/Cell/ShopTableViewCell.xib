@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="407" height="268"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="407" height="267.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="407" height="268"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="loM-pc-hq1">
@@ -79,7 +79,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OPEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CES-Rt-1OQ">
                                 <rect key="frame" x="327" y="52" width="70" height="21"/>
-                                <color key="backgroundColor" red="0.61176470589999998" green="0.80000000000000004" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.8862745098" green="0.23529411759999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="SfI-8y-Gjx"/>
                                     <constraint firstAttribute="height" constant="21" id="eVo-z2-ruI"/>
@@ -144,6 +144,7 @@
                 <outlet property="constBottomHeight" destination="bYF-R5-S6d" id="I0S-ka-1aG"/>
                 <outlet property="constDotHeight" destination="45S-If-Hei" id="1DX-PJ-4iQ"/>
                 <outlet property="ibDealView" destination="loM-pc-hq1" id="DTM-9l-JmA"/>
+                <outlet property="ibImageView" destination="6Uh-7C-qCc" id="i3H-Wj-sfY"/>
                 <outlet property="ibTableView" destination="rWk-mA-E0q" id="3ke-2V-V5U"/>
                 <outlet property="lblLocation" destination="OEJ-Cl-7TV" id="WW9-3e-Vec"/>
                 <outlet property="lblShopName" destination="opY-3m-Hcv" id="grQ-d5-3eN"/>

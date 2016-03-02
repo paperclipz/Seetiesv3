@@ -10,7 +10,7 @@
 
 @interface ProfilePageCollectionTableViewCell : CommonTableViewCell
 +(int)getHeight;
--(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type;
+-(void)initData:(CollectionModel*)model;
 
 @property(nonatomic,copy)VoidBlock btnEditClickedBlock;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;

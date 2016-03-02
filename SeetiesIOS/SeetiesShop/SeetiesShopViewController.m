@@ -40,6 +40,7 @@
     __weak IBOutlet UIButton *btnOutlet;
     __weak IBOutlet UILabel *lblSelectOutlet;
 }
+@property (weak, nonatomic) IBOutlet UILabel *lblBigShopName;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnTranslateWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnShareWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *btnShare;
@@ -431,12 +432,20 @@
 {
     
     @try {
-        if (self.seShopModel.shop_group_info && self.seShopModel.shop_group_info.other_branches > 0) {
+        if (self.seShopModel.shop_group_info &&  ![Utils isArrayNull:self.seShopModel.shop_group_info.other_branches]) {
             btnOutlet.hidden = NO;
-            
+            self.lblShopGroupName.text = self.seShopModel.shop_group_info.name;
+            self.lblShopName.text = self.seShopModel.name;
+            self.lblBigShopName.hidden = YES;
+        }
+        else{
+            btnOutlet.hidden = YES;
+            self.lblShopGroupName.hidden = YES;
+            self.lblShopName.hidden = YES;
+            self.lblBigShopName.text = self.seShopModel.name;
+
         }
         
-        self.lblShopGroupName.text = self.seShopModel.shop_group_info.name;
         
        // SeShopDetailModel* model = self.seShopModel.shop_group_info.other_branches[0];
         self.lblShopName.text = self.seShopModel.name;

@@ -237,6 +237,7 @@
 		8A4831AE1C85987C00CE95F2 /* ShopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4831AC1C85987C00CE95F2 /* ShopTableViewCell.xib */; };
 		8A4831B21C85AB1500CE95F2 /* FeaturedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4831B01C85AB1500CE95F2 /* FeaturedTableViewCell.m */; };
 		8A4831B31C85AB1500CE95F2 /* FeaturedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4831B11C85AB1500CE95F2 /* FeaturedTableViewCell.xib */; };
+		8A4831B61C86B6CC00CE95F2 /* NSMutableDictionary+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4831B51C86B6CC00CE95F2 /* NSMutableDictionary+Extra.m */; };
 		8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4AC4B51C0C369B00968781 /* SeetiesShopViewController.m */; };
 		8A4AC4B81C0C369B00968781 /* SeetiesShopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
@@ -1924,6 +1925,8 @@
 		8A4831AF1C85AB1500CE95F2 /* FeaturedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedTableViewCell.h; sourceTree = "<group>"; };
 		8A4831B01C85AB1500CE95F2 /* FeaturedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedTableViewCell.m; sourceTree = "<group>"; };
 		8A4831B11C85AB1500CE95F2 /* FeaturedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeaturedTableViewCell.xib; sourceTree = "<group>"; };
+		8A4831B41C86B6CC00CE95F2 /* NSMutableDictionary+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Extra.h"; sourceTree = "<group>"; };
+		8A4831B51C86B6CC00CE95F2 /* NSMutableDictionary+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Extra.m"; sourceTree = "<group>"; };
 		8A4AC4B41C0C369B00968781 /* SeetiesShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesShopViewController.h; sourceTree = "<group>"; };
 		8A4AC4B51C0C369B00968781 /* SeetiesShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiesShopViewController.m; sourceTree = "<group>"; };
 		8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesShopViewController.xib; sourceTree = "<group>"; };
@@ -4554,6 +4557,8 @@
 			children = (
 				8A41471C1C23E18D00D633D1 /* NSDictionary+Extra.h */,
 				8A41471D1C23E18D00D633D1 /* NSDictionary+Extra.m */,
+				8A4831B41C86B6CC00CE95F2 /* NSMutableDictionary+Extra.h */,
+				8A4831B51C86B6CC00CE95F2 /* NSMutableDictionary+Extra.m */,
 			);
 			name = "NSDictionary+Extension";
 			sourceTree = "<group>";
@@ -8906,6 +8911,7 @@
 				8AD6C1161B706CF30040437E /* FSWebLogin.m in Sources */,
 				8A6BB4341BF0C338005AA1B3 /* MZTransition.m in Sources */,
 				8AEDBFA81C2031BA000BD2FF /* ApiVersionModel.m in Sources */,
+				8A4831B61C86B6CC00CE95F2 /* NSMutableDictionary+Extra.m in Sources */,
 				8AFA51D11C47B4AB00E7920E /* ShopListingTableViewController.m in Sources */,
 				8AFA51D71C47B4AB00E7920E /* VoucherCell.m in Sources */,
 				8AD6BE511B706CF30040437E /* Filter2ViewController.m in Sources */,
