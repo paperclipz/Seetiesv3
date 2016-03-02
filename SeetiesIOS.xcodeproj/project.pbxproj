@@ -7119,7 +7119,6 @@
 				8AFA51531C47B4AB00E7920E /* Filter */,
 				8AFA51601C47B4AB00E7920E /* PeopleListing */,
 				8AFA51611C47B4AB00E7920E /* PostListing */,
-				8AFA51621C47B4AB00E7920E /* ShopListing */,
 				8AFA516C1C47B4AB00E7920E /* VoucherListing */,
 				8AFA51731C47B4AB00E7920E /* WalletListing */,
 			);
@@ -7173,7 +7172,8 @@
 				8AFA51671C47B4AB00E7920E /* ShopListingViewController.m */,
 				8AFA51681C47B4AB00E7920E /* ShopListingViewController.xib */,
 			);
-			path = ShopListing;
+			name = ShopListing;
+			path = ../ShopListing;
 			sourceTree = "<group>";
 		};
 		8AFA516C1C47B4AB00E7920E /* VoucherListing */ = {
@@ -7182,6 +7182,7 @@
 				8AFA516D1C47B4AB00E7920E /* VoucherCell.h */,
 				8AFA516E1C47B4AB00E7920E /* VoucherCell.m */,
 				8AFA516F1C47B4AB00E7920E /* VoucherCell.xib */,
+				8AFA51621C47B4AB00E7920E /* ShopListing */,
 				8AFA51701C47B4AB00E7920E /* VoucherListingViewController.h */,
 				8AFA51711C47B4AB00E7920E /* VoucherListingViewController.m */,
 				8AFA51721C47B4AB00E7920E /* VoucherListingViewController.xib */,

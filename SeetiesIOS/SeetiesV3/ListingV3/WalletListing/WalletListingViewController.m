@@ -298,7 +298,7 @@
     
     // Change 10.0 to adjust the distance from bottom
     if (maximumOffset - currentOffset <= self.ibTableView.frame.size.height/2) {
-        if(![Utils isStringNull:self.dealsModel.paging.next])
+        if(![Utils isStringNull:self.dealsModel.paging.next] && !self.isLoading)
         {
             //            [(UIActivityIndicatorView *)self.ibVoucherTable startAnimating];
             [self requestServerForVoucherListing];
