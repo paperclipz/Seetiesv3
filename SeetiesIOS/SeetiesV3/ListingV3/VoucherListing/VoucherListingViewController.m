@@ -359,7 +359,9 @@
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
         NSDictionary *dict = object[@"data"];
-        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%@", dict[@"count"]];
+        int count = (int)dict[@"count"];
+        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", count];
+        [self.dealManager setWalletCount:count];
     } errorBlock:^(id object) {
         
     }];

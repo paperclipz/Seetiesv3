@@ -62,8 +62,8 @@
     [monthYearFormatter setDateFormat:@"MMMM yyyy"];
     
     if (self.dealsModel != nil) {
-        NSMutableArray<DealModel*> *tempNewArray = [[NSMutableArray alloc] init];
-        NSMutableArray<DealModel*> *tempDateArray = [[NSMutableArray alloc] init];
+        NSMutableArray<DealModel> *tempNewArray = [[NSMutableArray<DealModel> alloc] init];
+        NSMutableArray<DealModel> *tempDateArray = [[NSMutableArray<DealModel> alloc] init];
         NSString *previousGroup = @"";
         
         for (DealModel *dealModel in self.dealsModel.deals) {
@@ -76,7 +76,7 @@
                     dealExpirtyDateModel.expiryDate = @"new";
                     dealExpirtyDateModel.dealModelArray = tempNewArray;
                     [self addToVoucherArray:dealExpirtyDateModel];
-                    tempNewArray = [[NSMutableArray alloc] init];
+                    tempNewArray = [[NSMutableArray<DealModel> alloc] init];
                 }
                 
                 NSString *expiryString = dealModel.voucher_info.expired_at;
@@ -94,7 +94,7 @@
                         
                         [self addToVoucherArray:dealExpirtyDateModel];
                         
-                        tempDateArray = [[NSMutableArray alloc] init];
+                        tempDateArray = [[NSMutableArray<DealModel> alloc] init];
                     }
                     
                     [tempDateArray addObject:dealModel];
@@ -104,6 +104,13 @@
             
         }
         
+        //Check for leftover array that has not been added to voucher array
+        if (![Utils isArrayNull:tempNewArray]) {
+            DealExpiryDateModel *dealExpirtyDateModel = [[DealExpiryDateModel alloc] init];
+            dealExpirtyDateModel.expiryDate = @"new";
+            dealExpirtyDateModel.dealModelArray = tempNewArray;
+            [self addToVoucherArray:dealExpirtyDateModel];
+        }
         if (![Utils isArrayNull:tempDateArray]) {
             DealExpiryDateModel *dealExpirtyDateModel = [[DealExpiryDateModel alloc] init];
             dealExpirtyDateModel.expiryDate = previousGroup;
@@ -128,7 +135,7 @@
 }
 
 -(void)removeDealFromVoucherArray:(DealModel*)dealModel{
-    NSMutableArray<DealExpiryDateModel*> *toBeDiscardedArray = [[NSMutableArray alloc] init];
+    NSMutableArray<DealExpiryDateModel> *toBeDiscardedArray = [[NSMutableArray<DealExpiryDateModel> alloc] init];
     for (DealExpiryDateModel *expiryModel in self.voucherArray) {
         if([expiryModel.dealModelArray containsObject:dealModel]){
             [expiryModel.dealModelArray removeObject:dealModel];
@@ -305,6 +312,7 @@
         }
     }
 }
+
 
 /* ADJUST TABLEVIEW HEIGHT CODE
 - (void)adjustHeightOfFilterTable
