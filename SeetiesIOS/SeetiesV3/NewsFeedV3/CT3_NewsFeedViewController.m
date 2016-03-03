@@ -612,7 +612,6 @@ static NSCache* heightCache = nil;
                 cell.didSelectDealCollectionBlock = ^(DealCollectionModel* model)
                 {
                     _voucherListingViewController = nil;
-                    [self.voucherListingViewController setWalletCount:self.homeModel.wallet_count];
                    
                     [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
                         
@@ -966,7 +965,6 @@ static NSCache* heightCache = nil;
             case DealType_SuperDeal:
             {
                 _voucherListingViewController = nil;
-                [self.voucherListingViewController setWalletCount:self.homeModel.wallet_count];
                 __weak typeof (self)weakSelf = self;
                 [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
                     
