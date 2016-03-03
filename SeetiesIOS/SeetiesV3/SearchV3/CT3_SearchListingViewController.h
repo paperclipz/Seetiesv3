@@ -14,14 +14,6 @@
 @class CollectionViewController;
 @class SearchLTabViewController;
 
-
-typedef enum
-{
-    SearchViewTypeCoordinate = 1,
-    SearchViewTypePlaceID,
-    SearchViewTypeTypeGoogleDetail
-}SearchViewType;
-
 @interface CT3_SearchListingViewController : CommonViewController
 
 /*any search also need location as default*/
@@ -30,7 +22,6 @@ typedef enum
 @property(nonatomic,strong)NSString* locationLatitude;
 @property(nonatomic,strong)NSString* locationLongtitude;
 @property(nonatomic,strong)NSString* placeID;
-
--(void)setSearchType:(SearchViewType)searchType;
+-(void)initData:(HomeLocationModel*) model;
 
 @end

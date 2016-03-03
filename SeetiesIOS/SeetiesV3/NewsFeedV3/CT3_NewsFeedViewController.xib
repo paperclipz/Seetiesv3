@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_NewsFeedViewController">
             <connections>
+                <outlet property="btnLocation" destination="sKt-5r-f72" id="j5u-7D-Oo1"/>
                 <outlet property="constTabbarHeight" destination="6ml-ll-N3l" id="wsg-EK-TbM"/>
                 <outlet property="constTopScrollView" destination="0HG-Hu-44k" id="jOS-Ob-PYL"/>
                 <outlet property="constantQuickBrowseHeight" destination="QvN-Wc-Svl" id="TAe-ev-PtH"/>
@@ -42,13 +43,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                             <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lt-Mw-mdg">
-                            <rect key="frame" x="8" y="34" width="34" height="30"/>
-                            <state key="normal" title="login"/>
-                            <connections>
-                                <action selector="btnLoginClicked:" destination="-1" eventType="touchUpInside" id="gHs-iX-kyG"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VN6-nt-Anc">
                             <rect key="frame" x="270" y="12" width="40" height="40"/>
                             <constraints>
@@ -60,28 +54,44 @@
                                 <action selector="btnSearchClicked:" destination="-1" eventType="touchUpInside" id="knu-xc-YWe"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKt-5r-f72">
-                            <rect key="frame" x="100" y="26" width="59" height="30"/>
-                            <state key="normal" title="Location"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CurrencyArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="yku-iQ-LJM">
+                            <rect key="frame" x="103" y="16" width="33" height="33"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="QU9-SW-ZDw">
+                            <rect key="frame" x="10" y="22" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="JBF-ub-iwo"/>
+                                <constraint firstAttribute="height" constant="20" id="TYR-XS-UXu"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKt-5r-f72">
+                            <rect key="frame" x="38" y="17" width="63" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="fFr-Dm-V0T"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Location">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                             <connections>
                                 <action selector="btnSearchLocationClicked:" destination="-1" eventType="touchUpInside" id="woF-IO-Vyk"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZz-xx-vDW">
-                            <rect key="frame" x="198" y="34" width="46" height="30"/>
-                            <state key="normal" title="Button"/>
-                            <connections>
-                                <action selector="btnTestCliked:" destination="-1" eventType="touchUpInside" id="0Wa-ex-nY9"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="sKt-5r-f72" firstAttribute="leading" secondItem="QU9-SW-ZDw" secondAttribute="trailing" constant="8" id="3xY-4t-wz7"/>
                         <constraint firstAttribute="trailing" secondItem="nU2-U1-NiY" secondAttribute="trailing" id="4rY-44-mi6"/>
+                        <constraint firstItem="sKt-5r-f72" firstAttribute="centerY" secondItem="QU9-SW-ZDw" secondAttribute="centerY" id="5fL-Ap-Ip4"/>
+                        <constraint firstItem="VN6-nt-Anc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yku-iQ-LJM" secondAttribute="trailing" constant="10" id="71G-Eb-Ln1"/>
                         <constraint firstAttribute="bottom" secondItem="nU2-U1-NiY" secondAttribute="bottom" id="HaH-pc-7zC"/>
                         <constraint firstItem="nU2-U1-NiY" firstAttribute="leading" secondItem="WXj-z2-K1x" secondAttribute="leading" id="TCA-aS-OHE"/>
                         <constraint firstItem="VN6-nt-Anc" firstAttribute="centerY" secondItem="nU2-U1-NiY" secondAttribute="centerY" id="bBg-us-5i5"/>
+                        <constraint firstItem="yku-iQ-LJM" firstAttribute="centerY" secondItem="sKt-5r-f72" secondAttribute="centerY" id="bol-4f-nzx"/>
+                        <constraint firstItem="yku-iQ-LJM" firstAttribute="leading" secondItem="sKt-5r-f72" secondAttribute="trailing" constant="2" id="dVA-VE-E7e"/>
+                        <constraint firstItem="QU9-SW-ZDw" firstAttribute="centerY" secondItem="nU2-U1-NiY" secondAttribute="centerY" id="hRR-Fk-wli"/>
                         <constraint firstAttribute="height" constant="64" id="iXP-61-e4X"/>
+                        <constraint firstItem="nU2-U1-NiY" firstAttribute="leading" secondItem="QU9-SW-ZDw" secondAttribute="trailing" constant="-30" id="nsa-Fx-cO7"/>
                         <constraint firstItem="nU2-U1-NiY" firstAttribute="top" secondItem="WXj-z2-K1x" secondAttribute="top" id="ohK-VM-Czs"/>
                         <constraint firstAttribute="trailing" secondItem="VN6-nt-Anc" secondAttribute="trailing" constant="10" id="zvz-43-EjS"/>
                     </constraints>
@@ -99,7 +109,7 @@
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="614" y="215"/>
+            <point key="canvasLocation" x="618" y="233"/>
         </view>
         <view contentMode="scaleToFill" id="ob0-3K-ldY">
             <rect key="frame" x="0.0" y="0.0" width="320" height="790"/>
@@ -355,6 +365,8 @@
         </view>
     </objects>
     <resources>
+        <image name="CurrencyArrow.png" width="33" height="33"/>
+        <image name="LocationBtn.png" width="75" height="50"/>
         <image name="SearchIcon.png" width="40" height="40"/>
     </resources>
 </document>

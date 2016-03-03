@@ -819,18 +819,26 @@
     
 }
 
-+(void)saveUserLocation:(NSString*)location Longtitude:(NSString*)longtitude Latitude:(NSString*)latitude
++(void)saveUserLocation:(NSString*)location Longtitude:(NSString*)longtitude Latitude:(NSString*)latitude PlaceID:(NSString*)place_id
 {
-    
-    NSDictionary* dict = @{KEY_LOCATION:location,
-                           KEY_LONGTITUDE : longtitude,
-                           KEY_LATITUDE : latitude
-                           };
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:dict forKey:KEY_USER_PREF_MAIN_KEY];
-    
-    [defaults synchronize];
+    @try {
+        NSDictionary* dict = @{KEY_LOCATION:location?location:@"",
+                               KEY_LONGTITUDE : longtitude?longtitude:@"",
+                               KEY_LATITUDE : latitude?latitude:@"",
+                               KEY_PLACE_ID : place_id?place_id:@""
 
+                               };
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:dict forKey:KEY_USER_PREF_MAIN_KEY];
+        
+        [defaults synchronize];
+
+    }
+    @catch (NSException *exception) {
+        
+    }
+    
+   
 }
 
 

@@ -23,22 +23,14 @@
 
 
 }
-@property(nonatomic,strong)NSString* locationLatitude;
-@property(nonatomic,strong)NSString* locationLongtitude;
+
 @property(nonatomic,strong)NSString* keyword;
-@property(nonatomic,strong)NSString* locationName;
-@property(nonatomic,strong)SearchLocationDetailModel* googleLocationDetailModel;
-@property(nonatomic,strong)NSString* place_ID;
-
-
-
 @property(nonatomic,strong)NSString* currentLatitude;
 @property(nonatomic,strong)NSString* currentLongtitude;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
 
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constFilterHeight;
 @property (weak, nonatomic) IBOutlet UIView *FilterView;
 
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
@@ -49,6 +41,7 @@
 @property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property(nonatomic,strong)MZFormSheetPresentationViewController* formSheetController;
 
+@property(nonatomic,strong)HomeLocationModel* homeLocationModel;
 
 //@property(nonatomic,strong)NSMutableArray* arrPosts;
 //@property(nonatomic,strong)NSMutableArray* arrUsers;
@@ -74,8 +67,7 @@
     // Do any additional setup after loading the view from its nib.
     [self initSelfView];
     
-    self.locationLatitude = @"";
-    self.locationLongtitude = @"";
+
     self.currentLatitude = @"";
     self.currentLongtitude = @"";
 }
@@ -127,8 +119,10 @@
 
 -(void)refreshRequestShop:(NSString*)keyword SeetieshopPlaceID:(NSString*)placeID
 {
-    self.place_ID = placeID;
+    
+    self.homeLocationModel.place_id = placeID;
     self.keyword = keyword;
+    
     [self requestRefresh];
 
 }
@@ -136,23 +130,31 @@
 {
     CLLocation* currentLocation = [[SearchManager Instance]getAppLocation];
     
+    
     self.keyword = keyword;
-    self.locationLatitude = googleDetailModel.lat;
-    self.locationLongtitude = googleDetailModel.lng;
-    self.googleLocationDetailModel = googleDetailModel;
+    self.homeLocationModel.latitude = googleDetailModel.lat;
+    self.homeLocationModel.longtitude = googleDetailModel.lng;
+    self.homeLocationModel.address_components.country = googleDetailModel.country;
+    self.homeLocationModel.address_components.route = googleDetailModel.route;
+    self.homeLocationModel.address_components.locality = googleDetailModel.city;
+    self.homeLocationModel.address_components.administrative_area_level_1 = googleDetailModel.state;
+    self.homeLocationModel.address_components.political = googleDetailModel.political;
+    self.homeLocationModel.dictAddressComponent = googleDetailModel.address_components;
+ 
     self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
     self.currentLongtitude = @(currentLocation.coordinate.longitude).stringValue;
     [self requestRefresh];
 }
 
--(void)refreshRequestWithCoordinate:(NSString*)keyword Latitude:(NSString*)latitude Longtitude:(NSString*)longtitude{
+-(void)refreshRequestWithModel:(HomeLocationModel*)model Keyword:(NSString*)keyword{
+    
     
     CLLocation* currentLocation = [[SearchManager Instance]getAppLocation];
 
+    self.homeLocationModel = model;
     self.keyword = keyword;
-    self.locationLatitude = latitude;
-    self.locationLongtitude = longtitude;
-    self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
+    
+     self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
     self.currentLongtitude = @(currentLocation.coordinate.longitude).stringValue;
    
     _arrList = nil;
@@ -162,6 +164,12 @@
 
 -(void)requestRefresh
 {
+    
+    _userCollectionsModel = nil;
+    _userProfilePostModel = nil;
+    _usersModel = nil;
+    _seShopsModel = nil;
+
     switch (self.searchListingType) {
         default:
         case SearchListingTypeShop:
@@ -394,6 +402,17 @@
 }
 
 #pragma mark - Declarations
+
+-(HomeLocationModel*)homeLocationModel
+{
+    if (!_homeLocationModel) {
+        _homeLocationModel = [HomeLocationModel new];
+    }
+    
+    return _homeLocationModel;
+}
+
+
 -(MZFormSheetPresentationViewController*)formSheetController
 {
     
@@ -467,30 +486,17 @@
                            @"token" : [Utils getAppToken],
                            @"offset" : @(self.seShopsModel.offset + self.seShopsModel.limit),
                            @"limit" : @(ARRAY_LIST_SIZE),
+                           @"address_components" : self.homeLocationModel.dictAddressComponent?[Utils convertToJsonString:self.homeLocationModel.dictAddressComponent]:@""
                            };
     
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
 
-    [finalDict appendDictionarywithKey:@"lat" withValue:self.locationLatitude];
-    [finalDict appendDictionarywithKey:@"lng" withValue:self.locationLongtitude];
-    [finalDict appendDictionarywithKey:@"place_id" withValue:self.place_ID];
+    [finalDict appendDictionarywithKey:@"lat" withValue:self.homeLocationModel.latitude];
+    [finalDict appendDictionarywithKey:@"lng" withValue:self.homeLocationModel.longtitude];
+    [finalDict appendDictionarywithKey:@"place_id" withValue:self.homeLocationModel.place_id];
 
     
-//    @try {
-//        NSDictionary* addressComponent = @{@"country" :self.googleLocationDetailModel.country?self.googleLocationDetailModel.country:@"",
-//                                           @"route" : self.googleLocationDetailModel.route?self.googleLocationDetailModel.route:@"",
-//                                           @"locality" : self.googleLocationDetailModel.city?self.googleLocationDetailModel.city:@"",
-//                                           @"administrative_area_level_x" : @"administrative_area_level_1",
-//                                           };
-//        
-//      //  [finalDict addEntriesFromDictionary:@{@"address_components" : [Utils convertToJsonString:addressComponent]}];
-//        
-//    }
-//    @catch (NSException *exception) {
-//        SLog(@"error initializing dictionary");
-//    }
-
     [self.ibTableView startFooterLoadingView];
     isMiddleOfCallingServer = YES;
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeSearchShops param:finalDict appendString:nil completeHandler:^(id object) {
@@ -537,8 +543,8 @@
                            @"token":[Utils getAppToken],
                            @"keyword":[self convertStringToEmptyIfItsNull:self.keyword],
                            @"sort":@"3",
-                           @"lat":[self convertStringToEmptyIfItsNull:self.locationLatitude],
-                           @"lng":[self convertStringToEmptyIfItsNull:self.locationLongtitude],
+                           @"lat":[self convertStringToEmptyIfItsNull:self.homeLocationModel.latitude],
+                           @"lng":[self convertStringToEmptyIfItsNull:self.homeLocationModel.longtitude],
                            @"current_lat":[self convertStringToEmptyIfItsNull:self.currentLatitude],
                            @"current_lng":[self convertStringToEmptyIfItsNull:self.currentLongtitude]
                            };
@@ -563,7 +569,7 @@
 }
 
 -(void)requestServerForSearchUser{
-    SLog(@"requestServerForSearchUser work ?");
+
     
     if (isMiddleOfCallingServer) {
         return;
@@ -599,7 +605,6 @@
 }
 
 -(void)requestServerForSearchCollection{
-    SLog(@"requestServerForSearchCollection work ?");
     
    // NSDictionary* dict;
     //NSString* appendString = [[NSString alloc]initWithFormat:@"collections?token=%@&keyword=%@",[Utils getAppToken],self.getSearchText];
@@ -613,25 +618,14 @@
                            @"limit":@(ARRAY_LIST_SIZE),
                            @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
                            @"token":[Utils getAppToken],
+                           @"address_components" : self.homeLocationModel.dictAddressComponent?[Utils convertToJsonString:self.homeLocationModel.dictAddressComponent]:@""
                            };
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
 
-    @try {
-        NSDictionary* addressComponent = @{@"country" :self.googleLocationDetailModel.country?self.googleLocationDetailModel.country:@"",
-                                           @"route" : self.googleLocationDetailModel.route?self.googleLocationDetailModel.route:@"",
-                                           @"locality" : self.googleLocationDetailModel.city?self.googleLocationDetailModel.city:@"",
-                                           @"administrative_area_level_x" : @"administrative_area_level_1",
-                                           };
-        
-        [finalDict addEntriesFromDictionary:@{@"address_components" : [Utils convertToJsonString:addressComponent]
-                                              }];
-
-    }
-    @catch (NSException *exception) {
-        SLog(@"error initializing dictionary");
-    }
-    
+    [finalDict appendDictionarywithKey:@"lat" withValue:self.homeLocationModel.latitude];
+    [finalDict appendDictionarywithKey:@"lng" withValue:self.homeLocationModel.longtitude];
+    [finalDict appendDictionarywithKey:@"place_id" withValue:self.homeLocationModel.place_id];
     
     [self.ibTableView startFooterLoadingView];
 

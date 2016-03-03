@@ -281,7 +281,7 @@
     //SLog(@"%@",FullString);
     
    // [LoadingManager showWithTitle:@"GOOGLE"];
-    NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"5000",@"key":GOOGLE_API_KEY,@"type":@"address",@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
+    NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"10000",@"key":GOOGLE_API_KEY,@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
 
     [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
         if(completionBlock)

@@ -17,6 +17,8 @@
 @property(nonatomic,strong)NSString* longtitude;
 @property(nonatomic,strong)NSString* place_id;
 @property(nonatomic,strong)AddressComponentModel* address_components;
+@property(nonatomic,strong)NSString<Ignore>* locationName;
+@property(nonatomic,strong)NSDictionary* dictAddressComponent;
 
 
 /*server properties*/

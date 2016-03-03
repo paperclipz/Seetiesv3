@@ -79,7 +79,7 @@
     
     @try {
         [Utils setIsDevelopment:isProduction];
-        [Utils saveUserLocation:dict[KEY_LOCATION] Longtitude:dict[KEY_LONGTITUDE] Latitude:dict[KEY_LATITUDE]];
+        [Utils saveUserLocation:dict[KEY_LOCATION] Longtitude:dict[KEY_LONGTITUDE] Latitude:dict[KEY_LATITUDE]PlaceID:dict[KEY_PLACE_ID]];
 
     }
     @catch (NSException *exception) {

@@ -118,8 +118,11 @@
     PhotoCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCVCell" forIndexPath:indexPath];
     
     
-    [cell initData:self.arrDeals[indexPath.row]];
+    DealModel* model = self.arrDeals[indexPath.row];
     
+    [cell initData:model];
+    
+   
     cell.alpha = 0;
     [UIView animateWithDuration:0.8f animations:^(void){
         cell.alpha = 1;
