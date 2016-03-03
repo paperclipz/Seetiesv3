@@ -20,19 +20,20 @@
 }
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgDeal;
 @property (weak, nonatomic) IBOutlet UIView *ibDescBorderView;
-
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeView;
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (weak, nonatomic) IBOutlet UIView *ibBottomView;
 @property (weak, nonatomic) IBOutlet UILabel *ibRedeemDateTime;
-@property (weak, nonatomic) IBOutlet UIView *ibTopView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibShopImg;
 @property (weak, nonatomic) IBOutlet UILabel *ibShopTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibShopAddress;
 @property (weak, nonatomic) IBOutlet UILabel *ibDealTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *ibSwipeBtn;
+@property (weak, nonatomic) IBOutlet UIView *ibSwipeBg;
 
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) DealManager *dealManager;
+@property(nonatomic) BOOL isRedeeming;
 @end
 
 @implementation DealRedeemViewController
@@ -48,6 +49,7 @@
     activationDistance = 200;
     [Utils setRoundBorder:self.ibDescBorderView color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
     self.ibDescBorderView.alpha = 0;
+    self.isRedeeming = NO;
     
     [self initSelfView];
 }
@@ -62,6 +64,9 @@
 }
 
 -(void)initSelfView{
+    [self.ibSwipeBg setSideCurveBorder];
+    [self.ibSwipeBtn setSideCurveBorder];
+    
     if (self.dealModel) {
         SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
         self.ibShopTitle.text = shopModel.name;
@@ -69,8 +74,9 @@
         
        
         @try {
-            NSString* imageURL = [NSString stringWithFormat:@"%@",shopModel.profile_photo];
+            NSString* imageURL = shopModel.profile_photo[@"picture"];
             [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:nil];
+            [self.ibShopImg setRoundedCorners:UIRectCornerAllCorners radius:5.0f];
 
             PhotoModel *photo = self.dealModel.photos[0];
             [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
@@ -79,7 +85,6 @@
         @catch (NSException *exception) {
             SLog(@"assign profile_photo fail");
         }
-        
        
     }
 }
@@ -145,12 +150,14 @@
             self.ibDescBorderView.alpha = 1;
 
         }];
+        
+        [self requestServerToRedeemVoucher];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
+        self.ibRedeemDateTime.text = [formatter stringFromDate:[[NSDate alloc] init]];
     }
     
-    [self requestServerToRedeemVoucher];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
-    self.ibRedeemDateTime.text = [formatter stringFromDate:[[NSDate alloc] init]];
+    
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -163,7 +170,7 @@
             if (dragging) {
                 CGRect frame = label.frame;
                 
-                if (frame.origin.x <= self.ibBottomView.frame.size.width - frame.size.width -10) {
+                if (frame.origin.x <= self.ibSwipeBg.frame.size.width - frame.size.width -10) {
                     frame.origin.x = label.frame.origin.x + touchLocation.x - oldX;
                 }
                 
@@ -175,7 +182,7 @@
                 
                 label.frame = frame;
                 
-                if (label.frame.origin.x - oldFrame.origin.x > activationDistance) {
+                if (label.frame.origin.x - oldFrame.origin.x > (self.ibSwipeBg.frame.size.width - label.frame.size.width - 20)) {
                     SLog(@"activated");
                     activateDropEffect = YES;
                 }
@@ -195,16 +202,40 @@
 
 #pragma mark - RequestServer
 -(void)requestServerToRedeemVoucher{
+    if (self.isRedeeming) {
+        return;
+    }
+    
+    self.isRedeeming = YES;
+    
+    NSDictionary *dict = @{
+                           @"token": [Utils getAppToken]
+                           };
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
-    NSDictionary *dict = @{@"voucher_id": self.dealModel.voucher_info.voucher_id,
-                           @"token": [Utils getAppToken],
-                           @"datetime": [formatter stringFromDate:[[NSDate alloc] init]]
-                           };
-    NSString *appendString = [NSString stringWithFormat:@"%@/redeem", self.dealModel.voucher_info.voucher_id];
+    NSDictionary *voucherDict = @{@"deal_id": self.dealModel.dID,
+                                  @"voucher_id": self.dealModel.voucher_info.voucher_id,
+                                  @"datetime": [formatter stringFromDate:[[NSDate alloc] init]]
+                                  };
     
-    [[ConnectionManager Instance] requestServerWithPut:ServerRequestTypePutRedeemVoucher param:dict appendString:appendString completeHandler:^(id object) {
+    
+    NSArray *voucherArray = @[voucherDict];
+    NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+
+    
+    for (int i = 0; i<voucherArray.count; i++) {
+        
+        NSDictionary* tempDict = voucherArray[i];
+        
+        NSDictionary* appendDict = @{[NSString stringWithFormat:@"voucher_info[%d]",i] : tempDict};
+        
+        [finalDict addEntriesFromDictionary:appendDict];
+
+    }
+    
+    [[ConnectionManager Instance] requestServerWithPut:ServerRequestTypePutRedeemVoucher param:finalDict appendString:nil completeHandler:^(id object) {
         //Update previous page if it is not reusable
         if (self.dealModel.total_available_vouchers != -1) {
             [self.dealManager removeCollectedDeal:self.dealModel.dID];
@@ -214,8 +245,10 @@
             }
         }
         
-    } errorBlock:^(id object) {
+        self.isRedeeming = NO;
         
+    } errorBlock:^(id object) {
+        self.isRedeeming = NO;
     }];
 }
 

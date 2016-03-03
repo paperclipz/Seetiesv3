@@ -17,4 +17,5 @@ typedef enum{
 @interface PromoOutletCell : CommonTableViewCell
 -(void)setCellType:(PromoOutletCellType)cellType;
 -(void)setShopModel:(SeShopDetailModel *)shopModel;
+-(void)drawBorders;
 @end

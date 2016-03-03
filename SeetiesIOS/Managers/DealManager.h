@@ -24,4 +24,8 @@
 -(void)saveCollectedDealsToDb;
 
 -(void)setAllCollectedDeals:(DealsModel*)dealsModel;
+
+-(int)getWalletCount;
+
+-(void)setWalletCount:(int)count;
 @end

@@ -565,8 +565,11 @@
         case ServerRequestTypeGetVoucherInfo:
         case ServerRequestTypePostCollectDeals:
         case ServerRequestTypeDeleteVoucher:
-        case ServerRequestTypePutRedeemVoucher:
             str = [NSString stringWithFormat:@"%@/vouchers", API_VERION_URL];
+            break;
+            
+        case ServerRequestTypePutRedeemVoucher:
+            str = [NSString stringWithFormat:@"%@/vouchers/redeem", API_VERION_URL];
             break;
             
         case ServerRequestTypeGetFollowingNotifictions:

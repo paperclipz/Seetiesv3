@@ -15,8 +15,9 @@
                 <outlet property="ibShopAddress" destination="c6E-GE-W0p" id="2Dn-yc-tce"/>
                 <outlet property="ibShopImg" destination="2oY-5p-x83" id="jA5-QN-a4B"/>
                 <outlet property="ibShopTitle" destination="urr-dD-1Yo" id="GSB-RQ-Xus"/>
+                <outlet property="ibSwipeBg" destination="xsS-C4-sNW" id="FCk-U6-3Vi"/>
+                <outlet property="ibSwipeBtn" destination="tId-o4-9uj" id="f86-CR-0tL"/>
                 <outlet property="ibSwipeView" destination="DGd-Lh-xup" id="VXc-9Q-x2r"/>
-                <outlet property="ibTopView" destination="DGd-Lh-xup" id="A86-Pi-mQK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -41,7 +42,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Jan 2016, 09:06am" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKC-ir-Fsh">
-                            <rect key="frame" x="20" y="38" width="215" height="21"/>
+                            <rect key="frame" x="20" y="38" width="215" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -72,22 +73,69 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealRedeemCardDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="bwF-Qu-mY0">
                             <rect key="frame" x="0.0" y="0.0" width="285" height="93"/>
                         </imageView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGd-Lh-xup">
-                            <rect key="frame" x="8" y="22" width="64" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsS-C4-sNW" userLabel="swipe bg">
+                            <rect key="frame" x="20" y="22" width="245" height="50"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeButton.png" translatesAutoresizingMaskIntoConstraints="NO" id="tId-o4-9uj">
-                                    <rect key="frame" x="10" y="0.0" width="54" height="50"/>
+                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeToRedeemSwipeIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="LR4-8K-3va">
+                                    <rect key="frame" x="64" y="13" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="Lui-mr-7Pq"/>
+                                        <constraint firstAttribute="width" constant="25" id="mEY-2k-WGt"/>
+                                    </constraints>
                                 </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to Redeem" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ar0-rK-F4X">
+                                    <rect key="frame" x="99" y="16" width="126" height="18"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGd-Lh-xup">
+                                    <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeButton.png" translatesAutoresizingMaskIntoConstraints="NO" id="tId-o4-9uj">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="6qS-lc-n6U"/>
+                                        <constraint firstItem="tId-o4-9uj" firstAttribute="leading" secondItem="DGd-Lh-xup" secondAttribute="leading" id="7hD-wH-na7"/>
+                                        <constraint firstAttribute="width" constant="40" id="CSq-2f-tVL"/>
+                                        <constraint firstAttribute="height" constant="50" id="QxI-Nt-22T"/>
+                                        <constraint firstAttribute="trailing" secondItem="tId-o4-9uj" secondAttribute="trailing" id="VqW-xQ-pEy"/>
+                                        <constraint firstAttribute="bottom" secondItem="tId-o4-9uj" secondAttribute="bottom" id="gPC-Ra-hQN"/>
+                                        <constraint firstAttribute="width" constant="64" id="noa-el-fMw"/>
+                                        <constraint firstItem="tId-o4-9uj" firstAttribute="top" secondItem="DGd-Lh-xup" secondAttribute="top" id="zfE-b4-yOK"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="QxI-Nt-22T"/>
+                                            <exclude reference="noa-el-fMw"/>
+                                        </mask>
+                                    </variation>
+                                </view>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.32549019610000002" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="tId-o4-9uj" firstAttribute="leading" secondItem="DGd-Lh-xup" secondAttribute="leading" constant="10" id="7hD-wH-na7"/>
-                                <constraint firstAttribute="height" constant="50" id="QxI-Nt-22T"/>
-                                <constraint firstAttribute="trailing" secondItem="tId-o4-9uj" secondAttribute="trailing" id="VqW-xQ-pEy"/>
-                                <constraint firstAttribute="bottom" secondItem="tId-o4-9uj" secondAttribute="bottom" id="gPC-Ra-hQN"/>
-                                <constraint firstAttribute="width" constant="64" id="noa-el-fMw"/>
-                                <constraint firstItem="tId-o4-9uj" firstAttribute="top" secondItem="DGd-Lh-xup" secondAttribute="top" id="zfE-b4-yOK"/>
+                                <constraint firstItem="DGd-Lh-xup" firstAttribute="centerY" secondItem="xsS-C4-sNW" secondAttribute="centerY" id="A8I-gu-Ax6"/>
+                                <constraint firstItem="Ar0-rK-F4X" firstAttribute="centerY" secondItem="xsS-C4-sNW" secondAttribute="centerY" id="DTl-n0-rUN"/>
+                                <constraint firstAttribute="height" constant="50" id="KPW-DG-oIg"/>
+                                <constraint firstItem="LR4-8K-3va" firstAttribute="centerY" secondItem="xsS-C4-sNW" secondAttribute="centerY" id="NqX-L0-M2e"/>
+                                <constraint firstItem="DGd-Lh-xup" firstAttribute="leading" secondItem="xsS-C4-sNW" secondAttribute="leading" constant="90" id="OO8-j0-idz"/>
+                                <constraint firstItem="DGd-Lh-xup" firstAttribute="leading" secondItem="xsS-C4-sNW" secondAttribute="leading" constant="5" id="VNY-gR-piG"/>
+                                <constraint firstItem="LR4-8K-3va" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xsS-C4-sNW" secondAttribute="leading" constant="10" id="dIa-vR-MCx"/>
+                                <constraint firstItem="DGd-Lh-xup" firstAttribute="top" secondItem="xsS-C4-sNW" secondAttribute="top" id="fA0-hv-cBo"/>
+                                <constraint firstAttribute="bottom" secondItem="DGd-Lh-xup" secondAttribute="bottom" id="nWx-d0-81T"/>
+                                <constraint firstAttribute="trailing" secondItem="Ar0-rK-F4X" secondAttribute="trailing" constant="20" id="sZl-BS-uMm"/>
+                                <constraint firstItem="Ar0-rK-F4X" firstAttribute="leading" secondItem="LR4-8K-3va" secondAttribute="trailing" constant="10" id="u3t-T4-ibg"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="OO8-j0-idz"/>
+                                    <exclude reference="fA0-hv-cBo"/>
+                                    <exclude reference="nWx-d0-81T"/>
+                                </mask>
+                            </variation>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -96,25 +144,20 @@
                         <constraint firstAttribute="bottom" secondItem="bwF-Qu-mY0" secondAttribute="bottom" id="Db1-Vk-oNG"/>
                         <constraint firstItem="bwF-Qu-mY0" firstAttribute="leading" secondItem="FRX-IV-Orm" secondAttribute="leading" id="FKu-np-Bgf"/>
                         <constraint firstItem="bwF-Qu-mY0" firstAttribute="leading" secondItem="FRX-IV-Orm" secondAttribute="leading" constant="10" id="V1X-7Y-GgX"/>
-                        <constraint firstItem="DGd-Lh-xup" firstAttribute="centerY" secondItem="FRX-IV-Orm" secondAttribute="centerY" id="WLH-wi-qAK"/>
                         <constraint firstItem="bwF-Qu-mY0" firstAttribute="top" secondItem="FRX-IV-Orm" secondAttribute="top" id="ZFj-8f-9Ve"/>
-                        <constraint firstItem="DGd-Lh-xup" firstAttribute="leading" secondItem="FRX-IV-Orm" secondAttribute="leading" constant="8" id="ck0-vU-uPV"/>
-                        <constraint firstItem="DGd-Lh-xup" firstAttribute="top" secondItem="FRX-IV-Orm" secondAttribute="top" constant="2" id="kBo-oN-qMU"/>
-                        <constraint firstAttribute="bottom" secondItem="DGd-Lh-xup" secondAttribute="bottom" constant="8" id="mUx-sR-DYM"/>
+                        <constraint firstItem="xsS-C4-sNW" firstAttribute="leading" secondItem="FRX-IV-Orm" secondAttribute="leading" constant="20" id="ft5-Bg-ffO"/>
+                        <constraint firstAttribute="trailing" secondItem="xsS-C4-sNW" secondAttribute="trailing" constant="20" id="g45-wG-ENC"/>
                         <constraint firstAttribute="width" constant="285" id="o1P-zM-NtZ"/>
                         <constraint firstAttribute="width" constant="320" id="oYE-Ia-vx3"/>
                         <constraint firstAttribute="height" constant="93" id="y9n-h5-qLV"/>
                         <constraint firstAttribute="trailing" secondItem="bwF-Qu-mY0" secondAttribute="trailing" id="yGb-jO-mAX"/>
-                        <constraint firstItem="bwF-Qu-mY0" firstAttribute="leading" secondItem="DGd-Lh-xup" secondAttribute="trailing" id="zZH-kp-FFD"/>
+                        <constraint firstItem="xsS-C4-sNW" firstAttribute="centerY" secondItem="FRX-IV-Orm" secondAttribute="centerY" id="yaC-1X-AJG"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="oYE-Ia-vx3"/>
                             <exclude reference="DGk-QX-E3H"/>
                             <exclude reference="V1X-7Y-GgX"/>
-                            <exclude reference="zZH-kp-FFD"/>
-                            <exclude reference="kBo-oN-qMU"/>
-                            <exclude reference="mUx-sR-DYM"/>
                         </mask>
                     </variation>
                 </view>
@@ -338,5 +381,6 @@
         <image name="DealRedeemCardUp.png" width="580" height="597"/>
         <image name="SSBlueDirectionIcon.png" width="26" height="26"/>
         <image name="SwipeButton.png" width="99" height="99"/>
+        <image name="SwipeToRedeemSwipeIcon.png" width="10" height="9"/>
     </resources>
 </document>

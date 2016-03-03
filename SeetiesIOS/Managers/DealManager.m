@@ -11,6 +11,7 @@
 @interface DealManager()
 @property (nonatomic) NSMutableDictionary *dealsDict;
 @property (nonatomic) NSUserDefaults *userDefaults;
+@property (nonatomic) int walletCount;
 @end
 
 /*
@@ -76,6 +77,14 @@
         }
     }
     [self saveCollectedDealsToDb];
+}
+
+-(int)getWalletCount{
+    return self.walletCount;
+}
+
+-(void)setWalletCount:(int)count{
+    _walletCount = count;
 }
 
 @end
