@@ -16,5 +16,4 @@
 
 -(void)scrollToTop:(BOOL)animation;
 
-
 @end

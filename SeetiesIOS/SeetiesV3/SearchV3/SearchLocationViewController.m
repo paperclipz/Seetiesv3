@@ -382,6 +382,33 @@
         
         [self.ibCountryTable reloadData];
         
+        @try {
+            
+            NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:1 inSection:0];
+
+            [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
+                                             animated:NO
+                                       scrollPosition:UITableViewScrollPositionNone];
+            
+            
+            CountryModel* countryModel = self.arrCountries[selectedCellIndexPath.row];
+            self.currentSelectedCountry = countryModel;
+            
+            
+            if ([Utils isArrayNull:countryModel.arrArea]) {
+                [self requestServerForCountryPlaces:countryModel];
+            }
+            else{
+                [self.ibAreaTable reloadData];
+            }
+
+
+        }
+        @catch (NSException *exception) {
+            
+        }
+        
+        
     } errorBlock:^(id object) {
         
     }];

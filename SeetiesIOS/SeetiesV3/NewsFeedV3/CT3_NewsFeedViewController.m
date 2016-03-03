@@ -1582,6 +1582,27 @@ static NSCache* heightCache = nil;
         [self requestServerForHome:model];
 
     }
+    else
+    {
+        NSDictionary* dict = [Utils getSavedUserLocation];
+        
+        currentLatitude = dict[KEY_LATITUDE];
+        currentLongtitude = dict[KEY_LONGTITUDE];
+        
+        [self reloadNewsFeed];
+        
+        HomeLocationModel* model = [HomeLocationModel new];
+        model.type = @"none";
+        model.latitude = dict[KEY_LATITUDE];
+        model.longtitude = dict[KEY_LONGTITUDE];
+        model.place_id = dict[KEY_PLACE_ID];
+        model.locationName = dict[KEY_LOCATION];
+        self.locationName = dict[KEY_LOCATION];
+        
+        self.currentHomeLocationModel = model;
+        [self requestServerForHome:model];
+
+    }
 
 }
 

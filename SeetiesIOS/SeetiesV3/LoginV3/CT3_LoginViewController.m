@@ -52,6 +52,10 @@
 - (IBAction)btnContinueWithoutLoginClicked:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+
+    if (self.continueWithoutLoginBlock) {
+        self.continueWithoutLoginBlock();
+    }
 }
 
 - (IBAction)btnSignupClicked:(id)sender {

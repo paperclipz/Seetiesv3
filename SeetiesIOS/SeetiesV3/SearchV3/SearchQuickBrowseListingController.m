@@ -68,7 +68,6 @@
 {
     [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.keyword];
     [self.shopListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.keyword];
-    
 }
 
 -(void)initSelfView
@@ -206,7 +205,7 @@
         [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
         
     }
-    else if(![Utils isStringNull:model.post_id] && ![Utils isStringNull:model.post_id]){
+    else if(![Utils isStringNull:model.post_id] && ![Utils isStringNull:model.place_id]){
         [self.seetiesShopViewController initDataPlaceID:model.place_id postID:model.post_id];
         [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
         

@@ -126,6 +126,12 @@
         {
             [weakSelf processLogin];
         };
+        _loginViewController.continueWithoutLoginBlock = ^(void)
+        {
+            [weakSelf.newsFeedViewController reloadData];
+        };
+        
+
     }
     
     return _loginViewController;
@@ -134,10 +140,13 @@
 -(void)processLogin
 {
     
-    [self.navLoginViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.navLoginViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
     [Utils reloadAppView];
     self.tabBarController.selectedIndex = 0;
-    [MessageManager showMessage:LocalisedString(@"system") SubTitle:@"Login Successfully" Type:TSMessageNotificationTypeSuccess];
+    
+    [TSMessage showNotificationInViewController:self.newsFeedViewController title:LocalisedString(@"system") subtitle:LocalisedString(@"Login Successfully") type:TSMessageNotificationTypeSuccess duration:1.0f canBeDismissedByUser:YES];
     
     /*send crashlytics user UID to track crashes*/
     ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];

@@ -48,6 +48,7 @@
     
     appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appdelegate.landingViewController reloadData];
+    appdelegate.landingViewController.tabBarController.selectedIndex = 0;
 }
 
 +(BOOL)isLogin
