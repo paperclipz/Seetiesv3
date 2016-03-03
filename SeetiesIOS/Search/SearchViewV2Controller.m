@@ -12,8 +12,40 @@
 #import "SearchDetailViewController.h"
 #import "SearchResultV2ViewController.h"
 @interface SearchViewV2Controller ()<CLLocationManagerDelegate>
+{
+    IBOutlet UISearchBar *mySearchBar;
+    IBOutlet UITableView *Tblview;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UIImageView *BarImage;
+    IBOutlet UIScrollView *SearchScroll;
+    
+    NSString *GetSearchText;
+    
+    NSMutableArray *LocalSearchTextArray;
+    
+    NSInteger CheckTblview;
+    
+    NSMutableArray *GetReturnSearchTextArray;
+    NSMutableArray *GetReturnSearchAddressArray;
+    NSMutableArray *GetReturnSearchLatArray;
+    NSMutableArray *GetReturnSearchLngArray;
+    
+    NSMutableArray *GetSearchArray;
+    
+    NSURLConnection *theConnection_GetSearchString;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    int ButtonOnClickCheck;
+    
+    NSString *latPoint;
+    NSString *lonPoint;
+
+}
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
+@property(nonatomic,strong)CT3_SearchListingViewController* ct3_SearchListingViewController;
 
 @end
 
