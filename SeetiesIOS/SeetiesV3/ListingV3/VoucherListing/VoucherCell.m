@@ -11,6 +11,7 @@
 @interface VoucherCell()
 @property (nonatomic) DealModel *dealModel;
 
+@property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibVoucherImage;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherLeftLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibDaysLeftLbl;
@@ -45,6 +46,8 @@
 
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
+    [self.ibInnerContentView prefix_addLowerBorder:LINE_COLOR];
+    [self.ibInnerContentView prefix_addUpperBorder:LINE_COLOR];
     
     if (![Utils isStringNull:self.dealModel.cover_title]) {
         self.ibVoucherTitleLbl.text = self.dealModel.cover_title;

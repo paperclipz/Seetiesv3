@@ -9,6 +9,7 @@
 #import "WalletVoucherCell.h"
 
 @interface WalletVoucherCell()
+@property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibVoucherImg;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTitleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherShopLbl;
@@ -26,6 +27,7 @@
     // Initialization code
     [self.ibRedeemBtn setSideCurveBorder];
     [self.ibDealUsageLbl setSideCurveBorder];
+    [self.ibInnerContentView setRoundedCorners:UIRectCornerAllCorners radius:5.0f];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -54,6 +56,7 @@
             [self.ibVoucherImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageUrl] completed:^(UIImage *image) {
             }];
         }
+        [self.ibVoucherImg setSquareBorder];
     }
     @catch (NSException *exception) {
         SLog(@"profile_photo fail");

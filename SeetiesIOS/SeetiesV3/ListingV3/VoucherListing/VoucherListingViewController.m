@@ -15,7 +15,6 @@
 @property (nonatomic) NSMutableArray<DealModel> *dealsArray;
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic) BOOL  isCollecting;
-@property (nonatomic) int walletCount;
 @property (nonatomic) DealManager *dealManager;
 
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
@@ -28,6 +27,7 @@
 @property (nonatomic) WalletListingViewController *walletListingViewController;
 @property (nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @property (nonatomic) DealRedeemViewController *dealRedeemViewController;
+@property (nonatomic) SearchLocationViewController *searchLocationViewController;
 @end
 
 @implementation VoucherListingViewController
@@ -41,8 +41,8 @@
     [self.dealManager removeAllCollectedDeals];
     [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
     
-    self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
-    self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
+//    self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
+//    self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
     [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
     
 }
@@ -55,10 +55,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)setWalletCount:(int)walletCount{
-    _walletCount = walletCount;
 }
 
 /*
@@ -83,6 +79,10 @@
 - (IBAction)footerBtnClicked:(id)sender {
     self.walletListingViewController = nil;
     [self.navigationController pushViewController:self.walletListingViewController animated:YES];
+}
+
+- (IBAction)locationBtnClicked:(id)sender {
+    
 }
 
 -(IBAction)backgroundViewDidTap{
@@ -169,6 +169,13 @@
     return _dealRedeemViewController;
 }
 
+-(SearchLocationViewController *)searchLocationViewController{
+    if (!_searchLocationViewController) {
+        _searchLocationViewController = [SearchLocationViewController new];
+    }
+    return _searchLocationViewController;
+}
+
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.dealsArray) {
@@ -206,7 +213,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewAutomaticDimension;
+    return [VoucherCell getHeight];
+//    return UITableViewAutomaticDimension;
 }
 
 #pragma mark - DelegateImplemention
@@ -359,7 +367,7 @@
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
         NSDictionary *dict = object[@"data"];
-        int count = (int)dict[@"count"];
+        int count = (int)[dict[@"count"] integerValue];
         self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", count];
         [self.dealManager setWalletCount:count];
     } errorBlock:^(id object) {
