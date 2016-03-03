@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface DealType_DealOTDTblCell : CommonTableViewCell
 -(void)initData:(NSArray*)arrDeals;
 -(void)stopAnimationScrolling;
+
 
 @end

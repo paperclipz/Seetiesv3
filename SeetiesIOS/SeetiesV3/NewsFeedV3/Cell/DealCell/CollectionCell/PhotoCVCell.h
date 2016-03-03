@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface PhotoCVCell : CommonCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 

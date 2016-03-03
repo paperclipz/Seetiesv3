@@ -14,8 +14,6 @@
 
 }
 
-@property(nonatomic,assign)SearchViewType searchType;
-
 @property(nonatomic)SearchLocationDetailModel* googleLocationDetailModel;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
@@ -43,17 +41,32 @@
 @property(nonatomic)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic)SeetiesShopViewController* seetiesShopViewController;
 
+@property(nonatomic)HomeLocationModel* homeLocationModel;
 @end
 
 @implementation CT3_SearchListingViewController
 
+-(void)initData:(HomeLocationModel*) model
+{
+    self.homeLocationModel = model;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self InitSelfView];
+    
+    self.location = [[SearchManager Instance] getAppLocation];
+
     self.sManager = [SearchManager Instance];
+    
+    self.homeLocationModel.locationName = self.locationName;
+    self.homeLocationModel.latitude = self.locationLatitude;
+    self.homeLocationModel.longtitude = self.locationLongtitude;
+    self.homeLocationModel.place_id = self.placeID;
     self.ibSearchText.text = self.keyword;
+    
+    
     [self refreshSearch];
 }
 
@@ -124,13 +137,15 @@
     }
 }
 
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField == self.ibLocationText) {
         NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
      
         if ([newString length] >= 2) {
-           [self getGoogleSearchPlaces];
+            [self getGoogleSearchPlaces:newString];
+
         }else{
             
         }
@@ -140,7 +155,6 @@
     
     return YES;
 }
-
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -176,7 +190,7 @@
 
     }else if(textField == self.ibLocationText){
         if (![self.ibLocationText.text isEqualToString:@""]) {
-            [self getGoogleSearchPlaces];
+            [self getGoogleSearchPlaces:textField.text];
         }
     }
 
@@ -237,7 +251,7 @@
         [self.sManager getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
             
             self.location = currentLocation;
-            [self getGoogleSearchPlaces];
+            [self getGoogleSearchPlaces:self.ibLocationText.text];
             
         } errorBlock:^(NSString *status) {
             
@@ -291,9 +305,9 @@
 //        
 //    }];
 //}
--(void)getGoogleSearchPlaces
+-(void)getGoogleSearchPlaces:(NSString*)input
 {
-    [self.sManager getSearchLocationFromGoogle:self.location input:self.ibLocationText.text completionBlock:^(id object) {
+    [self.sManager getSearchLocationFromGoogle:self.location input:input completionBlock:^(id object) {
         if (object) {
             self.searchModel = [[DataManager Instance]googleSearchModel];
             [self.ibLocationTableView reloadData];
@@ -313,12 +327,16 @@
         
         RecommendationVenueModel* recommendationVenueModel  = [RecommendationVenueModel new];
         [recommendationVenueModel processGoogleModel:googleSearchDetailModel];
-        
-        self.googleLocationDetailModel = googleSearchDetailModel;
+                
+        self.homeLocationModel.locationName = recommendationVenueModel.name;
+        self.homeLocationModel.latitude = recommendationVenueModel.lat;
+        self.homeLocationModel.longtitude = recommendationVenueModel.lng;
+        self.homeLocationModel.address_components.country = recommendationVenueModel.country;
+        self.homeLocationModel.address_components.route = recommendationVenueModel.route;
+        self.homeLocationModel.address_components.locality = recommendationVenueModel.city;
+        self.homeLocationModel.address_components.administrative_area_level_1 = recommendationVenueModel.state;
+        self.homeLocationModel.dictAddressComponent = googleSearchDetailModel.address_components;
 
-        self.locationLatitude = recommendationVenueModel.lat;
-        self.locationLongtitude = recommendationVenueModel.lng;
-        
         [self.ibSearchText resignFirstResponder];
         [self.ibLocationText resignFirstResponder];
         self.ibLocationView.hidden = YES;
@@ -378,7 +396,14 @@
 
 #pragma mark - Declaration
 
-
+-(HomeLocationModel*)homeLocationModel
+{
+    if (!_homeLocationModel) {
+        _homeLocationModel = [HomeLocationModel new];
+    }
+    
+    return _homeLocationModel;
+}
 -(SeetiesShopViewController*)seetiesShopViewController
 {
     if (!_seetiesShopViewController) {
@@ -525,39 +550,16 @@
 
 #pragma mark Init Data
 
--(void)setSearchType:(SearchViewType)searchType
-{
-    self.searchType = searchType;
-}
 
 -(void)refreshSearch
 {
     
-    //[self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
+   // [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
     
-    switch (self.searchType) {
-        default:
-        case SearchViewTypeCoordinate:
-          //  [self.PostsListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
-          //  [self.collectionListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
-            [self.shopListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
-            
-            break;
-        case SearchViewTypePlaceID:
-            [self.shopListingTableViewController refreshRequestShop:self.ibSearchText.text SeetieshopPlaceID:self.placeID];
-            [self.collectionListingTableViewController refreshRequestShop:self.ibSearchText.text SeetieshopPlaceID:self.placeID];
-            [self.PostsListingTableViewController refreshRequestWithCoordinate:self.ibSearchText.text Latitude:self.locationLatitude Longtitude:self.locationLongtitude];
-
-            break;
-        case SearchViewTypeTypeGoogleDetail:
-            [self.PostsListingTableViewController refreshRequestWithGoogleDetail:self.ibSearchText.text googleDetails:self.googleLocationDetailModel];
-            [self.collectionListingTableViewController refreshRequestWithGoogleDetail:self.ibSearchText.text googleDetails:self.googleLocationDetailModel];
-            [self.shopListingTableViewController refreshRequestWithGoogleDetail:self.ibSearchText.text googleDetails:self.googleLocationDetailModel];
-
-
-            break;
-            
-    }
+    [self.shopListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
+   // [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
+   // [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
+    
    
 }
 

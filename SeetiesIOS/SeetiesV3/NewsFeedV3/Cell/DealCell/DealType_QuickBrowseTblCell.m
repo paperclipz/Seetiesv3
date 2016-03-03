@@ -61,8 +61,19 @@
     [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.backgroundImage] completed:nil];
     [cell.ibImgLogo sd_setImageWithURL:[NSURL URLWithString:model.logoImage]];
     
+  
     return cell;
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    QuickBrowseModel* model = self.arrQuickBrowse[indexPath.row];
+
+    if (self.didSelectDealBlock) {
+        self.didSelectDealBlock(model);
+    }
+}
+
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {

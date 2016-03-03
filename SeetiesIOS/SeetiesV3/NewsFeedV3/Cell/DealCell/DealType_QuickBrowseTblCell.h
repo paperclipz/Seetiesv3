@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void (^QuickBrowseBlock)(QuickBrowseModel* model);
 
 @interface DealType_QuickBrowseTblCell : CommonTableViewCell
 -(void)initData:(NSArray*)array;
+@property(nonatomic,copy)QuickBrowseBlock didSelectDealBlock;
 
 @end

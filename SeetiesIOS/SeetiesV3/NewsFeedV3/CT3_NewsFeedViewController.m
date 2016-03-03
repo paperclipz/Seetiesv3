@@ -50,6 +50,8 @@
 #import "SelectCategoryViewController.h"
 #import "WalletListingViewController.h"
 
+#import "SearchQuickBrowseListingController.h"
+
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
@@ -69,9 +71,12 @@ static NSCache* heightCache = nil;
     NSString* currentLatitude;
     NSString* currentLongtitude;
 
+    BOOL isDealCollectionShown;
+
     
 }
 /*IBOUTLET*/
+@property (weak, nonatomic) IBOutlet UIButton *btnLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibIntroCollectionView;
@@ -90,6 +95,7 @@ static NSCache* heightCache = nil;
 
 @property(nonatomic,strong)HomeLocationModel* currentHomeLocationModel;
 
+@property(nonatomic,strong)NSString* locationName;
 
 
 /* Model */
@@ -112,6 +118,7 @@ static NSCache* heightCache = nil;
 @property(nonatomic, strong) SearchLocationViewController *searchLocationViewController;
 @property(nonatomic, strong) CT3_AnnouncementViewController *announcementViewController;
 @property(nonatomic)WalletListingViewController* walletListingViewController;
+@property(nonatomic)SearchQuickBrowseListingController* searchQuickBrowseListingController;
 
 /*Controller*/
 
@@ -180,6 +187,25 @@ static NSCache* heightCache = nil;
 
 #pragma mark - Declaration
 
+-(SearchQuickBrowseListingController*)searchQuickBrowseListingController
+{
+    if(!_searchQuickBrowseListingController)
+    {
+        _searchQuickBrowseListingController = [SearchQuickBrowseListingController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _searchQuickBrowseListingController.didSelectHomeLocationBlock = ^(HomeLocationModel* model)
+        {
+            weakSelf.currentHomeLocationModel = model;
+            weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
+            [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        };
+        
+    }
+    
+    return _searchQuickBrowseListingController;
+}
 -(WalletListingViewController*)walletListingViewController
 {
     if (!_walletListingViewController) {
@@ -335,52 +361,26 @@ static NSCache* heightCache = nil;
     if (!_searchLocationViewController) {
         _searchLocationViewController = [SearchLocationViewController new];
         __weak typeof (self)weakself = self;
+        
         _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model)
         {
+            isFirstLoad = YES;
+
             weakself.currentHomeLocationModel = model;
-            [weakself requestServerForHome:model];
-            
-            currentLongtitude = model.longtitude;
+                        currentLongtitude = model.longtitude;
             currentLatitude = model.latitude;
-            [weakself reloadNewsFeed];
+           
+            weakself.currentHomeLocationModel = model;
             
+            [Utils saveUserLocation:weakself.currentHomeLocationModel.locationName Longtitude:weakself.currentHomeLocationModel.longtitude Latitude:weakself.currentHomeLocationModel.latitude PlaceID:weakself.currentHomeLocationModel.place_id];
+            weakself.locationName = weakself.currentHomeLocationModel.locationName;
             [weakself.searchLocationViewController.navigationController popViewControllerAnimated:YES];
             
-            [Utils saveUserLocation:model.place_id Longtitude:model.longtitude Latitude:model.latitude];
-
-        };
-        
-        _searchLocationViewController.searchLocationRefreshBlock = ^(RecommendationVenueModel* model)
-        {
-            isFirstLoad = YES;
-            weakself.currentHomeLocationModel.longtitude = model.lng;
-            weakself.currentHomeLocationModel.latitude = model.lat;
-            weakself.currentHomeLocationModel.place_id = model.place_id;
-            [weakself requestServerForHome:weakself.currentHomeLocationModel];
-            
-            currentLongtitude = model.lng;
-            currentLatitude = model.lat;
             [weakself reloadNewsFeed];
-
-            [Utils saveUserLocation:model.place_id Longtitude:model.lng Latitude:model.lat];
-        };
-        
-        _searchLocationViewController.refreshAreaLocation = ^(PlaceModel* model)
-        {
-            
-            isFirstLoad = YES;
-            weakself.currentHomeLocationModel.longtitude = model.longtitude;
-            weakself.currentHomeLocationModel.latitude = model.latitude;
-            weakself.currentHomeLocationModel.place_id = model.place_id;
-            [weakself requestServerForHome:weakself.currentHomeLocationModel];
-            
-            currentLongtitude = model.longtitude;
-            currentLatitude = model.latitude;
-            [weakself reloadNewsFeed];
-
-            [Utils saveUserLocation:model.place_id Longtitude:model.longtitude Latitude:model.latitude];
+            [weakself requestServerForHome:model];
 
         };
+    
     }
     
     return _searchLocationViewController;
@@ -399,14 +399,14 @@ static NSCache* heightCache = nil;
     
     [self initSelfView];
 
-  //  [self getDummyData];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [self.btnLocation setTitle:self.locationName forState:UIControlStateNormal];
+
     if (!isFirstLoad) {
         [self requestServerForHomeUpdate:self.currentHomeLocationModel];
     }
@@ -605,8 +605,7 @@ static NSCache* heightCache = nil;
                     cell = [[DealType_mainTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 
-                constTopScrollView.constant = 0;
-                
+
                 [cell initData:self.homeModel];
                  __weak typeof (self)weakSelf = self;
                 cell.didSelectDealCollectionBlock = ^(DealCollectionModel* model)
@@ -631,6 +630,11 @@ static NSCache* heightCache = nil;
                 }
                 
                 [cell initData:self.homeModel.quick_browse];
+                
+                cell.didSelectDealBlock = ^(QuickBrowseModel* model)
+                {
+                    [self showSearchView:model];
+                };
                 return cell;
 
             }
@@ -647,6 +651,9 @@ static NSCache* heightCache = nil;
                     [cell initData:self.homeModel.superdeals];
 
                 }
+                
+               
+                
                 return cell;
                 
             }
@@ -989,7 +996,16 @@ static NSCache* heightCache = nil;
 
             }
                 break;
+            
+            case DealType_QuickBrowse:
+            {
                 
+                QuickBrowseModel* model = self.homeModel.quick_browse[indexPath.row];
+                [self showSearchView:model];
+
+            }
+            break;
+            
             default:
                 break;
         }
@@ -1132,66 +1148,17 @@ static NSCache* heightCache = nil;
     
 }
 
--(void)getDummyData
-{
-    self.arrayNewsFeed = [NSMutableArray new];
-    
-    CTFeedTypeModel* typeModel13 = [CTFeedTypeModel new];
-    typeModel13.tempType = (FeedType)13;
-    [self.arrayNewsFeed addObject:typeModel13];
-    
-    CTFeedTypeModel* typeModel13a = [CTFeedTypeModel new];
-    typeModel13a.tempType = (FeedType)13;
-    [self.arrayNewsFeed addObject:typeModel13a];
-    
-    CTFeedTypeModel* typeModel13b = [CTFeedTypeModel new];
-    typeModel13b.tempType = (FeedType)13;
-    [self.arrayNewsFeed addObject:typeModel13b];
-    
-    CTFeedTypeModel* typeModel5 = [CTFeedTypeModel new];
-    typeModel5.tempType = (FeedType)5;
-    [self.arrayNewsFeed addObject:typeModel5];
-    
-    CTFeedTypeModel* typeModel6 = [CTFeedTypeModel new];
-    typeModel6.tempType = (FeedType)6;
-    [self.arrayNewsFeed addObject:typeModel6];
-
-
-    CTFeedTypeModel* typeModel3 = [CTFeedTypeModel new];
-    typeModel3.tempType = (FeedType)3;
-    [self.arrayNewsFeed addObject:typeModel3];
-    
-  
-    
-    CTFeedTypeModel* typeModel8 = [CTFeedTypeModel new];
-    typeModel8.tempType = (FeedType)8;
-    [self.arrayNewsFeed addObject:typeModel8];
-    CTFeedTypeModel* typeModel7 = [CTFeedTypeModel new];
-    typeModel7.tempType = (FeedType)7;
-    [self.arrayNewsFeed addObject:typeModel7];
-
-
-    CTFeedTypeModel* typeModel = [CTFeedTypeModel new];
-    typeModel.tempType = (FeedType)1;
-    [self.arrayNewsFeed addObject:typeModel];
-    
-    CTFeedTypeModel* typeModel2 = [CTFeedTypeModel new];
-    typeModel2.tempType = (FeedType)2;
-    [self.arrayNewsFeed addObject:typeModel2];
-
-    CTFeedTypeModel* typeModel12 = [CTFeedTypeModel new];
-    typeModel12.tempType = (FeedType)12;
-    [self.arrayNewsFeed addObject:typeModel12];
-    
-    CTFeedTypeModel* aaa = [CTFeedTypeModel new];
-    aaa.tempType = (FeedType)3;
-    [self.arrayNewsFeed addObject:aaa];
-//    CTFeedTypeModel* typeModel3 = [CTFeedTypeModel new];
-//    typeModel3.tempType = (FeedType)3;
-//    [self.arrayNewsFeed addObject:typeModel3];
-}
 
 #pragma mark - SHOW OTHER VIEW
+
+
+-(void)showSearchView:(QuickBrowseModel*)model
+{
+    _searchQuickBrowseListingController = nil;
+    self.searchQuickBrowseListingController.keyword = model.name;
+    self.searchQuickBrowseListingController.homeLocationModel = self.currentHomeLocationModel;
+    [self.navigationController pushViewController:self.searchQuickBrowseListingController animated:YES];
+}
 
 -(void)showWebView:(AnnouncementModel*)model
 {
@@ -1350,13 +1317,15 @@ static NSCache* heightCache = nil;
     
     NSDictionary* dict = @{@"timezone_offset" : [Utils getTimeZone],
                            @"type" : model.type,
-                           @"lat" : model.latitude,
-                           @"lng" : model.longtitude,
-                           @"place_id" : model.place_id,
+                           @"lat" : model.latitude?model.latitude:@"",
+                           @"lng" : model.longtitude?model.longtitude:@"",
+                           @"place_id" : model.place_id?model.place_id:@"",
                            @"token" : [Utils getAppToken],
-                           @"address_components" : @"",
+                           @"address_components" : model.dictAddressComponent?[Utils convertToJsonString:model.dictAddressComponent]:@"",
                            };
     
+  
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
         
         self.homeModel = [[ConnectionManager dataManager]homeModel];
@@ -1364,8 +1333,19 @@ static NSCache* heightCache = nil;
         self.arrHomeDeal = nil;
 
         
-        if (self.homeModel.deal_collections) {
+        if (![Utils isArrayNull:self.homeModel.deal_collections]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Collection]];
+            isDealCollectionShown = YES;
+            ibHeaderBackgroundView.alpha = 0;
+            constTopScrollView.constant = 0;
+
+
+        }
+        else{
+            isDealCollectionShown = NO;
+            ibHeaderBackgroundView.alpha = 1;
+            constTopScrollView.constant = TopBarHeight;
+
         }
 
         if (![Utils isArrayNull:self.homeModel.superdeals]) {
@@ -1488,9 +1468,15 @@ static NSCache* heightCache = nil;
         }
     }
     
+    
+    if (!isDealCollectionShown) {
+        ibHeaderBackgroundView.alpha = 1;
+        
+        return;
+    }
     /*for top navigation bar alpha setting*/
     int profileBackgroundHeight = TopBarHeight;
-   
+    
     if (scrollView.contentOffset.y > profileBackgroundHeight)
     {
         ibHeaderBackgroundView.alpha = 1;
@@ -1575,7 +1561,6 @@ static NSCache* heightCache = nil;
 {
     [self scrollToTop:NO];
     
-    
     if (![Utils isStringNull:[Utils getAppToken]]) {
         
         NSDictionary* dict = [Utils getSavedUserLocation];
@@ -1589,9 +1574,13 @@ static NSCache* heightCache = nil;
         model.type = @"none";
         model.latitude = dict[KEY_LATITUDE];
         model.longtitude = dict[KEY_LONGTITUDE];
-        model.place_id = dict[KEY_LOCATION];
+        model.place_id = dict[KEY_PLACE_ID];
+        model.locationName = dict[KEY_LOCATION];
+        self.locationName = dict[KEY_LOCATION];
+
         self.currentHomeLocationModel = model;
         [self requestServerForHome:model];
+
     }
 
 }

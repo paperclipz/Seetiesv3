@@ -14,6 +14,7 @@
 #import <Parse/Parse.h>
 #import <sys/utsname.h>
 #import "NewLandingViewController.h"
+#import "AFNetworkActivityLogger.h"
 
 #define FABRIC_API_KEY @"506d5ee5657719d0cbaa94569d3352125456f169"
 @import ViewMonitor;
@@ -66,6 +67,10 @@
     [[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarByPosition];
 
 
+//        #ifdef DEBUG
+//            [[AFNetworkActivityLogger sharedLogger] startLogging];
+//            [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+//        #endif
 }
 
 -(void)configureNotificaiton:(UIApplication*)application

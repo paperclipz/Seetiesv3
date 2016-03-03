@@ -12,13 +12,12 @@
 #import "SearchModel.h"
 
 typedef void (^HomeLocationRefreshBlock)(HomeLocationModel* model);
-typedef void (^AreaLocationREfreshBlock)(PlaceModel* model);
-typedef void (^SearchLocationRefreshBlock)(RecommendationVenueModel* model);
+typedef void (^AreaLocationREfreshBlock)(PlaceModel* model, NSString* locationName);
+typedef void (^SearchLocationRefreshBlock)(RecommendationVenueModel* model, NSString* locationName);
 
 @interface SearchLocationViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
-@property(nonatomic, copy)AreaLocationREfreshBlock refreshAreaLocation;
 
 @property(nonatomic,copy)HomeLocationRefreshBlock homeLocationRefreshBlock;
-@property(nonatomic,copy)SearchLocationRefreshBlock searchLocationRefreshBlock;
+
 -(void)hideBackButton;
 @end

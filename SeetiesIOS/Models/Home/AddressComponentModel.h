@@ -10,10 +10,10 @@
 
 @interface AddressComponentModel : NSObject
 
-@property(nonatomic)NSString* country;
-@property(nonatomic)NSString* route;
-@property(nonatomic)NSString* locality;
-@property(nonatomic)NSString* administrative_area_level_1;
-@property(nonatomic)NSString* political;
+@property(nonatomic,strong)NSString* country;
+@property(nonatomic,strong)NSString* route;
+@property(nonatomic,strong)NSString* locality;
+@property(nonatomic,strong)NSString* administrative_area_level_1;
+@property(nonatomic,strong)NSString* political;
 
 @end

@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 @property (weak, nonatomic) IBOutlet UIImageView *btnCloseImage;
 @property(nonatomic)CT3_EnableLocationViewController* enableLocationViewController;
+
+@property(nonatomic,readwrite)NSString* locationName;
 @end
 
 @implementation SearchLocationViewController
@@ -217,13 +219,21 @@
         PlacesModel* psModel = self.currentSelectedCountry.arrArea[indexPath.section];
         PlaceModel* pModel = psModel.places[indexPath.row];
         
-        if (self.refreshAreaLocation) {
-            self.refreshAreaLocation(pModel);
-        }
+        
+        self.locationName = pModel.name;
 
-        [self.navigationController popToRootViewControllerAnimated:YES onCompletion:^{
-            
-        }];
+        
+        HomeLocationModel* hModel = [HomeLocationModel new];
+        hModel.timezone = @"";
+        hModel.type = @"none";
+        hModel.latitude = pModel.latitude;
+        hModel.longtitude = pModel.longtitude;
+        hModel.place_id = pModel.place_id;
+        hModel.locationName = pModel.name;
+
+        if (self.homeLocationRefreshBlock) {
+            self.homeLocationRefreshBlock(hModel);
+        }
     
     }
     else if (tableView == self.ibSearchTable){
@@ -241,7 +251,7 @@
     NSDictionary* dict = model.terms[0];
     self.ibSearchTxtField.text = dict[@"value"];
     self.ibSearchTable.hidden = YES;
-    
+    self.locationName = dict[@"value"];
 }
 
 -(void)requestForGoogleMapDetails:(NSString*)placeID
@@ -258,11 +268,23 @@
         [recommendationVenueModel processGoogleModel:googleSearchDetailModel];
         
         [self.ibSearchTxtField resignFirstResponder];
-        [self dismissViewControllerAnimated:YES completion:^{
-            if (self.homeLocationRefreshBlock) {
-              //  self.homeLocationRefreshBlock();
-            }
-        }];
+        
+        
+        HomeLocationModel* hModel = [HomeLocationModel new];
+        hModel.timezone = @"";
+        hModel.type = @"current";
+        hModel.latitude = recommendationVenueModel.lat;
+        hModel.longtitude = recommendationVenueModel.lng;
+        hModel.place_id = recommendationVenueModel.place_id;
+        hModel.address_components.country = recommendationVenueModel.country;
+        hModel.address_components.route = recommendationVenueModel.route;
+        hModel.address_components.locality = recommendationVenueModel.city;
+        hModel.address_components.administrative_area_level_1 = recommendationVenueModel.state;
+        hModel.locationName = recommendationVenueModel.name;
+        
+        if (self.homeLocationRefreshBlock) {
+            self.homeLocationRefreshBlock(hModel);
+        }
         
     } errorBlock:nil];
     
@@ -328,7 +350,8 @@
             hModel.address_components.locality = model.city;
             hModel.address_components.administrative_area_level_1 = model.state;
             hModel.address_components.political = model.political;
-            
+            hModel.locationName = hModel.address_components.locality;
+
             if (self.homeLocationRefreshBlock) {
                 self.homeLocationRefreshBlock(hModel);
             }

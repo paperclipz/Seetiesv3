@@ -230,8 +230,10 @@ typedef enum {
 #define KEY_LATITUDE @"latitude_key"
 #define KEY_LONGTITUDE @"longtitude_key"
 #define KEY_LOCATION @"location_key"
+#define KEY_PLACE_ID @"place_id_key"
+
 +(NSDictionary*)getSavedUserLocation;
-+(void)saveUserLocation:(NSString*)location Longtitude:(NSString*)longtitude Latitude:(NSString*)latitude;
++(void)saveUserLocation:(NSString*)location Longtitude:(NSString*)longtitude Latitude:(NSString*)latitude PlaceID:(NSString*)place_id;
 
 
 @end

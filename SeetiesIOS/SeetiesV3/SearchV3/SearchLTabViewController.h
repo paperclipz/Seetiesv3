@@ -25,10 +25,11 @@ typedef void (^DidSelectShopBlock)(SeShopDetailModel* model);
 @property(nonatomic,assign)SearchListingType searchListingType;
 
 -(void)refreshRequestWithGoogleDetail:(NSString*)keyword  googleDetails:(SearchLocationDetailModel*)googleDetailModel;
--(void)refreshRequestWithCoordinate:(NSString*)keyword Latitude:(NSString*)latitude Longtitude:(NSString*)longtitude;
+-(void)refreshRequestWithModel:(HomeLocationModel*)model Keyword:(NSString*)keyword;
 
 -(void)refreshRequestShop:(NSString*)keyword SeetieshopPlaceID:(NSString*)placeID;
 
 -(void)refreshRequestWithText:(NSString*)keyword;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constFilterHeight;
 
 @end
