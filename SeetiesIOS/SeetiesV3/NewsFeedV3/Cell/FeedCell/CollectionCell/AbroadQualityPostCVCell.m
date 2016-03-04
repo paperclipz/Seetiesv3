@@ -45,7 +45,6 @@
     }
     else{
         
-        
         self.lblDistance.text = [Utils getDistance:model.location.distance Locality:model.location.locality];
 
     }

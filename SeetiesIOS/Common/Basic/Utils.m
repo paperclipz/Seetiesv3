@@ -32,14 +32,19 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:TOKEN];
+    [defaults setObject:nil forKey:USERID];
+
     [defaults synchronize];
     
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+
     AppDelegate *appdelegate;
     
     appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [Utils reloadAppView];
     [appdelegate.landingViewController showLoginView];
-
+    
 }
 
 +(void)reloadAppView
@@ -636,11 +641,11 @@
     if(distance <= MaxDistance)
     {
         if (distance <= 1000) {
-            strDistance = [NSString stringWithFormat:@"%.1f Meter",distance];
+            strDistance = [NSString stringWithFormat:@"%.f M",distance];
             
         }
         else{
-            strDistance = [NSString stringWithFormat:@"%.1f KM",distance/100];
+            strDistance = [NSString stringWithFormat:@"%.f KM",distance/100];
             
         }
     }
@@ -650,11 +655,11 @@
         if ([Utils stringIsNilOrEmpty:local]) {
             
             if (distance <= 1000) {
-                strDistance = [NSString stringWithFormat:@"%.1f Meter",distance];
+                strDistance = [NSString stringWithFormat:@"%.f M",distance];
                 
             }
             else{
-                strDistance = [NSString stringWithFormat:@"%.1f KM",distance/100];
+                strDistance = [NSString stringWithFormat:@"%.f KM",distance/100];
                 
             }
             

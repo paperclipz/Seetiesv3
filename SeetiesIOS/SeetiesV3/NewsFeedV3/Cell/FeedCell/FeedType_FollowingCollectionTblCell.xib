@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="517"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QO-Z5-OiG">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="57"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YellowCollected.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zrx-tp-NnO">
                                         <rect key="frame" x="10" y="10" width="30" height="30"/>
@@ -29,7 +29,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdasdsadadsadsadasdasdsadsadasdasdasdasda" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lV6-Mq-0vP">
-                                        <rect key="frame" x="48" y="3" width="337" height="44"/>
+                                        <rect key="frame" x="48" y="7" width="337" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="eq7-d4-s2j"/>
                                         </constraints>
@@ -42,7 +42,7 @@
                                 <constraints>
                                     <constraint firstItem="lV6-Mq-0vP" firstAttribute="leading" secondItem="Zrx-tp-NnO" secondAttribute="trailing" constant="8" id="3n2-SI-Xsb"/>
                                     <constraint firstAttribute="trailing" secondItem="lV6-Mq-0vP" secondAttribute="trailing" constant="8" id="4Bk-Qi-5z0"/>
-                                    <constraint firstAttribute="height" constant="50" id="c87-kJ-T7u"/>
+                                    <constraint firstAttribute="height" constant="57" id="c87-kJ-T7u"/>
                                     <constraint firstItem="lV6-Mq-0vP" firstAttribute="centerY" secondItem="8QO-Z5-OiG" secondAttribute="centerY" id="dZh-rp-aYY"/>
                                     <constraint firstItem="Zrx-tp-NnO" firstAttribute="top" secondItem="8QO-Z5-OiG" secondAttribute="top" constant="10" id="oKw-0M-YtM"/>
                                     <constraint firstItem="Zrx-tp-NnO" firstAttribute="leading" secondItem="8QO-Z5-OiG" secondAttribute="leading" constant="10" id="uLt-Wi-u9F"/>
@@ -110,7 +110,7 @@
                                 </variation>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1R0-oW-snz">
-                                <rect key="frame" x="0.0" y="50" width="393" height="397"/>
+                                <rect key="frame" x="0.0" y="57" width="393" height="390"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="650" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="dX3-Uy-PLK">
                                         <rect key="frame" x="293" y="125" width="100" height="120"/>
@@ -119,7 +119,7 @@
                                         <rect key="frame" x="293" y="250" width="100" height="120"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="ngR-dL-ToX">
-                                        <rect key="frame" x="0.0" y="0.0" width="288" height="397"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="390"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BigAddIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-o2-c2E">
                                         <rect key="frame" x="293" y="250" width="100" height="120"/>

@@ -822,7 +822,7 @@
         case ServerRequestTypeSearchCollections:
         {
             
-            NSDictionary* dict = obj[@"data"][@"collections"];
+            NSDictionary* dict = obj[@"data"];
             self.dataManager.userCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
             
         }

@@ -225,6 +225,10 @@
 		8A3F35681BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F35621BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m */; };
 		8A3F35691BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3F35631BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.xib */; };
 		8A41471E1C23E18D00D633D1 /* NSDictionary+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A41471D1C23E18D00D633D1 /* NSDictionary+Extra.m */; };
+		8A4205231C894F2300DB0D20 /* CT3_AcctSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4205211C894F2300DB0D20 /* CT3_AcctSettingViewController.m */; };
+		8A4205241C894F2300DB0D20 /* CT3_AcctSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4205221C894F2300DB0D20 /* CT3_AcctSettingViewController.xib */; };
+		8A4205281C89501100DB0D20 /* AccountSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4205261C89501100DB0D20 /* AccountSettingTableViewCell.m */; };
+		8A4205291C89501100DB0D20 /* AccountSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4205271C89501100DB0D20 /* AccountSettingTableViewCell.xib */; };
 		8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */; };
 		8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */; };
 		8A45097A1BAC012600A868CD /* NSArray+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4509791BAC012600A868CD /* NSArray+JSON.m */; };
@@ -1908,6 +1912,12 @@
 		8A3F356A1BF5E9C3002B704C /* SuggestedCollectionPostsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionPostsViewController.h; sourceTree = "<group>"; };
 		8A41471C1C23E18D00D633D1 /* NSDictionary+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extra.h"; sourceTree = "<group>"; };
 		8A41471D1C23E18D00D633D1 /* NSDictionary+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extra.m"; sourceTree = "<group>"; };
+		8A4205201C894F2300DB0D20 /* CT3_AcctSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_AcctSettingViewController.h; sourceTree = "<group>"; };
+		8A4205211C894F2300DB0D20 /* CT3_AcctSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_AcctSettingViewController.m; sourceTree = "<group>"; };
+		8A4205221C894F2300DB0D20 /* CT3_AcctSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_AcctSettingViewController.xib; sourceTree = "<group>"; };
+		8A4205251C89501100DB0D20 /* AccountSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingTableViewCell.h; sourceTree = "<group>"; };
+		8A4205261C89501100DB0D20 /* AccountSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingTableViewCell.m; sourceTree = "<group>"; };
+		8A4205271C89501100DB0D20 /* AccountSettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountSettingTableViewCell.xib; sourceTree = "<group>"; };
 		8A45096D1BA801D400A868CD /* STAddNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddNewTableViewCell.h; sourceTree = "<group>"; };
 		8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddNewTableViewCell.m; sourceTree = "<group>"; };
 		8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAddNewTableViewCell.xib; sourceTree = "<group>"; };
@@ -4568,6 +4578,19 @@
 			name = "NSDictionary+Extension";
 			sourceTree = "<group>";
 		};
+		8A42051F1C894F0F00DB0D20 /* AccountSettingV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8A4205201C894F2300DB0D20 /* CT3_AcctSettingViewController.h */,
+				8A4205211C894F2300DB0D20 /* CT3_AcctSettingViewController.m */,
+				8A4205221C894F2300DB0D20 /* CT3_AcctSettingViewController.xib */,
+				8A4205251C89501100DB0D20 /* AccountSettingTableViewCell.h */,
+				8A4205261C89501100DB0D20 /* AccountSettingTableViewCell.m */,
+				8A4205271C89501100DB0D20 /* AccountSettingTableViewCell.xib */,
+			);
+			path = AccountSettingV3;
+			sourceTree = "<group>";
+		};
 		8A45098F1BAFF79900A868CD /* Color */ = {
 			isa = PBXGroup;
 			children = (
@@ -7087,6 +7110,7 @@
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				8A42051F1C894F0F00DB0D20 /* AccountSettingV3 */,
 				8AF867A11C7ECCE000B0195D /* EnableLocationV3 */,
 				8A5CFE1A1C7D8E21004E2CBA /* ProvisioningV3 */,
 				8ABA7DDD1C741FC500FB41F4 /* NotificationV3 */,
@@ -7657,6 +7681,7 @@
 				8A84C5E11C7FF448006A0D76 /* RedeemSuccessMsg.png in Resources */,
 				8AD6BE581B706CF30040437E /* DoAlbumCell.xib in Resources */,
 				8A84C79C1C7FF448006A0D76 /* ShareToIcon@3x.png in Resources */,
+				8A4205291C89501100DB0D20 /* AccountSettingTableViewCell.xib in Resources */,
 				8AFA51D01C47B4AB00E7920E /* GeneralFilterViewController.xib in Resources */,
 				8A84C6371C7FF448006A0D76 /* HomeRecommendedByUserIcon@3x.png in Resources */,
 				8A84C6151C7FF448006A0D76 /* HomeEvening1.png in Resources */,
@@ -8031,6 +8056,7 @@
 				8A84C7F31C7FF448006A0D76 /* LoginFacebookIcon@2x.png in Resources */,
 				0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */,
 				8A84C6331C7FF448006A0D76 /* HomePinIcon@3x.png in Resources */,
+				8A4205241C894F2300DB0D20 /* CT3_AcctSettingViewController.xib in Resources */,
 				C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */,
 				8A84C6FE1C7FF448006A0D76 /* CommentBox@3x.png in Resources */,
 				8A84C6D51C7FF448006A0D76 /* FollowCollectionThaiIcon@2x.png in Resources */,
@@ -8753,6 +8779,7 @@
 				8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */,
 				8A114CAB1BE73F5D006AE3F0 /* UIScrollView+CRScrollIndicator.m in Sources */,
 				8A3F35641BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */,
+				8A4205281C89501100DB0D20 /* AccountSettingTableViewCell.m in Sources */,
 				8AD6C0D21B706CF30040437E /* PFollowTheExpertsViewController.m in Sources */,
 				8A114C981BE73F5D006AE3F0 /* JTSImageInfo.m in Sources */,
 				8AFA51F91C47B4AB00E7920E /* FeedType_Two_TableViewCell.m in Sources */,
@@ -9108,6 +9135,7 @@
 				8A114C9E1BE73F5D006AE3F0 /* UIImage+KVNImageEffects.m in Sources */,
 				8A114CD51BE73F5D006AE3F0 /* CommonTableViewCell.m in Sources */,
 				8A114CA51BE73F5D006AE3F0 /* PEResizeControl.m in Sources */,
+				8A4205231C894F2300DB0D20 /* CT3_AcctSettingViewController.m in Sources */,
 				8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */,
 				8A114CB21BE73F5D006AE3F0 /* LLARingSpinnerView.m in Sources */,
 				C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */,

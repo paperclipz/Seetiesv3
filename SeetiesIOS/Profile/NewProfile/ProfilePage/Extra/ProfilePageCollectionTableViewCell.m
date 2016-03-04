@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageLock;
 
 @property (assign, nonatomic)ProfileViewType profileType;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoOfPost;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoOfFollower;
 
 @end
 @implementation ProfilePageCollectionTableViewCell
@@ -93,8 +95,9 @@
     }
     
     self.lblTitle.text = self.model.name;
-    self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"Recommendations")];
-    
+    self.lblNoOfPost.text = [NSString stringWithFormat:@"%d",self.model.collection_posts_count];
+    self.lblNoOfFollower.text = [NSString stringWithFormat:@"%d",self.model.follower_count];
+
     self.ibImageViewA.image = [UIImage imageNamed:@"EmptyCollection.png"];
     self.ibImageViewB.image = [UIImage imageNamed:@"EmptyCollection.png"];
 
@@ -108,7 +111,8 @@
             if (![draftModel.arrPhotos isNull]) {
                 PhotoModel* photoModel1 = draftModel.arrPhotos[0];
 
-                [self.ibImageViewA sd_setImageWithURL:[NSURL URLWithString:photoModel1.imageURL]];
+                
+                [self.ibImageViewA sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel1.imageURL] completed:nil];
                 //SLog(@"Image A: %@",photoModel1.imageURL);
 
             }
@@ -122,7 +126,8 @@
             if (![draftModelTwo.arrPhotos isNull]) {
                 PhotoModel* photoModel2 = draftModelTwo.arrPhotos[0];
                 
-                [self.ibImageViewB sd_setImageWithURL:[NSURL URLWithString:photoModel2.imageURL]];
+                [self.ibImageViewB sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel2.imageURL] completed:nil];
+
                // SLog(@"Image A: %@",photoModel2.imageURL);
 
             }

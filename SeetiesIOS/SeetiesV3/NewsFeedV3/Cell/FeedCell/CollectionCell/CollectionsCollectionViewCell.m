@@ -22,7 +22,9 @@
 @property (strong, nonatomic) CollectionModel *model;
 @property (weak, nonatomic) IBOutlet UIButton *btnFollow;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageLock;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoOfPost;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblNoOfFollower;
 @end
 @implementation CollectionsCollectionViewCell
 - (IBAction)btnFollowClicked:(id)sender {
@@ -54,20 +56,15 @@
     return 190.0f;
 }
 
--(void)initData
-{
-    [self.ibImageViewA sd_setImageWithURL:[NSURL URLWithString:@"http://www.planwallpaper.com/static/images/best_modern_city_wallpaper_hd.jpg"]];
-    [self.ibImageViewB sd_setImageWithURL:[NSURL URLWithString:@"http://thewallpaperhost.com/wp-content/uploads/0382763769f46da4ff3c6644eeac648c_large.jpeg"]];
-
-}
 -(void)initData:(CollectionModel*)model
 {
     
     self.model = model;
     
     self.lblTitle.text = self.model.name;
-    self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"Recommendations")];
-    
+    self.lblNoOfPost.text = [NSString stringWithFormat:@"%d",self.model.collection_posts_count];
+    self.lblNoOfFollower.text = [NSString stringWithFormat:@"%d",self.model.follower_count];
+
     self.ibImageViewA.image = [UIImage imageNamed:@"EmptyCollection.png"];
     self.ibImageViewB.image = [UIImage imageNamed:@"EmptyCollection.png"];
     
@@ -81,8 +78,8 @@
             if (![draftModel.arrPhotos isNull]) {
                 PhotoModel* photoModel1 = draftModel.arrPhotos[0];
                 
-                [self.ibImageViewA sd_setImageWithURL:[NSURL URLWithString:photoModel1.imageURL]];
-                
+                [self.ibImageViewA sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel1.imageURL] completed:nil];
+
             }
             
         }
@@ -94,7 +91,8 @@
             if (![draftModelTwo.arrPhotos isNull]) {
                 PhotoModel* photoModel2 = draftModelTwo.arrPhotos[0];
                 
-                [self.ibImageViewB sd_setImageWithURL:[NSURL URLWithString:photoModel2.imageURL]];
+                [self.ibImageViewB sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel2.imageURL] completed:nil];
+
                 // SLog(@"Image A: %@",photoModel2.imageURL);
                 
             }

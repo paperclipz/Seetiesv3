@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibGuestView;
+@property (weak, nonatomic) IBOutlet UIButton *btnNotification;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 @end
@@ -160,7 +161,17 @@
 {
     
     self.ibGuestView.hidden = ![Utils isGuestMode];
-    [self requestServerForNotificationCount];
+    
+    if ([Utils isGuestMode]) {
+        self.btnNotification.hidden = YES;
+        self.ibNotificationCountLbl.hidden = YES;
+    }
+    else{
+        [self requestServerForNotificationCount];
+        self.btnNotification.hidden = NO;
+        self.ibNotificationCountLbl.hidden = NO;
+    }
+    
   
 }
 
