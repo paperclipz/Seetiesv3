@@ -43,32 +43,32 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KB9-ER-GDk">
-                            <rect key="frame" x="40" y="20" width="59" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <rect key="frame" x="40" y="28" width="49" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-7K-ot0" userLabel="drop down icon">
-                            <rect key="frame" x="104" y="22" width="15" height="15"/>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-7K-ot0" userLabel="drop down icon">
+                            <rect key="frame" x="94" y="28" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="UtW-HE-80K"/>
                                 <constraint firstAttribute="width" constant="15" id="YhM-I8-hlK"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal of the Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp8-Jp-ABW">
-                            <rect key="frame" x="40" y="38" width="124" height="21"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <rect key="frame" x="40" y="43" width="111" height="18"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgP-Mz-cA7" userLabel="location button">
-                            <rect key="frame" x="40" y="20" width="170" height="39"/>
+                            <rect key="frame" x="40" y="28" width="180" height="36"/>
                             <connections>
                                 <action selector="locationBtnClicked:" destination="-1" eventType="touchUpInside" id="QEp-Ap-dxu"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msM-T5-Qek" userLabel="search button">
-                            <rect key="frame" x="220" y="14" width="50" height="50"/>
+                            <rect key="frame" x="230" y="14" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="747-d6-OOm"/>
                                 <constraint firstAttribute="height" constant="50" id="K7o-lJ-w0V"/>
@@ -96,6 +96,7 @@
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="top" secondItem="I2e-bV-XI7" secondAttribute="top" constant="18" id="7GE-Fa-xt5"/>
                         <constraint firstItem="msM-T5-Qek" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Qp8-Jp-ABW" secondAttribute="trailing" constant="10" id="B5W-K8-YU2"/>
                         <constraint firstAttribute="bottom" secondItem="wJH-T7-Mrw" secondAttribute="bottom" constant="4" id="FR2-5e-X0P"/>
+                        <constraint firstItem="KB9-ER-GDk" firstAttribute="top" secondItem="I2e-bV-XI7" secondAttribute="top" constant="28" id="JGp-GF-oPJ"/>
                         <constraint firstItem="HWW-7K-ot0" firstAttribute="leading" secondItem="KB9-ER-GDk" secondAttribute="trailing" constant="5" id="KLz-ff-Ed6"/>
                         <constraint firstAttribute="bottom" secondItem="msM-T5-Qek" secondAttribute="bottom" id="LGT-G5-pmX"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="bottom" secondItem="Qp8-Jp-ABW" secondAttribute="bottom" id="Mek-te-w5h"/>
@@ -110,12 +111,13 @@
                         <constraint firstItem="Qp8-Jp-ABW" firstAttribute="top" secondItem="KB9-ER-GDk" secondAttribute="bottom" id="aM4-zd-lQZ"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="trailing" secondItem="KB9-ER-GDk" secondAttribute="trailing" id="bkx-gW-qn9"/>
                         <constraint firstItem="msM-T5-Qek" firstAttribute="leading" secondItem="PgP-Mz-cA7" secondAttribute="trailing" constant="10" id="csD-ir-0K8"/>
+                        <constraint firstAttribute="bottom" secondItem="PgP-Mz-cA7" secondAttribute="bottom" id="dO7-XM-a6Q"/>
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="top" secondItem="wJH-T7-Mrw" secondAttribute="top" id="e1z-9u-bOI"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="centerY" secondItem="I2e-bV-XI7" secondAttribute="centerY" id="ggE-KY-Yu6"/>
                         <constraint firstAttribute="trailing" secondItem="aZJ-d8-8P6" secondAttribute="trailing" id="kM6-Xs-rEG"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="leading" secondItem="KB9-ER-GDk" secondAttribute="leading" id="md4-db-GbX"/>
                         <constraint firstItem="HWW-7K-ot0" firstAttribute="centerY" secondItem="KB9-ER-GDk" secondAttribute="centerY" id="n5c-ho-0sq"/>
-                        <constraint firstItem="aZJ-d8-8P6" firstAttribute="leading" secondItem="msM-T5-Qek" secondAttribute="trailing" id="okv-hd-vwq"/>
+                        <constraint firstItem="aZJ-d8-8P6" firstAttribute="leading" secondItem="msM-T5-Qek" secondAttribute="trailing" constant="-10" id="okv-hd-vwq"/>
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="leading" secondItem="I2e-bV-XI7" secondAttribute="leading" constant="40" id="onx-qK-lak"/>
                         <constraint firstItem="Qp8-Jp-ABW" firstAttribute="leading" secondItem="wJH-T7-Mrw" secondAttribute="trailing" id="qrj-zX-wZ1"/>
                         <constraint firstAttribute="height" constant="64" id="qzp-N1-tWS"/>
@@ -126,10 +128,12 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="e1z-9u-bOI"/>
                             <exclude reference="onx-qK-lak"/>
                             <exclude reference="tbh-2L-hgd"/>
                             <exclude reference="yf6-Wq-1SU"/>
                             <exclude reference="7GE-Fa-xt5"/>
+                            <exclude reference="Mek-te-w5h"/>
                             <exclude reference="UcZ-mI-GCI"/>
                             <exclude reference="XFL-Ch-fPA"/>
                             <exclude reference="YgT-Cb-f8i"/>
@@ -142,23 +146,26 @@
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vzi-NU-OdU" userLabel="wallet footer">
-                    <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="wXs-2x-Sya" userLabel="wallet icon">
-                            <rect key="frame" x="8" y="10" width="40" height="40"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealsListingVoucherWalletBar.png" translatesAutoresizingMaskIntoConstraints="NO" id="NKB-00-84S" userLabel="bg image">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealsListingVoucherWalletIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="wXs-2x-Sya" userLabel="wallet icon">
+                            <rect key="frame" x="8" y="5" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="1fz-W1-zRR"/>
                                 <constraint firstAttribute="height" constant="40" id="p8w-zn-IeF"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TL0-PQ-q1H" userLabel="voucher count">
-                            <rect key="frame" x="242" y="10" width="40" height="40"/>
+                            <rect key="frame" x="252" y="10" width="30" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="EYE-bW-bAX"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="EYE-bW-bAX"/>
                                 <constraint firstAttribute="width" constant="40" id="JDf-lr-FsW"/>
-                                <constraint firstAttribute="height" constant="40" id="e8l-PZ-4dR"/>
+                                <constraint firstAttribute="height" constant="30" id="e8l-PZ-4dR"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
@@ -167,24 +174,24 @@
                                 </mask>
                             </variation>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="bvE-vN-sUM" userLabel="arrow icon">
-                            <rect key="frame" x="282" y="15" width="30" height="30"/>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealsListingGoIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="bvE-vN-sUM" userLabel="arrow icon">
+                            <rect key="frame" x="282" y="10" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="8Ts-Uf-ETO"/>
                                 <constraint firstAttribute="height" constant="30" id="Vi7-I6-ghf"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaS-vd-HRF" userLabel="voucher wallet">
-                            <rect key="frame" x="53" y="20" width="124" height="21"/>
+                            <rect key="frame" x="53" y="15" width="111" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="iGn-GZ-qRx"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrz-mR-wx7" userLabel="footer btn">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <connections>
                                 <action selector="footerBtnClicked:" destination="-1" eventType="touchUpInside" id="BHW-om-Glx"/>
                             </connections>
@@ -197,9 +204,11 @@
                         <constraint firstItem="bvE-vN-sUM" firstAttribute="leading" secondItem="EaS-vd-HRF" secondAttribute="trailing" constant="5" id="AaC-Yu-HKh"/>
                         <constraint firstItem="bvE-vN-sUM" firstAttribute="leading" secondItem="TL0-PQ-q1H" secondAttribute="trailing" id="CMk-E2-b0Q"/>
                         <constraint firstItem="TL0-PQ-q1H" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EaS-vd-HRF" secondAttribute="trailing" constant="5" id="Drs-th-kZn"/>
+                        <constraint firstAttribute="trailing" secondItem="NKB-00-84S" secondAttribute="trailing" id="LKi-11-wTc"/>
                         <constraint firstItem="EaS-vd-HRF" firstAttribute="leading" secondItem="Vzi-NU-OdU" secondAttribute="leading" constant="99" id="Nwf-JV-mOg"/>
                         <constraint firstItem="TL0-PQ-q1H" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="Tqe-9T-rxV"/>
-                        <constraint firstAttribute="height" constant="60" id="ePM-Fm-4d2"/>
+                        <constraint firstAttribute="bottom" secondItem="NKB-00-84S" secondAttribute="bottom" id="dT0-Ao-jed"/>
+                        <constraint firstAttribute="height" constant="50" id="ePM-Fm-4d2"/>
                         <constraint firstItem="Vrz-mR-wx7" firstAttribute="leading" secondItem="Vzi-NU-OdU" secondAttribute="leading" id="f54-bi-8yT"/>
                         <constraint firstItem="wXs-2x-Sya" firstAttribute="leading" secondItem="Vzi-NU-OdU" secondAttribute="leading" constant="8" id="frg-RL-5lG"/>
                         <constraint firstAttribute="bottom" secondItem="Vrz-mR-wx7" secondAttribute="bottom" id="g4L-FF-cim"/>
@@ -208,7 +217,9 @@
                         <constraint firstItem="bvE-vN-sUM" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="id6-E0-zna"/>
                         <constraint firstItem="EaS-vd-HRF" firstAttribute="top" secondItem="wXs-2x-Sya" secondAttribute="bottom" constant="-74" id="ilh-VC-22i"/>
                         <constraint firstItem="Vrz-mR-wx7" firstAttribute="top" secondItem="Vzi-NU-OdU" secondAttribute="top" id="okH-N5-hSv"/>
+                        <constraint firstItem="NKB-00-84S" firstAttribute="top" secondItem="Vzi-NU-OdU" secondAttribute="top" id="t29-AF-jGG"/>
                         <constraint firstItem="EaS-vd-HRF" firstAttribute="centerY" secondItem="Vzi-NU-OdU" secondAttribute="centerY" id="uWb-pl-r1V"/>
+                        <constraint firstItem="NKB-00-84S" firstAttribute="leading" secondItem="Vzi-NU-OdU" secondAttribute="leading" id="vc9-1a-dVF"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -219,8 +230,8 @@
                     </variation>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="190" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vEe-3n-SBv" userLabel="voucher table">
-                    <rect key="frame" x="0.0" y="64" width="320" height="444"/>
-                    <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="454"/>
+                    <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="twe-MW-9nk"/>
                         <outlet property="delegate" destination="-1" id="y9a-PV-SjS"/>
@@ -250,10 +261,12 @@
         </view>
     </objects>
     <resources>
-        <image name="ArrowBtn.png" width="30" height="30"/>
         <image name="BackIcon.png" width="40" height="40"/>
+        <image name="DealsListingGoIcon.png" width="7" height="10"/>
+        <image name="DealsListingVoucherWalletBar.png" width="320" height="50"/>
+        <image name="DealsListingVoucherWalletIcon.png" width="23" height="21"/>
         <image name="FilterIcon.png" width="40" height="40"/>
-        <image name="Icon-60.png" width="60" height="60"/>
+        <image name="NaviDropDownIcon.png" width="8" height="6"/>
         <image name="SearchIcon.png" width="40" height="40"/>
     </resources>
 </document>

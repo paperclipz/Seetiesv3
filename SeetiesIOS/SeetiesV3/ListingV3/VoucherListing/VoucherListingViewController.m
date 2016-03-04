@@ -43,8 +43,8 @@
     [self.dealManager removeAllCollectedDeals];
     [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
     
-//    self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
-//    self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
+    self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
+    self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
     [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
     
     if (self.locationModel) {

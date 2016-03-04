@@ -46,8 +46,8 @@
 
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
-    [self.ibInnerContentView prefix_addLowerBorder:LINE_COLOR];
-    [self.ibInnerContentView prefix_addUpperBorder:LINE_COLOR];
+    [self.ibInnerContentView prefix_addLowerBorder:OUTLINE_COLOR];
+    [self.ibInnerContentView prefix_addUpperBorder:OUTLINE_COLOR];
     
     if (![Utils isStringNull:self.dealModel.cover_title]) {
         self.ibVoucherTitleLbl.text = self.dealModel.cover_title;
@@ -120,10 +120,12 @@
     if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
         [self.ibVoucherCollectBtn setTitle:@"Collect" forState:UIControlStateNormal];
         [self.ibVoucherCollectBtn setBackgroundColor:DEVICE_COLOR];
+        [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"CollectIcon.png"] forState:UIControlStateNormal];
     }
     else{
         [self.ibVoucherCollectBtn setTitle:@"Redeem" forState:UIControlStateNormal];
-        [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:239/255.0 green:83/255.0 blue:105/255.0 alpha:1]];
+        [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:109/255.0 blue:125/255.0 alpha:1]];
+        [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
     }
 }
 
