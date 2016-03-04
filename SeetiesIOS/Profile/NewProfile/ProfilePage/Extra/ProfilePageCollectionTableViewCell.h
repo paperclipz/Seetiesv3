@@ -14,7 +14,6 @@
 
 @property(nonatomic,copy)VoidBlock btnEditClickedBlock;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (weak, nonatomic) IBOutlet UILabel *lblNoOfCollection;
 -(void)setFollowButtonSelected:(BOOL)selected button:(UIButton*)button;
 
 @property(nonatomic,copy)VoidBlock btnFollowBlock;

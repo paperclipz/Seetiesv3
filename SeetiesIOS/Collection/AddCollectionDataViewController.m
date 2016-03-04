@@ -131,7 +131,6 @@
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections?token=%@&list_size=50&post_id=%@",DataUrl.UserWallpaper_Url,Getuid,GetExpertToken,GetPostID];
     
-    
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
     NSLog(@"collection list check postBack URL ==== %@",postBack);
     // NSURL *url = [NSURL URLWithString:[postBack stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

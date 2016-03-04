@@ -23,6 +23,7 @@
 /*constraint*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constImageHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constSuggestViewHeight;
+@property (weak, nonatomic) IBOutlet UILabel *lblSuggestQR;
 
 /*Xib outlet*/
 @property (weak, nonatomic) IBOutlet UILabel *lblUsername;
@@ -85,6 +86,10 @@
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [Utils setRoundBorder:self.ibProfileImageView color:[UIColor grayColor] borderRadius:self.ibProfileImageView.frame.size.width/2 borderWidth:1.0f];
+    
+    [Utils setRoundBorder:self.ibSuggestedView color:OUTLINE_COLOR borderRadius:0];
+    
+    [self changLanguage];
 
 }
 /*Only Control Promotion uses images, other use photos*/
@@ -260,5 +265,10 @@
     } errorBlock:^(id object) {
         
     }];
+}
+
+-(void)changLanguage
+{
+    self.lblSuggestQR.text = LocalisedString(@"Suggested local QR");
 }
 @end

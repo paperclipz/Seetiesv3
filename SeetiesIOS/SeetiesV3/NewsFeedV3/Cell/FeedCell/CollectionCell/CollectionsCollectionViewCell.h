@@ -11,12 +11,9 @@
 @interface CollectionsCollectionViewCell : CommonCollectionViewCell
 
 -(void)initData:(CollectionModel*)model;
--(void)initData;
 
 @property(nonatomic,copy)VoidBlock btnEditClickedBlock;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (weak, nonatomic) IBOutlet UILabel *lblNoOfCollection;
-
 @property(nonatomic,copy)VoidBlock btnFollowBlock;
 @property(nonatomic,copy)VoidBlock btnShareClicked;
 

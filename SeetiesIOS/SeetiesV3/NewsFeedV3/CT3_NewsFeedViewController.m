@@ -1243,6 +1243,15 @@ static NSCache* heightCache = nil;
 }
 -(void)showCollectToCollectionView:(DraftModel*)model
 {
+    
+    if ([Utils isGuestMode]) {
+        
+        [MessageManager showMessageWithCallBack:LocalisedString(@"system") SubTitle:LocalisedString(@"Please Login to Collect") Type:TSMessageNotificationTypeWarning ButtonOnClick:^{
+            
+            [Utils showLogin];
+        }];
+        return;
+    }
     _collectPostToCollectionVC = nil;
     [self.navigationController presentViewController:self.collectPostToCollectionVC animated:YES completion:^{
         PhotoModel*pModel;
@@ -1548,12 +1557,16 @@ static NSCache* heightCache = nil;
     
     else{
     
-        _searchLocationViewController = nil;
         
-        [self.navigationController pushViewController:self.searchLocationViewController animated:NO onCompletion:^{
-            [self.searchLocationViewController hideBackButton];
-
-        }];
+        if (![[self.navigationController viewControllers] containsObject:self.searchLocationViewController]) {
+            _searchLocationViewController = nil;
+            
+            
+            [self.navigationController pushViewController:self.searchLocationViewController animated:NO onCompletion:^{
+                [self.searchLocationViewController hideBackButton];
+            }];
+        }
+        
     }
 }
 

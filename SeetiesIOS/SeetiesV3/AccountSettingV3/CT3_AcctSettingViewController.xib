@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_AcctSettingViewController">
+            <connections>
+                <outlet property="ibTableView" destination="L30-E8-ya0" id="iec-YW-iaY"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rmf-Oa-j8X" userLabel="header view">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotificationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="N9h-Wb-DhY" userLabel="notification image">
+                            <rect key="frame" x="550" y="12" width="40" height="40"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="J3p-HI-mMc"/>
+                                <constraint firstAttribute="height" constant="40" id="sIZ-W2-7ou"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMy-Pp-dVd">
+                            <rect key="frame" x="8" y="22" width="584" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="pf0-a8-hKT"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="58Z-D8-zcs"/>
+                        <constraint firstAttribute="trailing" secondItem="AMy-Pp-dVd" secondAttribute="trailing" constant="8" id="80V-Yg-xfX"/>
+                        <constraint firstItem="AMy-Pp-dVd" firstAttribute="leading" secondItem="Rmf-Oa-j8X" secondAttribute="leading" constant="8" id="BmV-D7-4Tr"/>
+                        <constraint firstAttribute="height" constant="64" id="Gl0-F0-JJV"/>
+                        <constraint firstAttribute="trailing" secondItem="N9h-Wb-DhY" secondAttribute="trailing" constant="10" id="HZk-NZ-1PU"/>
+                        <constraint firstItem="N9h-Wb-DhY" firstAttribute="centerY" secondItem="Rmf-Oa-j8X" secondAttribute="centerY" id="KXS-Xj-zNo"/>
+                        <constraint firstItem="AMy-Pp-dVd" firstAttribute="centerY" secondItem="Rmf-Oa-j8X" secondAttribute="centerY" id="sZ0-wh-sog"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="N9h-Wb-DhY"/>
+                        </mask>
+                    </variation>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L30-E8-ya0">
+                    <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="L30-E8-ya0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6bl-dX-m87"/>
+                <constraint firstAttribute="trailing" secondItem="L30-E8-ya0" secondAttribute="trailing" id="9BU-Nt-l29"/>
+                <constraint firstAttribute="bottom" secondItem="L30-E8-ya0" secondAttribute="bottom" id="A5G-Qh-X1x"/>
+                <constraint firstItem="Rmf-Oa-j8X" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ETZ-NT-zM0"/>
+                <constraint firstAttribute="trailing" secondItem="Rmf-Oa-j8X" secondAttribute="trailing" id="G30-04-ZjI"/>
+                <constraint firstItem="L30-E8-ya0" firstAttribute="top" secondItem="Rmf-Oa-j8X" secondAttribute="bottom" id="YdQ-os-6MV"/>
+                <constraint firstItem="Rmf-Oa-j8X" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gJ5-n2-Qoz"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="NotificationIcon.png" width="50" height="50"/>
+    </resources>
+</document>

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_MeViewController">
             <connections>
                 <outlet property="btnLogin" destination="PTW-dJ-pGf" id="8KR-6S-ROD"/>
+                <outlet property="btnNotification" destination="p6v-jg-XOt" id="e6Z-hK-CjV"/>
                 <outlet property="ibCollectionIcon" destination="mCK-kL-L9O" id="V90-0D-OEu"/>
                 <outlet property="ibCollectionLbl" destination="8Pz-6s-Muv" id="UnD-pP-xsa"/>
                 <outlet property="ibCollectionView" destination="Ruy-SJ-sPw" id="1uO-nB-ezo"/>
@@ -38,11 +39,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCf-GI-pJP" userLabel="header view">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6v-jg-XOt" userLabel="notification button">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6v-jg-XOt" userLabel="notification button">
                             <rect key="frame" x="540" y="0.0" width="60" height="64"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="Ete-wO-L3l"/>
                             </constraints>
+                            <state key="normal" image="NotificationIcon.png"/>
                             <connections>
                                 <action selector="btnNotificationClicked:" destination="-1" eventType="touchUpInside" id="t49-yi-rET"/>
                             </connections>
@@ -86,6 +88,7 @@
                     <color key="backgroundColor" red="0.16078431372549018" green="0.71372549019607845" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="p6v-jg-XOt" secondAttribute="bottom" id="0Gu-bC-fSD"/>
+                        <constraint firstItem="Rd6-jI-AOb" firstAttribute="top" secondItem="p6v-jg-XOt" secondAttribute="top" constant="12" id="4tj-dM-Lh4"/>
                         <constraint firstAttribute="trailing" secondItem="p6v-jg-XOt" secondAttribute="trailing" id="5Tx-Hu-pKn"/>
                         <constraint firstItem="Rd6-jI-AOb" firstAttribute="top" secondItem="GbT-sa-fqG" secondAttribute="top" id="9j5-d1-xUE"/>
                         <constraint firstAttribute="trailing" secondItem="GbT-sa-fqG" secondAttribute="trailing" constant="10" id="ByI-6E-6h9"/>
@@ -96,7 +99,17 @@
                         <constraint firstItem="p6v-jg-XOt" firstAttribute="top" secondItem="FCf-GI-pJP" secondAttribute="top" id="QxT-Ep-3bu"/>
                         <constraint firstItem="Rd6-jI-AOb" firstAttribute="leading" secondItem="GbT-sa-fqG" secondAttribute="leading" id="U8X-2z-j8N"/>
                         <constraint firstAttribute="height" constant="64" id="alx-ml-xpJ"/>
+                        <constraint firstItem="Rd6-jI-AOb" firstAttribute="leading" secondItem="p6v-jg-XOt" secondAttribute="leading" constant="10" id="eag-lq-bUS"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="GbT-sa-fqG"/>
+                        </mask>
+                        <mask key="constraints">
+                            <exclude reference="9j5-d1-xUE"/>
+                            <exclude reference="U8X-2z-j8N"/>
+                        </mask>
+                    </variation>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GVD-M8-HVv">
                     <rect key="frame" x="0.0" y="64" width="600" height="536"/>

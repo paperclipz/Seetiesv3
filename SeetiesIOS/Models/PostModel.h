@@ -51,6 +51,8 @@
 @property(nonatomic,strong)ProfileModel* user_info;
 
 @property(nonatomic,strong)NSString* author_uid;
+@property(nonatomic,assign)int follower_count;
+
 
 -(void)process;
 @end

@@ -354,9 +354,8 @@
     [self requestServerForUserCollection];
     [self requestServerForUserPost];
     
-    if (self.profileViewType != ProfileViewTypeOthers) {
+    if ([uID isEqualToString:[Utils getUserID]]) {
         [self requestServerForUserLikes];
-        
     }
 }
 
@@ -1191,7 +1190,8 @@
 {
     //need to input token for own profile private collection, no token is get other people public collection
     NSString* appendString = [NSString stringWithFormat:@"%@/collections",self.userID];
-    NSDictionary* dict = @{@"page":@1,
+
+    NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
                            @"uid":self.userID
