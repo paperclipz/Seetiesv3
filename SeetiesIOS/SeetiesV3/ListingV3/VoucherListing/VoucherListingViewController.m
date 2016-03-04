@@ -11,6 +11,7 @@
 @interface VoucherListingViewController ()
 @property (nonatomic) DealsModel *dealsModel;
 @property (nonatomic) DealCollectionModel *dealCollectionModel;
+@property (nonatomic) HomeLocationModel *locationModel;
 
 @property (nonatomic) NSMutableArray<DealModel> *dealsArray;
 @property (nonatomic) BOOL isLoading;
@@ -18,6 +19,7 @@
 @property (nonatomic) DealManager *dealManager;
 
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
 @property (weak, nonatomic) IBOutlet UIView *ibFilterView;
 @property (weak, nonatomic) IBOutlet UILabel *ibWalletCountLbl;
@@ -45,6 +47,17 @@
 //    self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
     [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
     
+    if (self.locationModel) {
+        self.ibUserLocationLbl.text = self.locationModel.locationName;
+    }
+    
+    if (self.dealCollectionModel) {
+        NSDictionary *collectionDict = self.dealCollectionModel.content[0];
+        self.ibTitle.text = collectionDict[@"title"];
+    }
+    else{
+        self.ibTitle.text = LocalisedString(@"Deal of the day");
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -55,6 +68,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)initWithLocation:(HomeLocationModel*)locationModel{
+    _locationModel = locationModel;
+    
+    [self requestServerForSuperDealListing];
 }
 
 /*
@@ -82,7 +101,8 @@
 }
 
 - (IBAction)locationBtnClicked:(id)sender {
-    
+    self.searchLocationViewController = nil;
+    [self presentViewController:self.searchLocationViewController animated:YES completion:nil];
 }
 
 -(IBAction)backgroundViewDidTap{
@@ -172,6 +192,23 @@
 -(SearchLocationViewController *)searchLocationViewController{
     if (!_searchLocationViewController) {
         _searchLocationViewController = [SearchLocationViewController new];
+        
+        __weak VoucherListingViewController *weakSelf = self;
+        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel *hModel){
+            weakSelf.locationModel = hModel;
+            
+            weakSelf.ibUserLocationLbl.text = weakSelf.locationModel.locationName;
+            [weakSelf.dealsArray removeAllObjects];
+            weakSelf.dealsModel = nil;
+            if (weakSelf.dealCollectionModel) {
+                [weakSelf requestServerForDealListing];
+            }
+            else{
+                [weakSelf requestServerForSuperDealListing];
+            }
+            
+            [weakSelf.searchLocationViewController dismissViewControllerAnimated:YES completion:nil];
+        };
     }
     return _searchLocationViewController;
 }
@@ -225,10 +262,16 @@
     
     // Change 10.0 to adjust the distance from bottom
     if (maximumOffset - currentOffset <= self.ibVoucherTable.frame.size.height/2) {
-        if(![Utils isStringNull:self.dealsModel.paging.next])
+        if(![Utils isStringNull:self.dealsModel.paging.next] && !self.isLoading)
         {
 //            [(UIActivityIndicatorView *)self.ibVoucherTable startAnimating];
-            [self requestServerForDealListing];
+            if (self.dealCollectionModel) {
+                [self requestServerForDealListing];
+            }
+            else{
+                [self requestServerForSuperDealListing];
+            }
+            
         }
     }
 }
@@ -266,67 +309,93 @@
 }
 
 #pragma mark - RequestServer
+
 -(void)requestServerForSuperDealListing{
     
     if (self.isLoading) {
         return;
     }
     
-    NSDictionary *dict = @{@"token":[Utils getAppToken],
-                           @"address_components":@"",
-                           @"lat":@"",
-                           @"lng":@"",
-                           @"type":@"search",
-                           @"timezone_offset":[Utils getTimeZone],
-                           @"place_id":@"",
-                           @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
-                           @"limit":@(ARRAY_LIST_SIZE)
-                           };
-
+    [LoadingManager show];
     self.isLoading = YES;
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:dict appendString:nil completeHandler:^(id object) {
+    
+    NSMutableDictionary *finalDict = [[NSMutableDictionary alloc] init];
+    
+    NSDictionary *fixedDict = @{@"token":[Utils getAppToken],
+                                @"timezone_offset":[Utils getTimeZone],
+                                @"type":@"search",
+                                @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
+                                @"limit":@(ARRAY_LIST_SIZE)
+                                };
+    
+    NSDictionary *placeDict = @{@"place_id": self.locationModel.place_id? self.locationModel.place_id : @"",
+                                @"lat": self.locationModel.latitude? self.locationModel.latitude : @"",
+                                @"lng": self.locationModel.longtitude? self.locationModel.longtitude : @"",
+                                @"address_components": self.locationModel.dictAddressComponent? [Utils convertToJsonString:self.locationModel.dictAddressComponent] : @""
+                                };
+    
+    [finalDict addEntriesFromDictionary:fixedDict];
+    [finalDict addEntriesFromDictionary:placeDict];
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:finalDict appendString:nil completeHandler:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
         [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
         self.isLoading = NO;
+        [LoadingManager hide];
     } errorBlock:^(id object) {
         self.isLoading = NO;
+        [LoadingManager hide];
     }];
 }
 
--(void)initData:(DealCollectionModel*)model
+-(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel
 {
     self.dealCollectionModel = model;
+    _locationModel = locationModel;
     
     [self requestServerForDealListing];
     
 }
+
 -(void)requestServerForDealListing{
     
     if (self.isLoading) {
         return;
     }
-    NSDictionary *dict;
+    
+    [LoadingManager show];
+    self.isLoading = YES;
+    
+    NSMutableDictionary *finalDict = [[NSMutableDictionary alloc] init];
     @try {
-       
-        dict = @{@"token":[Utils getAppToken],
-                               @"deal_collection_id" : self.dealCollectionModel.deal_collection_id,
-                               @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
-                               @"limit":@(ARRAY_LIST_SIZE),
-                               };
+        NSDictionary *fixedDict = @{@"token":[Utils getAppToken],
+                                    @"deal_collection_id" : self.dealCollectionModel.deal_collection_id,
+                                    @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
+                                    @"limit":@(ARRAY_LIST_SIZE),
+                                    };
+        
+        NSDictionary *placeDict = @{@"place_id": self.locationModel.place_id? self.locationModel.place_id : @"",
+                                    @"lat": self.locationModel.latitude? self.locationModel.latitude : @"",
+                                    @"lng": self.locationModel.longtitude? self.locationModel.longtitude : @"",
+                                    @"address_components": self.locationModel.dictAddressComponent? [Utils convertToJsonString:self.locationModel.dictAddressComponent] : @""
+                                    };
+        
+        [finalDict addEntriesFromDictionary:fixedDict];
+        [finalDict addEntriesFromDictionary:placeDict];
 
     }
     @catch (NSException *exception) {
         SLog(@"error passing model in requestServerForDealListing");
+        [LoadingManager hide];
+        self.isLoading = NO;
     }
     
     NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.dealCollectionModel.deal_collection_id];
     
-    self.isLoading = YES;
-    
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealCollectionDeals param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealCollectionDeals param:finalDict appendString:appendString completeHandler:^(id object) {
         
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
@@ -334,9 +403,11 @@
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
         self.isLoading = NO;
+        [LoadingManager hide];
         
     } errorBlock:^(id object) {
         self.isLoading = NO;
+        [LoadingManager hide];
     }];
 }
 

@@ -18,11 +18,9 @@
 #import "SearchLocationViewController.h"
 
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate>
--(void)requestServerForSuperDealListing;
-
+-(void)initWithLocation:(HomeLocationModel*)locationModel;
 
 /*for deal listing*/
--(void)requestServerForDealListing;
--(void)initData:(DealCollectionModel*)model;
+-(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel;
 
 @end

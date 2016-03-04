@@ -201,8 +201,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return UITableViewAutomaticDimension;
-    return [WalletVoucherCell getHeight];
+    return UITableViewAutomaticDimension;
+//    return [WalletVoucherCell getHeight];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -295,7 +295,6 @@
 - (IBAction)emptyBtnClicked:(id)sender {
     self.voucherListingViewController = nil;
     [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
-        [self.voucherListingViewController requestServerForSuperDealListing];
     }];
 }
 

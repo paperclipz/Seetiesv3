@@ -141,11 +141,15 @@
 -(void)setDaysLeft{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+    NSInteger numberOfDaysLeft = 0;
     
-    NSInteger numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
+    if (![self.dealModel.expired_at isEqualToString:@"no_expiry_date"]) {
+        NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+        
+        numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
+    }
     
-    if (numberOfDaysLeft < 8) {
+    if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
         self.ibDaysLeftLbl.hidden = NO;
         self.ibDaysLeftLbl.text = [NSString stringWithFormat:@"%ld %@", numberOfDaysLeft, LocalisedString(@"Days Left")];
     }
