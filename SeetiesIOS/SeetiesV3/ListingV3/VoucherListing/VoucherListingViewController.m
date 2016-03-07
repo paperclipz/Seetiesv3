@@ -250,8 +250,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [VoucherCell getHeight];
-//    return UITableViewAutomaticDimension;
+    return UITableViewAutomaticDimension;
 }
 
 #pragma mark - DelegateImplemention

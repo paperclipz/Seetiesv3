@@ -50,6 +50,7 @@
             [self.ibDealImage sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:^(UIImage *image) {
             }];
         }
+        [Utils setRoundBorder:self.ibDealImage color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:2.5f];
     }
     @catch (NSException *exception) {
         SLog(@"assign profile image fail");
