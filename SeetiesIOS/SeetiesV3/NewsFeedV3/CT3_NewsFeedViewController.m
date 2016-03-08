@@ -1384,7 +1384,6 @@ static NSCache* heightCache = nil;
 -(void)requestServerForHomeUpdate:(HomeLocationModel*)model
 {
     
-    return;
     CLLocation* location  = [[SearchManager Instance]getAppLocation];
     
     NSDictionary* dict = @{@"lat" : model.latitude,

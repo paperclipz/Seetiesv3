@@ -10,11 +10,10 @@
 #import "UITableView+LongPressReorder.h"
 #import "DoImagePickerController.h"
 
-#import <AviarySDK/AviarySDK.h>
 typedef void (^ImageBlock)(UIImage* image);
 typedef void (^DoneBlock)(NSArray* arrayImages,NSArray* arrDeleteImages);
 
-@interface EditPhotoViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate,DoImagePickerControllerDelegate,AFPhotoEditorControllerDelegate>
+@interface EditPhotoViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate,DoImagePickerControllerDelegate>
 -(void)initData:(RecommendationModel*)model;
 
 @property(nonatomic,strong)DoImagePickerController* imagePickerViewController;

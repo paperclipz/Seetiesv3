@@ -209,15 +209,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright (c) 2015 Aviary, Inc. All rights reserved.
-</string>
-			<key>Title</key>
-			<string>AviarySDK</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
 			<string>The MIT License (MIT)
 
 Copyright (c) 2013 Pavel

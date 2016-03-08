@@ -251,7 +251,6 @@
 		8A5CFE181C7C6D42004E2CBA /* CollectionListingSinglePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5CFE161C7C6D42004E2CBA /* CollectionListingSinglePageViewController.xib */; };
 		8A5CFE1E1C7D8E53004E2CBA /* SelectCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CFE1C1C7D8E53004E2CBA /* SelectCategoryViewController.m */; };
 		8A5CFE1F1C7D8E53004E2CBA /* SelectCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5CFE1D1C7D8E53004E2CBA /* SelectCategoryViewController.xib */; };
-		8A65842A1B96ED7300BC86B9 /* EditPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */; };
 		8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584301B981B4E00BC86B9 /* CategorySelectionViewController.m */; };
 		8A6584331B981B4E00BC86B9 /* CategorySelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6584311B981B4E00BC86B9 /* CategorySelectionViewController.xib */; };
 		8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584351B981C0E00BC86B9 /* CategoryCollectionViewCell.m */; };
@@ -1955,8 +1954,6 @@
 		8A5CFE1B1C7D8E53004E2CBA /* SelectCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCategoryViewController.h; sourceTree = "<group>"; };
 		8A5CFE1C1C7D8E53004E2CBA /* SelectCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCategoryViewController.m; sourceTree = "<group>"; };
 		8A5CFE1D1C7D8E53004E2CBA /* SelectCategoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCategoryViewController.xib; sourceTree = "<group>"; };
-		8A6584281B96ED7300BC86B9 /* EditPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoManager.h; sourceTree = "<group>"; };
-		8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoManager.m; sourceTree = "<group>"; };
 		8A65842F1B981B4E00BC86B9 /* CategorySelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorySelectionViewController.h; sourceTree = "<group>"; };
 		8A6584301B981B4E00BC86B9 /* CategorySelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorySelectionViewController.m; sourceTree = "<group>"; };
 		8A6584311B981B4E00BC86B9 /* CategorySelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategorySelectionViewController.xib; sourceTree = "<group>"; };
@@ -6531,8 +6528,6 @@
 				8A7420EB1B82F7D5005DA654 /* LoadingManager.m */,
 				8A3757AE1B842F74009DB7D4 /* SearchManager.h */,
 				8A3757AF1B842F74009DB7D4 /* SearchManager.m */,
-				8A6584281B96ED7300BC86B9 /* EditPhotoManager.h */,
-				8A6584291B96ED7300BC86B9 /* EditPhotoManager.m */,
 				8AB813C11BC23ECE002F5F06 /* UploadManager.h */,
 				8AB813C21BC23ECE002F5F06 /* UploadManager.m */,
 				8A69E0FB1C046DF900224BB4 /* ShareManager.h */,
@@ -8754,7 +8749,6 @@
 				8A114CC81BE73F5D006AE3F0 /* MKNetworkOperation.m in Sources */,
 				8A9F25DD1B90002B00BB13BA /* CustomPickerViewController.m in Sources */,
 				8A2E2CE21B81CFE40010895E /* STSearchViewController.m in Sources */,
-				8A65842A1B96ED7300BC86B9 /* EditPhotoManager.m in Sources */,
 				8AC8F7461BDA414E00DEF14A /* EditCollectionDetailViewController.m in Sources */,
 				8A3757C61B8583ED009DB7D4 /* UIFont+SystemFontOverride.m in Sources */,
 				8A114C891BE73F5D006AE3F0 /* CAPSPageMenu.m in Sources */,
