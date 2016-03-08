@@ -39,7 +39,7 @@
     [self.ibImageUser setSideCurveBorder];
     [self.ibImageView setImagePlaceHolder];
     [Utils setRoundBorder:self.ibImageView color:LINE_COLOR borderRadius:5.0f];
-    [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
+    [Utils setRoundBorder:self.ibInnerContentView color:OUTLINE_COLOR borderRadius:5.0f];
 
 }
 

@@ -23,6 +23,7 @@
 
 
 }
+@property (weak, nonatomic) IBOutlet UILabel *lblEmytyStateTitle;
 
 @property(nonatomic,strong)NSString* keyword;
 @property(nonatomic,strong)NSString* currentLatitude;
@@ -66,10 +67,13 @@
     
     // Do any additional setup after loading the view from its nib.
     [self initSelfView];
+    self.lblCount.text = @"";
     
 
     self.currentLatitude = @"";
     self.currentLongtitude = @"";
+    
+    [self changeLanguage];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -925,5 +929,9 @@
     }
 }
 
+-(void)changeLanguage
+{
+    self.lblEmytyStateTitle.text = LocalisedString(@"Be Patient please");
+}
 
 @end

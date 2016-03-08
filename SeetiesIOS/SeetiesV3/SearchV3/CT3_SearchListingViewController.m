@@ -22,6 +22,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibLocationTableView;
 @property (weak, nonatomic) IBOutlet UITextField *ibSearchText;
 @property (weak, nonatomic) IBOutlet UITextField *ibLocationText;
+@property (weak, nonatomic) IBOutlet UIView *ibSearchContentView;
+
+@property (weak, nonatomic) IBOutlet UIView *ibLocationContentView;
 
 @property(nonatomic,strong)SearchModel* searchModel;
 @property (nonatomic,strong)CLLocation* location;
@@ -83,7 +86,9 @@
     self.ibLocationText.placeholder = LocalisedString(@"Add a location?");
     self.ibSearchText.text = self.keyword;
     self.ibLocationText.text = self.locationName;
-    
+    [self.ibSearchContentView setSideCurveBorder];
+    [self.ibLocationContentView setSideCurveBorder];
+
     CGRect frame = [Utils getDeviceScreenSize];
     [self.ibScrollView setWidth:frame.size.width];
     [self.shopListingTableViewController.view setWidth:frame.size.width];
@@ -555,7 +560,6 @@
 {
     
     [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
-    
     [self.shopListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
     [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
     [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];

@@ -20,6 +20,7 @@
     int varietyImageAnimationIndex;
 
 }
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (nonatomic) LoginPageViewController* loginPageViewController;
 @property(nonatomic)SignupPageViewController* signUpViewController;
@@ -28,7 +29,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *lblInstagram;
 @property (nonatomic)CTWebViewController* webViewController;
 @property (nonatomic)SelectCategoryViewController* selectCategoryViewController;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblContinueWith;
+@property (weak, nonatomic) IBOutlet UIButton *btnContinue;
 @end
 
 @implementation CT3_LoginViewController
@@ -68,6 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    [self changeLanguage];
     varietyImageAnimationIndex = 1;
     // Do any additional setup after loading the view from its nib.
 }
@@ -99,7 +104,9 @@
 
     imageArray = @[[UIImage imageNamed:@"Walkthrough1.png"],[UIImage imageNamed:@"Walkthrough2.png"],[UIImage imageNamed:@"Walkthrough3.png"],[UIImage imageNamed:@"Walkthrough4.png"]];
 
-    [self animateImages];
+    self.ibImageView.image = [imageArray objectAtIndex:0];
+
+   // [self animateImages];
 
     [Utils setRoundBorder:self.lblFacebook color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
     [Utils setRoundBorder:self.lblInstagram color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
@@ -408,5 +415,19 @@
 
 }
 
+
+-(void)changeLanguage
+{
+    self.lblTitle.text = LocalisedString(@"City Deal & Places");
+    
+    [self.lblFacebook setTitle:LocalisedString(@"Facebook") forState:UIControlStateNormal];
+    [self.lblInstagram setTitle:LocalisedString(@"Instagram") forState:UIControlStateNormal];
+    
+    [self.btnLogin setTitle:LocalisedString(@"Login") forState:UIControlStateNormal];
+    [self.btnContinue setTitle:LocalisedString(@"Continue as guest") forState:UIControlStateNormal];
+
+    self.lblContinueWith.text = LocalisedString(@"Continue with");
+
+}
 
 @end
