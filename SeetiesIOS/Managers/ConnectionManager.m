@@ -584,6 +584,7 @@
             str = [NSString stringWithFormat:@"%@/notifications/count", API_VERION_URL];
             break;
             
+        case ServerRequestTypeGetDealRelevantDeals:
         case ServerRequestTypeGetDealInfo:
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
             break;
@@ -959,6 +960,8 @@
             
         }
             break;
+            
+        case ServerRequestTypeGetDealRelevantDeals:
         case ServerRequestTypeGetDealCollectionDeals:
         {
             NSDictionary *dict = obj[@"data"][@"deals"];

@@ -104,6 +104,7 @@ typedef enum
     ServerRequestTypeGetSuperDeals,
     ServerRequestTypePostCollectDeals,
     ServerRequestTypeGetDealInfo,
+    ServerRequestTypeGetDealRelevantDeals,
     ServerRequestTypeGetVoucherInfo,
     ServerRequestTypeGetUserVouchersList,
     ServerRequestTypeDeleteVoucher,
