@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SeDealsFeaturedTblCell : CommonTableViewCell
+-(void)initData:(DealModel*)model;
 
 @end

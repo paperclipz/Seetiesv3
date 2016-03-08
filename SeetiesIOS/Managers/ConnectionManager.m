@@ -491,7 +491,7 @@
         case ServerRequestTypeGetSeetoShopNearbyShop:
         case ServerRequestTypeGetSeetoShopRecommendations:
         case ServerRequestTypeGetSeetoShopTranslation:
-            
+        case ServerRequestTypeGetSeetiShopDeal:
             str = [NSString stringWithFormat:@"%@/seetishops",API_VERION_URL];
             
             break;
@@ -1028,6 +1028,13 @@
         {
             NSDictionary *dict = obj[@"data"][@"shops"];
             self.dataManager.seShopListingModel = [[SeShopsModel alloc]initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypeGetSeetiShopDeal:
+        {
+            NSDictionary *dict = obj[@"data"][@"deals"];
+            self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
         }
             break;
             

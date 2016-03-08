@@ -17,6 +17,9 @@
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic) BOOL  isCollecting;
 @property (nonatomic) DealManager *dealManager;
+@property (nonatomic) NSString *shopID;
+@property (nonatomic,assign) int dealViewType;// 1 == seetiesshop id
+
 
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitle;
@@ -58,6 +61,24 @@
     else{
         self.ibTitle.text = LocalisedString(@"Deal of the day");
     }
+    
+    switch (self.dealViewType) {
+        case 1:
+            [self requestServerForShopDeal];
+            break;
+        case 2:
+            [self requestServerForDealListing];
+            
+            break;
+            
+        case 3:
+            [self requestServerForSuperDealListing];
+            
+            break;
+            
+        default:
+            break;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -70,12 +91,28 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)initWithLocation:(HomeLocationModel*)locationModel{
-    _locationModel = locationModel;
-    
-    [self requestServerForSuperDealListing];
+#pragma mark - Initialization
+
+-(void)initDataWithShopID:(NSString*)shopID
+{
+    self.shopID = shopID;
+    self.dealViewType = 1;
 }
 
+-(void)initWithLocation:(HomeLocationModel*)locationModel{
+    _locationModel = locationModel;
+    self.dealViewType = 3;
+
+}
+
+
+-(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel
+{
+    self.dealViewType = 2;
+    self.dealCollectionModel = model;
+    _locationModel = locationModel;
+    
+}
 /*
 #pragma mark - Navigation
 
@@ -261,14 +298,27 @@
     
     // Change 10.0 to adjust the distance from bottom
     if (maximumOffset - currentOffset <= self.ibVoucherTable.frame.size.height/2) {
+        
         if(![Utils isStringNull:self.dealsModel.paging.next] && !self.isLoading)
         {
 //            [(UIActivityIndicatorView *)self.ibVoucherTable startAnimating];
-            if (self.dealCollectionModel) {
-                [self requestServerForDealListing];
-            }
-            else{
-                [self requestServerForSuperDealListing];
+            
+            switch (self.dealViewType) {
+                case 1:
+                    [self requestServerForShopDeal];
+                    break;
+                case 2:
+                    [self requestServerForDealListing];
+
+                    break;
+                    
+                case 3:
+                    [self requestServerForSuperDealListing];
+
+                    break;
+                    
+                default:
+                    break;
             }
             
         }
@@ -350,15 +400,6 @@
     }];
 }
 
--(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel
-{
-    self.dealCollectionModel = model;
-    _locationModel = locationModel;
-    
-    [self requestServerForDealListing];
-    
-}
-
 -(void)requestServerForDealListing{
     
     if (self.isLoading) {
@@ -409,6 +450,51 @@
         [LoadingManager hide];
     }];
 }
+
+-(void)requestServerForShopDeal
+{
+    
+    
+    if (self.isLoading) {
+        return;
+    }
+    NSDictionary* dict;
+    @try {
+        
+        dict = @{@"seetishop_id" : self.shopID,
+                 @"token" : [Utils getAppToken],
+                 @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
+                 @"limit":@(ARRAY_LIST_SIZE),
+                 };
+        
+    }
+    @catch (NSException *exception) {
+        
+    }
+    
+    [LoadingManager show];
+    self.isLoading = YES;
+
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.shopID];
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopDeal param:dict appendString:appendString completeHandler:^(id object) {
+    
+        
+        DealsModel* model = [[ConnectionManager dataManager]dealsModel];
+        self.dealsModel = model;
+        [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
+        [self.dealManager setAllCollectedDeals:self.dealsModel];
+        [self.ibVoucherTable reloadData];
+
+        self.isLoading = NO;
+
+    } errorBlock:^(id object) {
+        self.isLoading = NO;
+
+    }];
+    
+}
+
 
 -(void)requestServerToCollectVoucher:(DealModel*)model fromShop:(SeShopDetailModel*)shopModel{
     if (self.isCollecting) {

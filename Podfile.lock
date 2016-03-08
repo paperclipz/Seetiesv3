@@ -24,7 +24,6 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - APParallaxHeader (0.1.6)
-  - AviarySDK (4.4.5)
   - BOString (0.10.0)
   - CLLocationManager-blocks (1.3.3)
   - Crashlytics (3.6.0):
@@ -76,7 +75,6 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 1.7.1)
   - ADTransitionController
   - APParallaxHeader
-  - AviarySDK
   - BOString
   - CLLocationManager-blocks
   - Crashlytics
@@ -118,7 +116,6 @@ SPEC CHECKSUMS:
   ADTransitionController: 72299d31488bcbe59fb87c483a89a637ebc819f8
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
-  AviarySDK: 311bdc7c2a81aee93ab1dc7bb5f3e4ef6ee52041
   BOString: b4c4df4f8a7f046c42a51c32629772dc2701fc47
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2

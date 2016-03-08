@@ -311,6 +311,7 @@
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
         
+        [Utils reloadProfileView];
         SLog(@"Sucess Retreive User Data");
         
     } errorBlock:^(id object) {

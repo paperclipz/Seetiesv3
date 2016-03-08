@@ -38,6 +38,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnNotification;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+
+@property (nonatomic) ProfileModel* profileModel;
+
 @end
 
 @implementation CT3_MeViewController
@@ -170,6 +173,16 @@
         [self requestServerForNotificationCount];
         self.btnNotification.hidden = NO;
         self.ibNotificationCountLbl.hidden = NO;
+        
+        
+        if (![Utils isStringNull:self.profileModel.username]) {
+            self.ibProfileName.text = self.profileModel.username;
+
+        }
+        else{
+            self.ibProfileName.text = self.profileModel.name;
+        }
+
     }
     
   
@@ -229,8 +242,10 @@
 
 -(void)reloadData
 {
-    ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
-    self.ibProfileName.text = model.username;
+    
+    DataManager* dataManager = [ConnectionManager dataManager];
+    ProfileModel* model = dataManager.userProfileModel;
+    self.profileModel = model;
 }
 
 #pragma mark - Request Server

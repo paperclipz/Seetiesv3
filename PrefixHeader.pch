@@ -33,8 +33,6 @@
 #import "BOString.h"
 //for currency Usage
 #import "BKCurrencyTextField.h"
-#import <AviarySDK/AviarySDK.h>
-
 //===============Category Helper=================
 #import "NSString+Extra.h"
 #import "UIView+Extension.h"

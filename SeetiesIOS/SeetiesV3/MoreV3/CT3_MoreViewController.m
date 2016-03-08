@@ -275,7 +275,6 @@
     [self serverRequestLogout];
    
     
-   // [];
 }
 
 #pragma mark - Server Request

@@ -22,5 +22,6 @@
 
 /*for deal listing*/
 -(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel;
+-(void)initDataWithShopID:(NSString*)shopID;
 
 @end

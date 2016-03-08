@@ -350,7 +350,18 @@
 {
     self.profileViewType = type;
     self.userID = uID;
-    [self requestServerForUserInfo];
+    
+    DataManager* dataManager = [ConnectionManager dataManager];
+    if (dataManager.userProfileModel) {
+        self.userProfileModel = dataManager.userProfileModel;
+        [self assignData];
+
+    }
+    else
+    {
+        [self requestServerForUserInfo];
+
+    }
     [self requestServerForUserCollection];
     [self requestServerForUserPost];
     

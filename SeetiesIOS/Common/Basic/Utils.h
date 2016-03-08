@@ -113,6 +113,7 @@ typedef enum {
 +(BOOL)checkUserIsLogin;//new check user login using token
 +(void)setLogout;
 +(void)reloadAppView;
++(void)reloadProfileView;
 +(void)setParseToken:(NSData*)data;
 +(void)registerParseAfterLogin:(NSString*)userID;
 

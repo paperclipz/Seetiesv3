@@ -231,8 +231,19 @@
                         
             SeShopDetailModel* model = self.arrList[indexPath.row];
             
+            NSArray* tempArray;
+            if (model.deals.count>3) {
+                tempArray = [model.deals subarrayWithRange:NSMakeRange(0, 3)];
+                
+                
+            }
+            else{
+                
+                tempArray = [[NSMutableArray alloc]initWithArray:model.deals];
+            }
+
             [cell initData:model];
-            cell.constBottomHeight.constant = [FeaturedTableViewCell getHeight]*model.deals.count;
+            cell.constBottomHeight.constant = [FeaturedTableViewCell getHeight]*tempArray.count;
             
             
             
@@ -505,6 +516,7 @@
         self.seShopsModel = model;
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",model.total_count,LocalisedString(@"Shops")];
         [self.arrList addObjectsFromArray:model.shops];
+        
         [self.ibTableView reloadData];
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
