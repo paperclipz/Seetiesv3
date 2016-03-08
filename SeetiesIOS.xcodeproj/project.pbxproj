@@ -1515,6 +1515,9 @@
 		C2AB4A5B1C6D8C900053FCA8 /* FilterAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AB4A591C6D8C900053FCA8 /* FilterAvailabilityCell.xib */; };
 		C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoPopOutViewController.m */; };
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
+		C2E341E51C8EA43A004E36E4 /* HistoryCardPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E341E41C8EA43A004E36E4 /* HistoryCardPattern.png */; };
+		C2E341E81C8EA454004E36E4 /* FollowCollectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E341E61C8EA454004E36E4 /* FollowCollectionIcon@2x.png */; };
+		C2E341E91C8EA454004E36E4 /* FollowCollectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E341E71C8EA454004E36E4 /* FollowCollectionIcon@3x.png */; };
 		C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */; };
 		C2FB1CE01C4F7A3B004AE990 /* SearchLocationAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
@@ -3517,6 +3520,9 @@
 		C2C157131C574BB6007608FC /* PromoPopOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoPopOutViewController.h; sourceTree = "<group>"; };
 		C2C157141C574BB6007608FC /* PromoPopOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoPopOutViewController.m; sourceTree = "<group>"; };
 		C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoPopOutViewController.xib; sourceTree = "<group>"; };
+		C2E341E41C8EA43A004E36E4 /* HistoryCardPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HistoryCardPattern.png; sourceTree = "<group>"; };
+		C2E341E61C8EA454004E36E4 /* FollowCollectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowCollectionIcon@2x.png"; sourceTree = "<group>"; };
+		C2E341E71C8EA454004E36E4 /* FollowCollectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FollowCollectionIcon@3x.png"; sourceTree = "<group>"; };
 		C2FB1CDC1C4F7A3B004AE990 /* SearchLocationAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationAreaCell.h; sourceTree = "<group>"; };
 		C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationAreaCell.m; sourceTree = "<group>"; };
 		C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationAreaCell.xib; sourceTree = "<group>"; };
@@ -4966,6 +4972,8 @@
 		8A84C2ED1C7FF447006A0D76 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C2E341E61C8EA454004E36E4 /* FollowCollectionIcon@2x.png */,
+				C2E341E71C8EA454004E36E4 /* FollowCollectionIcon@3x.png */,
 				8A84C2EE1C7FF447006A0D76 /* Blur Background */,
 				8A84C2FB1C7FF447006A0D76 /* Find Places And Shops */,
 				8A84C3081C7FF447006A0D76 /* HomeEatIcon@2x.png */,
@@ -5166,6 +5174,7 @@
 		8A84C3771C7FF447006A0D76 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				C2E341E41C8EA43A004E36E4 /* HistoryCardPattern.png */,
 				8A84C3781C7FF447006A0D76 /* GreyDotFive.png */,
 				8A84C3791C7FF447006A0D76 /* GreyDotSix.png */,
 				8A84C37A1C7FF447006A0D76 /* GreyDotSixPlus.png */,
@@ -8159,6 +8168,7 @@
 				8AD6C0AC1B706CF30040437E /* InviteFrenViewController.xib in Resources */,
 				8A84C6581C7FF448006A0D76 /* NaviBackIcon@2x.png in Resources */,
 				8A84C6541C7FF448006A0D76 /* MoreVerifyPhoneNumberIcon@2x.png in Resources */,
+				C2E341E51C8EA43A004E36E4 /* HistoryCardPattern.png in Resources */,
 				8A84C85D1C7FF448006A0D76 /* ProfileLocationIcon@2x.png in Resources */,
 				8A84C8051C7FF448006A0D76 /* NotificationComment@2x.png in Resources */,
 				8A84C7181C7FF448006A0D76 /* CloseIcon@3x.png in Resources */,
@@ -8234,6 +8244,7 @@
 				8A84C66E1C7FF448006A0D76 /* PhoneNumberVerifiedImg.png in Resources */,
 				8A84C7A21C7FF448006A0D76 /* WelcomeImg.png in Resources */,
 				8A84C64C1C7FF448006A0D76 /* MoreSignUpOrLogInIcon@2x.png in Resources */,
+				C2E341E81C8EA454004E36E4 /* FollowCollectionIcon@2x.png in Resources */,
 				8A84C6221C7FF448006A0D76 /* HomeHangoutAfternoon.png in Resources */,
 				8A84C87D1C7FF448006A0D76 /* SSBestKnowIcon@2x.png in Resources */,
 				8A84C8481C7FF448006A0D76 /* NewPostsIcon@3x.png in Resources */,
@@ -8361,6 +8372,7 @@
 				8A84C6BD1C7FF448006A0D76 /* CheckGrey@2x.png in Resources */,
 				8A84C72D1C7FF448006A0D76 /* LocationIcon@2x.png in Resources */,
 				8A84C87A1C7FF448006A0D76 /* YellowCollect@3x.png in Resources */,
+				C2E341E91C8EA454004E36E4 /* FollowCollectionIcon@3x.png in Resources */,
 				8A84C89B1C7FF448006A0D76 /* GoToEnd@3x.png in Resources */,
 				C238E3361C4649AA00570A25 /* slider-default7-trackCrossedOver@2x.png in Resources */,
 				8A84C7231C7FF448006A0D76 /* ArrowBtn@2x.png in Resources */,

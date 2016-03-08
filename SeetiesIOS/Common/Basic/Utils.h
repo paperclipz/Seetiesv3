@@ -146,6 +146,7 @@ typedef enum {
 +(int)getWeekInteger:(NSString*)week;
 +(NSString*)getTimeZone;
 +(NSInteger)numberOfDaysLeft:(NSDate*)date;
++(BOOL)isValidDateString:(NSString*)dateString;
 
 // ========================  Day ==========================
 

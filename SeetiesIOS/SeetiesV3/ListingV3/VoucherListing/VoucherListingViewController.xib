@@ -43,20 +43,20 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KB9-ER-GDk">
-                            <rect key="frame" x="40" y="28" width="48.5" height="14.5"/>
+                            <rect key="frame" x="40" y="28" width="49" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-7K-ot0" userLabel="drop down icon">
-                            <rect key="frame" x="93.5" y="28" width="15" height="15"/>
+                            <rect key="frame" x="94" y="28" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="UtW-HE-80K"/>
                                 <constraint firstAttribute="width" constant="15" id="YhM-I8-hlK"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal of the Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp8-Jp-ABW">
-                            <rect key="frame" x="40" y="42.5" width="110.5" height="18"/>
+                            <rect key="frame" x="40" y="43" width="111" height="18"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

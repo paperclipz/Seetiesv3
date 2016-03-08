@@ -73,13 +73,12 @@
             [self.ibOutletImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:^(UIImage *image) {
             }];
         }
-        
-        [self.ibOutletImg setRoundedCorners:UIRectCornerAllCorners radius:5.0f];
+        [Utils setRoundBorder:self.ibOutletImg color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:5.0f];
         
         if (self.cellType == PromoOutletCellTypeStatus) {
             if (self.shopModel.location.opening_hours.open_now) {
                 self.ibShopStatusLbl.text = LocalisedString(@"OPEN");
-                self.ibShopStatusLbl.backgroundColor = [UIColor colorWithRed:122/255.0f green:210/255.0f blue:27/255.0f alpha:1];
+                self.ibShopStatusLbl.backgroundColor = [UIColor colorWithRed:122/255.0f green:210/255.0f blue:26/255.0f alpha:1];
             }
             else{
                 self.ibShopStatusLbl.text = LocalisedString(@"CLOSED");
@@ -94,8 +93,8 @@
 }
 
 -(void)drawBorders{
-    [self.ibInnerContentView prefix_addUpperBorder:LINE_COLOR];
-    [self.ibInnerContentView prefix_addLowerBorder:LINE_COLOR];
+    [self.ibInnerContentView prefix_addUpperBorder:OUTLINE_COLOR];
+    [self.ibInnerContentView prefix_addLowerBorder:OUTLINE_COLOR];
 }
 
 @end
