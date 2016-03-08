@@ -23,6 +23,7 @@
 {
     
     @try {
+        
         self.ssModel = model;
         self.lblShopName.text = self.ssModel.name;
         self.lblLocation.text = [NSString stringWithFormat:@"%@%@",self.ssModel.location.locality,self.ssModel.location.country];
@@ -66,7 +67,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.ssModel.deals.count;
+    
+    if (self.ssModel.deals.count>3) {
+        return 3;
+
+    }
+    else{
+        return self.ssModel.deals.count;
+
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -75,6 +84,7 @@
     FeaturedTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FeaturedTableViewCell"];
     
     DealModel* model = self.ssModel.deals[indexPath.row];
+    
     [cell initData:model];
     
     return cell;
@@ -84,6 +94,5 @@
 {
     return [FeaturedTableViewCell getHeight];
 }
-
 
 @end

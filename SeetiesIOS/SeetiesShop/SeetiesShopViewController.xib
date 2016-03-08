@@ -15,7 +15,7 @@
                 <outlet property="ibBranchView" destination="W86-8A-Eay" id="Z6L-Gt-tSW"/>
                 <outlet property="ibImgViewOtherPadding" destination="scf-vQ-TpH" id="X7Z-32-LeJ"/>
                 <outlet property="ibScrollView" destination="PfW-mD-EzJ" id="lRY-u4-pPr"/>
-                <outlet property="ibTblSelectOutletView" destination="QTS-hb-nNL" id="aBL-8q-kr4"/>
+                <outlet property="ibTblSelectOutletView" destination="QTS-hb-nNL" id="VYV-lx-R0x"/>
                 <outlet property="ibTopPaddingOverlay" destination="bEo-RN-euA" id="3QW-fG-8wx"/>
                 <outlet property="lblBigShopName" destination="FQJ-8e-vF7" id="M6p-D1-YMg"/>
                 <outlet property="lblSelectOutlet" destination="cDz-hf-Lbz" id="dZl-gs-I5O"/>
@@ -205,7 +205,6 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mvz-LX-Gys">
                     <rect key="frame" x="0.0" y="44" width="220" height="463"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Button"/>
                     <connections>
                         <action selector="btnCloseBranchClicked:" destination="-1" eventType="touchUpInside" id="aXg-qj-lgW"/>
                     </connections>

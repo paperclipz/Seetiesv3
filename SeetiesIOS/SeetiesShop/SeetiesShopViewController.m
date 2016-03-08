@@ -28,18 +28,23 @@
 
 #import "SeetiesProfileView.h"
 #import "BranchOutletTblCell.h"
+#import "DealDetailsViewController.h"
+#import "VoucherListingViewController.h"
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     
     IBOutlet UIView *ibBranchView;
-    IBOutlet UITableView *ibTblSelectOutletView;
     __weak IBOutlet UIButton *btnTranslate;
     BOOL branchIsShow;
 
     __weak IBOutlet UIButton *btnOutlet;
     __weak IBOutlet UILabel *lblSelectOutlet;
 }
+
+
+@property (weak, nonatomic)IBOutlet UITableView *ibTblSelectOutletView;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblBigShopName;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnTranslateWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnShareWidthConstraint;
@@ -57,6 +62,8 @@
 @property (nonatomic,strong)SeRecommendationsSeeAllViewController* seRecommendationsSeeAllViewController;
 @property (nonatomic,strong)ProfileViewController* profileViewController;
 @property (nonatomic,strong)ShareV2ViewController* shareV2ViewController;
+@property (nonatomic,strong)VoucherListingViewController* voucherListingViewController;
+
 //$$============== CONTROLLERS ==================$$//
 @property (weak, nonatomic) IBOutlet UIImageView *ibTopPaddingOverlay;
 
@@ -83,6 +90,8 @@
 @property(nonatomic,assign)float shopLng;
 
 @property(nonatomic,strong)SeShopDetailModel* seShopModel;
+
+@property(nonatomic)DealDetailsViewController* dealDetailsViewController;
 @end
 
 @implementation SeetiesShopViewController
@@ -154,6 +163,7 @@
     
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -184,9 +194,9 @@
     [self setupViewData];
    
     
-    ibTblSelectOutletView.delegate = self;
-    ibTblSelectOutletView.dataSource = self;
-    [ibTblSelectOutletView registerClass:[BranchOutletTblCell class] forCellReuseIdentifier:@"BranchOutletTblCell"];
+    _ibTblSelectOutletView.delegate = self;
+    _ibTblSelectOutletView.dataSource = self;
+    [_ibTblSelectOutletView registerClass:[BranchOutletTblCell class] forCellReuseIdentifier:@"BranchOutletTblCell"];
 }
 -(void)setupViews
 {
@@ -255,6 +265,24 @@
 
 
 #pragma mark - Declaration
+
+-(VoucherListingViewController*)voucherListingViewController
+{
+    if (!_voucherListingViewController) {
+        _voucherListingViewController = [VoucherListingViewController new];
+    }
+    
+    return _voucherListingViewController;
+}
+
+-(DealDetailsViewController*)dealDetailsViewController
+{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    
+    return _dealDetailsViewController;
+}
 
 -(SeetiesProfileView*)seProfileView
 {
@@ -366,6 +394,12 @@
         
         __weak typeof (self)weakSelf = self;
 
+        _seShopDetailView.didSelectDealSeeAllBlock = ^(void)
+        {
+            
+            [weakSelf showDealListingView];
+        };
+        
         _seShopDetailView.btnMapClickedBlock = ^(SeShopDetailModel* model)
         {
             _mapViewController = nil;
@@ -412,6 +446,7 @@
             [weakSelf setHiddenVisible];
             [weakSelf rearrangeView];
             [weakSelf refreshBranchView];
+            [weakSelf.ibTblSelectOutletView sizeToFit];
             
         };
         
@@ -422,7 +457,11 @@
             [weakSelf.navigationController pushViewController:weakSelf.seetiesMoreInfoViewController animated:YES];
 
         };
-    
+        
+        _seShopDetailView.didSelectDealBlock = ^(DealModel* model)
+        {
+            [weakSelf showDealDetailView:model];
+        };
     }
     
     return _seShopDetailView;
@@ -454,7 +493,7 @@
     @catch (NSException *exception) {
         
     }
-    [ibTblSelectOutletView reloadData];
+    [_ibTblSelectOutletView reloadData];
     
 
 
@@ -605,7 +644,25 @@
     return _seNearbySeetishop;
 }
 
-#pragma mrak - Show View
+#pragma mark - Show View
+
+-(void)showDealDetailView:(DealModel*)model
+{
+    [self.dealDetailsViewController setDealModel:model];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        [self.dealDetailsViewController setupView];
+    }];
+
+}
+
+-(void)showDealListingView
+{
+    if (![Utils isStringNull:self.seShopModel.seetishop_id]) {
+        
+        [self.voucherListingViewController initDataWithShopID:self.seShopModel.seetishop_id];
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
+}
 -(void)showShareView:(SeShopDetailModel*)shopModel
 {
     _shareV2ViewController = nil;

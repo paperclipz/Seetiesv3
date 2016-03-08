@@ -52,4 +52,9 @@
 }
 */
 
+-(void)initSelfView
+{
+
+}
+
 @end

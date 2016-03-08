@@ -1364,6 +1364,8 @@
 		8AF33A401C3F6DAF000A2021 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF33A3F1C3F6DAF000A2021 /* Location.m */; };
 		8AF33A431C3F6F5C000A2021 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF33A421C3F6F5C000A2021 /* PhotoModel.m */; };
 		8AF39CDC1BC66536009C7F26 /* UITableView+NXEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF39CDB1BC66536009C7F26 /* UITableView+NXEmptyView.m */; };
+		8AF428741C8D3F070050289F /* DealHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF428731C8D3F070050289F /* DealHeaderView.m */; };
+		8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF428751C8D3F140050289F /* DealHeaderView.xib */; };
 		8AF53EFC1BD65F5A00AF6C9E /* UIView+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53EFB1BD65F5A00AF6C9E /* UIView+RoundedCorners.m */; };
 		8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF53F1A1BD8850E00AF6C9E /* NSObject+Extension.m */; };
 		8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */; };
@@ -3292,6 +3294,9 @@
 		8AF33A421C3F6F5C000A2021 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		8AF39CDA1BC66536009C7F26 /* UITableView+NXEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+NXEmptyView.h"; sourceTree = "<group>"; };
 		8AF39CDB1BC66536009C7F26 /* UITableView+NXEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NXEmptyView.m"; sourceTree = "<group>"; };
+		8AF428721C8D3F070050289F /* DealHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealHeaderView.h; sourceTree = "<group>"; };
+		8AF428731C8D3F070050289F /* DealHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealHeaderView.m; sourceTree = "<group>"; };
+		8AF428751C8D3F140050289F /* DealHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealHeaderView.xib; sourceTree = "<group>"; };
 		8AF53EFA1BD65F5A00AF6C9E /* UIView+RoundedCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RoundedCorners.h"; sourceTree = "<group>"; };
 		8AF53EFB1BD65F5A00AF6C9E /* UIView+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RoundedCorners.m"; sourceTree = "<group>"; };
 		8AF53F191BD8850E00AF6C9E /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
@@ -3777,6 +3782,9 @@
 				8A0F50CB1C0D52AE002B1E22 /* PhotoCollectionViewCell.h */,
 				8A0F50CC1C0D52AE002B1E22 /* PhotoCollectionViewCell.m */,
 				8A0F50CE1C0D52BB002B1E22 /* PhotoCollectionViewCell.xib */,
+				8AF428721C8D3F070050289F /* DealHeaderView.h */,
+				8AF428731C8D3F070050289F /* DealHeaderView.m */,
+				8AF428751C8D3F140050289F /* DealHeaderView.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -7756,6 +7764,7 @@
 				8A84C67F1C7FF448006A0D76 /* SeetishopProductAndServiceIcon@3x.png in Resources */,
 				8A84C8461C7FF448006A0D76 /* NewLikesIcon@3x.png in Resources */,
 				8A84C8B21C7FF448006A0D76 /* TraditionalChinese.png in Resources */,
+				8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */,
 				8A84C7741C7FF448006A0D76 /* Distance2Icon@2x.png in Resources */,
 				8AFA51F81C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib in Resources */,
 				8A84C8831C7FF448006A0D76 /* SSCoverPhotoOverlay@2x.png in Resources */,
@@ -8998,6 +9007,7 @@
 				8AD6C2A71B7072FB0040437E /* TellaStoryViewController.m in Sources */,
 				8AD6C0FA1B706CF30040437E /* SearchViewController.m in Sources */,
 				C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */,
+				8AF428741C8D3F070050289F /* DealHeaderView.m in Sources */,
 				8AC8F7261BDA414E00DEF14A /* PostListingTableViewCell.m in Sources */,
 				8AC8F74C1BDA414E00DEF14A /* EditTagCollectionViewCell.m in Sources */,
 				8AEDBFAD1C2031BA000BD2FF /* CategoriesModel.m in Sources */,
