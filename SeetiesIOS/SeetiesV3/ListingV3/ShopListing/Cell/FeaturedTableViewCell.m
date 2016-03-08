@@ -29,6 +29,15 @@
     self.lblDesc.text = model.title;
     
     self.lblValue.hidden = !model.is_feature;
+    
+    if (model.is_feature) {
+        [self.lblDesc setFont:[UIFont fontWithName:CustomFontNameBold size:14]];
+    }
+    else
+    {
+        [self.lblDesc setFont:[UIFont fontWithName:CustomFontName size:14]];
+
+    }
 }
 
 @end

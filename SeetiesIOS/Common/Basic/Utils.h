@@ -134,6 +134,9 @@ typedef enum {
 #define ERROR_COLOR [UIColor colorWithRed:239.0/255.0 green:94.0/255.0 blue:65.0/255.0 alpha:1.0]
 #define OUTLINE_COLOR [UIColor colorWithRed:238.0/255.0 green:238.0/255.0 blue:238.0/255.0 alpha:1.0]
 
+
+#define GREEN_STATUS [UIColor colorWithRed:122.0f/255.0 green:210.0f/255.0 blue:26.0f/255.0 alpha:1.0]
+
 #define CustomFontName @"ProximaNovaSoft-Regular"
 #define CustomFontNameBold @"ProximaNovaSoft-Bold"
 #define REGULAR @"Regular"

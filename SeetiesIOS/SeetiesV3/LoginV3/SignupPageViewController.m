@@ -19,16 +19,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIView *ibContentPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignup;
-@property (weak, nonatomic) IBOutlet UIButton *btnForgetPassword;
+@property (weak, nonatomic) IBOutlet UILabel *lblSignUp;
 
 @end
 
 @implementation SignupPageViewController
-- (IBAction)btnForgetPassword:(id)sender {
-    
-    _forgotPasswordViewController = nil;
-    [self.navigationController pushViewController:self.forgotPasswordViewController animated:YES];
-}
+
 
 - (IBAction)btnSubmitClicked:(id)sender {
     
@@ -92,7 +88,8 @@
     self.txtEmail.placeholder = LocalisedString(@"email address");
 
     [self.btnSignup setTitle:LocalisedString(@"Submit") forState:UIControlStateNormal];
-    [self.btnForgetPassword setTitle:LocalisedString(@"Forget password?") forState:UIControlStateNormal];
+    self.lblSignUp.text = LocalisedString(@"Sign up");
+
 
 }
 
@@ -115,5 +112,6 @@
     
     return _forgotPasswordViewController;
 }
+
 
 @end

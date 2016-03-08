@@ -12,6 +12,7 @@
                 <outlet property="constFilterHeight" destination="2HV-WH-eer" id="aeD-4m-lXj"/>
                 <outlet property="ibTableView" destination="GY0-TL-oDx" id="emc-wd-SUO"/>
                 <outlet property="lblCount" destination="btj-2p-NSh" id="aHw-N9-mNt"/>
+                <outlet property="lblEmytyStateTitle" destination="Ehf-gn-LyB" id="cnu-w5-Pvs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,23 +36,23 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btj-2p-NSh">
-                            <rect key="frame" x="8" y="14" width="295" height="21"/>
+                            <rect key="frame" x="16" y="23" width="288" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="g1v-7v-4GF"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="0AA-M4-QFL"/>
                         <constraint firstAttribute="height" constant="50" id="2HV-WH-eer"/>
-                        <constraint firstItem="btj-2p-NSh" firstAttribute="leading" secondItem="g0j-dm-JRQ" secondAttribute="leading" constant="8" id="7Cq-EZ-Zhm"/>
-                        <constraint firstAttribute="trailing" secondItem="btj-2p-NSh" secondAttribute="trailing" constant="17" id="8Ym-T2-JIV"/>
+                        <constraint firstItem="btj-2p-NSh" firstAttribute="leading" secondItem="g0j-dm-JRQ" secondAttribute="leading" constant="16" id="7Cq-EZ-Zhm"/>
+                        <constraint firstAttribute="trailing" secondItem="btj-2p-NSh" secondAttribute="trailing" constant="16" id="8Ym-T2-JIV"/>
                         <constraint firstAttribute="height" constant="50" id="gqP-xc-vII"/>
-                        <constraint firstItem="btj-2p-NSh" firstAttribute="centerY" secondItem="g0j-dm-JRQ" secondAttribute="centerY" id="rLf-eK-Ime"/>
+                        <constraint firstItem="btj-2p-NSh" firstAttribute="centerY" secondItem="g0j-dm-JRQ" secondAttribute="centerY" constant="8" id="rLf-eK-Ime"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -131,25 +132,28 @@
             <point key="canvasLocation" x="928" y="-54"/>
         </view>
         <view contentMode="scaleToFill" id="TAe-aU-BDf">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be patient!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehf-gn-LyB">
-                    <rect key="frame" x="252" y="340" width="97" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <rect key="frame" x="121" y="249" width="79" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="EmptyStateImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="6ff-Hq-kSa">
-                    <rect key="frame" x="200" y="100" width="200" height="200"/>
+                    <rect key="frame" x="125" y="149" width="70" height="70"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="6tS-hA-veS"/>
+                        <constraint firstAttribute="width" secondItem="6ff-Hq-kSa" secondAttribute="height" multiplier="1:1" id="ODF-av-h8q"/>
                         <constraint firstAttribute="height" constant="200" id="QYl-3Q-y7y"/>
                         <constraint firstAttribute="width" secondItem="6ff-Hq-kSa" secondAttribute="height" multiplier="2:2" id="T4a-DR-Ecc"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="6tS-hA-veS"/>
+                            <exclude reference="QYl-3Q-y7y"/>
                             <exclude reference="T4a-DR-Ecc"/>
                         </mask>
                     </variation>
@@ -157,11 +161,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ehf-gn-LyB" secondAttribute="trailing" constant="10" id="3JX-QE-pj8"/>
+                <constraint firstItem="6ff-Hq-kSa" firstAttribute="leading" secondItem="TAe-aU-BDf" secondAttribute="leading" constant="125" id="OWh-WI-KM7"/>
                 <constraint firstItem="Ehf-gn-LyB" firstAttribute="centerX" secondItem="6ff-Hq-kSa" secondAttribute="centerX" id="TJi-oE-bl4"/>
                 <constraint firstItem="6ff-Hq-kSa" firstAttribute="centerX" secondItem="TAe-aU-BDf" secondAttribute="centerX" id="U6x-NL-3Qg"/>
-                <constraint firstItem="Ehf-gn-LyB" firstAttribute="top" secondItem="6ff-Hq-kSa" secondAttribute="bottom" constant="40" id="cXt-Oi-9GZ"/>
+                <constraint firstItem="Ehf-gn-LyB" firstAttribute="top" secondItem="6ff-Hq-kSa" secondAttribute="bottom" constant="30" id="cXt-Oi-9GZ"/>
+                <constraint firstItem="Ehf-gn-LyB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TAe-aU-BDf" secondAttribute="leading" constant="10" id="ciw-Mj-y0o"/>
                 <constraint firstItem="6ff-Hq-kSa" firstAttribute="centerY" secondItem="TAe-aU-BDf" secondAttribute="centerY" constant="-100" id="gfo-UA-OHE"/>
+                <constraint firstAttribute="trailing" secondItem="6ff-Hq-kSa" secondAttribute="trailing" constant="125" id="n9f-Xx-gFr"/>
             </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="1357" y="268"/>
         </view>
     </objects>
