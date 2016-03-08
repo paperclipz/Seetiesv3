@@ -187,7 +187,7 @@
     WalletHeaderCell *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"WalletHeaderCell"];
     
     DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
-    [header setHeaderTitle:[NSString stringWithFormat:@"%@ %@", LocalisedString(@"Redeemed on"), expiryModel.expiryDate]];
+    [header setHeaderTitle:[NSString stringWithFormat:@"%@", expiryModel.expiryDate]];
     
     return header;
 }

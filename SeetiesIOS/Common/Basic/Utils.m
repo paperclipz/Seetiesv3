@@ -762,6 +762,18 @@
     return [components day];
 }
 
++(BOOL)isValidDateString:(NSString*)dateString{
+    if ([self isStringNull:dateString]) {
+        return NO;
+    }
+    
+    if ([dateString isEqualToString:@"no_expiry_date"]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 #pragma mark - SYSTEM PREFERENCE
 
 +(void)setIsDevelopment:(BOOL)isDev

@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="267"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="266.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="267"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pm6-Os-8sw" userLabel="inner content view">
@@ -48,7 +48,7 @@
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREE!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmi-nb-cHd" userLabel="discount ">
-                                        <rect key="frame" x="16" y="37" width="35.5" height="16"/>
+                                        <rect key="frame" x="16" y="37" width="36" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="7rM-CD-QL9"/>
                                         </constraints>
@@ -61,8 +61,8 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Tag 1     " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gD-qU-88Z" userLabel="voucher left">
-                                        <rect key="frame" x="408" y="10" width="56" height="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag 1     " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gD-qU-88Z" userLabel="voucher left" customClass="TTTAttributedLabel">
+                                        <rect key="frame" x="432" y="10" width="32" height="23"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="kEE-7x-SZ3"/>
@@ -71,8 +71,8 @@
                                         <color key="textColor" red="0.90980392156862744" green="0.33725490196078434" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Tag 2   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLn-de-okD" userLabel="days left">
-                                        <rect key="frame" x="412.5" y="38" width="51.5" height="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag 2   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLn-de-okD" userLabel="days left" customClass="TTTAttributedLabel">
+                                        <rect key="frame" x="430" y="38" width="34" height="23"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="Ovt-BI-Wdh"/>
@@ -113,6 +113,7 @@
                                     <constraint firstAttribute="trailing" secondItem="X4B-aG-6Y3" secondAttribute="trailing" constant="16" id="pum-95-L7N"/>
                                     <constraint firstItem="rmi-nb-cHd" firstAttribute="width" secondItem="Rh6-37-7gS" secondAttribute="width" multiplier="0.5" id="qZc-ro-hi3"/>
                                     <constraint firstItem="aLn-de-okD" firstAttribute="width" secondItem="Rh6-37-7gS" secondAttribute="width" multiplier="0.5" id="qcy-ch-giP"/>
+                                    <constraint firstItem="aLn-de-okD" firstAttribute="top" secondItem="Rh6-37-7gS" secondAttribute="top" constant="38" id="tKa-Aw-qY4"/>
                                     <constraint firstItem="rmi-nb-cHd" firstAttribute="leading" secondItem="Rh6-37-7gS" secondAttribute="leading" constant="16" id="vG3-xS-fi3"/>
                                     <constraint firstAttribute="height" constant="140" id="w0k-ay-kBV"/>
                                     <constraint firstItem="vFg-Na-PIj" firstAttribute="top" secondItem="Rh6-37-7gS" secondAttribute="top" constant="8" id="wT5-WW-ElV"/>
@@ -123,8 +124,9 @@
                                         <exclude reference="6vU-o7-iYd"/>
                                         <exclude reference="qZc-ro-hi3"/>
                                         <exclude reference="15M-4o-qmn"/>
-                                        <exclude reference="xm4-Of-cZ8"/>
+                                        <exclude reference="l0N-ow-bpp"/>
                                         <exclude reference="qcy-ch-giP"/>
+                                        <exclude reference="xm4-Of-cZ8"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -330,6 +332,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="ibDaysLeftLbl" destination="aLn-de-okD" id="qa4-dl-Zjk"/>
+                <outlet property="ibDaysLeftTopConstraint" destination="tKa-Aw-qY4" id="8Vb-k4-bfZ"/>
                 <outlet property="ibDealTypeLbl" destination="vFg-Na-PIj" id="Z4a-1X-QCR"/>
                 <outlet property="ibDiscountLbl" destination="rmi-nb-cHd" id="jHN-WH-kHK"/>
                 <outlet property="ibInnerContentView" destination="pm6-Os-8sw" id="lqa-bh-UXU"/>

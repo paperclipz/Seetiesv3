@@ -340,9 +340,9 @@
     }
     if (self.dealModel.total_available_vouchers <= 10 && self.dealModel.total_available_vouchers > 0) {
         NSString *tag = [NSString stringWithFormat:@"%ld %@", self.dealModel.total_available_vouchers, LocalisedString(@"Vouchers Left")];
-        CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}];
+        CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
         UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0, lblSize.width+padding, tagHeight)];
-        [tagLbl setFont:[UIFont systemFontOfSize:fontSize]];
+        [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
         tagLbl.textAlignment = NSTextAlignmentCenter;
         tagLbl.text = tag;
         [tagLbl setTextColor:[UIColor whiteColor]];
@@ -353,9 +353,9 @@
     }
     if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE]) {
         NSString *tag = [NSString stringWithFormat:@"%@", LocalisedString(@"FREE")];
-        CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}];
+        CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
         UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0, lblSize.width+padding, tagHeight)];
-        [tagLbl setFont:[UIFont systemFontOfSize:fontSize]];
+        [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
         tagLbl.textAlignment = NSTextAlignmentCenter;
         tagLbl.text = tag;
         [tagLbl setTextColor:[UIColor whiteColor]];
@@ -366,9 +366,9 @@
     }
     else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT] || [self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]) {
         NSString *tag = [NSString stringWithFormat:@"%@%% %@", self.dealModel.discount_percentage, LocalisedString(@"OFF")];
-        CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}];
+        CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
         UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0, lblSize.width+padding, tagHeight)];
-        [tagLbl setFont:[UIFont systemFontOfSize:fontSize]];
+        [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
         tagLbl.textAlignment = NSTextAlignmentCenter;
         tagLbl.text = tag;
         [tagLbl setTextColor:[UIColor whiteColor]];
@@ -463,6 +463,7 @@
             CGRect rect = [formattedTerm boundingRectWithSize:CGSizeMake(self.ibTnCContent.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
             UILabel *tncLbl = [[UILabel alloc]initWithFrame:CGRectMake(8, yOrigin, ceilf(rect.size.width), ceilf(rect.size.height))];
             tncLbl.font = [UIFont systemFontOfSize:fontSize];
+            tncLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
             tncLbl.numberOfLines = 0;
             tncLbl.text = formattedTerm;
             
@@ -489,7 +490,7 @@
 -(void)updateNearbyShopView{
     
     if (self.nearbyShopArray.count > 0) {
-        CGFloat contentHeight = self.ibNearbyShopCollection.frame.origin.y + 150 + contentHeightPadding;
+        CGFloat contentHeight = self.ibNearbyShopCollection.frame.origin.y + 132 + contentHeightPadding;
         [self.ibNearbyShopView setHeight:contentHeight];
     }
     else{
@@ -732,7 +733,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((collectionView.frame.size.width-20)/3, 150);
+    return CGSizeMake((collectionView.frame.size.width-20)/3, 132);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

@@ -7,14 +7,15 @@
 //
 
 #import "VoucherCell.h"
+#import "TTTAttributedLabel.h"
 
 @interface VoucherCell()
 @property (nonatomic) DealModel *dealModel;
 
 @property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibVoucherImage;
-@property (weak, nonatomic) IBOutlet UILabel *ibVoucherLeftLbl;
-@property (weak, nonatomic) IBOutlet UILabel *ibDaysLeftLbl;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *ibVoucherLeftLbl;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *ibDaysLeftLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibTag3Lbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibDealTypeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibDiscountLbl;
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *ibVoucherBlackOverylay;
 @property (weak, nonatomic) IBOutlet UIImageView *ibOverlayIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherOverlayTitle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibDaysLeftTopConstraint;
 
 @end
 
@@ -32,9 +34,6 @@
 - (void)awakeFromNib {
     // Initialization code
     [self.ibVoucherCollectBtn setSideCurveBorder];
-    [self.ibVoucherLeftLbl setSideCurveBorder];
-    [self.ibDaysLeftLbl setSideCurveBorder];
-    [self.ibTag3Lbl setSideCurveBorder];
     
 //    [self.ibInnerContentView prefix_addLowerBorder:OUTLINE_COLOR];
 //    [self.ibInnerContentView prefix_addUpperBorder:OUTLINE_COLOR];
@@ -107,7 +106,9 @@
     if (self.dealModel.total_available_vouchers > 0 && self.dealModel.total_available_vouchers <= 10) {
         self.ibVoucherLeftLbl.hidden = NO;
         self.ibVoucherBlackOverylay.hidden = YES;
-        self.ibVoucherLeftLbl.text = [NSString stringWithFormat:@"   %ld %@   ", self.dealModel.total_available_vouchers, LocalisedString(@"Vouchers Left")];
+        self.ibVoucherLeftLbl.text = [NSString stringWithFormat:@"%ld %@", self.dealModel.total_available_vouchers, LocalisedString(@"Vouchers Left")];
+        self.ibVoucherLeftLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+        [Utils setRoundBorder:self.ibVoucherLeftLbl color:[UIColor clearColor] borderRadius:self.ibVoucherLeftLbl.frame.size.height/2-2];
     }
     else if (self.dealModel.total_available_vouchers == 0){
         self.ibVoucherLeftLbl.hidden = YES;
@@ -148,7 +149,7 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSInteger numberOfDaysLeft = 0;
     
-    if (![self.dealModel.expired_at isEqualToString:@"no_expiry_date"]) {
+    if ([Utils isValidDateString:self.dealModel.expired_at]) {
         NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.expired_at];
         
         numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
@@ -157,6 +158,15 @@
     if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
         self.ibDaysLeftLbl.hidden = NO;
         self.ibDaysLeftLbl.text = [NSString stringWithFormat:@"%ld %@", numberOfDaysLeft, LocalisedString(@"Days Left")];
+        self.ibDaysLeftLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+        [Utils setRoundBorder:self.ibDaysLeftLbl color:[UIColor clearColor] borderRadius:self.ibDaysLeftLbl.frame.size.height/2];
+        
+        if (self.ibVoucherLeftLbl.hidden) {
+            self.ibDaysLeftTopConstraint.constant = 10;
+        }
+        else{
+            self.ibDaysLeftTopConstraint.constant = self.ibVoucherLeftLbl.frame.size.height + 10 + 5;
+        }
     }
     else{
         self.ibDaysLeftLbl.hidden = YES;

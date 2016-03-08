@@ -7,12 +7,14 @@
 //
 
 #import "RedemptionHistoryCell.h"
+#import "TTTAttributedLabel.h"
 
 @interface RedemptionHistoryCell()
+@property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibDealImage;
 @property (weak, nonatomic) IBOutlet UILabel *ibDealTitleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibDealOutletLbl;
-@property (weak, nonatomic) IBOutlet UILabel *ibRedemptionDateLbl;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *ibRedemptionDateLbl;
 
 @property(nonatomic) DealModel *voucher;
 
@@ -22,7 +24,6 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    [self.ibRedemptionDateLbl setSideCurveBorder];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -55,15 +56,16 @@
     @catch (NSException *exception) {
         SLog(@"assign profile image fail");
     }
-   
-   
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *redemptionDate = [dateFormatter dateFromString:self.voucher.voucher_info.redeemed_at];
     [dateFormatter setDateFormat:@"dd MMM yyyy"];
     self.ibRedemptionDateLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"REDEEMED ON"), [dateFormatter stringFromDate:redemptionDate]];
+    self.ibRedemptionDateLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+    [Utils setRoundBorder:self.ibRedemptionDateLbl color:[UIColor clearColor] borderRadius:self.ibRedemptionDateLbl.frame.size.height/2];
     
+    [Utils setRoundBorder:self.ibInnerContentView color:[UIColor clearColor] borderRadius:10.0f];
 }
 
 @end
