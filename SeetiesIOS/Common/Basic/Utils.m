@@ -56,6 +56,14 @@
     appdelegate.landingViewController.tabBarController.selectedIndex = 0;
 }
 
++(void)reloadProfileView
+{
+    AppDelegate *appdelegate;
+    
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appdelegate.landingViewController.ct3MeViewController reloadData];
+}
+
 +(BOOL)isLogin
 {
     BOOL isSuccessLogin = false;
