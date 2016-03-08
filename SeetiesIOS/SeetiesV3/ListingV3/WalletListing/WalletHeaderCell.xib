@@ -16,20 +16,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expired on January 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGB-7U-Jej">
-                        <rect key="frame" x="8" y="8" width="304" height="28"/>
+                        <rect key="frame" x="8" y="13" width="304" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="scQ-eh-GpH"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="gGB-7U-Jej" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="1CC-rt-h0K"/>
                     <constraint firstAttribute="leadingMargin" secondItem="gGB-7U-Jej" secondAttribute="leading" id="Aoy-AE-xbs"/>
-                    <constraint firstItem="gGB-7U-Jej" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cri-At-5a1"/>
+                    <constraint firstItem="gGB-7U-Jej" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="5" id="cri-At-5a1"/>
                     <constraint firstAttribute="trailingMargin" secondItem="gGB-7U-Jej" secondAttribute="trailing" id="tZa-3i-2T5"/>
                     <constraint firstAttribute="bottomMargin" secondItem="gGB-7U-Jej" secondAttribute="bottom" id="woi-Bd-Oqv"/>
                 </constraints>
@@ -40,7 +40,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="ibHeaderTitle" destination="gGB-7U-Jej" id="csD-oX-fox"/>
             </connections>

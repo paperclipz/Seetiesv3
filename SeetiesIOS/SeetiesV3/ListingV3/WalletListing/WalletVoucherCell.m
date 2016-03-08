@@ -27,7 +27,8 @@
     // Initialization code
     [self.ibRedeemBtn setSideCurveBorder];
     [self.ibDealUsageLbl setSideCurveBorder];
-    [self.ibInnerContentView setRoundedCorners:UIRectCornerAllCorners radius:5.0f];
+    [Utils setRoundBorder:self.ibInnerContentView color:[UIColor clearColor] borderRadius:10.0f];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -56,7 +57,7 @@
             [self.ibVoucherImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageUrl] completed:^(UIImage *image) {
             }];
         }
-        [self.ibVoucherImg setSquareBorder];
+        [Utils setRoundBorder:self.ibVoucherImg color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:2.5f];
     }
     @catch (NSException *exception) {
         SLog(@"profile_photo fail");
@@ -66,7 +67,7 @@
     
     if (self.dealModel.total_available_vouchers == -1) {
         self.ibDealUsageLbl.text = LocalisedString(@"REUSABLE");
-        [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:122/255.0f green:210/255.0f blue:27/255.0f alpha:1]];
+        [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:122/255.0f green:210/255.0f blue:26/255.0f alpha:1]];
     }
     else{
         self.ibDealUsageLbl.text = LocalisedString(@"1 TIME USE");
@@ -75,18 +76,22 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+    NSString *expiryString = self.dealModel.expired_at;
+    NSInteger numberOfDaysLeft = 0;
     
-    NSInteger numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
+    if ([expiryString isEqualToString:@"no_expiry_date"]) {
+        NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+        numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
+    }
     
-    if (numberOfDaysLeft < 8) {
+    if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
         self.ibVoucherExpiryLbl.text = [NSString stringWithFormat:@"%@ %ld %@", LocalisedString(@"Expires in "), numberOfDaysLeft, LocalisedString(@"Days")];
-        self.ibVoucherExpiryLbl.textColor = [UIColor redColor];
+        self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:244/255.0f green:64/255.0f blue:64/255.0f alpha:1];
     }
     else{
         [dateFormatter setDateFormat:@"dd MMM yyyy"];
-        self.ibVoucherExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires "), [dateFormatter stringFromDate:expiryDate]];
-        self.ibVoucherExpiryLbl.textColor = [UIColor lightGrayColor];
+        self.ibVoucherExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires "), [dateFormatter stringFromDate:[dateFormatter dateFromString:expiryString]]];
+        self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     }
     
     VoucherInfoModel *voucherModel = self.dealModel.voucher_info;
@@ -94,8 +99,11 @@
         [self.ibRedeemBtn setBackgroundColor:[UIColor colorWithRed:232/255.0f green:86/255.0f blue:99/255.f alpha:1]];
     }
     else{
-        [self.ibRedeemBtn setBackgroundColor:[UIColor lightGrayColor]];
+        [self.ibRedeemBtn setBackgroundColor:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.f alpha:1]];
     }
+    
+   // [self.ibInnerContentView setRoundedCorners:UIRectCornerAllCorners radius:10.0f];
+    
     
 }
 

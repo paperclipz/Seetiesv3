@@ -100,7 +100,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.isProcessing = NO;
-    contentHeightPadding = 23.0;
+    contentHeightPadding = 16.0;
     
     [self.ibAvailabilityTable registerNib:[UINib nibWithNibName:@"DealDetailsAvailabilityCell" bundle:nil] forCellReuseIdentifier:@"DealDetailsAvailabilityCell"];
     [self.ibShopTable registerNib:[UINib nibWithNibName:@"PromoOutletCell" bundle:nil] forCellReuseIdentifier:@"PromoOutletCell"];
@@ -322,18 +322,18 @@
     
     CGFloat tagHeight = 20.0f;
     CGFloat spacing = 10.0f;
-    CGFloat fontSize = 15.0f;
+    CGFloat fontSize = 11.0f;
     CGFloat padding = 20.0f;
     CGFloat xOrigin = 0;
     if (self.dealModel.is_feature) {
         NSString *tag = [NSString stringWithFormat:@"%@", LocalisedString(@"FEATURED")];
-        CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]}];
+        CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
         UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0, lblSize.width+padding, tagHeight)];
-        [tagLbl setFont:[UIFont systemFontOfSize:fontSize]];
+        [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
         tagLbl.textAlignment = NSTextAlignmentCenter;
         tagLbl.text = tag;
         [tagLbl setTextColor:[UIColor whiteColor]];
-        [tagLbl setBackgroundColor:[UIColor colorWithRed:232/255.0f green:86/255.0f blue:99/255.f alpha:1]];
+        [tagLbl setBackgroundColor:[UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.f alpha:1]];
         [tagLbl setSideCurveBorder];
         [self.ibTagContentView addSubview:tagLbl];
         xOrigin += tagLbl.frame.size.width + spacing;
@@ -554,25 +554,25 @@
 }
 
 -(void)drawBorders{
-    [self.ibHeaderContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibHeaderContentView prefix_addLowerBorder:OUTLINE_COLOR];
     
-    [self.ibDealDetailsContentView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibDealDetailsContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibDealDetailsContentView prefix_addUpperBorder:OUTLINE_COLOR];
+    [self.ibDealDetailsContentView prefix_addLowerBorder:OUTLINE_COLOR];
     
-    [self.ibAvailabilityContentView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibAvailabilityContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibAvailabilityContentView prefix_addUpperBorder:OUTLINE_COLOR];
+    [self.ibAvailabilityContentView prefix_addLowerBorder:OUTLINE_COLOR];
     
-    [self.ibShopContentView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibShopContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibShopContentView prefix_addUpperBorder:OUTLINE_COLOR];
+    [self.ibShopContentView prefix_addLowerBorder:OUTLINE_COLOR];
     
-    [self.ibTnCContentView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibTnCContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibTnCContentView prefix_addUpperBorder:OUTLINE_COLOR];
+    [self.ibTnCContentView prefix_addLowerBorder:OUTLINE_COLOR];
     
-    [self.ibDealsContentView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibDealsContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibDealsContentView prefix_addUpperBorder:OUTLINE_COLOR];
+    [self.ibDealsContentView prefix_addLowerBorder:OUTLINE_COLOR];
     
-    [self.ibNearbyShopContentView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibNearbyShopContentView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibNearbyShopContentView prefix_addUpperBorder:OUTLINE_COLOR];
+    [self.ibNearbyShopContentView prefix_addLowerBorder:OUTLINE_COLOR];
     
 }
 

@@ -14,20 +14,20 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctV-PW-svq" userLabel="content view">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check.png" translatesAutoresizingMaskIntoConstraints="NO" id="N8Y-3p-oZ6">
-                            <rect key="frame" x="8" y="5" width="30" height="30"/>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealsTickIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="N8Y-3p-oZ6">
+                            <rect key="frame" x="0.0" y="9" width="23" height="23"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="2vS-oa-jEC"/>
-                                <constraint firstAttribute="height" constant="30" id="a1P-Rx-pbl"/>
+                                <constraint firstAttribute="width" constant="23" id="2vS-oa-jEC"/>
+                                <constraint firstAttribute="height" constant="23" id="a1P-Rx-pbl"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvg-Np-q1m">
-                            <rect key="frame" x="46" y="10" width="42" height="21"/>
+                            <rect key="frame" x="31" y="10" width="38" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="JWB-fb-9a3"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -36,7 +36,7 @@
                         <constraint firstItem="yvg-Np-q1m" firstAttribute="leading" secondItem="N8Y-3p-oZ6" secondAttribute="trailing" constant="8" id="6I9-mM-HuN"/>
                         <constraint firstItem="yvg-Np-q1m" firstAttribute="centerY" secondItem="ctV-PW-svq" secondAttribute="centerY" id="ATF-be-PFw"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yvg-Np-q1m" secondAttribute="trailing" constant="8" id="dOL-lo-4PW"/>
-                        <constraint firstItem="N8Y-3p-oZ6" firstAttribute="leading" secondItem="ctV-PW-svq" secondAttribute="leading" constant="8" id="iNI-6Q-WlP"/>
+                        <constraint firstItem="N8Y-3p-oZ6" firstAttribute="leading" secondItem="ctV-PW-svq" secondAttribute="leading" id="iNI-6Q-WlP"/>
                         <constraint firstItem="N8Y-3p-oZ6" firstAttribute="centerY" secondItem="ctV-PW-svq" secondAttribute="centerY" id="kjf-6D-ItS"/>
                     </constraints>
                 </view>
@@ -56,6 +56,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Check.png" width="70" height="70"/>
+        <image name="DealsTickIcon.png" width="15" height="15"/>
     </resources>
 </document>

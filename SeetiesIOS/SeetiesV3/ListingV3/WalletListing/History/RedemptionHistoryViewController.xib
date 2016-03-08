@@ -61,14 +61,14 @@
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uck-Hk-jfY" userLabel="history table">
                     <rect key="frame" x="8" y="64" width="584" height="536"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Ssg-JD-gIX"/>
                         <outlet property="delegate" destination="-1" id="Gj7-fd-3sN"/>
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Uck-Hk-jfY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="0fH-lo-nyH"/>
                 <constraint firstAttribute="trailing" secondItem="Uck-Hk-jfY" secondAttribute="trailing" constant="8" id="5OM-7C-6Nw"/>

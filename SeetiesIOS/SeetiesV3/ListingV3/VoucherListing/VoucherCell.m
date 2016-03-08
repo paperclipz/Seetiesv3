@@ -36,6 +36,9 @@
     [self.ibDaysLeftLbl setSideCurveBorder];
     [self.ibTag3Lbl setSideCurveBorder];
     
+//    [self.ibInnerContentView prefix_addLowerBorder:OUTLINE_COLOR];
+//    [self.ibInnerContentView prefix_addUpperBorder:OUTLINE_COLOR];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -46,8 +49,8 @@
 
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
-    [self.ibInnerContentView prefix_addLowerBorder:OUTLINE_COLOR];
-    [self.ibInnerContentView prefix_addUpperBorder:OUTLINE_COLOR];
+//    [self.ibInnerContentView prefix_addLowerBorder:OUTLINE_COLOR];
+//    [self.ibInnerContentView prefix_addUpperBorder:OUTLINE_COLOR];
     
     if (![Utils isStringNull:self.dealModel.cover_title]) {
         self.ibVoucherTitleLbl.text = self.dealModel.cover_title;
