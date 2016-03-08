@@ -12,7 +12,10 @@
 #import "CLLocationManager+blocks.h"
 #import "FSVenue.h"
 #import "FSConverter.h"
+#import "HomeLocationModel.h"
+
 typedef void (^LocationBlock)(CLLocation* location);
+typedef void (^HomeLocationBlock)(HomeLocationModel* model);
 
 typedef void(^SearchManagerSuccessBlock)(CLLocation *currentLocation);
 typedef void(^SearchManagerFailBlock)(NSString *status);

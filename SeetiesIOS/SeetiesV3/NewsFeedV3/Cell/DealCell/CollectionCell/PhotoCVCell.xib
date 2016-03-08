@@ -16,7 +16,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Ad-r4-7gE">
                         <rect key="frame" x="0.0" y="0.0" width="322" height="149"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollectionOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZwO-pW-1Iu">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollectionInFeedOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZwO-pW-1Iu">
                         <rect key="frame" x="0.0" y="0.0" width="322" height="149"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLv-uy-AtS">
@@ -126,7 +126,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="CollectionOverlay.png" width="300" height="165"/>
+        <image name="CollectionInFeedOverlay.png" width="300" height="126"/>
         <image name="LocationBtn.png" width="75" height="50"/>
         <image name="NoImage.png" width="800" height="800"/>
     </resources>

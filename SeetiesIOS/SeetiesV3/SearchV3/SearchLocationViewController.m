@@ -350,7 +350,15 @@
             hModel.address_components.locality = model.city;
             hModel.address_components.administrative_area_level_1 = model.state;
             hModel.address_components.political = model.political;
-            hModel.locationName = hModel.address_components.locality;
+           
+            if (![Utils isStringNull:model.subLocality]) {
+                hModel.locationName = model.subLocality;
+                
+            }
+            else{
+                hModel.locationName = model.subLocality_lvl_1;
+                
+            }
 
             if (self.homeLocationRefreshBlock) {
                 self.homeLocationRefreshBlock(hModel);

@@ -7,6 +7,7 @@
 //
 
 #import "SearchManager.h"
+typedef void (^HomeLocationBlock)(HomeLocationModel* model);
 
 @interface SearchManager()
 @property(nonatomic,strong)CLLocationManager* manager;

@@ -97,7 +97,17 @@
                          if (self.arrDeals.count>0) {
                              int counter = imageIndex % self.arrDeals.count;
                              NSIndexPath *iPath = [NSIndexPath indexPathForItem:counter inSection:0];
-                             [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+                             [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+
+                             
+                             if (counter == 0) {
+                                 [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+                             }
+                             else{
+                                 [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+
+
+                             }
                              imageIndex ++;
                          }
                         
@@ -123,10 +133,10 @@
     [cell initData:model];
     
    
-    cell.alpha = 0;
-    [UIView animateWithDuration:0.8f animations:^(void){
-        cell.alpha = 1;
-    }];
+//    cell.alpha = 0;
+//    [UIView animateWithDuration:0.8f animations:^(void){
+//        cell.alpha = 1;
+//    }];
 
     return cell;
 }

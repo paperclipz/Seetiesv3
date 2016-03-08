@@ -39,45 +39,72 @@
     return YES;
 }
 
+
 -(void)process
 {
     
     for (NSDictionary* dict in _address_components) {
-        NSString* value = dict[@"types"][0];
-        if ([value isEqualToString:@"administrative_area_level_1"])
-        {
-            _state = dict[@"long_name"];
-            
-        }
         
-        if ([value isEqualToString:@"political"])
-        {
-            _political = dict[@"political"];
+        NSArray* array = dict[@"types"];
+        for (int i = 0; i< array.count; i++) {
+            NSString* value = dict[@"types"][i];
             
-        }
-        
-        if ([value isEqualToString:@"locality"])
-        {
-            _city = dict[@"long_name"];
             
-        }
-        
-        if ([value isEqualToString:@"route"])
-        {
-            _route = dict[@"long_name"];
+            if ([value isEqualToString:@"administrative_area_level_1"])
+            {
+                _state = dict[@"long_name"];
+                break;
+                
+            }
             
-        }
-        
-        if ([value isEqualToString:@"country"])
-        {
-            _country = dict[@"long_name"];
+            if ([value isEqualToString:@"political"])
+            {
+                _political = dict[@"long_name"];
+                break;
+
+            }
             
-        }
-        
-        if ([value isEqualToString:@"postal_code"])
-        {
-            _postal_code = dict[@"long_name"];
+            if ([value isEqualToString:@"locality"])
+            {
+                _city = dict[@"long_name"];
+                break;
+
+            }
             
+            if ([value isEqualToString:@"route"])
+            {
+                _route = dict[@"long_name"];
+                break;
+
+            }
+            
+            if ([value isEqualToString:@"country"])
+            {
+                _country = dict[@"long_name"];
+                break;
+
+            }
+            
+            if ([value isEqualToString:@"postal_code"])
+            {
+                _postal_code = dict[@"long_name"];
+                break;
+
+            }
+            
+            if ([value isEqualToString:@"sublocality"])
+            {
+                _subLocality = dict[@"long_name"];
+                break;
+
+            }
+            
+            if ([value isEqualToString:@"sublocality_level_1"])
+            {
+                _subLocality_lvl_1 = dict[@"long_name"];
+                break;
+
+            }
         }
 
         
