@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expired on January 2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGB-7U-Jej">
-                        <rect key="frame" x="8" y="13" width="304" height="28"/>
+                        <rect key="frame" x="0.0" y="13" width="320" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="scQ-eh-GpH"/>
                         </constraints>
@@ -28,9 +28,9 @@
                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="gGB-7U-Jej" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="1CC-rt-h0K"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="gGB-7U-Jej" secondAttribute="leading" id="Aoy-AE-xbs"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="gGB-7U-Jej" secondAttribute="leading" constant="8" id="Aoy-AE-xbs"/>
                     <constraint firstItem="gGB-7U-Jej" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="5" id="cri-At-5a1"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="gGB-7U-Jej" secondAttribute="trailing" id="tZa-3i-2T5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gGB-7U-Jej" secondAttribute="trailing" constant="-8" id="tZa-3i-2T5"/>
                     <constraint firstAttribute="bottomMargin" secondItem="gGB-7U-Jej" secondAttribute="bottom" id="woi-Bd-Oqv"/>
                 </constraints>
                 <variation key="default">

@@ -59,9 +59,25 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *redemptionDate = [dateFormatter dateFromString:self.voucher.voucher_info.redeemed_at];
+    NSDate *historyDate = [dateFormatter dateFromString:self.voucher.voucher_info.status_history_datetime];
     [dateFormatter setDateFormat:@"dd MMM yyyy"];
-    self.ibRedemptionDateLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"REDEEMED ON"), [dateFormatter stringFromDate:redemptionDate]];
+    
+    NSString *status = self.voucher.voucher_info.status;
+    if ([status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
+        self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@ %@", LocalisedString(@"REDEEMED ON"), [dateFormatter stringFromDate:historyDate]] uppercaseString];
+    }
+    else if ([status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+        self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@ %@", LocalisedString(@"EXPIRED ON"), [dateFormatter stringFromDate:historyDate]] uppercaseString];
+    }
+    else if ([status isEqualToString:VOUCHER_STATUS_DELETED]){
+        self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@ %@", LocalisedString(@"DELETED ON"), [dateFormatter stringFromDate:historyDate]] uppercaseString];
+    }
+    else if ([status isEqualToString:VOUCHER_STATUS_CANCELLED]){
+        self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@ %@", LocalisedString(@"CANCELLED ON"), [dateFormatter stringFromDate:historyDate]] uppercaseString];
+    }
+    else{
+        self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:historyDate]] uppercaseString];
+    }
     self.ibRedemptionDateLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
     [Utils setRoundBorder:self.ibRedemptionDateLbl color:[UIColor clearColor] borderRadius:self.ibRedemptionDateLbl.frame.size.height/2];
     

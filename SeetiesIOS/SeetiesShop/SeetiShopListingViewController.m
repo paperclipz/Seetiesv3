@@ -48,7 +48,8 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[PromoOutletCell class] forCellReuseIdentifier:@"PromoOutletCell"];
-    
+    self.ibTableView.estimatedRowHeight = [PromoOutletCell getHeight];
+    self.ibTableView.rowHeight = UITableViewAutomaticDimension;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -61,7 +62,8 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [PromoOutletCell getHeight];
+//    return [PromoOutletCell getHeight];
+    return UITableViewAutomaticDimension;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,7 +73,7 @@
     SeShopDetailModel* model = self.arrShopList[indexPath.row];
     [cell setCellType:PromoOutletCellTypeStatus];
     [cell setShopModel:model];
-    [cell drawBorders];
+//    [cell drawBorders];
     
     return cell;
 }

@@ -56,7 +56,7 @@
         
         for (DealModel *dealModel in self.dealsModel.deals) {
             
-            NSString *redemptionString = dealModel.voucher_info.redeemed_at;
+            NSString *redemptionString = dealModel.voucher_info.status_history_datetime;
             NSDate *redemptionDate = [fullFormatter dateFromString:redemptionString];
             NSString *formattedRedemptionString = [monthYearFormatter stringFromDate:redemptionDate];
             
