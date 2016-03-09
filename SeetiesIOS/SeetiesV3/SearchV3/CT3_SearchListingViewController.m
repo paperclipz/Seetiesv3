@@ -580,8 +580,8 @@
 {
     _seetiesShopViewController = nil;
     
-    if (![Utils isStringNull:model.seetishop_id]) {
-        [self.seetiesShopViewController initDataWithSeetiesID:model.seetishop_id];
+    if (![Utils isStringNull:model.location.location_id]) {
+        [self.seetiesShopViewController initDataWithSeetiesID:model.location.location_id];
         [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 
     }

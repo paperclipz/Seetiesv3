@@ -173,6 +173,7 @@
     _userProfilePostModel = nil;
     _usersModel = nil;
     _seShopsModel = nil;
+    [self.ibTableView reloadData];
 
     switch (self.searchListingType) {
         default:

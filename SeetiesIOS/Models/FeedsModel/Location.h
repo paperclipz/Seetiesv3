@@ -32,6 +32,7 @@
 @property(nonatomic,strong)NSString* route;
 @property(nonatomic,strong)NSString* sublocality;
 @property(nonatomic,strong)NSString* display_address;
+@property(nonatomic,strong)NSString* location_id;
 
 
 

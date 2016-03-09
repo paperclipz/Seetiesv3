@@ -20,8 +20,8 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    [Utils setRoundBorder:self.btnFollow color:SELECTED_GREEN borderRadius:self.btnFollow.frame.size.height/2];
-    [self.ibImageUserProfile setSideCurveBorder];
+  //  [Utils setRoundBorder:self.btnFollow color:SELECTED_GREEN borderRadius:self.btnFollow.frame.size.height/2];
+   // [self.ibImageUserProfile setSideCurveBorder];
     [self.btnFollow setImage:[UIImage imageNamed:@"AddFriendIcon.png"] forState:UIControlStateNormal];
     [self.btnFollow setImage:[UIImage imageNamed:@"AddedFriendIcon.png"] forState:UIControlStateSelected];
 }
