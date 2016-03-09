@@ -775,10 +775,10 @@
 -(void)refreshSearch
 {
     
-  //  [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
+    [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
     [self.shopListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
-  //  [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
-  //  [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
+    [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
+    [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
     
    
 }

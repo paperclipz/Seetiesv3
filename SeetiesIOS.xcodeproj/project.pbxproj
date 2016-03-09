@@ -1328,8 +1328,6 @@
 		8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C87D1B74AAE90040437E /* QuartzCore.framework */; };
 		8ADD46FF1C4CE9C000AEAE2B /* UILabel+Exntension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADD46FE1C4CE9C000AEAE2B /* UILabel+Exntension.m */; };
 		8ADD47031C4CFD6D00AEAE2B /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */; };
-		8AEA18051C87064B000CF9CE /* SearchQuickBrowseListingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEA18031C87064B000CF9CE /* SearchQuickBrowseListingController.m */; };
-		8AEA18061C87064B000CF9CE /* SearchQuickBrowseListingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AEA18041C87064B000CF9CE /* SearchQuickBrowseListingController.xib */; };
 		8AEDBFA81C2031BA000BD2FF /* ApiVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF781C2031BA000BD2FF /* ApiVersionModel.m */; };
 		8AEDBFA91C2031BA000BD2FF /* EditHourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF7B1C2031BA000BD2FF /* EditHourModel.m */; };
 		8AEDBFAA1C2031BA000BD2FF /* OpeningPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF7D1C2031BA000BD2FF /* OpeningPeriodModel.m */; };
@@ -1452,14 +1450,25 @@
 		8AFA52021C47B4AB00E7920E /* CT3_NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B41C47B4AB00E7920E /* CT3_NewsFeedViewController.xib */; };
 		8AFA52031C47B4AB00E7920E /* CT3_MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51B71C47B4AB00E7920E /* CT3_MeViewController.m */; };
 		8AFA52041C47B4AB00E7920E /* CT3_MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B81C47B4AB00E7920E /* CT3_MeViewController.xib */; };
-		8AFA52051C47B4AB00E7920E /* CT3_SearchListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51BB1C47B4AB00E7920E /* CT3_SearchListingViewController.m */; };
-		8AFA52061C47B4AB00E7920E /* CT3_SearchListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51BC1C47B4AB00E7920E /* CT3_SearchListingViewController.xib */; };
-		8AFA52071C47B4AB00E7920E /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51BE1C47B4AB00E7920E /* PostsTableViewCell.m */; };
-		8AFA52081C47B4AB00E7920E /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51BF1C47B4AB00E7920E /* PostsTableViewCell.xib */; };
-		8AFA52091C47B4AB00E7920E /* SearchLTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51C11C47B4AB00E7920E /* SearchLTabViewController.m */; };
-		8AFA520A1C47B4AB00E7920E /* SearchLTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51C21C47B4AB00E7920E /* SearchLTabViewController.xib */; };
-		8AFA520B1C47B4AB00E7920E /* SeetizensTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51C41C47B4AB00E7920E /* SeetizensTableViewCell.m */; };
-		8AFA520C1C47B4AB00E7920E /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51C51C47B4AB00E7920E /* SeetizensTableViewCell.xib */; };
+		8AFF08331C90358E00918582 /* TagLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08321C90358E00918582 /* TagLocationModel.m */; };
+		8AFF08511C90379000918582 /* SearchComplexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08371C90379000918582 /* SearchComplexTableViewCell.m */; };
+		8AFF08521C90379000918582 /* SearchComplexTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08381C90379000918582 /* SearchComplexTableViewCell.xib */; };
+		8AFF08531C90379000918582 /* SearchSimpleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF083A1C90379000918582 /* SearchSimpleTableViewCell.m */; };
+		8AFF08541C90379000918582 /* SearchSimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF083B1C90379000918582 /* SearchSimpleTableViewCell.xib */; };
+		8AFF08551C90379000918582 /* CT3_SearchListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF083D1C90379000918582 /* CT3_SearchListingViewController.m */; };
+		8AFF08561C90379000918582 /* CT3_SearchListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF083E1C90379000918582 /* CT3_SearchListingViewController.xib */; };
+		8AFF08571C90379000918582 /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08401C90379000918582 /* PostsTableViewCell.m */; };
+		8AFF08581C90379000918582 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08411C90379000918582 /* PostsTableViewCell.xib */; };
+		8AFF08591C90379000918582 /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08431C90379000918582 /* SearchLocationAreaCell.m */; };
+		8AFF085A1C90379000918582 /* SearchLocationAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08441C90379000918582 /* SearchLocationAreaCell.xib */; };
+		8AFF085B1C90379000918582 /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08461C90379000918582 /* SearchLocationViewController.m */; };
+		8AFF085C1C90379000918582 /* SearchLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08471C90379000918582 /* SearchLocationViewController.xib */; };
+		8AFF085D1C90379000918582 /* SearchLTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08491C90379000918582 /* SearchLTabViewController.m */; };
+		8AFF085E1C90379000918582 /* SearchLTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF084A1C90379000918582 /* SearchLTabViewController.xib */; };
+		8AFF085F1C90379000918582 /* SearchQuickBrowseListingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF084C1C90379000918582 /* SearchQuickBrowseListingController.m */; };
+		8AFF08601C90379000918582 /* SearchQuickBrowseListingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF084D1C90379000918582 /* SearchQuickBrowseListingController.xib */; };
+		8AFF08611C90379000918582 /* SeetizensTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */; };
+		8AFF08621C90379000918582 /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
@@ -1499,8 +1508,6 @@
 		C258101A1C7AD89000041A85 /* VoucherInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25810191C7AD89000041A85 /* VoucherInfoModel.m */; };
 		C25A8B951C7487010046F80A /* RedemptionTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25A8B941C7487010046F80A /* RedemptionTypeView.xib */; };
 		C25A8B981C74872F0046F80A /* RedemptionTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25A8B971C74872F0046F80A /* RedemptionTypeView.m */; };
-		C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25B50311C4E277D0027283E /* SearchLocationViewController.m */; };
-		C25B50341C4E277D0027283E /* SearchLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25B50321C4E277D0027283E /* SearchLocationViewController.xib */; };
 		C26676161C6445290021B6B0 /* WalletHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26676141C6445290021B6B0 /* WalletHeaderCell.m */; };
 		C26676171C6445290021B6B0 /* WalletHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26676151C6445290021B6B0 /* WalletHeaderCell.xib */; };
 		C266761C1C6483030021B6B0 /* RedemptionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C266761A1C6483030021B6B0 /* RedemptionHistoryViewController.m */; };
@@ -1524,8 +1531,6 @@
 		C2E341F51C8EED1D004E36E4 /* AddFriendIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E341F11C8EED1D004E36E4 /* AddFriendIcon@3x.png */; };
 		C2E341FC1C8EED51004E36E4 /* DealsListingOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E341FA1C8EED51004E36E4 /* DealsListingOverlay@2x.png */; };
 		C2E341FD1C8EED51004E36E4 /* DealsListingOverlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E341FB1C8EED51004E36E4 /* DealsListingOverlay@3x.png */; };
-		C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */; };
-		C2FB1CE01C4F7A3B004AE990 /* SearchLocationAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -3230,9 +3235,6 @@
 		8ADD46FE1C4CE9C000AEAE2B /* UILabel+Exntension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Exntension.m"; sourceTree = "<group>"; };
 		8ADD47011C4CFD6D00AEAE2B /* AnnouncementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementModel.h; sourceTree = "<group>"; };
 		8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementModel.m; sourceTree = "<group>"; };
-		8AEA18021C87064B000CF9CE /* SearchQuickBrowseListingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQuickBrowseListingController.h; sourceTree = "<group>"; };
-		8AEA18031C87064B000CF9CE /* SearchQuickBrowseListingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQuickBrowseListingController.m; sourceTree = "<group>"; };
-		8AEA18041C87064B000CF9CE /* SearchQuickBrowseListingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchQuickBrowseListingController.xib; sourceTree = "<group>"; };
 		8AEDBF771C2031BA000BD2FF /* ApiVersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiVersionModel.h; sourceTree = "<group>"; };
 		8AEDBF781C2031BA000BD2FF /* ApiVersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiVersionModel.m; sourceTree = "<group>"; };
 		8AEDBF7A1C2031BA000BD2FF /* EditHourModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditHourModel.h; sourceTree = "<group>"; };
@@ -3440,18 +3442,35 @@
 		8AFA51B61C47B4AB00E7920E /* CT3_MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_MeViewController.h; sourceTree = "<group>"; };
 		8AFA51B71C47B4AB00E7920E /* CT3_MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_MeViewController.m; sourceTree = "<group>"; };
 		8AFA51B81C47B4AB00E7920E /* CT3_MeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_MeViewController.xib; sourceTree = "<group>"; };
-		8AFA51BA1C47B4AB00E7920E /* CT3_SearchListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_SearchListingViewController.h; sourceTree = "<group>"; };
-		8AFA51BB1C47B4AB00E7920E /* CT3_SearchListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_SearchListingViewController.m; sourceTree = "<group>"; };
-		8AFA51BC1C47B4AB00E7920E /* CT3_SearchListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_SearchListingViewController.xib; sourceTree = "<group>"; };
-		8AFA51BD1C47B4AB00E7920E /* PostsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsTableViewCell.h; sourceTree = "<group>"; };
-		8AFA51BE1C47B4AB00E7920E /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsTableViewCell.m; sourceTree = "<group>"; };
-		8AFA51BF1C47B4AB00E7920E /* PostsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
-		8AFA51C01C47B4AB00E7920E /* SearchLTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLTabViewController.h; sourceTree = "<group>"; };
-		8AFA51C11C47B4AB00E7920E /* SearchLTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLTabViewController.m; sourceTree = "<group>"; };
-		8AFA51C21C47B4AB00E7920E /* SearchLTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLTabViewController.xib; sourceTree = "<group>"; };
-		8AFA51C31C47B4AB00E7920E /* SeetizensTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetizensTableViewCell.h; sourceTree = "<group>"; };
-		8AFA51C41C47B4AB00E7920E /* SeetizensTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetizensTableViewCell.m; sourceTree = "<group>"; };
-		8AFA51C51C47B4AB00E7920E /* SeetizensTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetizensTableViewCell.xib; sourceTree = "<group>"; };
+		8AFF08311C90358E00918582 /* TagLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagLocationModel.h; sourceTree = "<group>"; };
+		8AFF08321C90358E00918582 /* TagLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagLocationModel.m; sourceTree = "<group>"; };
+		8AFF08361C90379000918582 /* SearchComplexTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchComplexTableViewCell.h; sourceTree = "<group>"; };
+		8AFF08371C90379000918582 /* SearchComplexTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchComplexTableViewCell.m; sourceTree = "<group>"; };
+		8AFF08381C90379000918582 /* SearchComplexTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchComplexTableViewCell.xib; sourceTree = "<group>"; };
+		8AFF08391C90379000918582 /* SearchSimpleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchSimpleTableViewCell.h; sourceTree = "<group>"; };
+		8AFF083A1C90379000918582 /* SearchSimpleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchSimpleTableViewCell.m; sourceTree = "<group>"; };
+		8AFF083B1C90379000918582 /* SearchSimpleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSimpleTableViewCell.xib; sourceTree = "<group>"; };
+		8AFF083C1C90379000918582 /* CT3_SearchListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_SearchListingViewController.h; sourceTree = "<group>"; };
+		8AFF083D1C90379000918582 /* CT3_SearchListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_SearchListingViewController.m; sourceTree = "<group>"; };
+		8AFF083E1C90379000918582 /* CT3_SearchListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_SearchListingViewController.xib; sourceTree = "<group>"; };
+		8AFF083F1C90379000918582 /* PostsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsTableViewCell.h; sourceTree = "<group>"; };
+		8AFF08401C90379000918582 /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsTableViewCell.m; sourceTree = "<group>"; };
+		8AFF08411C90379000918582 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
+		8AFF08421C90379000918582 /* SearchLocationAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationAreaCell.h; sourceTree = "<group>"; };
+		8AFF08431C90379000918582 /* SearchLocationAreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationAreaCell.m; sourceTree = "<group>"; };
+		8AFF08441C90379000918582 /* SearchLocationAreaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationAreaCell.xib; sourceTree = "<group>"; };
+		8AFF08451C90379000918582 /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
+		8AFF08461C90379000918582 /* SearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationViewController.m; sourceTree = "<group>"; };
+		8AFF08471C90379000918582 /* SearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationViewController.xib; sourceTree = "<group>"; };
+		8AFF08481C90379000918582 /* SearchLTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLTabViewController.h; sourceTree = "<group>"; };
+		8AFF08491C90379000918582 /* SearchLTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLTabViewController.m; sourceTree = "<group>"; };
+		8AFF084A1C90379000918582 /* SearchLTabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLTabViewController.xib; sourceTree = "<group>"; };
+		8AFF084B1C90379000918582 /* SearchQuickBrowseListingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQuickBrowseListingController.h; sourceTree = "<group>"; };
+		8AFF084C1C90379000918582 /* SearchQuickBrowseListingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQuickBrowseListingController.m; sourceTree = "<group>"; };
+		8AFF084D1C90379000918582 /* SearchQuickBrowseListingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchQuickBrowseListingController.xib; sourceTree = "<group>"; };
+		8AFF084E1C90379000918582 /* SeetizensTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetizensTableViewCell.h; sourceTree = "<group>"; };
+		8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetizensTableViewCell.m; sourceTree = "<group>"; };
+		8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetizensTableViewCell.xib; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C20872941C59D1FA0063F203 /* PromoOutletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoOutletCell.h; sourceTree = "<group>"; };
 		C20872951C59D1FA0063F203 /* PromoOutletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoOutletCell.m; sourceTree = "<group>"; };
@@ -3501,9 +3520,6 @@
 		C25A8B941C7487010046F80A /* RedemptionTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionTypeView.xib; sourceTree = "<group>"; };
 		C25A8B961C74872F0046F80A /* RedemptionTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionTypeView.h; sourceTree = "<group>"; };
 		C25A8B971C74872F0046F80A /* RedemptionTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionTypeView.m; sourceTree = "<group>"; };
-		C25B50301C4E277D0027283E /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
-		C25B50311C4E277D0027283E /* SearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationViewController.m; sourceTree = "<group>"; };
-		C25B50321C4E277D0027283E /* SearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationViewController.xib; sourceTree = "<group>"; };
 		C26676131C6445290021B6B0 /* WalletHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletHeaderCell.h; sourceTree = "<group>"; };
 		C26676141C6445290021B6B0 /* WalletHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletHeaderCell.m; sourceTree = "<group>"; };
 		C26676151C6445290021B6B0 /* WalletHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletHeaderCell.xib; sourceTree = "<group>"; };
@@ -3535,9 +3551,6 @@
 		C2E341F11C8EED1D004E36E4 /* AddFriendIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddFriendIcon@3x.png"; sourceTree = "<group>"; };
 		C2E341FA1C8EED51004E36E4 /* DealsListingOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsListingOverlay@2x.png"; sourceTree = "<group>"; };
 		C2E341FB1C8EED51004E36E4 /* DealsListingOverlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsListingOverlay@3x.png"; sourceTree = "<group>"; };
-		C2FB1CDC1C4F7A3B004AE990 /* SearchLocationAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationAreaCell.h; sourceTree = "<group>"; };
-		C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationAreaCell.m; sourceTree = "<group>"; };
-		C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationAreaCell.xib; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -7094,6 +7107,8 @@
 		8AF6FE011C5F3E9C005AAE5D /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				8AFF08311C90358E00918582 /* TagLocationModel.h */,
+				8AFF08321C90358E00918582 /* TagLocationModel.m */,
 				8AF6FE021C5F3EB7005AAE5D /* CountryModel.h */,
 				8AF6FE031C5F3EB7005AAE5D /* CountryModel.m */,
 				8AF6FE051C5F3F36005AAE5D /* CountriesModel.h */,
@@ -7153,8 +7168,8 @@
 				8AFA51521C47B4AB00E7920E /* ListingV3 */,
 				8AFA517D1C47B4AB00E7920E /* LoginV3 */,
 				8AFA51811C47B4AB00E7920E /* NewsFeedV3 */,
+				8AFF08341C90379000918582 /* SearchV3 */,
 				8AFA51B51C47B4AB00E7920E /* PreProfileV3 */,
-				8AFA51B91C47B4AB00E7920E /* SearchV3 */,
 			);
 			path = SeetiesV3;
 			sourceTree = "<group>";
@@ -7381,32 +7396,46 @@
 			path = PreProfileV3;
 			sourceTree = "<group>";
 		};
-		8AFA51B91C47B4AB00E7920E /* SearchV3 */ = {
+		8AFF08341C90379000918582 /* SearchV3 */ = {
 			isa = PBXGroup;
 			children = (
-				8AFA51BA1C47B4AB00E7920E /* CT3_SearchListingViewController.h */,
-				8AFA51BB1C47B4AB00E7920E /* CT3_SearchListingViewController.m */,
-				8AFA51BC1C47B4AB00E7920E /* CT3_SearchListingViewController.xib */,
-				8AFA51C01C47B4AB00E7920E /* SearchLTabViewController.h */,
-				8AFA51C11C47B4AB00E7920E /* SearchLTabViewController.m */,
-				8AFA51C21C47B4AB00E7920E /* SearchLTabViewController.xib */,
-				8AFA51BD1C47B4AB00E7920E /* PostsTableViewCell.h */,
-				8AFA51BE1C47B4AB00E7920E /* PostsTableViewCell.m */,
-				8AFA51BF1C47B4AB00E7920E /* PostsTableViewCell.xib */,
-				8AFA51C31C47B4AB00E7920E /* SeetizensTableViewCell.h */,
-				8AFA51C41C47B4AB00E7920E /* SeetizensTableViewCell.m */,
-				8AFA51C51C47B4AB00E7920E /* SeetizensTableViewCell.xib */,
-				C25B50301C4E277D0027283E /* SearchLocationViewController.h */,
-				C25B50311C4E277D0027283E /* SearchLocationViewController.m */,
-				C25B50321C4E277D0027283E /* SearchLocationViewController.xib */,
-				C2FB1CDC1C4F7A3B004AE990 /* SearchLocationAreaCell.h */,
-				C2FB1CDD1C4F7A3B004AE990 /* SearchLocationAreaCell.m */,
-				C2FB1CDE1C4F7A3B004AE990 /* SearchLocationAreaCell.xib */,
-				8AEA18021C87064B000CF9CE /* SearchQuickBrowseListingController.h */,
-				8AEA18031C87064B000CF9CE /* SearchQuickBrowseListingController.m */,
-				8AEA18041C87064B000CF9CE /* SearchQuickBrowseListingController.xib */,
+				8AFF08351C90379000918582 /* Cell */,
+				8AFF083C1C90379000918582 /* CT3_SearchListingViewController.h */,
+				8AFF083D1C90379000918582 /* CT3_SearchListingViewController.m */,
+				8AFF083E1C90379000918582 /* CT3_SearchListingViewController.xib */,
+				8AFF083F1C90379000918582 /* PostsTableViewCell.h */,
+				8AFF08401C90379000918582 /* PostsTableViewCell.m */,
+				8AFF08411C90379000918582 /* PostsTableViewCell.xib */,
+				8AFF08421C90379000918582 /* SearchLocationAreaCell.h */,
+				8AFF08431C90379000918582 /* SearchLocationAreaCell.m */,
+				8AFF08441C90379000918582 /* SearchLocationAreaCell.xib */,
+				8AFF08451C90379000918582 /* SearchLocationViewController.h */,
+				8AFF08461C90379000918582 /* SearchLocationViewController.m */,
+				8AFF08471C90379000918582 /* SearchLocationViewController.xib */,
+				8AFF08481C90379000918582 /* SearchLTabViewController.h */,
+				8AFF08491C90379000918582 /* SearchLTabViewController.m */,
+				8AFF084A1C90379000918582 /* SearchLTabViewController.xib */,
+				8AFF084B1C90379000918582 /* SearchQuickBrowseListingController.h */,
+				8AFF084C1C90379000918582 /* SearchQuickBrowseListingController.m */,
+				8AFF084D1C90379000918582 /* SearchQuickBrowseListingController.xib */,
+				8AFF084E1C90379000918582 /* SeetizensTableViewCell.h */,
+				8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */,
+				8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */,
 			);
 			path = SearchV3;
+			sourceTree = "<group>";
+		};
+		8AFF08351C90379000918582 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8AFF08361C90379000918582 /* SearchComplexTableViewCell.h */,
+				8AFF08371C90379000918582 /* SearchComplexTableViewCell.m */,
+				8AFF08381C90379000918582 /* SearchComplexTableViewCell.xib */,
+				8AFF08391C90379000918582 /* SearchSimpleTableViewCell.h */,
+				8AFF083A1C90379000918582 /* SearchSimpleTableViewCell.m */,
+				8AFF083B1C90379000918582 /* SearchSimpleTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C238E3051C4649AA00570A25 /* NMRangeSlider */ = {
@@ -7746,16 +7775,15 @@
 				8A84C7D41C7FF448006A0D76 /* FacebookBtnInactive@3x.png in Resources */,
 				8A84C8041C7FF448006A0D76 /* NotificationCollect@3x.png in Resources */,
 				8A84C7471C7FF448006A0D76 /* CollectionImgOverlay@2x.png in Resources */,
-				C25B50341C4E277D0027283E /* SearchLocationViewController.xib in Resources */,
 				8A84C74E1C7FF448006A0D76 /* ExploreFollowing@2x.png in Resources */,
 				8A84C8471C7FF448006A0D76 /* NewPostsIcon@2x.png in Resources */,
 				8A84C7331C7FF448006A0D76 /* UsernameIcon@2x.png in Resources */,
+				8AFF08601C90379000918582 /* SearchQuickBrowseListingController.xib in Resources */,
 				8A84C8A71C7FF448006A0D76 /* ShareIGIcon@3x.png in Resources */,
 				8A84C7DA1C7FF448006A0D76 /* InviteBtnActive@3x.png in Resources */,
 				8A84C6671C7FF448006A0D76 /* NaviTranslateIcon@3x.png in Resources */,
 				8A84C7651C7FF448006A0D76 /* CollectIndoBtn@3x.png in Resources */,
 				8A84C7A41C7FF448006A0D76 /* YellowCollections@3x.png in Resources */,
-				8AFA52061C47B4AB00E7920E /* CT3_SearchListingViewController.xib in Resources */,
 				8A84C8161C7FF448006A0D76 /* BlueTime@3x.png in Resources */,
 				8AD6C0D31B706CF30040437E /* PFollowTheExpertsViewController.xib in Resources */,
 				8A84C85B1C7FF448006A0D76 /* ProfileFollowingIcon@2x.png in Resources */,
@@ -7811,7 +7839,6 @@
 				8A84C7511C7FF448006A0D76 /* ExploreImgOverlay@3x.png in Resources */,
 				8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */,
 				0B6AEA6D1C47B7CF009B7D33 /* ConnectionsViewController.xib in Resources */,
-				8AFA52081C47B4AB00E7920E /* PostsTableViewCell.xib in Resources */,
 				8A84C62A1C7FF448006A0D76 /* HomeEatIcon@2x.png in Resources */,
 				8A84C8A31C7FF448006A0D76 /* ShareEmailIcon@3x.png in Resources */,
 				8A84C6571C7FF448006A0D76 /* MoreWriteARecommendationIcon@3x.png in Resources */,
@@ -7839,11 +7866,13 @@
 				8A84C7391C7FF448006A0D76 /* CollectionNoPost@2x.png in Resources */,
 				8A84C7661C7FF448006A0D76 /* CollectionInFeedOverlay@2x.png in Resources */,
 				8A84C6C11C7FF448006A0D76 /* CollectionFolderIcon@2x.png in Resources */,
+				8AFF08541C90379000918582 /* SearchSimpleTableViewCell.xib in Resources */,
 				8A114C811BE73F5D006AE3F0 /* BKMoneyKit.bundle in Resources */,
 				8A84C5D01C7FF448006A0D76 /* 1.png in Resources */,
 				8A84C70F1C7FF448006A0D76 /* RearrangeIcon@2x.png in Resources */,
 				8A84C6D71C7FF448006A0D76 /* FollowCollectionTradChiIcon@2x.png in Resources */,
 				8A84C5E41C7FF448006A0D76 /* TitleBar@2x.png in Resources */,
+				8AFF08521C90379000918582 /* SearchComplexTableViewCell.xib in Resources */,
 				8A84C6891C7FF448006A0D76 /* TabBarHomeIconActive@3x.png in Resources */,
 				8ABA51FA1C10329600A3DC15 /* PhotoViewController.xib in Resources */,
 				8A84C7501C7FF448006A0D76 /* ExploreImgOverlay@2x.png in Resources */,
@@ -7877,6 +7906,7 @@
 				8A84C70E1C7FF448006A0D76 /* DeleteIcon@3x.png in Resources */,
 				8A84C8961C7FF448006A0D76 /* BackToTop@2x.png in Resources */,
 				8A84C62D1C7FF448006A0D76 /* HomeFindShopsAndPlaces@3x.png in Resources */,
+				8AFF085A1C90379000918582 /* SearchLocationAreaCell.xib in Resources */,
 				8A84C8801C7FF448006A0D76 /* SSBlueDirectionIcon@3x.png in Resources */,
 				8A84C8191C7FF448006A0D76 /* DirectionIcon@2x.png in Resources */,
 				8A84C63E1C7FF448006A0D76 /* MeVoucherWalletIcon@2x.png in Resources */,
@@ -7979,7 +8009,6 @@
 				8AD6C0DB1B706CF30040437E /* PTnCViewController.xib in Resources */,
 				8A84C78F1C7FF448006A0D76 /* LocationpinIcon@3x.png in Resources */,
 				8A84C7C91C7FF448006A0D76 /* StaycationIcon@2x.png in Resources */,
-				8AFA520C1C47B4AB00E7920E /* SeetizensTableViewCell.xib in Resources */,
 				8A84C6861C7FF448006A0D76 /* TabBarHomeIcon@2x.png in Resources */,
 				8A84C6211C7FF448006A0D76 /* HomeEatNight.png in Resources */,
 				8A84C6461C7FF448006A0D76 /* MoreFeedbackIcon@2x.png in Resources */,
@@ -8034,7 +8063,6 @@
 				8A84C67B1C7FF448006A0D76 /* SeetishopOutdoorAndRecreationIcon@3x.png in Resources */,
 				8A84C6F11C7FF448006A0D76 /* PhotoPin@2x.png in Resources */,
 				8A84C7F91C7FF448006A0D76 /* Walkthrough1.png in Resources */,
-				8AFA520A1C47B4AB00E7920E /* SearchLTabViewController.xib in Resources */,
 				8A84C7121C7FF448006A0D76 /* AddLanguageBtn@3x.png in Resources */,
 				8AC8F7391BDA414E00DEF14A /* ProfileCollectionViewController.xib in Resources */,
 				8A84C73B1C7FF448006A0D76 /* ConnectionWeak@2x.png in Resources */,
@@ -8080,6 +8108,7 @@
 				8A84C7FD1C7FF448006A0D76 /* WhiteSeetiesLogo@2x.png in Resources */,
 				8AD6BE4E1B706CF30040437E /* ExploreCountryViewController.xib in Resources */,
 				8A84C88A1C7FF448006A0D76 /* SSFacebookIcon@2x.png in Resources */,
+				8AFF085E1C90379000918582 /* SearchLTabViewController.xib in Resources */,
 				8AFA52001C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.xib in Resources */,
 				8A84C7F11C7FF448006A0D76 /* GreyBackBtn@2x.png in Resources */,
 				8A84C8791C7FF448006A0D76 /* YellowCollect@2x.png in Resources */,
@@ -8220,7 +8249,6 @@
 				8A84C6E51C7FF448006A0D76 /* GridViewInactive@2x.png in Resources */,
 				8A84C6EA1C7FF448006A0D76 /* ListViewInactive@3x.png in Resources */,
 				8A84C7251C7FF448006A0D76 /* BrithdayIcon@2x.png in Resources */,
-				C2FB1CE01C4F7A3B004AE990 /* SearchLocationAreaCell.xib in Resources */,
 				C26676221C6485400021B6B0 /* RedemptionHistoryCell.xib in Resources */,
 				C238E32B1C4649AA00570A25 /* slider-default-trackBackground.png in Resources */,
 				8A84C8211C7FF448006A0D76 /* PostCommentIcon@2x.png in Resources */,
@@ -8248,6 +8276,7 @@
 				8AC8F7451BDA414E00DEF14A /* UserProfileV2ViewController.xib in Resources */,
 				8A84C72F1C7FF448006A0D76 /* NamaIcon@2x.png in Resources */,
 				8A84C8AA1C7FF448006A0D76 /* ShareMessangerIcon@2x.png in Resources */,
+				8AFF08581C90379000918582 /* PostsTableViewCell.xib in Resources */,
 				8A84C7A71C7FF448006A0D76 /* CampaignLogo@2x.png in Resources */,
 				8A84C5CF1C7FF448006A0D76 /* launch.png in Resources */,
 				0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */,
@@ -8409,6 +8438,7 @@
 				8A84C6D41C7FF448006A0D76 /* FollowCollectionSimplifiedChiIcon@3x.png in Resources */,
 				8AC8F7431BDA414E00DEF14A /* ProfileV2ViewController.xib in Resources */,
 				8A84C6AA1C7FF448006A0D76 /* Icon-76.png in Resources */,
+				8AFF08621C90379000918582 /* SeetizensTableViewCell.xib in Resources */,
 				8AD6C2961B7072FB0040437E /* DraftsViewController.xib in Resources */,
 				8A84C8321C7FF448006A0D76 /* CollectionIcon@3x.png in Resources */,
 				8AD6C0D91B706CF30040437E /* PTellUsYourCityViewController.xib in Resources */,
@@ -8460,7 +8490,6 @@
 				8A84C8981C7FF448006A0D76 /* CameraIcon@2x.png in Resources */,
 				8A84C7C31C7FF448006A0D76 /* NightlifeIcon@2x.png in Resources */,
 				8A84C69B1C7FF448006A0D76 /* CurrencyArrow@2x.png in Resources */,
-				8AEA18061C87064B000CF9CE /* SearchQuickBrowseListingController.xib in Resources */,
 				8A84C6561C7FF448006A0D76 /* MoreWriteARecommendationIcon@2x.png in Resources */,
 				8A84C83B1C7FF448006A0D76 /* FollowBtn@2x.png in Resources */,
 				8A84C7001C7FF448006A0D76 /* DeleteIconSwipe@3x.png in Resources */,
@@ -8534,6 +8563,7 @@
 				8A84C6131C7FF448006A0D76 /* HomeAfternoon2.png in Resources */,
 				8A84C7211C7FF448006A0D76 /* AboutIcon@2x.png in Resources */,
 				8A84C5EC1C7FF448006A0D76 /* DealsCollectIcon@2x.png in Resources */,
+				8AFF08561C90379000918582 /* CT3_SearchListingViewController.xib in Resources */,
 				8A84C5E21C7FF448006A0D76 /* SelectPhotoArrow@2x.png in Resources */,
 				8A84C7281C7FF448006A0D76 /* EditCoverPhoto@3x.png in Resources */,
 				8A84C8441C7FF448006A0D76 /* NewCollectionsIcon@3x.png in Resources */,
@@ -8571,6 +8601,7 @@
 				8A84C6321C7FF448006A0D76 /* HomePinIcon@2x.png in Resources */,
 				8A84C5EF1C7FF448006A0D76 /* DealsExpiredIcon@3x.png in Resources */,
 				C238E3301C4649AA00570A25 /* slider-default7-handle@2x.png in Resources */,
+				8AFF085C1C90379000918582 /* SearchLocationViewController.xib in Resources */,
 				8A84C8CA1C7FF448006A0D76 /* WalkthroughFeed.png in Resources */,
 				8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */,
 				8A84C8861C7FF448006A0D76 /* SsDefaultDisplayPhoto@2x.png in Resources */,
@@ -8775,6 +8806,7 @@
 				8A114CA31BE73F5D006AE3F0 /* PECropView.m in Sources */,
 				8A6CCEE91C1982D500BCD54E /* SeetiShopListingViewController.m in Sources */,
 				8AF030CB1C6063AB00817E2F /* AreaModel.m in Sources */,
+				8AFF08571C90379000918582 /* PostsTableViewCell.m in Sources */,
 				8AFA51C71C47B4AB00E7920E /* NewLandingViewController.m in Sources */,
 				8A4831AD1C85987C00CE95F2 /* ShopTableViewCell.m in Sources */,
 				8A114CB61BE73F5D006AE3F0 /* BHExpandingTextView.m in Sources */,
@@ -8789,6 +8821,7 @@
 				8A3757C61B8583ED009DB7D4 /* UIFont+SystemFontOverride.m in Sources */,
 				8A114C891BE73F5D006AE3F0 /* CAPSPageMenu.m in Sources */,
 				C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */,
+				8AFF085D1C90379000918582 /* SearchLTabViewController.m in Sources */,
 				8A3409D11B8B0DCB009B66C3 /* UIImage+Scaling.m in Sources */,
 				8A84C8D91C8036FD006A0D76 /* SeShopGroupModel.m in Sources */,
 				8AD6C0F41B706CF30040437E /* SearchChangeLocationViewController.m in Sources */,
@@ -8811,6 +8844,7 @@
 				8AF6FDDD1C5A16A0005AAE5D /* SeetiesProfileView.m in Sources */,
 				8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */,
 				8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */,
+				8AFF08531C90379000918582 /* SearchSimpleTableViewCell.m in Sources */,
 				0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */,
 				8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */,
 				8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */,
@@ -8856,10 +8890,10 @@
 				8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */,
 				8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */,
 				8AF867A81C7ECD2700B0195D /* CT3_EnableLocationViewController.m in Sources */,
-				8AEA18051C87064B000CF9CE /* SearchQuickBrowseListingController.m in Sources */,
 				8A03487E1C1579640015E606 /* NSString+Extra.m in Sources */,
 				8A114CA81BE73F5D006AE3F0 /* AsyncImageView.m in Sources */,
 				8A114CD01BE73F5D006AE3F0 /* TLTagsControl.m in Sources */,
+				8AFF08331C90358E00918582 /* TagLocationModel.m in Sources */,
 				8AFA51D31C47B4AB00E7920E /* ShopListingViewController.m in Sources */,
 				8A3409421B8AD06A009B66C3 /* UIImage+Enhancing.m in Sources */,
 				8AFA51F31C47B4AB00E7920E /* FeedType_FollowingPostTblCell.m in Sources */,
@@ -8881,6 +8915,7 @@
 				8AFA51ED1C47B4AB00E7920E /* FeedType_CollectionSuggestedTblCell.m in Sources */,
 				8A114CDB1BE73FBF006AE3F0 /* UIScrollView+IBFloatingHeader.m in Sources */,
 				0BC8A0E91C0D4AD500EB8548 /* SeCollectionView.m in Sources */,
+				8AFF085F1C90379000918582 /* SearchQuickBrowseListingController.m in Sources */,
 				8AD6BE5B1B706CF30040437E /* DoPhotoCell.m in Sources */,
 				8A6BB42C1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationController.m in Sources */,
 				8A114CC01BE73F5D006AE3F0 /* NSAlert+MKNetworkKitAdditions.m in Sources */,
@@ -8955,6 +8990,7 @@
 				8A114CA41BE73F5D006AE3F0 /* PECropViewController.m in Sources */,
 				C238E33F1C4649AA00570A25 /* NMRangeSlider.m in Sources */,
 				8A114C821BE73F5D006AE3F0 /* BKMoneyUtils.m in Sources */,
+				8AFF08511C90379000918582 /* SearchComplexTableViewCell.m in Sources */,
 				8A114CAC1BE73F5D006AE3F0 /* FSConverter.m in Sources */,
 				8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */,
 				8A3409431B8AD06A009B66C3 /* UIImage+Filtering.m in Sources */,
@@ -9028,6 +9064,7 @@
 				8A114C951BE73F5D006AE3F0 /* UIImage+FX.m in Sources */,
 				8A114CB71BE73F5D006AE3F0 /* BHExpandingTextViewInternal.m in Sources */,
 				8AD6BA661B705DF20040437E /* ViewController.m in Sources */,
+				8AFF085B1C90379000918582 /* SearchLocationViewController.m in Sources */,
 				8A3409D01B8B0DCB009B66C3 /* UIImage+RoundedCorner.m in Sources */,
 				8A114CD71BE73F5D006AE3F0 /* CommonViewController.m in Sources */,
 				8A0829401C1046F200AD8CBD /* UIView+draggable.m in Sources */,
@@ -9045,7 +9082,6 @@
 				8AF999191C3A2C76000314E4 /* PaginationModel.m in Sources */,
 				8AEDBFB51C2031BA000BD2FF /* Model.m in Sources */,
 				8A114C971BE73F5D006AE3F0 /* JTSAnimatedGIFUtility.m in Sources */,
-				8AFA52071C47B4AB00E7920E /* PostsTableViewCell.m in Sources */,
 				0B6A54E01BB51F84005B9D6B /* ReportViewController.m in Sources */,
 				8AF6FDD31C58955B005AAE5D /* UINavigationViewController+Extra.m in Sources */,
 				8AEDBFBB1C2031BA000BD2FF /* SeShopCategoryModel.m in Sources */,
@@ -9075,7 +9111,6 @@
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
 				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,
 				8A114CD31BE73F5D006AE3F0 /* BaseViewController.m in Sources */,
-				8AFA52091C47B4AB00E7920E /* SearchLTabViewController.m in Sources */,
 				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,
 				8A0035411C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m in Sources */,
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,
@@ -9091,6 +9126,7 @@
 				8A114C7A1BE73F5D006AE3F0 /* BKCardExpiryField.m in Sources */,
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
 				8A0035371C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m in Sources */,
+				8AFF08611C90379000918582 /* SeetizensTableViewCell.m in Sources */,
 				8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */,
 				8AF030C51C5F6CE400817E2F /* PlaceModel.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
@@ -9108,7 +9144,6 @@
 				8A114CC11BE73F5D006AE3F0 /* NSData+MKBase64.m in Sources */,
 				8A84752E1BC52C50006DD614 /* UIButton+Extra.m in Sources */,
 				8A6584411B9851C200BC86B9 /* DraftTableViewCell.m in Sources */,
-				8AFA52051C47B4AB00E7920E /* CT3_SearchListingViewController.m in Sources */,
 				8AF6FDD61C589C64005AAE5D /* MessageManager.m in Sources */,
 				8A3F35661BF5E89D002B704C /* SuggestedCollectionPostsViewController.m in Sources */,
 				8AD6C1141B706CF30040437E /* FSOAuthNoAppStore.m in Sources */,
@@ -9141,15 +9176,14 @@
 				8AD6C2831B7072FB0040437E /* AddLinkViewController.m in Sources */,
 				8A114CE81BE75CA0006AE3F0 /* CollectionViewController.m in Sources */,
 				8AFA51E11C47B4AB00E7920E /* CT3_LoginViewController.m in Sources */,
-				C25B50331C4E277D0027283E /* SearchLocationViewController.m in Sources */,
 				8AD6C0FC1B706CF30040437E /* SearchViewV2.m in Sources */,
+				8AFF08551C90379000918582 /* CT3_SearchListingViewController.m in Sources */,
 				8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */,
+				8AFF08591C90379000918582 /* SearchLocationAreaCell.m in Sources */,
 				8A295FD11C50A50F00747DBA /* UITabBar+Extension.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8A114CD21BE73F5D006AE3F0 /* UrlDataClass.m in Sources */,
 				8AF6FDEA1C5A289B005AAE5D /* SeDealsFeaturedTblCell.m in Sources */,
-				8AFA520B1C47B4AB00E7920E /* SeetizensTableViewCell.m in Sources */,
-				C2FB1CDF1C4F7A3B004AE990 /* SearchLocationAreaCell.m in Sources */,
 				8AD6C2811B7072FB0040437E /* AddHourViewController.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
 				8A7EDA7B1C747DE000A9E76E /* NotificationModel.m in Sources */,
