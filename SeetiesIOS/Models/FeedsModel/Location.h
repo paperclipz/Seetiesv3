@@ -31,6 +31,8 @@
 @property(nonatomic,strong)NSString* postal_code;
 @property(nonatomic,strong)NSString* route;
 @property(nonatomic,strong)NSString* sublocality;
+@property(nonatomic,strong)NSString* display_address;
+
 
 
 @end

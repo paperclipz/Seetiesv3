@@ -26,7 +26,7 @@
         
         self.ssModel = model;
         self.lblShopName.text = self.ssModel.name;
-        self.lblLocation.text = [NSString stringWithFormat:@"%@%@",self.ssModel.location.locality,self.ssModel.location.country];
+        self.lblLocation.text = self.ssModel.location.display_address;
         self.lblStatus.text = self.ssModel.location.opening_hours.open_now?LocalisedString(@"OPEN"):LocalisedString(@"CLOSED");
         self.lblStatus.backgroundColor = self.ssModel.location.opening_hours.open_now?GREEN_STATUS : TWO_ZERO_FOUR_COLOR;
 
