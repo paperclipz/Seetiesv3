@@ -10,6 +10,7 @@
 
 @interface DealDetailsViewController (){
     float contentHeightPadding;
+    float footerHeight;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitleLbl;
@@ -84,10 +85,10 @@
 
 @property(nonatomic) NSArray *viewArray;
 @property(nonatomic) DealModel *dealModel;
+@property(nonatomic) DealsModel *dealsModel;
 @property(nonatomic) BOOL isProcessing;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) NSMutableArray<SeShopDetailModel> *nearbyShopArray;
-@property(nonatomic) NSMutableArray<DealModel> *relatedDealArray;
 @property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic) DealRedeemViewController *dealRedeemViewController;
 @property(nonatomic) SeetiesShopViewController *seetiesShopViewController;
@@ -101,6 +102,7 @@
     // Do any additional setup after loading the view from its nib.
     self.isProcessing = NO;
     contentHeightPadding = 16.0;
+    footerHeight = 50.0;
     
     [self.ibAvailabilityTable registerNib:[UINib nibWithNibName:@"DealDetailsAvailabilityCell" bundle:nil] forCellReuseIdentifier:@"DealDetailsAvailabilityCell"];
     [self.ibShopTable registerNib:[UINib nibWithNibName:@"PromoOutletCell" bundle:nil] forCellReuseIdentifier:@"PromoOutletCell"];
@@ -227,16 +229,6 @@
     }
     
     return _seetieShopListingViewController;
-}
-
--(NSMutableArray<DealModel> *)relatedDealArray{
-    if (!_relatedDealArray) {
-        _relatedDealArray = [[NSMutableArray<DealModel> alloc] init];
-        
-        //Init with custom data - To be removed after testing
-        [_relatedDealArray addObjectsFromArray:@[[DealModel new], [DealModel new], [DealModel new], [DealModel new]]];
-    }
-    return _relatedDealArray;
 }
 
 #pragma mark - UpdateView
@@ -427,17 +419,17 @@
     float tableHeight = cellHeight * numberOfShop;
     CGFloat totalHeight = self.ibShopTable.frame.origin.y + tableHeight + contentHeightPadding;
     
-    //Closed for testing, To be opened after testing
-//    if (self.dealModel.shops.count > 3) {
-        self.ibShopSeeMoreHeightConstraint.constant = 40;
+    if (self.dealModel.shops.count > 3) {
+        self.ibShopSeeMoreHeightConstraint.constant = footerHeight;
         self.ibShopSeeMoreBtn.hidden = NO;
+        [self.ibShopSeeMoreBtn prefix_addUpperBorder:OUTLINE_COLOR];
         totalHeight += self.ibShopSeeMoreHeightConstraint.constant;
-//    }
-//    else{
-//        self.ibShopSeeMoreHeightConstraint.constant = 0;
-//        self.ibShopSeeMoreBtn.hidden = YES;
-//        totalHeight += self.ibShopSeeMoreHeightConstraint.constant;
-//    }
+    }
+    else{
+        self.ibShopSeeMoreHeightConstraint.constant = 0;
+        self.ibShopSeeMoreBtn.hidden = YES;
+        totalHeight += self.ibShopSeeMoreHeightConstraint.constant;
+    }
     
     [self.ibShopView setHeight:totalHeight];
 }
@@ -474,8 +466,9 @@
         self.ibTnCContentHeightConstraint.constant = yOrigin;
         
         if (self.dealModel.terms.count > 5) {
-            self.ibTnCSeeMoreHeightConstraint.constant = 40;
+            self.ibTnCSeeMoreHeightConstraint.constant = footerHeight;
             self.ibTnCReadMoreBtn.hidden = NO;
+            [self.ibTnCReadMoreBtn prefix_addUpperBorder:OUTLINE_COLOR];
             
         }
         else{
@@ -488,6 +481,7 @@
 }
 
 -(void)updateNearbyShopView{
+    [self.ibNearbyShopCollection reloadData];
     
     if (self.nearbyShopArray.count > 0) {
         CGFloat contentHeight = self.ibNearbyShopCollection.frame.origin.y + 132 + contentHeightPadding;
@@ -499,17 +493,21 @@
 }
 
 -(void)updateDealsView{
-    self.ibDealsTitleLbl.text = [NSString stringWithFormat:@"%@ (%ld)", LocalisedString(@"Deals"), self.relatedDealArray.count];
+    self.ibDealsTitleLbl.text = [NSString stringWithFormat:@"%@ (%d)", LocalisedString(@"Deals"), self.dealsModel.total_count];
+    [self.ibDealsTable reloadData];
     
-    if(self.relatedDealArray.count > 0){
+    NSArray<DealModel> *dealsArray = self.dealsModel.deals;
+    int totalDeals = self.dealsModel.total_count;
+    if(totalDeals > 0){
         float cellHeight = [SeDealsFeaturedTblCell getHeight];
-        NSInteger numberOfDeals = self.relatedDealArray.count > 3? 3 : self.relatedDealArray.count;
+        NSInteger numberOfDeals = totalDeals > 3? 3 : dealsArray.count;
         float tableHeight = cellHeight * numberOfDeals;
         CGFloat totalHeight = self.ibDealsTable.frame.origin.y + tableHeight + contentHeightPadding;
         
-        if (self.relatedDealArray.count > 3) {
-            self.ibDealsSeeMoreHeightConstraint.constant = 40;
+        if (totalDeals > 3) {
+            self.ibDealsSeeMoreHeightConstraint.constant = footerHeight;
             self.ibDealsSeeMoreBtn.hidden = NO;
+            [self.ibDealsSeeMoreBtn prefix_addUpperBorder:OUTLINE_COLOR];
             totalHeight += self.ibDealsSeeMoreHeightConstraint.constant;
         }
         else{
@@ -650,11 +648,11 @@
         
     }
     else if (tableView == self.ibDealsTable){
-        if (self.relatedDealArray.count > 3) {
+        if (self.dealsModel.deals.count > 3) {
             return 3;
         }
         else{
-            return self.relatedDealArray.count;
+            return self.dealsModel.deals.count;
         }
         
     }
@@ -678,7 +676,9 @@
         return cell;
     }
     else if (tableView == self.ibDealsTable){
-        return [tableView dequeueReusableCellWithIdentifier:@"SeDealsFeaturedTblCell"];
+        SeDealsFeaturedTblCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeDealsFeaturedTblCell"];
+        [cell initData:self.dealsModel.deals[indexPath.row]];
+        return cell;
     }
     
     return nil;
@@ -763,13 +763,7 @@
         [self updateViews];
         [self updateFooterView];
         
-        if (self.dealModel.shops.count == 1) {
-            [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
-        }
-        else{
-            [self drawBorders];
-            [LoadingManager hide];
-        }
+        [self requestServerForDealRelevantDeals];
         
     } errorBlock:^(id object) {
         
@@ -786,7 +780,7 @@
         [self updateViews];
         [self updateFooterView];
         
-        [self requestServerForSeetiShopNearbyShop:self.dealModel.voucher_info.shop_info];
+        [self requestServerForDealRelevantDeals];
         
     } errorBlock:^(id object) {
         
@@ -828,7 +822,7 @@
         SeShopsModel *seetieShopModel = [[ConnectionManager dataManager]seNearbyShopModel];
         [self.nearbyShopArray addObjectsFromArray:seetieShopModel.shops];
         [self updateViews];
-        [self.ibNearbyShopCollection reloadData];
+        
         [self drawBorders];
         [LoadingManager hide];
     } errorBlock:^(id object) {
@@ -836,5 +830,36 @@
     }];
 }
 
+-(void)requestServerForDealRelevantDeals{
+    NSString* appendString = [NSString stringWithFormat:@"%@/relevent-deals", self.dealModel.dID];
+    
+    NSDictionary* dict = @{@"limit":@"3",
+                           @"offset":@"1",
+                           @"deal_id" : self.dealModel.dID,
+                           @"token" : [Utils getAppToken]
+                           };
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealRelevantDeals param:dict appendString:appendString completeHandler:^(id object) {
+        DealsModel *deals = [[ConnectionManager dataManager]dealsModel];
+        self.dealsModel = deals;
+        [self updateViews];
+        
+        if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
+            if (self.dealModel.shops.count == 1) {
+                [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
+            }
+            else{
+                [self drawBorders];
+                [LoadingManager hide];
+            }
+        }
+        else{
+            [self requestServerForSeetiShopNearbyShop:self.dealModel.voucher_info.shop_info];
+        }
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
 
 @end

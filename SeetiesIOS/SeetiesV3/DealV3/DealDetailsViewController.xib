@@ -300,14 +300,21 @@
                                         <constraint firstAttribute="width" constant="600" id="Xm6-aH-pdG"/>
                                     </constraints>
                                 </view>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealsPhotoOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="FoH-lo-o5s" userLabel="overlay">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="175"/>
+                                </imageView>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="8f7-9a-tVy" secondAttribute="trailing" id="1yb-ek-5gk"/>
                                 <constraint firstItem="8f7-9a-tVy" firstAttribute="height" secondItem="C8i-NX-nwa" secondAttribute="height" id="8Os-wI-eRO"/>
+                                <constraint firstItem="FoH-lo-o5s" firstAttribute="leading" secondItem="C8i-NX-nwa" secondAttribute="leading" id="E9o-g4-8Uh"/>
                                 <constraint firstItem="8f7-9a-tVy" firstAttribute="leading" secondItem="C8i-NX-nwa" secondAttribute="leading" id="EbK-zB-i9B"/>
+                                <constraint firstAttribute="trailing" secondItem="FoH-lo-o5s" secondAttribute="trailing" id="RfZ-Zc-paD"/>
                                 <constraint firstAttribute="height" constant="175" id="ZbI-l9-if7"/>
                                 <constraint firstItem="8f7-9a-tVy" firstAttribute="top" secondItem="C8i-NX-nwa" secondAttribute="top" id="cnH-Au-Lr6"/>
+                                <constraint firstAttribute="bottom" secondItem="FoH-lo-o5s" secondAttribute="bottom" id="fRF-RO-5bm"/>
                                 <constraint firstAttribute="bottom" secondItem="8f7-9a-tVy" secondAttribute="bottom" id="oWZ-Q2-VhS"/>
+                                <constraint firstItem="FoH-lo-o5s" firstAttribute="top" secondItem="C8i-NX-nwa" secondAttribute="top" id="uSI-rd-e5K"/>
                             </constraints>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="d2t-pl-PwC"/>
@@ -518,7 +525,7 @@
                             </variation>
                         </scrollView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="50% OFF for All Coffee Drinks" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPR-R2-ztP" userLabel="deal title">
-                            <rect key="frame" x="16" y="50" width="568" height="24"/>
+                            <rect key="frame" x="16" y="58" width="568" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="R8o-QE-0BA"/>
                             </constraints>
@@ -532,7 +539,7 @@
                             </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duK-1v-5Wn" userLabel="desc title">
-                            <rect key="frame" x="16" y="79" width="568" height="21"/>
+                            <rect key="frame" x="16" y="87" width="568" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="ffW-fJ-fiM"/>
                             </constraints>
@@ -541,7 +548,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4x-ov-uHa" userLabel="description">
-                            <rect key="frame" x="16" y="105" width="568" height="18"/>
+                            <rect key="frame" x="16" y="113" width="568" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="xPb-lN-FbI"/>
                             </constraints>
@@ -555,7 +562,7 @@
                             </variation>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l7C-D2-XyF" userLabel="redemption type content view">
-                            <rect key="frame" x="16" y="128" width="576" height="0.0"/>
+                            <rect key="frame" x="16" y="136" width="576" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" id="Aey-4H-hO2"/>
@@ -576,7 +583,7 @@
                         <constraint firstItem="y4x-ov-uHa" firstAttribute="top" secondItem="duK-1v-5Wn" secondAttribute="bottom" constant="5" id="5rh-D2-ftz"/>
                         <constraint firstItem="VPR-R2-ztP" firstAttribute="leading" secondItem="JIp-V7-DfW" secondAttribute="leading" constant="16" id="706-Zl-Ec2"/>
                         <constraint firstItem="duK-1v-5Wn" firstAttribute="leading" secondItem="JIp-V7-DfW" secondAttribute="leading" constant="16" id="GIS-Gf-31d"/>
-                        <constraint firstItem="VPR-R2-ztP" firstAttribute="top" secondItem="b55-bC-7Gz" secondAttribute="bottom" id="HNk-zd-63a"/>
+                        <constraint firstItem="VPR-R2-ztP" firstAttribute="top" secondItem="b55-bC-7Gz" secondAttribute="bottom" constant="8" id="HNk-zd-63a"/>
                         <constraint firstAttribute="trailing" secondItem="b55-bC-7Gz" secondAttribute="trailing" constant="16" id="MIb-oF-mqR"/>
                         <constraint firstItem="b55-bC-7Gz" firstAttribute="leading" secondItem="JIp-V7-DfW" secondAttribute="leading" constant="16" id="Thf-kK-qYM"/>
                         <constraint firstItem="l7C-D2-XyF" firstAttribute="leading" secondItem="JIp-V7-DfW" secondAttribute="leading" constant="16" id="U4m-qw-90z"/>
@@ -678,9 +685,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jx2-YP-hDG">
-                            <rect key="frame" x="0.0" y="552" width="600" height="40"/>
+                            <rect key="frame" x="0.0" y="542" width="600" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="z64-Gf-zMx"/>
+                                <constraint firstAttribute="height" constant="50" id="z64-Gf-zMx"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <state key="normal" title="see more">
@@ -691,7 +698,7 @@
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lW3-qG-AMl" userLabel="shop table">
-                            <rect key="frame" x="8" y="37" width="584" height="515"/>
+                            <rect key="frame" x="8" y="37" width="584" height="505"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="dhc-R3-m4b"/>
@@ -753,9 +760,9 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQg-Rf-AEv" userLabel="read more button">
-                            <rect key="frame" x="0.0" y="165" width="600" height="40"/>
+                            <rect key="frame" x="0.0" y="165" width="600" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="6EY-Ff-Rr5"/>
+                                <constraint firstAttribute="height" constant="50" id="6EY-Ff-Rr5"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <state key="normal" title="read all">
@@ -821,9 +828,9 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2r-aF-OtR">
-                            <rect key="frame" x="0.0" y="552" width="600" height="40"/>
+                            <rect key="frame" x="0.0" y="542" width="600" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="o5R-nL-139"/>
+                                <constraint firstAttribute="height" constant="50" id="o5R-nL-139"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <state key="normal" title="see more">
@@ -831,7 +838,7 @@
                             </state>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YJE-cJ-kVD" userLabel="deals table">
-                            <rect key="frame" x="16" y="48" width="568" height="504"/>
+                            <rect key="frame" x="16" y="48" width="568" height="494"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="x6h-Yp-eeh"/>
@@ -1025,6 +1032,7 @@
         <image name="ArrowBtn.png" width="30" height="30"/>
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="CollectIcon.png" width="21" height="19"/>
+        <image name="DealsPhotoOverlay.png" width="320" height="74"/>
         <image name="Icon-60.png" width="60" height="60"/>
         <image name="ProfileShareIcon.png" width="40" height="40"/>
         <image name="SSWhiteTranslateIcon.png" width="25" height="26"/>
