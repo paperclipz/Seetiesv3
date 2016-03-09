@@ -23,7 +23,15 @@
 @implementation CT3_EnableLocationViewController
 - (IBAction)btnAllowAccessClicked:(id)sender {
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    
+    if ([SearchManager isDeviceGPSTurnedOn]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+
+    }
+    else{
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+
+    }
 
 //    [[SearchManager Instance]startSearchGPSLocation:^(CLLocation * location){
 //        

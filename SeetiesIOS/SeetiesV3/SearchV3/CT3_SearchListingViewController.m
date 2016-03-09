@@ -9,6 +9,9 @@
 #import "CT3_SearchListingViewController.h"
 #import "AddCollectionDataViewController.h"
 #import "SeetiesShopViewController.h"
+#import "SearchComplexTableViewCell.h"
+#import "SearchSimpleTableViewCell.h"
+#import "DealHeaderView.h"
 
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
@@ -16,10 +19,12 @@
 
 @property(nonatomic)SearchLocationDetailModel* googleLocationDetailModel;
 
+@property (weak, nonatomic) IBOutlet UIView *ibContentView;
+@property (strong, nonatomic) IBOutlet UITableView *ibSearchTableView;
+@property (weak, nonatomic) IBOutlet UITableView *ibLocationTableView;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
-@property (weak, nonatomic) IBOutlet UIView *ibLocationView;
-@property (weak, nonatomic) IBOutlet UITableView *ibLocationTableView;
 @property (weak, nonatomic) IBOutlet UITextField *ibSearchText;
 @property (weak, nonatomic) IBOutlet UITextField *ibLocationText;
 @property (weak, nonatomic) IBOutlet UIView *ibSearchContentView;
@@ -45,6 +50,10 @@
 @property(nonatomic)SeetiesShopViewController* seetiesShopViewController;
 
 @property(nonatomic)HomeLocationModel* homeLocationModel;
+
+@property(nonatomic)NSArray* arrSimpleTagList;
+@property(nonatomic)NSArray* arrComplexTagList;
+
 @end
 
 @implementation CT3_SearchListingViewController
@@ -67,10 +76,25 @@
     self.homeLocationModel.latitude = self.locationLatitude;
     self.homeLocationModel.longtitude = self.locationLongtitude;
     self.homeLocationModel.place_id = self.placeID;
+    self.homeLocationModel.dictAddressComponent = self.addressComponent;
     self.ibSearchText.text = self.keyword;
     
     
     [self refreshSearch];
+    
+    self.ibLocationTableView.hidden = YES;
+    self.ibSearchTableView.hidden = YES;
+  
+//    [self.ibContentView addSubview:self.ibLocationTableView];
+//    [self.ibContentView addSubview:self.ibSearchTableView];
+//
+//    CGRect frame = [Utils getDeviceScreenSize];
+//    self.ibLocationTableView.frame = CGRectMake(0, 0, frame.size.width, self.ibContentView.frame.size.height);
+//    self.ibSearchTableView.frame = CGRectMake(0, 0, frame.size.width, self.ibContentView.frame.size.height);
+    self.ibLocationTableView.delegate = self;
+    self.ibLocationTableView.dataSource = self;
+    self.ibSearchTableView.delegate = self;
+    self.ibSearchTableView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,7 +103,7 @@
 }
 -(void)InitSelfView{
     //self.ibScrollView.contentSize = CGSizeMake(850, 50);
-    
+
     self.ibLocationText.delegate = self;
     self.ibSearchText.delegate = self;
     self.ibSearchText.placeholder = LocalisedString(@"Search");
@@ -148,13 +172,22 @@
     if (textField == self.ibLocationText) {
         NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
      
-        if ([newString length] >= 2) {
-            [self getGoogleSearchPlaces:newString];
-
-        }else{
-            
-        }
+        
+        self.ibLocationTableView.hidden = NO;
+        self.ibSearchTableView.hidden = YES;
+        
+        [self getGoogleSearchPlaces:newString];
+    
+    
     }else if(textField == self.ibSearchText){
+        
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+
+        [self requestServerForTag:newString];
+        
+        self.ibSearchTableView.hidden = NO;
+        self.ibLocationTableView.hidden = YES;
+
     }
     
     
@@ -166,11 +199,15 @@
     NSLog(@"The did begin edit method was called");
     if(textField == self.ibSearchText){
         NSLog(@"SearchTextField begin");
-        self.ibLocationView.hidden = YES;
+        self.ibLocationTableView.hidden = YES;
+        self.ibSearchTableView.hidden = NO;
+
     }
     if (textField == self.ibLocationText) {
         NSLog(@"SearchAddressField begin");
-        self.ibLocationView.hidden = NO;
+        self.ibLocationTableView.hidden = NO;
+        self.ibSearchTableView.hidden = YES;
+
     }
 }
 
@@ -178,7 +215,7 @@
     // [self.view endEditing:YES];// this will do the trick
     [self.ibSearchText resignFirstResponder];
     [self.ibLocationText resignFirstResponder];
-    self.ibLocationView.hidden = YES;
+    self.ibLocationTableView.hidden = YES;
 
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -186,11 +223,13 @@
     
     [textField resignFirstResponder];
     if (textField == self.ibSearchText) {
-        self.ibLocationView.hidden = YES;
-        
+        self.ibLocationTableView.hidden = YES;
+        self.ibSearchTableView.hidden = YES;
+
        
         if (![Utils isStringNull:self.ibSearchText.text]) {
             [self refreshSearch];
+            
         }
 
     }else if(textField == self.ibLocationText){
@@ -202,40 +241,198 @@
     return YES;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (tableView == self.ibSearchTableView) {
+        
+        return 2;
+
+    }
+    else{
+    
+        return 1;
+    }
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    if (tableView == self.ibSearchTableView) {
+        
+        DealHeaderView* view = [DealHeaderView initializeCustomView];
+        view.btnSeeMore.hidden = YES;
+        
+        if (section == 0) {
+            [view.btnDeals setTitle:LocalisedString(@"Suggested places") forState:UIControlStateNormal];
+        }
+        else{
+            [view.btnDeals setTitle:LocalisedString(@"Suggested search") forState:UIControlStateNormal];
+            
+        }
+        return view;
+
+    }
+    
+    return nil;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (tableView == self.ibSearchTableView) {
+        return 52.0f;
+    }
+    
+    return 0;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-     return self.searchModel.predictions.count;
+    
+    if (tableView == self.ibLocationTableView) {
+        return self.searchModel.predictions.count;
+
+    }
+    else
+    {
+        if(section == 0)
+        {
+            return self.arrComplexTagList.count;
+        }
+        else{
+            return self.arrSimpleTagList.count;
+        }
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+    if (tableView == self.ibLocationTableView) {
+        static NSString *simpleTableIdentifier = @"SimpleTableItem";
         
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+            
+        }
+        [cell setBackgroundColor:[UIColor clearColor]];
+        
+        SearchLocationModel* model = self.searchModel.predictions[indexPath.row];
+        
+        NSDictionary* dict = model.terms[0];
+        
+        cell.textLabel.text = dict[@"value"];
+        cell.detailTextLabel.text = [model longDescription];
+        cell.textLabel.textColor = TEXT_GRAY_COLOR;
+        return cell;
+
     }
-    [cell setBackgroundColor:[UIColor clearColor]];
-//    
-//    UILabel *ShowName = (UILabel *)[cell viewWithTag:100];
-//    ShowName.text = [SearchLocationNameArray objectAtIndex:indexPath.row];
     
-    SearchLocationModel* model = self.searchModel.predictions[indexPath.row];
+    else if(tableView == self.ibSearchTableView)
+    {
+        
+        
+        if(indexPath.section == 0)
+        {
+            SearchComplexTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchComplexTableViewCell"];
+            
+            if (cell == nil) {
+                cell = [[SearchComplexTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"SearchComplexTableViewCell"];
+                
+            }
+            
+            @try {
+                
+                ComplexTagModel* cModel = self.arrComplexTagList[indexPath.row];
+                
+                cell.lblTitle.text = [NSString stringWithFormat:@"%@ > %@",cModel.tag,cModel.location.formatted_address];
+            }
+            
+            @catch (NSException *exception) {
+                SLog(@"");
+            }
+
+            return cell;
+        }
+        else{
+            SearchSimpleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchSimpleTableViewCell"];
+            
+            if (cell == nil) {
+                cell = [[SearchSimpleTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"SearchSimpleTableViewCell"];
+                
+            }
+            
+            @try {
+                
+                NSString* tag = self.arrSimpleTagList[indexPath.row];
+                
+                cell.lblTitle.text = tag;
+            }
+            
+            @catch (NSException *exception) {
+                SLog(@"");
+            }
+            @finally {
+                
+                cell.btnSuggestSearchClickedBlock = ^(void)
+                {
+                    NSString* tempString = self.arrSimpleTagList[indexPath.row];
+                    self.ibSearchText.text = tempString;
+                    [self requestServerForTag:tempString];
+                    
+                };
+                return cell;
+            }
+        }
+       
+
+    }
+    return nil;
     
-    NSDictionary* dict = model.terms[0];
-    
-    cell.textLabel.text = dict[@"value"];
-    cell.detailTextLabel.text = [model longDescription];
-    
-    return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    [self processDataForGoogleLocation:indexPath];
+    
+    if(tableView == self.ibLocationTableView)
+    {
+        [self processDataForGoogleLocation:indexPath];
+
+    }
+    else if(tableView == self.ibSearchTableView)
+    {
+        if(indexPath.section == 0)
+        {
+            
+            ComplexTagModel* model = self.arrComplexTagList[indexPath.row];
+            
+            _homeLocationModel = nil;
+            
+            self.homeLocationModel.latitude = model.location.lat;
+            self.homeLocationModel.longtitude = model.location.lng;
+            self.homeLocationModel.stringAddressComponent = model.location.address_components;
+            self.ibLocationTableView.hidden = YES;
+            self.ibSearchTableView.hidden = YES;
+
+            [self refreshSearch];
+        }
+        else if (indexPath.section == 1)
+        {
+            
+            self.ibLocationTableView.hidden = YES;
+            self.ibSearchTableView.hidden = YES;
+            
+            NSString* tempString = self.arrSimpleTagList[indexPath.row];
+            
+            self.ibSearchText.text = tempString;
+            
+            [self refreshSearch];
+
+        }
+    }
+        
 }
 
 
@@ -289,6 +486,26 @@
 }
 #pragma mark - Request Sever
 
+
+-(void)requestServerForTag:(NSString*)tag
+{
+    NSDictionary* dict = @{@"token" : [Utils getAppToken]};
+    
+    NSString *tagStr = [tag stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+    //[LoadingManager show];
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetTagsSuggestion  param:dict appendString:tagStr completeHandler:^(id object) {
+        
+        self.arrSimpleTagList =[[NSMutableArray alloc]initWithArray:[[[ConnectionManager dataManager] tagModel] arrayTag] ];
+        
+        self.arrComplexTagList =[[NSMutableArray alloc]initWithArray:[[[ConnectionManager dataManager] tagModel] arrComplexTag] ];
+
+        [self.ibSearchTableView reloadData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
 //-(void)requestServerForSearchCollection:(NSString*)keyword
 //{
 //    CLLocation* location = [[SearchManager Instance]getAppLocation];
@@ -344,7 +561,7 @@
 
         [self.ibSearchText resignFirstResponder];
         [self.ibLocationText resignFirstResponder];
-        self.ibLocationView.hidden = YES;
+        self.ibLocationTableView.hidden = YES;
         
        [self refreshSearch];
         
@@ -555,14 +772,13 @@
 
 #pragma mark Init Data
 
-
 -(void)refreshSearch
 {
     
-    [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
+  //  [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
     [self.shopListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
-    [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
-    [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
+  //  [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
+  //  [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
     
    
 }

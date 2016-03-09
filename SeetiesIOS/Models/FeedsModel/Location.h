@@ -32,4 +32,5 @@
 @property(nonatomic,strong)NSString* route;
 @property(nonatomic,strong)NSString* sublocality;
 
+
 @end

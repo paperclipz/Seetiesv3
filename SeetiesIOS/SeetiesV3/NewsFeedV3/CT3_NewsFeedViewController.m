@@ -51,6 +51,7 @@
 #import "WalletListingViewController.h"
 
 #import "SearchQuickBrowseListingController.h"
+#import "CT3_SearchListingViewController.h"
 
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
@@ -119,6 +120,7 @@ static NSCache* heightCache = nil;
 @property(nonatomic)WalletListingViewController* walletListingViewController;
 @property(nonatomic)SearchQuickBrowseListingController* searchQuickBrowseListingController;
 
+@property(nonatomic)CT3_SearchListingViewController* ct3_SearchListingViewController;
 /*Controller*/
 
 @end
@@ -135,8 +137,11 @@ static NSCache* heightCache = nil;
 
 - (IBAction)btnSearchClicked:(id)sender {
     
-    _searchViewV2Controller = nil;
-    [self.navigationController pushViewController:self.searchViewV2Controller animated:YES];
+ //   _searchViewV2Controller = nil;
+ //   [self.navigationController pushViewController:self.searchViewV2Controller animated:YES];
+    
+    _ct3_SearchListingViewController = nil;
+    [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
 
 - (IBAction)btnGrabNowClicked:(id)sender {
@@ -187,6 +192,14 @@ static NSCache* heightCache = nil;
 
 #pragma mark - Declaration
 
+-(CT3_SearchListingViewController*)ct3_SearchListingViewController
+{
+    if (!_ct3_SearchListingViewController) {
+        _ct3_SearchListingViewController = [CT3_SearchListingViewController new];
+    }
+    
+    return _ct3_SearchListingViewController;
+}
 -(void)setLocationName:(NSString *)locationName
 {
     _locationName = locationName;

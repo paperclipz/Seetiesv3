@@ -31,6 +31,8 @@
 @property(nonatomic)CT3_EnableLocationViewController* enableLocationViewController;
 
 @property(nonatomic,readwrite)NSString* locationName;
+
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation SearchLocationViewController
@@ -38,10 +40,38 @@
 #pragma mark - IBACTION
 - (IBAction)btnutoDetectClicked:(id)sender {
     
+    
+    
+
     if ([SearchManager isDeviceGPSTurnedOn]) {
         
-        self.userLocation = [self.searchManager getAppLocation];
-        [self getGoogleGeoCode];
+        if (self.userLocation) {
+            
+            [self stopBlinkGPS];
+
+            [self getGoogleGeoCode];
+
+        }
+        else{
+            
+            [LoadingManager show];
+            
+            [self startBlinkGPS];
+
+            [self.searchManager startSearchGPSLocation:^(CLLocation *location) {
+                
+                [self stopBlinkGPS];
+
+                self.userLocation = location;
+               
+                [self getGoogleGeoCode];
+                
+                [LoadingManager hide];
+                
+            }];
+
+        }
+        
 
     }
     else{
@@ -54,13 +84,24 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    if ([CLLocationManager isLocationUpdatesAvailable]) {
+    if ([SearchManager isDeviceGPSTurnedOn]) {
+        
+        if (!self.userLocation) {
+            [self.searchManager startSearchGPSLocation:^(CLLocation *location) {
+                self.userLocation = location;
+                [self stopBlinkGPS];
+
+            }];
+        }
+        
+
         self.ibImgLocation.image = [UIImage imageNamed:@"1.png"];
+        [self startBlinkGPS];
 
     }
     else{
-        self.ibImgLocation.image = [UIImage imageNamed:@"ic_qu_direction_mylocation.png"];
-
+        self.ibImgLocation.image = [UIImage imageNamed:@"2.png"];
+        [self stopBlinkGPS];
     }
 }
     
@@ -521,5 +562,26 @@
     
 }
 
+- (void)onTimerEvent:(NSTimer*)timer
+{
+    self.ibImgLocation.alpha = 0;
+
+    [UIView animateWithDuration:0.5 animations:^{
+        self.ibImgLocation.alpha = 1;
+
+    }];
+}
+
+
+-(void)startBlinkGPS
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTimerEvent:) userInfo:nil repeats:YES];
+
+}
+
+-(void)stopBlinkGPS
+{
+    [self.timer invalidate];
+}
 
 @end

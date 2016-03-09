@@ -8,9 +8,12 @@
 
 #import "Model.h"
 
+@protocol ComplexTagModel @end
+
 @interface TagModel : Model
 
 
 @property(nonatomic,strong)NSArray* arrayTag;
+@property(nonatomic,strong)NSArray<ComplexTagModel>* arrComplexTag;
 
 @end

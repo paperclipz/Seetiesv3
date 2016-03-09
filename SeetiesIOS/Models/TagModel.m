@@ -12,8 +12,14 @@
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"simple": @"arrayTag"
+                                                       @"simple": @"arrayTag",
+                                                       @"complex": @"arrComplexTag"
+
                                                        }];
+}
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
 }
 
 @end
