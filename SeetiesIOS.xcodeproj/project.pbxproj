@@ -1469,6 +1469,7 @@
 		8AFF08601C90379000918582 /* SearchQuickBrowseListingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF084D1C90379000918582 /* SearchQuickBrowseListingController.xib */; };
 		8AFF08611C90379000918582 /* SeetizensTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */; };
 		8AFF08621C90379000918582 /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */; };
+		8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF09101C9038C400918582 /* ComplexTagModel.m */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
@@ -3471,6 +3472,8 @@
 		8AFF084E1C90379000918582 /* SeetizensTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetizensTableViewCell.h; sourceTree = "<group>"; };
 		8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetizensTableViewCell.m; sourceTree = "<group>"; };
 		8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetizensTableViewCell.xib; sourceTree = "<group>"; };
+		8AFF090F1C9038C400918582 /* ComplexTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComplexTagModel.h; path = SeetiesIOS/MODELS/ComplexTagModel.h; sourceTree = SOURCE_ROOT; };
+		8AFF09101C9038C400918582 /* ComplexTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComplexTagModel.m; path = SeetiesIOS/MODELS/ComplexTagModel.m; sourceTree = SOURCE_ROOT; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C20872941C59D1FA0063F203 /* PromoOutletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoOutletCell.h; sourceTree = "<group>"; };
 		C20872951C59D1FA0063F203 /* PromoOutletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoOutletCell.m; sourceTree = "<group>"; };
@@ -6954,6 +6957,8 @@
 				8AEDBF9B1C2031BA000BD2FF /* SearchModel.m */,
 				8AEDBFA41C2031BA000BD2FF /* TagModel.h */,
 				8AEDBFA51C2031BA000BD2FF /* TagModel.m */,
+				8AFF090F1C9038C400918582 /* ComplexTagModel.h */,
+				8AFF09101C9038C400918582 /* ComplexTagModel.m */,
 				8AEDBFA61C2031BA000BD2FF /* UserDefaultModel.h */,
 				8AEDBFA71C2031BA000BD2FF /* UserDefaultModel.m */,
 				8ADD47011C4CFD6D00AEAE2B /* AnnouncementModel.h */,
@@ -9142,6 +9147,7 @@
 				8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */,
 				8AD6C10C1B706CF30040437E /* ForgotPasswordViewController.m in Sources */,
 				8A114CC11BE73F5D006AE3F0 /* NSData+MKBase64.m in Sources */,
+				8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */,
 				8A84752E1BC52C50006DD614 /* UIButton+Extra.m in Sources */,
 				8A6584411B9851C200BC86B9 /* DraftTableViewCell.m in Sources */,
 				8AF6FDD61C589C64005AAE5D /* MessageManager.m in Sources */,
