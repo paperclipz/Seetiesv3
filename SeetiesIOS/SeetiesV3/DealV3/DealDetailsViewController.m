@@ -20,14 +20,21 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderContentView;
-@property (weak, nonatomic) IBOutlet UILabel *ibHeaderDealExpiryLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderImageCountLbl;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibHeaderImageScrollView;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderImageContentView;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderBlackShadeView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibHeaderBlackShadeIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderBlackShadeStatus;
+@property (weak, nonatomic) IBOutlet UIView *ibHeaderNormalExpiryView;
+@property (weak, nonatomic) IBOutlet UIView *ibHeaderRedeemExpiryView;
+@property (weak, nonatomic) IBOutlet UIView *ibHeaderExpiryView;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderNormalExpiryLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderRedeemExpiryTitleLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderRedeemExpiryLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderRedeemExpiryDescLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHeaderImageContentWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHeaderExpiryHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibDealDetailsView;
 @property (weak, nonatomic) IBOutlet UIView *ibDealDetailsContentView;
@@ -93,6 +100,9 @@
 @property(nonatomic) DealRedeemViewController *dealRedeemViewController;
 @property(nonatomic) SeetiesShopViewController *seetiesShopViewController;
 @property(nonatomic) SeetiShopListingViewController *seetieShopListingViewController;
+@property(nonatomic) DealDetailsViewController *dealDetailsViewController;
+@property(nonatomic) VoucherListingViewController *voucherListingViewController;
+@property(nonatomic) TermsViewController *termsViewController;
 @end
 
 @implementation DealDetailsViewController
@@ -190,6 +200,18 @@
     }];
 }
 
+- (IBAction)relatedDealsSeeMoreBtnClicked:(id)sender {
+    self.voucherListingViewController = nil;
+    [self.voucherListingViewController initWithDealId:self.dealModel.dID];
+    [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+}
+
+- (IBAction)tnCReadMoreBtnClicked:(id)sender {
+    self.termsViewController = nil;
+    [self.termsViewController initData:self.dealModel.terms];
+    [self.navigationController pushViewController:self.termsViewController animated:YES];
+}
+
 #pragma mark - Declaration
 -(DealManager *)dealManager{
     return [DealManager Instance];
@@ -229,6 +251,27 @@
     }
     
     return _seetieShopListingViewController;
+}
+
+-(DealDetailsViewController *)dealDetailsViewController{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    return _dealDetailsViewController;
+}
+
+-(VoucherListingViewController *)voucherListingViewController{
+    if (!_voucherListingViewController) {
+        _voucherListingViewController = [VoucherListingViewController new];
+    }
+    return _voucherListingViewController;
+}
+
+-(TermsViewController *)termsViewController{
+    if (!_termsViewController) {
+        _termsViewController = [TermsViewController new];
+    }
+    return _termsViewController;
 }
 
 #pragma mark - UpdateView
@@ -274,6 +317,7 @@
         self.ibHeaderTitleLbl.text = self.dealModel.voucher_info.shop_info.name;
     }
     
+    //Set image scrollview
     CGFloat imageXOrigin = 0;
     if (![Utils isArrayNull:self.dealModel.photos]) {
         [self.ibHeaderImageScrollView refreshConstraint];
@@ -291,21 +335,54 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyy-MM-dd HH:mm:ss"];
-    NSDate *expireDate = [dateFormatter dateFromString:self.dealModel.expired_at];
-    [dateFormatter setDateFormat:@"dd MMM yyyy"];
-    self.ibHeaderDealExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires"), [dateFormatter stringFromDate:expireDate]];
-    
-    if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
+    NSString *status = self.dealModel.voucher_info.status;
+    if ([status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
+        self.ibHeaderRedeemExpiryView.hidden = NO;
+        self.ibHeaderNormalExpiryView.hidden = YES;
+        self.ibHeaderExpiryHeightConstraint.constant = 100;
         self.ibHeaderBlackShadeView.hidden = NO;
         self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Redeemed");
+        
+        self.ibHeaderRedeemExpiryTitleLbl.text = LocalisedString(@"Deal have been redeemed on");
+        self.ibHeaderRedeemExpiryDescLbl.text = LocalisedString(@"Flash this screen to the shop's worker or owner to redeem the deal");
+        
+        NSDate *redeemDate = [dateFormatter dateFromString:self.dealModel.voucher_info.redeemed_at];
+        [dateFormatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
+        self.ibHeaderRedeemExpiryLbl.text = [dateFormatter stringFromDate:redeemDate];
     }
-    else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+    else if ([status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+        self.ibHeaderRedeemExpiryView.hidden = YES;
+        self.ibHeaderNormalExpiryView.hidden = NO;
+        self.ibHeaderExpiryHeightConstraint.constant = 50;
         self.ibHeaderBlackShadeView.hidden = NO;
         self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Expired");
+        
+        NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
+        self.ibHeaderNormalExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), [dateFormatter stringFromDate:expiredDate]];
     }
     else{
-        self.ibHeaderBlackShadeView.hidden = YES;
+        if ([Utils isValidDateString:self.dealModel.expired_at]) {
+            self.ibHeaderRedeemExpiryView.hidden = YES;
+            self.ibHeaderNormalExpiryView.hidden = NO;
+            self.ibHeaderExpiryHeightConstraint.constant = 50;
+            self.ibHeaderBlackShadeView.hidden = YES;
+            
+            NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+            [dateFormatter setDateFormat:@"dd MMM yyyy"];
+            self.ibHeaderNormalExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires"), [dateFormatter stringFromDate:expiredDate]];
+        }
+        else{
+            self.ibHeaderRedeemExpiryView.hidden = YES;
+            self.ibHeaderNormalExpiryView.hidden = YES;
+            self.ibHeaderExpiryHeightConstraint.constant = 0;
+            self.ibHeaderBlackShadeView.hidden = YES;
+        }
+        
     }
+    
+    CGFloat contentHeight = self.ibHeaderExpiryHeightConstraint.constant + self.ibHeaderImageScrollView.frame.size.height + 8;
+    [self.ibHeaderView setHeight:contentHeight];
 }
 
 -(void)updateDetailsView{
@@ -317,10 +394,11 @@
     CGFloat fontSize = 11.0f;
     CGFloat padding = 20.0f;
     CGFloat xOrigin = 0;
+    CGFloat yOrigin = (self.ibTagContentView.frame.size.height-tagHeight)/2;
     if (self.dealModel.is_feature) {
         NSString *tag = [NSString stringWithFormat:@"%@", LocalisedString(@"FEATURED")];
         CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
-        UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0, lblSize.width+padding, tagHeight)];
+        UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, yOrigin, lblSize.width+padding, tagHeight)];
         [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
         tagLbl.textAlignment = NSTextAlignmentCenter;
         tagLbl.text = tag;
@@ -333,7 +411,7 @@
     if (self.dealModel.total_available_vouchers <= 10 && self.dealModel.total_available_vouchers > 0) {
         NSString *tag = [NSString stringWithFormat:@"%ld %@", self.dealModel.total_available_vouchers, LocalisedString(@"Vouchers Left")];
         CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
-        UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0, lblSize.width+padding, tagHeight)];
+        UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, yOrigin, lblSize.width+padding, tagHeight)];
         [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
         tagLbl.textAlignment = NSTextAlignmentCenter;
         tagLbl.text = tag;
@@ -346,7 +424,7 @@
     if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE]) {
         NSString *tag = [NSString stringWithFormat:@"%@", LocalisedString(@"FREE")];
         CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
-        UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0, lblSize.width+padding, tagHeight)];
+        UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, yOrigin, lblSize.width+padding, tagHeight)];
         [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
         tagLbl.textAlignment = NSTextAlignmentCenter;
         tagLbl.text = tag;
@@ -359,7 +437,7 @@
     else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT] || [self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]) {
         NSString *tag = [NSString stringWithFormat:@"%@%% %@", self.dealModel.discount_percentage, LocalisedString(@"OFF")];
         CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
-        UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, 0, lblSize.width+padding, tagHeight)];
+        UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, yOrigin, lblSize.width+padding, tagHeight)];
         [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
         tagLbl.textAlignment = NSTextAlignmentCenter;
         tagLbl.text = tag;
@@ -633,7 +711,7 @@
     
 }
 
-#pragma mark - TablewView
+#pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.ibAvailabilityTable) {
         return self.dealModel.redemption_period_in_hour_text.allKeys.count;
@@ -706,6 +784,12 @@
         [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
     }
     else if (tableView == self.ibDealsTable){
+        DealModel *selectedDeal = self.dealsModel.deals[indexPath.row];
+        self.dealDetailsViewController = nil;
+        [self.dealDetailsViewController setDealModel:selectedDeal];
+        [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+            [self.dealDetailsViewController setupView];
+        }];
     }
 }
 

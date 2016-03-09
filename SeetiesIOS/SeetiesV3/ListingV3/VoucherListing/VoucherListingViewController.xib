@@ -7,6 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoucherListingViewController">
             <connections>
+                <outlet property="ibAltTitle" destination="YyX-Cg-CIA" id="5eT-WU-erG"/>
+                <outlet property="ibDropDownIcon" destination="HWW-7K-ot0" id="Man-1J-rkE"/>
+                <outlet property="ibFilterBtn" destination="aZJ-d8-8P6" id="0Qu-7k-taK"/>
+                <outlet property="ibLocationBtn" destination="PgP-Mz-cA7" id="kmI-ZH-o8g"/>
+                <outlet property="ibSearchBtn" destination="msM-T5-Qek" id="81K-Aq-B9g"/>
                 <outlet property="ibTitle" destination="Qp8-Jp-ABW" id="Ywm-Q2-kzG"/>
                 <outlet property="ibUserLocationLbl" destination="KB9-ER-GDk" id="7Jm-Qn-RFC"/>
                 <outlet property="ibVoucherTable" destination="vEe-3n-SBv" id="VUM-tK-L0O"/>
@@ -49,14 +54,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-7K-ot0" userLabel="drop down icon">
-                            <rect key="frame" x="94" y="28" width="15" height="15"/>
+                            <rect key="frame" x="93" y="28" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="UtW-HE-80K"/>
                                 <constraint firstAttribute="width" constant="15" id="YhM-I8-hlK"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal of the Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp8-Jp-ABW">
-                            <rect key="frame" x="40" y="43" width="111" height="18"/>
+                            <rect key="frame" x="40" y="42" width="111" height="18"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -86,6 +91,12 @@
                                 <action selector="filterClicked:" destination="-1" eventType="touchUpInside" id="4Kr-aV-nAE"/>
                             </connections>
                         </button>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal Listing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyX-Cg-CIA">
+                            <rect key="frame" x="117" y="31" width="86" height="18"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -93,6 +104,7 @@
                         <constraint firstItem="msM-T5-Qek" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KB9-ER-GDk" secondAttribute="trailing" constant="10" id="1Pk-BZ-01W"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="top" secondItem="KB9-ER-GDk" secondAttribute="top" id="1pl-3L-4vf"/>
                         <constraint firstItem="wJH-T7-Mrw" firstAttribute="top" secondItem="g0d-NY-vKB" secondAttribute="bottom" constant="-44" id="3zE-gQ-VOk"/>
+                        <constraint firstItem="YyX-Cg-CIA" firstAttribute="centerY" secondItem="wJH-T7-Mrw" secondAttribute="centerY" id="60m-h3-xbl"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="top" secondItem="I2e-bV-XI7" secondAttribute="top" constant="18" id="7GE-Fa-xt5"/>
                         <constraint firstItem="msM-T5-Qek" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Qp8-Jp-ABW" secondAttribute="trailing" constant="10" id="B5W-K8-YU2"/>
                         <constraint firstAttribute="bottom" secondItem="wJH-T7-Mrw" secondAttribute="bottom" constant="4" id="FR2-5e-X0P"/>
@@ -103,7 +115,9 @@
                         <constraint firstItem="g0d-NY-vKB" firstAttribute="top" secondItem="I2e-bV-XI7" secondAttribute="top" id="N8u-Z8-TYS"/>
                         <constraint firstItem="msM-T5-Qek" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HWW-7K-ot0" secondAttribute="trailing" constant="5" id="OyU-yc-uDD"/>
                         <constraint firstAttribute="trailing" secondItem="msM-T5-Qek" secondAttribute="trailing" id="Qrp-Kr-qXA"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YyX-Cg-CIA" secondAttribute="trailing" constant="8" id="Qxc-jv-u0P"/>
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="leading" secondItem="wJH-T7-Mrw" secondAttribute="trailing" id="Sw4-mZ-HBZ"/>
+                        <constraint firstItem="YyX-Cg-CIA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wJH-T7-Mrw" secondAttribute="trailing" constant="8" id="TNU-Ov-WQV"/>
                         <constraint firstAttribute="bottom" secondItem="PgP-Mz-cA7" secondAttribute="bottom" id="UcZ-mI-GCI"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="top" secondItem="KB9-ER-GDk" secondAttribute="top" id="XFL-Ch-fPA"/>
                         <constraint firstItem="wJH-T7-Mrw" firstAttribute="leading" secondItem="I2e-bV-XI7" secondAttribute="leading" id="XX4-Ul-B2Q"/>
@@ -123,6 +137,7 @@
                         <constraint firstAttribute="height" constant="64" id="qzp-N1-tWS"/>
                         <constraint firstAttribute="trailing" secondItem="KB9-ER-GDk" secondAttribute="trailing" constant="40" id="tbh-2L-hgd"/>
                         <constraint firstAttribute="bottom" secondItem="aZJ-d8-8P6" secondAttribute="bottom" id="tcE-gk-wZb"/>
+                        <constraint firstItem="YyX-Cg-CIA" firstAttribute="centerX" secondItem="I2e-bV-XI7" secondAttribute="centerX" id="vIy-Qy-ubr"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="leading" secondItem="wJH-T7-Mrw" secondAttribute="trailing" id="yO9-Pw-OvY"/>
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="centerY" secondItem="I2e-bV-XI7" secondAttribute="centerY" constant="7.5" id="yf6-Wq-1SU"/>
                     </constraints>
