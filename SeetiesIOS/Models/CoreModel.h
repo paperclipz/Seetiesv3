@@ -24,6 +24,7 @@
 #import "AppInfoModel.h"
 #import "DealCollectionModel.h"
 #import "SeShopGroupModel.h"
+#import "ComplexTagModel.h"
 
 
 /*Declare custom block for model type*/

@@ -20,9 +20,10 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    [Utils setRoundBorder:self.btnFollow color:SELECTED_GREEN borderRadius:self.btnFollow.frame.size.height/2];
-    [self.ibImageUserProfile setSideCurveBorder];
-
+  //  [Utils setRoundBorder:self.btnFollow color:SELECTED_GREEN borderRadius:self.btnFollow.frame.size.height/2];
+   // [self.ibImageUserProfile setSideCurveBorder];
+    [self.btnFollow setImage:[UIImage imageNamed:@"AddFriendIcon.png"] forState:UIControlStateNormal];
+    [self.btnFollow setImage:[UIImage imageNamed:@"AddedFriendIcon.png"] forState:UIControlStateSelected];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -47,23 +48,20 @@
     
     @try {
         self.lblUserName.text = model.username;
-        [self.ibImageUserProfile sd_setImageWithURL:[NSURL URLWithString:model.profile_photo]];
+        
+        
+        if (![Utils isStringNull:model.profile_photo]) {
+            [self.ibImageUserProfile sd_setImageCroppedWithURL:[NSURL URLWithString:model.profile_photo] withPlaceHolder:[UIImage imageNamed:@"DefaultProfilePic.png"] completed:nil];
+        }
+        
         self.lblLocation.text = model.location;
     }
     @catch (NSException *exception) {
         SLog(@"initData error");
     }
-   
     
     
-    
-    if (model.following == YES) {
-        [self.btnFollow setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateNormal];
-        [self.btnFollow setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateSelected];
-    }else{
-        [self.btnFollow setImage:[UIImage imageNamed:@"FollowIcon.png"] forState:UIControlStateNormal];
-        [self.btnFollow setImage:[UIImage imageNamed:@"FollowingIcon.png"] forState:UIControlStateSelected];
-    }
+    [self setFollowButtonSelected:model.following button:self.btnFollow];
     
     
 

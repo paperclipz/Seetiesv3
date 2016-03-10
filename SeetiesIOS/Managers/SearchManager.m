@@ -64,7 +64,8 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
 }
 -(void)startSearchGPSLocation:(LocationBlock)CompletionBlock
 {
-
+    [self.manager startUpdatingLocation];
+    
     self.didFinishSearchGPSLocationBlock = CompletionBlock;
 }
 

@@ -29,7 +29,8 @@
     NSMutableArray *GetReturnSearchAddressArray;
     NSMutableArray *GetReturnSearchLatArray;
     NSMutableArray *GetReturnSearchLngArray;
-    
+    NSMutableArray *GetReturnSearchAddressComponentArray;
+
     NSMutableArray *GetSearchArray;
     
     NSURLConnection *theConnection_GetSearchString;
@@ -179,6 +180,7 @@
 //        mySearchBar.text = GetSearchText;
         self.ct3_SearchListingViewController = nil;
         self.ct3_SearchListingViewController.keyword = GetSearchText;
+        
         [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES onCompletion:^{
         }];
     }
@@ -297,9 +299,8 @@
         self.ct3_SearchListingViewController.keyword = [GetReturnSearchTextArray objectAtIndex:indexPath.row];
         self.ct3_SearchListingViewController.locationLatitude = [GetReturnSearchLatArray objectAtIndex:indexPath.row];
         self.ct3_SearchListingViewController.locationLongtitude = [GetReturnSearchLngArray objectAtIndex:indexPath.row];
-       // self.ct3_SearchListingViewController.currentLatitude = latPoint;
-      //  self.ct3_SearchListingViewController.currentLongtitude = lonPoint;
         self.ct3_SearchListingViewController.locationName = [GetReturnSearchAddressArray objectAtIndex:indexPath.row];
+        self.ct3_SearchListingViewController.addressComponent = [GetReturnSearchAddressComponentArray objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
     
     }
@@ -387,9 +388,19 @@
                 GetReturnSearchAddressArray = [[NSMutableArray alloc]init];
                 GetReturnSearchLatArray = [[NSMutableArray alloc]init];
                 GetReturnSearchLngArray = [[NSMutableArray alloc]init];
+                GetReturnSearchAddressComponentArray = [[NSMutableArray alloc]init];
+
                 for (NSDictionary * dict in locationData) {
+                    
+                    NSDictionary *address_component = dict[@"address_components"];
+
+                    if (!address_component) {
+                        [GetReturnSearchAddressComponentArray addObject:[NSDictionary new]];
+                    }else{
+                        [GetReturnSearchAddressComponentArray addObject:address_component];
+                    }
+                    
                     NSString *formatted_address = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"formatted_address"]];
-                    //NSLog(@"formatted_address is %@",formatted_address);
                     if ([formatted_address isEqualToString:@"<null>"] || formatted_address == nil) {
                         [GetReturnSearchAddressArray addObject:@""];
                     }else{
@@ -397,7 +408,6 @@
                     }
                     
                     NSString *lat = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lat"]];
-                    //NSLog(@"formatted_address is %@",formatted_address);
                     if ([lat isEqualToString:@"<null>"] || lat == nil) {
                         [GetReturnSearchLatArray addObject:@""];
                     }else{
@@ -405,7 +415,6 @@
                     }
                     
                     NSString *lng = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lng"]];
-                    //NSLog(@"formatted_address is %@",formatted_address);
                     if ([lng isEqualToString:@"<null>"] || lng == nil) {
                         [GetReturnSearchLngArray addObject:@""];
                     }else{
@@ -557,6 +566,8 @@
     //self.ct3_SearchListingViewController.currentLatitude = latPoint;
    // self.ct3_SearchListingViewController.currentLongtitude = lonPoint;
     self.ct3_SearchListingViewController.locationName = [GetReturnSearchAddressArray objectAtIndex:getbuttonIDN];
+    self.ct3_SearchListingViewController.addressComponent = [GetReturnSearchAddressComponentArray objectAtIndex:getbuttonIDN];
+
     [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
 -(IBAction)SearchTextOnlyButtonOnClick:(id)sender{
@@ -575,6 +586,7 @@
     @try {
         self.ct3_SearchListingViewController.locationLatitude = [GetReturnSearchLatArray objectAtIndex:getbuttonIDN];
         self.ct3_SearchListingViewController.locationLongtitude = [GetReturnSearchLngArray objectAtIndex:getbuttonIDN];
+        self.ct3_SearchListingViewController.addressComponent = [GetReturnSearchAddressComponentArray objectAtIndex:getbuttonIDN];
 
     }
     @catch (NSException *exception) {
@@ -583,6 +595,7 @@
     
     [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
+
 -(IBAction)SearchGetLocationButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"SearchGetLocationButtonOnClick button %li",(long)getbuttonIDN);

@@ -173,6 +173,7 @@
     _userProfilePostModel = nil;
     _usersModel = nil;
     _seShopsModel = nil;
+    [self.ibTableView reloadData];
 
     switch (self.searchListingType) {
         default:
@@ -489,6 +490,20 @@
 #pragma mark - Request Server
 
 
+-(NSString*)getAddressComponent:(NSString*)strAddress dictionary:(NSDictionary*)dictAddress
+{
+    if (![Utils isStringNull:strAddress]) {
+        return strAddress;
+    }
+    else{
+        if (dictAddress) {
+            return [Utils convertToJsonString:dictAddress];
+        }
+        else{
+        return @"";
+        }
+    }
+}
 
 -(void)requestServerForSearchShop
 {
@@ -496,14 +511,22 @@
     if (isMiddleOfCallingServer) {
         return;
     }
-    
-    NSDictionary* dict = @{@"keyword" : self.keyword,
-                           @"token" : [Utils getAppToken],
-                           @"offset" : @(self.seShopsModel.offset + self.seShopsModel.limit),
-                           @"limit" : @(ARRAY_LIST_SIZE),
-                           @"address_components" : self.homeLocationModel.dictAddressComponent?[Utils convertToJsonString:self.homeLocationModel.dictAddressComponent]:@""
-                           };
-    
+    NSDictionary* dict;
+    @try {
+      
+        
+        
+        dict = @{@"keyword" : self.keyword,
+                               @"token" : [Utils getAppToken],
+                               @"offset" : @(self.seShopsModel.offset + self.seShopsModel.limit),
+                               @"limit" : @(ARRAY_LIST_SIZE),
+                               @"address_components" :[self getAddressComponent:self.homeLocationModel.stringAddressComponent dictionary:self.homeLocationModel.dictAddressComponent]
+                               };
+    }
+    @catch (NSException *exception) {
+        
+        SLog(@"error with dictionary");
+    }
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
 
@@ -513,7 +536,9 @@
 
     
     [self.ibTableView startFooterLoadingView];
+    
     isMiddleOfCallingServer = YES;
+    
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeSearchShops param:finalDict appendString:nil completeHandler:^(id object) {
         
         SeShopsModel* model = [[ConnectionManager dataManager]seShopListingModel];
@@ -634,7 +659,7 @@
                            @"limit":@(ARRAY_LIST_SIZE),
                            @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
                            @"token":[Utils getAppToken],
-                           @"address_components" : self.homeLocationModel.dictAddressComponent?[Utils convertToJsonString:self.homeLocationModel.dictAddressComponent]:@""
+                           @"address_components" :[self getAddressComponent:self.homeLocationModel.stringAddressComponent dictionary:self.homeLocationModel.dictAddressComponent]
                            };
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];

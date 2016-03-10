@@ -79,6 +79,7 @@
 
 @interface CollectionsModel()
 @property(nonatomic,strong)NSDictionary* paging;
+@property(nonatomic,strong)NSDictionary* collections;
 
 @end
 @implementation CollectionsModel
@@ -87,10 +88,26 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"result": @"arrCollections",
-                                                       @"collections": @"arrSuggestedCollection",
-
+                                                       @"collections" : @"arrSuggestedCollection"
                                                        }];
 }
+
+
+//-(NSArray<CollectionModel>*)arrSuggestedCollection
+//{
+//    _arrSuggestedCollection = [CollectionModel arrayOfModelsFromDictionaries:[_collections allValues] error:nil];
+//    
+//    return _arrSearchCollections;
+//}
+//
+//-(NSArray<CollectionModel>*)arrSearchCollections
+//{
+//    
+//    _arrSearchCollections = [CollectionModel arrayOfModelsFromDictionaries:_collections[@"result"]error:nil];
+//    
+//    return _arrSearchCollections;
+//
+//}
 
 -(NSString*)next
 {

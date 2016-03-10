@@ -816,16 +816,22 @@
         case ServerRequestTypeGetTagsSuggestion:
         {
             NSDictionary* dict = obj[@"data"];
-            self.dataManager.tagModel = [[TagModel alloc]initWithDictionary:dict error:nil];
+            
+            NSError* error;
+            self.dataManager.tagModel = [[TagModel alloc]initWithDictionary:dict error:&error];
+            
+            SLog(@"%@",error);
         }
             break;
         case ServerRequestTypeGetUserCollections:
         case ServerRequestTypeSearchCollections:
         {
             
-            NSDictionary* dict = obj[@"data"];
-            self.dataManager.userCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:nil];
+            NSDictionary* dict = obj[@"data"][@"collections"];
+            NSError* error;
+            self.dataManager.userCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:&error];
             
+            SLog(@"error : %@",error);
         }
             break;
         case ServerRequestTypeGetUserInfo:

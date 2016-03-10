@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Z5-k5-fNW">
-                                <rect key="frame" x="64" y="16" width="186" height="21"/>
+                                <rect key="frame" x="64" y="16" width="192" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="SKC-fm-Evd"/>
                                     <constraint firstAttribute="height" constant="21" id="SVV-Q2-wgl"/>
@@ -37,7 +37,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xt-wI-79w">
-                                <rect key="frame" x="66" y="37" width="186" height="21"/>
+                                <rect key="frame" x="66" y="37" width="192" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="GJp-xe-0x3"/>
                                     <constraint firstAttribute="height" constant="70" id="cr7-Iy-nxX"/>
@@ -61,11 +61,11 @@
                                     <constraint firstAttribute="height" constant="50" id="qoQ-Lf-jFH"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avQ-22-tvH">
-                                <rect key="frame" x="258" y="16" width="52" height="38"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avQ-22-tvH">
+                                <rect key="frame" x="264" y="16" width="46" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="Pkn-gs-8ur"/>
-                                    <constraint firstAttribute="width" constant="52" id="apx-KF-bCi"/>
+                                    <constraint firstAttribute="width" constant="46" id="apx-KF-bCi"/>
                                 </constraints>
                                 <state key="normal" image="FollowIcon.png"/>
                                 <state key="selected" image="FollowingIcon.png"/>

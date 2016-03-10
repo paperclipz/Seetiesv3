@@ -351,22 +351,26 @@
     self.profileViewType = type;
     self.userID = uID;
     
-    DataManager* dataManager = [ConnectionManager dataManager];
-    if (dataManager.userProfileModel) {
-        self.userProfileModel = dataManager.userProfileModel;
-        [self assignData];
-
-    }
-    else
-    {
-        [self requestServerForUserInfo];
-
-    }
     [self requestServerForUserCollection];
     [self requestServerForUserPost];
     
     if ([uID isEqualToString:[Utils getUserID]]) {
         [self requestServerForUserLikes];
+        
+        DataManager* dataManager = [ConnectionManager dataManager];
+        if (dataManager.userProfileModel) {
+            self.userProfileModel = dataManager.userProfileModel;
+            [self assignData];
+            
+        }else
+        {
+            [self requestServerForUserInfo];
+
+        }
+    }
+    else{
+        [self requestServerForUserInfo];
+
     }
 }
 

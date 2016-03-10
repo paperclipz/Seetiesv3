@@ -22,6 +22,8 @@
 @property(nonatomic,strong)NSString* locationLatitude;
 @property(nonatomic,strong)NSString* locationLongtitude;
 @property(nonatomic,strong)NSString* placeID;
+@property(nonatomic,strong)NSDictionary* addressComponent;
+
 -(void)initData:(HomeLocationModel*) model;
 
 @end
