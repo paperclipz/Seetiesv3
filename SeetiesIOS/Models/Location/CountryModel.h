@@ -20,5 +20,7 @@
 @property(nonatomic,assign)int country_id;
 @property(nonatomic,strong)NSMutableArray* arrArea;
 @property(nonatomic,strong)NSMutableArray* arrCountryName;
+@property(nonatomic,strong)NSString* phone_country_code;
+@property(nonatomic,strong)NSArray* place_display_fields;
 
 @end

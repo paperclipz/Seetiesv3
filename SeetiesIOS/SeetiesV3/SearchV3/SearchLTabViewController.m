@@ -160,15 +160,13 @@
     
      self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
     self.currentLongtitude = @(currentLocation.coordinate.longitude).stringValue;
-   
-    _arrList = nil;
     
     [self requestRefresh];
 }
 
 -(void)requestRefresh
 {
-    
+    _arrList = nil;
     _userCollectionsModel = nil;
     _userProfilePostModel = nil;
     _usersModel = nil;

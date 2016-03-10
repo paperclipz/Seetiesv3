@@ -79,7 +79,7 @@
     
     @try {
         
-        if (self.dealModel.cover_title) {
+        if (![Utils isStringNull:self.dealModel.cover_title]) {
             self.lblDescription.text = self.dealModel.cover_title;
 
         }

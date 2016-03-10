@@ -715,11 +715,13 @@
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
         
-        [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+//        [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+//
+//
+//        } completion:nil];
+        
+        [self setupViewWithData];
 
-            [self setupViewWithData];
-
-        } completion:nil];
         
 //        if (self.viewDidFinishLoadBlock) {
 //            self.viewDidFinishLoadBlock(self.seShopModel);

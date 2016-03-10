@@ -943,7 +943,7 @@
             
         case ServerRequestTypeGetHomeCountryPlace:
         {
-            NSDictionary* dict = obj[@"data"];
+           // NSDictionary* dict = obj[@"data"];
             
             //   AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
             

@@ -250,9 +250,9 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="VqT-jd-WAK"/>
                             <exclude reference="JkX-UW-U6z"/>
                             <exclude reference="Lg8-s9-qfo"/>
+                            <exclude reference="VqT-jd-WAK"/>
                         </mask>
                     </variation>
                 </imageView>

@@ -1470,6 +1470,7 @@
 		8AFF08611C90379000918582 /* SeetizensTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */; };
 		8AFF08621C90379000918582 /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */; };
 		8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF09101C9038C400918582 /* ComplexTagModel.m */; };
+		8AFF09141C91228F00918582 /* HomeNight2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF09131C91228F00918582 /* HomeNight2.png */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
@@ -3474,6 +3475,7 @@
 		8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetizensTableViewCell.xib; sourceTree = "<group>"; };
 		8AFF090F1C9038C400918582 /* ComplexTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComplexTagModel.h; path = SeetiesIOS/MODELS/ComplexTagModel.h; sourceTree = SOURCE_ROOT; };
 		8AFF09101C9038C400918582 /* ComplexTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComplexTagModel.m; path = SeetiesIOS/MODELS/ComplexTagModel.m; sourceTree = SOURCE_ROOT; };
+		8AFF09131C91228F00918582 /* HomeNight2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeNight2.png; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C20872941C59D1FA0063F203 /* PromoOutletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoOutletCell.h; sourceTree = "<group>"; };
 		C20872951C59D1FA0063F203 /* PromoOutletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoOutletCell.m; sourceTree = "<group>"; };
@@ -4834,6 +4836,7 @@
 		8A84C2A21C7FF447006A0D76 /* SEETIES_ASSETS */ = {
 			isa = PBXGroup;
 			children = (
+				8AFF09131C91228F00918582 /* HomeNight2.png */,
 				8A84C2A31C7FF447006A0D76 /* launch.png */,
 				8A84C2A41C7FF447006A0D76 /* Misc */,
 				8A84C2BD1C7FF447006A0D76 /* SeetiesArtWork */,
@@ -8249,6 +8252,7 @@
 				8A84C80A1C7FF448006A0D76 /* NotificationLike@3x.png in Resources */,
 				C238E3291C4649AA00570A25 /* slider-default-track.png in Resources */,
 				8A84C7791C7FF448006A0D76 /* Distance4Icon@3x.png in Resources */,
+				8AFF09141C91228F00918582 /* HomeNight2.png in Resources */,
 				C2E341F51C8EED1D004E36E4 /* AddFriendIcon@3x.png in Resources */,
 				8A84C65F1C7FF448006A0D76 /* NaviDropDownIcon@3x.png in Resources */,
 				8A84C6E51C7FF448006A0D76 /* GridViewInactive@2x.png in Resources */,
