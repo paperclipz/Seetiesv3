@@ -1450,6 +1450,18 @@
 		8AFA52021C47B4AB00E7920E /* CT3_NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B41C47B4AB00E7920E /* CT3_NewsFeedViewController.xib */; };
 		8AFA52031C47B4AB00E7920E /* CT3_MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51B71C47B4AB00E7920E /* CT3_MeViewController.m */; };
 		8AFA52041C47B4AB00E7920E /* CT3_MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B81C47B4AB00E7920E /* CT3_MeViewController.xib */; };
+
+		8AFA52051C47B4AB00E7920E /* CT3_SearchListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51BB1C47B4AB00E7920E /* CT3_SearchListingViewController.m */; };
+		8AFA52061C47B4AB00E7920E /* CT3_SearchListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51BC1C47B4AB00E7920E /* CT3_SearchListingViewController.xib */; };
+		8AFA52071C47B4AB00E7920E /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51BE1C47B4AB00E7920E /* PostsTableViewCell.m */; };
+		8AFA52081C47B4AB00E7920E /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51BF1C47B4AB00E7920E /* PostsTableViewCell.xib */; };
+		8AFA52091C47B4AB00E7920E /* SearchLTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51C11C47B4AB00E7920E /* SearchLTabViewController.m */; };
+		8AFA520A1C47B4AB00E7920E /* SearchLTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51C21C47B4AB00E7920E /* SearchLTabViewController.xib */; };
+		8AFA520B1C47B4AB00E7920E /* SeetizensTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51C41C47B4AB00E7920E /* SeetizensTableViewCell.m */; };
+		8AFA520C1C47B4AB00E7920E /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51C51C47B4AB00E7920E /* SeetizensTableViewCell.xib */; };
+		C206B7A91C90319C00786128 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206B7A71C90319C00786128 /* TermsViewController.m */; };
+		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
+
 		8AFF08331C90358E00918582 /* TagLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08321C90358E00918582 /* TagLocationModel.m */; };
 		8AFF08511C90379000918582 /* SearchComplexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08371C90379000918582 /* SearchComplexTableViewCell.m */; };
 		8AFF08521C90379000918582 /* SearchComplexTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08381C90379000918582 /* SearchComplexTableViewCell.xib */; };
@@ -3477,6 +3489,9 @@
 		8AFF09101C9038C400918582 /* ComplexTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComplexTagModel.m; path = SeetiesIOS/MODELS/ComplexTagModel.m; sourceTree = SOURCE_ROOT; };
 		8AFF09131C91228F00918582 /* HomeNight2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeNight2.png; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C206B7A61C90319C00786128 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
+		C206B7A71C90319C00786128 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
+		C206B7A81C90319C00786128 /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
 		C20872941C59D1FA0063F203 /* PromoOutletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoOutletCell.h; sourceTree = "<group>"; };
 		C20872951C59D1FA0063F203 /* PromoOutletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoOutletCell.m; sourceTree = "<group>"; };
 		C20872961C59D1FA0063F203 /* PromoOutletCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoOutletCell.xib; sourceTree = "<group>"; };
@@ -7100,6 +7115,9 @@
 				C24383F11C5B5BF100ACEBF8 /* DealDetailsViewController.h */,
 				C24383F21C5B5BF100ACEBF8 /* DealDetailsViewController.m */,
 				C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */,
+				C206B7A61C90319C00786128 /* TermsViewController.h */,
+				C206B7A71C90319C00786128 /* TermsViewController.m */,
+				C206B7A81C90319C00786128 /* TermsViewController.xib */,
 			);
 			path = DealV3;
 			sourceTree = "<group>";
@@ -7725,6 +7743,7 @@
 				8A84C7631C7FF448006A0D76 /* CollectedBtn@3x.png in Resources */,
 				8A84C5F31C7FF448006A0D76 /* DealsRedeemedIcon@3x.png in Resources */,
 				8A84C7CF1C7FF448006A0D76 /* ConnectWithInstagram@2x.png in Resources */,
+				C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */,
 				8A84C75B1C7FF448006A0D76 /* UserBookmarkIcon@3x.png in Resources */,
 				8A84C71F1C7FF448006A0D76 /* StarRecommendationBtn@2x.png in Resources */,
 				8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */,
@@ -8959,6 +8978,7 @@
 				8A5CFE1E1C7D8E53004E2CBA /* SelectCategoryViewController.m in Sources */,
 				C24383F41C5B5BF100ACEBF8 /* DealDetailsViewController.m in Sources */,
 				8AC8F72E1BDA414E00DEF14A /* ProfilePageCollectionHeaderView.m in Sources */,
+				C206B7A91C90319C00786128 /* TermsViewController.m in Sources */,
 				8A4831B21C85AB1500CE95F2 /* FeaturedTableViewCell.m in Sources */,
 				8AC8F73C1BDA414E00DEF14A /* UserProfilePageViewController.m in Sources */,
 				8AEDBFB31C2031BA000BD2FF /* LanguageModel.m in Sources */,

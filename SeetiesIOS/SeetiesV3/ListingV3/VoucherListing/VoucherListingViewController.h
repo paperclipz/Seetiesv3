@@ -19,7 +19,7 @@
 
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate>
 -(void)initWithLocation:(HomeLocationModel*)locationModel;
-
+-(void)initWithDealId:(NSString*)dealId;
 /*for deal listing*/
 -(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel;
 -(void)initDataWithShopID:(NSString*)shopID;

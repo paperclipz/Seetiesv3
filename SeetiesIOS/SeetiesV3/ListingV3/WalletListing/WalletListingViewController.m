@@ -80,8 +80,14 @@
                 }
                 
                 NSString *expiryString = dealModel.voucher_info.expired_at;
-                NSDate *expiryDate = [fullFormatter dateFromString:expiryString];
-                NSString *formattedExpiryString = [monthYearFormatter stringFromDate:expiryDate];
+                NSString *formattedExpiryString;
+                if ([Utils isValidDateString:expiryString]) {
+                    NSDate *expiryDate = [fullFormatter dateFromString:expiryString];
+                    formattedExpiryString = [monthYearFormatter stringFromDate:expiryDate];
+                }
+                else{
+                    formattedExpiryString = LocalisedString(@"noDate");
+                }
                 
                 if ([previousGroup isEqualToString:formattedExpiryString]) {
                     [tempDateArray addObject:dealModel];
@@ -215,6 +221,9 @@
     DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
     if ([expiryModel.expiryDate isEqualToString:@"new"]) {
         [header setHeaderTitle:LocalisedString(@"New!")];
+    }
+    else if ([expiryModel.expiryDate isEqualToString:@"noDate"]){
+        [header setHeaderTitle:LocalisedString(@"No expiry date")];
     }
     else{
         [header setHeaderTitle:[NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), expiryModel.expiryDate]];

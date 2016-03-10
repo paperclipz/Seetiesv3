@@ -18,11 +18,17 @@
 @property (nonatomic) BOOL  isCollecting;
 @property (nonatomic) DealManager *dealManager;
 @property (nonatomic) NSString *shopID;
+@property (nonatomic) NSString *dealId;
 @property (nonatomic,assign) int dealViewType;// 1 == seetiesshop id
 
 
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibAltTitle;
+@property (weak, nonatomic) IBOutlet UIButton *ibFilterBtn;
+@property (weak, nonatomic) IBOutlet UIButton *ibSearchBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *ibDropDownIcon;
+@property (weak, nonatomic) IBOutlet UIButton *ibLocationBtn;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
 @property (weak, nonatomic) IBOutlet UIView *ibFilterView;
 @property (weak, nonatomic) IBOutlet UILabel *ibWalletCountLbl;
@@ -54,26 +60,46 @@
         self.ibUserLocationLbl.text = self.locationModel.locationName;
     }
     
-    if (self.dealCollectionModel) {
-        NSDictionary *collectionDict = self.dealCollectionModel.content[0];
-        self.ibTitle.text = collectionDict[@"title"];
-    }
-    else{
-        self.ibTitle.text = LocalisedString(@"Deal of the day");
-    }
-    
     switch (self.dealViewType) {
         case 1:
+            self.ibAltTitle.text = LocalisedString(@"Shop Deals");
+            self.ibAltTitle.hidden = NO;
+            self.ibTitle.hidden = YES;
+            self.ibUserLocationLbl.hidden = YES;
+            self.ibDropDownIcon.hidden = YES;
+            self.ibFilterBtn.hidden = YES;
+            self.ibSearchBtn.hidden = YES;
+            self.ibLocationBtn.enabled = NO;
+            self.ibSearchBtn.enabled = NO;
+            self.ibFilterBtn.enabled = NO;
             [self requestServerForShopDeal];
             break;
-        case 2:
-            [self requestServerForDealListing];
             
+        case 2:
+            if (self.dealCollectionModel) {
+                NSDictionary *collectionDict = self.dealCollectionModel.content[0];
+                self.ibTitle.text = collectionDict[@"title"];
+            }
+            [self requestServerForDealListing];
             break;
             
         case 3:
+            self.ibTitle.text = LocalisedString(@"Deal of the day");
             [self requestServerForSuperDealListing];
+            break;
             
+        case 4:
+            self.ibAltTitle.text = LocalisedString(@"Relevant Deals");
+            self.ibAltTitle.hidden = NO;
+            self.ibTitle.hidden = YES;
+            self.ibUserLocationLbl.hidden = YES;
+            self.ibDropDownIcon.hidden = YES;
+            self.ibFilterBtn.hidden = YES;
+            self.ibSearchBtn.hidden = YES;
+            self.ibLocationBtn.enabled = NO;
+            self.ibSearchBtn.enabled = NO;
+            self.ibFilterBtn.enabled = NO;
+            [self requestServerForDealRelevantDeals];
             break;
             
         default:
@@ -113,6 +139,12 @@
     _locationModel = locationModel;
     
 }
+
+-(void)initWithDealId:(NSString*)dealId{
+    self.dealId = dealId;
+    self.dealViewType = 4;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -317,6 +349,9 @@
 
                     break;
                     
+                case 4:
+                    [self requestServerForDealRelevantDeals];
+                    
                 default:
                     break;
             }
@@ -495,6 +530,37 @@
     
 }
 
+-(void)requestServerForDealRelevantDeals{
+    if (self.isLoading) {
+        return;
+    }
+    
+    [LoadingManager show];
+    self.isLoading = YES;
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/relevent-deals", self.dealId];
+    
+    NSDictionary* dict = @{@"limit": @(ARRAY_LIST_SIZE),
+                           @"offset": @(self.dealsModel.offset + self.dealsModel.limit),
+                           @"deal_id" : self.dealId,
+                           @"token" : [Utils getAppToken]
+                           };
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealRelevantDeals param:dict appendString:appendString completeHandler:^(id object) {
+        DealsModel *deals = [[ConnectionManager dataManager]dealsModel];
+        self.dealsModel = deals;
+        [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
+        [self.dealManager setAllCollectedDeals:self.dealsModel];
+        [self.ibVoucherTable reloadData];
+        
+        self.isLoading = NO;
+        [LoadingManager hide];
+        
+    } errorBlock:^(id object) {
+        self.isLoading = NO;
+        [LoadingManager hide];
+    }];
+}
 
 -(void)requestServerToCollectVoucher:(DealModel*)model fromShop:(SeShopDetailModel*)shopModel{
     if (self.isCollecting) {
