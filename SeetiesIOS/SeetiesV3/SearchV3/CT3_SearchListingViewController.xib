@@ -32,10 +32,10 @@
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="65a-RL-bLb">
                             <rect key="frame" x="10" y="10" width="300" height="29"/>
                             <segments>
-                                <segment title="Shop"/>
-                                <segment title="Collection"/>
+                                <segment title="Shops"/>
+                                <segment title="Collections"/>
                                 <segment title="Posts"/>
-                                <segment title="Seetizens"/>
+                                <segment title="People"/>
                             </segments>
                             <color key="tintColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

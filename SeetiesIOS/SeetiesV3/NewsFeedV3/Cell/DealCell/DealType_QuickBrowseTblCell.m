@@ -11,6 +11,7 @@
 
 @interface DealType_QuickBrowseTblCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
+@property (weak, nonatomic) IBOutlet UIView *ibCborderview;
 
 @property (nonatomic)NSArray* arrQuickBrowse;
 
@@ -37,6 +38,9 @@
 
 -(void)initSelfView{
     [self initCollectionViewDelegate];
+    
+    [Utils setRoundBorder:self.ibCborderview color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
+
 }
 
 -(void)initCollectionViewDelegate
@@ -80,7 +84,7 @@
     
     CGRect frame = [Utils getDeviceScreenSize];
     
-    float width = (frame.size.width/3) - 3;
+    float width = ((frame.size.width - 16)/3);
     
     return CGSizeMake(width, width);
 }

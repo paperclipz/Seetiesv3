@@ -44,8 +44,8 @@
         }];
     }
     
-    self.lblDescription.text = self.dealModel.title;
-    self.lblName.text = self.dealModel.shop_group_info.name;
+    self.lblDescription.text = self.dealModel.cover_title;
+    self.lblName.text = self.dealModel.shop.name;
     
 }
 @end

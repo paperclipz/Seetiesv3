@@ -9,6 +9,7 @@
 #import "DealType_YourWalletTblCell.h"
 
 @interface DealType_YourWalletTblCell()
+@property (weak, nonatomic) IBOutlet UIView *ibCborderview;
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
 @end
 @implementation DealType_YourWalletTblCell
@@ -26,6 +27,8 @@
 -(void)initSelfView
 {
     [Utils setRoundBorder:self.lblCount color:OUTLINE_COLOR borderRadius:self.lblCount.frame.size.width/2];
+    
+    [Utils setRoundBorder:self.ibCborderview color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
 }
 
 -(void)initData:(int)walletCount

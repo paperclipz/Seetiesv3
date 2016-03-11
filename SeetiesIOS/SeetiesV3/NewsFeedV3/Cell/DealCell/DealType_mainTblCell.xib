@@ -9,34 +9,34 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="YmA-0z-CZX" customClass="DealType_mainTblCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="327"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YmA-0z-CZX" id="Wqc-aQ-XgU">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="326.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeNight1.png" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-yl-BBB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="312"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="317"/>
                     </imageView>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTM-Uy-Vif">
-                        <rect key="frame" x="0.0" y="68" width="320" height="60"/>
+                        <rect key="frame" x="0.0" y="87" width="320" height="60"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good morning, John." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyK-1B-BXv">
-                                <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                <rect key="frame" x="16" y="8" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="GDX-qO-jEj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee, tea, or deal?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4m-WS-Bgc">
-                                <rect key="frame" x="8" y="29" width="304" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee, tea, or Me?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4m-WS-Bgc">
+                                <rect key="frame" x="16" y="29" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="0Ey-iC-dW5"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="kWJ-e4-TS3"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -48,29 +48,31 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="C4m-WS-Bgc" secondAttribute="trailing" constant="8" id="8Z8-cW-t0v"/>
-                            <constraint firstItem="C4m-WS-Bgc" firstAttribute="leading" secondItem="aTM-Uy-Vif" secondAttribute="leading" constant="8" id="bhc-w5-Ngn"/>
-                            <constraint firstAttribute="trailing" secondItem="NyK-1B-BXv" secondAttribute="trailing" constant="8" id="hxM-2a-Aha"/>
+                            <constraint firstAttribute="trailing" secondItem="C4m-WS-Bgc" secondAttribute="trailing" constant="16" id="8Z8-cW-t0v"/>
+                            <constraint firstItem="C4m-WS-Bgc" firstAttribute="leading" secondItem="aTM-Uy-Vif" secondAttribute="leading" constant="16" id="bhc-w5-Ngn"/>
+                            <constraint firstAttribute="trailing" secondItem="NyK-1B-BXv" secondAttribute="trailing" constant="16" id="hxM-2a-Aha"/>
                             <constraint firstItem="C4m-WS-Bgc" firstAttribute="top" secondItem="NyK-1B-BXv" secondAttribute="bottom" id="kJp-KA-Lha"/>
                             <constraint firstItem="NyK-1B-BXv" firstAttribute="top" secondItem="aTM-Uy-Vif" secondAttribute="top" constant="8" id="rxo-E2-sHD"/>
-                            <constraint firstItem="NyK-1B-BXv" firstAttribute="leading" secondItem="aTM-Uy-Vif" secondAttribute="leading" constant="8" id="ska-9b-U2N"/>
+                            <constraint firstItem="NyK-1B-BXv" firstAttribute="leading" secondItem="aTM-Uy-Vif" secondAttribute="leading" constant="16" id="ska-9b-U2N"/>
                             <constraint firstAttribute="height" constant="60" id="tBg-Pp-Yps"/>
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jEb-eL-sGT">
-                        <rect key="frame" x="0.0" y="128" width="320" height="184"/>
+                        <rect key="frame" x="0.0" y="147" width="320" height="170"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="184" id="TiM-Um-pbB"/>
+                            <constraint firstAttribute="height" constant="170" id="TiM-Um-pbB"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="bK8-qc-I4m">
-                            <size key="itemSize" width="141" height="174"/>
+                        <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="13" minimumInteritemSpacing="0.0" id="bK8-qc-I4m">
+                            <size key="itemSize" width="110" height="138"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
+                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="jEb-eL-sGT" firstAttribute="top" secondItem="aTM-Uy-Vif" secondAttribute="bottom" id="5MY-6C-Ywv"/>
                     <constraint firstItem="HVF-yl-BBB" firstAttribute="top" secondItem="Wqc-aQ-XgU" secondAttribute="topMargin" constant="-8" id="AT5-e2-thz"/>
@@ -82,7 +84,7 @@
                     <constraint firstItem="aTM-Uy-Vif" firstAttribute="top" secondItem="Wqc-aQ-XgU" secondAttribute="topMargin" constant="-8" id="dYy-eD-v7f"/>
                     <constraint firstItem="HVF-yl-BBB" firstAttribute="leading" secondItem="Wqc-aQ-XgU" secondAttribute="leadingMargin" constant="-8" id="dw6-tC-ZTq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="jEb-eL-sGT" secondAttribute="trailing" constant="-8" id="haw-F4-UEf"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="jEb-eL-sGT" secondAttribute="bottom" id="lSr-3j-YEi"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="jEb-eL-sGT" secondAttribute="bottom" constant="2" id="lSr-3j-YEi"/>
                     <constraint firstAttribute="trailingMargin" secondItem="HVF-yl-BBB" secondAttribute="trailing" constant="-8" id="rly-EE-Vhm"/>
                 </constraints>
                 <variation key="default">
@@ -92,11 +94,11 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="ibCollectionView" destination="jEb-eL-sGT" id="xTf-4O-lCg"/>
             </connections>
-            <point key="canvasLocation" x="373" y="325"/>
+            <point key="canvasLocation" x="373" y="324.5"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -25,14 +25,14 @@
                             <size key="itemSize" width="240" height="190"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAK-Yx-w26">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggested Collections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wey-XG-cet">
-                                <rect key="frame" x="8" y="15" width="243" height="21"/>
+                                <rect key="frame" x="16" y="15" width="227" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="qKF-8V-Z1L"/>
                                 </constraints>
@@ -40,8 +40,8 @@
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See all" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIj-Cs-mN1">
-                                <rect key="frame" x="261" y="15" width="51" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See all" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIj-Cs-mN1">
+                                <rect key="frame" x="253" y="15" width="51" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="8Hc-OV-hbz"/>
                                     <constraint firstAttribute="width" constant="51" id="Xwn-OU-6cB"/>
@@ -67,8 +67,8 @@
                             <constraint firstAttribute="height" constant="50" id="79k-iE-3Fe"/>
                             <constraint firstAttribute="trailing" secondItem="oCJ-LA-zZs" secondAttribute="trailing" id="9y9-eF-LKj"/>
                             <constraint firstItem="Wey-XG-cet" firstAttribute="centerY" secondItem="KAK-Yx-w26" secondAttribute="centerY" id="K4A-TV-1h0"/>
-                            <constraint firstAttribute="trailing" secondItem="NIj-Cs-mN1" secondAttribute="trailing" constant="8" id="M8Z-zh-APz"/>
-                            <constraint firstItem="Wey-XG-cet" firstAttribute="leading" secondItem="KAK-Yx-w26" secondAttribute="leading" constant="8" id="d2b-Q3-W3c"/>
+                            <constraint firstAttribute="trailing" secondItem="NIj-Cs-mN1" secondAttribute="trailing" constant="16" id="M8Z-zh-APz"/>
+                            <constraint firstItem="Wey-XG-cet" firstAttribute="leading" secondItem="KAK-Yx-w26" secondAttribute="leading" constant="16" id="d2b-Q3-W3c"/>
                             <constraint firstItem="Wey-XG-cet" firstAttribute="top" secondItem="KAK-Yx-w26" secondAttribute="top" constant="15" id="nrQ-74-jp6"/>
                             <constraint firstItem="oCJ-LA-zZs" firstAttribute="top" secondItem="KAK-Yx-w26" secondAttribute="top" id="pXc-Ss-le2"/>
                             <constraint firstItem="oCJ-LA-zZs" firstAttribute="leading" secondItem="KAK-Yx-w26" secondAttribute="leading" id="sGp-rG-BuG"/>
@@ -96,7 +96,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="borderView" destination="omh-sc-Lwf" id="9ZN-f7-EfJ"/>
                 <outlet property="ibCollectionView" destination="hOU-8t-tPz" id="1JY-cs-sJH"/>

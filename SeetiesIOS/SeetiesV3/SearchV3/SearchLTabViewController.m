@@ -954,7 +954,7 @@
 
 -(void)changeLanguage
 {
-    self.lblEmytyStateTitle.text = LocalisedString(@"Be Patient please");
+    self.lblEmytyStateTitle.text = LocalisedString(@"The keyword you've searched for could not be found.");
 }
 
 @end

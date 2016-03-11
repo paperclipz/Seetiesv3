@@ -13,14 +13,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crg-Wp-hcF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Z5-k5-fNW">
-                                <rect key="frame" x="64" y="16" width="192" height="21"/>
+                                <rect key="frame" x="82" y="16" width="172" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="SKC-fm-Evd"/>
                                     <constraint firstAttribute="height" constant="21" id="SVV-Q2-wgl"/>
@@ -37,13 +37,13 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xt-wI-79w">
-                                <rect key="frame" x="66" y="37" width="192" height="21"/>
+                                <rect key="frame" x="82" y="37" width="174" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="GJp-xe-0x3"/>
                                     <constraint firstAttribute="height" constant="70" id="cr7-Iy-nxX"/>
                                     <constraint firstAttribute="width" constant="190" id="zgp-NT-92Y"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -54,7 +54,7 @@
                                 </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultProfilePic.png" translatesAutoresizingMaskIntoConstraints="NO" id="i7Y-OY-dme">
-                                <rect key="frame" x="8" y="10" width="50" height="50"/>
+                                <rect key="frame" x="16" y="10" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="i7Y-OY-dme" secondAttribute="height" multiplier="1:1" id="ERb-60-YEt"/>
                                     <constraint firstAttribute="width" constant="50" id="ckl-hQ-IKS"/>
@@ -62,7 +62,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avQ-22-tvH">
-                                <rect key="frame" x="264" y="16" width="46" height="38"/>
+                                <rect key="frame" x="262" y="16" width="46" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="Pkn-gs-8ur"/>
                                     <constraint firstAttribute="width" constant="46" id="apx-KF-bCi"/>
@@ -81,12 +81,12 @@
                             <constraint firstItem="0Xt-wI-79w" firstAttribute="top" secondItem="2Z5-k5-fNW" secondAttribute="bottom" id="BE4-7h-Rkn"/>
                             <constraint firstItem="2Z5-k5-fNW" firstAttribute="top" secondItem="avQ-22-tvH" secondAttribute="top" id="BZe-5y-43X"/>
                             <constraint firstAttribute="bottom" secondItem="i7Y-OY-dme" secondAttribute="bottom" constant="12" id="MkM-e0-WAt"/>
-                            <constraint firstItem="0Xt-wI-79w" firstAttribute="leading" secondItem="i7Y-OY-dme" secondAttribute="trailing" constant="8" id="aKz-03-O9s"/>
+                            <constraint firstItem="0Xt-wI-79w" firstAttribute="leading" secondItem="i7Y-OY-dme" secondAttribute="trailing" constant="16" id="aKz-03-O9s"/>
                             <constraint firstAttribute="trailing" secondItem="avQ-22-tvH" secondAttribute="trailing" constant="9" id="jMt-tB-D1N"/>
-                            <constraint firstItem="i7Y-OY-dme" firstAttribute="leading" secondItem="crg-Wp-hcF" secondAttribute="leading" constant="8" id="kaG-Ek-XzX"/>
+                            <constraint firstItem="i7Y-OY-dme" firstAttribute="leading" secondItem="crg-Wp-hcF" secondAttribute="leading" constant="16" id="kaG-Ek-XzX"/>
                             <constraint firstItem="avQ-22-tvH" firstAttribute="centerY" secondItem="crg-Wp-hcF" secondAttribute="centerY" constant="-1.5" id="n8x-nw-Vws"/>
-                            <constraint firstAttribute="trailing" secondItem="avQ-22-tvH" secondAttribute="trailing" constant="10" id="pyA-MY-BTF"/>
-                            <constraint firstItem="2Z5-k5-fNW" firstAttribute="leading" secondItem="i7Y-OY-dme" secondAttribute="trailing" constant="6" id="rX2-ey-5Km"/>
+                            <constraint firstAttribute="trailing" secondItem="avQ-22-tvH" secondAttribute="trailing" constant="12" id="pyA-MY-BTF"/>
+                            <constraint firstItem="2Z5-k5-fNW" firstAttribute="leading" secondItem="i7Y-OY-dme" secondAttribute="trailing" constant="16" id="rX2-ey-5Km"/>
                             <constraint firstItem="avQ-22-tvH" firstAttribute="leading" secondItem="0Xt-wI-79w" secondAttribute="trailing" constant="6" id="xrl-MZ-KMT"/>
                         </constraints>
                         <variation key="default">
@@ -96,7 +96,7 @@
                         </variation>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="crg-Wp-hcF" secondAttribute="trailing" constant="-8" id="Acr-VK-pfK"/>
                     <constraint firstItem="crg-Wp-hcF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="QSM-Zz-Vn2"/>
@@ -106,6 +106,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="btnFollow" destination="avQ-22-tvH" id="xqa-i8-U6t"/>
+                <outlet property="ibCBordrView" destination="crg-Wp-hcF" id="cu6-S1-V08"/>
                 <outlet property="ibImageUserProfile" destination="i7Y-OY-dme" id="VUM-jT-rxx"/>
                 <outlet property="lblLocation" destination="0Xt-wI-79w" id="gt7-NU-PlT"/>
                 <outlet property="lblUserName" destination="2Z5-k5-fNW" id="OhF-eK-RN8"/>

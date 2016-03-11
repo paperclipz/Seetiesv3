@@ -8,12 +8,13 @@
 
 #import "CollectionsCollectionViewCell.h"
 
-#define NO_LOCK_CONSTRSINT_CONSTANT 0.0f
-#define LOCK_CONSTRSINT_CONSTANT 30.0f
+#define LOCK_CONSTRSINT_CONSTANT 20.0f
+#define TITLE_CONSTRSINT_CONSTANT 48.0f
 
 @interface CollectionsCollectionViewCell()
 {
     
+    __weak IBOutlet NSLayoutConstraint *constTitleWidth;
     __weak IBOutlet NSLayoutConstraint *constLockWidth;
     
 }
@@ -121,8 +122,21 @@
     
     [UIView transitionWithView:self duration:TRANSITION_DURTION options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         self.ibImageLock.hidden = !self.model.isPrivate;
-        constLockWidth.constant =self.model.isPrivate?LOCK_CONSTRSINT_CONSTANT:NO_LOCK_CONSTRSINT_CONSTANT;
-        [self.ibImageLock refreshConstraint];
+        
+        if (self.model.isPrivate) {
+            constLockWidth.constant = LOCK_CONSTRSINT_CONSTANT;
+            constTitleWidth.constant = TITLE_CONSTRSINT_CONSTANT;
+        }
+        else
+        {
+            constLockWidth.constant = 0;
+            constTitleWidth.constant = 16;
+
+        }
+       
+        
+        [self refreshConstraint];
+
     } completion:nil];
     
     

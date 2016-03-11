@@ -44,6 +44,9 @@
 @property(nonatomic,strong) NSArray<PhotoModel> *photos;
 @property(nonatomic,strong) PhotoModel *cover_photo;
 @property(nonatomic,strong) NSArray<SeShopDetailModel> *shops;
+
+@property(nonatomic,strong) SeShopDetailModel* shop;//current usage in supedeal shop
+
 @property(nonatomic, strong) SeShopGroupModel *shop_group_info;
 @property(nonatomic,assign) BOOL is_feature;
 @property(nonatomic, strong) NSDictionary *redemption_period_in_hour_text;

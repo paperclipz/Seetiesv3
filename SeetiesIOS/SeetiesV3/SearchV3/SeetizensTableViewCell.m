@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UserModel *model;
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
+@property (weak, nonatomic) IBOutlet UIView *ibCBordrView;
 @end
 
 @implementation SeetizensTableViewCell
@@ -21,9 +22,11 @@
     // Initialization code
     
   //  [Utils setRoundBorder:self.btnFollow color:SELECTED_GREEN borderRadius:self.btnFollow.frame.size.height/2];
-   // [self.ibImageUserProfile setSideCurveBorder];
+    [self.ibImageUserProfile setSideCurveBorder];
     [self.btnFollow setImage:[UIImage imageNamed:@"AddFriendIcon.png"] forState:UIControlStateNormal];
     [self.btnFollow setImage:[UIImage imageNamed:@"AddedFriendIcon.png"] forState:UIControlStateSelected];
+    
+    [Utils setRoundBorder:self.ibCBordrView color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

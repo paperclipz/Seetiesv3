@@ -9,7 +9,6 @@
 #import "CT3_AcctSettingViewController.h"
 #import "AccountSettingTableViewCell.h"
 #import "DealHeaderView.h"
-#import "MMPickerView.h"
 #import "ActionSheetPicker.h"
 #import "CTWebViewController.h"
 

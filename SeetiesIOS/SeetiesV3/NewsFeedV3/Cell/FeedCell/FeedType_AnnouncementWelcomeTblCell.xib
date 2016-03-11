@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LBb-ph-GUb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="355"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="353"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="08G-aX-R73">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="298"/>
@@ -34,7 +34,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdadasd" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmW-0c-RNe">
-                                <rect key="frame" x="10" y="303" width="300" height="42"/>
+                                <rect key="frame" x="10" y="303" width="300" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="IoR-FB-G0T"/>
@@ -56,11 +56,12 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="LBb-ph-GUb" secondAttribute="trailing" constant="-8" id="Aza-lk-Re3"/>
                     <constraint firstItem="LBb-ph-GUb" firstAttribute="top" secondItem="5Ic-eC-6I2" secondAttribute="topMargin" constant="-8" id="SZ8-vc-OWg"/>
                     <constraint firstItem="LBb-ph-GUb" firstAttribute="leading" secondItem="5Ic-eC-6I2" secondAttribute="leadingMargin" constant="-8" id="Vyf-bS-Mqy"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="LBb-ph-GUb" secondAttribute="bottom" id="aWM-H5-Y2Q"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="LBb-ph-GUb" secondAttribute="bottom" constant="2" id="aWM-H5-Y2Q"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

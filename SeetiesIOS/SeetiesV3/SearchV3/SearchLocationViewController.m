@@ -10,6 +10,7 @@
 #import "CT3_EnableLocationViewController.h"
 
 @interface SearchLocationViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *lblAutoDetect;
 @property (weak, nonatomic) IBOutlet UITextField *ibSearchTxtField;
 @property (weak, nonatomic) IBOutlet UITableView *ibCountryTable;
 @property (weak, nonatomic) IBOutlet UITableView *ibAreaTable;
@@ -32,6 +33,7 @@
 
 @property(nonatomic,readwrite)NSString* locationName;
 
+@property (weak, nonatomic) IBOutlet UIView *ibHeaderContentView;
 @property (nonatomic, strong) NSTimer *timer;
 @end
 
@@ -41,8 +43,6 @@
 - (IBAction)btnutoDetectClicked:(id)sender {
     
     
-    
-
     if ([SearchManager isDeviceGPSTurnedOn]) {
         
         if (self.userLocation) {
@@ -94,13 +94,16 @@
             }];
         }
         
+        self.lblAutoDetect.textColor = ONE_ZERO_TWO_COLOR;
 
-        self.ibImgLocation.image = [UIImage imageNamed:@"1.png"];
+        self.ibImgLocation.image = [UIImage imageNamed:@"SelectLocationAutoDetectIcon.png"];
         [self startBlinkGPS];
 
     }
     else{
-        self.ibImgLocation.image = [UIImage imageNamed:@"2.png"];
+        self.lblAutoDetect.textColor = TWO_ZERO_FOUR_COLOR;
+
+        self.ibImgLocation.image = [UIImage imageNamed:@"SelectLocationAutoDetectIconDeactivated.png"];
         [self stopBlinkGPS];
     }
 }
@@ -128,6 +131,8 @@
 //    NSArray *other = @[@"Georgetown", @"Ipoh", @"Other Cities"];
     
    // _cityArray = @[pj, sj, other];
+    
+    [Utils setRoundBorder:self.ibHeaderContentView color:[UIColor clearColor] borderRadius:self.ibHeaderContentView.frame.size.height/2 borderWidth:0];
     self.hasSelectedCountry = NO;
     
     [self.ibAreaTable registerNib:[UINib nibWithNibName:@"SearchLocationAreaCell" bundle:nil] forCellReuseIdentifier:@"SearchLocationAreaCell"];
@@ -210,8 +215,13 @@
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CountryCell"];
         }
+        
+        cell.backgroundColor = TWO_FOUR_FIVE_COLOR;
         CountryModel* model = self.arrCountries[indexPath.row];
         cell.textLabel.text = model.name;
+        cell.textLabel.font = [UIFont fontWithName:CustomFontNameBold size:15];
+        cell.textLabel.textColor = TEXT_GRAY_COLOR;
+        
         return cell;
     }
     else if (tableView == self.ibAreaTable){

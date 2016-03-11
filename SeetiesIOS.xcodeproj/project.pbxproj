@@ -307,7 +307,6 @@
 		8A84C5D61C7FF448006A0D76 /* DealRedeemBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AB1C7FF447006A0D76 /* DealRedeemBg.png */; };
 		8A84C5D71C7FF448006A0D76 /* DealRedeemCardDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AC1C7FF447006A0D76 /* DealRedeemCardDown.png */; };
 		8A84C5D81C7FF448006A0D76 /* DealRedeemCardUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AD1C7FF447006A0D76 /* DealRedeemCardUp.png */; };
-		8A84C5D91C7FF448006A0D76 /* ExploreTopImg@.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AE1C7FF447006A0D76 /* ExploreTopImg@.png */; };
 		8A84C5DA1C7FF448006A0D76 /* LoginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AF1C7FF447006A0D76 /* LoginBackground.png */; };
 		8A84C5DB1C7FF448006A0D76 /* LongSearchBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B01C7FF447006A0D76 /* LongSearchBar@2x.png */; };
 		8A84C5DC1C7FF448006A0D76 /* LowerCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B11C7FF447006A0D76 /* LowerCard.png */; };
@@ -318,8 +317,6 @@
 		8A84C5E11C7FF448006A0D76 /* RedeemSuccessMsg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B61C7FF447006A0D76 /* RedeemSuccessMsg.png */; };
 		8A84C5E21C7FF448006A0D76 /* SelectPhotoArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B71C7FF447006A0D76 /* SelectPhotoArrow@2x.png */; };
 		8A84C5E31C7FF448006A0D76 /* SwipeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B81C7FF447006A0D76 /* SwipeButton.png */; };
-		8A84C5E41C7FF448006A0D76 /* TitleBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B91C7FF447006A0D76 /* TitleBar@2x.png */; };
-		8A84C5E51C7FF448006A0D76 /* TitleBar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2BA1C7FF447006A0D76 /* TitleBar@3x.png */; };
 		8A84C5E61C7FF448006A0D76 /* UpperCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2BB1C7FF447006A0D76 /* UpperCard.png */; };
 		8A84C5E71C7FF448006A0D76 /* warning-flat-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2BC1C7FF447006A0D76 /* warning-flat-icon.png */; };
 		8A84C5E81C7FF448006A0D76 /* CollectIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2C01C7FF447006A0D76 /* CollectIcon@2x.png */; };
@@ -1471,6 +1468,7 @@
 		8AFF08621C90379000918582 /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */; };
 		8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF09101C9038C400918582 /* ComplexTagModel.m */; };
 		8AFF09141C91228F00918582 /* HomeNight2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF09131C91228F00918582 /* HomeNight2.png */; };
+		8AFF09361C92802400918582 /* olivier_demo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF09351C927DD500918582 /* olivier_demo.ttf */; };
 		C206B7A91C90319C00786128 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206B7A71C90319C00786128 /* TermsViewController.m */; };
 		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
@@ -2064,7 +2062,6 @@
 		8A84C2AB1C7FF447006A0D76 /* DealRedeemBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DealRedeemBg.png; sourceTree = "<group>"; };
 		8A84C2AC1C7FF447006A0D76 /* DealRedeemCardDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DealRedeemCardDown.png; sourceTree = "<group>"; };
 		8A84C2AD1C7FF447006A0D76 /* DealRedeemCardUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DealRedeemCardUp.png; sourceTree = "<group>"; };
-		8A84C2AE1C7FF447006A0D76 /* ExploreTopImg@.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ExploreTopImg@.png"; sourceTree = "<group>"; };
 		8A84C2AF1C7FF447006A0D76 /* LoginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBackground.png; sourceTree = "<group>"; };
 		8A84C2B01C7FF447006A0D76 /* LongSearchBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LongSearchBar@2x.png"; sourceTree = "<group>"; };
 		8A84C2B11C7FF447006A0D76 /* LowerCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LowerCard.png; sourceTree = "<group>"; };
@@ -2075,8 +2072,6 @@
 		8A84C2B61C7FF447006A0D76 /* RedeemSuccessMsg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedeemSuccessMsg.png; sourceTree = "<group>"; };
 		8A84C2B71C7FF447006A0D76 /* SelectPhotoArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectPhotoArrow@2x.png"; sourceTree = "<group>"; };
 		8A84C2B81C7FF447006A0D76 /* SwipeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SwipeButton.png; sourceTree = "<group>"; };
-		8A84C2B91C7FF447006A0D76 /* TitleBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleBar@2x.png"; sourceTree = "<group>"; };
-		8A84C2BA1C7FF447006A0D76 /* TitleBar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TitleBar@3x.png"; sourceTree = "<group>"; };
 		8A84C2BB1C7FF447006A0D76 /* UpperCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UpperCard.png; sourceTree = "<group>"; };
 		8A84C2BC1C7FF447006A0D76 /* warning-flat-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning-flat-icon.png"; sourceTree = "<group>"; };
 		8A84C2C01C7FF447006A0D76 /* CollectIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectIcon@2x.png"; sourceTree = "<group>"; };
@@ -3478,6 +3473,7 @@
 		8AFF090F1C9038C400918582 /* ComplexTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComplexTagModel.h; path = SeetiesIOS/MODELS/ComplexTagModel.h; sourceTree = SOURCE_ROOT; };
 		8AFF09101C9038C400918582 /* ComplexTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComplexTagModel.m; path = SeetiesIOS/MODELS/ComplexTagModel.m; sourceTree = SOURCE_ROOT; };
 		8AFF09131C91228F00918582 /* HomeNight2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeNight2.png; sourceTree = "<group>"; };
+		8AFF09351C927DD500918582 /* olivier_demo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = olivier_demo.ttf; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C206B7A61C90319C00786128 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		C206B7A71C90319C00786128 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
@@ -3750,6 +3746,7 @@
 		0BE3401F1B73021B00F49625 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				8AFF09351C927DD500918582 /* olivier_demo.ttf */,
 				0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */,
 				0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */,
 				0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */,
@@ -4861,7 +4858,6 @@
 				8A84C2AB1C7FF447006A0D76 /* DealRedeemBg.png */,
 				8A84C2AC1C7FF447006A0D76 /* DealRedeemCardDown.png */,
 				8A84C2AD1C7FF447006A0D76 /* DealRedeemCardUp.png */,
-				8A84C2AE1C7FF447006A0D76 /* ExploreTopImg@.png */,
 				8A84C2AF1C7FF447006A0D76 /* LoginBackground.png */,
 				8A84C2B01C7FF447006A0D76 /* LongSearchBar@2x.png */,
 				8A84C2B11C7FF447006A0D76 /* LowerCard.png */,
@@ -4872,8 +4868,6 @@
 				8A84C2B61C7FF447006A0D76 /* RedeemSuccessMsg.png */,
 				8A84C2B71C7FF447006A0D76 /* SelectPhotoArrow@2x.png */,
 				8A84C2B81C7FF447006A0D76 /* SwipeButton.png */,
-				8A84C2B91C7FF447006A0D76 /* TitleBar@2x.png */,
-				8A84C2BA1C7FF447006A0D76 /* TitleBar@3x.png */,
 				8A84C2BB1C7FF447006A0D76 /* UpperCard.png */,
 				8A84C2BC1C7FF447006A0D76 /* warning-flat-icon.png */,
 			);
@@ -7662,6 +7656,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AFF09361C92802400918582 /* olivier_demo.ttf in Resources */,
 				8A7CEEC31C33E924005A3515 /* Main.storyboard in Resources */,
 				8A84C81E1C7FF448006A0D76 /* MoreIcon@3x.png in Resources */,
 				8A84C6C61C7FF448006A0D76 /* CollectionLink@3x.png in Resources */,
@@ -7888,7 +7883,6 @@
 				8A84C5D01C7FF448006A0D76 /* 1.png in Resources */,
 				8A84C70F1C7FF448006A0D76 /* RearrangeIcon@2x.png in Resources */,
 				8A84C6D71C7FF448006A0D76 /* FollowCollectionTradChiIcon@2x.png in Resources */,
-				8A84C5E41C7FF448006A0D76 /* TitleBar@2x.png in Resources */,
 				8AFF08521C90379000918582 /* SearchComplexTableViewCell.xib in Resources */,
 				8A84C6891C7FF448006A0D76 /* TabBarHomeIconActive@3x.png in Resources */,
 				8ABA51FA1C10329600A3DC15 /* PhotoViewController.xib in Resources */,
@@ -8087,7 +8081,6 @@
 				8A84C6711C7FF448006A0D76 /* VerifyPhoneNumberImg.png in Resources */,
 				8A84C6271C7FF448006A0D76 /* HomePlayEvening.png in Resources */,
 				8A84C5DD1C7FF448006A0D76 /* NearbyBackground.png in Resources */,
-				8A84C5E51C7FF448006A0D76 /* TitleBar@3x.png in Resources */,
 				8A84C5F91C7FF448006A0D76 /* SwipeToRedeemDirectionIconBlue@2x.png in Resources */,
 				8A84C6511C7FF448006A0D76 /* MoreTourGuideIcon@3x.png in Resources */,
 				8A84C6C01C7FF448006A0D76 /* CollectionCrossBtn@3x.png in Resources */,
@@ -8452,7 +8445,6 @@
 				8A84C7191C7FF448006A0D76 /* EditPostOverlay@2x.png in Resources */,
 				8A84C5E01C7FF448006A0D76 /* QR.png in Resources */,
 				8A84C67E1C7FF448006A0D76 /* SeetishopProductAndServiceIcon@2x.png in Resources */,
-				8A84C5D91C7FF448006A0D76 /* ExploreTopImg@.png in Resources */,
 				8A84C6D41C7FF448006A0D76 /* FollowCollectionSimplifiedChiIcon@3x.png in Resources */,
 				8AC8F7431BDA414E00DEF14A /* ProfileV2ViewController.xib in Resources */,
 				8A84C6AA1C7FF448006A0D76 /* Icon-76.png in Resources */,

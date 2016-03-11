@@ -522,9 +522,9 @@ static NSCache* heightCache = nil;
             {
                 CGRect frame = [Utils getDeviceScreenSize];
                 
-                float cellWidth = (frame.size.width/3) - 3;
+                float cellWidth = ((frame.size.width - 16)/3);
                 
-                float titleHeight = 60.0f;
+                float titleHeight = 55.0f;
                 
                 return cellWidth + titleHeight + 10;
             }
@@ -1387,14 +1387,16 @@ static NSCache* heightCache = nil;
             isDealCollectionShown = NO;
             ibHeaderBackgroundView.alpha = 1;
             constTopScrollView.constant = TopBarHeight;
-
         }
 
         if (![Utils isArrayNull:self.homeModel.superdeals]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_SuperDeal]];
  
         }
-        [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Wallet]];
+        
+        if (![Utils isGuestMode]) {
+            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Wallet]];
+        }
         
         if (![Utils isArrayNull:self.homeModel.quick_browse]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_QuickBrowse]];

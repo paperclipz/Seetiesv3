@@ -57,6 +57,7 @@
         _tabBarController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         [_tabBarController.tabBar setValue:@(YES) forKeyPath:@"_hidesShadow"];
         _tabBarController.delegate = self;
+        [_tabBarController.tabBar setSquareBorder];
 
     }
     
@@ -79,7 +80,7 @@
 }
 -(void)initSelfView
 {
-    [self.view addSubview:self.leveyTabBarController.view];
+   // [self.view addSubview:self.leveyTabBarController.view];
    }
 
 #pragma mark - Declaration
@@ -202,11 +203,11 @@
 {
     if (!_ct3_MoreViewController) {
         _ct3_MoreViewController = [CT3_MoreViewController new];
-        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"BlueTime.png"] selectedImage:[UIImage imageNamed:@"BlueTime.png"]];
+        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"TabBarMoreIcon.png"] selectedImage:[UIImage imageNamed:@"TabBarMoreIconActive.png"]];
         _ct3_MoreViewController.tabBarItem = item2;
 
         _ct3_MoreViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5);
-        _ct3_MoreViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, -1.0f, 0, 1);
+        _ct3_MoreViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -1.0f, -7, 1);
 
     }
     return _ct3_MoreViewController;
@@ -217,12 +218,12 @@
     if (!_newsFeedViewController) {
         _newsFeedViewController = [CT3_NewsFeedViewController new];
 
-        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"BlueTime.png"] selectedImage:[UIImage imageNamed:@"BlueTime.png"]];
+        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"TabBarHomeIcon.png"] selectedImage:[UIImage imageNamed:@"TabBarHomeIconActive.png"]];
         _newsFeedViewController.tabBarItem = item2;
         
-        _newsFeedViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5);
+        _newsFeedViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
 
-        _newsFeedViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, -1.0f, 0, 1);
+        _newsFeedViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -1.0f, -7, 1);
 
         //__weak typeof (self)weakSelf = self;
         _newsFeedViewController.btnLoginClickedBlock = ^(void)
@@ -238,11 +239,11 @@
 -(CT3_MeViewController*)ct3MeViewController{
     if (!_ct3MeViewController) {
         _ct3MeViewController = [CT3_MeViewController new];
-        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"ProfileIcon"] selectedImage:[UIImage imageNamed:@"ProfileIcon"]];
+        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"TabBarMeIcon.png"] selectedImage:[UIImage imageNamed:@"TabBarMeIconActive.png"]];
         _ct3MeViewController.tabBarItem = item2;
 
-        _ct3MeViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5);
-        _ct3MeViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(0, -2.0f, 0, 2);
+        _ct3MeViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+        _ct3MeViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -2.0f, -7, 2);
 
     }
     return _ct3MeViewController;
