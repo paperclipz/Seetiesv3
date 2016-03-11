@@ -31,7 +31,7 @@
 @property(nonatomic,assign)BOOL following;
 @property(nonatomic,strong)NSString* uid;
 @property(nonatomic,strong)NSString* url;//use for notification user profile
-
+@property(nonatomic,assign)BOOL phone_verified;
 
 @property (nonatomic,strong)NSArray* categories;
 @property (nonatomic,strong)NSString* crawler;

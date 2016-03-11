@@ -342,6 +342,7 @@
         self.ibHeaderExpiryHeightConstraint.constant = 100;
         self.ibHeaderBlackShadeView.hidden = NO;
         self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Redeemed");
+        [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsRedeemedIcon.png"]];
         
         self.ibHeaderRedeemExpiryTitleLbl.text = LocalisedString(@"Deal have been redeemed on");
         self.ibHeaderRedeemExpiryDescLbl.text = LocalisedString(@"Flash this screen to the shop's worker or owner to redeem the deal");
@@ -356,6 +357,7 @@
         self.ibHeaderExpiryHeightConstraint.constant = 50;
         self.ibHeaderBlackShadeView.hidden = NO;
         self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Expired");
+        [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsExpiredIcon.png"]];
         
         NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
         [dateFormatter setDateFormat:@"dd MMM yyyy"];
@@ -609,7 +611,12 @@
         self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
-        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:239/255.0 green:83/255.0 blue:105/255.0 alpha:1]];
+        if (self.dealModel.voucher_info.redeem_now) {
+            [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:239/255.0 green:83/255.0 blue:105/255.0 alpha:1]];
+        }
+        else{
+            [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        }
         self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
@@ -661,6 +668,18 @@
 }
 
 - (IBAction)footerBtnClicked:(id)sender {
+    if ([Utils isGuestMode]) {
+        [Utils showLogin];
+        return;
+    }
+    else{
+        ProfileModel *profile = [[DataManager Instance] userProfileModel];
+        if (!profile.phone_verified) {
+            [Utils showVerifyPhoneNumber:self];
+            return;
+        }
+    }
+    
     NSString *voucherStatus = self.dealModel.voucher_info.status;
     if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
         if (self.dealModel.shops.count == 1) {
@@ -669,8 +688,8 @@
         }
         else if(self.dealModel.shops.count > 1){
             self.promoPopOutViewController = nil;
-            [self.promoPopOutViewController setViewType:ChooseShopViewType];
-            [self.promoPopOutViewController setPopOutCondition:ChooseShopOnlyPopOutCondition];
+            [self.promoPopOutViewController setViewType:PopOutViewTypeChooseShop];
+            [self.promoPopOutViewController setPopOutCondition:PopOutConditionChooseShopOnly];
             [self.promoPopOutViewController setDealModel:self.dealModel];
             [self.promoPopOutViewController setShopArray:self.dealModel.shops];
             self.promoPopOutViewController.promoPopOutDelegate = self;
@@ -683,10 +702,22 @@
         }
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
-        self.dealRedeemViewController = nil;
-        [self.dealRedeemViewController setDealModel:self.dealModel];
-        self.dealRedeemViewController.dealRedeemDelegate = self;
-        [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
+        if (self.dealModel.voucher_info.redeem_now) {
+            self.dealRedeemViewController = nil;
+            [self.dealRedeemViewController setDealModel:self.dealModel];
+            self.dealRedeemViewController.dealRedeemDelegate = self;
+            [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
+        }
+        else{
+            self.promoPopOutViewController = nil;
+            [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+            
+            STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+            popupController.containerView.backgroundColor = [UIColor clearColor];
+            [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+            [popupController presentInViewController:self];
+            [popupController setNavigationBarHidden:YES];
+        }
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
     }

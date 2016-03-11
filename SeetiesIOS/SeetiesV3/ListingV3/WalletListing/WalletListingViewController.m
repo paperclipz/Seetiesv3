@@ -257,7 +257,7 @@
 
 #pragma mark - IBAction
 - (IBAction)footerBtnClicked:(id)sender {
-    [self.promoPopOutViewController setViewType:EnterPromoViewType];
+    [self.promoPopOutViewController setViewType:PopOutViewTypeEnterPromo];
     
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
     popupController.containerView.backgroundColor = [UIColor clearColor];
@@ -285,7 +285,7 @@
         [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
     }
     else{
-        [self.promoPopOutViewController setViewType:ErrorViewType];
+        [self.promoPopOutViewController setViewType:PopOutViewTypeError];
         
         STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
         popupController.containerView.backgroundColor = [UIColor clearColor];

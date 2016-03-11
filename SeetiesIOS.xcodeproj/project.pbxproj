@@ -475,8 +475,6 @@
 		8A84C6811C7FF448006A0D76 /* SeetishopVerifiedIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C3641C7FF447006A0D76 /* SeetishopVerifiedIcon@3x.png */; };
 		8A84C6821C7FF448006A0D76 /* SelectLocationAutoDetectIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C3661C7FF447006A0D76 /* SelectLocationAutoDetectIcon@2x.png */; };
 		8A84C6831C7FF448006A0D76 /* SelectLocationAutoDetectIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C3671C7FF447006A0D76 /* SelectLocationAutoDetectIcon@3x.png */; };
-		8A84C6841C7FF448006A0D76 /* SelectLocationDealsIcon copy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C3681C7FF447006A0D76 /* SelectLocationDealsIcon copy@2x.png */; };
-		8A84C6851C7FF448006A0D76 /* SelectLocationDealsIcon copy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C3691C7FF447006A0D76 /* SelectLocationDealsIcon copy@3x.png */; };
 		8A84C6861C7FF448006A0D76 /* TabBarHomeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C36B1C7FF447006A0D76 /* TabBarHomeIcon@2x.png */; };
 		8A84C6871C7FF448006A0D76 /* TabBarHomeIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C36C1C7FF447006A0D76 /* TabBarHomeIcon@3x.png */; };
 		8A84C6881C7FF448006A0D76 /* TabBarHomeIconActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C36D1C7FF447006A0D76 /* TabBarHomeIconActive@2x.png */; };
@@ -1506,7 +1504,6 @@
 		C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */; };
 		C24384101C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */; };
 		C2490A4A1C8450E800A43B3F /* SeShopsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2490A491C8450E800A43B3F /* SeShopsModel.m */; };
-		C25810171C7ACC8700041A85 /* TagLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25810161C7ACC8700041A85 /* TagLabel.m */; };
 		C258101A1C7AD89000041A85 /* VoucherInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25810191C7AD89000041A85 /* VoucherInfoModel.m */; };
 		C25A8B951C7487010046F80A /* RedemptionTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25A8B941C7487010046F80A /* RedemptionTypeView.xib */; };
 		C25A8B981C74872F0046F80A /* RedemptionTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25A8B971C74872F0046F80A /* RedemptionTypeView.m */; };
@@ -7841,7 +7838,6 @@
 				8A84C8151C7FF448006A0D76 /* BlueTime@2x.png in Resources */,
 				8A84C8CB1C7FF448006A0D76 /* WalkthroughFeed2.png in Resources */,
 				8A84C65B1C7FF448006A0D76 /* NaviCloseIcon@3x.png in Resources */,
-				8A84C6851C7FF448006A0D76 /* SelectLocationDealsIcon copy@3x.png in Resources */,
 				8AD6C8161B709A450040437E /* SettingsViewController.xib in Resources */,
 				8A84C89C1C7FF448006A0D76 /* SelectPhotoArrow@2x.png in Resources */,
 				8A84C7AC1C7FF448006A0D76 /* OtherLogo@3x.png in Resources */,
@@ -8113,7 +8109,6 @@
 				8A84C67A1C7FF448006A0D76 /* SeetishopOutdoorAndRecreationIcon@2x.png in Resources */,
 				0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */,
 				8A84C7CB1C7FF448006A0D76 /* YoloIcon@2x.png in Resources */,
-				8A84C6841C7FF448006A0D76 /* SelectLocationDealsIcon copy@2x.png in Resources */,
 				8A84C7691C7FF448006A0D76 /* CollectSimplifiedChineseBtn@3x.png in Resources */,
 				8A84C7FD1C7FF448006A0D76 /* WhiteSeetiesLogo@2x.png in Resources */,
 				8AD6BE4E1B706CF30040437E /* ExploreCountryViewController.xib in Resources */,
@@ -8847,7 +8842,6 @@
 				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
 				8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */,
 				8A3409461B8AD06A009B66C3 /* UIImage+Resizing.m in Sources */,
-				C25810171C7ACC8700041A85 /* TagLabel.m in Sources */,
 				8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */,
 				8A6BB4321BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerSegue.m in Sources */,
 				C2490A4A1C8450E800A43B3F /* SeShopsModel.m in Sources */,

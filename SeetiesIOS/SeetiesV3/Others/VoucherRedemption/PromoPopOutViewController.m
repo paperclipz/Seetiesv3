@@ -22,14 +22,43 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibShopTable;
 @property (weak, nonatomic) IBOutlet UILabel *ibShopDealLbl;
 
+@property (strong, nonatomic) IBOutlet UIView *ibChangeVerifiedPhoneView;
+@property (weak, nonatomic) IBOutlet UIView *ibChangeVerifiedPhoneContentView;
+@property (weak, nonatomic) IBOutlet UIButton *ibChangeVerifiedPhoneBtn;
+@property (weak, nonatomic) IBOutlet UILabel *ibChangeVerifiedPhoneNumberLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibChangeVerifiedPhoneDescLbl;
+
 @property (strong, nonatomic) IBOutlet UIView *ibEnterPhoneView;
 @property (weak, nonatomic) IBOutlet UIView *ibEnterPhoneContentView;
+@property (weak, nonatomic) IBOutlet UIButton *ibEnterPhoneConfirmBtn;
+@property (weak, nonatomic) IBOutlet UILabel *ibEnterPhoneNote;
+@property (weak, nonatomic) IBOutlet UITextField *ibEnterPhoneTxtField;
+@property (weak, nonatomic) IBOutlet UILabel *ibEnterPhoneDesc;
+@property (weak, nonatomic) IBOutlet UILabel *ibEnterPhoneTitle;
+@property (weak, nonatomic) IBOutlet UIView *ibEnterPhoneCountryCodeView;
+@property (weak, nonatomic) IBOutlet UILabel *ibEnterPhoneCountryCodeLbl;
+@property (weak, nonatomic) IBOutlet UIButton *ibEnterPhoneCountryCodeBtn;
+
+@property (strong, nonatomic) IBOutlet UIView *ibConfirmPhoneView;
+@property (weak, nonatomic) IBOutlet UIView *ibConfirmPhoneContentView;
+@property (weak, nonatomic) IBOutlet UIButton *ibConfirmPhoneBtn;
+@property (weak, nonatomic) IBOutlet UILabel *ibConfirmPhoneNumberLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibConfirmPhoneDescLbl;
+@property (weak, nonatomic) IBOutlet UIButton *ibConfirmPhoneChangeBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibEnterVerificationView;
 @property (weak, nonatomic) IBOutlet UIView *ibEnterVerificationContentView;
+@property (weak, nonatomic) IBOutlet UIButton *ibEnterVerificationConfirmBtn;
+@property (weak, nonatomic) IBOutlet UITextField *ibEnterVerificationTxtField;
+@property (weak, nonatomic) IBOutlet UILabel *ibEnterVerificationDesc;
+@property (weak, nonatomic) IBOutlet UILabel *ibEnterVerificationTitle;
+@property (weak, nonatomic) IBOutlet UIButton *ibEnterVerificationResendBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibVerifiedView;
 @property (weak, nonatomic) IBOutlet UIView *ibVerifiedContentView;
+@property (weak, nonatomic) IBOutlet UIButton *ibVerifiedOkBtn;
+@property (weak, nonatomic) IBOutlet UILabel *ibVerifiedTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibVerifiedDesc;
 
 @property (strong, nonatomic) IBOutlet UIView *ibErrorView;
 @property (weak, nonatomic) IBOutlet UIView *ibErrorContentView;
@@ -37,7 +66,15 @@
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
 @property(nonatomic) NSArray *shopArray;
+@property(nonatomic) NSArray<CountryModel> *countryArray;
+@property(nonatomic) NSMutableArray *countryCodeArray;
+@property(nonatomic) NSString *selectedCountryCode;
+@property(nonatomic) NSString *enteredPhoneNumber;
 @property(nonatomic) DealModel *dealModel;
+@property(nonatomic) BOOL isLoading;
+@property(nonatomic) BOOL isVerified;
+@property(nonatomic) BOOL hasRequestedTotp;
+
 @end
 
 @implementation PromoPopOutViewController
@@ -46,7 +83,7 @@
     self = [super init];
     
     if (self) {
-        _viewType = EnterPromoViewType;
+        _viewType = PopOutViewTypeEnterPromo;
         self.contentSizeInPopup = CGSizeMake(300, 400);
     }
     
@@ -55,8 +92,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initSelfView];
-
+    self.isLoading = NO;
+    self.isVerified = NO;
+    self.hasRequestedTotp = NO;
     [self setMainViewToDisplay];
    
     // Do any additional setup after loading the view from its nib.
@@ -67,9 +105,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)initSelfView{
 }
 
 /*
@@ -91,12 +126,20 @@
     _popOutCondition = popOutCondition;
 }
 
--(void)setShopArray:(NSArray *)shopArray{
-    _shopArray = shopArray;
+-(void)setShopArray:(NSArray *)array{
+    _shopArray = array;
 }
 
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
+}
+
+-(void)setSelectedCountryCode:(NSString *)selectedCountryCode{
+    _selectedCountryCode = selectedCountryCode;
+}
+
+-(void)setEnteredPhoneNumber:(NSString *)enteredPhoneNumber{
+    _enteredPhoneNumber = enteredPhoneNumber;
 }
 
 -(void)setMainViewToDisplay{
@@ -106,11 +149,11 @@
 
 -(UIView*)getMainView{
     switch (self.viewType) {
-        case EnterPromoViewType:
+        case PopOutViewTypeEnterPromo:
             [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibEnterPromoView;
             
-        case ChooseShopViewType:
+        case PopOutViewTypeChooseShop:
             [self.ibShopTable registerClass:[PromoOutletCell class] forCellReuseIdentifier:@"PromoOutletCell"];
 //            self.ibShopTable.estimatedRowHeight = [PromoOutletCell getHeight];
 //            self.ibShopTable.rowHeight = UITableViewAutomaticDimension;
@@ -130,23 +173,45 @@
             }
             return self.ibChooseShopView;
             
-        case RedemptionSuccessfulViewType:
+        case PopOutViewTypeRedemptionSuccessful:
             [self.ibRedemptionSuccessfulContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibRedemptionSuccessfulView;
             
-        case EnterPhoneViewType:
+        case PopOutViewTypeChangeVerifiedPhone:
+            [self.ibChangeVerifiedPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            return self.ibChangeVerifiedPhoneView;
+            
+        case PopOutViewTypeEnterPhone:
+            self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, 470);
             [self.ibEnterPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibEnterPhoneTxtField color:[UIColor clearColor] borderRadius:self.ibEnterPhoneTxtField.frame.size.height/2];
+            [Utils setRoundBorder:self.ibEnterPhoneCountryCodeView color:DEVICE_COLOR borderRadius:self.ibEnterPhoneCountryCodeView.frame.size.height/2];
+            [self requestServerToGetHomeCountry];
             return self.ibEnterPhoneView;
             
-        case EnterVerificationViewType:
+        case PopOutViewTypeConfirmPhone:
+            [self.ibConfirmPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibConfirmPhoneChangeBtn color:DEVICE_COLOR borderRadius:self.ibConfirmPhoneChangeBtn.frame.size.height/2];
+            if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
+                self.ibConfirmPhoneNumberLbl.text = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
+            }
+            return self.ibConfirmPhoneView;
+            
+        case PopOutViewTypeEnterVerification:
             [self.ibEnterVerificationContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor clearColor] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
+            [Utils setRoundBorder:self.ibEnterVerificationResendBtn color:DEVICE_COLOR borderRadius:self.ibEnterVerificationResendBtn.frame.size.height/2];
+            if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
+                NSString *phoneNumber = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
+                self.ibEnterVerificationDesc.text = [NSString stringWithFormat:@"%@ %@", @"Enter the 6 digits that we have send to", phoneNumber];
+            }
             return self.ibEnterVerificationView;
             
-        case VerifiedViewType:
+        case PopOutViewTypeVerified:
             [self.ibVerifiedContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibVerifiedView;
             
-        case ErrorViewType:
+        case PopOutViewTypeError:
             [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             return self.ibErrorView;
             
@@ -156,96 +221,175 @@
     }
 }
 
+-(void)formatCountryCodeArray{
+    if (![Utils isArrayNull:self.countryArray]) {
+        for (CountryModel *country in self.countryArray) {
+            NSString *formattedCountryCode = [NSString stringWithFormat:@"%@ (%@)", country.name, country.phone_country_code];
+            [self.countryCodeArray addObject:formattedCountryCode];
+        }
+    }
+}
+
+#pragma mark - Declaration
+-(NSArray<CountryModel> *)countryArray{
+    if (!_countryArray) {
+        _countryArray = [[NSArray<CountryModel> alloc] init];
+    }
+    return _countryArray;
+}
+
+-(NSMutableArray *)countryCodeArray{
+    if (!_countryCodeArray) {
+        _countryCodeArray = [[NSMutableArray alloc] init];
+    }
+    return _countryCodeArray;
+}
+
+#pragma mark - IBAction
+
+- (IBAction)selectCountryCodeBtnClicked:(id)sender {
+    [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select country code")
+                                            rows:self.countryCodeArray
+                                initialSelection:0
+                                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                    
+                                    CountryModel *country = self.countryArray[selectedIndex];
+                                    self.selectedCountryCode = [country.phone_country_code substringFromIndex:1];
+                                    self.ibEnterPhoneCountryCodeLbl.text = self.countryCodeArray[selectedIndex];
+                                    
+    } cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+    } origin:sender];
+}
+
+- (IBAction)resendCodeBtnClicked:(id)sender {
+    self.isVerified = NO;
+    [self requestServerToGetTotp];
+}
+
+- (IBAction)changePhoneNumberBtnClicked:(id)sender {
+    [self.popupController popViewControllerAnimated:YES];
+}
+
 - (IBAction)buttonSubmitClicked:(id)sender {
   
-    PopOutViewType nextView;
+    PromoPopOutViewController* nextVC = [PromoPopOutViewController new];
  
     switch (self.viewType) {
-        case EnterPromoViewType:
+        case PopOutViewTypeEnterPromo:
         {
             if (YES) {
-                nextView = ChooseShopViewType;
+                [nextVC setViewType:PopOutViewTypeChooseShop];
             }
         }
             break;
             
-        case RedemptionSuccessfulViewType:
+        case PopOutViewTypeRedemptionSuccessful:
         {
             if (YES) {
-                nextView = QuitViewType;
+                [nextVC setViewType:PopOutViewTypeQuit];
             }
         }
             break;
-        case ChooseShopViewType:
+        case PopOutViewTypeChooseShop:
         {
-            if (self.popOutCondition == ChooseShopOnlyPopOutCondition) {
+            if (self.popOutCondition == PopOutConditionChooseShopOnly) {
                 if (self.promoPopOutDelegate) {
                     NSIndexPath *selectedIndexPath = [self.ibShopTable indexPathForSelectedRow];
                     if (selectedIndexPath) {
                         SeShopDetailModel *shopModel = [self.shopArray objectAtIndex:selectedIndexPath.row];
                         [self.promoPopOutDelegate chooseShopConfirmClicked:self.dealModel forShop:shopModel];
-                        nextView = QuitViewType;
+                        [nextVC setViewType:PopOutViewTypeQuit];
                     }
                 }
             }
             else{
-                nextView = EnterPhoneViewType;
+                [nextVC setViewType:PopOutViewTypeEnterPhone];
+            }
+        }
+            break;
+            
+        case PopOutViewTypeChangeVerifiedPhone:
+        {
+            if (YES) {
+                [nextVC setViewType:PopOutViewTypeEnterPhone];
             }
         }
             break;
 
-        case EnterPhoneViewType:
+        case PopOutViewTypeEnterPhone:
         {
-            if (YES) {
-                nextView = EnterVerificationViewType;
+            if (![Utils isStringNull:self.ibEnterPhoneTxtField.text] && ![Utils isStringNull:self.selectedCountryCode]) {
+                [nextVC setViewType:PopOutViewTypeConfirmPhone];
+                [nextVC setSelectedCountryCode:self.selectedCountryCode];
+                [nextVC setEnteredPhoneNumber:self.ibEnterPhoneTxtField.text];
             }
         }
             break;
             
-        case EnterVerificationViewType:
+        case PopOutViewTypeConfirmPhone:
         {
-            if (YES) {
-                nextView = VerifiedViewType;
+            if (self.hasRequestedTotp) {
+                [nextVC setViewType:PopOutViewTypeEnterVerification];
+                [nextVC setSelectedCountryCode:self.selectedCountryCode];
+                [nextVC setEnteredPhoneNumber:self.ibEnterPhoneTxtField.text];
+            }
+            else{
+                [self requestServerToGetTotp];
+                return;
             }
         }
             break;
             
-        case VerifiedViewType:
+        case PopOutViewTypeEnterVerification:
+        {
+            if (self.isVerified) {
+                [nextVC setViewType:PopOutViewTypeVerified];
+            }
+            else{
+                if (![Utils isStringNull:self.ibEnterVerificationTxtField.text]) {
+                    [self requestServerToVerifyTotp];
+                }
+                
+                return;
+            }
+            
+        }
+            break;
+            
+        case PopOutViewTypeVerified:
+        {
+            [nextVC setViewType:PopOutViewTypeQuit];
+            
+        }
+            break;
+            
+        case PopOutViewTypeError:
         {
             if (YES) {
-                nextView = RedemptionSuccessfulViewType;
+                [nextVC setViewType:PopOutViewTypeQuit];
             }
         }
             break;
             
-        case ErrorViewType:
+        case PopOutViewTypeQuit:
         {
             if (YES) {
-                nextView = QuitViewType;
-            }
-        }
-            break;
-            
-        case QuitViewType:
-        {
-            if (YES) {
-                nextView = QuitViewType;
+                [nextVC setViewType:PopOutViewTypeQuit];
             }
         }
             break;
 
         default:
-            nextView = EnterPromoViewType;
+            [nextVC setViewType:PopOutViewTypeEnterPromo];
 
             break;
     }
     
-    if (nextView == QuitViewType) {
+    if (nextVC.viewType == PopOutViewTypeQuit) {
         [self.popupController dismiss];
     }
     else{
-        PromoPopOutViewController* nextVC = [PromoPopOutViewController new];
-        [nextVC setViewType:nextView];
 //        self.popupController.containerView.backgroundColor = [UIColor clearColor];
         [self.popupController pushViewController:nextVC animated:YES];
 
@@ -275,5 +419,84 @@
     return outletCell;
 }
 
+#pragma mark - TextField
+- (void)textFieldDidBeginEditing:(UITextField *)textField; {
+    if (textField == self.ibEnterVerificationTxtField) {
+        [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor clearColor] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
+        self.ibEnterVerificationTxtField.textColor = [UIColor colorWithRed:102/255.0f green:102/255.0f blue:102/255.0f alpha:1];
+    }
+}
+
+#pragma mark - RequestServer
+
+-(void)requestServerToGetTotp{
+    if (self.isLoading) {
+        return;
+    }
+    
+    NSDictionary *dict = @{@"token": [Utils getAppToken],
+                           @"phone_number": self.enteredPhoneNumber,
+                           @"country_code": self.selectedCountryCode
+                           };
+    [LoadingManager show];
+    self.isLoading = YES;
+    
+    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostTOTP param:dict completeHandler:^(id object) {
+        self.hasRequestedTotp = YES;
+        if (self.viewType == PopOutViewTypeConfirmPhone) {
+            [self buttonSubmitClicked:self.ibEnterPhoneConfirmBtn];
+        }
+        
+        [LoadingManager hide];
+        self.isLoading = NO;
+    } errorBlock:^(id object) {
+        self.hasRequestedTotp = NO;
+        self.isLoading = NO;
+        [LoadingManager hide];
+    }];
+}
+
+-(void)requestServerToVerifyTotp{
+    if (self.isLoading) {
+        return;
+    }
+    
+    NSDictionary *dict = @{@"token": [Utils getAppToken],
+                           @"code": self.ibEnterVerificationTxtField.text
+                           };
+    [LoadingManager show];
+    self.isLoading = YES;
+    
+    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostVerifyTOTP param:dict completeHandler:^(id object) {
+        self.isVerified = YES;
+        [self buttonSubmitClicked:self.ibConfirmPhoneBtn];
+        self.isLoading = NO;
+        [LoadingManager hide];
+    } errorBlock:^(id object) {
+        [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
+        self.ibEnterVerificationTxtField.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Invalid verification code, make sure the code you enter is right") Type:TSMessageNotificationTypeError];
+        self.isVerified = NO;
+        self.isLoading = NO;
+        [LoadingManager hide];
+    }];
+}
+
+-(void)requestServerToGetHomeCountry{
+    ProfileModel *profile = [[DataManager Instance] userProfileModel];
+    NSString *langCode = profile.system_language.language_code;
+    NSDictionary *dict = @{@"language_code": langCode
+                           };
+    [LoadingManager show];
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetHomeCountry param:dict appendString:nil completeHandler:^(id object) {
+        CountriesModel *countriesModel = [[ConnectionManager dataManager] countriesModel];
+        self.countryArray = countriesModel.countries;
+        [self.countryCodeArray removeAllObjects];
+        [self formatCountryCodeArray];
+        [LoadingManager hide];
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+    }];
+}
 
 @end

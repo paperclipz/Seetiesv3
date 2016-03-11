@@ -92,7 +92,7 @@
 - (IBAction)btnPromoClicked:(id)sender {
     
     PromoPopOutViewController* promoPopoutVC = [PromoPopOutViewController new];
-    [promoPopoutVC setViewType:EnterPromoViewType];
+    [promoPopoutVC setViewType:PopOutViewTypeEnterPromo];
     
     _popupCTController = [[STPopupController alloc]initWithRootViewController:promoPopoutVC];
     _popupCTController.containerView.backgroundColor = [UIColor clearColor];

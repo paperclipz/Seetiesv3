@@ -26,13 +26,13 @@ PODS:
   - APParallaxHeader (0.1.6)
   - BOString (0.10.0)
   - CLLocationManager-blocks (1.3.3)
-  - Crashlytics (3.6.0):
+  - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - DBCamera (2.4.1):
     - GPUImage (~> 0.1)
   - ESTabBarController (0.1.2)
-  - Fabric (1.6.5)
-  - GoogleMaps (1.11.1)
+  - Fabric (1.6.7)
+  - GoogleMaps (1.12.3)
   - GPUImage (0.1.7)
   - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
@@ -50,7 +50,7 @@ PODS:
   - iOSBlocks/Foundation (1.2)
   - iOSBlocks/MessageUI (1.2)
   - iOSBlocks/UIKit (1.2)
-  - IQKeyboardManager (3.3.6)
+  - IQKeyboardManager (4.0.0)
   - JSONModel (1.2.0)
   - LPGoogleFunctions (1.2.3):
     - AFNetworking (~> 2.0)
@@ -63,7 +63,7 @@ PODS:
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - STPopup (1.6.0)
+  - STPopup (1.6.1)
   - SVPullToRefresh (0.4.1)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
@@ -120,17 +120,17 @@ SPEC CHECKSUMS:
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   BOString: b4c4df4f8a7f046c42a51c32629772dc2701fc47
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
-  Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
   ESTabBarController: ef57e22d9835c7142d3681d38ac158006c40465f
-  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
-  GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  GoogleMaps: a4ac67918d0b5ba5f6b9893ac80487e357779e6c
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   InstagramKit: bbbd15baeac2d32b2915d2d89319ad90bacd5912
   iOSBlocks: a52cab17a30314e91b2c85ea4c65f84d19826676
-  IQKeyboardManager: 037cf3aec1d0a045108859a47818714eb1bfc149
+  IQKeyboardManager: b91928f7927ba55a5829b4dcf4b7a6736ac9fc22
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
@@ -140,7 +140,7 @@ SPEC CHECKSUMS:
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  STPopup: 7975883c48560e4cb16ea1c6f351312ed2cd2bc0
+  STPopup: f32dc6a944b57311b6d2d6e3afd789f83a0c4cbc
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f

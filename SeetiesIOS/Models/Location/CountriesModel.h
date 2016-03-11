@@ -15,4 +15,5 @@
 @interface CountriesModel : Model
 
 @property(nonatomic,strong)NSArray<CountryModel>* countries;
+@property(nonatomic,strong)CountryModel *current_country;
 @end

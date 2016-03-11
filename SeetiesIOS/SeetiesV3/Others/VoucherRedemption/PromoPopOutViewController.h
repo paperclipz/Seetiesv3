@@ -9,21 +9,25 @@
 #import "CommonViewController.h"
 #import "STPopup.h"
 #import "PromoOutletCell.h"
+#import "ActionSheetPicker.h"
 
 typedef enum{
-    EnterPromoViewType,
-    RedemptionSuccessfulViewType,
-    ChooseShopViewType,
-    EnterPhoneViewType,
-    EnterVerificationViewType,
-    VerifiedViewType,
-    ErrorViewType,
-    QuitViewType
+    PopOutViewTypeEnterPromo,
+    PopOutViewTypeRedemptionSuccessful,
+    PopOutViewTypeChooseShop,
+    PopOutViewTypeChangeVerifiedPhone,
+    PopOutViewTypeEnterPhone,
+    PopOutViewTypeConfirmPhone,
+    PopOutViewTypeEnterVerification,
+    PopOutViewTypeVerified,
+    PopOutViewTypeError,
+    PopOutViewTypeQuit
 } PopOutViewType;
 
 typedef enum{
-    NormalPopOutCondition,
-    ChooseShopOnlyPopOutCondition
+    PopOutConditionNormal,
+    PopOutConditionChooseShopOnly,
+    PopOutConditionVerifyPhoneNumber
 }PopOutCondition;
 
 @protocol PromoPopOutDelegate <NSObject>
@@ -31,7 +35,7 @@ typedef enum{
 -(void)chooseShopConfirmClicked:(DealModel*)dealModel forShop:(SeShopDetailModel*)shopModel;
 @end
 
-@interface PromoPopOutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface PromoPopOutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property(nonatomic,copy)VoidBlock updateFrame;
 @property id<PromoPopOutDelegate> promoPopOutDelegate;
 
@@ -39,4 +43,6 @@ typedef enum{
 -(void)setPopOutCondition:(PopOutCondition)popOutCondition;
 -(void)setShopArray:(NSArray*)shopArray;
 -(void)setDealModel:(DealModel *)dealModel;
+-(void)setSelectedCountryCode:(NSString *)selectedCountryCode;
+-(void)setEnteredPhoneNumber:(NSString *)enteredPhoneNumber;
 @end
