@@ -63,7 +63,6 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)DraftModel* editPostModel;
 @property(nonatomic,strong)DraftModel* savedDraftModel;
 
-
 @property(nonatomic,strong)TagModel* tagModel;
 @property(nonatomic,strong)ProfileModel* userProfileModel;//model from proifle page. has additional follow and following
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;

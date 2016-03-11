@@ -204,6 +204,7 @@ typedef enum {
 
 +(NSString*)getDeviceAppLanguageCode;
 +(NSString*)getDeviceDefaultLanguageCode;
++(void)setDeviceAppLanguage:(NSString*)caption;
 
 #define ARRAY_LIST_SIZE 10.0f
 #define LIKES_LIST_SIZE 30.0f

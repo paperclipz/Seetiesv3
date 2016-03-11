@@ -310,7 +310,6 @@
         
         [self.ibSearchTxtField resignFirstResponder];
         
-        
         HomeLocationModel* hModel = [HomeLocationModel new];
         hModel.timezone = @"";
         hModel.type = @"current";

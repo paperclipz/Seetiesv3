@@ -381,6 +381,13 @@ static NSCache* heightCache = nil;
     return _meViewController;
 }
 
+
+-(NSString*)getDisplayLocation:(HomeLocationModel*)model
+{
+    
+    return nil;
+}
+
 -(SearchLocationViewController*)searchLocationViewController{
  
     if (!_searchLocationViewController) {

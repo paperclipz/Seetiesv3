@@ -1450,18 +1450,6 @@
 		8AFA52021C47B4AB00E7920E /* CT3_NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B41C47B4AB00E7920E /* CT3_NewsFeedViewController.xib */; };
 		8AFA52031C47B4AB00E7920E /* CT3_MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51B71C47B4AB00E7920E /* CT3_MeViewController.m */; };
 		8AFA52041C47B4AB00E7920E /* CT3_MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B81C47B4AB00E7920E /* CT3_MeViewController.xib */; };
-
-		8AFA52051C47B4AB00E7920E /* CT3_SearchListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51BB1C47B4AB00E7920E /* CT3_SearchListingViewController.m */; };
-		8AFA52061C47B4AB00E7920E /* CT3_SearchListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51BC1C47B4AB00E7920E /* CT3_SearchListingViewController.xib */; };
-		8AFA52071C47B4AB00E7920E /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51BE1C47B4AB00E7920E /* PostsTableViewCell.m */; };
-		8AFA52081C47B4AB00E7920E /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51BF1C47B4AB00E7920E /* PostsTableViewCell.xib */; };
-		8AFA52091C47B4AB00E7920E /* SearchLTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51C11C47B4AB00E7920E /* SearchLTabViewController.m */; };
-		8AFA520A1C47B4AB00E7920E /* SearchLTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51C21C47B4AB00E7920E /* SearchLTabViewController.xib */; };
-		8AFA520B1C47B4AB00E7920E /* SeetizensTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51C41C47B4AB00E7920E /* SeetizensTableViewCell.m */; };
-		8AFA520C1C47B4AB00E7920E /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51C51C47B4AB00E7920E /* SeetizensTableViewCell.xib */; };
-		C206B7A91C90319C00786128 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206B7A71C90319C00786128 /* TermsViewController.m */; };
-		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
-
 		8AFF08331C90358E00918582 /* TagLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08321C90358E00918582 /* TagLocationModel.m */; };
 		8AFF08511C90379000918582 /* SearchComplexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08371C90379000918582 /* SearchComplexTableViewCell.m */; };
 		8AFF08521C90379000918582 /* SearchComplexTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08381C90379000918582 /* SearchComplexTableViewCell.xib */; };
@@ -1483,6 +1471,8 @@
 		8AFF08621C90379000918582 /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */; };
 		8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF09101C9038C400918582 /* ComplexTagModel.m */; };
 		8AFF09141C91228F00918582 /* HomeNight2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF09131C91228F00918582 /* HomeNight2.png */; };
+		C206B7A91C90319C00786128 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206B7A71C90319C00786128 /* TermsViewController.m */; };
+		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };

@@ -132,6 +132,8 @@
     [self.btnDone setTitle:LocalisedString(@"Done") forState:UIControlStateNormal];
 }
 
+
+#pragma mark - Request Server
 -(void)requestServerToUpdateUserInfo:(NSArray*)arrCategories
 {
     

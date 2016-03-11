@@ -14,6 +14,7 @@
 #import "FeedbackViewController.h"
 #import "AccountSettingViewController.h"
 #import "CTWebViewController.h"
+#import "CT3_AcctSettingViewController.h"
 
 @interface CT3_MoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -25,14 +26,17 @@
 @property(nonatomic)FeedbackViewController* feedbackViewController;
 @property(nonatomic)AccountSettingViewController* accountSettingViewController;
 @property(nonatomic)CTWebViewController* ctWebViewController;
+@property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
 
 @end
 
 @implementation CT3_MoreViewController
 - (IBAction)btnTestClicked:(id)sender {
     
-    [Utils showLogin];
+    _ct3_AcctSettingViewController = nil;
+    [self.navigationController pushViewController:self.ct3_AcctSettingViewController animated:YES];
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -191,8 +195,15 @@
 
 }
 
-
 #pragma mark - Declaration
+
+-(CT3_AcctSettingViewController*)ct3_AcctSettingViewController
+{
+    if (!_ct3_AcctSettingViewController) {
+        _ct3_AcctSettingViewController = [CT3_AcctSettingViewController new];
+    }
+    return _ct3_AcctSettingViewController;
+}
 
 -(CTWebViewController*)ctWebViewController
 {

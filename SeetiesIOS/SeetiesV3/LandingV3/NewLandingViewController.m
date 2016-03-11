@@ -28,22 +28,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   // [self initSelfView];
-//    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+
+    
     [self.view addSubview:self.tabBarController.view];
 
     [self requestServerForLanguageList];
     
     if (![Utils checkUserIsLogin]) {
         [Utils showLogin];
-
     }
     else{
         
         [self requestServerForUserInfo];
         [Utils reloadAppView];
     }
+    
+    [self requestServerForCountry];
 }
 
 -(UITabBarController*)tabBarController
@@ -301,6 +301,22 @@
 
 
 #pragma mark - Request Server
+
+-(void)requestServerForCountry
+{
+    NSDictionary* dict = @{@"language_code":ENGLISH_CODE};
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeCountry param:dict appendString:nil completeHandler:^(id object) {
+        
+        
+        SLog(@"[COUNTRY CODE RETRIEVED]");
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+
 -(void)requestServerForUserInfo
 {
     NSString* appendString = [NSString stringWithFormat:@"%@",@"me"];

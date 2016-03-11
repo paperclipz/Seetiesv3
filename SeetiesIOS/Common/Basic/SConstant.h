@@ -59,6 +59,8 @@ typedef enum
     // ========== User Info ========== //
     ServerRequestTypeGetUserInfo,
     ServerRequestTypePostFollowUser,
+    ServerRequestTypePostUpdateUser,
+    
     // ========== User Info ========== //
 
     

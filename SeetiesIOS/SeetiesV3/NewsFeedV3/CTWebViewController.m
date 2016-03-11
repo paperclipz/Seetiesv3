@@ -122,7 +122,6 @@
 {
     NSString *response = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
     
-    
     InstagramModel* model = [[InstagramModel alloc]initWithData:receivedData error:nil];
     
     [ConnectionManager dataManager].instagramModel = model;

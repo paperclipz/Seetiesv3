@@ -56,6 +56,7 @@ PODS:
     - AFNetworking (~> 2.0)
   - MGInstagram (0.1.0)
   - MGSwipeTableCell (1.5.3)
+  - MMPickerView (0.0.1)
   - MZAppearance (1.1.6)
   - NSDate-Time-Ago (1.0.1)
   - PureLayout (3.0.1)
@@ -90,6 +91,7 @@ DEPENDENCIES:
   - LPGoogleFunctions
   - MGInstagram
   - MGSwipeTableCell
+  - MMPickerView (~> 0.0.1)
   - MZAppearance
   - NSDate-Time-Ago
   - PureLayout
@@ -133,6 +135,7 @@ SPEC CHECKSUMS:
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
   MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
+  MMPickerView: 6ba6bd5d0ef1fd60372d3f5e4fa80ad4237a86a0
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb

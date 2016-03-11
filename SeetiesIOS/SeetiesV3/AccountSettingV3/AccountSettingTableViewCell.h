@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AccountSettingTableViewCell : CommonTableViewCell
+@interface AccountSettingTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblDesc;
+@property (weak, nonatomic) IBOutlet UISwitch *ibSwitch;
+-(void)initData:(int)type;
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withType:(int)type;
 
+@property(nonatomic,copy)BoolBlock didChangeSettingBlock;
 @end

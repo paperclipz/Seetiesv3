@@ -631,6 +631,16 @@
     
 }
 
++(void)setDeviceAppLanguage:(NSString*)caption
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:caption forKey:KEY_SYSTEM_LANG];
+    
+    [defaults synchronize];
+
+}
+
 /*get device language not app language*/
 +(NSString*)getDeviceDefaultLanguageCode
 {
@@ -866,6 +876,5 @@
     
    
 }
-
 
 @end
