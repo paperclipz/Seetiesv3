@@ -1507,8 +1507,6 @@
 		C258101A1C7AD89000041A85 /* VoucherInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25810191C7AD89000041A85 /* VoucherInfoModel.m */; };
 		C25A8B951C7487010046F80A /* RedemptionTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25A8B941C7487010046F80A /* RedemptionTypeView.xib */; };
 		C25A8B981C74872F0046F80A /* RedemptionTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25A8B971C74872F0046F80A /* RedemptionTypeView.m */; };
-		C26676161C6445290021B6B0 /* WalletHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26676141C6445290021B6B0 /* WalletHeaderCell.m */; };
-		C26676171C6445290021B6B0 /* WalletHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26676151C6445290021B6B0 /* WalletHeaderCell.xib */; };
 		C266761C1C6483030021B6B0 /* RedemptionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C266761A1C6483030021B6B0 /* RedemptionHistoryViewController.m */; };
 		C266761D1C6483030021B6B0 /* RedemptionHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C266761B1C6483030021B6B0 /* RedemptionHistoryViewController.xib */; };
 		C26676211C6485400021B6B0 /* RedemptionHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C266761F1C6485400021B6B0 /* RedemptionHistoryCell.m */; };
@@ -3523,9 +3521,6 @@
 		C25A8B941C7487010046F80A /* RedemptionTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionTypeView.xib; sourceTree = "<group>"; };
 		C25A8B961C74872F0046F80A /* RedemptionTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionTypeView.h; sourceTree = "<group>"; };
 		C25A8B971C74872F0046F80A /* RedemptionTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionTypeView.m; sourceTree = "<group>"; };
-		C26676131C6445290021B6B0 /* WalletHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletHeaderCell.h; sourceTree = "<group>"; };
-		C26676141C6445290021B6B0 /* WalletHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletHeaderCell.m; sourceTree = "<group>"; };
-		C26676151C6445290021B6B0 /* WalletHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletHeaderCell.xib; sourceTree = "<group>"; };
 		C26676191C6483030021B6B0 /* RedemptionHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedemptionHistoryViewController.h; sourceTree = "<group>"; };
 		C266761A1C6483030021B6B0 /* RedemptionHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedemptionHistoryViewController.m; sourceTree = "<group>"; };
 		C266761B1C6483030021B6B0 /* RedemptionHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionHistoryViewController.xib; sourceTree = "<group>"; };
@@ -7286,9 +7281,6 @@
 				8AFA517A1C47B4AB00E7920E /* WalletVoucherCell.h */,
 				8AFA517B1C47B4AB00E7920E /* WalletVoucherCell.m */,
 				8AFA517C1C47B4AB00E7920E /* WalletVoucherCell.xib */,
-				C26676131C6445290021B6B0 /* WalletHeaderCell.h */,
-				C26676141C6445290021B6B0 /* WalletHeaderCell.m */,
-				C26676151C6445290021B6B0 /* WalletHeaderCell.xib */,
 			);
 			path = WalletListing;
 			sourceTree = "<group>";
@@ -8094,7 +8086,6 @@
 				8A84C8031C7FF448006A0D76 /* NotificationCollect@2x.png in Resources */,
 				8A84C7DB1C7FF448006A0D76 /* InviteBtnInactive@2x.png in Resources */,
 				8A84C6801C7FF448006A0D76 /* SeetishopVerifiedIcon@2x.png in Resources */,
-				C26676171C6445290021B6B0 /* WalletHeaderCell.xib in Resources */,
 				8A84C73D1C7FF448006A0D76 /* NoActivity@2x.png in Resources */,
 				8A84C6B31C7FF448006A0D76 /* Icon-Small@3x.png in Resources */,
 				8A84C66B1C7FF448006A0D76 /* EnterPromoCodeImg.png in Resources */,
@@ -9136,7 +9127,6 @@
 				8AF030C51C5F6CE400817E2F /* PlaceModel.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
 				C2AB4A5A1C6D8C900053FCA8 /* FilterAvailabilityCell.m in Sources */,
-				C26676161C6445290021B6B0 /* WalletHeaderCell.m in Sources */,
 				8AD6C2911B7072FB0040437E /* ChangeSearchLocationViewController.m in Sources */,
 				8AD6C27F1B7072FB0040437E /* AddContactViewController.m in Sources */,
 				0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */,

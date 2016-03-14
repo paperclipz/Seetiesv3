@@ -10,7 +10,6 @@
 #import "WalletVoucherCell.h"
 #import "PromoPopOutViewController.h"
 #import "STPopupController.h"
-#import "WalletHeaderCell.h"
 #import "RedemptionHistoryViewController.h"
 #import "DealDetailsViewController.h"
 #import "DealRedeemViewController.h"

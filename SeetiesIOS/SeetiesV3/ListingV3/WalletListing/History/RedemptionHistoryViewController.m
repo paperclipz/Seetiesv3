@@ -32,7 +32,6 @@
     self.isLoading = NO;
     
     [self.ibHistoryTable registerNib:[UINib nibWithNibName:@"RedemptionHistoryCell" bundle:nil] forCellReuseIdentifier:@"RedemptionHistoryCell"];
-    [self.ibHistoryTable registerNib:[UINib nibWithNibName:@"WalletHeaderCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"WalletHeaderCell"];
     self.ibHistoryTable.estimatedRowHeight = [RedemptionHistoryCell getHeight];
     self.ibHistoryTable.rowHeight = UITableViewAutomaticDimension;
     
@@ -184,12 +183,19 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;{
-    WalletHeaderCell *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"WalletHeaderCell"];
+    
+    UIView *contentView  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 44)];
+    contentView.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, 15, tableView.frame.size.width, 21)];
+    label.font = [UIFont boldSystemFontOfSize:13.0f];
+    label.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     
     DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
-    [header setHeaderTitle:[NSString stringWithFormat:@"%@", expiryModel.expiryDate]];
+    label.text = [NSString stringWithFormat:@"%@", expiryModel.expiryDate];
     
-    return header;
+    [contentView addSubview:label];
+    return contentView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

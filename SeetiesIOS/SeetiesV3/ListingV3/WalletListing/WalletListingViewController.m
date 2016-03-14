@@ -40,7 +40,6 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.ibTableView registerNib:[UINib nibWithNibName:@"WalletVoucherCell" bundle:nil] forCellReuseIdentifier:@"WalletVoucherCell"];
-    [self.ibTableView registerNib:[UINib nibWithNibName:@"WalletHeaderCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"WalletHeaderCell"];
     self.ibTableView.estimatedRowHeight = [WalletVoucherCell getHeight];
     self.ibTableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -216,20 +215,27 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;{
-    WalletHeaderCell *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"WalletHeaderCell"];
+    
+    UIView *contentView  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 44)];
+    contentView.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, 15, tableView.frame.size.width, 21)];
+    label.font = [UIFont boldSystemFontOfSize:13.0f];
+    label.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     
     DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
     if ([expiryModel.expiryDate isEqualToString:@"new"]) {
-        [header setHeaderTitle:LocalisedString(@"New!")];
+        label.text = LocalisedString(@"New!");
     }
     else if ([expiryModel.expiryDate isEqualToString:@"noDate"]){
-        [header setHeaderTitle:LocalisedString(@"No expiry date")];
+        label.text = LocalisedString(@"No expiry date");
     }
     else{
-        [header setHeaderTitle:[NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), expiryModel.expiryDate]];
+        label.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), expiryModel.expiryDate];
     }
     
-    return header;
+    [contentView addSubview:label];
+    return contentView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
