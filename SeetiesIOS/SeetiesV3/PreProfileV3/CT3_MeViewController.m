@@ -123,7 +123,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self initSelfView];
+    
     
     ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
     self.ibProfileName.text = model.username;
@@ -158,11 +158,11 @@
     [self.ibWalletView setStandardBorder];
     [self.ibCollectionView setStandardBorder];
     
-    [self.ibInviteFriendsView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibInviteFriendsView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibInviteFriendsView prefix_addUpperBorder:OUTLINE_COLOR];
+    [self.ibInviteFriendsView prefix_addLowerBorder:OUTLINE_COLOR];
     
-    [self.ibPromoCodeView prefix_addUpperBorder:[UIColor lightGrayColor]];
-    [self.ibPromoCodeView prefix_addLowerBorder:[UIColor lightGrayColor]];
+    [self.ibPromoCodeView prefix_addUpperBorder:OUTLINE_COLOR];
+    [self.ibPromoCodeView prefix_addLowerBorder:OUTLINE_COLOR];
     
     [self.view addSubview:self.ibGuestView];
     self.ibGuestView.frame = CGRectMake(0, self.ibHeaderView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.ibHeaderView.frame.size.height);
@@ -175,7 +175,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    [self initSelfView];
     self.ibGuestView.hidden = ![Utils isGuestMode];
     
     if ([Utils isGuestMode]) {

@@ -1475,6 +1475,12 @@
 		C22A8C261C9674F000D6E5A3 /* PopUpCloseBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C241C9674F000D6E5A3 /* PopUpCloseBtn@3x.png */; };
 		C22A8C291C96754400D6E5A3 /* MeCollectionIconBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C271C96754400D6E5A3 /* MeCollectionIconBg.png */; };
 		C22A8C2A1C96754400D6E5A3 /* MeVoucherWalletIconBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C281C96754400D6E5A3 /* MeVoucherWalletIconBg.png */; };
+		C22A8C311C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C2B1C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@2x.png */; };
+		C22A8C321C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C2C1C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@3x.png */; };
+		C22A8C331C96D5A400D6E5A3 /* MeInviteFriendsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C2D1C96D5A400D6E5A3 /* MeInviteFriendsIcon@2x.png */; };
+		C22A8C341C96D5A400D6E5A3 /* MeInviteFriendsIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C2E1C96D5A400D6E5A3 /* MeInviteFriendsIcon@3x.png */; };
+		C22A8C351C96D5A400D6E5A3 /* MeNotificationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C2F1C96D5A400D6E5A3 /* MeNotificationIcon@2x.png */; };
+		C22A8C361C96D5A400D6E5A3 /* MeNotificationIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C301C96D5A400D6E5A3 /* MeNotificationIcon@3x.png */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
 		C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */; };
 		C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */; };
@@ -3484,6 +3490,12 @@
 		C22A8C241C9674F000D6E5A3 /* PopUpCloseBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PopUpCloseBtn@3x.png"; sourceTree = "<group>"; };
 		C22A8C271C96754400D6E5A3 /* MeCollectionIconBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeCollectionIconBg.png; sourceTree = "<group>"; };
 		C22A8C281C96754400D6E5A3 /* MeVoucherWalletIconBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeVoucherWalletIconBg.png; sourceTree = "<group>"; };
+		C22A8C2B1C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MeEnterPromoCodeIcon@2x.png"; sourceTree = "<group>"; };
+		C22A8C2C1C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MeEnterPromoCodeIcon@3x.png"; sourceTree = "<group>"; };
+		C22A8C2D1C96D5A400D6E5A3 /* MeInviteFriendsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MeInviteFriendsIcon@2x.png"; sourceTree = "<group>"; };
+		C22A8C2E1C96D5A400D6E5A3 /* MeInviteFriendsIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MeInviteFriendsIcon@3x.png"; sourceTree = "<group>"; };
+		C22A8C2F1C96D5A400D6E5A3 /* MeNotificationIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MeNotificationIcon@2x.png"; sourceTree = "<group>"; };
+		C22A8C301C96D5A400D6E5A3 /* MeNotificationIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MeNotificationIcon@3x.png"; sourceTree = "<group>"; };
 		C23042DF1C61F331001008CB /* DealsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsModel.h; sourceTree = "<group>"; };
 		C23042E01C61F331001008CB /* DealsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealsModel.m; sourceTree = "<group>"; };
 		C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
@@ -5075,6 +5087,12 @@
 		8A84C31A1C7FF447006A0D76 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				C22A8C2B1C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@2x.png */,
+				C22A8C2C1C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@3x.png */,
+				C22A8C2D1C96D5A400D6E5A3 /* MeInviteFriendsIcon@2x.png */,
+				C22A8C2E1C96D5A400D6E5A3 /* MeInviteFriendsIcon@3x.png */,
+				C22A8C2F1C96D5A400D6E5A3 /* MeNotificationIcon@2x.png */,
+				C22A8C301C96D5A400D6E5A3 /* MeNotificationIcon@3x.png */,
 				C22A8C271C96754400D6E5A3 /* MeCollectionIconBg.png */,
 				C22A8C281C96754400D6E5A3 /* MeVoucherWalletIconBg.png */,
 				8A84C31B1C7FF447006A0D76 /* MeCollectionIcon@2x.png */,
@@ -7801,6 +7819,7 @@
 				8AD6C0D31B706CF30040437E /* PFollowTheExpertsViewController.xib in Resources */,
 				8A84C85B1C7FF448006A0D76 /* ProfileFollowingIcon@2x.png in Resources */,
 				8A84C8581C7FF448006A0D76 /* ProfileExpand@3x.png in Resources */,
+				C22A8C351C96D5A400D6E5A3 /* MeNotificationIcon@2x.png in Resources */,
 				C238E33E1C4649AA00570A25 /* slider-metal-trackBackground@2x.png in Resources */,
 				8A993CD51C322E5D009359E2 /* TestingViewController.xib in Resources */,
 				8ABA7DF21C7422AA00FB41F4 /* CT3_NotificationViewController.xib in Resources */,
@@ -8157,6 +8176,7 @@
 				8AFA51F41C47B4AB00E7920E /* FeedType_FollowingPostTblCell.xib in Resources */,
 				8A84C7F01C7FF448006A0D76 /* EyesCheck@3x.png in Resources */,
 				8AFA51CA1C47B4AB00E7920E /* FilterBudgetCell.xib in Resources */,
+				C22A8C361C96D5A400D6E5A3 /* MeNotificationIcon@3x.png in Resources */,
 				8A84C6F81C7FF448006A0D76 /* Uncheck@3x.png in Resources */,
 				8AD6C0B21B706CF30040437E /* SignupViewController.xib in Resources */,
 				8A84C77E1C7FF448006A0D76 /* FeedOverlay@2x.png in Resources */,
@@ -8232,6 +8252,7 @@
 				8A84C8051C7FF448006A0D76 /* NotificationComment@2x.png in Resources */,
 				8A84C7181C7FF448006A0D76 /* CloseIcon@3x.png in Resources */,
 				8A84C8C91C7FF448006A0D76 /* WalkthroughEditPost.png in Resources */,
+				C22A8C311C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@2x.png in Resources */,
 				8AD6C2881B7072FB0040437E /* BrightnessViewController.xib in Resources */,
 				8A84C7EC1C7FF448006A0D76 /* MoveIcon@3x.png in Resources */,
 				8A84C6BE1C7FF448006A0D76 /* CheckGrey@3x.png in Resources */,
@@ -8313,6 +8334,7 @@
 				8A84C6731C7FF448006A0D76 /* SeetishopArtAndEntertainmentsIcon@3x.png in Resources */,
 				8AD6C2921B7072FB0040437E /* ChangeSearchLocationViewController.xib in Resources */,
 				8AC8F7311BDA414E00DEF14A /* ProfilePageCollectionTableViewCell.xib in Resources */,
+				C22A8C341C96D5A400D6E5A3 /* MeInviteFriendsIcon@3x.png in Resources */,
 				8AD6C10B1B706CF30040437E /* FeedbackViewController.xib in Resources */,
 				8A84C8291C7FF448006A0D76 /* PostViewIcon@2x.png in Resources */,
 				8A84C6471C7FF448006A0D76 /* MoreFeedbackIcon@3x.png in Resources */,
@@ -8439,6 +8461,7 @@
 				8A84C89B1C7FF448006A0D76 /* GoToEnd@3x.png in Resources */,
 				C238E3361C4649AA00570A25 /* slider-default7-trackCrossedOver@2x.png in Resources */,
 				8A84C7231C7FF448006A0D76 /* ArrowBtn@2x.png in Resources */,
+				C22A8C321C96D5A400D6E5A3 /* MeEnterPromoCodeIcon@3x.png in Resources */,
 				8A84C8851C7FF448006A0D76 /* SSDefaultCoverPhoto.png in Resources */,
 				8A84C8C01C7FF448006A0D76 /* NotificationIconActive@3x.png in Resources */,
 				8A84C6121C7FF448006A0D76 /* HomeAfternoon1.png in Resources */,
@@ -8595,6 +8618,7 @@
 				8AD6C0F71B706CF30040437E /* SearchDetailViewController.xib in Resources */,
 				8A84C5D81C7FF448006A0D76 /* DealRedeemCardUp.png in Resources */,
 				8A84C74D1C7FF448006A0D76 /* ExploreFollow@3x.png in Resources */,
+				C22A8C331C96D5A400D6E5A3 /* MeInviteFriendsIcon@2x.png in Resources */,
 				8A84C6AF1C7FF448006A0D76 /* Icon-Small-50.png in Resources */,
 				8A84C7861C7FF448006A0D76 /* FollowingIcon@2x.png in Resources */,
 				8A84C85F1C7FF448006A0D76 /* ProfileOverlay@2x.png in Resources */,
