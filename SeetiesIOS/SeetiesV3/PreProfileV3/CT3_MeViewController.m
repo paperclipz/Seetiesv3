@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibNotificationCountLbl;
 
 @property(nonatomic)STPopupController *popupCTController;
+@property(nonatomic)DealDetailsViewController *dealDetailsViewController;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibGuestView;
@@ -90,11 +91,15 @@
 }
 
 - (IBAction)btnPromoClicked:(id)sender {
+    if (!self.profileModel.phone_verified) {
+        [Utils showVerifyPhoneNumber:self];
+        return;
+    }
     
-    PromoPopOutViewController* promoPopoutVC = [PromoPopOutViewController new];
-    [promoPopoutVC setViewType:PopOutViewTypeEnterPromo];
+    self.promoCodeViewController = nil;
+    [self.promoCodeViewController setViewType:PopOutViewTypeEnterPromo];
     
-    _popupCTController = [[STPopupController alloc]initWithRootViewController:promoPopoutVC];
+    _popupCTController = [[STPopupController alloc]initWithRootViewController:self.promoCodeViewController];
     _popupCTController.containerView.backgroundColor = [UIColor clearColor];
     [_popupCTController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
     [_popupCTController presentInViewController:self];
@@ -104,6 +109,14 @@
 
 -(IBAction)backgroundViewDidTap{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)viewDealDetailsClicked:(DealModel *)dealModel{
+    self.dealDetailsViewController = nil;
+    [self.dealDetailsViewController setDealModel:dealModel];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        [self.dealDetailsViewController setupView];
+    }];
 }
 
 #pragma mark InitMethod
@@ -236,8 +249,16 @@
 -(PromoPopOutViewController*)promoCodeViewController{
     if (!_promoCodeViewController) {
         _promoCodeViewController = [PromoPopOutViewController new];
+        _promoCodeViewController.promoPopOutDelegate = self;
     }
     return _promoCodeViewController;
+}
+
+-(DealDetailsViewController *)dealDetailsViewController{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    return _dealDetailsViewController;
 }
 
 -(void)reloadData

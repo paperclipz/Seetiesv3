@@ -122,8 +122,13 @@ typedef enum
 
     //===TOTP===//
     ServerRequestTypePostTOTP,
-    ServerRequestTypePostVerifyTOTP
+    ServerRequestTypePostVerifyTOTP,
     //===TOTP===//
+    
+    //===PromoCode===//
+    ServerRequestTypeGetPromoCode,
+    ServerRequestTypePostRedeemPromoCode
+    //===PromoCode===//
     
 }ServerRequestType;
 

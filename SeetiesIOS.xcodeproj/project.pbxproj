@@ -1471,6 +1471,10 @@
 		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
+		C22A8C251C9674F000D6E5A3 /* PopUpCloseBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C231C9674F000D6E5A3 /* PopUpCloseBtn@2x.png */; };
+		C22A8C261C9674F000D6E5A3 /* PopUpCloseBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C241C9674F000D6E5A3 /* PopUpCloseBtn@3x.png */; };
+		C22A8C291C96754400D6E5A3 /* MeCollectionIconBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C271C96754400D6E5A3 /* MeCollectionIconBg.png */; };
+		C22A8C2A1C96754400D6E5A3 /* MeVoucherWalletIconBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C22A8C281C96754400D6E5A3 /* MeVoucherWalletIconBg.png */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
 		C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */; };
 		C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */; };
@@ -3476,6 +3480,10 @@
 		C20872941C59D1FA0063F203 /* PromoOutletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoOutletCell.h; sourceTree = "<group>"; };
 		C20872951C59D1FA0063F203 /* PromoOutletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoOutletCell.m; sourceTree = "<group>"; };
 		C20872961C59D1FA0063F203 /* PromoOutletCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoOutletCell.xib; sourceTree = "<group>"; };
+		C22A8C231C9674F000D6E5A3 /* PopUpCloseBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PopUpCloseBtn@2x.png"; sourceTree = "<group>"; };
+		C22A8C241C9674F000D6E5A3 /* PopUpCloseBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PopUpCloseBtn@3x.png"; sourceTree = "<group>"; };
+		C22A8C271C96754400D6E5A3 /* MeCollectionIconBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeCollectionIconBg.png; sourceTree = "<group>"; };
+		C22A8C281C96754400D6E5A3 /* MeVoucherWalletIconBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeVoucherWalletIconBg.png; sourceTree = "<group>"; };
 		C23042DF1C61F331001008CB /* DealsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsModel.h; sourceTree = "<group>"; };
 		C23042E01C61F331001008CB /* DealsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealsModel.m; sourceTree = "<group>"; };
 		C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
@@ -5067,6 +5075,8 @@
 		8A84C31A1C7FF447006A0D76 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				C22A8C271C96754400D6E5A3 /* MeCollectionIconBg.png */,
+				C22A8C281C96754400D6E5A3 /* MeVoucherWalletIconBg.png */,
 				8A84C31B1C7FF447006A0D76 /* MeCollectionIcon@2x.png */,
 				8A84C31C1C7FF447006A0D76 /* MeCollectionIcon@3x.png */,
 				8A84C31D1C7FF447006A0D76 /* MeVoucherWalletIcon@2x.png */,
@@ -5132,6 +5142,8 @@
 		8A84C3491C7FF447006A0D76 /* Pop Up Illustration */ = {
 			isa = PBXGroup;
 			children = (
+				C22A8C231C9674F000D6E5A3 /* PopUpCloseBtn@2x.png */,
+				C22A8C241C9674F000D6E5A3 /* PopUpCloseBtn@3x.png */,
 				8A84C34A1C7FF447006A0D76 /* CannotRedeemAtThisMomentImg.png */,
 				8A84C34B1C7FF447006A0D76 /* EmptyStateImg.png */,
 				8A84C34C1C7FF447006A0D76 /* EmptyWalletImg.png */,
@@ -7902,6 +7914,7 @@
 				8A84C6031C7FF448006A0D76 /* DealsListingSoldOutIcon@2x.png in Resources */,
 				8A84C8311C7FF448006A0D76 /* CollectionIcon@2x.png in Resources */,
 				8A84C85C1C7FF448006A0D76 /* ProfileFollowingIcon@3x.png in Resources */,
+				C22A8C291C96754400D6E5A3 /* MeCollectionIconBg.png in Resources */,
 				8A84C70E1C7FF448006A0D76 /* DeleteIcon@3x.png in Resources */,
 				8A84C8961C7FF448006A0D76 /* BackToTop@2x.png in Resources */,
 				8A84C62D1C7FF448006A0D76 /* HomeFindShopsAndPlaces@3x.png in Resources */,
@@ -8160,6 +8173,7 @@
 				8A84C7A31C7FF448006A0D76 /* YellowCollections@2x.png in Resources */,
 				8A84C7AF1C7FF448006A0D76 /* AbroadIcon@2x.png in Resources */,
 				8A84C5E61C7FF448006A0D76 /* UpperCard.png in Resources */,
+				C22A8C2A1C96754400D6E5A3 /* MeVoucherWalletIconBg.png in Resources */,
 				8A84C89E1C7FF448006A0D76 /* BlackBack@2x.png in Resources */,
 				8A84C8B91C7FF448006A0D76 /* FeedIcon@2x.png in Resources */,
 				8AD6BE5C1B706CF30040437E /* DoPhotoCell.xib in Resources */,
@@ -8182,6 +8196,7 @@
 				8A84C82F1C7FF448006A0D76 /* AddPostBtn@2x.png in Resources */,
 				8A84C7E81C7FF448006A0D76 /* InviteWechatIcon@3x.png in Resources */,
 				8A84C8B81C7FF448006A0D76 /* ExploreIconActive@3x.png in Resources */,
+				C22A8C251C9674F000D6E5A3 /* PopUpCloseBtn@2x.png in Resources */,
 				8AD6C2AA1B7072FB0040437E /* WhereIsThisViewController.xib in Resources */,
 				8A84C8011C7FF448006A0D76 /* NotificationBySeeties@2x.png in Resources */,
 				8A84C7F61C7FF448006A0D76 /* LoginInstagramIcon@3x.png in Resources */,
@@ -8392,6 +8407,7 @@
 				8A84C7FC1C7FF448006A0D76 /* Walkthrough4.png in Resources */,
 				8AD6BE521B706CF30040437E /* Filter2ViewController.xib in Resources */,
 				8A84C8541C7FF448006A0D76 /* PrivateCollectionIcon@3x.png in Resources */,
+				C22A8C261C9674F000D6E5A3 /* PopUpCloseBtn@3x.png in Resources */,
 				8A84C8881C7FF448006A0D76 /* SSDefaultLogo@2x.png in Resources */,
 				8A84C6E81C7FF448006A0D76 /* ListViewActive@3x.png in Resources */,
 				8A84C6001C7FF448006A0D76 /* SwipeToRedeemSwipeIcon@3x.png in Resources */,

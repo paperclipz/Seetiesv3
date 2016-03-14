@@ -33,6 +33,7 @@ typedef enum{
 @protocol PromoPopOutDelegate <NSObject>
 @optional
 -(void)chooseShopConfirmClicked:(DealModel*)dealModel forShop:(SeShopDetailModel*)shopModel;
+-(void)viewDealDetailsClicked:(DealModel*)dealModel;
 @end
 
 @interface PromoPopOutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
@@ -41,8 +42,10 @@ typedef enum{
 
 -(void)setViewType:(PopOutViewType)viewType;
 -(void)setPopOutCondition:(PopOutCondition)popOutCondition;
--(void)setShopArray:(NSArray*)shopArray;
+-(void)setShopArray:(NSArray<SeShopDetailModel>*)shopArray;
 -(void)setDealModel:(DealModel *)dealModel;
 -(void)setSelectedCountryCode:(NSString *)selectedCountryCode;
 -(void)setEnteredPhoneNumber:(NSString *)enteredPhoneNumber;
+-(void)setEnteredPromoCode:(NSString *)enteredPromoCode;
+-(void)setSelectedShop:(SeShopDetailModel *)selectedShop;
 @end

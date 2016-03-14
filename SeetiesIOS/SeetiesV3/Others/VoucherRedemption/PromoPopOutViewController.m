@@ -13,14 +13,18 @@
 @property (weak, nonatomic) IBOutlet UITextField *ibPromoCodeText;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitleLbl;
 @property (weak, nonatomic) IBOutlet UIView *ibEnterPromoContentView;
+@property (weak, nonatomic) IBOutlet UIButton *ibEnterPromoSubmitBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulView;
 @property (weak, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibRedemptionSuccessfulVoucherTitle;
+@property (weak, nonatomic) IBOutlet UIButton *ibRedemptionSuccessfulBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibChooseShopView;
 @property (weak, nonatomic) IBOutlet UIView *ibChooseShopContentView;
 @property (weak, nonatomic) IBOutlet UITableView *ibShopTable;
 @property (weak, nonatomic) IBOutlet UILabel *ibShopDealLbl;
+@property (weak, nonatomic) IBOutlet UIButton *ibShopConfirmBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibChangeVerifiedPhoneView;
 @property (weak, nonatomic) IBOutlet UIView *ibChangeVerifiedPhoneContentView;
@@ -65,15 +69,19 @@
 
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
-@property(nonatomic) NSArray *shopArray;
+@property(nonatomic) NSArray<SeShopDetailModel> *shopArray;
 @property(nonatomic) NSArray<CountryModel> *countryArray;
 @property(nonatomic) NSMutableArray *countryCodeArray;
 @property(nonatomic) NSString *selectedCountryCode;
 @property(nonatomic) NSString *enteredPhoneNumber;
+@property(nonatomic) NSString *enteredPromoCode;
+@property(nonatomic) SeShopDetailModel *selectedShop;
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) BOOL isLoading;
 @property(nonatomic) BOOL isVerified;
 @property(nonatomic) BOOL hasRequestedTotp;
+@property(nonatomic) BOOL hasRequestedPromo;
+@property(nonatomic) BOOL hasRedeemed;
 
 @end
 
@@ -95,6 +103,8 @@
     self.isLoading = NO;
     self.isVerified = NO;
     self.hasRequestedTotp = NO;
+    self.hasRequestedPromo = NO;
+    self.hasRedeemed = NO;
     [self setMainViewToDisplay];
    
     // Do any additional setup after loading the view from its nib.
@@ -126,7 +136,7 @@
     _popOutCondition = popOutCondition;
 }
 
--(void)setShopArray:(NSArray *)array{
+-(void)setShopArray:(NSArray<SeShopDetailModel> *)array{
     _shopArray = array;
 }
 
@@ -142,6 +152,14 @@
     _enteredPhoneNumber = enteredPhoneNumber;
 }
 
+-(void)setEnteredPromoCode:(NSString *)enteredPromoCode{
+    _enteredPromoCode = enteredPromoCode;
+}
+
+-(void)setSelectedShop:(SeShopDetailModel *)selectedShop{
+    _selectedShop = selectedShop;
+}
+
 -(void)setMainViewToDisplay{
     [self setView:[self getMainView]];
     [self.view setNeedsLayout];
@@ -151,6 +169,7 @@
     switch (self.viewType) {
         case PopOutViewTypeEnterPromo:
             [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder: self.ibPromoCodeText color:[UIColor clearColor] borderRadius:self.ibPromoCodeText.frame.size.height/2];
             return self.ibEnterPromoView;
             
         case PopOutViewTypeChooseShop:
@@ -175,6 +194,7 @@
             
         case PopOutViewTypeRedemptionSuccessful:
             [self.ibRedemptionSuccessfulContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            self.ibRedemptionSuccessfulVoucherTitle.text = self.dealModel.title;
             return self.ibRedemptionSuccessfulView;
             
         case PopOutViewTypeChangeVerifiedPhone:
@@ -278,33 +298,72 @@
     switch (self.viewType) {
         case PopOutViewTypeEnterPromo:
         {
-            if (YES) {
-                [nextVC setViewType:PopOutViewTypeChooseShop];
+            if (self.hasRequestedPromo) {
+                [nextVC setDealModel:self.dealModel];
+                [nextVC setEnteredPromoCode:self.enteredPromoCode];
+                nextVC.promoPopOutDelegate = self.promoPopOutDelegate;
+                
+                if (self.dealModel.shops.count > 1) {
+                    [nextVC setViewType:PopOutViewTypeChooseShop];
+                    [nextVC setShopArray:self.dealModel.shops];
+                }
+                else{
+                    if (self.hasRedeemed) {
+                        [nextVC setSelectedShop:self.selectedShop];
+                        [nextVC setViewType:PopOutViewTypeRedemptionSuccessful];
+                    }
+                    else{
+                        self.selectedShop = self.dealModel.shops[0];
+                        [self requestServerToRedeemPromoCode];
+                        return;
+                    }
+                }
+            }
+            else{
+                self.enteredPromoCode = self.ibPromoCodeText.text;
+                [self requestServerToGetPromoCode];
+                return;
             }
         }
             break;
             
         case PopOutViewTypeRedemptionSuccessful:
         {
-            if (YES) {
-                [nextVC setViewType:PopOutViewTypeQuit];
+            if (self.promoPopOutDelegate) {
+                [self.promoPopOutDelegate viewDealDetailsClicked:self.dealModel];
             }
+            [nextVC setViewType:PopOutViewTypeQuit];
+            
         }
             break;
+            
         case PopOutViewTypeChooseShop:
         {
+            NSIndexPath *selectedIndexPath = [self.ibShopTable indexPathForSelectedRow];
+            if (selectedIndexPath) {
+                self.selectedShop = [self.shopArray objectAtIndex:selectedIndexPath.row];
+            }
+            else{
+                return;
+            }
+            
             if (self.popOutCondition == PopOutConditionChooseShopOnly) {
                 if (self.promoPopOutDelegate) {
-                    NSIndexPath *selectedIndexPath = [self.ibShopTable indexPathForSelectedRow];
-                    if (selectedIndexPath) {
-                        SeShopDetailModel *shopModel = [self.shopArray objectAtIndex:selectedIndexPath.row];
-                        [self.promoPopOutDelegate chooseShopConfirmClicked:self.dealModel forShop:shopModel];
-                        [nextVC setViewType:PopOutViewTypeQuit];
-                    }
+                    [self.promoPopOutDelegate chooseShopConfirmClicked:self.dealModel forShop:self.selectedShop];
+                    [nextVC setViewType:PopOutViewTypeQuit];
                 }
             }
             else{
-                [nextVC setViewType:PopOutViewTypeEnterPhone];
+                if (self.hasRedeemed) {
+                    nextVC.promoPopOutDelegate = self.promoPopOutDelegate;
+                    [nextVC setSelectedShop:self.selectedShop];
+                    [nextVC setDealModel:self.dealModel];
+                    [nextVC setEnteredPromoCode:self.enteredPromoCode];
+                    [nextVC setViewType:PopOutViewTypeRedemptionSuccessful];
+                }
+                else{
+                    [self requestServerToRedeemPromoCode];
+                }
             }
         }
             break;
@@ -397,9 +456,13 @@
     
 }
 
+- (IBAction)buttonCloseClicked:(id)sender{
+    [self.popupController dismiss];
+}
+
 #pragma mark - TableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.shopArray) {
+    if (![Utils isArrayNull:self.shopArray]) {
         return self.shopArray.count;
     }
     return 0;
@@ -423,7 +486,13 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField; {
     if (textField == self.ibEnterVerificationTxtField) {
         [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor clearColor] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
+        self.ibEnterVerificationTxtField.backgroundColor = [UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1];
         self.ibEnterVerificationTxtField.textColor = [UIColor colorWithRed:102/255.0f green:102/255.0f blue:102/255.0f alpha:1];
+    }
+    else if (textField == self.ibPromoCodeText){
+        [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor clearColor] borderRadius:self.ibPromoCodeText.frame.size.height/2];
+        self.ibPromoCodeText.backgroundColor = [UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1];
+        self.ibPromoCodeText.textColor = [UIColor colorWithRed:102/255.0f green:102/255.0f blue:102/255.0f alpha:1];
     }
 }
 
@@ -474,6 +543,7 @@
         [LoadingManager hide];
     } errorBlock:^(id object) {
         [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
+        self.ibEnterVerificationTxtField.backgroundColor = [UIColor whiteColor];
         self.ibEnterVerificationTxtField.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
         [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Invalid verification code, make sure the code you enter is right") Type:TSMessageNotificationTypeError];
         self.isVerified = NO;
@@ -496,6 +566,67 @@
         [LoadingManager hide];
     } errorBlock:^(id object) {
         [LoadingManager hide];
+    }];
+}
+
+-(void)requestServerToGetPromoCode{
+    if (self.isLoading) {
+        return;
+    }
+    
+    NSString *appendString = self.enteredPromoCode;
+    NSDictionary *dict = @{@"promo_code": self.enteredPromoCode,
+                           @"token": [Utils getAppToken]
+                           };
+    [LoadingManager show];
+    self.isLoading = YES;
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetPromoCode param:dict appendString:appendString completeHandler:^(id object) {
+        self.dealModel = [[ConnectionManager dataManager] dealModel];
+        self.hasRequestedPromo = YES;
+        [LoadingManager hide];
+        self.isLoading = NO;
+        [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
+        
+    } errorBlock:^(id object) {
+        [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
+        self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
+        self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Invalid promo code, make sure the code you enter is right") Type:TSMessageNotificationTypeError];
+        [LoadingManager hide];
+        self.isLoading = NO;
+        self.hasRequestedPromo = NO;
+    }];
+}
+
+-(void)requestServerToRedeemPromoCode{
+    if (self.isLoading) {
+        return;
+    }
+    
+    NSString *appendString = [NSString stringWithFormat:@"%@/redeem", self.enteredPromoCode];
+    NSDictionary *dict = @{@"promo_code": self.enteredPromoCode,
+                           @"token": [Utils getAppToken],
+                           @"shop_id": self.selectedShop.seetishop_id
+                           };
+    [LoadingManager show];
+    self.isLoading = YES;
+    
+    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostRedeemPromoCode param:dict appendString:appendString completeHandler:^(id object) {
+        self.dealModel = [[ConnectionManager dataManager] dealModel];
+        self.hasRedeemed = YES;
+        [LoadingManager hide];
+        self.isLoading = NO;
+        [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
+        
+    } errorBlock:^(id object) {
+        [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
+        self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
+        self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Invalid promo code, make sure the code you enter is right") Type:TSMessageNotificationTypeError];
+        self.hasRedeemed = NO;
+        [LoadingManager hide];
+        self.isLoading = NO;
     }];
 }
 

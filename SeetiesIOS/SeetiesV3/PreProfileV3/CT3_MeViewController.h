@@ -15,7 +15,7 @@
 #import "PromoPopOutViewController.h"
 #import "STPopup.h"
 
-@interface CT3_MeViewController : BaseViewController
+@interface CT3_MeViewController : BaseViewController <PromoPopOutDelegate>
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic, strong)WalletListingViewController *walletListingViewController;
 @property(nonatomic, strong)CollectionListingViewController *collectionListingViewController;

@@ -263,6 +263,13 @@
 
 #pragma mark - IBAction
 - (IBAction)footerBtnClicked:(id)sender {
+    ProfileModel *profile = [[DataManager Instance] userProfileModel];
+    if (!profile.phone_verified) {
+        [Utils showVerifyPhoneNumber:self];
+        return;
+    }
+    
+    self.promoPopOutViewController = nil;
     [self.promoPopOutViewController setViewType:PopOutViewTypeEnterPromo];
     
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
@@ -328,6 +335,14 @@
     }
 }
 
+-(void)viewDealDetailsClicked:(DealModel *)dealModel{
+    self.dealDetailsViewController = nil;
+    [self.dealDetailsViewController setDealModel:dealModel];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        [self.dealDetailsViewController setupView];
+    }];
+}
+
 
 /* ADJUST TABLEVIEW HEIGHT CODE
 - (void)adjustHeightOfFilterTable
@@ -355,6 +370,7 @@
 -(PromoPopOutViewController*)promoPopOutViewController{
     if (!_promoPopOutViewController) {
         _promoPopOutViewController = [PromoPopOutViewController new];
+        _promoPopOutViewController.promoPopOutDelegate = self;
     }
     return _promoPopOutViewController;
 }

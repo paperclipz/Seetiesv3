@@ -16,7 +16,7 @@
 #import "VoucherListingViewController.h"
 #import "DealExpiryDateModel.h"
 
-@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate, DealRedeemDelegate, UIScrollViewDelegate>
+@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate, DealRedeemDelegate, UIScrollViewDelegate, PromoPopOutDelegate>
 
 
 @end
