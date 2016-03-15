@@ -509,7 +509,7 @@
         case ServerRequestTypeUserFollower:
         case ServerRequestTypeUserFollowing:
         case ServerRequestTypePostProvisioning:
-            
+        case  ServerRequestTypePostUpdateUser:
         default:
             str = API_VERION_URL;
             break;
@@ -860,6 +860,7 @@
         {
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+            
         }
             break;
             

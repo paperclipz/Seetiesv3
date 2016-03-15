@@ -229,5 +229,9 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>InstagramAppClientId</key>
+	<string>ab7f100c649f43838358f36abed5033f</string>
+	<key>InstagramAppRedirectURL</key>
+	<string>https://seeties.me</string>
 </dict>
 </plist>

@@ -376,10 +376,10 @@
 -(void)requestServerForInstagramLogin
 {
     
-    InstagramModel* model = [[ConnectionManager dataManager]instagramModel];
+    InstagramUser* model = [[ConnectionManager dataManager]instagramUserModel];
 
-    NSDictionary* dict = @{@"insta_id" : model.userID,
-                           @"insta_token" : model.access_token,
+    NSDictionary* dict = @{@"insta_id" : model.Id,
+                           @"insta_token" : [[InstagramEngine sharedEngine]accessToken]?[[InstagramEngine sharedEngine] accessToken]:@"",
                            @"device_type" : @(DEVICE_TYPE),
                            };
     

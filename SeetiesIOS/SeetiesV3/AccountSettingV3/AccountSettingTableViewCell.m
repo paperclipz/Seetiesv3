@@ -8,6 +8,7 @@
 
 #import "AccountSettingTableViewCell.h"
 @interface AccountSettingTableViewCell()
+@property (weak, nonatomic) IBOutlet UIView *ibBorderView;
 
 @end
 @implementation AccountSettingTableViewCell
@@ -53,7 +54,7 @@
 
 -(void)initSelfView
 {
-    
+    [self.ibBorderView setSquareBorder];
 }
 
 

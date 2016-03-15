@@ -127,4 +127,12 @@
     return translatedString;
 }
 
+- (void)setLanguageCode:(NSString*)code {
+    
+    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+    
+    [userDefault setObject:code?code:ENGLISH_CODE forKey:DEFAULTS_KEY_LANGUAGE_CODE];
+    
+    [userDefault synchronize];
+}
 @end

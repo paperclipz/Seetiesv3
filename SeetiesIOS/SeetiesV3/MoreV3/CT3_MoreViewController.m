@@ -154,9 +154,9 @@
                 }
                 CASE (@"Account Settings")
                 {
-                    [self.navigationController pushViewController:self.accountSettingViewController animated:YES];
+                    _ct3_AcctSettingViewController = nil;
+                    [self.navigationController pushViewController:self.ct3_AcctSettingViewController animated:YES];
                     break;
-                    
                     
                 }
                 

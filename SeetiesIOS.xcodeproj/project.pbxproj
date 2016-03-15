@@ -1367,7 +1367,6 @@
 		8AF6FDCF1C587958005AAE5D /* RegisterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDCE1C587958005AAE5D /* RegisterObject.m */; };
 		8AF6FDD31C58955B005AAE5D /* UINavigationViewController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDD21C58955B005AAE5D /* UINavigationViewController+Extra.m */; };
 		8AF6FDD61C589C64005AAE5D /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDD51C589C64005AAE5D /* MessageManager.m */; };
-		8AF6FDD91C58AC83005AAE5D /* InstagramModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDD81C58AC83005AAE5D /* InstagramModel.m */; };
 		8AF6FDDD1C5A16A0005AAE5D /* SeetiesProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDDC1C5A16A0005AAE5D /* SeetiesProfileView.m */; };
 		8AF6FDDF1C5A16B0005AAE5D /* SeetiesProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDDE1C5A16B0005AAE5D /* SeetiesProfileView.xib */; };
 		8AF6FDEA1C5A289B005AAE5D /* SeDealsFeaturedTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDE81C5A289B005AAE5D /* SeDealsFeaturedTblCell.m */; };
@@ -3325,8 +3324,6 @@
 		8AF6FDD21C58955B005AAE5D /* UINavigationViewController+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationViewController+Extra.m"; sourceTree = "<group>"; };
 		8AF6FDD41C589C64005AAE5D /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		8AF6FDD51C589C64005AAE5D /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
-		8AF6FDD71C58AC83005AAE5D /* InstagramModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramModel.h; sourceTree = "<group>"; };
-		8AF6FDD81C58AC83005AAE5D /* InstagramModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramModel.m; sourceTree = "<group>"; };
 		8AF6FDDB1C5A16A0005AAE5D /* SeetiesProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesProfileView.h; sourceTree = "<group>"; };
 		8AF6FDDC1C5A16A0005AAE5D /* SeetiesProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiesProfileView.m; sourceTree = "<group>"; };
 		8AF6FDDE1C5A16B0005AAE5D /* SeetiesProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesProfileView.xib; sourceTree = "<group>"; };
@@ -6989,8 +6986,6 @@
 				8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */,
 				0B497B021C509579004989DF /* UsersModel.h */,
 				0B497B031C509579004989DF /* UsersModel.m */,
-				8AF6FDD71C58AC83005AAE5D /* InstagramModel.h */,
-				8AF6FDD81C58AC83005AAE5D /* InstagramModel.m */,
 			);
 			name = MODELS;
 			path = Models;
@@ -8910,7 +8905,6 @@
 				8A114CBF1BE73F5D006AE3F0 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				8A6BB4331BF0C338005AA1B3 /* MZMethodSwizzler.m in Sources */,
 				8AD6C28F1B7072FB0040437E /* AddLocationViewController.m in Sources */,
-				8AF6FDD91C58AC83005AAE5D /* InstagramModel.m in Sources */,
 				8A8475311BC52CCF006DD614 /* UITextView+Extra.m in Sources */,
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,

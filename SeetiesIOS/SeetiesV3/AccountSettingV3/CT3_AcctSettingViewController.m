@@ -11,9 +11,11 @@
 #import "DealHeaderView.h"
 #import "ActionSheetPicker.h"
 #import "CTWebViewController.h"
+#import "ChangePasswordViewController.h"
 
 @interface CT3_AcctSettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic)CTWebViewController* webViewController;
+@property (nonatomic)ChangePasswordViewController* changePasswordViewController;
 
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (nonatomic)NSArray* arrLanguage;
@@ -21,14 +23,13 @@
 @property (nonatomic)NSArray* arrOthers;
 @property (nonatomic)NSArray* arrDisplayLanguages;
 
-
-@property (strong,nonatomic)UIPickerView* ibPickerView;
 @property (nonatomic,assign)BOOL isConnectedFacebook;
 @property (nonatomic,assign)BOOL isConnectedInstagram;
 
 
-@property (nonatomic)NSString* fb_id;
-@property (nonatomic)NSString* insta_id;
+
+@property (nonatomic)InstagramUser* instaUser;
+@property (nonatomic)ProfileModel* profileModel;
 
 @property(nonatomic)BOOL isLoadingFacebookDetails;
 @property(nonatomic)BOOL isLoadingInstaDetails;
@@ -38,7 +39,7 @@
 @implementation CT3_AcctSettingViewController
 - (IBAction)btnUpdateInfoClicked:(id)sender {
     
-    [self requestServerToUpdateUserInfo];
+  //  [self requestServerToUpdateUserInfo];
 }
 
 - (void)viewDidLoad {
@@ -52,12 +53,9 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
-    [self.view addSubview:self.ibPickerView];
+    self.profileModel = [[ConnectionManager dataManager]userProfileModel];
     
-    
-    ProfileModel* pModel = [[ConnectionManager dataManager]userProfileModel];
-    
-    if ([Utils isStringNull:pModel.fb_id]) {
+    if ([Utils isStringNull:self.profileModel.fb_id]) {
         
         self.isConnectedFacebook = NO;
     }
@@ -67,7 +65,7 @@
     }
     
     
-    if ([Utils isStringNull:pModel.insta_id]) {
+    if ([Utils isStringNull:self.profileModel.insta_id]) {
         
         self.isConnectedInstagram = NO;
     }
@@ -77,7 +75,6 @@
     }
 
 
-  //  self.ibPickerView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,9 +89,9 @@
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     DealHeaderView* view = [DealHeaderView initializeCustomView];
-    view.backgroundColor = LINE_COLOR;
+    view.backgroundColor = GREY_APP_COLOR;
     view.btnSeeMore.hidden = YES;
-    
+    [view.btnDeals setTitleColor:TEXT_GRAY_COLOR forState:UIControlStateNormal];
     NSString* title;
     
     switch (section) {
@@ -151,7 +148,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-  
     AccountSettingTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"AccountSettingTableViewCell"];
     
     
@@ -213,7 +209,6 @@
                 
                 else if(indexPath.row == 2)//connect facebook
                 {
-
                     
                     if (!cell) {
                         cell = [[AccountSettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AccountSettingTableViewCell" withType:3001];
@@ -310,6 +305,9 @@
             
             break;
         case 1:
+            if (indexPath.row == 1) {
+                [self showChangePasswordView];
+            }
             
             break;
         case 2:
@@ -319,8 +317,21 @@
     }
 }
 
+//- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath
+//{
+//    [tableView sizeToFit];
+//}
 
 #pragma mark - Declaration
+
+-(ChangePasswordViewController*)changePasswordViewController
+{
+    if (!_changePasswordViewController) {
+        _changePasswordViewController = [ChangePasswordViewController new];
+    }
+    
+    return _changePasswordViewController;
+}
 
 -(CTWebViewController*)webViewController
 {
@@ -332,19 +343,6 @@
     }
     
     return _webViewController;
-}
-
--(UIPickerView*)ibPickerView
-{
-    if (!_ibPickerView) {
-        
-        CGRect frame = [Utils getDeviceScreenSize];
-        
-        float viewHeight = 200;
-        _ibPickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, frame.size.height - viewHeight, self.view.frame.size.width, viewHeight)];
-    }
-    
-    return _ibPickerView;
 }
 
 -(NSArray*)arrLanguage
@@ -395,6 +393,13 @@
     return _arrDisplayLanguages;
 }
 
+
+-(void)showChangePasswordView
+{
+    _changePasswordViewController = nil;
+    [self.navigationController pushViewController:self.changePasswordViewController animated:YES];
+}
+
 -(void)showPickerView
 {
     
@@ -414,6 +419,8 @@
                                                [Utils setDeviceAppLanguage:lModel.caption];
                                                
                                                [self.ibTableView reloadData];
+                                               
+                                               [self requestServerToUpdateUserInfoLanguage];
 
                                            }
                                            @catch (NSException *exception) {
@@ -430,24 +437,96 @@
 
 
 #pragma mark - Request Server
--(void)requestServerToUpdateUserInfo
+-(void)requestServerToUpdateUserInfoFacebook:(NSString*)fbID facebookToken:(NSString*)fbToken
 {
     
     NSDictionary* dict;
     @try {
         
+//        dict = @{@"uid" : [Utils getUserID],
+//                 @"system_language" : [Utils getDeviceAppLanguageCode],
+//                 @"token":[Utils getAppToken],
+//                 
+//                 @"insta_id" : self.instaUser.Id,
+//                 @"insta_token" : [[InstagramEngine sharedEngine]accessToken]?[[InstagramEngine sharedEngine]accessToken]:@"",
+//                 };
+
         dict = @{@"uid" : [Utils getUserID],
-                 @"system_language" : [Utils getDeviceAppLanguageCode],
                  @"token":[Utils getAppToken],
+                 @"fb_id" : fbID?fbID:@"",
+                 @"fb_token" : fbToken?fbToken:@""
                  };
+
     }
     @catch (NSException *exception) {
         SLog(@"fail to get dictionary");
     }
     
-    NSString* appendString = [NSString stringWithFormat:@"%@/provisioning",[Utils getUserID]];
+    NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostProvisioning param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
+        
+        
+    } errorBlock:^(id object) {
+        
+        self.isConnectedFacebook = NO;
+        [self.ibTableView reloadData];
+
+    }];
+    
+}
+
+-(void)requestServerToUpdateUserInfoInstagram:(NSString*)ID Token:(NSString*)Token
+{
+    
+    NSDictionary* dict;
+    @try {
+
+        
+        dict = @{@"uid" : [Utils getUserID],
+                 @"token":[Utils getAppToken],
+                 @"insta_id" : ID?ID:@"",
+                 @"insta_token" : Token?Token:@"",
+                 };
+        
+    }
+    @catch (NSException *exception) {
+        SLog(@"fail to get dictionary");
+    }
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
+        
+        
+    } errorBlock:^(id object) {
+        self.isConnectedInstagram = NO;
+        [self.ibTableView reloadData];
+
+    }];
+    
+}
+
+-(void)requestServerToUpdateUserInfoLanguage
+{
+    
+    NSDictionary* dict;
+    @try {
+        
+        
+        dict = @{@"uid" : [Utils getUserID],
+                 @"token":[Utils getAppToken],
+                 @"system_language" : [Utils getDeviceAppLanguageCode],
+                 };
+        
+    }
+    @catch (NSException *exception) {
+        SLog(@"fail to get dictionary");
+    }
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
         
         
     } errorBlock:^(id object) {
@@ -477,8 +556,11 @@
                          
                          NSString* fb_user_id = (NSString *)[user valueForKey:@"id"];
                          
-                         self.fb_id = fb_user_id;
-
+                         NSString* fb_token =[FBSession activeSession].accessTokenData.accessToken;
+                         
+                         if (![Utils isStringNull:fb_user_id]) {
+                             [self requestServerToUpdateUserInfoFacebook:fb_user_id facebookToken:fb_token];
+                         }
                      }
                  }];
                  break;
@@ -504,19 +586,18 @@
 -(void)requestServerToGetInstagramInfo
 {
     
+    
     _webViewController = nil;
     
     __weak typeof (self)weakSelf = self;
     self.webViewController.didFinishLoadConnectionBlock = ^(void)
     {
-        InstagramModel* model;
-        model = [ConnectionManager dataManager].instagramModel;
-
-        weakSelf.insta_id = model.userID;
         
+        weakSelf.instaUser = [[ConnectionManager dataManager]instagramUserModel];
+        NSString* token = [[InstagramEngine sharedEngine] accessToken];
+        [weakSelf requestServerToUpdateUserInfoInstagram:weakSelf.instaUser.Id Token:token];
         [weakSelf.navigationController popToViewController:weakSelf animated:YES];
     };
-    
     
     [self.navigationController pushViewController:self.webViewController animated:YES onCompletion:^{
         [self.webViewController initDataForInstagram];

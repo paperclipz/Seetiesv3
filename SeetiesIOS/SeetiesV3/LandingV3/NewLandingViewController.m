@@ -332,6 +332,8 @@
         
         DataManager* manager = [ConnectionManager dataManager];
         manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
+        
+        [[LanguageManager sharedLanguageManager]setLanguageCode:manager.currentUserProfileModel.system_language.language_code];
         SLog(@"Sucess Retreive User Data");
         
     } errorBlock:^(id object) {

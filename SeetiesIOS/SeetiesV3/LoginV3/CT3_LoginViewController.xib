@@ -171,7 +171,7 @@
     </objects>
     <resources>
         <image name="InstagramBtnInactive.png" width="40" height="40"/>
-        <image name="LoginFacebookIcon.png" width="44" height="44"/>
+        <image name="LoginFacebookIcon.png" width="310" height="64"/>
         <image name="WhiteSeetiesLogo.png" width="225" height="105"/>
     </resources>
 </document>

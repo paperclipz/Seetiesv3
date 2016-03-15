@@ -7,19 +7,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_AcctSettingViewController">
             <connections>
-                <outlet property="ibTableView" destination="L30-E8-ya0" id="iec-YW-iaY"/>
+                <outlet property="ibTableView" destination="5m2-ek-JfW" id="nA0-0p-3je"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="L30-E8-ya0">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRP-zj-lpl" userLabel="header">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
@@ -49,28 +45,15 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17h-1r-fp8">
-                            <rect key="frame" x="266" y="0.0" width="54" height="64"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="54" id="klh-ru-PKg"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                            <connections>
-                                <action selector="btnUpdateInfoClicked:" destination="-1" eventType="touchUpInside" id="172-lT-b6e"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="17h-1r-fp8" secondAttribute="bottom" id="8Ay-of-PVH"/>
                         <constraint firstItem="eW7-gh-pDo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZQ9-Cu-O4W" secondAttribute="trailing" constant="8" id="IQI-7e-bqo"/>
                         <constraint firstItem="eW7-gh-pDo" firstAttribute="centerY" secondItem="ZQ9-Cu-O4W" secondAttribute="centerY" id="RYX-I4-Nu6"/>
                         <constraint firstAttribute="bottom" secondItem="ZQ9-Cu-O4W" secondAttribute="bottom" constant="4" id="T1F-5b-r9f"/>
-                        <constraint firstAttribute="trailing" secondItem="17h-1r-fp8" secondAttribute="trailing" id="Tzy-be-uyv"/>
                         <constraint firstItem="ZQ9-Cu-O4W" firstAttribute="top" secondItem="oAb-uV-C0x" secondAttribute="bottom" constant="-44" id="VOX-lJ-yki"/>
                         <constraint firstItem="oAb-uV-C0x" firstAttribute="top" secondItem="QRP-zj-lpl" secondAttribute="top" id="VdZ-df-M0o"/>
                         <constraint firstItem="ZQ9-Cu-O4W" firstAttribute="leading" secondItem="QRP-zj-lpl" secondAttribute="leading" id="djv-zC-jsu"/>
-                        <constraint firstItem="17h-1r-fp8" firstAttribute="top" secondItem="QRP-zj-lpl" secondAttribute="top" id="q6V-rk-v2d"/>
                         <constraint firstItem="eW7-gh-pDo" firstAttribute="centerX" secondItem="QRP-zj-lpl" secondAttribute="centerX" id="qkR-0F-l0H"/>
                         <constraint firstItem="oAb-uV-C0x" firstAttribute="leading" secondItem="QRP-zj-lpl" secondAttribute="leading" id="tVI-NM-IcL"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="vvi-js-4YH"/>
@@ -78,18 +61,38 @@
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eW7-gh-pDo" secondAttribute="trailing" constant="8" id="yz8-C4-kos"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5m2-ek-JfW">
+                    <rect key="frame" x="0.0" y="64" width="320" height="324"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="324" id="30N-t7-AVj"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="ua0-ZQ-2xw"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ua0-ZQ-2xw"/>
+                        </mask>
+                    </variation>
+                </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="L30-E8-ya0" secondAttribute="bottom" id="4fk-Qd-u2n"/>
                 <constraint firstItem="QRP-zj-lpl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="66Y-4t-Ojh"/>
                 <constraint firstItem="QRP-zj-lpl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7Ue-8r-7fu"/>
+                <constraint firstItem="5m2-ek-JfW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9z1-eR-Gic"/>
+                <constraint firstItem="5m2-ek-JfW" firstAttribute="top" secondItem="QRP-zj-lpl" secondAttribute="bottom" id="DST-P2-2Em"/>
+                <constraint firstAttribute="trailing" secondItem="5m2-ek-JfW" secondAttribute="trailing" id="Kma-fl-Tp0"/>
                 <constraint firstAttribute="trailing" secondItem="QRP-zj-lpl" secondAttribute="trailing" id="QoP-e7-WEl"/>
-                <constraint firstItem="L30-E8-ya0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TQ0-to-J1i"/>
-                <constraint firstAttribute="trailing" secondItem="L30-E8-ya0" secondAttribute="trailing" id="jrh-mW-qvt"/>
-                <constraint firstItem="L30-E8-ya0" firstAttribute="top" secondItem="QRP-zj-lpl" secondAttribute="bottom" id="wat-vR-jVS"/>
+                <constraint firstAttribute="bottom" secondItem="5m2-ek-JfW" secondAttribute="bottom" id="XKp-k6-HaP"/>
+                <constraint firstAttribute="bottom" secondItem="5m2-ek-JfW" secondAttribute="bottom" constant="180" id="pAf-I1-TKh"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="XKp-k6-HaP"/>
+                    <exclude reference="pAf-I1-TKh"/>
+                </mask>
+            </variation>
         </view>
     </objects>
     <resources>
