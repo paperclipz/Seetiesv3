@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="constTabbarHeight" destination="HUf-4G-lcc" id="u2P-Qh-yBq"/>
                 <outlet property="ibTableView" destination="HG9-Bv-eKv" id="78h-it-dVz"/>
+                <outlet property="lblTitle" destination="VvO-Nn-aGv" id="Ten-Te-cqJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

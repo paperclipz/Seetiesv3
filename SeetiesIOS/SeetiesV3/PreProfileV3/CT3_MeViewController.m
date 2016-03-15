@@ -308,4 +308,8 @@
     self.ibNotificationCountLbl.text = [NSString stringWithFormat:@"%d",count];
 }
 
+-(void)changeLanguage
+{
+    self.ibHeaderTitle.text = LocalisedString(@"Me");
+}
 @end

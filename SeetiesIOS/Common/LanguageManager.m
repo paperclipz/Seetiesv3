@@ -29,6 +29,14 @@
     if (self = [super init]) {
         
         // Manually create a list of available localisations for this example project.
+//        Locale *english = [[Locale alloc] initWithLanguageCode:@"en" countryCode:@"gb" name:@"English"];
+//        Locale *cn_simplified = [[Locale alloc] initWithLanguageCode:@"zh-Hans" countryCode:@"fr" name:@"Simplified Chinese"];
+//        Locale *cn_traditional = [[Locale alloc] initWithLanguageCode:@"zh-Hant" countryCode:@"de" name:@"Traditional Chinese"];
+//        Locale *indonesian = [[Locale alloc] initWithLanguageCode:@"id" countryCode:@"it" name:@"Bahasa Indonesia"];
+//        Locale *thai = [[Locale alloc] initWithLanguageCode:@"th" countryCode:@"jp" name:@"Thai"];
+//        Locale *philippines = [[Locale alloc] initWithLanguageCode:@"tl-PH" countryCode:@"jp" name:@"Filipino"];
+//        self.availableLocales = @[english, cn_simplified, cn_traditional, indonesian, thai,philippines];
+        
         Locale *english = [[Locale alloc] initWithLanguageCode:@"en" countryCode:@"gb" name:@"English"];
         Locale *cn_simplified = [[Locale alloc] initWithLanguageCode:@"zh-Hans" countryCode:@"fr" name:@"Simplified Chinese"];
         Locale *cn_traditional = [[Locale alloc] initWithLanguageCode:@"zh-Hant" countryCode:@"de" name:@"Traditional Chinese"];
@@ -107,11 +115,48 @@
  * Uses the string stored in the user defaults to determine which language to translate to. Translations for
  * keys are found in the Localisable.strings files in the relevant .lproj folder for the selected language.
  */
+#define LANG_EN @"en"
+#define LANG_TW @"zh_TW"
+#define LANG_ZH_CN @"zh_CN"
+#define LANG_IN @"in"
+#define LANG_TH @"th"
+
+-(NSString*)convertCodeFromServerToLocal:(NSString*)serverCode
+{
+
+   
+    
+    if ([serverCode isEqualToString:LANG_TW])
+    {
+        return @"zh-Hant";
+
+    }
+    else if ([serverCode isEqualToString:LANG_ZH_CN])
+    {
+        return @"zh-Hans";
+
+    }
+    else if ([serverCode isEqualToString:LANG_IN])
+    {
+        return @"id";
+        
+    }
+    
+    else if ([serverCode isEqualToString:LANG_TH])
+    {
+        return @"th";
+    }
+    else
+    {
+        return @"en";
+    }
+
+}
 - (NSString *)getTranslationForKey:(NSString *)key {
     
     NSString *languageCode = [[NSUserDefaults standardUserDefaults] stringForKey:DEFAULTS_KEY_LANGUAGE_CODE];
 
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:languageCode ofType:@"lproj"];
+    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:[self convertCodeFromServerToLocal:languageCode]ofType:@"lproj"];
     NSBundle *languageBundle = [NSBundle bundleWithPath:bundlePath];
   //  NSLog(@"bundlePath is %@",bundlePath);
   //  NSLog(@"languageBundle is %@",languageBundle);

@@ -14,5 +14,6 @@
 @interface CommonViewController : BaseViewController
 //-(void)applyTabBarContraint;
 @property(nonatomic,copy)IDBlock btnBackBlock;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @end

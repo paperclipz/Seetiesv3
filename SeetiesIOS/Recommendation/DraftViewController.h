@@ -14,4 +14,6 @@
 
 -(void)initData;
 @property(nonatomic,copy)IDBlock backBlock;
+
+-(void)changeLanguage;
 @end

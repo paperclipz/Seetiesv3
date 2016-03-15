@@ -238,11 +238,13 @@
     else if (tableView == self.ibSearchTable){
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
         if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SearchCell"];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"SearchCell"];
         }
         SearchLocationModel *slModel = [self.searchModel.predictions objectAtIndex:indexPath.row];
         NSDictionary *term = [slModel.terms objectAtIndex:0];
         cell.textLabel.text = [term objectForKey:@"value"];
+        cell.detailTextLabel.text = [slModel longDescription];
+
         return cell;
     }
     

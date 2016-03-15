@@ -27,6 +27,7 @@
 @property(nonatomic)AccountSettingViewController* accountSettingViewController;
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @end
 
@@ -38,6 +39,10 @@
 }
 
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self changeLanguage];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -312,5 +317,11 @@
     _arrData = nil;
     [self.ibTableView reloadData];
 
+}
+
+-(void)changeLanguage
+{
+    
+    self.lblTitle.text = LocalisedString(@"More");
 }
 @end

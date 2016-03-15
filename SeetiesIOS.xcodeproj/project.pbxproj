@@ -244,6 +244,7 @@
 		8A4831B61C86B6CC00CE95F2 /* NSMutableDictionary+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4831B51C86B6CC00CE95F2 /* NSMutableDictionary+Extra.m */; };
 		8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4AC4B51C0C369B00968781 /* SeetiesShopViewController.m */; };
 		8A4AC4B81C0C369B00968781 /* SeetiesShopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */; };
+		8A509D661C98235C004C74C7 /* GreetingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A509D651C98235C004C74C7 /* GreetingModel.m */; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
 		8A5CFE131C7C2F97004E2CBA /* QuickBrowseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CFE121C7C2F97004E2CBA /* QuickBrowseModel.m */; };
@@ -1963,6 +1964,8 @@
 		8A4AC4B41C0C369B00968781 /* SeetiesShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesShopViewController.h; sourceTree = "<group>"; };
 		8A4AC4B51C0C369B00968781 /* SeetiesShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiesShopViewController.m; sourceTree = "<group>"; };
 		8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesShopViewController.xib; sourceTree = "<group>"; };
+		8A509D641C98235C004C74C7 /* GreetingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GreetingModel.h; path = SeetiesIOS/MODELS/Home/GreetingModel.h; sourceTree = SOURCE_ROOT; };
+		8A509D651C98235C004C74C7 /* GreetingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GreetingModel.m; path = SeetiesIOS/MODELS/Home/GreetingModel.m; sourceTree = SOURCE_ROOT; };
 		8A54300D1B8C1646009EFFF4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8A54300E1B8C1646009EFFF4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -6329,6 +6332,8 @@
 				8AD50D751C645D2100C9D952 /* AddressComponentModel.m */,
 				8A5CFE111C7C2F97004E2CBA /* QuickBrowseModel.h */,
 				8A5CFE121C7C2F97004E2CBA /* QuickBrowseModel.m */,
+				8A509D641C98235C004C74C7 /* GreetingModel.h */,
+				8A509D651C98235C004C74C7 /* GreetingModel.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -9071,6 +9076,7 @@
 				8A114CCC1BE73F5D006AE3F0 /* ParallaxHeaderView.m in Sources */,
 				8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */,
 				8A7EDA7E1C747EF000A9E76E /* NotificationModels.m in Sources */,
+				8A509D661C98235C004C74C7 /* GreetingModel.m in Sources */,
 				8A5CFE131C7C2F97004E2CBA /* QuickBrowseModel.m in Sources */,
 				8A114C831BE73F5D006AE3F0 /* BMXDataItem.m in Sources */,
 				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,

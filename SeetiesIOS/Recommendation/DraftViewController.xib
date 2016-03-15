@@ -11,6 +11,7 @@
                 <outlet property="ibSwipeDeleteNoteView" destination="vD0-Xe-G0t" id="kke-x7-13z"/>
                 <outlet property="lblNoDraftYet" destination="W9r-wk-Vip" id="DPB-wB-SPq"/>
                 <outlet property="lblSwipeToDelete" destination="6AM-3I-MqV" id="0Oz-fy-5vq"/>
+                <outlet property="lblTitle" destination="u9S-bK-yhK" id="vHS-f4-P0v"/>
                 <outlet property="tableView" destination="ylX-WT-ic6" id="ok6-tV-YXZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
