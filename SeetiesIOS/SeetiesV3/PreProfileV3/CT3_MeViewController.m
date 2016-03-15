@@ -74,8 +74,11 @@
 - (IBAction)btnProfileClicked:(id)sender {
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
+
+    }];
+
 }
 
 - (IBAction)btnNotificationClicked:(id)sender {

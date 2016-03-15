@@ -25,7 +25,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lg8-Sv-XEj">
-                                <rect key="frame" x="58" y="10" width="306" height="21"/>
+                                <rect key="frame" x="58" y="10" width="305" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="2lf-ZG-jls"/>
                                 </constraints>
@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gn-S2-XCj">
-                                <rect key="frame" x="58" y="29" width="306" height="21"/>
+                                <rect key="frame" x="58" y="29" width="305" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ZGK-as-79j"/>
                                 </constraints>
@@ -42,13 +42,13 @@
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qz1-5e-n2p">
-                                <rect key="frame" x="374" y="15" width="46" height="30"/>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qz1-5e-n2p">
+                                <rect key="frame" x="373" y="7" width="47" height="47"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="jv5-Tq-985"/>
-                                    <constraint firstAttribute="width" constant="46" id="mto-nb-OPP"/>
+                                    <constraint firstAttribute="height" constant="47" id="jv5-Tq-985"/>
+                                    <constraint firstAttribute="width" constant="47" id="mto-nb-OPP"/>
                                 </constraints>
-                                <state key="normal" image="ProfileFollowingIcon.png"/>
+                                <state key="normal" image="FollowIcon.png"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="0O7-cn-4Oo">
                                 <rect key="frame" x="10" y="60" width="97" height="97"/>
@@ -133,7 +133,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="FollowIcon.png" width="47" height="47"/>
         <image name="NoImage.png" width="800" height="800"/>
-        <image name="ProfileFollowingIcon.png" width="32" height="32"/>
     </resources>
 </document>

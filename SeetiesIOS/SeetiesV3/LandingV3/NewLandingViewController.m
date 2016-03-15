@@ -329,6 +329,9 @@
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
         
         [Utils reloadProfileView];
+        
+        DataManager* manager = [ConnectionManager dataManager];
+        manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
         SLog(@"Sucess Retreive User Data");
         
     } errorBlock:^(id object) {

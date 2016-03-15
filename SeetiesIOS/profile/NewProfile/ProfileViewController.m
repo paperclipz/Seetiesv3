@@ -205,7 +205,6 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-
 -(void)registerNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -358,8 +357,8 @@
         [self requestServerForUserLikes];
         
         DataManager* dataManager = [ConnectionManager dataManager];
-        if (dataManager.userProfileModel) {
-            self.userProfileModel = dataManager.userProfileModel;
+        if (dataManager.currentUserProfileModel) {
+            self.userProfileModel = dataManager.currentUserProfileModel;
             [self assignData];
             
         }else

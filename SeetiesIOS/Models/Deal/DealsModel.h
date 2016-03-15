@@ -10,9 +10,6 @@
 #import "DealModel.h"
 #import "PaginationModel.h"
 
-@protocol DealModel
-
-@end
 
 @interface DealsModel : PaginationModel
 @property(nonatomic, strong) NSArray<DealModel> *deals;

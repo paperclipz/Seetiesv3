@@ -1024,9 +1024,9 @@ static NSCache* heightCache = nil;
             
             case DealType_QuickBrowse:
             {
-                
-                QuickBrowseModel* model = self.homeModel.quick_browse[indexPath.row];
-                [self showSearchView:model];
+//                SLog(@"index == %ld",indexPath.row);
+//                QuickBrowseModel* model = self.homeModel.quick_browse[indexPath.row];
+//                [self showSearchView:model];
 
             }
             break;
