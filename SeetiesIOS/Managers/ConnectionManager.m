@@ -836,6 +836,16 @@
         }
             break;
         case ServerRequestTypeGetUserCollections:
+            
+        {
+            
+            NSDictionary* dict = obj[@"data"];
+            NSError* error;
+            self.dataManager.userCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:&error];
+            
+            SLog(@"error : %@",error);
+        }
+            break;
         case ServerRequestTypeSearchCollections:
         {
             

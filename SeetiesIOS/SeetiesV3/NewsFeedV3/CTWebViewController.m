@@ -90,6 +90,8 @@
             receivedData = [[NSMutableData alloc] init];
         } else {
             // ERROR!
+            
+            SLog(@"error instagram");
         }
         
         [webView removeFromSuperview];

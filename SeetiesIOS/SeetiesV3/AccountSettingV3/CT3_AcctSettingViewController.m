@@ -484,9 +484,10 @@
                  break;
              }
              case FBSessionStateClosed:
-             case FBSessionStateClosedLoginFailed:
                  [FBSession.activeSession closeAndClearTokenInformation];
-                 SLog(@"Facebook Login Failed");
+                 
+                 break;
+             case FBSessionStateClosedLoginFailed:
                  
                  [MessageManager showMessage:LocalisedString(@"sysem") SubTitle:LocalisedString(@"Cant Retrieve Data From Facebook") Type:TSMessageNotificationTypeError];
                  break;
@@ -512,6 +513,8 @@
         model = [ConnectionManager dataManager].instagramModel;
 
         weakSelf.insta_id = model.userID;
+        
+        [weakSelf.navigationController popToViewController:weakSelf animated:YES];
     };
     
     

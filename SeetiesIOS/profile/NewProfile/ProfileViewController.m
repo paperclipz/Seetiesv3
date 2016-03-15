@@ -1307,8 +1307,6 @@
 {
     
     
-   
-
     @try {
         [arrCollection removeAllObjects];
         arrCollection = nil;
