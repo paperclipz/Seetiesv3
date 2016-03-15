@@ -8,8 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 
-@protocol SePhotoModel
-@end
+
 @interface SePhotoModel:JSONModel
 @property(nonatomic,strong)NSString* imageURL;
 @end

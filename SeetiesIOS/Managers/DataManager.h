@@ -65,6 +65,8 @@ typedef void(^CompletionVoidBlock) (void);
 
 @property(nonatomic,strong)TagModel* tagModel;
 @property(nonatomic,strong)ProfileModel* userProfileModel;//model from proifle page. has additional follow and following
+@property(nonatomic,strong)ProfileModel* currentUserProfileModel;//model from proifle page. has additional follow and following
+
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userFollowingCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userSuggestedCollectionsModel;

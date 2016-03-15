@@ -259,12 +259,14 @@
     NSString *GetCollectUserID;
     
     NSString *MessageCount;
-    
+
     
 }
 @end
 
 @implementation FeedV2DetailViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -505,8 +507,7 @@
     // [spinnerView startAnimating];
     [ShowActivity startAnimating];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@post/%@?token=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken];
     
@@ -522,7 +523,6 @@
     
     theConnection_GetPostAllData = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
     [theConnection_GetPostAllData start];
-    
     
     if( theConnection_GetPostAllData ){
         webData = [NSMutableData data];
@@ -549,8 +549,7 @@
     }
 }
 -(void)GetAllCommentData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@/%@/comments?token=%@",DataUrl.GetComment_URl,GetPostID,GetExpertToken];
     
@@ -574,8 +573,7 @@
 }
 
 -(void)GetNearbyPostData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/nearbyposts?token=%@",DataUrl.GetNearbyPost_Url,GetPostID,GetExpertToken];
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -593,8 +591,8 @@
 }
 
 -(void)GetCollectionSuggestionsData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
+
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@post/%@/collect_suggestions?offset=1&limit=3&token=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken];
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -653,17 +651,26 @@
         }else{
             NSLog(@"Server Work.");
             
-            NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
+            NSString *ErrorString = [res objectForKey:@"error"];
             NSLog(@"ErrorString is %@",ErrorString);
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
             NSLog(@"MessageString is %@",MessageString);
             
-            if ([ErrorString isEqualToString:@"0"] || [ErrorString isEqualToString:@"401"]) {
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                ShowAlert.tag = 1000;
-                [ShowAlert show];
-                // send user back login screen.
-            }else{
+            if (ErrorString) {
+                
+                if ([ErrorString isEqualToString:@"0"] || [ErrorString isEqualToString:@"401"]) {
+                    UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    ShowAlert.tag = 1000;
+                    [ShowAlert show];
+                    // send user back login screen.
+                }
+                else
+                {
+                    [MessageManager showMessage:LocalisedString(@"system") SubTitle:MessageString Type:TSMessageNotificationTypeError];
+                }
+
+            }
+                        else{
                 NSDictionary *GetAllData = [res valueForKey:@"data"];
                 NSArray *PhotoData = [GetAllData valueForKey:@"photos"];
                 captionArray = [[NSMutableArray alloc]init];
@@ -3658,9 +3665,8 @@
     
 }
 -(void)SendFollowingData{
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
+
     
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetUserUid,GetExpertToken];
@@ -3925,9 +3931,8 @@
 }
 
 -(void)GetUnLikeData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    
+    NSString *GetExpertToken = [Utils getAppToken];
+
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@post/%@/like?token=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken];
     NSLog(@"urlString is %@",urlString);
@@ -3945,9 +3950,8 @@
     
 }
 -(void)SendPostLike{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    
+    NSString *GetExpertToken = [Utils getAppToken];
+
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@post/%@/like",DataUrl.UserWallpaper_Url,GetPostID];
     NSLog(@"urlString is %@",urlString);
@@ -4607,7 +4611,7 @@
     //[self.spinnerView startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
     
     NSString *GetSystemLanguageCode;
@@ -4696,8 +4700,7 @@
     
     [ShowActivity startAnimating];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@post/%@?token=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken];
@@ -4773,7 +4776,7 @@
 }
 -(void)SendQuickCollect{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
@@ -4880,8 +4883,7 @@
     }
 }
 -(void)FollowCollection{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID];
     NSLog(@"Send Follow Collection urlString is %@",urlString);
@@ -4922,8 +4924,7 @@
     }
 }
 -(void)DeleteFollowCollection{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID,GetExpertToken];
