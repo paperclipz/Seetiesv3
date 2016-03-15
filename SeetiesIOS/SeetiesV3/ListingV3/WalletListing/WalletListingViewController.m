@@ -346,7 +346,6 @@
 -(void)promoHasBeenRedeemed:(DealModel *)dealModel{
     self.dealsModel.offset = 0;
     self.dealsModel.limit = 0;
-    [self.voucherArray removeAllObjects];
     [self.ibTableView setContentOffset:CGPointZero animated:YES];
     [self requestServerForVoucherListing];
 }
@@ -442,6 +441,9 @@
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
         [self.dealManager setAllCollectedDeals:self.dealsModel];
+        if (self.dealsModel.offset == 1) {
+            [self.voucherArray removeAllObjects];
+        }
         [self rearrangeVoucherList];
         [self.ibTableView reloadData];
         [LoadingManager hide];

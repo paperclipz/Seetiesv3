@@ -333,6 +333,7 @@
         self.ibHeaderImageCountLbl.text = [NSString stringWithFormat:@"%d/%lu", 1, (unsigned long)self.dealModel.photos.count];
     }
     
+    self.ibHeaderExpiryView.hidden = NO;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyy-MM-dd HH:mm:ss"];
     NSString *status = self.dealModel.voucher_info.status;
@@ -375,6 +376,7 @@
             self.ibHeaderNormalExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires"), [dateFormatter stringFromDate:expiredDate]];
         }
         else{
+            self.ibHeaderExpiryView.hidden = YES;
             self.ibHeaderRedeemExpiryView.hidden = YES;
             self.ibHeaderNormalExpiryView.hidden = YES;
             self.ibHeaderExpiryHeightConstraint.constant = 0;
@@ -605,9 +607,11 @@
 }
 
 -(void)updateFooterView{
+    self.ibFooterView.hidden = NO;
     NSString *voucherStatus = self.dealModel.voucher_info.status;
     if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
         [self.ibFooterView setBackgroundColor:DEVICE_COLOR];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
@@ -617,21 +621,26 @@
         else{
             [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         }
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_EXPIRED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_CANCELLED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
     }
     else{
+        self.ibFooterView.hidden = YES;
         [self.ibFooterView setBackgroundColor:[UIColor whiteColor]];
         self.ibFooterTitle.text = @"";
     }
