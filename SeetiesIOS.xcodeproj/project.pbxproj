@@ -3534,8 +3534,6 @@
 		C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailsAvailabilityCell.xib; sourceTree = "<group>"; };
 		C2490A481C8450E800A43B3F /* SeShopsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopsModel.h; sourceTree = "<group>"; };
 		C2490A491C8450E800A43B3F /* SeShopsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopsModel.m; sourceTree = "<group>"; };
-		C25810151C7ACC8700041A85 /* TagLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagLabel.h; sourceTree = "<group>"; };
-		C25810161C7ACC8700041A85 /* TagLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagLabel.m; sourceTree = "<group>"; };
 		C25810181C7AD89000041A85 /* VoucherInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoucherInfoModel.h; sourceTree = "<group>"; };
 		C25810191C7AD89000041A85 /* VoucherInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoucherInfoModel.m; sourceTree = "<group>"; };
 		C25A8B941C7487010046F80A /* RedemptionTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionTypeView.xib; sourceTree = "<group>"; };
@@ -4415,8 +4413,6 @@
 				8A114C701BE73F5D006AE3F0 /* CommonView.m */,
 				8A114C711BE73F5D006AE3F0 /* CommonViewController.h */,
 				8A114C721BE73F5D006AE3F0 /* CommonViewController.m */,
-				C25810151C7ACC8700041A85 /* TagLabel.h */,
-				C25810161C7ACC8700041A85 /* TagLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
