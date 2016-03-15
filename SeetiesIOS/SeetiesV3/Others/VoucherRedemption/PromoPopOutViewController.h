@@ -34,6 +34,7 @@ typedef enum{
 @optional
 -(void)chooseShopConfirmClicked:(DealModel*)dealModel forShop:(SeShopDetailModel*)shopModel;
 -(void)viewDealDetailsClicked:(DealModel*)dealModel;
+-(void)promoHasBeenRedeemed:(DealModel*)dealModel;
 @end
 
 @interface PromoPopOutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>

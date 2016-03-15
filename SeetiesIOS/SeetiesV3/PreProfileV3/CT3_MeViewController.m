@@ -18,8 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibProfileImg;
 @property (weak, nonatomic) IBOutlet UILabel *ibProfileName;
 @property (weak, nonatomic) IBOutlet UILabel *ibViewProfileLbl;
-@property (weak, nonatomic) IBOutlet UILabel *ibWalletLbl;
-@property (weak, nonatomic) IBOutlet UILabel *ibCollectionLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibWalletTitleLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibWalletCountLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibCollectionTitleLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibCollectionCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibInviteLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibPromoLbl;
 @property (weak, nonatomic) IBOutlet UIView *ibProfileView;
@@ -33,6 +35,12 @@
 
 @property(nonatomic)STPopupController *popupCTController;
 @property(nonatomic)DealDetailsViewController *dealDetailsViewController;
+@property(nonatomic,strong)ProfileViewController* profileViewController;
+@property(nonatomic, strong)WalletListingViewController *walletListingViewController;
+@property(nonatomic, strong)CollectionListingViewController *collectionListingViewController;
+@property(nonatomic)NotificationViewController *notificationViewController;
+@property(nonatomic)InviteFrenViewController *inviteFriendViewController;
+@property(nonatomic)PromoPopOutViewController *promoCodeViewController;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibGuestView;
@@ -122,6 +130,10 @@
     }];
 }
 
+-(void)promoHasBeenRedeemed:(DealModel *)dealModel{
+    [self requestServerForVouchersCount];
+}
+
 #pragma mark InitMethod
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -155,11 +167,9 @@
     [self.ibCollectionIcon setRoundedBorder];
     [Utils setRoundBorder:self.ibNotificationCountLbl color:[UIColor clearColor] borderRadius:self.ibNotificationCountLbl.frame.size.width/2];
     
-    [self.ibProfileView prefix_addLowerBorder:[UIColor lightGrayColor]];
-    [Utils setRoundBorder:self.ibWalletView color:[UIColor redColor] borderRadius:5.0f];
-    
-    [self.ibWalletView setStandardBorder];
-    [self.ibCollectionView setStandardBorder];
+    [self.ibProfileView prefix_addLowerBorder:OUTLINE_COLOR];
+    [Utils setRoundBorder:self.ibWalletView color:[UIColor clearColor] borderRadius:5.0f];
+    [Utils setRoundBorder:self.ibCollectionView color:[UIColor clearColor] borderRadius:5.0f];
     
     [self.ibInviteFriendsView prefix_addUpperBorder:OUTLINE_COLOR];
     [self.ibInviteFriendsView prefix_addLowerBorder:OUTLINE_COLOR];
@@ -186,19 +196,21 @@
         self.ibNotificationCountLbl.hidden = YES;
     }
     else{
-        [self requestServerForNotificationCount];
-        self.btnNotification.hidden = NO;
-        self.ibNotificationCountLbl.hidden = NO;
-        
-        
         if (![Utils isStringNull:self.profileModel.username]) {
             self.ibProfileName.text = self.profileModel.username;
-
+            
         }
         else{
             self.ibProfileName.text = self.profileModel.name;
         }
-
+        [self.ibProfileImg sd_setImageCroppedWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images] completed:nil];
+        
+        [self requestServerForNotificationCount];
+        self.btnNotification.hidden = NO;
+        self.ibNotificationCountLbl.hidden = NO;
+        
+        [self requestServerForVouchersCount];
+        [self requestServerForUserCollection];
     }
     
   
@@ -300,7 +312,6 @@
         }];
     }
     
-    
 }
 
 -(void)setNotificationCount:(int)count
@@ -312,4 +323,36 @@
 {
     self.ibHeaderTitle.text = LocalisedString(@"Me");
 }
+-(void)requestServerForVouchersCount{
+    NSDictionary *dict = @{@"token": [Utils getAppToken]};
+    NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
+        NSDictionary *dict = object[@"data"];
+        int count = (int)[dict[@"count"] integerValue];
+        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d %@", count, LocalisedString(@"vouchers")];
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)requestServerForUserCollection
+{
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections",self.profileModel.uid];
+    
+    NSDictionary* dict = @{@"page":@(1),
+                           @"list_size":@(ARRAY_LIST_SIZE),
+                           @"token":[Utils getAppToken],
+                           @"uid":self.profileModel.uid
+                           };
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
+        NSDictionary *dict = object[@"data"];
+        self.ibCollectionCountLbl.text = [NSString stringWithFormat:@"%ld %@", [dict[@"total_result"] integerValue], LocalisedString(@"collections")];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
 @end

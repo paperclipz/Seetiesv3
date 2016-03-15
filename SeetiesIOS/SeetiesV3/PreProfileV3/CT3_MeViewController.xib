@@ -9,8 +9,9 @@
             <connections>
                 <outlet property="btnLogin" destination="PTW-dJ-pGf" id="8KR-6S-ROD"/>
                 <outlet property="btnNotification" destination="p6v-jg-XOt" id="e6Z-hK-CjV"/>
+                <outlet property="ibCollectionCountLbl" destination="8Pz-6s-Muv" id="2gd-Nv-7rw"/>
                 <outlet property="ibCollectionIcon" destination="mCK-kL-L9O" id="V90-0D-OEu"/>
-                <outlet property="ibCollectionLbl" destination="8Pz-6s-Muv" id="UnD-pP-xsa"/>
+                <outlet property="ibCollectionTitleLbl" destination="UP6-P9-D6z" id="AC6-36-YCq"/>
                 <outlet property="ibCollectionView" destination="Ruy-SJ-sPw" id="1uO-nB-ezo"/>
                 <outlet property="ibContentView" destination="M7j-ex-CwS" id="2r4-Z8-UBM"/>
                 <outlet property="ibGuestView" destination="6wc-bF-QIY" id="gBo-aE-TCH"/>
@@ -26,8 +27,9 @@
                 <outlet property="ibPromoCodeView" destination="Xt9-JO-isv" id="8Rj-6R-6N3"/>
                 <outlet property="ibPromoLbl" destination="FEm-kv-648" id="FJZ-gH-tKG"/>
                 <outlet property="ibViewProfileLbl" destination="iN5-aO-3Ok" id="XHB-oF-pqp"/>
+                <outlet property="ibWalletCountLbl" destination="XkX-HD-AQY" id="m0W-bk-PH3"/>
                 <outlet property="ibWalletIcon" destination="IU2-wQ-Q3Y" id="N69-EP-SOS"/>
-                <outlet property="ibWalletLbl" destination="XkX-HD-AQY" id="doW-bV-eaP"/>
+                <outlet property="ibWalletTitleLbl" destination="R71-NS-9aT" id="VoQ-e1-8UU"/>
                 <outlet property="ibWalletView" destination="9uI-6h-XxT" id="PTJ-0g-oX9"/>
                 <outlet property="view" destination="5vm-FE-WPA" id="tfi-WZ-nL3"/>
             </connections>
@@ -171,7 +173,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="X8Z-3V-Yrn" secondAttribute="trailing" id="zst-gG-vIb"/>
                                             </constraints>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="I1E-Ev-NEA">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="I1E-Ev-NEA">
                                             <rect key="frame" x="20" y="33" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="3wQ-Qy-WkS"/>
@@ -474,8 +476,8 @@
                                                         <constraint firstAttribute="height" constant="21" id="jbW-Ed-lKz"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Promo Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEm-kv-648">
-                                                    <rect key="frame" x="49" y="15" width="86" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Promo Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEm-kv-648">
+                                                    <rect key="frame" x="49" y="15" width="126" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="xOy-Rp-WWF"/>
                                                     </constraints>
@@ -652,7 +654,6 @@
     </objects>
     <resources>
         <image name="GoIcon.png" width="9" height="11"/>
-        <image name="Icon-60.png" width="60" height="60"/>
         <image name="MeCollectionIcon.png" width="39" height="44"/>
         <image name="MeCollectionIconBg.png" width="560" height="715"/>
         <image name="MeEnterPromoCodeIcon.png" width="19" height="21"/>
@@ -660,6 +661,7 @@
         <image name="MeNotificationIcon.png" width="16" height="21"/>
         <image name="MeVoucherWalletIcon.png" width="49" height="44"/>
         <image name="MeVoucherWalletIconBg.png" width="560" height="715"/>
+        <image name="NoImage.png" width="800" height="800"/>
         <image name="NotificationIcon.png" width="50" height="50"/>
         <image name="detox water.jpg" width="640" height="360"/>
     </resources>
