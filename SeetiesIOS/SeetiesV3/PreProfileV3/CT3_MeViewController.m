@@ -130,6 +130,10 @@
     }];
 }
 
+-(void)promoHasBeenRedeemed:(DealModel *)dealModel{
+    [self requestServerForVouchersCount];
+}
+
 #pragma mark InitMethod
 - (void)viewDidLoad {
     [super viewDidLoad];

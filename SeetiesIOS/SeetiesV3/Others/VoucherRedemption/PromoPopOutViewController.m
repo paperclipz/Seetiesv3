@@ -512,12 +512,12 @@
     
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostTOTP param:dict completeHandler:^(id object) {
         self.hasRequestedTotp = YES;
+        [LoadingManager hide];
+        self.isLoading = NO;
         if (self.viewType == PopOutViewTypeConfirmPhone) {
             [self buttonSubmitClicked:self.ibEnterPhoneConfirmBtn];
         }
         
-        [LoadingManager hide];
-        self.isLoading = NO;
     } errorBlock:^(id object) {
         self.hasRequestedTotp = NO;
         self.isLoading = NO;
@@ -538,9 +538,10 @@
     
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostVerifyTOTP param:dict completeHandler:^(id object) {
         self.isVerified = YES;
-        [self buttonSubmitClicked:self.ibConfirmPhoneBtn];
-        self.isLoading = NO;
         [LoadingManager hide];
+        self.isLoading = NO;
+        [self buttonSubmitClicked:self.ibConfirmPhoneBtn];
+        
     } errorBlock:^(id object) {
         [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
         self.ibEnterVerificationTxtField.backgroundColor = [UIColor whiteColor];
@@ -618,6 +619,9 @@
         [LoadingManager hide];
         self.isLoading = NO;
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
+        if (self.promoPopOutDelegate) {
+            [self.promoPopOutDelegate promoHasBeenRedeemed:self.dealModel];
+        }
         
     } errorBlock:^(id object) {
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];

@@ -343,6 +343,13 @@
     }];
 }
 
+-(void)promoHasBeenRedeemed:(DealModel *)dealModel{
+    self.dealsModel.offset = 0;
+    self.dealsModel.limit = 0;
+    [self.voucherArray removeAllObjects];
+    [self.ibTableView setContentOffset:CGPointZero animated:YES];
+    [self requestServerForVoucherListing];
+}
 
 /* ADJUST TABLEVIEW HEIGHT CODE
 - (void)adjustHeightOfFilterTable
@@ -429,6 +436,7 @@
     
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers", [Utils getUserID]];
     
+    [LoadingManager show];
     self.isLoading = YES;
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersList param:dict appendString:appendString completeHandler:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
@@ -436,8 +444,10 @@
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self rearrangeVoucherList];
         [self.ibTableView reloadData];
+        [LoadingManager hide];
         self.isLoading = NO;
     } errorBlock:^(id object) {
+        [LoadingManager hide];
         self.isLoading = NO;
     }];
 }
