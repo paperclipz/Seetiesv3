@@ -703,6 +703,18 @@
 
 }
 
++(void)showVerifyPhoneNumber:(UIViewController*)viewController{
+    PromoPopOutViewController *popOut = [PromoPopOutViewController new];
+    [popOut setViewType:PopOutViewTypeEnterPhone];
+    [popOut setPopOutCondition:PopOutConditionVerifyPhoneNumber];
+    
+    STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:popOut];
+    popOutController.containerView.backgroundColor = [UIColor clearColor];
+//    [popOutController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+    [popOutController presentInViewController:viewController];
+    [popOutController setNavigationBarHidden:YES];
+}
+
 +(NSString*)getTimeZone
 {
     //int utcTimeZone = (int)[[NSTimeZone localTimeZone] secondsFromGMT] / 3600;

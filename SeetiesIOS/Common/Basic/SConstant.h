@@ -120,7 +120,15 @@ typedef enum
     ServerRequestTypeGetNotificationCount,
     /*Notifications*/
 
+    //===TOTP===//
+    ServerRequestTypePostTOTP,
+    ServerRequestTypePostVerifyTOTP,
+    //===TOTP===//
     
+    //===PromoCode===//
+    ServerRequestTypeGetPromoCode,
+    ServerRequestTypePostRedeemPromoCode
+    //===PromoCode===//
     
 }ServerRequestType;
 

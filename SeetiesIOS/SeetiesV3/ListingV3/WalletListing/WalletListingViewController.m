@@ -40,7 +40,6 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.ibTableView registerNib:[UINib nibWithNibName:@"WalletVoucherCell" bundle:nil] forCellReuseIdentifier:@"WalletVoucherCell"];
-    [self.ibTableView registerNib:[UINib nibWithNibName:@"WalletHeaderCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"WalletHeaderCell"];
     self.ibTableView.estimatedRowHeight = [WalletVoucherCell getHeight];
     self.ibTableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -216,20 +215,27 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;{
-    WalletHeaderCell *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"WalletHeaderCell"];
+    
+    UIView *contentView  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 44)];
+    contentView.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, 15, tableView.frame.size.width, 21)];
+    label.font = [UIFont boldSystemFontOfSize:13.0f];
+    label.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     
     DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
     if ([expiryModel.expiryDate isEqualToString:@"new"]) {
-        [header setHeaderTitle:LocalisedString(@"New!")];
+        label.text = LocalisedString(@"New!");
     }
     else if ([expiryModel.expiryDate isEqualToString:@"noDate"]){
-        [header setHeaderTitle:LocalisedString(@"No expiry date")];
+        label.text = LocalisedString(@"No expiry date");
     }
     else{
-        [header setHeaderTitle:[NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), expiryModel.expiryDate]];
+        label.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), expiryModel.expiryDate];
     }
     
-    return header;
+    [contentView addSubview:label];
+    return contentView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -257,7 +263,14 @@
 
 #pragma mark - IBAction
 - (IBAction)footerBtnClicked:(id)sender {
-    [self.promoPopOutViewController setViewType:EnterPromoViewType];
+    ProfileModel *profile = [[DataManager Instance] userProfileModel];
+    if (!profile.phone_verified) {
+        [Utils showVerifyPhoneNumber:self];
+        return;
+    }
+    
+    self.promoPopOutViewController = nil;
+    [self.promoPopOutViewController setViewType:PopOutViewTypeEnterPromo];
     
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
     popupController.containerView.backgroundColor = [UIColor clearColor];
@@ -285,7 +298,7 @@
         [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
     }
     else{
-        [self.promoPopOutViewController setViewType:ErrorViewType];
+        [self.promoPopOutViewController setViewType:PopOutViewTypeError];
         
         STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
         popupController.containerView.backgroundColor = [UIColor clearColor];
@@ -322,6 +335,14 @@
     }
 }
 
+-(void)viewDealDetailsClicked:(DealModel *)dealModel{
+    self.dealDetailsViewController = nil;
+    [self.dealDetailsViewController setDealModel:dealModel];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        [self.dealDetailsViewController setupView];
+    }];
+}
+
 
 /* ADJUST TABLEVIEW HEIGHT CODE
 - (void)adjustHeightOfFilterTable
@@ -349,6 +370,7 @@
 -(PromoPopOutViewController*)promoPopOutViewController{
     if (!_promoPopOutViewController) {
         _promoPopOutViewController = [PromoPopOutViewController new];
+        _promoPopOutViewController.promoPopOutDelegate = self;
     }
     return _promoPopOutViewController;
 }

@@ -10,14 +10,13 @@
 #import "WalletVoucherCell.h"
 #import "PromoPopOutViewController.h"
 #import "STPopupController.h"
-#import "WalletHeaderCell.h"
 #import "RedemptionHistoryViewController.h"
 #import "DealDetailsViewController.h"
 #import "DealRedeemViewController.h"
 #import "VoucherListingViewController.h"
 #import "DealExpiryDateModel.h"
 
-@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate, DealRedeemDelegate, UIScrollViewDelegate>
+@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate, DealRedeemDelegate, UIScrollViewDelegate, PromoPopOutDelegate>
 
 
 @end

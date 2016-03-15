@@ -114,7 +114,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Best deal   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoZ-p6-6hj" userLabel="usage lbl" customClass="TTTAttributedLabel">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best deal   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoZ-p6-6hj" userLabel="usage lbl" customClass="TTTAttributedLabel">
                                         <rect key="frame" x="8" y="34" width="44" height="15"/>
                                         <color key="backgroundColor" red="0.40784313725490196" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>

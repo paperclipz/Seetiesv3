@@ -229,6 +229,7 @@ typedef enum {
 
 #pragma mark - LOGIN
 +(void)showLogin;
++(void)showVerifyPhoneNumber:(UIViewController*)viewController;
 
 #pragma mark - SYSTEM
 +(void)setIsDevelopment:(BOOL)isDev;

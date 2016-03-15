@@ -9,34 +9,43 @@
 #import "CommonViewController.h"
 #import "STPopup.h"
 #import "PromoOutletCell.h"
+#import "ActionSheetPicker.h"
 
 typedef enum{
-    EnterPromoViewType,
-    RedemptionSuccessfulViewType,
-    ChooseShopViewType,
-    EnterPhoneViewType,
-    EnterVerificationViewType,
-    VerifiedViewType,
-    ErrorViewType,
-    QuitViewType
+    PopOutViewTypeEnterPromo,
+    PopOutViewTypeRedemptionSuccessful,
+    PopOutViewTypeChooseShop,
+    PopOutViewTypeChangeVerifiedPhone,
+    PopOutViewTypeEnterPhone,
+    PopOutViewTypeConfirmPhone,
+    PopOutViewTypeEnterVerification,
+    PopOutViewTypeVerified,
+    PopOutViewTypeError,
+    PopOutViewTypeQuit
 } PopOutViewType;
 
 typedef enum{
-    NormalPopOutCondition,
-    ChooseShopOnlyPopOutCondition
+    PopOutConditionNormal,
+    PopOutConditionChooseShopOnly,
+    PopOutConditionVerifyPhoneNumber
 }PopOutCondition;
 
 @protocol PromoPopOutDelegate <NSObject>
 @optional
 -(void)chooseShopConfirmClicked:(DealModel*)dealModel forShop:(SeShopDetailModel*)shopModel;
+-(void)viewDealDetailsClicked:(DealModel*)dealModel;
 @end
 
-@interface PromoPopOutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface PromoPopOutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property(nonatomic,copy)VoidBlock updateFrame;
 @property id<PromoPopOutDelegate> promoPopOutDelegate;
 
 -(void)setViewType:(PopOutViewType)viewType;
 -(void)setPopOutCondition:(PopOutCondition)popOutCondition;
--(void)setShopArray:(NSArray*)shopArray;
+-(void)setShopArray:(NSArray<SeShopDetailModel>*)shopArray;
 -(void)setDealModel:(DealModel *)dealModel;
+-(void)setSelectedCountryCode:(NSString *)selectedCountryCode;
+-(void)setEnteredPhoneNumber:(NSString *)enteredPhoneNumber;
+-(void)setEnteredPromoCode:(NSString *)enteredPromoCode;
+-(void)setSelectedShop:(SeShopDetailModel *)selectedShop;
 @end

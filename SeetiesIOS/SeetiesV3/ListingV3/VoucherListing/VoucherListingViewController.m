@@ -361,6 +361,18 @@
 }
 
 -(void)voucherCollectRedeemClicked:(DealModel *)dealModel{
+    if ([Utils isGuestMode]) {
+        [Utils showLogin];
+        return;
+    }
+    else{
+        ProfileModel *profile = [[DataManager Instance] userProfileModel];
+        if (!profile.phone_verified) {
+            [Utils showVerifyPhoneNumber:self];
+            return;
+        }
+    }
+    
     if ([Utils isStringNull:dealModel.voucher_info.voucher_id]) {
         if (dealModel.shops.count == 1) {
             SeShopDetailModel *shopModel = [dealModel.shops objectAtIndex:0];
@@ -368,8 +380,8 @@
         }
         else if(dealModel.shops.count > 1){
             self.promoPopOutViewController = nil;
-            [self.promoPopOutViewController setViewType:ChooseShopViewType];
-            [self.promoPopOutViewController setPopOutCondition:ChooseShopOnlyPopOutCondition];
+            [self.promoPopOutViewController setViewType:PopOutViewTypeChooseShop];
+            [self.promoPopOutViewController setPopOutCondition:PopOutConditionChooseShopOnly];
             [self.promoPopOutViewController setDealModel:dealModel];
             [self.promoPopOutViewController setShopArray:dealModel.shops];
             self.promoPopOutViewController.promoPopOutDelegate = self;
@@ -382,9 +394,20 @@
         }
     }
     else{
-        self.dealRedeemViewController = nil;
-        [self.dealRedeemViewController setDealModel:dealModel];
-        [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
+        if (dealModel.voucher_info.redeem_now) {
+            self.dealRedeemViewController = nil;
+            [self.dealRedeemViewController setDealModel:dealModel];
+            [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
+        }
+        else{
+            [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+            
+            STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+            popupController.containerView.backgroundColor = [UIColor clearColor];
+            [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+            [popupController presentInViewController:self];
+            [popupController setNavigationBarHidden:YES];
+        }
     }
 }
 
@@ -574,6 +597,7 @@
     self.isCollecting = YES;
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:dict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
+        model.voucher_info = dealModel.voucher_info;
         [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
         [self RequestServerForVouchersCount];
         [self.ibVoucherTable reloadData];

@@ -589,6 +589,18 @@
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
             break;
             
+        case ServerRequestTypePostTOTP:
+            str = [NSString stringWithFormat:@"%@/totp", API_VERION_URL];
+            break;
+            
+        case ServerRequestTypePostVerifyTOTP:
+            str = [NSString stringWithFormat:@"%@/totp/verify", API_VERION_URL];
+            break;
+            
+        case ServerRequestTypeGetPromoCode:
+        case ServerRequestTypePostRedeemPromoCode:
+            str = [NSString stringWithFormat:@"%@/promo-codes", API_VERION_URL];
+            break;
             
     }
     
@@ -1044,6 +1056,30 @@
         {
             NSDictionary *dict = obj[@"data"][@"deals"];
             self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypePostVerifyTOTP:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.userProfileModel = [[ProfileModel alloc] initWithDictionary:dict error:nil];
+        }
+            break;
+            
+        case ServerRequestTypePostRedeemPromoCode:
+        case ServerRequestTypeGetPromoCode:
+        {
+            @try{
+                NSArray *array = obj[@"data"][@"deals"];
+                if (![Utils isArrayNull:array]) {
+                    NSDictionary *dict = array[0];
+                    self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
+                }
+            }
+            @catch(NSException *ex){
+                self.dataManager.dealModel = nil;
+            }
+            
         }
             break;
             

@@ -127,9 +127,17 @@
         [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"CollectIcon.png"] forState:UIControlStateNormal];
     }
     else{
-        [self.ibVoucherCollectBtn setTitle:@"Redeem" forState:UIControlStateNormal];
-        [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:109/255.0 blue:125/255.0 alpha:1]];
-        [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
+        if (self.dealModel.voucher_info.redeem_now) {
+            [self.ibVoucherCollectBtn setTitle:@"Redeem" forState:UIControlStateNormal];
+            [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:109/255.0 blue:125/255.0 alpha:1]];
+            [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
+        }
+        else{
+            [self.ibVoucherCollectBtn setTitle:@"Redeem" forState:UIControlStateNormal];
+            [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+            [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
+        }
+        
     }
 }
 
