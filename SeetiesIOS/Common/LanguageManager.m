@@ -10,7 +10,7 @@
 
 #import "LanguageManager.h"
 #import "Locale.h"
-
+#import "Utils.h"
 
 @implementation LanguageManager
 
@@ -62,7 +62,7 @@
  */
 - (void)setLanguageWithLocale:(Locale *)locale {
     
-    [[NSUserDefaults standardUserDefaults] setObject:locale.languageCode forKey:DEFAULTS_KEY_LANGUAGE_CODE];
+    [[NSUserDefaults standardUserDefaults] setObject:locale.languageCode forKey:KEY_SYSTEM_LANG];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -84,7 +84,7 @@
     Locale *selectedLocale = nil;
     
     // Get the language code.
-    NSString *languageCode = [[[NSUserDefaults standardUserDefaults] stringForKey:DEFAULTS_KEY_LANGUAGE_CODE] lowercaseString];
+    NSString *languageCode = [[[NSUserDefaults standardUserDefaults] stringForKey:KEY_SYSTEM_LANG] lowercaseString];
     
     // Iterate through available localisations to find the one that matches languageCode.
     for (Locale *locale in self.availableLocales) {
@@ -154,9 +154,10 @@
 }
 - (NSString *)getTranslationForKey:(NSString *)key {
     
-    NSString *languageCode = [[NSUserDefaults standardUserDefaults] stringForKey:DEFAULTS_KEY_LANGUAGE_CODE];
+    NSString *languageCode = [[NSUserDefaults standardUserDefaults] stringForKey:KEY_SYSTEM_LANG];
 
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:[self convertCodeFromServerToLocal:languageCode]ofType:@"lproj"];
+    NSString* localCode = [self convertCodeFromServerToLocal:languageCode];
+    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:localCode ofType:@"lproj"];
     NSBundle *languageBundle = [NSBundle bundleWithPath:bundlePath];
   //  NSLog(@"bundlePath is %@",bundlePath);
   //  NSLog(@"languageBundle is %@",languageBundle);
@@ -172,11 +173,13 @@
     return translatedString;
 }
 
+
+// language code in KEY_SYSTEM_LANG is the code from server not from local. everytime using it need to convert server to local code first
 - (void)setLanguageCode:(NSString*)code {
     
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
     
-    [userDefault setObject:code?code:ENGLISH_CODE forKey:DEFAULTS_KEY_LANGUAGE_CODE];
+    [userDefault setObject:code?code:ENGLISH_SHORT_NAME forKey:KEY_SYSTEM_LANG];
     
     [userDefault synchronize];
 }

@@ -321,7 +321,9 @@
 
 -(void)changeLanguage
 {
-    
+    SLog(@"%@",LocalisedString(@"More"));
+
     self.lblTitle.text = LocalisedString(@"More");
+    [self.ibTableView reloadData];
 }
 @end

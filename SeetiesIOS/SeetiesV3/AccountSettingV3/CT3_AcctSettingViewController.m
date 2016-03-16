@@ -416,7 +416,7 @@
                                                
                                                LanguageModel* lModel = models.languages[selectedIndex];
                                                
-                                               [Utils setDeviceAppLanguage:lModel.caption];
+                                               [Utils setDeviceAppLanguage:lModel.language_code];
                                                
                                                [self.ibTableView reloadData];
                                                
@@ -528,7 +528,7 @@
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
         
-        
+        [self.ibTableView reloadData];
     } errorBlock:^(id object) {
         
     }];

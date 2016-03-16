@@ -95,7 +95,7 @@
     
     
     // Check whether the language code has already been set.
-    if (![userDefaults stringForKey:DEFAULTS_KEY_LANGUAGE_CODE]) {
+    if (![userDefaults stringForKey:KEY_SYSTEM_LANG]) {
         
         NSLog(@"No language set - trying to find the right setting for the device locale.");
         
@@ -112,7 +112,7 @@
         }
         
         // If the device locale doesn't match any of the available ones, just pick the first one.
-        if (![userDefaults stringForKey:DEFAULTS_KEY_LANGUAGE_CODE]) {
+        if (![userDefaults stringForKey:KEY_SYSTEM_LANG]) {
             //  NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
             NSString *language = [[NSString alloc]initWithFormat:@"%@",[[NSLocale preferredLanguages] objectAtIndex:0]];
             NSLog(@"Get System language is %@",language);
@@ -151,7 +151,7 @@
         }
     }
     else {
-        NSLog(@"DEFAULTS_KEY_LANGUAGE_CODE = %@",DEFAULTS_KEY_LANGUAGE_CODE);
+        NSLog(@"DEFAULTS_KEY_LANGUAGE_CODE = %@",KEY_SYSTEM_LANG);
         NSLog(@"The language has already been set :)");
     }
 

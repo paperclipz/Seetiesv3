@@ -245,7 +245,7 @@ extern NSString *const Insta_Client_callback;
 // ======================= LANGUAGE CODE ========================//
 
 // NSUserDefaults keys
-#define DEFAULTS_KEY_LANGUAGE_CODE @"LanguageCode" // The key against which to store the selected language code.
+//#define DEFAULTS_KEY_LANGUAGE_CODE @"LanguageCode" // The key against which to store the selected language code.
 
 /*
  * Custom localised string macro, functioning in a similar way to the standard NSLocalisedString().

@@ -208,7 +208,7 @@ typedef enum {
 
 +(NSString*)getDeviceAppLanguageCode;
 +(NSString*)getDeviceDefaultLanguageCode;
-+(void)setDeviceAppLanguage:(NSString*)caption;
++(void)setDeviceAppLanguage:(NSString*)languageCode;
 
 #define ARRAY_LIST_SIZE 10.0f
 #define LIKES_LIST_SIZE 30.0f
@@ -246,5 +246,32 @@ typedef enum {
 +(NSDictionary*)getSavedUserLocation;
 +(void)saveUserLocation:(NSString*)location Longtitude:(NSString*)longtitude Latitude:(NSString*)latitude PlaceID:(NSString*)place_id;
 
+
+#pragma mark - LANGUAGE
+#define ENGLISH_CODE @"530b0ab26424400c76000003"
+#define CHINESE_CODE @"530b0aa16424400c76000002"
+#define TAIWAN_CODE @"530d5e9b642440d128000018"
+#define INDONESIA_CODE @"53672e863efa3f857f8b4ed2"
+#define FILIPINES_CODE @"539fbb273efa3fde3f8b4567"
+#define THAI_CODE @"544481503efa3ff1588b4567"
+
+#define ENGLISH_SHORT_NAME @"en"
+#define CHINESE_SHORT_NAME @"zh-Hans"
+#define TAIWAN_SHORT_NAME @"zh-Hant"
+#define INDONESIA_SHORT_NAME @"id"
+#define FILIPINES_SHORT_NAME @"tl-PH"
+#define THAI_SHORT_NAME @"th"
+
+
+#define ENGLISH_SERVER_NAME @"en"
+#define CHINESE_SERVER_NAME @"zh_CN"
+#define TAIWAN_SERVER_NAME @"zh_TW"
+#define INDONESIA_SERVER_NAME @"in"
+#define FILIPINES_SERVER_NAME @"tl-PH"
+#define THAI_SERVER_NAME @"th"
+
+#define TAIWAN_STR @"简体中文"
+#define CHINESE_STR @"繁體中文 "
+#define CHINESE_CENTRAL @"中文 "
 
 @end
