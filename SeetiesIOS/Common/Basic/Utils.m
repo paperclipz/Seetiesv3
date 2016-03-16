@@ -797,6 +797,24 @@
 
 #pragma mark - SYSTEM PREFERENCE
 
+/*base on bundle indetifier to return either live or dev*/
++(BOOL)isAppProductionBuild
+{
+    
+    NSString*bundleIdentifer  = [[NSBundle mainBundle] bundleIdentifier];
+    
+    if ([bundleIdentifer rangeOfString:@"Dev"].location == NSNotFound) {
+        NSLog(@"App is On Live Server");
+        
+        return YES;
+        
+    } else {
+        NSLog(@"App is On Dev Server");
+        return NO;
+        
+    }
+    
+}
 +(void)setIsDevelopment:(BOOL)isDev
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -812,7 +830,7 @@
 
     }
     [defaults setObject:key forKey:KEY_PRODUCTION];
-    
+
     [defaults synchronize];
 }
 
@@ -826,8 +844,11 @@
         
         
         if ([Utils isStringNull:key]) {
-            return YES;
+           
+            BOOL isDev = ![Utils isAppProductionBuild];
+            return isDev;
         }
+        
         if ([key isEqualToString:@"0"]) {
             return YES;
             

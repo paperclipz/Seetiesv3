@@ -28,6 +28,7 @@
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblVersion;
 
 @end
 
@@ -58,7 +59,18 @@
 
 -(void)initSelfView{
     
-    self.ibTableView.delegate = self;
+    @try {
+        NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+        NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
+        
+        self.lblVersion.text = [NSString stringWithFormat:@"app Version : %@ app Build : %@",version,build];
+
+    }
+    @catch (NSException *exception) {
+        SLog(@"Unable to retreive app version and build");
+    }
+   
+       self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[SettingsTableViewCell class] forCellReuseIdentifier:@"SettingsTableViewCell"];
     

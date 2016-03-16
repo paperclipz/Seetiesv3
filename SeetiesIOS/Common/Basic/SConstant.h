@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define API_VERSION @"3.0"
 
 @interface SConstant : NSObject
 
@@ -27,7 +26,7 @@ typedef enum
     ServerRequestTypePostProvisioning,
     ServerRequestTypeGetLanguage,
     ServerRequestTypeGetCategory,
-    ServerRequestTypeGetApiVersion,
+   // ServerRequestTypeGetApiVersion,
     
     
     ServerRequestTypeGetExplore,

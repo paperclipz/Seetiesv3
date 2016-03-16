@@ -346,11 +346,9 @@
     
     [LoadingManager show];
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetLanguage param:nil appendString:nil completeHandler:^(id object) {
-        
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetAllAppInfo param:nil appendString:nil completeHandler:^(id object) {
         
     } errorBlock:^(id object) {
-        
         
     }];
     

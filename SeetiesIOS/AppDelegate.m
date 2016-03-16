@@ -168,7 +168,7 @@
     [self registrationForApi];
     [self configureNotificaiton:application];
     [self configureSetup];
-    [self requestForApiVersion];
+ //   [self requestForApiVersion];
     [self checkCurrentAppLanguage];
     [self showWindow];
    
@@ -373,16 +373,16 @@
     
 }
 
--(void)requestForApiVersion{
-    
-    
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil  appendString:nil completeHandler:^(id object) {
-        [self processAPIVersion];
-
-    } errorBlock:^(id object) {
-    }];
-  
-}
+//-(void)requestForApiVersion{
+//    
+//    
+//    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil  appendString:nil completeHandler:^(id object) {
+//        [self processAPIVersion];
+//
+//    } errorBlock:^(id object) {
+//    }];
+//  
+//}
 
 #pragma mark -  connection processing
 -(void)processAPIVersion

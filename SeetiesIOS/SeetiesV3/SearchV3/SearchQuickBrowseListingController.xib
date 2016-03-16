@@ -75,7 +75,7 @@
                                 <action selector="btnLocationClicked:" destination="-1" eventType="touchUpInside" id="eMk-UW-xoE"/>
                             </connections>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CurrencyArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="XBv-gO-M25">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SelectPhotoArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="XBv-gO-M25">
                             <rect key="frame" x="70" y="14" width="33" height="33"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -157,7 +157,7 @@
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
-        <image name="CurrencyArrow.png" width="33" height="33"/>
         <image name="SearchIcon.png" width="40" height="40"/>
+        <image name="SelectPhotoArrow.png" width="20" height="20"/>
     </resources>
 </document>

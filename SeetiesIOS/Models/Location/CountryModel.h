@@ -22,5 +22,9 @@
 @property(nonatomic,strong)NSMutableArray* arrCountryName;
 @property(nonatomic,strong)NSString* phone_country_code;
 @property(nonatomic,strong)NSArray* place_display_fields;
+@property(nonatomic,assign)BOOL has_featured_deals;
+@property(nonatomic,strong)NSString* country_code;
+@property(nonatomic,assign)BOOL home_filter_display;
+
 
 @end

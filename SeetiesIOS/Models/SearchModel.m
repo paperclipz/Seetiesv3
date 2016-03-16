@@ -40,6 +40,37 @@
 }
 
 
+-(NSString*)locationName
+{
+    for (NSDictionary* dict in _address_components) {
+        
+            NSString* value = dict[@"types"][0];
+            
+            if ([value isEqualToString:@"sublocality_level_1"]) {
+                return dict[@"long_name"];
+            }
+            else if ([value isEqualToString:@"sublocality"]) {
+                
+                return dict[@"long_name"];
+
+            }
+            else if ([value isEqualToString:@"administrative_area_level_2"]) {
+                return dict[@"long_name"];
+
+            }
+            else if ([value isEqualToString:@"administrative_area_level_1"]) {
+                return dict[@"long_name"];
+
+            }
+            else if ([value isEqualToString:@"country"]) {
+                return dict[@"long_name"];
+
+            }
+        
+    }
+    return nil;
+}
+
 -(void)process
 {
     

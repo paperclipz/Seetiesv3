@@ -123,7 +123,7 @@
 
 -(void)refreshRequestShop:(NSString*)keyword SeetieshopPlaceID:(NSString*)placeID
 {
-    
+    _homeLocationModel = nil;
     self.homeLocationModel.place_id = placeID;
     self.keyword = keyword;
     

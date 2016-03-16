@@ -380,8 +380,10 @@
 #pragma mark - Request Server
 -(void)getGoogleGeoCode
 {
+    
     [self.searchManager getGoogleGeoCode:self.userLocation completionBlock:^(id object) {
        
+        SLog(@"record : %@",object);
         NSDictionary* temp = [[NSDictionary alloc]initWithDictionary:object];
         NSArray* arrayLocations = [temp valueForKey:@"results"];
         
@@ -397,20 +399,8 @@
             hModel.latitude = model.lat;
             hModel.longtitude = model.lng;
             hModel.place_id = @"";
-            hModel.address_components.country = model.country;
-            hModel.address_components.route = model.route;
-            hModel.address_components.locality = model.city;
-            hModel.address_components.administrative_area_level_1 = model.state;
-            hModel.address_components.political = model.political;
+            hModel.locationName = model.locationName;
            
-            if (![Utils isStringNull:model.subLocality]) {
-                hModel.locationName = model.subLocality;
-                
-            }
-            else{
-                hModel.locationName = model.subLocality_lvl_1;
-                
-            }
 
             if (self.homeLocationRefreshBlock) {
                 self.homeLocationRefreshBlock(hModel);
@@ -423,7 +413,8 @@
 {
     self.userLocation = [self.searchManager getAppLocation];
 
-    [self.searchManager getSearchLocationFromGoogle:self.userLocation input:self.ibSearchTxtField.text completionBlock:^(id object) {
+    CountryModel* model = self.countriesModel.current_country;
+    [self.searchManager getSearchLocationFromGoogle:self.userLocation Country:model.country_code input:self.ibSearchTxtField.text completionBlock:^(id object) {
         if (object) {
             self.searchModel = [[DataManager Instance] googleSearchModel];
             [self.ibSearchTable reloadData];

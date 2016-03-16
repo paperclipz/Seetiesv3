@@ -502,7 +502,14 @@ static NSCache* heightCache = nil;
         return self.arrHomeDeal.count;
     }
     else{// this is newsfeed row count
-        return self.arrayNewsFeed.count + 1;//add 1 for feed header
+        
+        if (self.arrayNewsFeed.count == 0) {
+            return 0;
+        }
+        else{
+            return self.arrayNewsFeed.count + 1;//add 1 for feed header
+
+        }
 
     }
 }

@@ -8,6 +8,7 @@
 
 #import "SearchQuickBrowseListingController.h"
 #import "SearchLTabViewController.h"
+#import "CT3_SearchListingViewController.h"
 #import "SearchLocationViewController.h"
 @interface SearchQuickBrowseListingController ()
 
@@ -22,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblCategory;
 @property(nonatomic, strong) SearchLocationViewController *searchLocationViewController;
-@property(nonatomic, strong) SearchViewV2Controller *searchViewV2Controller;
+@property(nonatomic, strong) CT3_SearchListingViewController *searchListingViewController;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnLocation;
 
@@ -31,8 +32,8 @@
 @implementation SearchQuickBrowseListingController
 - (IBAction)btnSearchClicked:(id)sender {
     
-    _searchViewV2Controller = nil;
-    [self.navigationController pushViewController:self.searchViewV2Controller animated:YES];
+    _searchListingViewController = nil;
+    [self.navigationController pushViewController:self.searchListingViewController animated:YES];
 }
 - (IBAction)btnBackClicked:(id)sender {
     
@@ -99,15 +100,14 @@
 }
 
 #pragma mark - Declaration
--
-(SearchViewV2Controller*)searchViewV2Controller
+-(CT3_SearchListingViewController*)searchListingViewController
 {
-    if (!_searchViewV2Controller) {
-        _searchViewV2Controller = [SearchViewV2Controller new];
+    if (!_searchListingViewController) {
+        _searchListingViewController = [CT3_SearchListingViewController new];
     }
-    
-    return _searchViewV2Controller;
+    return _searchListingViewController;
 }
+
 -(EditCollectionViewController*)editCollectionViewController
 {
     if (!_editCollectionViewController) {

@@ -28,6 +28,10 @@
 -(void)initSelfView
 {
     [self changeLanguage];
+    
+    NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
+    SLog(@"");
 }
 
 -(void)changeLanguage

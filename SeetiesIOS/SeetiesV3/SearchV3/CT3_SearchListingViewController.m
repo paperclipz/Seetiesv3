@@ -72,6 +72,7 @@
 
     self.sManager = [SearchManager Instance];
     
+    _homeLocationModel = nil;
     self.homeLocationModel.locationName = self.locationName;
     self.homeLocationModel.latitude = self.locationLatitude;
     self.homeLocationModel.longtitude = self.locationLongtitude;
@@ -166,7 +167,7 @@
     }
 }
 
-
+#pragma mark - TextField Search
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField == self.ibLocationText) {
@@ -549,7 +550,8 @@
         
         RecommendationVenueModel* recommendationVenueModel  = [RecommendationVenueModel new];
         [recommendationVenueModel processGoogleModel:googleSearchDetailModel];
-                
+        
+        _homeLocationModel = nil;
         self.homeLocationModel.locationName = recommendationVenueModel.name;
         self.homeLocationModel.latitude = recommendationVenueModel.lat;
         self.homeLocationModel.longtitude = recommendationVenueModel.lng;
