@@ -8,8 +8,7 @@
 
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
-#define API_VERION_URL @"v3.0"
-#define IS_SIMULATOR NO
+
 @interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
 
@@ -30,16 +29,28 @@
 {
     return [[ConnectionManager Instance] dataManager];
 }
+
 -(id)init
 {
     self = [super init];//set default dev
     
+    
+    if ([Utils isAppProductionBuild]) {
+        self.serverPath = SERVER_PATH_LIVE;
+
+    }
+    else{
+        self.serverPath = SERVER_PATH_DEV;
+
+    }
     // ====== set to Live if wanna go production ======
-    self.serverPath = SERVER_PATH_DEV;
-    self.dataManager = [DataManager Instance];
+    
+       self.dataManager = [DataManager Instance];
     
     return self;
 }
+
+
 
 +(NSString*)getServerPath
 {
@@ -48,8 +59,15 @@
 
 -(NSString*)serverPath
 {
-    BOOL isDev = [Utils getIsDevelopment];
-    return isDev?SERVER_PATH_DEV:SERVER_PATH_LIVE;
+    
+    if ([Utils isAppProductionBuild]) {
+        BOOL isDev = [Utils getIsDevelopment];
+        return isDev?SERVER_PATH_DEV:SERVER_PATH_LIVE;
+    }
+    else{
+        return SERVER_PATH_DEV;
+    }
+    
 }
 
 -(AFHTTPRequestOperationManager*)manager
@@ -393,10 +411,10 @@
     
 }
 
--(void)processApiversion
-{
-    [Utils setIsDevelopment:!self.dataManager.apiVersionModel.production];
-}
+//-(void)processApiversion
+//{
+//    [Utils setIsDevelopment:!self.dataManager.apiVersionModel.production];
+//}
 
 #pragma mark - SEETIES URL
 -(NSString*)getFullURLwithType:(ServerRequestType)type
@@ -444,12 +462,12 @@
             str = [NSString stringWithFormat:@"%@/system/update/category",API_VERION_URL];
             
             break;
-        case ServerRequestTypeGetApiVersion:
-            
-            str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
-            return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
-            
-            break;
+//        case ServerRequestTypeGetApiVersion:
+//            
+//            str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
+//            return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
+//            
+//            break;
         case ServerRequestTypeGetExplore:
             str = [NSString stringWithFormat:@"%@/explore",API_VERION_URL];
             
@@ -509,7 +527,7 @@
         case ServerRequestTypeUserFollower:
         case ServerRequestTypeUserFollowing:
         case ServerRequestTypePostProvisioning:
-            
+        case  ServerRequestTypePostUpdateUser:
         default:
             str = API_VERION_URL;
             break;
@@ -535,7 +553,7 @@
             break;
             
         case ServerRequestTypeGetHomeCountry:
-            str = [NSString stringWithFormat:@"%@/home/countries",API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/system/update/countries",API_VERION_URL];
             
             break;
             
@@ -608,9 +626,77 @@
     
 }
 
+-(BOOL)isNeedRelogin:(NSDictionary*)obj
+{
+    
+    @try {
+        NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:obj];
+        
+        
+        NSDictionary* appInfo = dict[@"APIINFO"];
+        BOOL is_Production = [[appInfo objectForKey:@"is_production"]boolValue];
+        
+       // is_Production = true;
+        BOOL app_is_production = ![Utils getIsDevelopment];
+        
+        if(is_Production == app_is_production)
+        {
+            return NO;
+        }
+        else{
+            
+            SLog(@"App relog due to changing of server path (Dev to Production)");
+            return YES;
+        }
+        
+    }
+    @catch (NSException *exception) {
+        SLog(@"no value found for production");
+    }
+    
+    
+    return NO;
+}
+
+-(void)saveProductionSetting:(NSDictionary*)obj
+{
+    
+    @try {
+        NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:obj];
+        
+        NSDictionary* appInfo = dict[@"APIINFO"];
+        
+        if (appInfo) {
+            BOOL is_Production = [[appInfo objectForKey:@"is_production"]boolValue];
+            
+            //  is_Production = true;
+            [Utils setIsDevelopment:!is_Production];
+        }
+    }
+    
+    @catch (NSException *exception) {
+        SLog(@"fail to save production key");
+    }
+    
+}
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type withURL:(NSString*)url completionBlock:(IDBlock)completionBlock errorBlock:(IDBlock)errorBlock
 {
+    
+    
     NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", url,[obj bv_jsonStringWithPrettyPrint:YES]);
+    
+    
+    if ([self isNeedRelogin:obj]) {
+        
+        
+        [self saveProductionSetting:obj];
+      
+        return;
+    }
+    
+    
+    [self saveProductionSetting:obj];
+
     
     [self storeServerData:obj requestType:type];
     
@@ -724,12 +810,12 @@
             
             break;
             
-        case ServerRequestTypeGetApiVersion:
-        {
-            self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
-            
-            [self processApiversion];
-        }
+//        case ServerRequestTypeGetApiVersion:
+//        {
+//            self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
+//            
+//           // [self processApiversion];
+//        }
             break;
             
         case ServerRequestTypeGetNewsFeed:
@@ -860,6 +946,7 @@
         {
             NSDictionary* dict = obj[@"data"];
             self.dataManager.userProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+            
         }
             break;
             
@@ -957,7 +1044,7 @@
             break;
         case ServerRequestTypeGetHomeCountry:
         {
-            NSDictionary* dict = obj[@"data"];
+            NSDictionary* dict = obj[@"countries"];
             
             self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:nil];
         }
@@ -1050,6 +1137,13 @@
             
             self.dataManager.appInfoModel = [[AppInfoModel alloc]initWithDictionary:obj error:nil];
             
+            if (self.dataManager.appInfoModel.languages) {
+                
+                self.dataManager.languageModels = [LanguageModels new];
+                self.dataManager.languageModels .languages = self.dataManager.appInfoModel.languages;
+
+            }
+
             break;
             //        case ServerRequestTypePostProvisioning:
             //

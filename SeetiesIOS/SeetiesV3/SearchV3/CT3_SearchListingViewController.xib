@@ -216,6 +216,7 @@
                 <constraint firstAttribute="trailing" secondItem="B7Y-6D-e5h" secondAttribute="trailing" id="h9O-qE-RGb"/>
                 <constraint firstItem="B7Y-6D-e5h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="n7f-pE-Mdc"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <variation key="default">
                 <mask key="constraints">

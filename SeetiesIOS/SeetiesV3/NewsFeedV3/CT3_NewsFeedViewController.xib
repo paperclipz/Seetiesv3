@@ -107,7 +107,7 @@
                 <constraint firstItem="WXj-z2-K1x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="c4X-hq-RUJ"/>
                 <constraint firstAttribute="trailing" secondItem="Wbq-uL-miH" secondAttribute="trailing" id="r8f-rS-9Cc"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="618" y="233"/>
         </view>

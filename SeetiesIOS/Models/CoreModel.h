@@ -25,6 +25,7 @@
 #import "DealCollectionModel.h"
 #import "SeShopGroupModel.h"
 #import "ComplexTagModel.h"
+#import "InstagramKit.h"
 
 
 /*Declare custom block for model type*/

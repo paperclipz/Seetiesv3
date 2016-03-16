@@ -9,8 +9,8 @@
 #import <JSONModel/JSONModel.h>
 #import "FilterCurrencyModel.h"
 
-//@protocol DealModel
-//@end
+#import "GreetingModel.h"
+
 
 @protocol AnnouncementModel@end
 
@@ -29,6 +29,7 @@
 @property(nonatomic,strong)NSArray<AnnouncementModel>* announcements;
 @property(nonatomic,strong)NSArray<QuickBrowseModel>* quick_browse;
 @property(nonatomic,strong)NSArray<DealCollectionModel>* deal_collections;
+@property(nonatomic,strong)GreetingModel* greeting;
 
 
 @property(nonatomic,strong)FilterCurrencyModel *filter_currency;

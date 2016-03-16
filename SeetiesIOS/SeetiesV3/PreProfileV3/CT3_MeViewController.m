@@ -319,6 +319,10 @@
     self.ibNotificationCountLbl.text = [NSString stringWithFormat:@"%d",count];
 }
 
+-(void)changeLanguage
+{
+    self.ibHeaderTitle.text = LocalisedString(@"Me");
+}
 -(void)requestServerForVouchersCount{
     NSDictionary *dict = @{@"token": [Utils getAppToken]};
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];

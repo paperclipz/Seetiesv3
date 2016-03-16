@@ -34,7 +34,7 @@
 @class HomeModel;
 @class NotificationModels;
 @class AppInfoModel;
-
+@class InstagramUser;
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
 
@@ -43,7 +43,7 @@ typedef void(^CompletionVoidBlock) (void);
 +(NSArray*)getSampleObject;
 
 /*Login*/
-@property(nonatomic,strong)InstagramModel* instagramModel;//model from login
+@property(nonatomic,strong)InstagramUser* instagramUserModel;//model from login
 
 
 @property(nonatomic,strong)ProfileModel* userLoginProfileModel;//model from login

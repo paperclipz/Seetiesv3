@@ -217,9 +217,6 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="mw0-bq-tIH"/>
-                </mask>
                 <mask key="constraints">
                     <exclude reference="DBO-X9-vf0"/>
                     <exclude reference="EOe-pR-2W4"/>

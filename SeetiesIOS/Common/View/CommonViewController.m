@@ -29,7 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    }
+    [self changeLanguage];
+}
 
 
 
@@ -53,5 +54,12 @@
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;
+}
+
+-(void)changeLanguage
+{
+    if (self.lblTitle) {
+        self.lblTitle.text = LocalisedString(self.lblTitle.text);
+    }
 }
 @end

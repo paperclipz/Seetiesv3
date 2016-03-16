@@ -22,7 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     constTabbarHeight.constant = TAB_BAR_HEIGHT;
-
 }
 
 

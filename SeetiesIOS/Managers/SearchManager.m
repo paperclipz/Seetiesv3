@@ -275,6 +275,36 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
 //}
 
 /*tempCurrentLocation is an optional field*/
+
+
+/*get search location from google is a list from google in brief only. later on will need to click on the list and hit google details*/
+-(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation Country:(NSString*)country input:(NSString*)textInput completionBlock:(IDBlock)completionBlock
+{
+    
+    if (!country) {
+        country = @"";
+    }
+    NSDictionary* param = @{@"input":textInput?textInput:@"",
+                            @"radius":@"10000",
+                            @"key":GOOGLE_API_KEY,
+                            @"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude],
+                            @"components" : [NSString stringWithFormat:@"country:%@",country],
+                            };
+    
+    [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
+        if(completionBlock)
+        {
+            completionBlock(object);
+        }
+        
+        [LoadingManager hide];
+        
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
+    } ];
+}
+
 -(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation input:(NSString*)textInput completionBlock:(IDBlock)completionBlock
 {
     
@@ -296,6 +326,26 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
     } errorBlock:^(id object) {
         [LoadingManager hide];
 
+    } ];
+}
+
+-(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation Country:(NSString*)country completionBlock:(IDBlock)completionBlock
+{
+    
+    NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%.4f,%.4f&key=%@&components=country:%@",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude,GOOGLE_API_KEY,country];
+   
+    
+    [[ConnectionManager Instance]requestServerWithPost:YES customURL:googleAPI requestType:ServerRequestTypeGoogleSearch param:nil completeHandler:^(id object) {
+        if(completionBlock)
+        {
+            completionBlock(object);
+        }
+        
+        [LoadingManager hide];
+        
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
     } ];
 }
 

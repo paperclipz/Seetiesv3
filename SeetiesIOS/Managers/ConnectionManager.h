@@ -11,6 +11,16 @@
 #import "DataManager.h"
 #import "AFHTTPRequestOperationManager.h"
 
+/*Before deploy check :
+ 1. api version
+ 2. change bundle indetifier to live or dev accordingly
+ 3. change server path to live or dev
+ */
+
+#define API_VERSION @"3.0"
+#define API_VERION_URL @"v3.0"
+#define IS_SIMULATOR NO
+
 typedef void (^IDBlock)(id object);
 typedef void (^IntBlock)(int count);
 typedef void (^IndexPathBlock)(NSIndexPath* indexPath);

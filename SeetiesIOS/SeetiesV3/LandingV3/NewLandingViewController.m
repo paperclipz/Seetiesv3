@@ -332,6 +332,9 @@
         
         DataManager* manager = [ConnectionManager dataManager];
         manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
+        
+        [[LanguageManager sharedLanguageManager]setLanguageCode:manager.currentUserProfileModel.system_language.language_code];
+        
         SLog(@"Sucess Retreive User Data");
         
     } errorBlock:^(id object) {
@@ -343,11 +346,9 @@
     
     [LoadingManager show];
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetLanguage param:nil appendString:nil completeHandler:^(id object) {
-        
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetAllAppInfo param:nil appendString:nil completeHandler:^(id object) {
         
     } errorBlock:^(id object) {
-        
         
     }];
     

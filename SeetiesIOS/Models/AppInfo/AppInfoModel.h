@@ -13,5 +13,7 @@
 
 @property(nonatomic,strong)NSArray<CategoryModel>* categories;
 @property(nonatomic,strong)NSArray<LanguageModel>* languages;
+@property(nonatomic,strong)CountriesModel* countries;
+
 
 @end

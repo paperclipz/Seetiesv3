@@ -98,16 +98,8 @@
 
     self.newsFeedTypeModel = model;
     DraftModel* feedModel = self.newsFeedTypeModel.newsFeedData;
-//    if (self.newsFeedTypeModel.feedType == FeedType_Country_Promotion) {
-//        [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedTypeModel.newsFeedData.image] completed:nil];
-//
-//    }
-//    
-//    else{
-//        
-//       
-//
-//    }
+
+    
     if (![Utils isArrayNull:feedModel.arrPhotos]) {
         PhotoModel* pModel = self.newsFeedTypeModel.newsFeedData.arrPhotos[0];
         [self.ibPostImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
@@ -145,13 +137,12 @@
     self.lblLocation.text = feedModel.location.locality;
     
     self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",feedModel.location.locality,feedModel.location.country];
-
-    
  
     [self.lblDescription setStandardText:[feedModel getPostDescription]];
 
-    [self.ibProfileImageView sd_setImageWithURL:[NSURL URLWithString:feedModel.user_info.profile_photo_images]];
     
+    [self.ibProfileImageView sd_setImageWithURL:[NSURL URLWithString:feedModel.user_info.profile_photo_images] placeholderImage:[Utils getProfilePlaceHolderImage]];
+
     [DataManager getPostCollected:feedModel.post_id isCollected:^(BOOL isCollected) {
         
         if (isCollected) {
