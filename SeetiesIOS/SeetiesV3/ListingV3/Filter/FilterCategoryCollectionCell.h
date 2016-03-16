@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterModel.h"
 
 @interface FilterCategoryCollectionCell : CommonCollectionViewCell
-
--(void)setButtonText:(NSString*)text;
+-(void)initCellData:(FilterModel*)filterModel;
 @end

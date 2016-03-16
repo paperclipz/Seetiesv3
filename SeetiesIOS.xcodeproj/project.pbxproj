@@ -1509,6 +1509,8 @@
 		C238E33D1C4649AA00570A25 /* slider-metal-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3211C4649AA00570A25 /* slider-metal-trackBackground.png */; };
 		C238E33E1C4649AA00570A25 /* slider-metal-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3221C4649AA00570A25 /* slider-metal-trackBackground@2x.png */; };
 		C238E33F1C4649AA00570A25 /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C238E3241C4649AA00570A25 /* NMRangeSlider.m */; };
+		C23FB6A01C99023900021D1F /* FilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23FB69F1C99023900021D1F /* FilterModel.m */; };
+		C23FB6A31C99481400021D1F /* FilterCurrencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23FB6A21C99481400021D1F /* FilterCurrencyModel.m */; };
 		C24383F41C5B5BF100ACEBF8 /* DealDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24383F21C5B5BF100ACEBF8 /* DealDetailsViewController.m */; };
 		C24383F51C5B5BF100ACEBF8 /* DealDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */; };
 		C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */; };
@@ -1524,6 +1526,9 @@
 		C278147A1C7EB908006F11B8 /* DealExpiryDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C27814791C7EB908006F11B8 /* DealExpiryDateModel.m */; };
 		C28469B91C5F6FCD00B38885 /* NearbyShopsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */; };
 		C28469BA1C5F6FCD00B38885 /* NearbyShopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */; };
+		C294FD261C9815B500C455C8 /* FilterCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD251C9815B500C455C8 /* FilterCategoryModel.m */; };
+		C294FD291C9817F200C455C8 /* FilterPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD281C9817F200C455C8 /* FilterPriceModel.m */; };
+		C294FD2C1C9819B500C455C8 /* FiltersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD2B1C9819B500C455C8 /* FiltersModel.m */; };
 		C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C295DCDA1C72C54300A1DED3 /* DealManager.m */; };
 		C2AB4A5A1C6D8C900053FCA8 /* FilterAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AB4A581C6D8C900053FCA8 /* FilterAvailabilityCell.m */; };
 		C2AB4A5B1C6D8C900053FCA8 /* FilterAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AB4A591C6D8C900053FCA8 /* FilterAvailabilityCell.xib */; };
@@ -3526,6 +3531,10 @@
 		C238E3221C4649AA00570A25 /* slider-metal-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-metal-trackBackground@2x.png"; sourceTree = "<group>"; };
 		C238E3231C4649AA00570A25 /* NMRangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMRangeSlider.h; sourceTree = "<group>"; };
 		C238E3241C4649AA00570A25 /* NMRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMRangeSlider.m; sourceTree = "<group>"; };
+		C23FB69E1C99023900021D1F /* FilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterModel.h; path = Filter/FilterModel.h; sourceTree = "<group>"; };
+		C23FB69F1C99023900021D1F /* FilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterModel.m; path = Filter/FilterModel.m; sourceTree = "<group>"; };
+		C23FB6A11C99481400021D1F /* FilterCurrencyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCurrencyModel.h; sourceTree = "<group>"; };
+		C23FB6A21C99481400021D1F /* FilterCurrencyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCurrencyModel.m; sourceTree = "<group>"; };
 		C24383F11C5B5BF100ACEBF8 /* DealDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealDetailsViewController.h; sourceTree = "<group>"; };
 		C24383F21C5B5BF100ACEBF8 /* DealDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealDetailsViewController.m; sourceTree = "<group>"; };
 		C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailsViewController.xib; sourceTree = "<group>"; };
@@ -3552,6 +3561,12 @@
 		C28469B61C5F6FCD00B38885 /* NearbyShopsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopsCell.h; sourceTree = "<group>"; };
 		C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopsCell.m; sourceTree = "<group>"; };
 		C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyShopsCell.xib; sourceTree = "<group>"; };
+		C294FD241C9815B500C455C8 /* FilterCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterCategoryModel.h; path = Filter/FilterCategoryModel.h; sourceTree = "<group>"; };
+		C294FD251C9815B500C455C8 /* FilterCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterCategoryModel.m; path = Filter/FilterCategoryModel.m; sourceTree = "<group>"; };
+		C294FD271C9817F200C455C8 /* FilterPriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterPriceModel.h; path = Filter/FilterPriceModel.h; sourceTree = "<group>"; };
+		C294FD281C9817F200C455C8 /* FilterPriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterPriceModel.m; path = Filter/FilterPriceModel.m; sourceTree = "<group>"; };
+		C294FD2A1C9819B500C455C8 /* FiltersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiltersModel.h; path = Filter/FiltersModel.h; sourceTree = "<group>"; };
+		C294FD2B1C9819B500C455C8 /* FiltersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiltersModel.m; path = Filter/FiltersModel.m; sourceTree = "<group>"; };
 		C295DCD91C72C54300A1DED3 /* DealManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealManager.h; sourceTree = "<group>"; };
 		C295DCDA1C72C54300A1DED3 /* DealManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealManager.m; sourceTree = "<group>"; };
 		C2AB4A571C6D8C900053FCA8 /* FilterAvailabilityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterAvailabilityCell.h; sourceTree = "<group>"; };
@@ -6332,6 +6347,8 @@
 				8AD50D751C645D2100C9D952 /* AddressComponentModel.m */,
 				8A5CFE111C7C2F97004E2CBA /* QuickBrowseModel.h */,
 				8A5CFE121C7C2F97004E2CBA /* QuickBrowseModel.m */,
+				C23FB6A11C99481400021D1F /* FilterCurrencyModel.h */,
+				C23FB6A21C99481400021D1F /* FilterCurrencyModel.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -6945,6 +6962,7 @@
 		8AEDBF761C2031BA000BD2FF /* MODELS */ = {
 			isa = PBXGroup;
 			children = (
+				C294FD231C98157A00C455C8 /* Filter */,
 				8AF9996F1C3E6569000314E4 /* CoreModel.h */,
 				8AEDBF921C2031BA000BD2FF /* Model.h */,
 				8AEDBF931C2031BA000BD2FF /* Model.m */,
@@ -7560,6 +7578,21 @@
 				C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		C294FD231C98157A00C455C8 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				C294FD241C9815B500C455C8 /* FilterCategoryModel.h */,
+				C294FD251C9815B500C455C8 /* FilterCategoryModel.m */,
+				C294FD271C9817F200C455C8 /* FilterPriceModel.h */,
+				C294FD281C9817F200C455C8 /* FilterPriceModel.m */,
+				C294FD2A1C9819B500C455C8 /* FiltersModel.h */,
+				C294FD2B1C9819B500C455C8 /* FiltersModel.m */,
+				C23FB69E1C99023900021D1F /* FilterModel.h */,
+				C23FB69F1C99023900021D1F /* FilterModel.m */,
+			);
+			name = Filter;
 			sourceTree = "<group>";
 		};
 		C2C157111C574B5E007608FC /* Others */ = {
@@ -8901,6 +8934,7 @@
 				0BC8A0EF1C0D585F00EB8548 /* SeNearbySeetishop.m in Sources */,
 				8AD6C0F61B706CF30040437E /* SearchDetailViewController.m in Sources */,
 				8A7360FE1C080C7100A64824 /* UITableviewPaging.m in Sources */,
+				C23FB6A31C99481400021D1F /* FilterCurrencyModel.m in Sources */,
 				8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */,
 				8A114C7F1BE73F5D006AE3F0 /* BKCurrencyTextField.m in Sources */,
 				C23042E11C61F331001008CB /* DealsModel.m in Sources */,
@@ -9087,6 +9121,7 @@
 				8AD6C29D1B7072FB0040437E /* PublishViewController.m in Sources */,
 				8ABA51F41C0FE7F000A3DC15 /* PhotoListViewController.m in Sources */,
 				8AD6C2851B7072FB0040437E /* AddPriceViewController.m in Sources */,
+				C294FD261C9815B500C455C8 /* FilterCategoryModel.m in Sources */,
 				8A3409CE1B8B0DCB009B66C3 /* UIImage+Alpha.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
 				8AF33A3D1C3F67F5000A2021 /* CTFeedModel.m in Sources */,
@@ -9110,6 +9145,7 @@
 				8AD6C2A71B7072FB0040437E /* TellaStoryViewController.m in Sources */,
 				8AD6C0FA1B706CF30040437E /* SearchViewController.m in Sources */,
 				C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */,
+				C294FD291C9817F200C455C8 /* FilterPriceModel.m in Sources */,
 				8AF428741C8D3F070050289F /* DealHeaderView.m in Sources */,
 				8AC8F7261BDA414E00DEF14A /* PostListingTableViewCell.m in Sources */,
 				8AC8F74C1BDA414E00DEF14A /* EditTagCollectionViewCell.m in Sources */,
@@ -9205,6 +9241,7 @@
 				0BC8A0F51C0D934600EB8548 /* SeRecommendations.m in Sources */,
 				8AD6C0B51B706CF30040437E /* InstagramLoginWebViewController.m in Sources */,
 				8A114CC41BE73F5D006AE3F0 /* NSString+MKNetworkKitAdditions.m in Sources */,
+				C23FB6A01C99023900021D1F /* FilterModel.m in Sources */,
 				8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */,
 				8AFA51FD1C47B4AB00E7920E /* FeedTableViewCell.m in Sources */,
 				8AF6FDCF1C587958005AAE5D /* RegisterObject.m in Sources */,
@@ -9215,6 +9252,7 @@
 				8AD6C0FC1B706CF30040437E /* SearchViewV2.m in Sources */,
 				8AFF08551C90379000918582 /* CT3_SearchListingViewController.m in Sources */,
 				8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */,
+				C294FD2C1C9819B500C455C8 /* FiltersModel.m in Sources */,
 				8AFF08591C90379000918582 /* SearchLocationAreaCell.m in Sources */,
 				8A295FD11C50A50F00747DBA /* UITabBar+Extension.m in Sources */,
 				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,

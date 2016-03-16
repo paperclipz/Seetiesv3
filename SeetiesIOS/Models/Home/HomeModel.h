@@ -7,7 +7,7 @@
 //
 
 #import <JSONModel/JSONModel.h>
-
+#import "FilterCurrencyModel.h"
 
 //@protocol DealModel
 //@end
@@ -19,6 +19,9 @@
 
 @protocol DealCollectionModel@end
 
+@protocol FilterCurrencyModel
+@end
+
 @interface HomeModel : JSONModel
 
 @property(nonatomic,assign)int wallet_count;
@@ -26,5 +29,8 @@
 @property(nonatomic,strong)NSArray<AnnouncementModel>* announcements;
 @property(nonatomic,strong)NSArray<QuickBrowseModel>* quick_browse;
 @property(nonatomic,strong)NSArray<DealCollectionModel>* deal_collections;
+
+
+@property(nonatomic,strong)FilterCurrencyModel *filter_currency;
 
 @end

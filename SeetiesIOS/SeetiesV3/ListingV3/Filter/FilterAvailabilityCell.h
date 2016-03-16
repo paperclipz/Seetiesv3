@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterModel.h"
+
+@protocol FilterAvailabilityCellDelegate <NSObject>
+
+-(void)switchValueChanged:(FilterModel*)filterModel;
+
+@end
 
 @interface FilterAvailabilityCell : CommonCollectionViewCell
-
+@property id<FilterAvailabilityCellDelegate> delegate;
+-(void)initCellData:(FilterModel*)filterModel;
 @end

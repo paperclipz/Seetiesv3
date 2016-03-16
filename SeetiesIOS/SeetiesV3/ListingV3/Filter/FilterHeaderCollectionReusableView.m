@@ -11,7 +11,7 @@
 @interface FilterHeaderCollectionReusableView()
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderLbl;
 @property (weak, nonatomic) IBOutlet UIButton *ibCheckbox;
-
+@property(nonatomic) FilterCategoryModel *filterCategory;
 @end
 
 @implementation FilterHeaderCollectionReusableView
@@ -20,8 +20,10 @@
     // Initialization code
 }
 
--(void)setHeaderText:(NSString*)text{
-    self.ibHeaderLbl.text = text;
+-(void)initHeaderData:(FilterCategoryModel*)filterCategory{
+    _filterCategory = filterCategory;
+    
+    self.ibHeaderLbl.text = self.filterCategory.categoryName;
 }
 
 @end

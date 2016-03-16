@@ -11,7 +11,14 @@
 #import "FilterBudgetCell.h"
 #import "FilterHeaderCollectionReusableView.h"
 #import "FilterAvailabilityCell.h"
+#import "FiltersModel.h"
 
-@interface GeneralFilterViewController : CommonViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
--(id)initWithFilter:(NSArray*)filterArray;
+@protocol FilterViewControllerDelegate <NSObject>
+-(void)applyFilterClicked:(FiltersModel*)filtersModel;
+
+@end
+
+@interface GeneralFilterViewController : CommonViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, FilterBudgetCellDelegate, FilterAvailabilityCellDelegate>
+@property id<FilterViewControllerDelegate> delegate;
+-(void)initWithFilter:(FiltersModel*)filtersModel;
 @end

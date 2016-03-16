@@ -8,38 +8,34 @@
 
 #import "FilterCategoryCollectionCell.h"
 @interface FilterCategoryCollectionCell()
-@property (weak, nonatomic) IBOutlet UIButton *ibCategoryBtn;
-
+@property (weak, nonatomic) IBOutlet UIView *ibCell;
+@property (weak, nonatomic) IBOutlet UILabel *ibCellTitle;
+@property(nonatomic) FilterModel *filter;
 @end
 
 @implementation FilterCategoryCollectionCell
 
 - (void)awakeFromNib {
     // Initialization code
-    [self.ibCategoryBtn setSideCurveBorder];
-    [self.ibCategoryBtn.layer setBorderColor:LINE_COLOR.CGColor];
+    [Utils setRoundBorder:self.ibCell color:OUTLINE_COLOR borderRadius:self.ibCell.frame.size.height/2];
+    [self.ibCell setBackgroundColor:[UIColor whiteColor]];
+    self.ibCellTitle.textColor = [UIColor colorWithRed:102/255.0f green:102/255.0f blue:102/255.0f alpha:1];
 }
 
--(void)setButtonText:(NSString *)text{
-    [self.ibCategoryBtn setTitle:text forState:UIControlStateNormal];
-}
-
-- (IBAction)categoryBtnClicked:(id)sender {
-    UIButton *button = (UIButton*)sender;
-    [self setButtonState:button];
-    button.selected = !button.selected;
-}
-
--(void)setButtonState:(UIButton*)button{
-    if (button.selected) {
-        button.backgroundColor = [UIColor whiteColor];
-        button.titleLabel.textColor = TEXT_GRAY_COLOR;
-        [self.ibCategoryBtn.layer setBorderColor:LINE_COLOR.CGColor];
+-(void)initCellData:(FilterModel*)filterModel{
+    _filter = filterModel;
+    
+    self.ibCellTitle.text = self.filter.name;
+    if (self.filter.isSelected) {
+        [Utils setRoundBorder:self.ibCell color:[UIColor clearColor] borderRadius:self.ibCell.frame.size.height/2];
+        [self.ibCell setBackgroundColor:DEVICE_COLOR];
+        self.ibCellTitle.textColor = [UIColor whiteColor];
     }
     else{
-        button.backgroundColor = DEVICE_COLOR;
-        button.titleLabel.textColor = [UIColor whiteColor];
-        [self.ibCategoryBtn.layer setBorderColor:[UIColor clearColor].CGColor];
+        [Utils setRoundBorder:self.ibCell color:OUTLINE_COLOR borderRadius:self.ibCell.frame.size.height/2];
+        [self.ibCell setBackgroundColor:[UIColor whiteColor]];
+        self.ibCellTitle.textColor = [UIColor colorWithRed:102/255.0f green:102/255.0f blue:102/255.0f alpha:1];
     }
 }
+
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilterCategoryModel.h"
 
 @interface FilterHeaderCollectionReusableView : UICollectionReusableView
--(void)setHeaderText:(NSString*)text;
+-(void)initHeaderData:(FilterCategoryModel*)filterCategory;
 @end

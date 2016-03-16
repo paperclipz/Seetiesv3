@@ -17,11 +17,10 @@
 #import "DealRedeemViewController.h"
 #import "SearchLocationViewController.h"
 
-@interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate>
--(void)initWithLocation:(HomeLocationModel*)locationModel;
+@interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate, FilterViewControllerDelegate>
+-(void)initWithLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
 -(void)initWithDealId:(NSString*)dealId;
-/*for deal listing*/
--(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel;
+-(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
 -(void)initDataWithShopID:(NSString*)shopID;
 
 @end

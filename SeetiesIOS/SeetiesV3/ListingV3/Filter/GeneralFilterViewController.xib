@@ -7,7 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GeneralFilterViewController">
             <connections>
+                <outlet property="ibApplyFilterBtn" destination="agL-Zx-3Ds" id="5ou-vl-xav"/>
                 <outlet property="ibFilterCollection" destination="1QX-FR-yjt" id="ndk-kK-n2I"/>
+                <outlet property="ibFilterResetBtn" destination="XXH-lG-RTN" id="0ys-xf-Wux"/>
+                <outlet property="ibFilterTitleLbl" destination="N6n-hj-CEu" id="s5k-Tu-lxT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgQ-wX-C2u">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgQ-wX-C2u" userLabel="header">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CloseIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="oES-fK-m7x">
@@ -40,8 +43,8 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6n-hj-CEu" userLabel="filter">
-                            <rect key="frame" x="40" y="27" width="240" height="24"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <rect key="frame" x="139" y="30" width="43" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -51,11 +54,16 @@
                                 <constraint firstAttribute="height" constant="50" id="V0p-Yi-4f3"/>
                                 <constraint firstAttribute="width" constant="50" id="YyO-2f-QCj"/>
                             </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="Reset"/>
+                            <connections>
+                                <action selector="resetBtnClicked:" destination="-1" eventType="touchUpInside" id="9ui-21-nOL"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="N6n-hj-CEu" firstAttribute="centerX" secondItem="wgQ-wX-C2u" secondAttribute="centerX" id="2b0-eP-8ik"/>
                         <constraint firstItem="ghl-NG-P91" firstAttribute="leading" secondItem="wgQ-wX-C2u" secondAttribute="leading" id="3eQ-iW-i9c"/>
                         <constraint firstItem="oES-fK-m7x" firstAttribute="leading" secondItem="wgQ-wX-C2u" secondAttribute="leading" id="7Ij-aX-W1R"/>
                         <constraint firstItem="N6n-hj-CEu" firstAttribute="leading" secondItem="wgQ-wX-C2u" secondAttribute="leading" constant="40" id="Dyg-Dh-0yF"/>
@@ -63,14 +71,22 @@
                         <constraint firstAttribute="bottom" secondItem="oES-fK-m7x" secondAttribute="bottom" constant="4" id="VAl-ny-IK6"/>
                         <constraint firstItem="N6n-hj-CEu" firstAttribute="centerY" secondItem="wgQ-wX-C2u" secondAttribute="centerY" constant="7.5" id="eGy-Fx-w8H"/>
                         <constraint firstItem="oES-fK-m7x" firstAttribute="top" secondItem="ghl-NG-P91" secondAttribute="bottom" constant="-44" id="iwI-ye-eDg"/>
+                        <constraint firstAttribute="trailing" secondItem="N6n-hj-CEu" secondAttribute="trailing" constant="40" id="sxO-e0-ig2"/>
                         <constraint firstAttribute="height" constant="64" id="vE6-1X-nFc"/>
                         <constraint firstAttribute="trailing" secondItem="XXH-lG-RTN" secondAttribute="trailing" constant="8" id="vU9-yq-GcH"/>
                         <constraint firstAttribute="bottom" secondItem="XXH-lG-RTN" secondAttribute="bottom" id="vll-pj-ti9"/>
                         <constraint firstItem="ghl-NG-P91" firstAttribute="top" secondItem="wgQ-wX-C2u" secondAttribute="top" id="zdd-ua-po1"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Dyg-Dh-0yF"/>
+                            <exclude reference="GO0-71-eY0"/>
+                            <exclude reference="sxO-e0-ig2"/>
+                        </mask>
+                    </variation>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1QX-FR-yjt">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="462"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ojg-h2-5wL">
                         <size key="itemSize" width="50" height="50"/>
@@ -83,6 +99,20 @@
                         <outlet property="delegate" destination="-1" id="wSZ-qE-Ggb"/>
                     </connections>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agL-Zx-3Ds">
+                    <rect key="frame" x="0.0" y="526" width="320" height="42"/>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="F5g-Xw-kdi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Apply Filter">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="applyFilterBtnClicked:" destination="-1" eventType="touchUpInside" id="pKH-Ql-6KI"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -91,14 +121,21 @@
                 <constraint firstAttribute="trailing" secondItem="1QX-FR-yjt" secondAttribute="trailing" id="ECK-Xv-4xN"/>
                 <constraint firstAttribute="bottom" secondItem="1QX-FR-yjt" secondAttribute="bottom" id="Fy8-QY-zNf"/>
                 <constraint firstItem="wgQ-wX-C2u" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Rr4-1D-VrN"/>
+                <constraint firstItem="agL-Zx-3Ds" firstAttribute="top" secondItem="1QX-FR-yjt" secondAttribute="bottom" id="UvT-HV-KNP"/>
                 <constraint firstItem="1QX-FR-yjt" firstAttribute="top" secondItem="wgQ-wX-C2u" secondAttribute="bottom" id="ZmR-Ko-n80"/>
+                <constraint firstAttribute="bottom" secondItem="agL-Zx-3Ds" secondAttribute="bottom" id="aOp-yr-dLt"/>
                 <constraint firstItem="1QX-FR-yjt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fdF-gg-gq6"/>
                 <constraint firstItem="1QX-FR-yjt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tBU-Xx-4wI"/>
+                <constraint firstItem="agL-Zx-3Ds" firstAttribute="leading" secondItem="wgQ-wX-C2u" secondAttribute="leading" id="vwx-8N-5M7"/>
+                <constraint firstItem="agL-Zx-3Ds" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zTf-Vy-L2E"/>
+                <constraint firstAttribute="trailing" secondItem="agL-Zx-3Ds" secondAttribute="trailing" id="zWd-Zo-ydE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="Fy8-QY-zNf"/>
                     <exclude reference="fdF-gg-gq6"/>
+                    <exclude reference="vwx-8N-5M7"/>
                 </mask>
             </variation>
         </view>

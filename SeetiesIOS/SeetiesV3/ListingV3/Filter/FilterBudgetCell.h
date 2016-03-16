@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "NMRangeSlider.h"
+#import "FilterModel.h"
+
+@protocol FilterBudgetCellDelegate <NSObject>
+
+-(void)sliderChangedValue:(FilterModel*)filterModel;
+
+@end
 
 @interface FilterBudgetCell : CommonCollectionViewCell
--(void)configureSliderWithMinValue:(NSInteger)minValue maxValue:(NSInteger)maxValue stepValue:(NSInteger)stepValue stepValueContinuously:(BOOL)continuous;
--(void)setLowerValue:(NSInteger)lowerValue;
--(void)setUpperValue:(NSInteger)upperValue;
+@property id<FilterBudgetCellDelegate> delegate;
+-(void)initCellData:(FilterModel*)filterModel;
 
 @end

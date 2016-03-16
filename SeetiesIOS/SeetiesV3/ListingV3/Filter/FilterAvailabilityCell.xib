@@ -52,6 +52,10 @@
                 <constraint firstItem="XUS-YW-d0B" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="y8u-FI-Ak2"/>
             </constraints>
             <size key="customSize" width="327" height="50"/>
+            <connections>
+                <outlet property="ibSwitch" destination="bqL-Ax-lEX" id="AHW-7P-qHA"/>
+                <outlet property="ibTitleLbl" destination="z6o-pi-5zl" id="XeN-5m-OlZ"/>
+            </connections>
             <point key="canvasLocation" x="419.5" y="468"/>
         </collectionViewCell>
     </objects>

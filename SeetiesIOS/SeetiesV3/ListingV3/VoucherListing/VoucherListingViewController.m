@@ -12,6 +12,9 @@
 @property (nonatomic) DealsModel *dealsModel;
 @property (nonatomic) DealCollectionModel *dealCollectionModel;
 @property (nonatomic) HomeLocationModel *locationModel;
+@property (nonatomic) FilterCurrencyModel *filterCurrencyModel;
+@property (nonatomic) NSArray<QuickBrowseModel> *quickBrowseModels;
+@property (nonatomic) FiltersModel *filtersModel;
 
 @property (nonatomic) NSMutableArray<DealModel> *dealsArray;
 @property (nonatomic) BOOL isLoading;
@@ -20,7 +23,6 @@
 @property (nonatomic) NSString *shopID;
 @property (nonatomic) NSString *dealId;
 @property (nonatomic,assign) int dealViewType;// 1 == seetiesshop id
-
 
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitle;
@@ -117,6 +119,135 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)formatFiltersModelToShowOpenNow:(BOOL)showOpenNow{
+    self.filtersModel = [[FiltersModel alloc] init];
+    self.filtersModel.filterCategories = [[NSMutableArray<FilterCategoryModel> alloc] init];
+    
+    //Sort
+    FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
+    sortCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    sortCategory.categoryName = LocalisedString(@"Sort By");
+    sortCategory.filterCategoryType = FilterTypeSort;
+    
+    FilterModel *latest = [[FilterModel alloc] init];
+    latest.name = LocalisedString(@"Latest");
+    latest.isSelected = YES;
+    latest.sortType = SortTypeMostRecent;
+    
+    FilterModel *distance = [[FilterModel alloc] init];
+    distance.name = LocalisedString(@"Distance");
+    distance.isSelected = NO;
+    distance.sortType = SortTypeNearest;
+    
+    FilterModel *popular = [[FilterModel alloc] init];
+    popular.name = LocalisedString(@"Popular");
+    popular.isSelected = NO;
+    popular.sortType = SortTypeMostPopular;
+    
+    [sortCategory.filtersArray addObject:latest];
+    [sortCategory.filtersArray addObject:distance];
+    [sortCategory.filtersArray addObject:popular];
+    
+    //Category
+    FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
+    catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    catCategory.categoryName = LocalisedString(@"Deals by Category");
+    catCategory.filterCategoryType = FilterTypeCat;
+    
+    for (QuickBrowseModel *quickBrowse in self.quickBrowseModels) {
+        FilterModel *filter = [[FilterModel alloc] init];
+        filter.name = quickBrowse.name;
+        filter.filterId = quickBrowse.category_group_id;
+        filter.isSelected = NO;
+        [catCategory.filtersArray addObject:filter];
+    }
+    
+    //Price
+    FilterCategoryModel *priceCategory = [[FilterCategoryModel alloc] init];
+    priceCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    priceCategory.categoryName = LocalisedString(@"Deals by Budget");
+    priceCategory.filterCategoryType = FilterTypePrice;
+    
+    FilterModel *filter = [[FilterModel alloc] init];
+    FilterPriceModel *filterPrice = [[FilterPriceModel alloc] init];
+    filterPrice.currency = self.filterCurrencyModel.currency;
+    filterPrice.min = self.filterCurrencyModel.min;
+    filterPrice.max = self.filterCurrencyModel.max;
+    filterPrice.interval = self.filterCurrencyModel.interval;
+    filterPrice.selectedMin = self.filterCurrencyModel.min;
+    filterPrice.selectedMax = self.filterCurrencyModel.max;
+    filter.filterPrice = filterPrice;
+    [priceCategory.filtersArray addObject:filter];
+    
+    [self.filtersModel.filterCategories addObject:sortCategory];
+    [self.filtersModel.filterCategories addObject:catCategory];
+    [self.filtersModel.filterCategories addObject:priceCategory];
+    
+    //Open now
+    if(showOpenNow){
+        FilterCategoryModel *isOpenCategory = [[FilterCategoryModel alloc] init];
+        isOpenCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+        priceCategory.filterCategoryType = FilterTypeIsOpen;
+        
+        FilterModel *filter = [[FilterModel alloc] init];
+        filter.isSelected = NO;
+        [isOpenCategory.filtersArray addObject:filter];
+        
+        [self.filtersModel.filterCategories addObject:isOpenCategory];
+    }
+    
+}
+
+-(NSDictionary*)getFilterDict{
+    int sort = 1;
+    NSMutableString *catString = [[NSMutableString alloc] init];
+    int minPrice = 0;
+    int maxPrice = 0;
+    for (FilterCategoryModel *filterCategory in self.filtersModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        sort = (int)filter.sortType;
+                    }
+                }
+            }
+                break;
+                
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        [catString appendFormat:@"%@,", filter.filterId];
+                    }
+                }
+                if (![Utils isStringNull:catString]) {
+                    [catString substringToIndex:[catString length]-1];
+                }
+            }
+                break;
+                
+            case FilterTypePrice:
+            {
+                FilterModel *priceModel = filterCategory.filtersArray[0];
+                minPrice = priceModel.filterPrice.selectedMin;
+                maxPrice = priceModel.filterPrice.selectedMax;
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    return @{@"sort": @(sort),
+             @"category_group": catString,
+             @"min_price": @(minPrice),
+             @"max_price": @(maxPrice)};
+    
+}
+
 #pragma mark - Initialization
 
 -(void)initDataWithShopID:(NSString*)shopID
@@ -125,19 +256,22 @@
     self.dealViewType = 1;
 }
 
--(void)initWithLocation:(HomeLocationModel*)locationModel{
+-(void)initWithLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(NSArray<QuickBrowseModel>*)quickBrowseModel{
     _locationModel = locationModel;
+    _filterCurrencyModel = filterCurrencyModel;
+    _quickBrowseModels = quickBrowseModel;
     self.dealViewType = 3;
-
+    [self formatFiltersModelToShowOpenNow:NO];
 }
 
-
--(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel
+-(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(NSArray<QuickBrowseModel>*)quickBrowseModel
 {
     self.dealViewType = 2;
     self.dealCollectionModel = model;
     _locationModel = locationModel;
-    
+    _filterCurrencyModel = filterCurrencyModel;
+    _quickBrowseModels = quickBrowseModel;
+    [self formatFiltersModelToShowOpenNow:NO];
 }
 
 -(void)initWithDealId:(NSString*)dealId{
@@ -155,13 +289,11 @@
 }
 */
 
+#pragma mark - IBAction
 - (IBAction)filterClicked:(id)sender {
   
-    GeneralFilterViewController *filterController = [[GeneralFilterViewController alloc] initWithFilter:[self getDummy]];
-    
-    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:filterController];
-    nav.navigationBarHidden =  YES;
-    [self presentViewController:nav animated:YES completion:nil];
+    [self.filterController initWithFilter:self.filtersModel];
+    [self presentViewController:self.filterController animated:YES completion:^{}];
 }
 
 - (IBAction)footerBtnClicked:(id)sender {
@@ -178,42 +310,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(NSArray*)getDummy{
-    NSDictionary *catFilter = [[NSDictionary alloc] initWithObjectsAndKeys:
-                               @"Category", @"type",
-                               @[@"1", @"2", @"3", @"4", @"5"], @"array", nil];
-    NSDictionary *sortFilter = [[NSDictionary alloc] initWithObjectsAndKeys:
-                               @"Sort", @"type",
-                               @[@"1", @"2", @"3"], @"array", nil];
-    NSDictionary *priceFilter = [[NSDictionary alloc] initWithObjectsAndKeys:
-                               @"Price", @"type",
-                               @"0", @"min",
-                               @"100", @"max", nil];
-    
-    NSDictionary *availabilityFilter = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Availability", @"type",
-                                 @"0", @"min",
-                                 @"100", @"max", nil];
-
-    
-    NSArray *filterArray = @[sortFilter, catFilter, priceFilter,availabilityFilter];
-    return filterArray;
-}
-
 #pragma mark - Declaration
 -(GeneralFilterViewController*)filterController
 {
     if (!_filterController) {
         _filterController = [GeneralFilterViewController new];
-        
-        [self.view addSubview:_filterController.view];
-        
-        _filterController.view.hidden = YES;
-        CGFloat yOrigin = self.ibFilterView.frame.origin.y + self.ibFilterView.frame.size.height;
-        [_filterController.view setY:yOrigin];
-        [_filterController.view setHeight:self.view.frame.size.height - yOrigin];        
-        [_filterController.view setWidth:self.view.frame.size.width];
-
+        _filterController.delegate = self;
     }
     
     return _filterController;
@@ -415,6 +517,19 @@
     [self requestServerToCollectVoucher:dealModel fromShop:shopModel];
 }
 
+-(void)applyFilterClicked:(FiltersModel *)filtersModel{
+    _filtersModel = filtersModel;
+    
+    self.dealsModel = nil;
+    [self.dealsArray removeAllObjects];
+    if (self.dealViewType == 2) {
+        [self requestServerForDealListing];
+    }
+    else if (self.dealViewType == 3){
+        [self requestServerForSuperDealListing];
+    }
+}
+
 #pragma mark - RequestServer
 
 -(void)requestServerForSuperDealListing{
@@ -443,6 +558,10 @@
     
     [finalDict addEntriesFromDictionary:fixedDict];
     [finalDict addEntriesFromDictionary:placeDict];
+    
+    if (self.filtersModel) {
+        [finalDict addEntriesFromDictionary:[self getFilterDict]];
+    }
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:finalDict appendString:nil completeHandler:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
@@ -483,6 +602,10 @@
         
         [finalDict addEntriesFromDictionary:fixedDict];
         [finalDict addEntriesFromDictionary:placeDict];
+        
+        if (self.filtersModel) {
+            [finalDict addEntriesFromDictionary:[self getFilterDict]];
+        }
 
     }
     @catch (NSException *exception) {
