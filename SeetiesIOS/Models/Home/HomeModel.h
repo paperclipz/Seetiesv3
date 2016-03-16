@@ -8,9 +8,8 @@
 
 #import <JSONModel/JSONModel.h>
 
+#import "GreetingModel.h"
 
-//@protocol DealModel
-//@end
 
 @protocol AnnouncementModel@end
 
@@ -19,6 +18,7 @@
 
 @protocol DealCollectionModel@end
 
+
 @interface HomeModel : JSONModel
 
 @property(nonatomic,assign)int wallet_count;
@@ -26,5 +26,6 @@
 @property(nonatomic,strong)NSArray<AnnouncementModel>* announcements;
 @property(nonatomic,strong)NSArray<QuickBrowseModel>* quick_browse;
 @property(nonatomic,strong)NSArray<DealCollectionModel>* deal_collections;
+@property(nonatomic,strong)GreetingModel* greeting;
 
 @end

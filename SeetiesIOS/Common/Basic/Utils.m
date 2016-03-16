@@ -545,6 +545,11 @@
     return [UIImage imageNamed:@"NoImage.png"];
 }
 
++(UIImage*)getProfilePlaceHolderImage
+{
+    return [UIImage imageNamed:@"DefaultProfilePic.png"];
+}
+
 +(NSURL*)getPrefixedURLFromString:(NSString*)url
 {
     NSString *myURLString = url;

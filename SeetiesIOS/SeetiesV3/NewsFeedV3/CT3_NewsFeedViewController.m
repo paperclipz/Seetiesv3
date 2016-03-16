@@ -36,6 +36,7 @@
 #import "DealType_DealOTDTblCell.h"
 #import "DealType_YourWalletTblCell.h"
 #import "SearchViewV2Controller.h"
+#import "FeedType_headerTblCell.h"
 
 #import "AppDelegate.h"
 #import "SeetiesShopViewController.h"
@@ -501,7 +502,7 @@ static NSCache* heightCache = nil;
         return self.arrHomeDeal.count;
     }
     else{// this is newsfeed row count
-        return self.arrayNewsFeed.count;
+        return self.arrayNewsFeed.count + 1;//add 1 for feed header
 
     }
 }
@@ -563,7 +564,21 @@ static NSCache* heightCache = nil;
         //    float height = frame.size.height;
         //  NSLog(@"row height (bbb) : %f", height);
         
-        CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
+        
+        if (indexPath.row == 0) {
+            return [FeedType_headerTblCell getHeight];
+        }
+        
+        CTFeedTypeModel* typeModel;
+        @try {
+            
+            typeModel = self.arrayNewsFeed[indexPath.row-1];
+
+        }
+        @catch (NSException *exception) {
+            SLog(@"CTFeedTypeModel error in height for row");
+        }
+    
         
         switch (typeModel.feedType) {
             case FeedType_Collect_Suggestion:
@@ -720,7 +735,27 @@ static NSCache* heightCache = nil;
     }
     
     else{
-        CTFeedTypeModel* typeModel = self.arrayNewsFeed[indexPath.row];
+        
+        if (indexPath.row == 0) {
+            /*Following Post*/
+            static NSString *CellIdentifier = @"FeedType_headerTblCell";
+            FeedType_headerTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[FeedType_headerTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            }
+            
+            return cell;
+        }
+        
+        CTFeedTypeModel* typeModel;
+        @try {
+            
+            typeModel = self.arrayNewsFeed[indexPath.row - 1];
+
+        }
+        @catch (NSException *exception) {
+            SLog(@"CTFeedTypeModel in section 1 error");
+        }
         
         switch (typeModel.feedType) {
             case FeedType_Following_Post:

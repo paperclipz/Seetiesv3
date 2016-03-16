@@ -245,6 +245,8 @@
 		8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4AC4B51C0C369B00968781 /* SeetiesShopViewController.m */; };
 		8A4AC4B81C0C369B00968781 /* SeetiesShopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */; };
 		8A509D661C98235C004C74C7 /* GreetingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A509D651C98235C004C74C7 /* GreetingModel.m */; };
+		8A509D6A1C9911CD004C74C7 /* FeedType_headerTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A509D681C9911CD004C74C7 /* FeedType_headerTblCell.m */; };
+		8A509D6B1C9911CD004C74C7 /* FeedType_headerTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A509D691C9911CD004C74C7 /* FeedType_headerTblCell.xib */; };
 		8A5430101B8C1646009EFFF4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A54300E1B8C1646009EFFF4 /* MapViewController.m */; };
 		8A5430111B8C1646009EFFF4 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54300F1B8C1646009EFFF4 /* MapViewController.xib */; };
 		8A5CFE131C7C2F97004E2CBA /* QuickBrowseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CFE121C7C2F97004E2CBA /* QuickBrowseModel.m */; };
@@ -1966,6 +1968,9 @@
 		8A4AC4B61C0C369B00968781 /* SeetiesShopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesShopViewController.xib; sourceTree = "<group>"; };
 		8A509D641C98235C004C74C7 /* GreetingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GreetingModel.h; path = SeetiesIOS/MODELS/Home/GreetingModel.h; sourceTree = SOURCE_ROOT; };
 		8A509D651C98235C004C74C7 /* GreetingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GreetingModel.m; path = SeetiesIOS/MODELS/Home/GreetingModel.m; sourceTree = SOURCE_ROOT; };
+		8A509D671C9911CD004C74C7 /* FeedType_headerTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedType_headerTblCell.h; sourceTree = "<group>"; };
+		8A509D681C9911CD004C74C7 /* FeedType_headerTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedType_headerTblCell.m; sourceTree = "<group>"; };
+		8A509D691C9911CD004C74C7 /* FeedType_headerTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_headerTblCell.xib; sourceTree = "<group>"; };
 		8A54300D1B8C1646009EFFF4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8A54300E1B8C1646009EFFF4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8A54300F1B8C1646009EFFF4 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -7363,6 +7368,9 @@
 			isa = PBXGroup;
 			children = (
 				8AFA51841C47B4AB00E7920E /* CollectionCell */,
+				8A509D671C9911CD004C74C7 /* FeedType_headerTblCell.h */,
+				8A509D681C9911CD004C74C7 /* FeedType_headerTblCell.m */,
+				8A509D691C9911CD004C74C7 /* FeedType_headerTblCell.xib */,
 				8AFA518E1C47B4AB00E7920E /* FeedType_AbroadQualityPostTblCell.h */,
 				8AFA518F1C47B4AB00E7920E /* FeedType_AbroadQualityPostTblCell.m */,
 				8AFA51901C47B4AB00E7920E /* FeedType_AbroadQualityPostTblCell.xib */,
@@ -8118,6 +8126,7 @@
 				8A84C6B31C7FF448006A0D76 /* Icon-Small@3x.png in Resources */,
 				8A84C66B1C7FF448006A0D76 /* EnterPromoCodeImg.png in Resources */,
 				8A6CCA3F1C17E5A800BCD54E /* SeShopFeatureTableViewCell.xib in Resources */,
+				8A509D6B1C9911CD004C74C7 /* FeedType_headerTblCell.xib in Resources */,
 				8A84C6B61C7FF448006A0D76 /* iTunesArtwork@2x.png in Resources */,
 				8A84C6BA1C7FF448006A0D76 /* AddTagIcon@3x.png in Resources */,
 				0B6AEA821C48E502009B7D33 /* CT3_MoreViewController.xib in Resources */,
@@ -9139,6 +9148,7 @@
 				8A26D1091C51FFB800A50944 /* DraftAndRecommendationDelegate.m in Sources */,
 				8AEDBFAB1C2031BA000BD2FF /* RecommendationModel.m in Sources */,
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
+				8A509D6A1C9911CD004C74C7 /* FeedType_headerTblCell.m in Sources */,
 				8A6BB42D1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationControllerAnimator.m in Sources */,
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
 				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,

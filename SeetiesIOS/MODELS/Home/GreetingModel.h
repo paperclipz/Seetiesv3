@@ -10,4 +10,8 @@
 
 @interface GreetingModel : JSONModel
 
+@property(nonatomic,strong)NSString* main_msg;
+@property(nonatomic,strong)NSString* sub_msg;
+@property(nonatomic,strong)PhotoModel* photo;
+
 @end

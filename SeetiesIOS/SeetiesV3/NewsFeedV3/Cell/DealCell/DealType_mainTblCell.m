@@ -12,6 +12,10 @@
 @interface DealType_mainTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property (strong, nonatomic)NSArray* arrDealCollections;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblDesc;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property(nonatomic)HomeModel* hModel;
 
 @end
 @implementation DealType_mainTblCell
@@ -27,6 +31,17 @@
 {
     self.arrDealCollections = model.deal_collections;
     [self.ibCollectionView reloadData];
+    
+    self.hModel = model;
+    self.lblTitle.text = model.greeting.main_msg;
+    self.lblDesc.text = model.greeting.sub_msg;
+    
+    
+
+    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.greeting.photo.imageURL] withPlaceHolder:[UIImage imageNamed:@"HomeNight1.png"] completed:^(UIImage *image)
+    {
+       // self.hModel.greeting.photo.image = image;
+    }];
 }
 
 -(void)initSelfView

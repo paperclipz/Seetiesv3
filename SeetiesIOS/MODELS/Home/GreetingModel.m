@@ -9,5 +9,16 @@
 #import "GreetingModel.h"
 
 @implementation GreetingModel
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
 
+//+(JSONKeyMapper*)keyMapper
+//{
+//    return [[JSONKeyMapper alloc] initWithDictionary:@{
+//                                                       @"image.selected_background": @"backgroundImage",
+//                                                       @"image.logo": @"logoImage",
+//                                                       }];
+//}
 @end
