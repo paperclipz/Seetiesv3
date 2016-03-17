@@ -49,21 +49,20 @@
 {
     switch (type) {
         case 1:
-            self.lblTitle.text = LocalisedString(@"Collections");
-            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"collections")];
+            self.lblTitle.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Collections"),count];
             self.ibImageIcon.image = [UIImage imageNamed:@"NewCollectionsIcon.png"];
             break;
         case 2:
-            self.lblTitle.text = LocalisedString(@"Posts");
 
-            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"posts")];
+            self.lblTitle.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Posts"),count];
+
             self.ibImageIcon.image = [UIImage imageNamed:@"NewPostsIcon.png"];
 
             break;
             
         case 3:
-            self.lblTitle.text = LocalisedString(@"Likes");
-            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"likes")];
+            self.lblTitle.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Likes"),count];
+
             self.ibImageIcon.image = [UIImage imageNamed:@"NewLikesIcon.png"];
 
             break;

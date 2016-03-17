@@ -44,6 +44,7 @@
 
 
 @property (weak, nonatomic)IBOutlet UITableView *ibTblSelectOutletView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgDropDownIndicator;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblBigShopName;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnTranslateWidthConstraint;
@@ -482,6 +483,7 @@
             self.lblShopGroupName.hidden = YES;
             self.lblShopName.hidden = YES;
             self.lblBigShopName.text = self.seShopModel.name;
+             self.ibImgDropDownIndicator.hidden = YES;
 
         }
         
