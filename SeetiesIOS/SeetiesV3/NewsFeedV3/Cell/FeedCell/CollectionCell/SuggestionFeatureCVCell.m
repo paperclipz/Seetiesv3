@@ -34,13 +34,17 @@
 
     }
     else{
-        self.ibProfilePhoto.image = [UIImage imageNamed:@"NoImage.png"];
+        //self.ibProfilePhoto.image = [UIImage imageNamed:@"NoImage.png"];
     }
     
     self.lblDescription.text = LocalisedString(@"Follow this Seetizen for more");
  
     for (int  i = 0; i<self.arrIBImages.count; i++) {
         
+         UIImageView* imgView = self.arrIBImages[i];
+
+        [Utils setRoundBorder:imgView color:LINE_COLOR borderRadius:5.0f borderWidth:1.0f];
+
         if (self.profileModel.posts.count>i) {
             
             DraftModel*dModel = self.profileModel.posts[i];
@@ -54,16 +58,16 @@
                 UIImageView* imgView = self.arrIBImages[i];
                 [imgView setStandardBorder];
               //  [imgView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
-                [imgView sd_setImageWithURL:[NSURL URLWithString:pModel.imageURL] placeholderImage:[UIImage imageNamed:@"NoImage.png"]];
+                [imgView sd_setImageWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
             }
           
         }
         else
         {
             
-            UIImageView* imgView = self.arrIBImages[i];
+           // UIImageView* imgView = self.arrIBImages[i];
             
-            imgView.image = [UIImage imageNamed:@"NoImage.png"];
+           // imgView.image = [UIImage imageNamed:@"NoImage.png"];
         }
         
     }

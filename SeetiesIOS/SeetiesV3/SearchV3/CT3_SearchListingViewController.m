@@ -12,6 +12,7 @@
 #import "SearchComplexTableViewCell.h"
 #import "SearchSimpleTableViewCell.h"
 #import "DealHeaderView.h"
+#import "UILabel+Exntension.h"
 
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
@@ -57,6 +58,8 @@
 @end
 
 @implementation CT3_SearchListingViewController
+
+#pragma mark - Initialization
 
 -(void)initData:(HomeLocationModel*) model
 {
@@ -262,7 +265,10 @@
         
         DealHeaderView* view = [DealHeaderView initializeCustomView];
         view.btnSeeMore.hidden = YES;
-        
+        [view adjustToScreenWidth];
+        [view prefix_addLowerBorder:OUTLINE_COLOR];
+        [view.btnDeals.titleLabel setFont:[UIFont fontWithName:CustomFontNameBold size:15]];
+
         if (section == 0) {
             [view.btnDeals setTitle:LocalisedString(@"Suggested places") forState:UIControlStateNormal];
         }
@@ -349,6 +355,7 @@
                 ComplexTagModel* cModel = self.arrComplexTagList[indexPath.row];
                 
                 cell.lblTitle.text = [NSString stringWithFormat:@"%@ > %@",cModel.tag,cModel.location.formatted_address];
+                [cell.lblTitle boldSubstring:cModel.location.formatted_address];
             }
             
             @catch (NSException *exception) {

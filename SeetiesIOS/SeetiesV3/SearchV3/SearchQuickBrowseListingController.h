@@ -17,5 +17,6 @@ typedef void (^HomeModelBlock)(HomeLocationModel* model);
 @property(nonatomic) QuickBrowseModel *selectedQuickBrowse;
 @property(nonatomic) NSArray<QuickBrowseModel> *quickBrowseModels;
 @property(nonatomic,copy)HomeModelBlock didSelectHomeLocationBlock;
+@property(nonatomic,strong)NSString* category_group_id;
 
 @end

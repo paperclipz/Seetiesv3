@@ -77,22 +77,32 @@
                                 <action selector="btnSearchLocationClicked:" destination="-1" eventType="touchUpInside" id="woF-IO-Vyk"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcC-t1-QWP">
+                            <rect key="frame" x="38" y="0.0" width="232" height="64"/>
+                            <connections>
+                                <action selector="btnSearchLocationClicked:" destination="-1" eventType="touchUpInside" id="ecT-b3-keo"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="RcC-t1-QWP" secondAttribute="bottom" id="0gm-Qa-jQF"/>
                         <constraint firstItem="sKt-5r-f72" firstAttribute="leading" secondItem="QU9-SW-ZDw" secondAttribute="trailing" constant="8" id="3xY-4t-wz7"/>
                         <constraint firstAttribute="trailing" secondItem="nU2-U1-NiY" secondAttribute="trailing" id="4rY-44-mi6"/>
                         <constraint firstItem="sKt-5r-f72" firstAttribute="centerY" secondItem="QU9-SW-ZDw" secondAttribute="centerY" id="5fL-Ap-Ip4"/>
                         <constraint firstItem="VN6-nt-Anc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yku-iQ-LJM" secondAttribute="trailing" constant="10" id="71G-Eb-Ln1"/>
+                        <constraint firstItem="VN6-nt-Anc" firstAttribute="leading" secondItem="RcC-t1-QWP" secondAttribute="trailing" id="Cjq-V2-sdM"/>
                         <constraint firstAttribute="bottom" secondItem="nU2-U1-NiY" secondAttribute="bottom" id="HaH-pc-7zC"/>
                         <constraint firstItem="VN6-nt-Anc" firstAttribute="centerY" secondItem="sKt-5r-f72" secondAttribute="centerY" id="MCj-0n-tNC"/>
                         <constraint firstItem="nU2-U1-NiY" firstAttribute="leading" secondItem="WXj-z2-K1x" secondAttribute="leading" id="TCA-aS-OHE"/>
                         <constraint firstItem="yku-iQ-LJM" firstAttribute="centerY" secondItem="sKt-5r-f72" secondAttribute="centerY" id="bol-4f-nzx"/>
+                        <constraint firstItem="RcC-t1-QWP" firstAttribute="top" secondItem="WXj-z2-K1x" secondAttribute="top" id="cRh-Cd-yd4"/>
                         <constraint firstItem="yku-iQ-LJM" firstAttribute="leading" secondItem="sKt-5r-f72" secondAttribute="trailing" constant="5" id="dVA-VE-E7e"/>
                         <constraint firstItem="QU9-SW-ZDw" firstAttribute="centerY" secondItem="nU2-U1-NiY" secondAttribute="centerY" constant="5" id="hRR-Fk-wli"/>
                         <constraint firstAttribute="height" constant="64" id="iXP-61-e4X"/>
                         <constraint firstItem="nU2-U1-NiY" firstAttribute="leading" secondItem="QU9-SW-ZDw" secondAttribute="trailing" constant="-30" id="nsa-Fx-cO7"/>
                         <constraint firstItem="nU2-U1-NiY" firstAttribute="top" secondItem="WXj-z2-K1x" secondAttribute="top" id="ohK-VM-Czs"/>
+                        <constraint firstItem="RcC-t1-QWP" firstAttribute="leading" secondItem="QU9-SW-ZDw" secondAttribute="trailing" constant="8" id="qg3-Zi-nag"/>
                         <constraint firstAttribute="trailing" secondItem="VN6-nt-Anc" secondAttribute="trailing" constant="10" id="zvz-43-EjS"/>
                     </constraints>
                 </view>

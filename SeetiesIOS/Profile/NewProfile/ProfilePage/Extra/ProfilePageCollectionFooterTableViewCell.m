@@ -27,15 +27,15 @@
     }
     
 }
--(void)adjustRoundedEdge:(CGRect)frame
-{
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, frame.size.width, self.frame.size.height);
-    
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    [self setRoundedCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight radius:10.0f];
-    
-}
+//-(void)adjustRoundedEdge:(CGRect)frame
+//{
+//    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, frame.size.width, self.frame.size.height);
+//    
+//    [self setNeedsLayout];
+//    [self layoutIfNeeded];
+//    [self setRoundedCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight radius:10.0f];
+//    
+//}
 
 +(int)getHeight
 {

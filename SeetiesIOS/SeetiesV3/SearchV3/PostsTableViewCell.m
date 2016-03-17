@@ -34,8 +34,8 @@
     // Initialization code
     IsQuickCollect = YES;
     
-    [Utils setRoundBorder:self.ibOutlineView color:LINE_COLOR borderRadius:0.0f];
-    [Utils setRoundBorder:self.ibContentView color:LINE_COLOR borderRadius:0.0f];
+    [Utils setRoundBorder:self.ibOutlineView color:OUTLINE_COLOR borderRadius:0.0f];
+    [Utils setRoundBorder:self.ibContentView color:OUTLINE_COLOR borderRadius:0.0f];
     [self.ibImageUser setSideCurveBorder];
     [self.ibImageView setImagePlaceHolder];
     [Utils setRoundBorder:self.ibImageView color:LINE_COLOR borderRadius:5.0f];

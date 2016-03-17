@@ -35,15 +35,15 @@
     return 71.0f;
 }
 
--(void)adjustRoundedEdge:(CGRect)frame
-{
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, frame.size.width, self.frame.size.height);
-
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    [self.ibBackgroundView setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:10.0f];
-    
-}
+//-(void)adjustRoundedEdge:(CGRect)frame
+//{
+//    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, frame.size.width, self.frame.size.height);
+//
+//    [self setNeedsLayout];
+//    [self layoutIfNeeded];
+//    [self.ibBackgroundView setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:10.0f];
+//    
+//}
 //type 1 collection type 2 post type 3 likes
 -(void)setHeaderViewWithCount:(int)count type:(int)type
 {

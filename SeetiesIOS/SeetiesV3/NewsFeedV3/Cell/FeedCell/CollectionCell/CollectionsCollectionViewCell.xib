@@ -17,7 +17,7 @@
                         <rect key="frame" x="8" y="8" width="334" height="174"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="EmptyCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="I8m-7V-8gI" userLabel="CollectionOverlayB.png">
-                                <rect key="frame" x="170" y="0.0" width="165" height="110"/>
+                                <rect key="frame" x="167" y="0.0" width="167" height="110"/>
                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-9q-tNj">
@@ -39,7 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="EmptyCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-Ra-Ghe" userLabel="CollectionOverlayA.png">
-                                <rect key="frame" x="0.0" y="0.0" width="165" height="110"/>
+                                <rect key="frame" x="0.0" y="0.0" width="167" height="110"/>
                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="AZg-KZ-dTO"/>
@@ -106,7 +106,7 @@
                             <constraint firstItem="iHG-6M-6T6" firstAttribute="leading" secondItem="Kjh-6O-bqi" secondAttribute="trailing" constant="16" id="inT-Ex-jE3"/>
                             <constraint firstItem="e7X-58-wkk" firstAttribute="centerY" secondItem="KzQ-cg-qKU" secondAttribute="centerY" id="lji-a8-ceE"/>
                             <constraint firstItem="Kjh-6O-bqi" firstAttribute="leading" secondItem="Txd-2a-F4A" secondAttribute="trailing" id="muj-Ud-C5i"/>
-                            <constraint firstItem="I8m-7V-8gI" firstAttribute="leading" secondItem="9iK-Ra-Ghe" secondAttribute="trailing" constant="5" id="nKb-k3-vhr"/>
+                            <constraint firstItem="I8m-7V-8gI" firstAttribute="leading" secondItem="9iK-Ra-Ghe" secondAttribute="trailing" id="nKb-k3-vhr"/>
                             <constraint firstItem="I8m-7V-8gI" firstAttribute="top" secondItem="l4C-2w-uIz" secondAttribute="top" id="q3m-dw-T2H"/>
                         </constraints>
                     </view>
@@ -122,10 +122,10 @@
             </constraints>
             <size key="customSize" width="589" height="202"/>
             <connections>
-                <outlet property="borderView" destination="l4C-2w-uIz" id="cyH-tP-hcN"/>
                 <outlet property="btnFollow" destination="mhG-9q-tNj" id="uu6-V6-u4R"/>
                 <outlet property="constLockWidth" destination="if3-I0-nGQ" id="MRf-ow-ip1"/>
                 <outlet property="constTitleWidth" destination="eEW-eE-YJo" id="4Eg-iL-zu8"/>
+                <outlet property="ibCBorderView" destination="l4C-2w-uIz" id="grW-PA-QZZ"/>
                 <outlet property="ibImageLock" destination="KzQ-cg-qKU" id="5gp-rB-KMK"/>
                 <outlet property="ibImageViewA" destination="9iK-Ra-Ghe" id="ukG-o3-oJu"/>
                 <outlet property="ibImageViewB" destination="I8m-7V-8gI" id="RQv-Ed-dMs"/>

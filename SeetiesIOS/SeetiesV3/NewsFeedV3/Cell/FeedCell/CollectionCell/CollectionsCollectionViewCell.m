@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageLock;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoOfPost;
 
+@property (weak, nonatomic) IBOutlet UIView *ibCBorderView;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoOfFollower;
 @end
 @implementation CollectionsCollectionViewCell
@@ -41,8 +42,12 @@
 -(void)initSelfView
 {
     
-    [self.ibImageViewA setStandardBorder];
-    [self.ibImageViewB setStandardBorder];
+   
+    [Utils setRoundBorder:self.ibImageViewB color:LINE_COLOR borderRadius:0 borderWidth:1.0f];
+    [Utils setRoundBorder:self.ibImageViewA color:LINE_COLOR borderRadius:0 borderWidth:1.0f];
+
+    [Utils setRoundBorder:self.ibCBorderView color:LINE_COLOR borderRadius:5.0f borderWidth:1.0f];
+    
     
     [self changeLanguage];
 }

@@ -64,9 +64,11 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
 
-    [self.ibImageViewA setStandardBorder];
-    [self.ibImageViewB setStandardBorder];
-    
+    [Utils setRoundBorder:self.ibImageViewA color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
+    [Utils setRoundBorder:self.ibImageViewB color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
+
+
+  
     [self changeLanguage];
 }
 
@@ -77,7 +79,7 @@
 
 +(int)getHeight
 {
-    return 190.0f;
+    return 210.0f;
 }
 
 -(void)initData:(CollectionModel*)model
@@ -136,7 +138,7 @@
     
     if (self.profileType == ProfileViewTypeOwn) {
         [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
-        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
+        //[Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:0];
         [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
         
         [self.btnEdit setImage:nil forState:UIControlStateNormal];
@@ -144,7 +146,7 @@
 
     }
     else{
-        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
+      //  [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
         [Utils setRoundBorder:self.btnEdit color:[UIColor clearColor] borderRadius:0];
 
         [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];

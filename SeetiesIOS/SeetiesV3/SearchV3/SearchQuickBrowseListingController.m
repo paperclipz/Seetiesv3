@@ -87,6 +87,7 @@
     [self.shopListingTableViewController refreshRequestWithHomeLocation:self.homeLocationModel filterDictionary:[self getShopFilter]];
 }
 
+
 -(void)initSelfView
 {
 
