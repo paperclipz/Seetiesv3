@@ -7,6 +7,8 @@
 //
 
 #import "VoucherListingViewController.h"
+#import "CT3_SearchListingViewController.h"
+
 
 @interface VoucherListingViewController ()
 @property (nonatomic) DealsModel *dealsModel;
@@ -41,6 +43,8 @@
 @property (nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @property (nonatomic) DealRedeemViewController *dealRedeemViewController;
 @property (nonatomic) SearchLocationViewController *searchLocationViewController;
+@property (nonatomic) CT3_SearchListingViewController *ct3_SearchListingViewController;
+
 @end
 
 @implementation VoucherListingViewController
@@ -289,7 +293,15 @@
 }
 */
 
+
 #pragma mark - IBAction
+
+- (IBAction)btnSearchLocationClicked:(id)sender {
+    _ct3_SearchListingViewController = nil;
+    
+    [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
+}
+
 - (IBAction)filterClicked:(id)sender {
   
     [self.filterController initWithFilter:self.filtersModel];
@@ -311,6 +323,15 @@
 }
 
 #pragma mark - Declaration
+
+-(CT3_SearchListingViewController*)ct3_SearchListingViewController
+{
+    if (!_ct3_SearchListingViewController) {
+        _ct3_SearchListingViewController = [CT3_SearchListingViewController new];
+    }
+    
+    return _ct3_SearchListingViewController;
+}
 -(GeneralFilterViewController*)filterController
 {
     if (!_filterController) {
@@ -396,6 +417,7 @@
     VoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherCell"];
     voucherCell.voucherCellDelegate = self;
     
+    voucherCell.constUpperContentHeight.constant = 200;
     if (![Utils isArrayNull:self.dealsArray]) {
         DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
         

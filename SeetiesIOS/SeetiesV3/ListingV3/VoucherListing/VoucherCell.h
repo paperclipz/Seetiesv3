@@ -18,5 +18,6 @@
 @interface VoucherCell : CommonTableViewCell
 @property id<VoucherCellDelegate> voucherCellDelegate;
 -(void)setDealModel:(DealModel*)dealModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constUpperContentHeight;
 
 @end
