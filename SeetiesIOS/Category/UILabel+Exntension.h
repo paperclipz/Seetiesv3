@@ -10,6 +10,7 @@
 
 @interface UILabel(Extra)
 -(void)setStandardText:(NSString*)text;
+-(void)setStandardText:(NSString*)text numberOfLine:(int)numOfLine;
 - (void) boldSubstring: (NSString*) substring;
 - (void) boldRange: (NSRange) range;
 @end
