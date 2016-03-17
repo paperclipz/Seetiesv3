@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *ibFilterResetBtn;
 @property (weak, nonatomic) IBOutlet UIButton *ibApplyFilterBtn;
 @property (nonatomic) FiltersModel *filtersModel;
+@property (nonatomic) SortType initialSort;
+@property (nonatomic) NSString *initialCat;
 @end
 
 @implementation GeneralFilterViewController
@@ -31,6 +33,35 @@
 
 -(void)initWithFilter:(FiltersModel *)filtersModel{
     _filtersModel = filtersModel;
+    
+    for (FilterCategoryModel *filterCategory in self.filtersModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        self.initialSort = filter.sortType;
+                        break;
+                    }
+                }
+            }
+                break;
+                
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        self.initialCat = filter.filterId;
+                        break;
+                    }
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +95,7 @@
             case FilterTypeSort:
             {
                 for (FilterModel *filter in filterCategory.filtersArray) {
-                    if (filter.sortType == SortTypeMostRecent) {
+                    if (filter.sortType == self.initialSort) {
                         filter.isSelected = YES;
                     }
                     else{
@@ -77,7 +108,12 @@
             case FilterTypeCat:
             {
                 for (FilterModel *filter in filterCategory.filtersArray) {
-                    filter.isSelected = NO;
+                    if ([filter.filterId isEqualToString:self.initialCat]) {
+                        filter.isSelected = YES;
+                    }
+                    else{
+                        filter.isSelected = NO;
+                    }
                 }
             }
                 break;

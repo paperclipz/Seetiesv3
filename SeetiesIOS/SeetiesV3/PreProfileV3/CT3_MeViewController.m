@@ -203,7 +203,9 @@
         else{
             self.ibProfileName.text = self.profileModel.name;
         }
-        [self.ibProfileImg sd_setImageCroppedWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images] completed:nil];
+        if (![Utils isStringNull:self.profileModel.profile_photo_images]) {
+            [self.ibProfileImg sd_setImageCroppedWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images] completed:nil];
+        }
         
         [self requestServerForNotificationCount];
         self.btnNotification.hidden = NO;

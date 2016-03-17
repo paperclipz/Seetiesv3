@@ -26,10 +26,9 @@ typedef void (^DidSelectShopBlock)(SeShopDetailModel* model);
 
 -(void)refreshRequestWithGoogleDetail:(NSString*)keyword  googleDetails:(SearchLocationDetailModel*)googleDetailModel;
 -(void)refreshRequestWithModel:(HomeLocationModel*)model Keyword:(NSString*)keyword;
-
 -(void)refreshRequestShop:(NSString*)keyword SeetieshopPlaceID:(NSString*)placeID;
-
 -(void)refreshRequestWithText:(NSString*)keyword;
+-(void)refreshRequestWithHomeLocation:(HomeLocationModel*)model filterDictionary:(NSDictionary*)filterDict;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constFilterHeight;
 
 @end

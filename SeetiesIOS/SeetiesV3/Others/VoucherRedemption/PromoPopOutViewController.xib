@@ -569,8 +569,8 @@
                                 <outlet property="delegate" destination="-1" id="RCA-mO-FBs"/>
                             </connections>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 6 digits that we have send to 0123456789" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROR-bF-IfP" userLabel="desc">
-                            <rect key="frame" x="10" y="175" width="248" height="36"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROR-bF-IfP" userLabel="desc">
+                            <rect key="frame" x="10" y="190" width="248" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="7d8-YC-2mD"/>
                             </constraints>
@@ -579,7 +579,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Verification Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62i-Dx-Ktl" userLabel="title">
-                            <rect key="frame" x="10" y="146" width="248" height="21"/>
+                            <rect key="frame" x="10" y="161" width="248" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="nQR-Rw-ecU"/>
                             </constraints>
@@ -588,7 +588,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="EnterVerificationCodeImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="9Dg-bv-Id5">
-                            <rect key="frame" x="35" y="35" width="198" height="76"/>
+                            <rect key="frame" x="35" y="35" width="198" height="91"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozU-I2-Mj0" userLabel="resend code">
                             <rect key="frame" x="20" y="283" width="228" height="30"/>

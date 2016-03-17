@@ -17,6 +17,8 @@
 @property(nonatomic,strong)SearchLTabViewController *shopListingTableViewController;
 @property(nonatomic,strong)SearchLTabViewController *collectionListingTableViewController;
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
+@property(nonatomic) GeneralFilterViewController *shopFilterViewController;
+@property(nonatomic) GeneralFilterViewController *collectionFilterViewController;
 
 @property(nonatomic)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic)SeetiesShopViewController* seetiesShopViewController;
@@ -26,6 +28,9 @@
 @property(nonatomic, strong) CT3_SearchListingViewController *searchListingViewController;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnLocation;
+
+@property(nonatomic) FiltersModel *shopFilterModel;
+@property(nonatomic) FiltersModel *collectionFilterModel;
 
 @end
 
@@ -55,11 +60,20 @@
 
 }
 
+- (IBAction)btnFilterClicked:(id)sender {
+    if (self.ibSegmentedControl.selectedSegmentIndex == 0) {
+        [self presentViewController:self.shopFilterViewController animated:YES completion:nil];
+    }
+    else if (self.ibSegmentedControl.selectedSegmentIndex == 1){
+        [self presentViewController:self.collectionFilterViewController animated:YES completion:nil];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
     
-    self.lblCategory.text = self.keyword;
+    self.lblCategory.text = self.selectedQuickBrowse.name;
     self.lblLocation.text = self.homeLocationModel.locationName;
     
     [self refreshView];
@@ -67,8 +81,10 @@
 
 -(void)refreshView
 {
-    [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.keyword];
-    [self.shopListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.keyword];
+//    [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.selectedQuickBrowse.name];
+//    [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.selectedQuickBrowse.name];
+    [self.collectionListingTableViewController refreshRequestWithHomeLocation:self.homeLocationModel filterDictionary:[self getCollectionFilter]];
+    [self.shopListingTableViewController refreshRequestWithHomeLocation:self.homeLocationModel filterDictionary:[self getShopFilter]];
 }
 
 
@@ -92,12 +108,201 @@
     [self.collectionListingTableViewController.view setX:self.shopListingTableViewController.view.frame.size.width];
     self.collectionListingTableViewController.constFilterHeight.constant = 0;
 
-    
-    
+    [self formatShopFilter];
+    [self formatCollectionFilter];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)formatShopFilter{
+    self.shopFilterModel = [[FiltersModel alloc] init];
+    self.shopFilterModel.filterCategories = [[NSMutableArray<FilterCategoryModel> alloc] init];
+    self.shopFilterModel.filterViewType = FilterViewTypeShop;
+    
+    //Sort
+    FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
+    sortCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    sortCategory.categoryName = LocalisedString(@"Sort By");
+    sortCategory.filterCategoryType = FilterTypeSort;
+    
+    FilterModel *latest = [[FilterModel alloc] init];
+    latest.name = LocalisedString(@"Latest");
+    latest.isSelected = YES;
+    latest.sortType = SortTypeMostRecent;
+    
+    FilterModel *distance = [[FilterModel alloc] init];
+    distance.name = LocalisedString(@"Distance");
+    distance.isSelected = NO;
+    distance.sortType = SortTypeNearest;
+    
+    [sortCategory.filtersArray addObject:latest];
+    [sortCategory.filtersArray addObject:distance];
+    
+    //Category
+    FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
+    catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    catCategory.categoryName = LocalisedString(@"Deals by Category");
+    catCategory.filterCategoryType = FilterTypeCat;
+    
+    for (QuickBrowseModel *quickBrowse in self.quickBrowseModels) {
+        FilterModel *filter = [[FilterModel alloc] init];
+        filter.name = quickBrowse.name;
+        filter.filterId = quickBrowse.category_group_id;
+        filter.isSelected = [quickBrowse.category_group_id isEqualToString:self.selectedQuickBrowse.category_group_id]? YES : NO;
+        [catCategory.filtersArray addObject:filter];
+    }
+    
+    //IsOpen
+    FilterCategoryModel *isOpenCategory = [[FilterCategoryModel alloc] init];
+    isOpenCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    isOpenCategory.categoryName = LocalisedString(@"Now Open");
+    isOpenCategory.filterCategoryType = FilterTypeIsOpen;
+    
+    FilterModel *isOpenFilter = [[FilterModel alloc] init];
+    isOpenFilter.name = LocalisedString(@"Now Open");
+    isOpenFilter.isSelected = NO;
+    [isOpenCategory.filtersArray addObject:isOpenFilter];
+    
+    [self.shopFilterModel.filterCategories addObject:sortCategory];
+    [self.shopFilterModel.filterCategories addObject:catCategory];
+    [self.shopFilterModel.filterCategories addObject:isOpenCategory];
+}
+
+-(NSDictionary*)getShopFilter{
+    int sort = 1;
+    NSMutableString *catString = [[NSMutableString alloc] init];
+    int isOpen = 0;
+    for (FilterCategoryModel *filterCategory in self.shopFilterModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        sort = (int)filter.sortType;
+                    }
+                }
+            }
+                break;
+                
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        [catString appendFormat:@"%@,", filter.filterId];
+                    }
+                }
+                if (![Utils isStringNull:catString]) {
+                    [catString substringToIndex:[catString length]-1];
+                }
+            }
+                break;
+                
+            case FilterTypeIsOpen:
+            {
+                FilterModel *isOpenModel = filterCategory.filtersArray[0];
+                isOpen = isOpenModel.isSelected? 1 : 0;
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    return @{@"sort": @(sort),
+             @"category_group": catString,
+             @"open_now": @(isOpen)};
+}
+
+-(void)formatCollectionFilter{
+    self.collectionFilterModel = [[FiltersModel alloc] init];
+    self.collectionFilterModel.filterCategories = [[NSMutableArray<FilterCategoryModel> alloc] init];
+    self.shopFilterModel.filterViewType = FilterViewTypeCollection;
+    
+    //Sort
+    FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
+    sortCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    sortCategory.categoryName = LocalisedString(@"Sort By");
+    sortCategory.filterCategoryType = FilterTypeSort;
+    
+    FilterModel *latest = [[FilterModel alloc] init];
+    latest.name = LocalisedString(@"Latest");
+    latest.isSelected = YES;
+    latest.sortType = SortTypeMostRecent;
+    
+    FilterModel *popular = [[FilterModel alloc] init];
+    popular.name = LocalisedString(@"Popular");
+    popular.isSelected = NO;
+    popular.sortType = SortTypeMostPopular;
+    
+    [sortCategory.filtersArray addObject:latest];
+    [sortCategory.filtersArray addObject:popular];
+    
+    //Category
+    FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
+    catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    catCategory.categoryName = LocalisedString(@"Deals by Category");
+    catCategory.filterCategoryType = FilterTypeCat;
+    
+    for (QuickBrowseModel *quickBrowse in self.quickBrowseModels) {
+        FilterModel *filter = [[FilterModel alloc] init];
+        filter.name = quickBrowse.name;
+        filter.filterId = quickBrowse.category_group_id;
+        filter.isSelected = [quickBrowse.category_group_id isEqualToString:self.selectedQuickBrowse.category_group_id]? YES : NO;
+        [catCategory.filtersArray addObject:filter];
+    }
+    
+    [self.collectionFilterModel.filterCategories addObject:sortCategory];
+    [self.collectionFilterModel.filterCategories addObject:catCategory];
+}
+
+-(NSDictionary*)getCollectionFilter{
+    int sort = 1;
+    NSMutableString *catString = [[NSMutableString alloc] init];
+    for (FilterCategoryModel *filterCategory in self.shopFilterModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        sort = (int)filter.sortType;
+                    }
+                }
+            }
+                break;
+                
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        [catString appendFormat:@"%@,", filter.filterId];
+                    }
+                }
+                if (![Utils isStringNull:catString]) {
+                    [catString substringToIndex:[catString length]-1];
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    return @{@"sort": @(sort),
+             @"category_group": catString};
+}
+
+-(void)applyFilterClicked:(FiltersModel *)filtersModel{
+    if (filtersModel.filterViewType == FilterViewTypeShop) {
+        _shopFilterModel = filtersModel;
+    }
+    else if (filtersModel.filterViewType == FilterViewTypeCollection){
+        _collectionFilterModel = filtersModel;
+    }
+    [self refreshView];
 }
 
 #pragma mark - Declaration
@@ -195,6 +400,25 @@
     
     return _searchLocationViewController;
 }
+
+-(GeneralFilterViewController *)shopFilterViewController{
+    if (!_shopFilterViewController) {
+        _shopFilterViewController = [GeneralFilterViewController new];
+        [_shopFilterViewController initWithFilter:self.shopFilterModel];
+        _shopFilterViewController.delegate = self;
+    }
+    return _shopFilterViewController;
+}
+
+-(GeneralFilterViewController *)collectionFilterViewController{
+    if ((!_collectionFilterViewController)) {
+        _collectionFilterViewController = [GeneralFilterViewController new];
+        [_collectionFilterViewController initWithFilter:self.collectionFilterModel];
+        _collectionFilterViewController.delegate = self;
+    }
+    return _collectionFilterViewController;
+}
+
 #pragma mark - Show View
 
 -(void)showSeetieshopView:(SeShopDetailModel*)model
