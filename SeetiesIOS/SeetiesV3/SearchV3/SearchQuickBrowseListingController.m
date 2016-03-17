@@ -71,6 +71,7 @@
     [self.shopListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.keyword];
 }
 
+
 -(void)initSelfView
 {
 

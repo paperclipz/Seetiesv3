@@ -417,7 +417,8 @@
     VoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherCell"];
     voucherCell.voucherCellDelegate = self;
     
-    voucherCell.constUpperContentHeight.constant = 200;
+    
+    voucherCell.constUpperContentHeight.constant = tableView.frame.size.width/2;
     if (![Utils isArrayNull:self.dealsArray]) {
         DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
         

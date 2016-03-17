@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfCollection;
 
 +(int)getHeight;
--(void)adjustRoundedEdge:(CGRect)frame;
+//-(void)adjustRoundedEdge:(CGRect)frame;
 -(void)setHeaderViewWithCount:(int)count type:(int)type;
 
 @end

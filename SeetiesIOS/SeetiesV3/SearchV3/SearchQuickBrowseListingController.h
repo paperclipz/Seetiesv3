@@ -15,8 +15,8 @@ typedef void (^HomeModelBlock)(HomeLocationModel* model);
 
 @property(nonatomic,strong)NSString* keyword;
 @property(nonatomic, strong) HomeLocationModel *homeLocationModel;
-
 @property(nonatomic,copy)HomeModelBlock didSelectHomeLocationBlock;
+@property(nonatomic,strong)NSString* category_group_id;
 
 
 @end

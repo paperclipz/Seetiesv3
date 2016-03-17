@@ -549,7 +549,7 @@
     
     
     ProfilePageCollectionHeaderView* headerView = [ProfilePageCollectionHeaderView initializeCustomView];
-    [headerView adjustRoundedEdge:self.ibTableView.frame];
+//    [headerView adjustRoundedEdge:self.ibTableView.frame];
     
     if (section == 0) {
         [headerView setHeaderViewWithCount:self.userCollectionsModel.total_result type:1];
@@ -587,7 +587,7 @@
             if (!cell) {
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
-            [cell adjustRoundedEdge:self.ibTableView.frame];
+           // [cell adjustRoundedEdge:self.ibTableView.frame];
             [cell setViewType:0];
             return cell;
         }
@@ -607,7 +607,7 @@
                 
             };
             
-            [cell adjustRoundedEdge:self.ibTableView.frame];
+          //  [cell adjustRoundedEdge:self.ibTableView.frame];
             return cell;
         }
         else{
@@ -652,7 +652,7 @@
             if (!cell) {
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
-            [cell adjustRoundedEdge:self.ibTableView.frame];
+         //   [cell adjustRoundedEdge:self.ibTableView.frame];
             [cell setViewType:1];
             
             return cell;
@@ -665,7 +665,7 @@
             if (!cell) {
                 cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
             }
-            [cell adjustRoundedEdge:self.ibTableView.frame];
+        //    [cell adjustRoundedEdge:self.ibTableView.frame];
             
             cell.btnSeeAllClickedBlock = ^(void)
             {
@@ -703,7 +703,7 @@
             if (!cell) {
                 cell = [[ProfileNoItemTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierShowNone];
             }
-            [cell adjustRoundedEdge:self.ibTableView.frame];
+        //    [cell adjustRoundedEdge:self.ibTableView.frame];
             [cell setViewType:2];
             
             return cell;
@@ -717,7 +717,7 @@
             if (!cell) {
                 cell = [[ProfilePageCollectionFooterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndenfierNone];
             }
-            [cell adjustRoundedEdge:self.ibTableView.frame];
+        //    [cell adjustRoundedEdge:self.ibTableView.frame];
             
             cell.btnSeeAllClickedBlock = ^(void)
             {
@@ -883,10 +883,11 @@
     
     NSString *TempTags = [[NSString alloc]initWithFormat:@"#%@",tagsControl.tags[index]];
     
-    _searchDetailViewController = nil;
-    [self.navigationController pushViewController:self.searchDetailViewController animated:YES onCompletion:^{
+    _searchListingViewController = nil;
+    
+    self.searchListingViewController.keyword = TempTags;
+    [self.navigationController pushViewController:self.searchListingViewController animated:YES onCompletion:^{
         
-        [self.searchDetailViewController GetSearchKeyword:TempTags Getlat:nil GetLong:nil GetLocationName:nil GetCurrentLat:nil GetCurrentLong:nil];
     }];
     NSLog(@"Tag \"%@\" was tapped", tagsControl.tags[index]);
 }
@@ -944,13 +945,13 @@
     
     return _backgroundImageView;
 }
--(SearchDetailViewController*)searchDetailViewController
+-(CT3_SearchListingViewController*)searchListingViewController
 {
-    if (!_searchDetailViewController) {
-        _searchDetailViewController = [SearchDetailViewController new];
+    if (!_searchListingViewController) {
+        _searchListingViewController = [CT3_SearchListingViewController new];
     }
     
-    return _searchDetailViewController;
+    return _searchListingViewController;
 }
 
 -(ConnectionsViewController*)connectionsViewController
@@ -1094,7 +1095,14 @@
             
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             colModel.following = following;
-            [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
+            
+            @try {
+                [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
+
+            }
+            @catch (NSException *exception) {
+                SLog(@"error");
+            }
             [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
         } errorBlock:^(id object) {
             
@@ -1115,8 +1123,13 @@
                     NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
                     BOOL following = [[returnDict objectForKey:@"following"] boolValue];
                     colModel.following = following;
-                    [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
-                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                    @try {
+                        [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationAutomatic];
+                        
+                    }
+                    @catch (NSException *exception) {
+                        SLog(@"error");
+                    }                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
                 } errorBlock:^(id object) {
                 }];
                 
@@ -1325,9 +1338,16 @@
 -(void)assignPostData
 {
     arrPost = [[NSMutableArray alloc]initWithArray:self.userProfilePostModel.userPostData.posts];
-    [self.ibTableView reloadSectionDU:1 withRowAnimation:UITableViewRowAnimationAutomatic];
     
-    [self adjustTableView];
+    @try {
+        [self.ibTableView reloadSectionDU:1 withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [self adjustTableView];
+    }
+    @catch (NSException *exception) {
+        SLog(@"error");
+    }
+    
 }
 
 -(void)assignLikesData
@@ -1336,9 +1356,16 @@
     
     [self.ibTableView reloadData];
     
-    [self.ibTableView reloadSectionDU:2 withRowAnimation:UITableViewRowAnimationAutomatic];
     
-    [self adjustTableView];
+    @try {
+        [self.ibTableView reloadSectionDU:2 withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [self adjustTableView];
+    }
+    @catch (NSException *exception) {
+        SLog(@"error");
+    }
+    
     
 }
 

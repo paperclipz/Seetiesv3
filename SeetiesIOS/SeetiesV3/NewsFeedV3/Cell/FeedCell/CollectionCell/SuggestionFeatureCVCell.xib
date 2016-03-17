@@ -50,8 +50,21 @@
                                 </constraints>
                                 <state key="normal" image="FollowIcon.png"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="0O7-cn-4Oo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oSn-k8-sif">
+                                <rect key="frame" x="115" y="60" width="97" height="97"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.42745098039215684" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m4x-op-8tj">
+                                <rect key="frame" x="219" y="60" width="97" height="97"/>
+                                <color key="backgroundColor" red="0.61176470589999998" green="0.80000000000000004" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gx7-0c-G0M">
+                                <rect key="frame" x="324" y="60" width="97" height="97"/>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.8666666666666667" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0O7-cn-4Oo">
                                 <rect key="frame" x="10" y="60" width="97" height="97"/>
+                                <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Tym-8e-WZG"/>
                                     <constraint firstAttribute="width" constant="89" id="bZC-RN-SXc"/>
@@ -63,15 +76,6 @@
                                         <exclude reference="bZC-RN-SXc"/>
                                     </mask>
                                 </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="oSn-k8-sif">
-                                <rect key="frame" x="115" y="60" width="97" height="97"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="m4x-op-8tj">
-                                <rect key="frame" x="219" y="60" width="97" height="97"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="gx7-0c-G0M">
-                                <rect key="frame" x="324" y="60" width="97" height="97"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -134,6 +138,5 @@
     </objects>
     <resources>
         <image name="FollowIcon.png" width="47" height="47"/>
-        <image name="NoImage.png" width="800" height="800"/>
     </resources>
 </document>

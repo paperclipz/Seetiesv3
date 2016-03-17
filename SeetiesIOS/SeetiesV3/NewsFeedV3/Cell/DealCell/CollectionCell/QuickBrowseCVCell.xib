@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="94" height="94"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vd-hh-1Pa">
-                                <rect key="frame" x="8" y="65" width="78" height="21"/>
+                                <rect key="frame" x="8" y="61" width="78" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="M65-oh-naB"/>
                                 </constraints>
@@ -29,12 +29,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="81X-WO-veu">
-                                <rect key="frame" x="0.0" y="0.0" width="94" height="66"/>
+                                <rect key="frame" x="0.0" y="0.0" width="94" height="62"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="1vd-hh-1Pa" secondAttribute="bottom" constant="8" id="5YW-0Q-lqz"/>
+                            <constraint firstAttribute="bottom" secondItem="1vd-hh-1Pa" secondAttribute="bottom" constant="12" id="5YW-0Q-lqz"/>
                             <constraint firstItem="AYN-Qi-xuQ" firstAttribute="top" secondItem="rCR-7e-Nri" secondAttribute="top" id="8zO-lo-QG8"/>
                             <constraint firstItem="81X-WO-veu" firstAttribute="bottom" secondItem="AYN-Qi-xuQ" secondAttribute="bottom" id="Lhk-8l-bz9"/>
                             <constraint firstItem="81X-WO-veu" firstAttribute="top" secondItem="AYN-Qi-xuQ" secondAttribute="top" id="MHP-gT-XeJ"/>

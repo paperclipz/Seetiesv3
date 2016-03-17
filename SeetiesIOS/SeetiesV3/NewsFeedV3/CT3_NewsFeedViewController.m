@@ -432,6 +432,9 @@ static NSCache* heightCache = nil;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    
     [self.btnLocation setTitle:self.locationName forState:UIControlStateNormal];
 
     if (!isFirstLoad) {
@@ -715,7 +718,8 @@ static NSCache* heightCache = nil;
                 }
                 
                 if (self.homeModel) {
-                    [cell initData:self.homeModel.wallet_count];
+                    
+                    [cell initData:[[DealManager Instance] getWalletCount]];
 
                 }
                 return cell;
@@ -1412,6 +1416,9 @@ static NSCache* heightCache = nil;
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
         
         self.homeModel = [[ConnectionManager dataManager]homeModel];
+        
+        DealManager* dealManager = [DealManager Instance];
+        [dealManager setWalletCount:self.homeModel.wallet_count];
         [self.arrHomeDeal removeAllObjects];
         self.arrHomeDeal = nil;
 

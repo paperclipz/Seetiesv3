@@ -24,6 +24,6 @@
 @property(nonatomic,strong)NSString* placeID;
 @property(nonatomic,strong)NSDictionary* addressComponent;
 
--(void)initData:(HomeLocationModel*) model;
+//-(void)initData:(HomeLocationModel*) model;
 
 @end

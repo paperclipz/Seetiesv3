@@ -54,6 +54,7 @@
         
         [[UITabBar appearance] setTintColor:DEVICE_COLOR];
         [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+
         _tabBarController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         [_tabBarController.tabBar setValue:@(YES) forKeyPath:@"_hidesShadow"];
         _tabBarController.delegate = self;
@@ -203,7 +204,8 @@
 {
     if (!_ct3_MoreViewController) {
         _ct3_MoreViewController = [CT3_MoreViewController new];
-        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"TabBarMoreIcon.png"] selectedImage:[UIImage imageNamed:@"TabBarMoreIconActive.png"]];
+        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:@"TabBarMoreIcon.png"]
+                                                                            imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:@"TabBarMoreIconActive.png"]];
         _ct3_MoreViewController.tabBarItem = item2;
 
         _ct3_MoreViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5);
@@ -218,7 +220,7 @@
     if (!_newsFeedViewController) {
         _newsFeedViewController = [CT3_NewsFeedViewController new];
 
-        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"TabBarHomeIcon.png"] selectedImage:[UIImage imageNamed:@"TabBarHomeIconActive.png"]];
+        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:@"TabBarHomeIcon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:@"TabBarHomeIconActive.png"]];
         _newsFeedViewController.tabBarItem = item2;
         
         _newsFeedViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
@@ -239,7 +241,7 @@
 -(CT3_MeViewController*)ct3MeViewController{
     if (!_ct3MeViewController) {
         _ct3MeViewController = [CT3_MeViewController new];
-        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[UIImage imageNamed:@"TabBarMeIcon.png"] selectedImage:[UIImage imageNamed:@"TabBarMeIconActive.png"]];
+        UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:@"TabBarMeIcon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:@"TabBarMeIconActive.png"]];
         _ct3MeViewController.tabBarItem = item2;
 
         _ct3MeViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);

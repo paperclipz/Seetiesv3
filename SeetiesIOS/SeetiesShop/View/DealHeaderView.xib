@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bh-yA-FzL">
-                    <rect key="frame" x="10" y="11" width="302" height="30"/>
+                    <rect key="frame" x="16" y="11" width="288" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="adV-kJ-NLr"/>
                     </constraints>
@@ -43,8 +43,8 @@
                 <constraint firstItem="rho-pY-yGe" firstAttribute="leading" secondItem="pGA-ug-kxU" secondAttribute="leading" constant="10" id="Z4y-Do-pox"/>
                 <constraint firstItem="rho-pY-yGe" firstAttribute="centerY" secondItem="pGA-ug-kxU" secondAttribute="centerY" id="mc0-vV-aC1"/>
                 <constraint firstItem="6bh-yA-FzL" firstAttribute="centerY" secondItem="pGA-ug-kxU" secondAttribute="centerY" id="nrN-oo-Vqu"/>
-                <constraint firstAttribute="trailing" secondItem="6bh-yA-FzL" secondAttribute="trailing" constant="8" id="qZy-t1-QZV"/>
-                <constraint firstItem="6bh-yA-FzL" firstAttribute="leading" secondItem="pGA-ug-kxU" secondAttribute="leading" constant="10" id="sak-Mt-KQU"/>
+                <constraint firstAttribute="trailing" secondItem="6bh-yA-FzL" secondAttribute="trailing" constant="16" id="qZy-t1-QZV"/>
+                <constraint firstItem="6bh-yA-FzL" firstAttribute="leading" secondItem="pGA-ug-kxU" secondAttribute="leading" constant="16" id="sak-Mt-KQU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
