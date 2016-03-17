@@ -123,9 +123,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)formatFiltersModelToShowOpenNow:(BOOL)showOpenNow{
+-(void)formatFiltersModel{
     self.filtersModel = [[FiltersModel alloc] init];
     self.filtersModel.filterCategories = [[NSMutableArray<FilterCategoryModel> alloc] init];
+    self.filtersModel.filterViewType = FilterViewTypeVoucher;
     
     //Sort
     FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
@@ -186,19 +187,6 @@
     [self.filtersModel.filterCategories addObject:sortCategory];
     [self.filtersModel.filterCategories addObject:catCategory];
     [self.filtersModel.filterCategories addObject:priceCategory];
-    
-    //Open now
-    if(showOpenNow){
-        FilterCategoryModel *isOpenCategory = [[FilterCategoryModel alloc] init];
-        isOpenCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-        priceCategory.filterCategoryType = FilterTypeIsOpen;
-        
-        FilterModel *filter = [[FilterModel alloc] init];
-        filter.isSelected = NO;
-        [isOpenCategory.filtersArray addObject:filter];
-        
-        [self.filtersModel.filterCategories addObject:isOpenCategory];
-    }
     
 }
 
@@ -265,7 +253,7 @@
     _filterCurrencyModel = filterCurrencyModel;
     _quickBrowseModels = quickBrowseModel;
     self.dealViewType = 3;
-    [self formatFiltersModelToShowOpenNow:NO];
+    [self formatFiltersModel];
 }
 
 -(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(NSArray<QuickBrowseModel>*)quickBrowseModel
@@ -275,7 +263,7 @@
     _locationModel = locationModel;
     _filterCurrencyModel = filterCurrencyModel;
     _quickBrowseModels = quickBrowseModel;
-    [self formatFiltersModelToShowOpenNow:NO];
+    [self formatFiltersModel];
 }
 
 -(void)initWithDealId:(NSString*)dealId{
@@ -303,8 +291,6 @@
 }
 
 - (IBAction)filterClicked:(id)sender {
-  
-    [self.filterController initWithFilter:self.filtersModel];
     [self presentViewController:self.filterController animated:YES completion:^{}];
 }
 
@@ -337,6 +323,7 @@
     if (!_filterController) {
         _filterController = [GeneralFilterViewController new];
         _filterController.delegate = self;
+        [_filterController initWithFilter:self.filtersModel];
     }
     
     return _filterController;

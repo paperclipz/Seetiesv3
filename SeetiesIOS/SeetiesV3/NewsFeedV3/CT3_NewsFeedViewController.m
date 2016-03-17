@@ -1221,7 +1221,8 @@ static NSCache* heightCache = nil;
 -(void)showSearchView:(QuickBrowseModel*)model
 {
     _searchQuickBrowseListingController = nil;
-    self.searchQuickBrowseListingController.keyword = model.name;
+    self.searchQuickBrowseListingController.selectedQuickBrowse = model;
+    self.searchQuickBrowseListingController.quickBrowseModels = self.homeModel.quick_browse;
     self.searchQuickBrowseListingController.homeLocationModel = self.currentHomeLocationModel;
     [self.navigationController pushViewController:self.searchQuickBrowseListingController animated:YES];
 }

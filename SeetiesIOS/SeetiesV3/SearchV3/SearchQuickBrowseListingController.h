@@ -7,16 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GeneralFilterViewController.h"
 
 typedef void (^HomeModelBlock)(HomeLocationModel* model);
 
-@interface SearchQuickBrowseListingController : CommonViewController
+@interface SearchQuickBrowseListingController : CommonViewController <FilterViewControllerDelegate>
 
-@property(nonatomic,strong)NSString* keyword;
 @property(nonatomic, strong) HomeLocationModel *homeLocationModel;
-
+@property(nonatomic) QuickBrowseModel *selectedQuickBrowse;
+@property(nonatomic) NSArray<QuickBrowseModel> *quickBrowseModels;
 @property(nonatomic,copy)HomeModelBlock didSelectHomeLocationBlock;
-
 
 @end

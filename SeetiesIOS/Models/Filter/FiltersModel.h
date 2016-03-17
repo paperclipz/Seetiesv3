@@ -14,6 +14,13 @@
 
 @end
 
+typedef enum{
+    FilterViewTypeVoucher,
+    FilterViewTypeShop,
+    FilterViewTypeCollection
+} FilterViewType;
+
 @interface FiltersModel : NSObject
 @property(nonatomic) NSMutableArray<FilterCategoryModel> *filterCategories;
+@property(nonatomic) FilterViewType filterViewType;
 @end

@@ -23,6 +23,7 @@
 -(void)initCellData:(FilterModel*)filterModel{
     _filter = filterModel;
     
+    self.ibTitleLbl.text = self.filter.name;
     [self.ibSwitch setOn:self.filter.isSelected animated:YES];
     [self.ibSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
 }

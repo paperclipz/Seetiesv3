@@ -43,6 +43,7 @@
 @property(nonatomic,strong)MZFormSheetPresentationViewController* formSheetController;
 
 @property(nonatomic,strong)HomeLocationModel* homeLocationModel;
+@property(nonatomic,strong)NSDictionary *filterDict;
 
 //@property(nonatomic,strong)NSMutableArray* arrPosts;
 //@property(nonatomic,strong)NSMutableArray* arrUsers;
@@ -159,6 +160,20 @@
     self.keyword = keyword;
     
      self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
+    self.currentLongtitude = @(currentLocation.coordinate.longitude).stringValue;
+    
+    [self requestRefresh];
+}
+
+-(void)refreshRequestWithHomeLocation:(HomeLocationModel*)model filterDictionary:(NSDictionary*)filterDict{
+
+    CLLocation* currentLocation = [[SearchManager Instance]getAppLocation];
+    
+    self.homeLocationModel = model;
+    self.filterDict = filterDict;
+    self.keyword = @"";
+    
+    self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
     self.currentLongtitude = @(currentLocation.coordinate.longitude).stringValue;
     
     [self requestRefresh];
@@ -532,6 +547,9 @@
     [finalDict appendDictionarywithKey:@"lng" withValue:self.homeLocationModel.longtitude];
     [finalDict appendDictionarywithKey:@"place_id" withValue:self.homeLocationModel.place_id];
 
+    if (self.filterDict) {
+        [finalDict addEntriesFromDictionary:self.filterDict];
+    }
     
     [self.ibTableView startFooterLoadingView];
     
@@ -665,6 +683,10 @@
     [finalDict appendDictionarywithKey:@"lat" withValue:self.homeLocationModel.latitude];
     [finalDict appendDictionarywithKey:@"lng" withValue:self.homeLocationModel.longtitude];
     [finalDict appendDictionarywithKey:@"place_id" withValue:self.homeLocationModel.place_id];
+    
+    if (self.filterDict) {
+        [finalDict addEntriesFromDictionary:self.filterDict];
+    }
     
     [self.ibTableView startFooterLoadingView];
 
@@ -883,9 +905,6 @@
         
     }
 }
-
-
-
 
 #pragma mark - UIScrollView Delegate
 
