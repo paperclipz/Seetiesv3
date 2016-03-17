@@ -36,6 +36,8 @@
 -(void)initSelfView
 {
     [self.lblFeatured setSideCurveBorder];
+    [self.lblDiscount setSideCurveBorder];
+
     [self.ibImageView setStandardBorder];
 }
 
@@ -46,26 +48,32 @@
     if (self.dealModel.is_feature) {
         self.lblFeatured.hidden = NO;
         
-        constLblDiscountLeading.constant = 106;
+        constLblDiscountLeading.constant = 90;
         
         if ([self.dealModel.deal_type isEqualToString:@"discount"]) {
             
             self.lblDiscount.text = [NSString stringWithFormat:@"%@ %% OFF",self.dealModel.discount_percentage];
+            self.lblDiscount.backgroundColor = SELECTED_GREEN;
         }
         else if([self.dealModel.deal_type isEqualToString:@"free"])
         {
             self.lblDiscount.text = LocalisedString(@"FREE");
             
+            self.lblDiscount.backgroundColor = DEVICE_COLOR;
+
+            
         }
         else if([self.dealModel.deal_type isEqualToString:@"package"])
         {
             self.lblDiscount.text = [NSString stringWithFormat:@"%@ %% OFF",self.dealModel.discount_percentage];
-            
+            self.lblDiscount.backgroundColor = SELECTED_GREEN;
+
         }
         
         else{
             self.lblDiscount.text = [NSString stringWithFormat:@"%@ %% OFF",self.dealModel.discount_percentage];
-            
+            self.lblDiscount.backgroundColor = SELECTED_GREEN;
+
         }
 
     }

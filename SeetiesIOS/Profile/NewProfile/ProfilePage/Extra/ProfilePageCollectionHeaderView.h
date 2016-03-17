@@ -12,7 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (copy, nonatomic) VoidBlock btnSeeAllClickedBlock;
 @property (weak, nonatomic) IBOutlet UIImageView *ibBackgroundView;
-@property (weak, nonatomic) IBOutlet UILabel *lblNumberOfCollection;
 
 +(int)getHeight;
 //-(void)adjustRoundedEdge:(CGRect)frame;

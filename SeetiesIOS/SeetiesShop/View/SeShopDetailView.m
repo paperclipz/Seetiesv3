@@ -14,11 +14,12 @@
 #import "SeDealsFeaturedTblCell.h"
 #import "DealHeaderView.h"
 
-#define MapMainViewHeight 210;
+#define MapMainViewHeight 203;
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
-   
+
+    __weak IBOutlet NSLayoutConstraint *constDealTableTop;
     __weak IBOutlet NSLayoutConstraint *constDealHeight;
     __weak IBOutlet NSLayoutConstraint *constantMapMainView;
     __weak IBOutlet NSLayoutConstraint *photoHeightConstraint;
@@ -219,8 +220,8 @@
         }];
     }
     
-    // 8 for bottom padding 54 each for top and bottom bar
-    float constantHeight =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight])+ 8 + 54 + 54;
+    // 10 for bottom padding 54 each for top and bottom bar
+    float constantHeight =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + 52;
     tableviewConstraint.constant = constantHeight;
     
     if (self.arrayList.count == 0) {
@@ -237,9 +238,12 @@
 
     if (self.dealsModel.total_count == 0) {
         constDealHeight.constant = 0;
+        constDealTableTop.constant = 0;
+
     }
     else{
-        
+        constDealTableTop.constant = 10;
+
         if (self.dealsModel.total_count > 3) {
             constDealHeight.constant = 52.0f + 52.0f + [SeDealsFeaturedTblCell getHeight]* self.dealsModel.deals.count;
 
@@ -376,6 +380,8 @@
       
         view.seeMoreBlock = self.didSelectDealSeeAllBlock;
        
+        [view.btnDeals.titleLabel setFont:[UIFont fontWithName:CustomFontName size:17]];
+        
         view.btnSeeMore.hidden = YES;
 
         [view.btnDeals setTitle:[NSString stringWithFormat:@"%@ (%lu)",LocalisedString(@"Deals"),(unsigned long)self.dealsModel.total_count] forState:UIControlStateNormal];
@@ -528,8 +534,8 @@
 -(void)changeLanguage
 {
     self.lblInformation.text = LocalisedString(@"Information");
-    [self.btnMoreInfo setTitle:LocalisedString(@"Hours, Features & more") forState:UIControlStateNormal];
-    self.lblNearbyPubTransport.text = LocalisedString(@"Nearby public transport station");
+    [self.btnMoreInfo setTitle:LocalisedString(@"See more") forState:UIControlStateNormal];
+  //  self.lblNearbyPubTransport.text = LocalisedString(@"Nearby public transport station");
     [self.btnSeeAll setTitle:LocalisedString(@"See all") forState:UIControlStateNormal];
 }
 

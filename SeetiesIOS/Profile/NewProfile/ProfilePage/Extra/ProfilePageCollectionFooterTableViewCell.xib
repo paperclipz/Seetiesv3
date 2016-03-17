@@ -25,6 +25,7 @@
                     </imageView>
                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnO-kS-Im2">
                         <rect key="frame" x="18" y="7" width="284" height="30"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="tintColor" red="0.790423769" green="0.790423769" blue="0.790423769" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="imageEdgeInsets" minX="170" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="See All">
