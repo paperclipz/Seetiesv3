@@ -51,15 +51,15 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfA-DZ-CZ2">
-                            <rect key="frame" x="32" y="41" width="494" height="18"/>
+                            <rect key="frame" x="32" y="41" width="470" height="18"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5mr-xC-lGW">
-                            <rect key="frame" x="536" y="0.0" width="64" height="64"/>
+                            <rect key="frame" x="512" y="0.0" width="39" height="64"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="5mr-xC-lGW" secondAttribute="height" multiplier="1:1" id="6xj-Iy-lNb"/>
+                                <constraint firstAttribute="width" secondItem="5mr-xC-lGW" secondAttribute="height" multiplier="0.6:1" id="6xj-Iy-lNb"/>
                             </constraints>
                             <state key="normal" image="SearchIcon.png"/>
                             <connections>
@@ -67,7 +67,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGs-n7-zIi">
-                            <rect key="frame" x="32" y="25" width="494" height="30"/>
+                            <rect key="frame" x="32" y="25" width="470" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="jID-ZS-oxe"/>
                             </constraints>
@@ -83,6 +83,13 @@
                                 <constraint firstAttribute="height" constant="33" id="Jk5-7w-gp1"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVj-Ec-BnN" userLabel="filter button">
+                            <rect key="frame" x="551" y="0.0" width="39" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="RVj-Ec-BnN" secondAttribute="height" multiplier="0.6:1" id="Yo5-30-TYp"/>
+                            </constraints>
+                            <state key="normal" image="FilterIcon.png"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -95,19 +102,28 @@
                         <constraint firstItem="PfA-DZ-CZ2" firstAttribute="leading" secondItem="7AD-Hm-vxC" secondAttribute="trailing" constant="-3" id="GWH-mk-gDA"/>
                         <constraint firstItem="5mr-xC-lGW" firstAttribute="leading" secondItem="uGs-n7-zIi" secondAttribute="trailing" constant="10" id="Gbb-zZ-ZXY"/>
                         <constraint firstItem="5mr-xC-lGW" firstAttribute="top" secondItem="MTZ-am-oe6" secondAttribute="top" id="JRC-vr-WQF"/>
+                        <constraint firstItem="RVj-Ec-BnN" firstAttribute="top" secondItem="MTZ-am-oe6" secondAttribute="top" id="NCl-SO-aTC"/>
                         <constraint firstItem="5mr-xC-lGW" firstAttribute="leading" secondItem="PfA-DZ-CZ2" secondAttribute="trailing" constant="10" id="SLd-ap-Mpz"/>
                         <constraint firstItem="uGs-n7-zIi" firstAttribute="leading" secondItem="7AD-Hm-vxC" secondAttribute="trailing" constant="-3" id="SbQ-BJ-WBd"/>
-                        <constraint firstAttribute="trailing" secondItem="5mr-xC-lGW" secondAttribute="trailing" id="WJz-cx-8ZE"/>
+                        <constraint firstAttribute="trailing" secondItem="5mr-xC-lGW" secondAttribute="trailing" constant="100" id="WJz-cx-8ZE"/>
+                        <constraint firstAttribute="bottom" secondItem="RVj-Ec-BnN" secondAttribute="bottom" id="XjB-M9-KCx"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="ZFc-Ta-UFo"/>
                         <constraint firstItem="PfA-DZ-CZ2" firstAttribute="top" secondItem="7Ha-DY-anw" secondAttribute="bottom" constant="2" id="fG9-93-VIf"/>
                         <constraint firstItem="XBv-gO-M25" firstAttribute="centerY" secondItem="7Ha-DY-anw" secondAttribute="centerY" id="fnR-Le-pdy"/>
+                        <constraint firstAttribute="trailing" secondItem="RVj-Ec-BnN" secondAttribute="trailing" constant="10" id="hXL-hu-DLD"/>
                         <constraint firstItem="7AD-Hm-vxC" firstAttribute="leading" secondItem="MTZ-am-oe6" secondAttribute="leading" constant="-5" id="iiO-qz-58w"/>
                         <constraint firstItem="teG-W7-Coy" firstAttribute="leading" secondItem="MTZ-am-oe6" secondAttribute="leading" id="l79-ij-JGw"/>
                         <constraint firstItem="7Ha-DY-anw" firstAttribute="leading" secondItem="7AD-Hm-vxC" secondAttribute="trailing" constant="-3" id="lNi-jN-Ct4"/>
                         <constraint firstItem="5mr-xC-lGW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBv-gO-M25" secondAttribute="trailing" constant="10" id="p0M-Ir-bvN"/>
                         <constraint firstItem="7Ha-DY-anw" firstAttribute="centerY" secondItem="7AD-Hm-vxC" secondAttribute="centerY" constant="-10" id="uya-9E-F25"/>
+                        <constraint firstItem="RVj-Ec-BnN" firstAttribute="leading" secondItem="5mr-xC-lGW" secondAttribute="trailing" id="xgB-Lu-DeK"/>
                         <constraint firstItem="7AD-Hm-vxC" firstAttribute="top" secondItem="teG-W7-Coy" secondAttribute="bottom" constant="-44" id="zAI-nB-ZTY"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="WJz-cx-8ZE"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAy-p7-kvS">
                     <rect key="frame" x="0.0" y="64" width="600" height="536"/>
@@ -157,6 +173,7 @@
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
+        <image name="FilterIcon.png" width="40" height="40"/>
         <image name="SearchIcon.png" width="40" height="40"/>
         <image name="SelectPhotoArrow.png" width="20" height="20"/>
     </resources>

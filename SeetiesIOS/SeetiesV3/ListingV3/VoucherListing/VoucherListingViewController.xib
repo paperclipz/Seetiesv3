@@ -54,14 +54,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-7K-ot0" userLabel="drop down icon">
-                            <rect key="frame" x="93" y="28" width="15" height="15"/>
+                            <rect key="frame" x="94" y="28" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="UtW-HE-80K"/>
                                 <constraint firstAttribute="width" constant="15" id="YhM-I8-hlK"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal of the Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp8-Jp-ABW">
-                            <rect key="frame" x="40" y="42" width="111" height="18"/>
+                            <rect key="frame" x="40" y="43" width="111" height="18"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -72,19 +72,22 @@
                                 <action selector="locationBtnClicked:" destination="-1" eventType="touchUpInside" id="QEp-Ap-dxu"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msM-T5-Qek" userLabel="search button">
-                            <rect key="frame" x="230" y="14" width="50" height="50"/>
+                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msM-T5-Qek" userLabel="search button">
+                            <rect key="frame" x="230" y="14" width="40" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="747-d6-OOm"/>
+                                <constraint firstAttribute="width" constant="40" id="747-d6-OOm"/>
                                 <constraint firstAttribute="height" constant="50" id="K7o-lJ-w0V"/>
                             </constraints>
                             <state key="normal" image="SearchIcon.png"/>
+                            <connections>
+                                <action selector="btnSearchLocationClicked:" destination="-1" eventType="touchUpInside" id="P9P-sK-3PA"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZJ-d8-8P6" userLabel="filter button">
-                            <rect key="frame" x="270" y="14" width="50" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZJ-d8-8P6" userLabel="filter button">
+                            <rect key="frame" x="270" y="14" width="40" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="Edj-O7-EBR"/>
-                                <constraint firstAttribute="width" constant="50" id="i3G-6d-ONb"/>
+                                <constraint firstAttribute="width" constant="40" id="i3G-6d-ONb"/>
                             </constraints>
                             <state key="normal" image="FilterIcon.png"/>
                             <connections>
@@ -128,10 +131,10 @@
                         <constraint firstAttribute="bottom" secondItem="PgP-Mz-cA7" secondAttribute="bottom" id="dO7-XM-a6Q"/>
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="top" secondItem="wJH-T7-Mrw" secondAttribute="top" id="e1z-9u-bOI"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="centerY" secondItem="I2e-bV-XI7" secondAttribute="centerY" id="ggE-KY-Yu6"/>
-                        <constraint firstAttribute="trailing" secondItem="aZJ-d8-8P6" secondAttribute="trailing" id="kM6-Xs-rEG"/>
+                        <constraint firstAttribute="trailing" secondItem="aZJ-d8-8P6" secondAttribute="trailing" constant="10" id="kM6-Xs-rEG"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="leading" secondItem="KB9-ER-GDk" secondAttribute="leading" id="md4-db-GbX"/>
                         <constraint firstItem="HWW-7K-ot0" firstAttribute="centerY" secondItem="KB9-ER-GDk" secondAttribute="centerY" id="n5c-ho-0sq"/>
-                        <constraint firstItem="aZJ-d8-8P6" firstAttribute="leading" secondItem="msM-T5-Qek" secondAttribute="trailing" constant="-10" id="okv-hd-vwq"/>
+                        <constraint firstItem="aZJ-d8-8P6" firstAttribute="leading" secondItem="msM-T5-Qek" secondAttribute="trailing" id="okv-hd-vwq"/>
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="leading" secondItem="I2e-bV-XI7" secondAttribute="leading" constant="40" id="onx-qK-lak"/>
                         <constraint firstItem="Qp8-Jp-ABW" firstAttribute="leading" secondItem="wJH-T7-Mrw" secondAttribute="trailing" id="qrj-zX-wZ1"/>
                         <constraint firstAttribute="height" constant="64" id="qzp-N1-tWS"/>

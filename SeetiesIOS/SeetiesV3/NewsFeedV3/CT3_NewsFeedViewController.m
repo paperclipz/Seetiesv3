@@ -1643,6 +1643,7 @@ static NSCache* heightCache = nil;
 -(void)scrollToTop:(BOOL)animation
 {
     [self.ibTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:animation];
+    [self.ibTableView reloadData];
 }
 
 
