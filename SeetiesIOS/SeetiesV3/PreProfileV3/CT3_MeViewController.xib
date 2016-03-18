@@ -13,7 +13,9 @@
                 <outlet property="ibCollectionIcon" destination="mCK-kL-L9O" id="V90-0D-OEu"/>
                 <outlet property="ibCollectionTitleLbl" destination="UP6-P9-D6z" id="AC6-36-YCq"/>
                 <outlet property="ibCollectionView" destination="Ruy-SJ-sPw" id="1uO-nB-ezo"/>
+                <outlet property="ibContentHeightConstraint" destination="DQX-4F-dVf" id="eDM-DL-O87"/>
                 <outlet property="ibContentView" destination="M7j-ex-CwS" id="2r4-Z8-UBM"/>
+                <outlet property="ibFriendsPromoView" destination="iqO-Ng-cmd" id="h6d-PR-l9d"/>
                 <outlet property="ibGuestView" destination="6wc-bF-QIY" id="gBo-aE-TCH"/>
                 <outlet property="ibHeaderTitle" destination="Clc-9c-SaE" id="zbu-N8-73Z"/>
                 <outlet property="ibHeaderView" destination="FCf-GI-pJP" id="n5k-AL-Rln"/>
@@ -27,6 +29,7 @@
                 <outlet property="ibPromoCodeView" destination="Xt9-JO-isv" id="8Rj-6R-6N3"/>
                 <outlet property="ibPromoLbl" destination="FEm-kv-648" id="FJZ-gH-tKG"/>
                 <outlet property="ibViewProfileLbl" destination="iN5-aO-3Ok" id="XHB-oF-pqp"/>
+                <outlet property="ibWalletCollectionHeightConstraint" destination="ZM2-LG-UXZ" id="8Jy-Md-e7E"/>
                 <outlet property="ibWalletCountLbl" destination="XkX-HD-AQY" id="m0W-bk-PH3"/>
                 <outlet property="ibWalletIcon" destination="IU2-wQ-Q3Y" id="N69-EP-SOS"/>
                 <outlet property="ibWalletTitleLbl" destination="R71-NS-9aT" id="VoQ-e1-8UU"/>
@@ -117,7 +120,7 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7j-ex-CwS">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="432"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="446"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HVB-Gw-PlE" userLabel="profile view">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
@@ -232,8 +235,8 @@
                                                         <constraint firstAttribute="width" constant="80" id="but-KZ-dPO"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkX-HD-AQY">
-                                                    <rect key="frame" x="8" y="145" width="129" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkX-HD-AQY">
+                                                    <rect key="frame" x="8" y="145" width="129" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="FaW-It-kax"/>
                                                     </constraints>
@@ -330,8 +333,8 @@
                                                         <constraint firstAttribute="width" constant="80" id="quM-xa-4v9"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collections" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Pz-6s-Muv">
-                                                    <rect key="frame" x="8" y="145" width="129" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Pz-6s-Muv">
+                                                    <rect key="frame" x="8" y="145" width="129" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="fdm-Bb-aaf"/>
                                                     </constraints>
@@ -477,7 +480,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Promo Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEm-kv-648">
-                                                    <rect key="frame" x="49" y="15" width="126" height="21"/>
+                                                    <rect key="frame" x="49" y="15" width="125.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="xOy-Rp-WWF"/>
                                                     </constraints>
@@ -536,7 +539,7 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="432" id="DQX-4F-dVf"/>
+                                <constraint firstAttribute="height" constant="446" id="DQX-4F-dVf"/>
                                 <constraint firstItem="iqO-Ng-cmd" firstAttribute="top" secondItem="p0x-C3-STo" secondAttribute="bottom" constant="10" id="Gj4-Ki-lSx"/>
                                 <constraint firstItem="iqO-Ng-cmd" firstAttribute="leading" secondItem="M7j-ex-CwS" secondAttribute="leading" id="KC6-Ey-pYk"/>
                                 <constraint firstItem="HVB-Gw-PlE" firstAttribute="top" secondItem="M7j-ex-CwS" secondAttribute="top" id="QHc-eM-7JW"/>

@@ -32,6 +32,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibWalletIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *ibCollectionIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibNotificationCountLbl;
+@property (weak, nonatomic) IBOutlet UIView *ibFriendsPromoView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibWalletCollectionHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibContentHeightConstraint;
 
 @property(nonatomic)STPopupController *popupCTController;
 @property(nonatomic)DealDetailsViewController *dealDetailsViewController;
@@ -161,6 +165,11 @@
 */
 
 -(void)initSelfView{
+    CGFloat screenHeight = [Utils getDeviceScreenSize].size.height;
+    self.ibWalletCollectionHeightConstraint.constant = screenHeight/3;
+    [self.view layoutIfNeeded];
+    CGFloat contentHeight = self.ibFriendsPromoView.frame.origin.y + self.ibFriendsPromoView.frame.size.height;
+    self.ibContentHeightConstraint.constant = contentHeight;
     
     [self.ibProfileImg setRoundedBorder];
     [self.ibWalletIcon setRoundedBorder];
@@ -318,7 +327,13 @@
 
 -(void)setNotificationCount:(int)count
 {
-    self.ibNotificationCountLbl.text = [NSString stringWithFormat:@"%d",count];
+    if (count == 0) {
+        self.ibCollectionCountLbl.hidden = YES;
+    }
+    else{
+        self.ibCollectionCountLbl.hidden = NO;
+        self.ibNotificationCountLbl.text = [NSString stringWithFormat:@"%d",count];
+    }
 }
 
 -(void)changeLanguage

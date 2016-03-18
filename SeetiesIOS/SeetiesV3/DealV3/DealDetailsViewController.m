@@ -7,6 +7,7 @@
 //
 
 #import "DealDetailsViewController.h"
+#import "UILabel+Exntension.h"
 
 @interface DealDetailsViewController (){
     float contentHeightPadding;
@@ -111,7 +112,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.isProcessing = NO;
-    contentHeightPadding = 16.0;
+    contentHeightPadding = 10.0;
     footerHeight = 50.0;
     
     [self.ibAvailabilityTable registerNib:[UINib nibWithNibName:@"DealDetailsAvailabilityCell" bundle:nil] forCellReuseIdentifier:@"DealDetailsAvailabilityCell"];
@@ -365,11 +366,19 @@
         self.ibHeaderNormalExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), [dateFormatter stringFromDate:expiredDate]];
     }
     else{
+        if(self.dealModel.total_available_vouchers == 0){
+            self.ibHeaderBlackShadeView.hidden = NO;
+            self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Sold Out");
+            [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsListingSoldOutIcon.png"]];
+        }
+        else{
+            self.ibHeaderBlackShadeView.hidden = YES;
+        }
+        
         if ([Utils isValidDateString:self.dealModel.expired_at]) {
             self.ibHeaderRedeemExpiryView.hidden = YES;
             self.ibHeaderNormalExpiryView.hidden = NO;
             self.ibHeaderExpiryHeightConstraint.constant = 50;
-            self.ibHeaderBlackShadeView.hidden = YES;
             
             NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
             [dateFormatter setDateFormat:@"dd MMM yyyy"];
@@ -380,18 +389,17 @@
             self.ibHeaderRedeemExpiryView.hidden = YES;
             self.ibHeaderNormalExpiryView.hidden = YES;
             self.ibHeaderExpiryHeightConstraint.constant = 0;
-            self.ibHeaderBlackShadeView.hidden = YES;
         }
         
     }
     
-    CGFloat contentHeight = self.ibHeaderExpiryHeightConstraint.constant + self.ibHeaderImageScrollView.frame.size.height + 8;
+    CGFloat contentHeight = self.ibHeaderExpiryHeightConstraint.constant + self.ibHeaderImageScrollView.frame.size.height + contentHeightPadding;
     [self.ibHeaderView setHeight:contentHeight];
 }
 
 -(void)updateDetailsView{
     self.ibDealDetailsTitleLbl.text = self.dealModel.title;
-    self.ibDealDetailsDesc.text = self.dealModel.deal_desc;
+    [self.ibDealDetailsDesc setStandardText:self.dealModel.deal_desc numberOfLine:0];
     
     CGFloat tagHeight = 20.0f;
     CGFloat spacing = 10.0f;
@@ -483,12 +491,17 @@
 -(void)updateAvailabilityView{
     [self.ibAvailabilityTable reloadData];
     
-    float cellHeight = [DealDetailsAvailabilityCell getHeight];
-    NSInteger numberOfDays = self.dealModel.redemption_period_in_hour_text.allKeys.count;
-    float tableHeight = cellHeight * numberOfDays;
-    CGFloat totalHeight = self.ibAvailabilityTable.frame.origin.y + tableHeight + contentHeightPadding;
-    
-    [self.ibAvailabilityView setHeight:totalHeight];
+    if (self.dealModel.redemption_period_in_hour_text.allKeys.count == 0) {
+        [self.ibAvailabilityView setHeight:0];
+    }
+    else{
+        float cellHeight = [DealDetailsAvailabilityCell getHeight];
+        NSInteger numberOfDays = self.dealModel.redemption_period_in_hour_text.allKeys.count;
+        float tableHeight = cellHeight * numberOfDays;
+        CGFloat totalHeight = self.ibAvailabilityTable.frame.origin.y + tableHeight + 16 + contentHeightPadding;
+        
+        [self.ibAvailabilityView setHeight:totalHeight];
+    }
 }
 
 -(void)updateShopView{
@@ -565,8 +578,10 @@
 -(void)updateNearbyShopView{
     [self.ibNearbyShopCollection reloadData];
     
+    [self.ibNearbyShopTitle prefix_addLowerBorder:OUTLINE_COLOR];
+    
     if (self.nearbyShopArray.count > 0) {
-        CGFloat contentHeight = self.ibNearbyShopCollection.frame.origin.y + 132 + contentHeightPadding;
+        CGFloat contentHeight = self.ibNearbyShopCollection.frame.origin.y + 132 + 16 + contentHeightPadding;
         [self.ibNearbyShopView setHeight:contentHeight];
     }
     else{
@@ -576,6 +591,7 @@
 
 -(void)updateDealsView{
     self.ibDealsTitleLbl.text = [NSString stringWithFormat:@"%@ (%d)", LocalisedString(@"Deals"), self.dealsModel.total_count];
+    [self.ibDealsTitle prefix_addLowerBorder:OUTLINE_COLOR];
     [self.ibDealsTable reloadData];
     
     NSArray<DealModel> *dealsArray = self.dealsModel.deals;
@@ -610,7 +626,13 @@
     self.ibFooterView.hidden = NO;
     NSString *voucherStatus = self.dealModel.voucher_info.status;
     if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
-        [self.ibFooterView setBackgroundColor:DEVICE_COLOR];
+        if (self.dealModel.total_available_vouchers == 0) {
+            [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        }
+        else{
+            [self.ibFooterView setBackgroundColor:DEVICE_COLOR];
+        }
+        
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
     }
@@ -691,6 +713,9 @@
     
     NSString *voucherStatus = self.dealModel.voucher_info.status;
     if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
+        if (self.dealModel.total_available_vouchers == 0) {
+            return;
+        }
         if (self.dealModel.shops.count == 1) {
             SeShopDetailModel *shopModel = [self.dealModel.shops objectAtIndex:0];
             [self requestServerToCollectVoucher:shopModel];
