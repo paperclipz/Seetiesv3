@@ -25,7 +25,6 @@
 
 @property(strong,nonatomic)MKPointAnnotation* annotation;
 @property(nonatomic,assign)MKCoordinateRegion region;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 
 @property(strong,nonatomic)STSearchViewController* stSearchViewController;

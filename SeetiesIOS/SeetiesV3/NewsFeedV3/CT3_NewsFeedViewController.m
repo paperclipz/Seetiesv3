@@ -1082,8 +1082,20 @@ static NSCache* heightCache = nil;
     }
     else
     {
-        CTFeedTypeModel* feedTypeModel = self.arrayNewsFeed[indexPath.row];
-        FeedType type = feedTypeModel.feedType;
+        
+        if (indexPath.row == 0) {
+            return;
+        }
+        CTFeedTypeModel* feedTypeModel;
+        FeedType type;
+        @try {
+            feedTypeModel = self.arrayNewsFeed[indexPath.row - 1];
+            type = feedTypeModel.feedType;
+        }
+        @catch (NSException *exception) {
+            
+        }
+       
         
         switch (type) {
             case FeedType_Following_Post:
@@ -1418,6 +1430,7 @@ static NSCache* heightCache = nil;
         
         self.homeModel = [[ConnectionManager dataManager]homeModel];
         
+        BOOL needToShowWallet = NO;
         DealManager* dealManager = [DealManager Instance];
         [dealManager setWalletCount:self.homeModel.wallet_count];
         [self.arrHomeDeal removeAllObjects];
@@ -1429,7 +1442,7 @@ static NSCache* heightCache = nil;
             isDealCollectionShown = YES;
             ibHeaderBackgroundView.alpha = 0;
             constTopScrollView.constant = 0;
-
+            needToShowWallet = YES;
 
         }
         else{
@@ -1440,11 +1453,14 @@ static NSCache* heightCache = nil;
 
         if (![Utils isArrayNull:self.homeModel.superdeals]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_SuperDeal]];
- 
+            needToShowWallet = YES;
+
         }
         
         if (![Utils isGuestMode]) {
-            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Wallet]];
+            if (needToShowWallet) {
+                [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Wallet]];
+            }
         }
         
         if (![Utils isArrayNull:self.homeModel.quick_browse]) {
@@ -1650,8 +1666,9 @@ static NSCache* heightCache = nil;
 
 -(void)scrollToTop:(BOOL)animation
 {
-    [self.ibTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:animation];
-    [self.ibTableView reloadData];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.ibTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 

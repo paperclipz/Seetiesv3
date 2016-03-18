@@ -342,12 +342,18 @@
 {
     //need to input token for own profile private collection, no token is get other people public collection
     NSString* appendString = [NSString stringWithFormat:@"%@/collections",self.profileModel.uid];
-    
-    NSDictionary* dict = @{@"page":@(1),
-                           @"list_size":@(ARRAY_LIST_SIZE),
-                           @"token":[Utils getAppToken],
-                           @"uid":self.profileModel.uid
-                           };
+ 
+    NSDictionary* dict;
+    @try {
+        dict = @{@"page":@(1),
+                 @"list_size":@(ARRAY_LIST_SIZE),
+                 @"token":[Utils getAppToken],
+                 @"uid":self.profileModel.uid
+                 };
+    }
+    @catch (NSException *exception) {
+    }
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
         NSDictionary *dict = object[@"data"];
         self.ibCollectionCountLbl.text = [NSString stringWithFormat:@"%ld %@", [dict[@"total_result"] integerValue], LocalisedString(@"collections")];

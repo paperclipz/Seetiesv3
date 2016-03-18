@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnPublish;
 
 // =============== model ===============//
+
+@property(nonatomic,strong)DraftModel* postModel;
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfPhotos;
 
 @property(nonatomic,strong)RecommendationModel* recommendationModel;//pass in model
@@ -213,12 +215,11 @@
 
 -(void)initDataDraft:(DraftModel*)model
 {
-    
+    self.postModel = model;
     self.editPostType = EditPostTypeDraft;
     self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
     self.tempSavedRecommendationModel = self.recommendationModel;
 
-   
 }
 
 -(void)initDataPostEdit:(DraftModel*)model
@@ -726,22 +727,12 @@ static id ObjectOrNull(id object)
         if (hourModel.isOpen)
             [dictPeriods addObject:[hourModel toDictionary]];
     }
-
-//    NSArray* dictPeriods = @[@{@"close":@{@"day":@0,@"time":@"1111"},@"open":@{@"day":@0,@"time":@"1030"}},
-//                             @{@"close":@{@"day":@1,@"time":@"1222"},@"open":@{@"day":@1,@"time":@"1030"}},
-//                             @{@"close":@{@"day":@2,@"time":@"1333"},@"open":@{@"day":@2,@"time":@"1030"}},
-//                             @{@"close":@{@"day":@3,@"time":@"1444"},@"open":@{@"day":@3,@"time":@"1030"}}];
-//  
-//    SLog(@"compiled dict 2222 : %@",dictPeriods);
-
     
-    //  NSString* tempString = [string stringByReplacingOccurrencesOfString:@"open" withString:@"GG"];
     NSDictionary* openingHourDict = @{@"open_now":@"false",
                                       @"periods":ObjectOrNull(dictPeriods)};
    
-    
-    
     NSDictionary* expensesDict;
+    
     if (tempVenueModel.price) {
         
         expensesDict = @{@"code":tempVenueModel.currency,
@@ -749,10 +740,11 @@ static id ObjectOrNull(id object)
     }
 
     // ========================   location =============================
+    
     NSDictionary* locationDict  = @{@"address_components":addressDict,
                                     @"name":ObjectOrNull(tempVenueModel.name),
                                     @"formatted_address":ObjectOrNull(tempVenueModel.formattedAddress),
-                                    @"type":@2,
+                                    @"type":@(tempVenueModel.searchType),
                                     @"rating":@"",
                                     @"reference":ObjectOrNull(tempVenueModel.reference),
                                     @"contact_no":ObjectOrNull(tempVenueModel.formattedPhone),

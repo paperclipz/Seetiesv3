@@ -362,40 +362,11 @@
         <view contentMode="scaleToFill" id="WcO-Sk-V4n">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be patient!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEx-IZ-Uxs">
-                    <rect key="frame" x="112" y="324" width="97" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="EmptyStateImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="h6S-Aw-oaW">
-                    <rect key="frame" x="60" y="84" width="200" height="200"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="200" id="31J-WI-Cmb"/>
-                        <constraint firstAttribute="height" constant="200" id="eK5-Z0-aKz"/>
-                        <constraint firstAttribute="width" secondItem="h6S-Aw-oaW" secondAttribute="height" multiplier="2:2" id="kJt-cl-ZLG"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="kJt-cl-ZLG"/>
-                        </mask>
-                    </variation>
-                </imageView>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="HEx-IZ-Uxs" firstAttribute="centerX" secondItem="h6S-Aw-oaW" secondAttribute="centerX" id="Mw3-ow-m68"/>
-                <constraint firstItem="h6S-Aw-oaW" firstAttribute="centerX" secondItem="WcO-Sk-V4n" secondAttribute="centerX" id="N8K-gs-6jt"/>
-                <constraint firstItem="h6S-Aw-oaW" firstAttribute="centerY" secondItem="WcO-Sk-V4n" secondAttribute="centerY" constant="-100" id="nYl-Ej-ufT"/>
-                <constraint firstItem="HEx-IZ-Uxs" firstAttribute="top" secondItem="h6S-Aw-oaW" secondAttribute="bottom" constant="40" id="roh-AU-KHZ"/>
-            </constraints>
             <point key="canvasLocation" x="1357" y="268"/>
         </view>
     </objects>
     <resources>
-        <image name="EmptyStateImg.png" width="288" height="288"/>
         <image name="HomePinIcon.png" width="10" height="13"/>
         <image name="NaviDropDownIcon.png" width="8" height="6"/>
         <image name="SearchIcon.png" width="40" height="40"/>

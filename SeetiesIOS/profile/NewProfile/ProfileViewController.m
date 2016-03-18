@@ -241,21 +241,9 @@
     labelFrame = self.lblUserName_Header.frame;
     self.ibImgViewOtherPadding.alpha = 0;
     self.lblUserName_Header.alpha = 0;
-    if (self.profileViewType == ProfileViewTypeOwn) {
-        
-        self.btnFollow.hidden = YES;
-        
-    }
-    else{
-        self.btnEditProfile.hidden = YES;
-        followButtonConstraint.constant = 8.0f;
-        
-        [self.btnFollow setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
-        [self.btnFollow setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.btnFollow setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
-        [self.btnFollow setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
-        
-    }
+    self.btnFollow.hidden = YES;
+    self.btnEditProfile.hidden = YES;
+    
     [self initTagView];
     [self initProfilePageCell];
     
@@ -349,6 +337,23 @@
 {
     self.profileViewType = type;
     self.userID = uID;
+    
+    if ([uID isEqualToString:[Utils getUserID]]) {
+        
+        self.btnFollow.hidden = YES;
+        self.btnEditProfile.hidden = NO;
+    }
+    else{
+        self.btnEditProfile.hidden = YES;
+        followButtonConstraint.constant = 8.0f;
+        self.btnFollow.hidden = NO;
+
+        [self.btnFollow setTitle:LocalisedString(@"Follow") forState:UIControlStateNormal];
+        [self.btnFollow setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.btnFollow setTitle:LocalisedString(@"Following") forState:UIControlStateSelected];
+        [self.btnFollow setTitleColor:SELECTED_GREEN forState:UIControlStateSelected];
+        
+    }
     
     [self requestServerForUserCollection];
     [self requestServerForUserPost];

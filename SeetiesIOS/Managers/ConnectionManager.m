@@ -619,6 +619,9 @@
         case ServerRequestTypePostRedeemPromoCode:
             str = [NSString stringWithFormat:@"%@/promo-codes", API_VERION_URL];
             break;
+        case ServerRequestTypeGetPlacesSuggestion:
+            str = [NSString stringWithFormat:@"%@/places", API_VERION_URL];
+            break;
             
     }
     
@@ -1184,6 +1187,13 @@
                 self.dataManager.dealModel = nil;
             }
             
+        }
+            break;
+            
+        case ServerRequestTypeGetPlacesSuggestion:
+        {
+            NSDictionary *dict = obj[@"data"][@"shops"];
+            self.dataManager.suggestedPlaceModel = [[SuggestedPlaceModel alloc]initWithDictionary:dict error:nil];
         }
             break;
             

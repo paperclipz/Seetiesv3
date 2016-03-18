@@ -191,6 +191,7 @@
 		8A317C051BE1C5620010CAEE /* ShareToFrenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A317C001BE1C5620010CAEE /* ShareToFrenViewController.xib */; };
 		8A317C061BE1C5620010CAEE /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A317C021BE1C5620010CAEE /* ShareViewController.m */; };
 		8A317C071BE1C5620010CAEE /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A317C031BE1C5620010CAEE /* ShareViewController.xib */; };
+		8A31CA771C9BA60B00CC5FB9 /* SuggestedPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */; };
 		8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */; };
 		8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A34090D1B872B31009B66C3 /* EditPostViewController.m */; };
 		8A3409101B872B31009B66C3 /* EditPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A34090E1B872B31009B66C3 /* EditPostViewController.xib */; };
@@ -1876,6 +1877,8 @@
 		8A317C011BE1C5620010CAEE /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		8A317C021BE1C5620010CAEE /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		8A317C031BE1C5620010CAEE /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
+		8A31CA751C9BA60B00CC5FB9 /* SuggestedPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestedPlaceModel.h; path = SeetiesIOS/MODELS/Location/SuggestedPlaceModel.h; sourceTree = SOURCE_ROOT; };
+		8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuggestedPlaceModel.m; path = SeetiesIOS/MODELS/Location/SuggestedPlaceModel.m; sourceTree = SOURCE_ROOT; };
 		8A3408EB1B86EA4B009B66C3 /* UITableView+LongPressReorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LongPressReorder.h"; sourceTree = "<group>"; };
 		8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LongPressReorder.m"; sourceTree = "<group>"; };
 		8A34090C1B872B31009B66C3 /* EditPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPostViewController.h; sourceTree = "<group>"; };
@@ -7158,6 +7161,8 @@
 				8AF030C71C5F6EB000817E2F /* PlacesModel.m */,
 				8AF030C91C6063AB00817E2F /* AreaModel.h */,
 				8AF030CA1C6063AB00817E2F /* AreaModel.m */,
+				8A31CA751C9BA60B00CC5FB9 /* SuggestedPlaceModel.h */,
+				8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -9087,6 +9092,7 @@
 				8AFA51D71C47B4AB00E7920E /* VoucherCell.m in Sources */,
 				8AD6BE511B706CF30040437E /* Filter2ViewController.m in Sources */,
 				8AFA51CF1C47B4AB00E7920E /* GeneralFilterViewController.m in Sources */,
+				8A31CA771C9BA60B00CC5FB9 /* SuggestedPlaceModel.m in Sources */,
 				8AD6C28B1B7072FB0040437E /* EditLocationV2ViewController.m in Sources */,
 				8A114CCF1BE73F5D006AE3F0 /* TextFieldValidator.m in Sources */,
 				8AF030C81C5F6EB000817E2F /* PlacesModel.m in Sources */,

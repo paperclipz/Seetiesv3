@@ -53,7 +53,6 @@
 -(void)initDataForInstagram
 {
     
-    
     self.ibWebView.scrollView.bounces = NO;
     
     NSURL *authURL = [[InstagramEngine sharedEngine] authorizationURL];
@@ -65,7 +64,6 @@
     
     
 }
-
 
 #pragma mark - Web View Delegate for Instagram
 

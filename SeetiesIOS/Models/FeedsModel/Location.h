@@ -8,6 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 @class OpeningPeriodModels;
+
 @interface Location : JSONModel
 
 @property(nonatomic,strong)NSString* lat;
@@ -33,6 +34,7 @@
 @property(nonatomic,strong)NSString* sublocality;
 @property(nonatomic,strong)NSString* display_address;
 @property(nonatomic,strong)NSString* location_id;
+@property(nonatomic,assign)int type;
 
 
 

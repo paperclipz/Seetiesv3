@@ -30,9 +30,10 @@ typedef enum
 
 typedef enum
 {
-    SearchTypeGoogle = 1,
-    SearchTypeFourSquare = 2,
-    SearchTypeDefault = 0
+    SearchTypeGoogle = 2,
+    SearchTypeFourSquare = 1,
+    SearchTypeSeeties = 5,
+    SearchTypeDefault = 4
     
 }SearchType;
 typedef enum

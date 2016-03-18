@@ -28,7 +28,6 @@
 @property(nonatomic,strong)NSMutableArray* arrPostImagesList;//photoModel
 @property(nonatomic,strong)RecommendationVenueModel* reccomendVenueModel;
 
-
 -(id)initWithDraftModel:(DraftModel*)model;
 -(id) copyWithZone: (NSZone *) zone;
 

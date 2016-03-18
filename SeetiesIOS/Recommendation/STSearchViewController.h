@@ -22,6 +22,8 @@ typedef void(^SearchResultBlock) (RecommendationVenueModel* venueModel);
 
 @property(nonatomic,strong)SearchTableViewController* fourSquareSearchTableViewController;
 
+@property(nonatomic,strong)SearchTableViewController* seetiesSearchTableViewController;
+
 @property(nonatomic,copy)SearchResultBlock didSelectOnLocationBlock;
 
 @property(nonatomic,copy)IDBlock btnAddNewPlaceBlock;

@@ -26,7 +26,7 @@
 #import "SeShopGroupModel.h"
 #import "ComplexTagModel.h"
 #import "InstagramKit.h"
-
+#import "SuggestedPlaceModel.h"
 
 /*Declare custom block for model type*/
 typedef void (^PostBlock)(DraftModel* postModel);

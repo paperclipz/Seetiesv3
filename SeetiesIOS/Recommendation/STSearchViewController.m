@@ -16,6 +16,8 @@
     CGRect searchViewFrame;
 
 }
+@property(nonatomic,strong)NSMutableArray* arrSeetiesList;
+
 @property(nonatomic,strong)NSArray* nearbyVenues;
 @property(nonatomic,strong)SearchModel* searchModel;
 @property (weak, nonatomic) IBOutlet UITextField *txtSearch;
@@ -115,7 +117,7 @@
     {
         CGRect deviceFrame = [Utils getDeviceScreenSize];
         
-        NSArray *controllerArray = @[self.fourSquareSearchTableViewController, self.googleSearchTableViewController];
+        NSArray *controllerArray = @[self.seetiesSearchTableViewController,self.fourSquareSearchTableViewController, self.googleSearchTableViewController];
         NSDictionary *parameters = @{
                                      CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
@@ -123,7 +125,7 @@
                                      CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
                                      CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
                                      CAPSPageMenuOptionMenuHeight: @(40.0),
-                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2),
+                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/3 - 20),
                                      CAPSPageMenuOptionCenterMenuItems: @(YES),
                                      CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
                                      CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
@@ -156,37 +158,8 @@
     
 }
 
--(void)getFourSquareSuggestionPlaces
-{
-    self.type = SearchTypeFourSquare;
-    
-    [self.sManager getSuggestedLocationFromFoursquare:self.location input:self.txtSearch.text completionBlock:^(id object) {
-
-        self.nearbyVenues = [[[DataManager Instance]fourSquareVenueModel] items];
-
-        [self refreshViewFourSquare];
-    }];
-    
-   
-}
-
-
--(void)getGoogleSearchPlaces
-{
-    self.type = SearchTypeGoogle;
-
-    [self.sManager getSearchLocationFromGoogle:self.location input:self.txtSearch.text completionBlock:^(id object) {
-        
-        if (object) {
-            self.searchModel = [[DataManager Instance]googleSearchModel];
-            [self refreshViewGoogle];
-        }
-    }];
-
-}
 -(void)refreshViewGoogle
 {
-    
     [self.googleSearchTableViewController.tableView reloadData];
 }
 
@@ -194,6 +167,13 @@
 {
     [self.fourSquareSearchTableViewController.tableView reloadData];
 }
+
+
+-(void)refreshSeetiesSearch
+{
+    [self.seetiesSearchTableViewController.tableView reloadData];
+}
+
 #pragma mark - UITableView Data Source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -204,9 +184,12 @@
         return self.searchModel.predictions.count+additionalCount;
 
     }
-    else{
+    else if (tableView == self.fourSquareSearchTableViewController.tableView){
         return self.nearbyVenues.count+additionalCount;
 
+    }
+    else{
+        return self.arrSeetiesList.count+additionalCount;
     }
   }
 
@@ -248,11 +231,10 @@
         
        
     }
-    else{  //==== FOUR SQUARE ====
+    else if (tableView == self.fourSquareSearchTableViewController.tableView){  //==== FOUR SQUARE ====
         
         STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
 
-        
         if (indexPath.row == self.nearbyVenues.count && self.placeViewType == PlaceViewTypeNew) {
             
             STAddNewTableViewCell *cell = (STAddNewTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"STAddNewTableViewCell"];
@@ -272,11 +254,35 @@
             cell.lblTitle.text = model.name;
             return cell;
 
+        }
+
+       
+    }
+    else{
+        
+        STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
+        
+        if (indexPath.row == self.arrSeetiesList.count && self.placeViewType == PlaceViewTypeNew) {
+            
+            STAddNewTableViewCell *cell = (STAddNewTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"STAddNewTableViewCell"];
+            
+            if (cell == nil) {
+                cell = [[STAddNewTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"STAddNewTableViewCell"];
+                
+            }
+            
+            return cell;
+        }
+        else{
+            
+            Location* locationModel = self.arrSeetiesList[indexPath.row];
+            cell.lblSubTitle.text = locationModel.formatted_address;
+            cell.lblTitle.text = locationModel.name;
+            return cell;
+            
             
         }
 
-        
-       
     }
     
 }
@@ -295,7 +301,9 @@
     else if (tableView == self.fourSquareSearchTableViewController.tableView){
         [self processDataForFourSquareVenue:indexPath];
     }
-   
+    else if (tableView == self.seetiesSearchTableViewController.tableView){
+        [self processDataForSeetiesLocation:indexPath];
+    }
 }
 
 -(void)showAddNewPlaceView:(NSIndexPath*)indexPath
@@ -335,16 +343,27 @@
     [self requestSearch];
     
 }
+#pragma mark - Declaration
 
-#pragma server request
--(void)requestSearch
+-(NSMutableArray*)arrSeetiesList
 {
-    if (![self.txtSearch.text isEqualToString:@""]) {
-        [self getGoogleSearchPlaces];
+    if (!_arrSeetiesList) {
+        _arrSeetiesList = [NSMutableArray new];
     }
-    [self getFourSquareSuggestionPlaces];
+    
+    return _arrSeetiesList;
 }
-
+-(SearchTableViewController*)seetiesSearchTableViewController
+{
+    if (!_seetiesSearchTableViewController) {
+        _seetiesSearchTableViewController = [SearchTableViewController new];
+        [_seetiesSearchTableViewController initTableViewWithDelegate:self];
+        _seetiesSearchTableViewController.title = @"Seeties";
+        _seetiesSearchTableViewController.type = SearchTypeSeeties;
+    }
+    
+    return _seetiesSearchTableViewController;
+}
 -(SearchTableViewController*)googleSearchTableViewController
 {
     if(!_googleSearchTableViewController)
@@ -386,7 +405,19 @@
     VenueModel* model = [[DataManager Instance] fourSquareVenueModel].items[indexPath.row];
     RecommendationVenueModel* recommendationVenueModel = [RecommendationVenueModel new];
     [recommendationVenueModel processFourSquareModel:model];
-    
+    recommendationVenueModel.searchType = SearchTypeFourSquare;
+
+    if (self.didSelectOnLocationBlock) {
+        self.didSelectOnLocationBlock(recommendationVenueModel);
+    }
+}
+
+-(void)processDataForSeetiesLocation:(NSIndexPath*)indexPath
+{
+    Location* model = self.arrSeetiesList[indexPath.row];
+    RecommendationVenueModel* recommendationVenueModel = [RecommendationVenueModel new];
+    recommendationVenueModel.location = model;
+    recommendationVenueModel.searchType = SearchTypeSeeties;
     if (self.didSelectOnLocationBlock) {
         self.didSelectOnLocationBlock(recommendationVenueModel);
     }
@@ -407,6 +438,8 @@
         
         [recommendationVenueModel processGoogleModel:googleSearchDetailModel];
 
+        recommendationVenueModel.searchType = SearchTypeGoogle;
+        
         if (self.didSelectOnLocationBlock) {
             self.didSelectOnLocationBlock(recommendationVenueModel);
         }
@@ -414,4 +447,63 @@
     } errorBlock:nil];
     
 }
+
+-(void)getFourSquareSuggestionPlaces
+{
+    self.type = SearchTypeFourSquare;
+    
+    [self.sManager getSuggestedLocationFromFoursquare:self.location input:self.txtSearch.text completionBlock:^(id object) {
+        
+        self.nearbyVenues = [[[DataManager Instance]fourSquareVenueModel] items];
+        
+        [self refreshViewFourSquare];
+    }];
+    
+    
+}
+
+
+-(void)getGoogleSearchPlaces
+{
+    self.type = SearchTypeGoogle;
+    
+    [self.sManager getSearchLocationFromGoogle:self.location input:self.txtSearch.text completionBlock:^(id object) {
+        
+        if (object) {
+            self.searchModel = [[DataManager Instance]googleSearchModel];
+            [self refreshViewGoogle];
+        }
+    }];
+    
+}
+
+-(void)requestSeetiesSuggestedPlaces
+{
+
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                           @"keyword" : @"rekindle",
+                           @"limit" : @(10),
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetPlacesSuggestion param:dict appendString:@"" completeHandler:^(id object) {
+        
+        
+        SuggestedPlaceModel* model = [[ConnectionManager dataManager]suggestedPlaceModel];
+        [self.arrSeetiesList addObjectsFromArray:model.result];
+        [self refreshSeetiesSearch];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+#pragma server request
+-(void)requestSearch
+{
+    if (![self.txtSearch.text isEqualToString:@""]) {
+   //     [self getGoogleSearchPlaces];
+    }
+    //[self getFourSquareSuggestionPlaces];
+    [self requestSeetiesSuggestedPlaces];
+}
+
 @end

@@ -11,7 +11,7 @@
                 <outlet property="ibMapView" destination="dTw-XL-CGa" id="brr-61-yeG"/>
                 <outlet property="ibScrollView" destination="AaS-Jt-w0J" id="GJg-Bq-lrc"/>
                 <outlet property="lblIndicator" destination="BK6-f7-yUO" id="8td-cf-KWh"/>
-                <outlet property="lblTitle" destination="key-Ts-FqN" id="8Zd-1b-Dx4"/>
+                <outlet property="lblTitle" destination="key-Ts-FqN" id="rUs-Bh-7dh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="R4O-Dg-fGc"/>
             </connections>
         </placeholder>

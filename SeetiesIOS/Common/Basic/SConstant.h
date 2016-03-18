@@ -40,6 +40,7 @@ typedef enum
     ServerRequestTypeGetPostInfo,
     ServerRequestTypeGetGeoIP,
     ServerRequestTypeGetCategories,
+    ServerRequestTypeGetPlacesSuggestion,
     
     // ========== Collection ========== //
     ServerRequestTypeGetCollectionInfo,

@@ -45,7 +45,8 @@
     [Utils setRoundBorder:self.btnShare color:OUTLINE_COLOR borderRadius:self.btnShare.frame.size.height/2];
     
 
-    self.lblTitle.text = [NSString stringWithFormat:@"%@ %@ %d %@ %@",self.collectionModel.user_info.username,LocalisedString(@"Collected"),self.collectionModel.new_collection_posts_count,LocalisedString(@"in"),self.collectionModel.name];
+    self.lblTitle.text = [NSString stringWithFormat:@"%@ %@ %d %@ %@ %@",self.collectionModel.user_info.username,LocalisedString(@"collected"),self.collectionModel.new_collection_posts_count,LocalisedString(@"post"), LocalisedString(@"in"),self.collectionModel.name];
+    
     self.lblCollectionName.text = self.collectionModel.name;
     self.lblNoOfRecommendations.text = [NSString stringWithFormat:@"%d %@",self.collectionModel.collection_posts_count,LocalisedString(@"Recommendations")];
     
