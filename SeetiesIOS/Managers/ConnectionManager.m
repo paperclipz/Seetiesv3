@@ -1174,11 +1174,8 @@
         case ServerRequestTypeGetPromoCode:
         {
             @try{
-                NSArray *array = obj[@"data"][@"deals"];
-                if (![Utils isArrayNull:array]) {
-                    NSDictionary *dict = array[0];
-                    self.dataManager.dealModel = [[DealModel alloc] initWithDictionary:dict error:nil];
-                }
+                NSDictionary *dict = obj[@"data"];
+                self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
             }
             @catch(NSException *ex){
                 self.dataManager.dealModel = nil;

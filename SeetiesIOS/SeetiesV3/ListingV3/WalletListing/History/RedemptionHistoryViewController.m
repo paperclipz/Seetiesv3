@@ -53,7 +53,7 @@
         NSMutableArray<DealModel*> *tempDateArray = [[NSMutableArray alloc] init];
         NSString *previousGroup = @"";
         
-        for (DealModel *dealModel in self.dealsModel.deals) {
+        for (DealModel *dealModel in self.dealsModel.arrDeals) {
             
             NSString *redemptionString = dealModel.voucher_info.status_history_datetime;
             NSDate *redemptionDate = [fullFormatter dateFromString:redemptionString];

@@ -65,7 +65,7 @@
         NSMutableArray<DealModel> *tempDateArray = [[NSMutableArray<DealModel> alloc] init];
         NSString *previousGroup = @"";
         
-        for (DealModel *dealModel in self.dealsModel.deals) {
+        for (DealModel *dealModel in self.dealsModel.arrDeals) {
             if (dealModel.voucher_info.is_new) {
                 [tempNewArray addObject:dealModel];
             }
@@ -271,6 +271,7 @@
     
     self.promoPopOutViewController = nil;
     [self.promoPopOutViewController setViewType:PopOutViewTypeEnterPromo];
+    self.promoPopOutViewController.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 260);
     
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
     popupController.containerView.backgroundColor = [UIColor clearColor];
@@ -335,18 +336,24 @@
     }
 }
 
--(void)viewDealDetailsClicked:(DealModel *)dealModel{
-    self.dealDetailsViewController = nil;
-    [self.dealDetailsViewController setDealModel:dealModel];
-    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
-        [self.dealDetailsViewController setupView];
-    }];
+-(void)viewDealDetailsClicked:(DealsModel *)dealsModel{
+    if (dealsModel.arrDeals.count == 1) {
+        self.dealDetailsViewController = nil;
+        [self.dealDetailsViewController setDealModel:dealsModel.arrDeals[0]];
+        [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+            [self.dealDetailsViewController setupView];
+        }];
+    }
+    else{
+        self.voucherListingViewController = nil;
+        [self.voucherListingViewController initWithDealsModel:dealsModel];
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
+    
 }
 
--(void)promoHasBeenRedeemed:(DealModel *)dealModel{
-    self.dealsModel.offset = 0;
-    self.dealsModel.limit = 0;
-    [self.ibTableView setContentOffset:CGPointZero animated:YES];
+-(void)promoHasBeenRedeemed:(DealsModel *)dealsModel{
+    self.dealsModel = nil;
     [self requestServerForVoucherListing];
 }
 

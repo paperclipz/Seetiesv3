@@ -10,6 +10,7 @@
 #import "STPopup.h"
 #import "PromoOutletCell.h"
 #import "ActionSheetPicker.h"
+#import "DealManager.h"
 
 typedef enum{
     PopOutViewTypeEnterPromo,
@@ -33,8 +34,8 @@ typedef enum{
 @protocol PromoPopOutDelegate <NSObject>
 @optional
 -(void)chooseShopConfirmClicked:(DealModel*)dealModel forShop:(SeShopDetailModel*)shopModel;
--(void)viewDealDetailsClicked:(DealModel*)dealModel;
--(void)promoHasBeenRedeemed:(DealModel*)dealModel;
+-(void)viewDealDetailsClicked:(DealsModel*)dealsModel;
+-(void)promoHasBeenRedeemed:(DealsModel*)dealsModel;
 @end
 
 @interface PromoPopOutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>

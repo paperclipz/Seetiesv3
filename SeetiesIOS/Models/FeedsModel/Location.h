@@ -22,6 +22,7 @@
 @property(nonatomic,strong)NSString* formatted_address;
 @property(nonatomic,strong)NSDictionary* expense;
 @property(nonatomic,strong)NSString* search_display_name;
+@property(nonatomic, strong)NSString *display_address;
 
 //below here is all inside address_components
 @property(nonatomic,strong)NSString* administrative_area_level_1;
@@ -31,7 +32,6 @@
 @property(nonatomic,strong)NSString* postal_code;
 @property(nonatomic,strong)NSString* route;
 @property(nonatomic,strong)NSString* sublocality;
-@property(nonatomic,strong)NSString* display_address;
 @property(nonatomic,strong)NSString* location_id;
 
 

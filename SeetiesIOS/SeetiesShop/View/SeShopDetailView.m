@@ -245,11 +245,11 @@
         constDealTableTop.constant = 10;
 
         if (self.dealsModel.total_count > 3) {
-            constDealHeight.constant = 52.0f + 52.0f + [SeDealsFeaturedTblCell getHeight]* self.dealsModel.deals.count;
+            constDealHeight.constant = 52.0f + 52.0f + [SeDealsFeaturedTblCell getHeight]* self.dealsModel.arrDeals.count;
 
         }
         else{
-            constDealHeight.constant = 52.0f + [SeDealsFeaturedTblCell getHeight]* self.dealsModel.deals.count;
+            constDealHeight.constant = 52.0f + [SeDealsFeaturedTblCell getHeight]* self.dealsModel.arrDeals.count;
 
         }
 
@@ -401,7 +401,7 @@
     }
     else
     {
-        return self.dealsModel.deals.count;
+        return self.dealsModel.arrDeals.count;
 
     }
 }
@@ -430,7 +430,7 @@
     {
         SeDealsFeaturedTblCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeDealsFeaturedTblCell"];
         
-        DealModel* model = self.dealsModel.deals[indexPath.row];
+        DealModel* model = self.dealsModel.arrDeals[indexPath.row];
         
         [cell initData:model];
         
@@ -448,7 +448,7 @@
     
     if (self.ibDealTableView == tableView) {
         
-        DealModel* model = self.dealsModel.deals[indexPath.row];
+        DealModel* model = self.dealsModel.arrDeals[indexPath.row];
         
         if (self.didSelectDealBlock) {
             self.didSelectDealBlock(model);

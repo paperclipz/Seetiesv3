@@ -43,7 +43,9 @@
     }
     
     SeShopDetailModel *shopModel = self.voucher.voucher_info.shop_info;
-    self.ibDealOutletLbl.text = shopModel.location.formatted_address;
+    NSString *shopName = shopModel.name;
+    NSString *shopAddress = shopModel.location.display_address;
+    self.ibDealOutletLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
     
     @try {
         NSString* imageURL = shopModel.profile_photo[@"picture"];
