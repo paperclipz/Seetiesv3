@@ -500,10 +500,10 @@
 -(void)requestSearch
 {
     if (![self.txtSearch.text isEqualToString:@""]) {
-   //     [self getGoogleSearchPlaces];
+        [self getGoogleSearchPlaces];
     }
     [self getFourSquareSuggestionPlaces];
-  //  [self requestSeetiesSuggestedPlaces];
+    [self requestSeetiesSuggestedPlaces];
 }
 
 @end

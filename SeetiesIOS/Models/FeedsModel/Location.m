@@ -11,6 +11,18 @@
 
 @implementation Location
 
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    for (NSString *key in [self codableProperties])
+    {
+        [copy setValue:[self valueForKey:key] forKey:key];
+    }
+    
+    return copy;
+    
+}
+
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
@@ -79,13 +91,21 @@
 -(void)processLocationFromVenue:(VenueModel*)model
 {
     _lng = model.lng;
+    _lat = model.lat;
     _name = model.name;
    // _place_id = model.place_id;
     _contact_no = model.formattedPhone;
     _link = model.url;
    
    // _distance = model.distance;
-    _formatted_address = model.formattedAddress;
+    
+    if (model.address) {
+        _formatted_address = model.address;
+
+    }
+    else{
+        _formatted_address = model.formattedAddress;
+    }
     _administrative_area_level_1 = model.state;
     _country = model.country;
     _locality = model.city;

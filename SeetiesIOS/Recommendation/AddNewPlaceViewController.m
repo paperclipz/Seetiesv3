@@ -17,6 +17,7 @@
 //@property (strong, nonatomic)SearchLocationDetailModel* gooModel;// google
 //@property (strong, nonatomic)VenueModel* fsModel;// 4square
 @property (strong, nonatomic)DraftModel* postModel;
+@property (strong, nonatomic)DraftModel* storedPostModel;
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *ibMapView;
@@ -32,6 +33,26 @@
 @end
 
 @implementation AddNewPlaceViewController
+
+
+-(BOOL)validateAsCustomLocation
+{
+    if (self.postModel.location.lat != self.storedPostModel.location.lat || self.postModel.location.lng != self.storedPostModel.location.lng) {
+        return YES;
+    }
+    else if (![self.postModel.location.name isEqualToString:self.storedPostModel.location.name])
+    {
+        return YES;
+        
+    }
+    else if (![self.postModel.location.formatted_address isEqualToString:self.storedPostModel.location.formatted_address])
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (IBAction)btnEditLocationClicked:(id)sender {
     
     
@@ -49,6 +70,10 @@
         {
             [self saveData];
             
+            
+            if ([self validateAsCustomLocation]) {
+                self.postModel.location.type = SearchTypeDefault;
+            }
             self.btnPressDoneBlock(self.postModel);
         }
     }
@@ -166,16 +191,17 @@
 -(void)initData:(DraftModel*)model
 {
     self.postModel = [model copy];
+    self.storedPostModel = [model copy];
 }
 
 
 -(void)loadData
 {
-    self.addNewPlaceSubView.txtPlaceName.text = self.postModel.name;
+    self.addNewPlaceSubView.txtPlaceName.text = self.postModel.location.name;
     self.addNewPlaceSubView.txtAddress.text = self.postModel.location.formatted_address;
     self.addNewPlaceSubView.txtURL.text = self.postModel.link;
     self.addNewPlaceSubView.txtPhoneNo.text = self.postModel.location.contact_no;
-   // [self.addNewPlaceSubView.btnCurrency setTitle:self.rModel.currency?self.rModel.currency:USD forState:UIControlStateNormal];
+    [self.addNewPlaceSubView.btnCurrency setTitle:self.postModel.location.currency?self.postModel.location.currency:USD forState:UIControlStateNormal];
     self.addNewPlaceSubView.txtPerPax.text = self.postModel.location.price;
 }
 
@@ -308,6 +334,7 @@ didChangeDragState:(MKAnnotationViewDragState)newState
         _stSearchViewController.didSelectOnLocationBlock = ^(Location* model)
         {
             weakSelf.postModel.location = model;
+            [weakSelf loadData];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
 
         };

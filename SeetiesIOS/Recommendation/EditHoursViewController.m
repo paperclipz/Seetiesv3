@@ -35,6 +35,62 @@
 
 }
 
+-(NSArray*)arrOpeningTime
+{
+    if (!_arrOpeningTime) {
+        
+        NSMutableArray* array = [NSMutableArray new];
+        
+        for (int i = 0; i< 7; i++) {
+            OperatingHoursModel* model = [OperatingHoursModel new];
+            model.open = [self getDayTimeModel:i];
+            model.close = [self getDayTimeModel:i];
+            model.isOpen = NO;
+            [array addObject:model];
+        }
+        _arrOpeningTime = array;
+        
+    }
+    return _arrOpeningTime;
+}
+
+-(DayTimeModel*)getDayTimeModel:(int)day
+{
+    DayTimeModel* model = [DayTimeModel new];
+    model.day = day;
+    model.time = 1200;
+    
+    return model;
+}
+
+-(void)processOperatingHour:(NSArray*)array
+{
+
+    if (![Utils isArrayNull:array]) {
+
+        NSMutableArray* arrayTemp = [[NSMutableArray alloc]initWithArray:self.arrOpeningTime];
+        
+        for (int j = 0; j<array.count; j++) {
+       
+            OperatingHoursModel* modelOutter  = array[j];
+            modelOutter.isOpen = YES;
+            for (int i  = 0; i<arrayTemp.count; i++) {
+                OperatingHoursModel* model  = arrayTemp[i];
+                if (modelOutter.open.day == model.open.day) {
+                    model = modelOutter;
+                   [arrayTemp replaceObjectAtIndex:i withObject:modelOutter];
+                    break;
+                }
+                
+            }
+            
+        }
+        
+        [self.arrOpeningTime removeAllObjects];
+        [self.arrOpeningTime addObjectsFromArray:arrayTemp];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
@@ -52,9 +108,9 @@
 
 -(void)initData:(NSMutableArray*)arrayModel
 {
-
+    NSArray* tempArray;
     if (arrayModel) {
-        NSArray* tempArray = [arrayModel sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        tempArray = [arrayModel sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             
             
             
@@ -70,9 +126,10 @@
 
         }];
         
-        self.arrOpeningTime = [[NSMutableArray alloc]initWithArray:tempArray];
+       // self.arrOpeningTime = [[NSMutableArray alloc]initWithArray:tempArray];
 
     }
+    [self processOperatingHour:tempArray];
 }
 
 -(void)initTableViewWithDelegate:(id)delegate
@@ -117,7 +174,14 @@
     for (int i = 0; i<[self.tableView numberOfRowsInSection:0]; i++) {
 
         EditHourTableViewCell* cell = (EditHourTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        [array addObject:[cell saveData]];
+        
+        OperatingHoursModel* model = [cell saveData];
+        
+        
+        if (model.isOpen) {
+            [array addObject:[cell saveData]];
+
+        }
     }
     return array;
 }

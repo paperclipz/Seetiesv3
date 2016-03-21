@@ -566,14 +566,6 @@
         _addNewPlaceViewController.btnPressDoneBlock = ^(DraftModel* model)
         {
             
-            if ([weakSelf.postModel isEqual:model]) {
-                SLog(@"same");
-            }
-            else{
-                SLog(@"not same");
-
-            }
-            
             weakSelf.postModel = model;
 
             [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:^{
@@ -763,7 +755,7 @@ static id ObjectOrNull(id object)
     locationDict  = @{@"address_components":ObjectOrNull(addressDict),
                       @"name":[self stringOrBlank:self.postModel.location.name],
                       @"formatted_address":[self stringOrBlank:self.postModel.location.formatted_address],
-                      @"type":[self stringOrBlank:self.postModel.type],
+                      @"type":@(self.postModel.location.type),
                       @"rating":@"",
                       @"reference":[self stringOrBlank:self.postModel.location.reference],
                       @"contact_no":[self stringOrBlank:self.postModel.location.contact_no],
@@ -772,7 +764,7 @@ static id ObjectOrNull(id object)
                       @"link":[self stringOrBlank:self.postModel.location.link],
                       @"lat":[self stringOrBlank:self.postModel.location.lat],
                       @"expense":[self dictOrBlank:expensesDict],
-                      @"lng":[self stringOrBlank:self.postModel.location.lat]
+                      @"lng":[self stringOrBlank:self.postModel.location.lng]
                       };
     
 //    NSMutableDictionary* finalLocationDict = [[NSMutableDictionary alloc]initWithDictionary:locationDict];

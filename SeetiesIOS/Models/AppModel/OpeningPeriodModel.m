@@ -9,6 +9,19 @@
 #import "OpeningPeriodModel.h"
 
 @implementation DayTimeModel
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    for (NSString *key in [self codableProperties])
+    {
+        [copy setValue:[self valueForKey:key] forKey:key];
+    }
+    
+    return copy;
+    
+}
+
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
@@ -16,6 +29,18 @@
 @end
 
 @implementation OperatingHoursModel
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    for (NSString *key in [self codableProperties])
+    {
+        [copy setValue:[self valueForKey:key] forKey:key];
+    }
+    
+    return copy;
+    
+}
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
@@ -35,6 +60,22 @@
 @end
 
 @implementation OpeningPeriodModels
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    for (NSString *key in [self codableProperties])
+    {
+        [copy setValue:[self valueForKey:key] forKey:key];
+    }
+    
+    OpeningPeriodModels* model = copy;
+    model.periods = [[NSMutableArray<OperatingHoursModel> alloc]initWithArray:_periods];
+    
+    return copy;
+    
+}
+
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
