@@ -17,6 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDescIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 @property (weak, nonatomic) IBOutlet UILabel *labelDescription;
--(void)initData:(RecommendationModel*)model viewNo:(int)counter;
+-(void)initData:(DraftModel*)model;
 
 @end

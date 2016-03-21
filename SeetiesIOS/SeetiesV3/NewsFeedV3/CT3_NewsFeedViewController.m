@@ -54,6 +54,8 @@
 #import "SearchQuickBrowseListingController.h"
 #import "CT3_SearchListingViewController.h"
 
+#import "SVPullToRefresh.h"
+
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
@@ -444,6 +446,11 @@ static NSCache* heightCache = nil;
 
 -(void)initSelfView
 {
+    
+    [self.ibTableView addPullToRefreshWithActionHandler:^{
+    
+        [self reloadData];
+    }];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     constTopScrollView.constant = TopBarHeight;
@@ -1396,6 +1403,7 @@ static NSCache* heightCache = nil;
         isMiddleOfLoadingServer = YES;
         [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:nil completeHandler:^(id object) {
             isMiddleOfLoadingServer = NO;
+            [self.ibTableView.pullToRefreshView stopAnimating];
             isFirstLoad = NO;
             NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
             self.newsFeedModels = model;
@@ -1427,7 +1435,7 @@ static NSCache* heightCache = nil;
   
 
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
-        
+        [self.ibTableView.pullToRefreshView stopAnimating];
         self.homeModel = [[ConnectionManager dataManager]homeModel];
         
         BOOL needToShowWallet = NO;

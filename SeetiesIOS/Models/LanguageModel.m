@@ -17,7 +17,19 @@
                                                        }];
 }
 
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    for (NSString *key in [self codableProperties])
+    {
+        [copy setValue:[self valueForKey:key] forKey:key];
+    }
+    return copy;
+    
+}
+
 @end
+
 
 @implementation LanguageModels
 

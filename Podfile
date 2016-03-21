@@ -47,7 +47,6 @@ pod 'Crashlytics'
 pod 'NSDate-Time-Ago'
 pod 'MMPickerView', '~> 0.0.1'
 
-
 #pod 'iCarousel'
 #================ debugging =====================#
 #pod 'CocoaLumberjack'

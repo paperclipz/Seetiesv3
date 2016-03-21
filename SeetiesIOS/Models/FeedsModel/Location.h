@@ -8,6 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 @class OpeningPeriodModels;
+@class RecommendationVenueModel;
 
 @interface Location : JSONModel
 
@@ -23,6 +24,8 @@
 @property(nonatomic,strong)NSString* formatted_address;
 @property(nonatomic,strong)NSDictionary* expense;
 @property(nonatomic,strong)NSString* search_display_name;
+@property(nonatomic,strong)NSString<Ignore>* price;
+@property(nonatomic,strong)NSString<Ignore>* currency;
 
 //below here is all inside address_components
 @property(nonatomic,strong)NSString* administrative_area_level_1;
@@ -34,8 +37,12 @@
 @property(nonatomic,strong)NSString* sublocality;
 @property(nonatomic,strong)NSString* display_address;
 @property(nonatomic,strong)NSString* location_id;
-@property(nonatomic,assign)int type;
+@property(nonatomic,assign)int type;//for google type forusquare or seeties
 
 
+
+-(void)processLocationFrom:(RecommendationVenueModel*)model;
+-(void)processLocationFromVenue:(VenueModel*)model;
+-(void)processLocationFromGoogleDetails:(SearchLocationDetailModel*)model;
 
 @end

@@ -12,11 +12,10 @@
 #import "SearchTableViewController.h"
 #import "CAPSPageMenu.h"
 
-typedef void(^SearchResultBlock) (RecommendationVenueModel* venueModel);
+typedef void(^SearchResultBlock) (Location* model);
 
 @interface STSearchViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,LPGoogleFunctionsDelegate>
 -(void)initWithLocation:(CLLocation*)location;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @property(nonatomic,strong)SearchTableViewController* googleSearchTableViewController;
 

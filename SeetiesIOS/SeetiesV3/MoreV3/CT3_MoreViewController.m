@@ -89,7 +89,17 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
     if(section == 0)
-        return LocalisedString(@"Shortcut");
+    {
+        if ([Utils isGuestMode]) {
+            return LocalisedString(@"Get Started");
+
+        }
+        else
+        {
+            return LocalisedString(@"Shortcut");
+
+        }
+    }
     if(section == 1)
         return LocalisedString(@"Others");
     if(section == 2)
@@ -110,23 +120,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.section) {
+            
         case 0://shortcut
-            switch (indexPath.row) {
-                case 0://add place
-                    
-                    break;
-                case 1://recommend
-                    [self gotoRecommendationPage];
-                    break;
-                    break;
-                case 2://draft
-                    [self gotoDraftPage];
-                    break;
-                    
-                default:
-                    break;
+            
+            if ([Utils isGuestMode]) {
+                
+                [Utils showLogin];
             }
+            else
+            {
+                switch (indexPath.row) {
+                    case 0://add place
+                        
+                        break;
+                    case 1://recommend
+                        [self gotoRecommendationPage];
+                        break;
+                    case 2://draft
+                        [self gotoDraftPage];
+                        break;
+                        
+                    default:
+                        break;
+                }
 
+            }
+            
             
             break;
             
@@ -137,6 +156,12 @@
             
             SWITCH(text){
             
+                CASE (@"Verify Phone Number"){
+                    
+                    break;
+                }
+
+                
                 CASE (@"Rate Us"){
                   
                     _ctWebViewController = nil;
@@ -255,14 +280,14 @@
         
         if (![Utils isGuestMode]) {
             NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Add Place",@"Recommend",@"Drafts", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Account Settings", @"Rate Us",@"About",@"Feedback", nil];
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify Phone Number",@"Account Settings", @"Rate Us",@"About",@"Feedback", nil];
             NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
             _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
 
         }
         else
         {
-            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Add Place",@"Recommend",@"Drafts", nil];//@"Notification Settings"
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log In", nil];//@"Notification Settings"
             NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Rate Us",@"About",@"Feedback", nil];
             //NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
             _arrData = @[firstItemsArray,secondItemsArray];
@@ -270,7 +295,6 @@
     }
     return _arrData;
 }
-
 
 -(RecommendationViewController*)recommendationViewController
 {

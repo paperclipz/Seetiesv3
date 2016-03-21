@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "CommonTableViewCell.h"
 
+typedef void (^DealBlock)(DealModel* model);
+
+
 @interface ShopTableViewCell : CommonTableViewCell
 @property (weak, nonatomic) IBOutlet UIView *ibDealView;
 @property (weak, nonatomic) IBOutlet UILabel *lblShopName;
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constBottomHeight;
+@property (copy, nonatomic) DealBlock didSelectDealBlock;
 
 -(void)initData:(SeShopDetailModel*)model;
 

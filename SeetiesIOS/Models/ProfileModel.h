@@ -12,7 +12,7 @@
 #import "PaginationModel.h"
 
 @class DraftModel;
-@interface ProfileModel : Model
+@interface ProfileModel : Model<NSCopying>
 
 @property(nonatomic,assign)int following_count;
 @property(nonatomic,strong)NSString* location;

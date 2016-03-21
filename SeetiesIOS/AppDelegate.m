@@ -165,7 +165,7 @@
     NSSetUncaughtExceptionHandler(&myExceptionHandler);
     
 
-    [self registrationForApi];
+  //  [self registrationForApi];
     [self configureNotificaiton:application];
     [self configureSetup];
  //   [self requestForApiVersion];

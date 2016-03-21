@@ -14,11 +14,12 @@ typedef void (^ImageBlock)(UIImage* image);
 typedef void (^DoneBlock)(NSArray* arrayImages,NSArray* arrDeleteImages);
 
 @interface EditPhotoViewController : CommonViewController<UITableViewDataSource,UITableViewDelegate,DoImagePickerControllerDelegate>
--(void)initData:(RecommendationModel*)model;
+//-(void)initData:(RecommendationModel*)model;
 
 @property(nonatomic,strong)DoImagePickerController* imagePickerViewController;
 
 @property(nonatomic,copy)DoneBlock doneBlock;
 @property(nonatomic,copy)IDBlock editPhotoBackClickedBlock;
+-(void)initData:(DraftModel*)model;
 
 @end

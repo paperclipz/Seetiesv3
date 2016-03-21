@@ -18,8 +18,7 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrEditPhotoList;
-@property (nonatomic, strong) RecommendationModel *recModel;
-@property (nonatomic, strong) RecommendationModel *tempRecModel;
+@property (nonatomic, strong) DraftModel *postModel;
 
 @property(nonatomic,strong)NSMutableArray* sessions;
 @property (nonatomic, copy) ImageBlock processImageBlock;
@@ -109,16 +108,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    arrayDeletedImages= [NSMutableArray new];
+    arrayDeletedImages = [NSMutableArray new];
   }
 
--(void)initData:(RecommendationModel*)model
+-(void)initData:(DraftModel*)model
 {
-    self.recModel = [model copy];
+    self.postModel = [model copy];
     
-    self.arrEditPhotoList = [self.recModel.arrPostImagesList mutableCopy];
-
+    self.arrEditPhotoList = [NSMutableArray arrayWithArray:self.postModel.arrPhotos];
 }
+
+//-(void)initData:(RecommendationModel*)model
+//{
+//    self.recModel = [model copy];
+//    
+//    self.arrEditPhotoList = [self.recModel.arrPostImagesList mutableCopy];
+//
+//}
 -(void)initSelfView
 {
     [self configureTableView];

@@ -12,13 +12,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YmA-0z-CZX" id="Wqc-aQ-XgU">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="279.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeNight1.png" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-yl-BBB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollectionPhotosOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="bWp-Im-Td5">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bWp-Im-Td5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                     </imageView>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTM-Uy-Vif">
@@ -112,7 +112,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CollectionPhotosOverlay.png" width="136" height="91"/>
         <image name="HomeNight1.png" width="1242" height="1080"/>
     </resources>
 </document>

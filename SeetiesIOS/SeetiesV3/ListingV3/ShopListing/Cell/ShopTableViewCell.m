@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property(nonatomic)SeShopDetailModel* ssModel;
+
 @end
 @implementation ShopTableViewCell
 
@@ -90,9 +91,19 @@
     return cell;
     
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [FeaturedTableViewCell getHeight];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DealModel* model = self.ssModel.deals[indexPath.row];
+    
+    if (_didSelectDealBlock) {
+        self.didSelectDealBlock(model);
+    }    
 }
 
 @end

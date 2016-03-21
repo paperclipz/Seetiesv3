@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="517"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="393" height="516.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="393" height="517"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IKq-2B-Ii8">
@@ -82,7 +82,8 @@
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="yhp-yJ-ebM"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="Share" image="NotificationShare.png">
+                                        <color key="tintColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Share" image="GreyShareIcon.png">
                                             <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -212,8 +213,8 @@
     </objects>
     <resources>
         <image name="BigAddIcon.png" width="60" height="60"/>
+        <image name="GreyShareIcon.png" width="22" height="15"/>
         <image name="NoImage.png" width="800" height="800"/>
-        <image name="NotificationShare.png" width="22" height="27"/>
         <image name="YellowCollected.png" width="57" height="57"/>
     </resources>
 </document>

@@ -13,6 +13,7 @@
 #import "SearchSimpleTableViewCell.h"
 #import "DealHeaderView.h"
 #import "UILabel+Exntension.h"
+#import "DealDetailsViewController.h"
 
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
@@ -51,6 +52,7 @@
 @property(nonatomic)SeetiesShopViewController* seetiesShopViewController;
 
 @property(nonatomic)HomeLocationModel* homeLocationModel;
+@property(nonatomic)DealDetailsViewController* dealDetailsViewController;
 
 @property(nonatomic)NSArray* arrSimpleTagList;
 @property(nonatomic)NSArray* arrComplexTagList;
@@ -585,6 +587,17 @@
 
 #pragma mark - Show View
 
+-(void)showDealDetailView:(DealModel*)model
+{
+    _dealDetailsViewController = nil;
+    
+    [self.dealDetailsViewController setDealModel:model];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        
+        [self.dealDetailsViewController setupView];
+    }];
+}
+
 -(void)showSeetieshopView:(SeShopDetailModel*)model
 {
     _seetiesShopViewController = nil;
@@ -627,6 +640,14 @@
 
 #pragma mark - Declaration
 
+-(DealDetailsViewController*)dealDetailsViewController
+{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    
+    return _dealDetailsViewController;
+}
 -(HomeLocationModel*)homeLocationModel
 {
     if (!_homeLocationModel) {
@@ -661,6 +682,10 @@
         _shopListingTableViewController.didSelectShopBlock = ^(SeShopDetailModel* model)
         {
             [weakSelf showSeetieshopView:model];
+        };
+        _shopListingTableViewController.didSelectDealBlock = ^(DealModel* model)
+        {
+            [weakSelf showDealDetailView:model];
         };
     }
     return _shopListingTableViewController;

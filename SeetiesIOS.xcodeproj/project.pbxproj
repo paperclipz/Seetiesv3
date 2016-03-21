@@ -1466,6 +1466,7 @@
 		8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF09101C9038C400918582 /* ComplexTagModel.m */; };
 		8AFF09141C91228F00918582 /* HomeNight2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF09131C91228F00918582 /* HomeNight2.png */; };
 		8AFF09361C92802400918582 /* olivier_demo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF09351C927DD500918582 /* olivier_demo.ttf */; };
+		8AFF288F1C9FF9C7008B66D8 /* AutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF288E1C9FF9C7008B66D8 /* AutoCoding.m */; };
 		C206B7A91C90319C00786128 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206B7A71C90319C00786128 /* TermsViewController.m */; };
 		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
@@ -3484,6 +3485,8 @@
 		8AFF09101C9038C400918582 /* ComplexTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComplexTagModel.m; path = SeetiesIOS/MODELS/ComplexTagModel.m; sourceTree = SOURCE_ROOT; };
 		8AFF09131C91228F00918582 /* HomeNight2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeNight2.png; sourceTree = "<group>"; };
 		8AFF09351C927DD500918582 /* olivier_demo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = olivier_demo.ttf; sourceTree = "<group>"; };
+		8AFF288D1C9FF9C7008B66D8 /* AutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCoding.h; sourceTree = "<group>"; };
+		8AFF288E1C9FF9C7008B66D8 /* AutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCoding.m; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C206B7A61C90319C00786128 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		C206B7A71C90319C00786128 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
@@ -3887,6 +3890,7 @@
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
+				8AFF288C1C9FF9C7008B66D8 /* AutoCoding */,
 				C238E3051C4649AA00570A25 /* NMRangeSlider */,
 				C24AE22A1C43AF0100B96317 /* RangeSlider */,
 				8A988FB61C29049800D0F0EF /* WMATweetView */,
@@ -7482,6 +7486,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		8AFF288C1C9FF9C7008B66D8 /* AutoCoding */ = {
+			isa = PBXGroup;
+			children = (
+				8AFF288D1C9FF9C7008B66D8 /* AutoCoding.h */,
+				8AFF288E1C9FF9C7008B66D8 /* AutoCoding.m */,
+			);
+			path = AutoCoding;
+			sourceTree = "<group>";
+		};
 		C238E3051C4649AA00570A25 /* NMRangeSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -8979,6 +8992,7 @@
 				0BC8A0E91C0D4AD500EB8548 /* SeCollectionView.m in Sources */,
 				8AFF085F1C90379000918582 /* SearchQuickBrowseListingController.m in Sources */,
 				8AD6BE5B1B706CF30040437E /* DoPhotoCell.m in Sources */,
+				8AFF288F1C9FF9C7008B66D8 /* AutoCoding.m in Sources */,
 				8A6BB42C1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationController.m in Sources */,
 				8A114CC01BE73F5D006AE3F0 /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				8A3409451B8AD06A009B66C3 /* UIImage+Reflection.m in Sources */,

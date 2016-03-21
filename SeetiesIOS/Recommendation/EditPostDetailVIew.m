@@ -11,6 +11,8 @@
 
 @interface EditPostDetailVIew()
 @property(nonatomic,strong)RecommendationModel* recModel;
+@property(nonatomic,copy)DraftModel* postModel;
+
 @end
 @implementation EditPostDetailVIew
 #define TITLE_MAX_COUNT 70
@@ -51,28 +53,26 @@
     self.labelDescription.text = LocalisedString(@"Share your thoughts");
 }
 
--(void)initData:(RecommendationModel*)model viewNo:(int)counter
+-(void)initData:(DraftModel*)model
 {
-    self.recModel = model;
+    self.postModel = model;
+
+    @try {
+        
+        Post* pModel = model.arrCustomPost[0];
+        self.txtTitle.text = pModel.title;
+        self.txtDescription.text = pModel.message;
+
+    }
+    @catch (NSException *exception) {
+        
+    }
     
-    self.txtTitle.text = counter==1?self.recModel.postMainTitle:self.recModel.postSecondTitle;
-    self.txtDescription.text = counter==1?self.recModel.postMainDescription:self.recModel.postSecondDescription;
+    
     
     [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtTitle.text.length];
     [self getCounterText:self.lblDescIndicator maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDescription.text.length];
 }
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    
-//    SLog(@"count = %lu",textField.text.length);
-//    NSString *currentString = [textField.text substringWithRange:NSMakeRange(0, textField.text.length>=TITLE_MAX_COUNT?TITLE_MAX_COUNT:textField.text.length)];
-//
-//    textField.text = currentString;
-//    [self getCounterText:self.lblTitleIndicator maxCount:TITLE_MAX_COUNT textInputCount:(int)textField.text.length];
-//
-//    return YES;
-//}
 
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

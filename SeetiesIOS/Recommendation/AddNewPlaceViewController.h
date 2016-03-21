@@ -15,8 +15,7 @@
 
 @property(nonatomic,strong)AddNewPlaceSubView* addNewPlaceSubView;
 @property(nonatomic,strong)EditHoursViewController* editHoursViewController;
-@property(nonatomic,copy)IDBlock btnPressDoneBlock;
-
--(void)initData:(RecommendationVenueModel*)model;
+@property(nonatomic,copy)DraftModelBlock btnPressDoneBlock;
+-(void)initData:(DraftModel*)model;
 
 @end

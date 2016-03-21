@@ -246,13 +246,14 @@
         case SearchListingTypeShop:
         {
             ShopTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ShopTableViewCell"];
-                        
+            
             SeShopDetailModel* model = self.arrList[indexPath.row];
+                
+            cell.didSelectDealBlock = self.didSelectDealBlock;
             
             NSArray* tempArray;
             if (model.deals.count>3) {
                 tempArray = [model.deals subarrayWithRange:NSMakeRange(0, 3)];
-                
                 
             }
             else{

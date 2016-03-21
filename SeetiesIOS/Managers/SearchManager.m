@@ -180,7 +180,6 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
     if (self.searchManagerFailBlock) {
         self.searchManagerFailBlock(@"No GPS FROM DEVICE");
     }
-
 }
 
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock

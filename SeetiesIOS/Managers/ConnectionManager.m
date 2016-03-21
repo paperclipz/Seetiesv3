@@ -280,7 +280,7 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
-    [LoadingManager show];
+//    [LoadingManager show];
     
     NSString* fullURL;
     if (appendString) {
@@ -332,7 +332,15 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         if (errorBlock) {
-            errorBlock(error);
+           
+            @try {
+                errorBlock(error);
+
+            }
+            @catch (NSException *exception) {
+                
+            }
+           
         }
         
         [LoadingManager hide];
@@ -732,7 +740,14 @@
     
     if (hasError) {
         if (errorBlock) {
-            errorBlock(dict);
+            @try {
+                errorBlock(dict[@"message"]);
+
+            }
+            @catch (NSException *exception) {
+                
+            }
+           
         }
 
     }
@@ -775,13 +790,14 @@
 {
     
     [LoadingManager hide];
-    
+    NSError* error;
+
     //make checking for status fail or success here
     switch (type) {
         case ServerRequestTypeLogin:
         {
             NSDictionary* dict = obj[@"data"];
-            self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+            self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:&error];
             [self processLogin];
             
         }
@@ -792,7 +808,7 @@
         {
             NSDictionary* dict = obj[@"data"];
             
-            self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+            self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:&error];
             [self processLogin];
             
         }
@@ -802,7 +818,7 @@
         {
             NSDictionary* dict = obj[@"data"];
             
-            self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+            self.dataManager.userLoginProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:&error];
             [self processLogin];
             
         }
@@ -825,7 +841,7 @@
         {
             
             NSDictionary* dict = obj[@"data"];
-            self.dataManager.newsFeedModels = [[NewsFeedModels alloc]initWithDictionary:dict error:nil];
+            self.dataManager.newsFeedModels = [[NewsFeedModels alloc]initWithDictionary:dict error:&error];
             
             
             
@@ -834,12 +850,12 @@
             break;
             
         case ServerRequestTypeGetLanguage:
-            self.dataManager.languageModels = [[LanguageModels alloc]initWithDictionary:obj error:nil];
+            self.dataManager.languageModels = [[LanguageModels alloc]initWithDictionary:obj error:&error];
             break;
             
         case ServerRequestTypeGetExplore:
             
-            self.dataManager.exploreCountryModels = [[ExploreCountryModels alloc]initWithDictionary:obj error:nil];
+            self.dataManager.exploreCountryModels = [[ExploreCountryModels alloc]initWithDictionary:obj error:&error];
             break;
             
         case ServerRequestType4SquareSearch:
@@ -849,20 +865,20 @@
             //  self.dataManager.fourSquareVenueModel = [converter convertToObjects:venues];
             
             // NSArray *venues = [obj valueForKeyPath:@"response.groups.items.venue"];
-            self.dataManager.fourSquareVenueModel = [[FourSquareModel alloc]initWithDictionary:obj error:nil];
+            self.dataManager.fourSquareVenueModel = [[FourSquareModel alloc]initWithDictionary:obj error:&error];
             
         }
             break;
             
         case ServerRequestTypeGoogleSearch:
-            self.dataManager.googleSearchModel = [[SearchModel alloc]initWithDictionary:obj error:nil];
+            self.dataManager.googleSearchModel = [[SearchModel alloc]initWithDictionary:obj error:&error];
             
             break;
             
         case ServerRequestTypeGoogleSearchWithDetail:
         {
             NSDictionary* dict = obj[@"result"];
-            self.dataManager.googleSearchDetailModel = [[SearchLocationDetailModel alloc]initWithDictionary:dict error:nil];
+            self.dataManager.googleSearchDetailModel = [[SearchLocationDetailModel alloc]initWithDictionary:dict error:&error];
             [self.dataManager.googleSearchDetailModel process];
         }
             break;
@@ -909,8 +925,12 @@
         case ServerRequestTypePostSaveDraft:
         {
             NSDictionary* dict = obj[@"data"];
-            self.dataManager.savedDraftModel = [[DraftModel alloc]initWithDictionary:dict error:nil];
+            
+            self.dataManager.savedDraftModel = [[DraftModel alloc]initWithDictionary:dict error:&error];
+            
+            [self.dataManager.savedDraftModel customProcess];
             [self.dataManager.savedDraftModel process];
+
         }
             break;
             

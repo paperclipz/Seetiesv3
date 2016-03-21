@@ -9,7 +9,7 @@
 #import "RecommendationViewController.h"
 @interface RecommendationViewController ()
 
-@property(nonatomic,strong)RecommendationModel* recommendModel;
+@property(nonatomic,strong)DraftModel* postModel;
 @property(nonatomic,strong)UIViewController* sender;
 
 @end
@@ -31,8 +31,7 @@
 
 -(void)initData:(int)type sender:(id)sender
 {
-    
-    _recommendModel = nil;
+    _postModel = nil;
     self.sender =sender;
     switch (type) {
         case 1:
@@ -115,14 +114,14 @@
 -(void)processModelData:(NSArray*)arrAssets
 {
     
-    self.recommendModel.arrPostImagesList = nil;
-    self.recommendModel.arrPostImagesList  = [NSMutableArray new];
+    self.postModel.arrPhotos = nil;
+    self.postModel.arrPhotos  = [NSMutableArray<PhotoModel> new];
     for (int i = 0; i<arrAssets.count; i++) {
         
         PhotoModel* model = [PhotoModel new];
         model.image = [ASSETHELPER getImageFromAsset:arrAssets[i] type:ASSET_PHOTO_SCREEN_SIZE];
         
-        [self.recommendModel.arrPostImagesList addObject:model];
+        [self.postModel.arrPhotos addObject:model];
     }
 }
 
@@ -137,7 +136,9 @@
 -(void)showEditPostView
 {
     _editPostViewController = nil;
-    [self.editPostViewController initData:self.recommendModel];
+//    DraftModel* postModel = [[DraftModel alloc]init];
+//    [postModel.location processLocationFrom:self.recommendModel.reccomendVenueModel];
+    [self.editPostViewController initDataDraft:self.postModel];
     [self.sender presentViewController:self.editPostViewController animated:YES completion:^{
         [self resetView];
     }];
@@ -168,15 +169,11 @@
         _stSearchViewController = [STSearchViewController new];
         [_stSearchViewController setViewNew];
         __block typeof (self)weakSelf = self;
-        _stSearchViewController.didSelectOnLocationBlock = ^(RecommendationVenueModel* model)
+        _stSearchViewController.didSelectOnLocationBlock = ^(Location* model)
         {
-            
-            weakSelf.recommendModel.reccomendVenueModel = model;
-            [weakSelf dismissViewControllerAnimated:YES completion:^{
-                [weakSelf showEditPostView];
-                
-            }];
+            weakSelf.postModel.location = model;
         };
+
         
         _stSearchViewController.btnAddNewPlaceBlock = ^(id object)
         {
@@ -236,11 +233,10 @@
         
         __weak typeof (self)weakSelf = self;
         _addNewPlaceViewController = [AddNewPlaceViewController new];
-        _addNewPlaceViewController.btnPressDoneBlock = ^(id object)
+        _addNewPlaceViewController.btnPressDoneBlock = ^(DraftModel* model)
         {
-            RecommendationVenueModel* temp = (RecommendationVenueModel*)object;
             
-            weakSelf.recommendModel.reccomendVenueModel = temp;
+            weakSelf.postModel = model;
 
             [weakSelf.navRecommendationViewController dismissViewControllerAnimated:YES completion:^{
                 [weakSelf showEditPostView];
@@ -267,13 +263,13 @@
     _stSearchViewController = nil;
 }
 
--(RecommendationModel*)recommendModel
+-(DraftModel*)postModel
 {
-    if (!_recommendModel) {
-        _recommendModel = [RecommendationModel new];
+    if (!_postModel) {
+        _postModel = [DraftModel new];
     }
     
-    return _recommendModel;
+    return _postModel;
 }
 
 

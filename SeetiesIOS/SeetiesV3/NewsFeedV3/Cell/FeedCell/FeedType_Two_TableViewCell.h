@@ -10,5 +10,6 @@
 #import "CTFeedModel.h"
 
 @interface FeedType_Two_TableViewCell : CommonTableViewCell
+-(void)initData:(DraftModel*)model;
 
 @end

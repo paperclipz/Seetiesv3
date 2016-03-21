@@ -73,6 +73,8 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
+#import "AutoCoding.h"
+
 #endif
 
 

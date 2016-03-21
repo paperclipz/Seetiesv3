@@ -20,6 +20,8 @@
 #define API_VERSION @"3.0"
 #define API_VERION_URL @"v3.0"
 #define IS_SIMULATOR NO
+typedef void (^DraftModelBlock)(DraftModel* model);
+
 
 typedef void (^IDBlock)(id object);
 typedef void (^IntBlock)(int count);

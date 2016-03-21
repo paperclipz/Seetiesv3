@@ -50,9 +50,8 @@
     [self initSelfView];
     self.sManager = [SearchManager Instance];
 
-    if (!self.location) {
-        self.location = [self.sManager getAppLocation];
-    }
+    self.location = [self.sManager getAppLocation];
+    
     [self requestSearch];
 }
 
@@ -403,23 +402,25 @@
 {
     
     VenueModel* model = [[DataManager Instance] fourSquareVenueModel].items[indexPath.row];
-    RecommendationVenueModel* recommendationVenueModel = [RecommendationVenueModel new];
-    [recommendationVenueModel processFourSquareModel:model];
-    recommendationVenueModel.searchType = SearchTypeFourSquare;
+    
+    Location* lModel = [Location new];
+    
+    [lModel processLocationFromVenue:model];
+    lModel.type = SearchTypeFourSquare;
 
     if (self.didSelectOnLocationBlock) {
-        self.didSelectOnLocationBlock(recommendationVenueModel);
+        self.didSelectOnLocationBlock(lModel);
     }
 }
 
 -(void)processDataForSeetiesLocation:(NSIndexPath*)indexPath
 {
     Location* model = self.arrSeetiesList[indexPath.row];
-    RecommendationVenueModel* recommendationVenueModel = [RecommendationVenueModel new];
-    recommendationVenueModel.location = model;
-    recommendationVenueModel.searchType = SearchTypeSeeties;
+    
+    
+    model.type = SearchTypeSeeties;
     if (self.didSelectOnLocationBlock) {
-        self.didSelectOnLocationBlock(recommendationVenueModel);
+        self.didSelectOnLocationBlock(model);
     }
 }
 
@@ -434,14 +435,13 @@
         
         SearchLocationDetailModel* googleSearchDetailModel = [[DataManager Instance] googleSearchDetailModel];
 
-        RecommendationVenueModel* recommendationVenueModel  = [RecommendationVenueModel new];
         
-        [recommendationVenueModel processGoogleModel:googleSearchDetailModel];
-
-        recommendationVenueModel.searchType = SearchTypeGoogle;
+        Location* lModel = [Location new];
+        [lModel processLocationFromGoogleDetails:googleSearchDetailModel];
+        lModel.type = SearchTypeGoogle;
         
         if (self.didSelectOnLocationBlock) {
-            self.didSelectOnLocationBlock(recommendationVenueModel);
+            self.didSelectOnLocationBlock(lModel);
         }
         
     } errorBlock:nil];
@@ -481,7 +481,7 @@
 {
 
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
-                           @"keyword" : @"rekindle",
+                           @"keyword" : self.txtSearch.text,
                            @"limit" : @(10),
                            };
     
@@ -502,8 +502,8 @@
     if (![self.txtSearch.text isEqualToString:@""]) {
    //     [self getGoogleSearchPlaces];
     }
-    //[self getFourSquareSuggestionPlaces];
-    [self requestSeetiesSuggestedPlaces];
+    [self getFourSquareSuggestionPlaces];
+  //  [self requestSeetiesSuggestedPlaces];
 }
 
 @end

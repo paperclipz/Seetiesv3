@@ -59,6 +59,7 @@ PODS:
   - MMPickerView (0.0.1)
   - MZAppearance (1.1.6)
   - NSDate-Time-Ago (1.0.1)
+  - PullToBounce (0.0.3)
   - PureLayout (3.0.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
@@ -94,6 +95,7 @@ DEPENDENCIES:
   - MMPickerView (~> 0.0.1)
   - MZAppearance
   - NSDate-Time-Ago
+  - PullToBounce
   - PureLayout
   - SDWebImage
   - STPopup
@@ -138,6 +140,7 @@ SPEC CHECKSUMS:
   MMPickerView: 6ba6bd5d0ef1fd60372d3f5e4fa80ad4237a86a0
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
+  PullToBounce: d2c6300b92fa124f7133e0ca0088bbf7a7059194
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   STPopup: f32dc6a944b57311b6d2d6e3afd789f83a0c4cbc

@@ -12,6 +12,7 @@ typedef void (^DidSelectIDBlock)(NSString *userid);
 typedef void (^DidSelectCollectionBlock)(CollectionModel* model);
 typedef void (^DidSelectDraftBlock)(DraftModel* model);
 typedef void (^DidSelectShopBlock)(SeShopDetailModel* model);
+typedef void (^DealBlock)(DealModel* model);
 
 @interface SearchLTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 
@@ -20,6 +21,7 @@ typedef void (^DidSelectShopBlock)(SeShopDetailModel* model);
 @property(nonatomic,copy)DidSelectShopBlock didSelectShopBlock;
 @property(nonatomic,copy)DidSelectCollectionBlock didSelectDisplayCollectionRowBlock;
 @property(nonatomic,copy)DidSelectCollectionBlock didSelectEditDisplayCollectionRowBlock;
+@property(nonatomic,copy)DealBlock didSelectDealBlock;
 
 @property(nonatomic,copy)DidSelectDraftBlock didSelectCollectionOpenViewBlock;
 @property(nonatomic,assign)SearchListingType searchListingType;

@@ -14,9 +14,9 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *lblIndicator;
-@property (strong, nonatomic)SearchLocationDetailModel* gooModel;// google
-@property (strong, nonatomic)VenueModel* fsModel;// 4square
-@property (strong, nonatomic)RecommendationVenueModel* rModel;
+//@property (strong, nonatomic)SearchLocationDetailModel* gooModel;// google
+//@property (strong, nonatomic)VenueModel* fsModel;// 4square
+@property (strong, nonatomic)DraftModel* postModel;
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *ibMapView;
@@ -49,7 +49,7 @@
         {
             [self saveData];
             
-            self.btnPressDoneBlock(self.rModel);
+            self.btnPressDoneBlock(self.postModel);
         }
     }
 }
@@ -129,7 +129,7 @@
             
             [weakSelf saveData];
             _editHoursViewController = nil;
-            [weakSelf.editHoursViewController initData:weakSelf.rModel.arrOperatingHours];
+            [weakSelf.editHoursViewController initData:weakSelf.postModel.location.opening_hours.periods];
             [weakSelf presentViewController:weakSelf.editHoursViewController animated:YES completion:^{
             }];
         };
@@ -163,27 +163,26 @@
     [self.annotation setCoordinate:self.region.center];
 
 }
-
--(void)initData:(RecommendationVenueModel*)model
+-(void)initData:(DraftModel*)model
 {
-    self.rModel = model;
-
+    self.postModel = [model copy];
 }
+
 
 -(void)loadData
 {
-    self.addNewPlaceSubView.txtPlaceName.text = self.rModel.name;
-    self.addNewPlaceSubView.txtAddress.text = self.rModel.formattedAddress;
-    self.addNewPlaceSubView.txtURL.text = self.rModel.url;
-    self.addNewPlaceSubView.txtPhoneNo.text = self.rModel.formattedPhone;
-    [self.addNewPlaceSubView.btnCurrency setTitle:self.rModel.currency?self.rModel.currency:USD forState:UIControlStateNormal];
-    self.addNewPlaceSubView.txtPerPax.text = self.rModel.price;
+    self.addNewPlaceSubView.txtPlaceName.text = self.postModel.name;
+    self.addNewPlaceSubView.txtAddress.text = self.postModel.location.formatted_address;
+    self.addNewPlaceSubView.txtURL.text = self.postModel.link;
+    self.addNewPlaceSubView.txtPhoneNo.text = self.postModel.location.contact_no;
+   // [self.addNewPlaceSubView.btnCurrency setTitle:self.rModel.currency?self.rModel.currency:USD forState:UIControlStateNormal];
+    self.addNewPlaceSubView.txtPerPax.text = self.postModel.location.price;
 }
 
 -(void)reloadData
 {
    
-    [self refreshMapViewWithLatitude:[self.rModel.lat doubleValue] longtitude:[self.rModel.lng doubleValue]];
+    [self refreshMapViewWithLatitude:[self.postModel.location.lat doubleValue] longtitude:[self.postModel.location.lng doubleValue]];
 
 }
 
@@ -225,8 +224,8 @@
         _mapViewController = [MapViewController new];
         _mapViewController.viewDidDismissBlock = ^(MKCoordinateRegion region)
         {
-            weakSelf.rModel.lat = [@(region.center.latitude) stringValue];
-            weakSelf.rModel.lng = [@(region.center.longitude) stringValue];
+            weakSelf.postModel.location.lat = [@(region.center.latitude) stringValue];
+            weakSelf.postModel.location.lng = [@(region.center.longitude) stringValue];
         };
     }
     
@@ -284,13 +283,6 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 */
 
 #pragma  mark - Declaration
--(RecommendationVenueModel*)rModel
-{
-    if (!_rModel) {
-        _rModel = [RecommendationVenueModel new];
-    }
-    return _rModel;
-}
 
 -(EditHoursViewController*)editHoursViewController
 {
@@ -300,7 +292,7 @@ didChangeDragState:(MKAnnotationViewDragState)newState
         _editHoursViewController = [EditHoursViewController new];
         _editHoursViewController.backBlock = ^(NSArray* arrayOpeningHours)
         {
-            weakSelf.rModel.arrOperatingHours = [arrayOpeningHours mutableCopy];
+            weakSelf.postModel.location.opening_hours.periods = [arrayOpeningHours mutableCopy];
         
         };
     }
@@ -313,9 +305,9 @@ didChangeDragState:(MKAnnotationViewDragState)newState
         _stSearchViewController = [STSearchViewController new];
         [_stSearchViewController setViewEdit];
         __weak typeof (self)weakSelf = self;
-        _stSearchViewController.didSelectOnLocationBlock = ^(RecommendationVenueModel* model)
+        _stSearchViewController.didSelectOnLocationBlock = ^(Location* model)
         {
-            weakSelf.rModel = model;
+            weakSelf.postModel.location = model;
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
 
         };
@@ -326,18 +318,19 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 #pragma mark - Save Data
 -(void)saveData
 {
-    self.rModel.formattedAddress =  self.addNewPlaceSubView.txtAddress.text;
-    self.rModel.formattedPhone =  self.addNewPlaceSubView.txtPhoneNo.text;
-    self.rModel.name =  self.addNewPlaceSubView.txtPlaceName.text;
-    self.rModel.url =  self.addNewPlaceSubView.txtURL.text;
-    self.rModel.price =  self.addNewPlaceSubView.txtPerPax.text;
+    
+    self.postModel.location.formatted_address =  self.addNewPlaceSubView.txtAddress.text;
+    self.postModel.location.contact_no =  self.addNewPlaceSubView.txtPhoneNo.text;
+    self.postModel.location.name =  self.addNewPlaceSubView.txtPlaceName.text;
+    self.postModel.location.link =  self.addNewPlaceSubView.txtURL.text;
+    self.postModel.location.price =  self.addNewPlaceSubView.txtPerPax.text;
     
     if ([self.addNewPlaceSubView.btnCurrency.titleLabel.text isEqualToString:@"$"]) {
-        self.rModel.currency = @"Currency";
+        self.postModel.location.currency = @"Currency";
 
     }
     else{
-        self.rModel.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;
+        self.postModel.location.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;
 
     }
 }
