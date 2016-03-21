@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchLocationAreaCell : CommonTableViewCell
-
--(void)setAreaTitle:(NSString*)title;
--(void)setHasDeals:(BOOL)hasDeals;
+-(void)initCellWithPlace:(PlaceModel*)placeModel;
 @end

@@ -15,5 +15,6 @@
 @property(nonatomic,strong)NSString* latitude;
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* place_id;
+@property(nonatomic,assign)BOOL has_featured_deals;
 
 @end

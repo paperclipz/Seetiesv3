@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,16 +16,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gum-mc-vM9" userLabel="area title">
-                        <rect key="frame" x="8" y="11" width="271" height="21"/>
+                        <rect key="frame" x="8" y="11" width="38" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="jhQ-Ns-xIW"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="YSs-Zd-3xT">
-                        <rect key="frame" x="287" y="10" width="25" height="25"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SelectLocationDealsIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="YSs-Zd-3xT">
+                        <rect key="frame" x="279" y="10" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="25" id="Ecg-vs-x20"/>
                             <constraint firstAttribute="height" constant="25" id="OFT-ne-iBU"/>
@@ -42,11 +42,11 @@
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="gum-mc-vM9" secondAttribute="trailing" constant="60" id="1Ol-KF-vVX"/>
                     <constraint firstAttribute="trailingMargin" secondItem="SL0-zc-fqY" secondAttribute="trailing" id="LBJ-SF-sZH"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="YSs-Zd-3xT" secondAttribute="trailing" id="VwO-10-WrU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="YSs-Zd-3xT" secondAttribute="trailing" constant="8" id="VwO-10-WrU"/>
                     <constraint firstItem="YSs-Zd-3xT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZCX-sd-Gcz"/>
                     <constraint firstAttribute="bottomMargin" secondItem="SL0-zc-fqY" secondAttribute="bottom" constant="-8" id="dPB-hs-Kx1"/>
                     <constraint firstItem="gum-mc-vM9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="gkw-YR-qfh"/>
-                    <constraint firstItem="YSs-Zd-3xT" firstAttribute="leading" secondItem="gum-mc-vM9" secondAttribute="trailing" constant="8" id="grD-75-wGU"/>
+                    <constraint firstItem="YSs-Zd-3xT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gum-mc-vM9" secondAttribute="trailing" constant="8" id="grD-75-wGU"/>
                     <constraint firstItem="SL0-zc-fqY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="mCc-oY-2WN"/>
                     <constraint firstItem="gum-mc-vM9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pIF-dh-5gc"/>
                 </constraints>
@@ -59,10 +59,11 @@
             <connections>
                 <outlet property="ibAreaTitle" destination="gum-mc-vM9" id="wIq-3c-MhI"/>
                 <outlet property="ibDealsIcon" destination="YSs-Zd-3xT" id="PyL-BK-UoZ"/>
+                <outlet property="ibDealsIconWidthConstraint" destination="Ecg-vs-x20" id="EeL-ZU-5Dj"/>
             </connections>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Icon.png" width="57" height="57"/>
+        <image name="SelectLocationDealsIcon.png" width="24" height="25"/>
     </resources>
 </document>

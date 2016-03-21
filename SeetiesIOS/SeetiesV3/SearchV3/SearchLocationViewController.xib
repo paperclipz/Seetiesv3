@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -30,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKO-Xq-ilq">
-                            <rect key="frame" x="0.0" y="12" width="320" height="36"/>
+                            <rect key="frame" x="0.0" y="17" width="320" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="nOG-FR-PAP"/>
                             </constraints>
@@ -49,7 +49,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dui-Op-7zL" userLabel="search view">
-                            <rect key="frame" x="15" y="67" width="289" height="30"/>
+                            <rect key="frame" x="15" y="59" width="289" height="30"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search location..." minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="yyv-H9-ABN">
                                     <rect key="frame" x="48" y="0.0" width="233" height="30"/>
@@ -83,7 +83,7 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="blg-GC-v3s" userLabel="close image">
-                            <rect key="frame" x="0.0" y="10" width="40" height="40"/>
+                            <rect key="frame" x="0.0" y="15" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Pwi-uE-xIB"/>
                                 <constraint firstAttribute="width" constant="40" id="uLM-Zr-G1e"/>
@@ -93,10 +93,10 @@
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="blg-GC-v3s" firstAttribute="leading" secondItem="EUG-6q-JiX" secondAttribute="leading" id="3Bl-Vp-slq"/>
-                        <constraint firstItem="blg-GC-v3s" firstAttribute="top" secondItem="EUG-6q-JiX" secondAttribute="top" constant="10" id="7nK-sN-aiJ"/>
+                        <constraint firstItem="blg-GC-v3s" firstAttribute="top" secondItem="EUG-6q-JiX" secondAttribute="top" constant="15" id="7nK-sN-aiJ"/>
                         <constraint firstItem="HKO-Xq-ilq" firstAttribute="leading" secondItem="blg-GC-v3s" secondAttribute="trailing" constant="10" id="Aj4-F5-gyG"/>
                         <constraint firstAttribute="trailing" secondItem="HKO-Xq-ilq" secondAttribute="trailing" id="CB5-Fs-upk"/>
-                        <constraint firstItem="dui-Op-7zL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="blg-GC-v3s" secondAttribute="bottom" constant="8" id="Ead-vY-xff"/>
+                        <constraint firstItem="dui-Op-7zL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="blg-GC-v3s" secondAttribute="bottom" constant="4" id="Ead-vY-xff"/>
                         <constraint firstItem="HKO-Xq-ilq" firstAttribute="centerY" secondItem="blg-GC-v3s" secondAttribute="centerY" id="Hzs-77-oEd"/>
                         <constraint firstItem="dui-Op-7zL" firstAttribute="leading" secondItem="EUG-6q-JiX" secondAttribute="leading" constant="15" id="MUE-Vp-3s6"/>
                         <constraint firstAttribute="trailing" secondItem="dui-Op-7zL" secondAttribute="trailing" constant="16" id="N1D-L1-Hls"/>
@@ -106,7 +106,7 @@
                         <constraint firstItem="HKO-Xq-ilq" firstAttribute="leading" secondItem="EUG-6q-JiX" secondAttribute="leading" id="bKA-gi-4OU"/>
                         <constraint firstAttribute="height" constant="105" id="iNi-JU-GGA"/>
                         <constraint firstItem="HKO-Xq-ilq" firstAttribute="leading" secondItem="EUG-6q-JiX" secondAttribute="leading" id="jVE-oI-uLz"/>
-                        <constraint firstAttribute="bottom" secondItem="dui-Op-7zL" secondAttribute="bottom" constant="8" id="wxT-jA-7FE"/>
+                        <constraint firstAttribute="bottom" secondItem="dui-Op-7zL" secondAttribute="bottom" constant="16" id="wxT-jA-7FE"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
