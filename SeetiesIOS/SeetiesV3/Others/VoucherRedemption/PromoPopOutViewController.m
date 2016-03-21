@@ -144,20 +144,20 @@
     _viewType = viewType;
     
     switch (self.viewType) {
-        case PopOutViewTypeEnterPromo:
-        case PopOutViewTypeVerified:
-        case PopOutViewTypeConfirmPhone:
-        case PopOutViewTypeChangeVerifiedPhone:
-        case PopOutViewTypeRedemptionSuccessful:
-        case PopOutViewTypeThankYou:
-            self.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 270);
-            break;
-            
-        case PopOutViewTypeError:
-        case PopOutViewTypeEnterVerification:
-        case PopOutViewTypeEnterPhone:
-            self.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 208);
-            break;
+//        case PopOutViewTypeEnterPromo:
+//        case PopOutViewTypeVerified:
+//        case PopOutViewTypeConfirmPhone:
+//        case PopOutViewTypeChangeVerifiedPhone:
+//        case PopOutViewTypeRedemptionSuccessful:
+//        case PopOutViewTypeThankYou:
+//            self.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 270);
+//            break;
+//            
+//        case PopOutViewTypeError:
+//        case PopOutViewTypeEnterVerification:
+//        case PopOutViewTypeEnterPhone:
+//            self.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 208);
+//            break;
             
         default:
             self.contentSizeInPopup = CGSizeMake(300, 400);
@@ -271,11 +271,11 @@
                 
                 if (dealTitlesRect.size.height > 55) {
                     self.ibDealTitleScrollViewHeightConstraint.constant = 55;
-                    self.ibDealTitleContentHeightConstraint.constant = dealTitlesRect.size.height + padding;
+                    self.ibDealTitleContentHeightConstraint.constant = dealTitlesRect.size.height;
                 }
                 else{
-                    self.ibDealTitleScrollViewHeightConstraint.constant = dealTitlesRect.size.height + padding;
-                    self.ibDealTitleContentHeightConstraint.constant = dealTitlesRect.size.height + padding;
+                    self.ibDealTitleScrollViewHeightConstraint.constant = dealTitlesRect.size.height;
+                    self.ibDealTitleContentHeightConstraint.constant = dealTitlesRect.size.height;
                 }
             }
             

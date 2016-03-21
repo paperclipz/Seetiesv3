@@ -51,7 +51,7 @@
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREE!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmi-nb-cHd" userLabel="discount ">
-                                        <rect key="frame" x="16" y="37" width="36" height="16"/>
+                                        <rect key="frame" x="16" y="37" width="35.5" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="7rM-CD-QL9"/>
                                         </constraints>
@@ -264,9 +264,13 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view hidden="YES" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4G-pg-KG1" userLabel="black shade">
+                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4G-pg-KG1" userLabel="black shade view">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="259"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fV9-sr-WSl" userLabel="black shade">
+                                        <rect key="frame" x="0.0" y="0.0" width="480" height="259"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </imageView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hq3-hy-d61" userLabel="center view">
                                         <rect key="frame" x="165" y="55" width="150" height="150"/>
                                         <subviews>
@@ -305,10 +309,14 @@
                                         </variation>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Hq3-hy-d61" firstAttribute="centerY" secondItem="B4G-pg-KG1" secondAttribute="centerY" id="HUd-NE-TGL"/>
                                     <constraint firstItem="Hq3-hy-d61" firstAttribute="centerX" secondItem="B4G-pg-KG1" secondAttribute="centerX" id="QEN-ef-qoc"/>
+                                    <constraint firstAttribute="bottom" secondItem="fV9-sr-WSl" secondAttribute="bottom" id="fsI-6W-352"/>
+                                    <constraint firstItem="fV9-sr-WSl" firstAttribute="top" secondItem="B4G-pg-KG1" secondAttribute="top" id="jPA-mh-HW9"/>
+                                    <constraint firstItem="fV9-sr-WSl" firstAttribute="leading" secondItem="B4G-pg-KG1" secondAttribute="leading" id="niL-o1-2IU"/>
+                                    <constraint firstAttribute="trailing" secondItem="fV9-sr-WSl" secondAttribute="trailing" id="uPk-PH-fCc"/>
                                 </constraints>
                             </view>
                         </subviews>

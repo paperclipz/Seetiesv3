@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *ibHeaderImageScrollView;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderImageContentView;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderBlackShadeView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *ibHeaderBlackShadeIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderBlackShadeStatus;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderNormalExpiryView;
@@ -629,7 +630,7 @@
 -(void)updateFooterView{
     self.ibFooterView.hidden = NO;
     NSString *voucherStatus = self.dealModel.voucher_info.status;
-    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
+    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE] || [voucherStatus isEqualToString:VOUCHER_STATUS_DELETED]) {
         if (self.dealModel.total_available_vouchers == 0) {
             [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         }
@@ -716,7 +717,7 @@
     }
     
     NSString *voucherStatus = self.dealModel.voucher_info.status;
-    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
+    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE] || [voucherStatus isEqualToString:VOUCHER_STATUS_DELETED]) {
         if (self.dealModel.total_available_vouchers == 0) {
             return;
         }

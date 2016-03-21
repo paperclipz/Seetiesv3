@@ -69,6 +69,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)updateFooterView{
+    BOOL enableFilter = NO;
+    for (FilterCategoryModel *filterCategory in self.filtersModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeCat:
+            {
+                for (FilterModel *filterModel in filterCategory.filtersArray) {
+                    if (filterModel.isSelected) {
+                        enableFilter = YES;
+                        break;
+                    }
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    if (enableFilter) {
+        self.ibApplyFilterBtn.enabled = YES;
+        self.ibApplyFilterBtn.backgroundColor = DEVICE_COLOR;
+    }
+    else{
+        self.ibApplyFilterBtn.enabled = NO;
+        self.ibApplyFilterBtn.backgroundColor = [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1];
+    }
+}
+
 /*
 #pragma mark - Navigation
 
@@ -258,6 +288,10 @@
         FilterModel *filter = filterCategory.filtersArray[row];
         filter.isSelected = !filter.isSelected;
         [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+        
+        if (self.filtersModel.filterViewType == FilterViewTypeShop || self.filtersModel.filterViewType == FilterViewTypeCollection) {
+            [self updateFooterView];
+        }
     }
     else if (filterCategory.filterCategoryType == FilterTypeSort){
         for (int i=0; i<filterCategory.filtersArray.count; i++) {

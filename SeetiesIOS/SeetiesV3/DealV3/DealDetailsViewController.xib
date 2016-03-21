@@ -30,7 +30,7 @@
                 <outlet property="ibFooterView" destination="3km-eS-J0I" id="DTM-2A-d61"/>
                 <outlet property="ibHeaderBlackShadeIcon" destination="4ny-e7-bMG" id="EGV-6f-XDg"/>
                 <outlet property="ibHeaderBlackShadeStatus" destination="bh1-Ok-EKi" id="bWZ-aG-Sft"/>
-                <outlet property="ibHeaderBlackShadeView" destination="ITt-Zd-lkb" id="HVq-zw-XYI"/>
+                <outlet property="ibHeaderBlackShadeView" destination="ITt-Zd-lkb" id="Z09-U5-XOE"/>
                 <outlet property="ibHeaderContentView" destination="Omj-Zo-1cS" id="S9N-rI-ZdC"/>
                 <outlet property="ibHeaderExpiryHeightConstraint" destination="jMO-D0-eYG" id="65e-sE-r9K"/>
                 <outlet property="ibHeaderExpiryView" destination="0SX-ca-WtA" id="ICU-am-Pqw"/>
@@ -438,9 +438,13 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ITt-Zd-lkb" userLabel="black shade view">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ITt-Zd-lkb" userLabel="black shade view">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="175"/>
                             <subviews>
+                                <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ANR-ZE-BXE" userLabel="black shade">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="175"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUM-q3-mTP" userLabel="center view">
                                     <rect key="frame" x="225" y="13" width="150" height="150"/>
                                     <subviews>
@@ -490,11 +494,15 @@
                                     </variation>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="MUM-q3-mTP" firstAttribute="centerX" secondItem="ITt-Zd-lkb" secondAttribute="centerX" id="6pg-Qi-Bcq"/>
+                                <constraint firstItem="ANR-ZE-BXE" firstAttribute="top" secondItem="ITt-Zd-lkb" secondAttribute="top" id="LAX-ZF-Hh4"/>
+                                <constraint firstAttribute="bottom" secondItem="ANR-ZE-BXE" secondAttribute="bottom" id="Zyo-BH-oZG"/>
                                 <constraint firstItem="MUM-q3-mTP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ITt-Zd-lkb" secondAttribute="leading" constant="180" id="ed2-VX-Mug"/>
                                 <constraint firstItem="MUM-q3-mTP" firstAttribute="centerY" secondItem="ITt-Zd-lkb" secondAttribute="centerY" id="kf9-dr-9A4"/>
+                                <constraint firstAttribute="trailing" secondItem="ANR-ZE-BXE" secondAttribute="trailing" id="lpM-DK-3aB"/>
+                                <constraint firstItem="ANR-ZE-BXE" firstAttribute="leading" secondItem="ITt-Zd-lkb" secondAttribute="leading" id="mxp-aQ-Z7N"/>
                                 <constraint firstItem="MUM-q3-mTP" firstAttribute="top" secondItem="ITt-Zd-lkb" secondAttribute="top" constant="24" id="s18-EI-ZXS"/>
                             </constraints>
                             <variation key="default">
