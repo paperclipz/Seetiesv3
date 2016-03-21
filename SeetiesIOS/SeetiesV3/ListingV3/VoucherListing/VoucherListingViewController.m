@@ -34,8 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibDropDownIcon;
 @property (weak, nonatomic) IBOutlet UIButton *ibLocationBtn;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
-@property (weak, nonatomic) IBOutlet UIView *ibFilterView;
 @property (weak, nonatomic) IBOutlet UILabel *ibWalletCountLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibFooterHeightConstraint;
 
 @property (strong, nonatomic)GeneralFilterViewController* filterController;
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
@@ -105,7 +105,23 @@
             self.ibLocationBtn.enabled = NO;
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
+            self.ibFooterHeightConstraint.constant = 0;
             [self requestServerForDealRelevantDeals];
+            break;
+            
+        case 5:
+            self.ibAltTitle.text = LocalisedString(@"Vouchers");
+            self.ibAltTitle.hidden = NO;
+            self.ibTitle.hidden = YES;
+            self.ibUserLocationLbl.hidden = YES;
+            self.ibDropDownIcon.hidden = YES;
+            self.ibFilterBtn.hidden = YES;
+            self.ibSearchBtn.hidden = YES;
+            self.ibLocationBtn.enabled = NO;
+            self.ibSearchBtn.enabled = NO;
+            self.ibFilterBtn.enabled = NO;
+            self.ibFooterHeightConstraint.constant = 0;
+            [self.ibVoucherTable reloadData];
             break;
             
         default:
@@ -114,7 +130,20 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self RequestServerForVouchersCount];
+    if (![Utils isGuestMode]) {
+        [self RequestServerForVouchersCount];
+        
+        if (self.dealViewType == 4 || self.dealViewType == 5) {
+            self.ibFooterHeightConstraint.constant = 0;
+        }
+        else{
+            self.ibFooterHeightConstraint.constant = 50;
+        }
+    }
+    else{
+        self.ibFooterHeightConstraint.constant = 0;
+    }
+    
     [self.ibVoucherTable reloadData];
 }
 
@@ -269,6 +298,13 @@
 -(void)initWithDealId:(NSString*)dealId{
     self.dealId = dealId;
     self.dealViewType = 4;
+}
+
+-(void)initWithDealsModel:(DealsModel *)dealsModel{
+    _dealsModel = dealsModel;
+    [self.dealsArray removeAllObjects];
+    [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
+    self.dealViewType = 5;
 }
 
 /*
@@ -576,7 +612,7 @@
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:finalDict appendString:nil completeHandler:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
-        [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
+        [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
         self.isLoading = NO;
@@ -630,7 +666,7 @@
         
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
-        [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
+        [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
         self.isLoading = NO;
@@ -673,7 +709,7 @@
         
         DealsModel* model = [[ConnectionManager dataManager]dealsModel];
         self.dealsModel = model;
-        [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
+        [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
 
@@ -705,7 +741,7 @@
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealRelevantDeals param:dict appendString:appendString completeHandler:^(id object) {
         DealsModel *deals = [[ConnectionManager dataManager]dealsModel];
         self.dealsModel = deals;
-        [self.dealsArray addObjectsFromArray:self.dealsModel.deals];
+        [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
         

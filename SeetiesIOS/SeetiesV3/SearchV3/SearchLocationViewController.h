@@ -10,6 +10,7 @@
 #import "SearchLocationAreaCell.h"
 #import "SearchManager.h"
 #import "SearchModel.h"
+#import "SearchLocationCountryCell.h"
 
 typedef void (^HomeLocationRefreshBlock)(HomeLocationModel* model);
 typedef void (^AreaLocationREfreshBlock)(PlaceModel* model, NSString* locationName);

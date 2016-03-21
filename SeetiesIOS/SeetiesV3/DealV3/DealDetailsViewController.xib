@@ -44,6 +44,7 @@
                 <outlet property="ibHeaderRedeemExpiryLbl" destination="UA6-3L-5iT" id="Rju-kK-ezd"/>
                 <outlet property="ibHeaderRedeemExpiryTitleLbl" destination="eYW-J5-JYb" id="tiS-lL-Tbz"/>
                 <outlet property="ibHeaderRedeemExpiryView" destination="VOn-Lw-SIK" id="LuC-Gp-M90"/>
+                <outlet property="ibHeaderScrollviewHeightConstraint" destination="ZbI-l9-if7" id="ykc-sd-SfG"/>
                 <outlet property="ibHeaderSubTitleLbl" destination="krF-8U-zfo" id="t1x-Ii-nl5"/>
                 <outlet property="ibHeaderTitleLbl" destination="QJI-EM-Yfv" id="hcl-1r-PWu"/>
                 <outlet property="ibHeaderView" destination="aOd-0Z-9HX" id="5pZ-2Q-TJA"/>
@@ -443,15 +444,15 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUM-q3-mTP" userLabel="center view">
                                     <rect key="frame" x="225" y="13" width="150" height="150"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ny-e7-bMG" userLabel="icon">
-                                            <rect key="frame" x="38" y="25" width="75" height="80"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4ny-e7-bMG" userLabel="icon">
+                                            <rect key="frame" x="33" y="23" width="85" height="85"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="75" id="PiD-rV-PWu"/>
-                                                <constraint firstAttribute="height" constant="80" id="VeU-vp-f3x"/>
+                                                <constraint firstAttribute="width" constant="85" id="PiD-rV-PWu"/>
+                                                <constraint firstAttribute="height" constant="85" id="VeU-vp-f3x"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh1-Ok-EKi" userLabel="status">
-                                            <rect key="frame" x="5" y="113" width="140" height="21"/>
+                                            <rect key="frame" x="5" y="116" width="140" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="SuS-zq-dLZ"/>
                                             </constraints>
@@ -958,7 +959,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Shops" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6p-hm-yLr" userLabel="nearby shop title">
-                                    <rect key="frame" x="16" y="15" width="96.5" height="21"/>
+                                    <rect key="frame" x="16" y="15" width="97" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="KrV-YO-2RK"/>
                                     </constraints>
@@ -1039,11 +1040,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEG-Sl-3TJ" userLabel="report content">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="d4k-v4-Xe8" userLabel="info icon">
-                            <rect key="frame" x="16" y="15" width="30" height="30"/>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReportIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="d4k-v4-Xe8" userLabel="info icon">
+                            <rect key="frame" x="16" y="13" width="35" height="35"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="3a1-Za-V3H"/>
-                                <constraint firstAttribute="width" constant="30" id="dpZ-u3-2Mf"/>
+                                <constraint firstAttribute="height" constant="35" id="3a1-Za-V3H"/>
+                                <constraint firstAttribute="width" constant="35" id="dpZ-u3-2Mf"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Mx-fA-HFo" userLabel="arrow icon">
@@ -1054,7 +1055,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report this deal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6u-vA-H6s" userLabel="report lbl">
-                            <rect key="frame" x="54" y="20" width="121" height="21"/>
+                            <rect key="frame" x="59" y="20" width="121" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="igK-EX-0PR"/>
                             </constraints>
@@ -1104,8 +1105,8 @@
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="CollectIcon.png" width="21" height="19"/>
         <image name="DealsPhotoOverlay.png" width="320" height="74"/>
-        <image name="Icon-60.png" width="60" height="60"/>
         <image name="ProfileShareIcon.png" width="40" height="40"/>
+        <image name="ReportIcon.png" width="15" height="15"/>
         <image name="SSWhiteTranslateIcon.png" width="25" height="26"/>
         <image name="TimeIcon.png" width="30" height="30"/>
     </resources>

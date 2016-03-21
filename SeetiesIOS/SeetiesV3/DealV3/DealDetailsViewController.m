@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderRedeemExpiryDescLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHeaderImageContentWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHeaderExpiryHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHeaderScrollviewHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibDealDetailsView;
 @property (weak, nonatomic) IBOutlet UIView *ibDealDetailsContentView;
@@ -303,6 +304,9 @@
 }
 
 -(void)updateHeaderView{
+    self.ibHeaderScrollviewHeightConstraint.constant = self.ibHeaderImageScrollView.frame.size.width/2;
+    [self.view layoutIfNeeded];
+    
     self.ibHeaderSubTitleLbl.text = self.dealModel.title;
     
     if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE]) {
@@ -594,7 +598,7 @@
     [self.ibDealsTitle prefix_addLowerBorder:OUTLINE_COLOR];
     [self.ibDealsTable reloadData];
     
-    NSArray<DealModel> *dealsArray = self.dealsModel.deals;
+    NSArray<DealModel> *dealsArray = self.dealsModel.arrDeals;
     int totalDeals = self.dealsModel.total_count;
     if(totalDeals > 0){
         float cellHeight = [SeDealsFeaturedTblCell getHeight];
@@ -791,11 +795,11 @@
         
     }
     else if (tableView == self.ibDealsTable){
-        if (self.dealsModel.deals.count > 3) {
+        if (self.dealsModel.arrDeals.count > 3) {
             return 3;
         }
         else{
-            return self.dealsModel.deals.count;
+            return self.dealsModel.arrDeals.count;
         }
         
     }
@@ -820,7 +824,7 @@
     }
     else if (tableView == self.ibDealsTable){
         SeDealsFeaturedTblCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeDealsFeaturedTblCell"];
-        [cell initData:self.dealsModel.deals[indexPath.row]];
+        [cell initData:self.dealsModel.arrDeals[indexPath.row]];
         return cell;
     }
     
@@ -849,7 +853,7 @@
         [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
     }
     else if (tableView == self.ibDealsTable){
-        DealModel *selectedDeal = self.dealsModel.deals[indexPath.row];
+        DealModel *selectedDeal = self.dealsModel.arrDeals[indexPath.row];
         self.dealDetailsViewController = nil;
         [self.dealDetailsViewController setDealModel:selectedDeal];
         [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
@@ -1007,7 +1011,18 @@
         }
         
     } errorBlock:^(id object) {
-        
+        if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
+            if (self.dealModel.shops.count == 1) {
+                [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
+            }
+            else{
+                [self drawBorders];
+                [LoadingManager hide];
+            }
+        }
+        else{
+            [self requestServerForSeetiShopNearbyShop:self.dealModel.voucher_info.shop_info];
+        }
     }];
 }
 

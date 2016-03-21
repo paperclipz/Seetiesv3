@@ -22,5 +22,5 @@
 -(void)initWithDealId:(NSString*)dealId;
 -(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
 -(void)initDataWithShopID:(NSString*)shopID;
-
+-(void)initWithDealsModel:(DealsModel*)dealsModel;
 @end

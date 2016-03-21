@@ -136,6 +136,7 @@
     self.hasSelectedCountry = NO;
     
     [self.ibAreaTable registerNib:[UINib nibWithNibName:@"SearchLocationAreaCell" bundle:nil] forCellReuseIdentifier:@"SearchLocationAreaCell"];
+    [self.ibCountryTable registerNib:[UINib nibWithNibName:@"SearchLocationCountryCell" bundle:nil] forCellReuseIdentifier:@"SearchLocationCountryCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -196,32 +197,43 @@
     return 1;
 }
 
-- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (tableView == self.ibAreaTable) {
+        return 50;
+    }
+    
+    return 0;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (tableView == self.ibAreaTable) {
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.ibAreaTable.frame.size.width, 50)];
+        contentView.backgroundColor = [UIColor whiteColor];
+        
+        CGFloat fontHeight = 20;
+        UILabel *areaLbl = [[UILabel alloc] initWithFrame:CGRectMake(8, (contentView.frame.size.height-fontHeight)/2, contentView.frame.size.width, fontHeight)];
+        areaLbl.textColor = DEVICE_COLOR;
+        areaLbl.font = [UIFont boldSystemFontOfSize:15.0f];
         
         NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
         CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
         PlacesModel* pModel = cModel.arrArea[section];
+        areaLbl.text = pModel.area_name;
         
-        return pModel.area_name;
+        [contentView addSubview:areaLbl];
+        
+        return contentView;
     }
+    
     return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (tableView == self.ibCountryTable) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CountryCell"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CountryCell"];
-        }
-        
-        cell.backgroundColor = TWO_FOUR_FIVE_COLOR;
+        SearchLocationCountryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchLocationCountryCell"];
         CountryModel* model = self.arrCountries[indexPath.row];
-        cell.textLabel.text = model.name;
-        cell.textLabel.font = [UIFont fontWithName:CustomFontNameBold size:15];
-        cell.textLabel.textColor = TEXT_GRAY_COLOR;
-        
+        [cell initCellWithData:model];
         return cell;
     }
     else if (tableView == self.ibAreaTable){
@@ -231,7 +243,7 @@
         CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
         PlacesModel* psModel = cModel.arrArea[indexPath.section];
         PlaceModel* pModel = psModel.places[indexPath.row];
-        [areaCell setAreaTitle:pModel.name];
+        [areaCell initCellWithPlace:pModel];
         
         return areaCell;
     }
@@ -252,6 +264,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (tableView == self.ibCountryTable) {
         
         CountryModel* countryModel = self.arrCountries[indexPath.row];
@@ -568,7 +581,7 @@
 {
     self.ibImgLocation.alpha = 0;
 
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:1 animations:^{
         self.ibImgLocation.alpha = 1;
 
     }];
@@ -577,7 +590,7 @@
 
 -(void)startBlinkGPS
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onTimerEvent:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(onTimerEvent:) userInfo:nil repeats:YES];
 
 }
 

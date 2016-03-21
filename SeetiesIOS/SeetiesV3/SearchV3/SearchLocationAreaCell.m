@@ -11,6 +11,9 @@
 @interface SearchLocationAreaCell()
 @property (weak, nonatomic) IBOutlet UILabel *ibAreaTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ibDealsIcon;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibDealsIconWidthConstraint;
+
+@property(nonatomic) PlaceModel *place;
 
 @end
 
@@ -25,12 +28,12 @@
     // Configure the view for the selected state
 }
 
--(void)setAreaTitle:(NSString*)title{
-    self.ibAreaTitle.text = title;
-}
-
--(void)setHasDeals:(BOOL)hasDeals{
-    self.ibDealsIcon.hidden = !hasDeals;
+-(void)initCellWithPlace:(PlaceModel *)placeModel{
+    _place = placeModel;
+    
+    self.ibAreaTitle.text = self.place.name;
+    self.ibDealsIcon.hidden = !self.place.has_featured_deals;
+    self.ibDealsIconWidthConstraint.constant = self.place.has_featured_deals? 25 : 0;
 }
 
 @end

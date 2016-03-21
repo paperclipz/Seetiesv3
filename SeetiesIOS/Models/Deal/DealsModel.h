@@ -12,5 +12,5 @@
 
 
 @interface DealsModel : PaginationModel
-@property(nonatomic, strong) NSArray<DealModel> *deals;
+@property(nonatomic, strong) NSArray<DealModel> *arrDeals;
 @end

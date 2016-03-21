@@ -45,6 +45,7 @@
 @property(nonatomic)NotificationViewController *notificationViewController;
 @property(nonatomic)InviteFrenViewController *inviteFriendViewController;
 @property(nonatomic)PromoPopOutViewController *promoCodeViewController;
+@property(nonatomic)VoucherListingViewController * voucherListingViewController;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibGuestView;
@@ -126,15 +127,22 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)viewDealDetailsClicked:(DealModel *)dealModel{
-    self.dealDetailsViewController = nil;
-    [self.dealDetailsViewController setDealModel:dealModel];
-    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
-        [self.dealDetailsViewController setupView];
-    }];
+-(void)viewDealDetailsClicked:(DealsModel *)dealsModel{
+    if (dealsModel.arrDeals.count == 1) {
+        self.dealDetailsViewController = nil;
+        [self.dealDetailsViewController setDealModel:dealsModel.arrDeals[0]];
+        [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+            [self.dealDetailsViewController setupView];
+        }];
+    }
+    else{
+        self.voucherListingViewController = nil;
+        [self.voucherListingViewController initWithDealsModel:dealsModel];
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
 }
 
--(void)promoHasBeenRedeemed:(DealModel *)dealModel{
+-(void)promoHasBeenRedeemed:(DealsModel *)dealsModel{
     [self requestServerForVouchersCount];
 }
 
@@ -198,6 +206,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self initSelfView];
+    [self reloadData];
     self.ibGuestView.hidden = ![Utils isGuestMode];
     
     if ([Utils isGuestMode]) {
@@ -287,6 +296,13 @@
     return _dealDetailsViewController;
 }
 
+-(VoucherListingViewController *)voucherListingViewController{
+    if (!_voucherListingViewController) {
+        _voucherListingViewController = [VoucherListingViewController new];
+    }
+    return _voucherListingViewController;
+}
+
 -(void)reloadData
 {
     
@@ -328,10 +344,10 @@
 -(void)setNotificationCount:(int)count
 {
     if (count == 0) {
-        self.ibCollectionCountLbl.hidden = YES;
+        self.ibNotificationCountLbl.hidden = YES;
     }
     else{
-        self.ibCollectionCountLbl.hidden = NO;
+        self.ibNotificationCountLbl.hidden = NO;
         self.ibNotificationCountLbl.text = [NSString stringWithFormat:@"%d",count];
     }
 }
@@ -371,7 +387,8 @@
 
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
         NSDictionary *dict = object[@"data"];
-        self.ibCollectionCountLbl.text = [NSString stringWithFormat:@"%ld %@", [dict[@"total_result"] integerValue], LocalisedString(@"collections")];
+        NSInteger collectionCount = [dict[@"total_result"] integerValue];
+        self.ibCollectionCountLbl.text = [NSString stringWithFormat:@"%ld %@", collectionCount, LocalisedString(@"collections")];
         
     } errorBlock:^(id object) {
         

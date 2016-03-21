@@ -8,14 +8,27 @@
 
 #import "DealsModel.h"
 
+@interface DealsModel()
+@property(nonatomic, strong) NSArray<DealModel> *result;
+@property(nonatomic, strong) NSArray<DealModel> *deals;
+
+@end
 
 @implementation DealsModel
-+(JSONKeyMapper *)keyMapper{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"result": @"deals"}];
-}
+
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
+}
+
+-(NSArray<DealModel>*)arrDeals
+{
+    if (_result) {
+        return _result;
+    }
+    else{
+        return _deals;
+    }
 }
 
 @end

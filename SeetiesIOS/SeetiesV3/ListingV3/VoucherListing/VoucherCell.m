@@ -108,7 +108,7 @@
         self.ibVoucherBlackOverylay.hidden = YES;
         self.ibVoucherLeftLbl.text = [NSString stringWithFormat:@"%ld %@", self.dealModel.total_available_vouchers, LocalisedString(@"Vouchers Left")];
         self.ibVoucherLeftLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-        [Utils setRoundBorder:self.ibVoucherLeftLbl color:[UIColor clearColor] borderRadius:self.ibVoucherLeftLbl.frame.size.height/2-2];
+        [Utils setRoundBorder:self.ibVoucherLeftLbl color:[UIColor clearColor] borderRadius:self.ibVoucherLeftLbl.frame.size.height/2];
     }
     else if (self.dealModel.total_available_vouchers == 0){
         self.ibVoucherLeftLbl.hidden = YES;

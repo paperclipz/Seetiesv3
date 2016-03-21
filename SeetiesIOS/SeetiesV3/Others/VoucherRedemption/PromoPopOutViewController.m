@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulContentView;
 @property (weak, nonatomic) IBOutlet UILabel *ibRedemptionSuccessfulVoucherTitle;
 @property (weak, nonatomic) IBOutlet UIButton *ibRedemptionSuccessfulBtn;
+@property (weak, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulDealTitleContentView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibDealTitleScrollViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibDealTitleContentHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibChooseShopView;
 @property (weak, nonatomic) IBOutlet UIView *ibChooseShopContentView;
@@ -66,6 +69,14 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibErrorView;
 @property (weak, nonatomic) IBOutlet UIView *ibErrorContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibErrorTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibErrorDesc;
+@property (weak, nonatomic) IBOutlet UILabel *ibErrorDescDetails;
+
+@property (strong, nonatomic) IBOutlet UIView *ibThankYouView;
+@property (weak, nonatomic) IBOutlet UIView *ibThankYouContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibThankYouTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibThankYouDesc;
 
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
@@ -77,11 +88,13 @@
 @property(nonatomic) NSString *enteredPromoCode;
 @property(nonatomic) SeShopDetailModel *selectedShop;
 @property(nonatomic) DealModel *dealModel;
+@property(nonatomic) DealsModel *dealsModel;
 @property(nonatomic) BOOL isLoading;
 @property(nonatomic) BOOL isVerified;
 @property(nonatomic) BOOL hasRequestedTotp;
 @property(nonatomic) BOOL hasRequestedPromo;
 @property(nonatomic) BOOL hasRedeemed;
+@property(nonatomic) DealManager *dealManager;
 
 @end
 
@@ -130,6 +143,26 @@
 -(void)setViewType:(PopOutViewType)viewType{
     _viewType = viewType;
     
+    switch (self.viewType) {
+        case PopOutViewTypeEnterPromo:
+        case PopOutViewTypeVerified:
+        case PopOutViewTypeConfirmPhone:
+        case PopOutViewTypeChangeVerifiedPhone:
+        case PopOutViewTypeRedemptionSuccessful:
+        case PopOutViewTypeThankYou:
+            self.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 270);
+            break;
+            
+        case PopOutViewTypeError:
+        case PopOutViewTypeEnterVerification:
+        case PopOutViewTypeEnterPhone:
+            self.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 208);
+            break;
+            
+        default:
+            self.contentSizeInPopup = CGSizeMake(300, 400);
+            break;
+    }
 }
 
 -(void)setPopOutCondition:(PopOutCondition)popOutCondition{
@@ -138,10 +171,20 @@
 
 -(void)setShopArray:(NSArray<SeShopDetailModel> *)array{
     _shopArray = array;
+    
+    int counter = 4;
+    float headerAndFooterHeight = 140;
+    float tableHeight = self.shopArray.count>counter? [PromoOutletCell getHeight]*counter : [PromoOutletCell getHeight]*self.shopArray.count;
+    
+    self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, tableHeight+headerAndFooterHeight);
 }
 
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
+}
+
+-(void)setDealsModel:(DealsModel *)dealsModel{
+    _dealsModel = dealsModel;
 }
 
 -(void)setSelectedCountryCode:(NSString *)selectedCountryCode{
@@ -168,33 +211,74 @@
 -(UIView*)getMainView{
     switch (self.viewType) {
         case PopOutViewTypeEnterPromo:
+            [self.view refreshConstraint];
             [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder: self.ibPromoCodeText color:[UIColor clearColor] borderRadius:self.ibPromoCodeText.frame.size.height/2];
             return self.ibEnterPromoView;
             
         case PopOutViewTypeChooseShop:
             [self.ibShopTable registerClass:[PromoOutletCell class] forCellReuseIdentifier:@"PromoOutletCell"];
-//            self.ibShopTable.estimatedRowHeight = [PromoOutletCell getHeight];
-//            self.ibShopTable.rowHeight = UITableViewAutomaticDimension;
             
-            int counter = 4;
-            float headerAndFooterHeight = 140;
-            float tableHeight = self.shopArray.count>counter? [PromoOutletCell getHeight]*counter : [PromoOutletCell getHeight]*self.shopArray.count;
-            
-            self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, tableHeight+headerAndFooterHeight);
+//            int counter = 4;
+//            float headerAndFooterHeight = 140;
+//            float tableHeight = self.shopArray.count>counter? [PromoOutletCell getHeight]*counter : [PromoOutletCell getHeight]*self.shopArray.count;
+//            
+//            self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, tableHeight+headerAndFooterHeight);
             [self.ibChooseShopContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             
-            if ([Utils isStringNull:self.dealModel.cover_title]) {
-                self.ibShopDealLbl.text = self.dealModel.title;
+            if (self.dealModel) {
+                if ([Utils isStringNull:self.dealModel.cover_title]) {
+                    self.ibShopDealLbl.text = self.dealModel.title;
+                }
+                else{
+                    self.ibShopDealLbl.text = self.dealModel.cover_title;
+                }
             }
-            else{
-                self.ibShopDealLbl.text = self.dealModel.cover_title;
+            else if (self.dealsModel){
+                DealModel *deal = self.dealsModel.arrDeals[0];
+                if ([Utils isStringNull:deal.cover_title]) {
+                    self.ibShopDealLbl.text = deal.title;
+                }
+                else{
+                    self.ibShopDealLbl.text = deal.cover_title;
+                }
             }
+            
             return self.ibChooseShopView;
             
         case PopOutViewTypeRedemptionSuccessful:
             [self.ibRedemptionSuccessfulContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
-            self.ibRedemptionSuccessfulVoucherTitle.text = self.dealModel.title;
+            
+            if (self.dealsModel) {
+                NSMutableString *dealTitles = [[NSMutableString alloc] init];
+                BOOL isFirst = YES;
+                for (DealModel *deal in self.dealsModel.arrDeals) {
+                    if (isFirst) {
+                        isFirst = NO;
+                    }
+                    else{
+                        [dealTitles appendFormat:@"\n"];
+                    }
+                    
+                    [dealTitles appendString:deal.title];
+                }
+                
+                float fontSize = 15.0f;
+                float padding = 10.0f;
+                NSDictionary *attr = @{NSFontAttributeName: [UIFont systemFontOfSize:fontSize]};
+                CGRect dealTitlesRect = [dealTitles boundingRectWithSize:CGSizeMake(self.ibRedemptionSuccessfulDealTitleContentView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
+                self.ibRedemptionSuccessfulVoucherTitle.text = dealTitles;
+                
+                if (dealTitlesRect.size.height > 55) {
+                    self.ibDealTitleScrollViewHeightConstraint.constant = 55;
+                    self.ibDealTitleContentHeightConstraint.constant = dealTitlesRect.size.height + padding;
+                }
+                else{
+                    self.ibDealTitleScrollViewHeightConstraint.constant = dealTitlesRect.size.height + padding;
+                    self.ibDealTitleContentHeightConstraint.constant = dealTitlesRect.size.height + padding;
+                }
+            }
+            
             return self.ibRedemptionSuccessfulView;
             
         case PopOutViewTypeChangeVerifiedPhone:
@@ -265,6 +349,13 @@
     return _countryCodeArray;
 }
 
+-(DealManager *)dealManager{
+    if (!_dealManager) {
+        _dealManager = [DealManager Instance];
+    }
+    return _dealManager;
+}
+
 #pragma mark - IBAction
 
 - (IBAction)selectCountryCodeBtnClicked:(id)sender {
@@ -299,13 +390,14 @@
         case PopOutViewTypeEnterPromo:
         {
             if (self.hasRequestedPromo) {
-                [nextVC setDealModel:self.dealModel];
+                [nextVC setDealsModel:self.dealsModel];
                 [nextVC setEnteredPromoCode:self.enteredPromoCode];
                 nextVC.promoPopOutDelegate = self.promoPopOutDelegate;
                 
-                if (self.dealModel.shops.count > 1) {
+                DealModel *deal = self.dealsModel.arrDeals[0];
+                if (deal.shops.count > 1) {
                     [nextVC setViewType:PopOutViewTypeChooseShop];
-                    [nextVC setShopArray:self.dealModel.shops];
+                    [nextVC setShopArray:deal.shops];
                 }
                 else{
                     if (self.hasRedeemed) {
@@ -313,7 +405,7 @@
                         [nextVC setViewType:PopOutViewTypeRedemptionSuccessful];
                     }
                     else{
-                        self.selectedShop = self.dealModel.shops[0];
+                        self.selectedShop = deal.shops[0];
                         [self requestServerToRedeemPromoCode];
                         return;
                     }
@@ -330,7 +422,7 @@
         case PopOutViewTypeRedemptionSuccessful:
         {
             if (self.promoPopOutDelegate) {
-                [self.promoPopOutDelegate viewDealDetailsClicked:self.dealModel];
+                [self.promoPopOutDelegate viewDealDetailsClicked:self.dealsModel];
             }
             [nextVC setViewType:PopOutViewTypeQuit];
             
@@ -357,7 +449,7 @@
                 if (self.hasRedeemed) {
                     nextVC.promoPopOutDelegate = self.promoPopOutDelegate;
                     [nextVC setSelectedShop:self.selectedShop];
-                    [nextVC setDealModel:self.dealModel];
+                    [nextVC setDealsModel:self.dealsModel];
                     [nextVC setEnteredPromoCode:self.enteredPromoCode];
                     [nextVC setViewType:PopOutViewTypeRedemptionSuccessful];
                 }
@@ -391,7 +483,7 @@
             if (self.hasRequestedTotp) {
                 [nextVC setViewType:PopOutViewTypeEnterVerification];
                 [nextVC setSelectedCountryCode:self.selectedCountryCode];
-                [nextVC setEnteredPhoneNumber:self.ibEnterPhoneTxtField.text];
+                [nextVC setEnteredPhoneNumber:self.enteredPhoneNumber];
             }
             else{
                 [self requestServerToGetTotp];
@@ -431,6 +523,14 @@
         }
             break;
             
+        case PopOutViewTypeThankYou:
+        {
+            if (YES) {
+                [nextVC setViewType:PopOutViewTypeQuit];
+            }
+        }
+            break;
+            
         case PopOutViewTypeQuit:
         {
             if (YES) {
@@ -449,7 +549,6 @@
         [self.popupController dismiss];
     }
     else{
-//        self.popupController.containerView.backgroundColor = [UIColor clearColor];
         [self.popupController pushViewController:nextVC animated:YES];
 
     }
@@ -583,7 +682,7 @@
     self.isLoading = YES;
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetPromoCode param:dict appendString:appendString completeHandler:^(id object) {
-        self.dealModel = [[ConnectionManager dataManager] dealModel];
+        self.dealsModel = [[ConnectionManager dataManager] dealsModel];
         self.hasRequestedPromo = YES;
         [LoadingManager hide];
         self.isLoading = NO;
@@ -614,10 +713,11 @@
     self.isLoading = YES;
     
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostRedeemPromoCode param:dict appendString:appendString completeHandler:^(id object) {
-        self.dealModel = [[ConnectionManager dataManager] dealModel];
+        self.dealsModel = [[ConnectionManager dataManager] dealsModel];
         self.hasRedeemed = YES;
         [LoadingManager hide];
         self.isLoading = NO;
+        [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
         if (self.promoPopOutDelegate) {
             [self.promoPopOutDelegate promoHasBeenRedeemed:self.dealModel];

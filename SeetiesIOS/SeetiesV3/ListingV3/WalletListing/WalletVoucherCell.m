@@ -48,7 +48,9 @@
     }
     
     SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
-    self.ibVoucherShopLbl.text = shopModel.location.formatted_address;
+    NSString *shopName = shopModel.name;
+    NSString *shopAddress = shopModel.location.display_address;
+    self.ibVoucherShopLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
     
     @try {
         
@@ -87,17 +89,15 @@
     if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
         self.ibVoucherExpiryLbl.text = [NSString stringWithFormat:@"%@ %ld %@", LocalisedString(@"Expires in "), numberOfDaysLeft, LocalisedString(@"Days")];
         self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:244/255.0f green:64/255.0f blue:64/255.0f alpha:1];
-        self.ibVoucherExpiryLbl.hidden = NO;
     }
     else if(numberOfDaysLeft > 8){
         NSDate *expiryDate = [dateFormatter dateFromString:expiryString];
         [dateFormatter setDateFormat:@"dd MMM yyyy"];
         self.ibVoucherExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires "), [dateFormatter stringFromDate:expiryDate]];
         self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
-        self.ibVoucherExpiryLbl.hidden = NO;
     }
     else{
-        self.ibVoucherExpiryLbl.hidden = YES;
+        self.ibVoucherExpiryLbl.text = LocalisedString(@"No expiry");
     }
     
     VoucherInfoModel *voucherModel = self.dealModel.voucher_info;

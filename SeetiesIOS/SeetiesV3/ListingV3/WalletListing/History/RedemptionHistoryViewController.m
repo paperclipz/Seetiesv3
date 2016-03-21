@@ -15,6 +15,8 @@
 
 @interface RedemptionHistoryViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *ibHistoryTable;
+@property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
+@property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateDesc;
 
 @property(nonatomic) BOOL isLoading;
 @property(nonatomic) DealsModel *dealsModel;
@@ -53,7 +55,7 @@
         NSMutableArray<DealModel*> *tempDateArray = [[NSMutableArray alloc] init];
         NSString *previousGroup = @"";
         
-        for (DealModel *dealModel in self.dealsModel.deals) {
+        for (DealModel *dealModel in self.dealsModel.arrDeals) {
             
             NSString *redemptionString = dealModel.voucher_info.status_history_datetime;
             NSDate *redemptionDate = [fullFormatter dateFromString:redemptionString];
@@ -146,12 +148,17 @@
 #pragma mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([Utils isArrayNull:self.voucherArray]) {
+        self.ibEmptyStateDesc.text = LocalisedString(@"Oops... No redemption history yet");
+        self.ibHistoryTable.backgroundView = self.ibEmptyStateView;
+        self.view.backgroundColor = [UIColor whiteColor];
         return 0;
     }
     else{
-        SLog(@"number of section:%ld", self.voucherArray.count);
+        self.ibHistoryTable.backgroundView = nil;
+        self.view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
         return self.voucherArray.count;
     }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

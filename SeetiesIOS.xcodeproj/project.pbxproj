@@ -1511,6 +1511,12 @@
 		C238E33F1C4649AA00570A25 /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C238E3241C4649AA00570A25 /* NMRangeSlider.m */; };
 		C23FB6A01C99023900021D1F /* FilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23FB69F1C99023900021D1F /* FilterModel.m */; };
 		C23FB6A31C99481400021D1F /* FilterCurrencyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23FB6A21C99481400021D1F /* FilterCurrencyModel.m */; };
+		C240EEED1C9FB2D1002B4283 /* SearchLocationCountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C240EEEB1C9FB2D1002B4283 /* SearchLocationCountryCell.m */; };
+		C240EEEE1C9FB2D1002B4283 /* SearchLocationCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C240EEEC1C9FB2D1002B4283 /* SearchLocationCountryCell.xib */; };
+		C240EEF31C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C240EEEF1C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@2x.png */; };
+		C240EEF41C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C240EEF01C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@3x.png */; };
+		C240EEF51C9FC8D2002B4283 /* SelectLocationDealsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C240EEF11C9FC8D2002B4283 /* SelectLocationDealsIcon@2x.png */; };
+		C240EEF61C9FC8D2002B4283 /* SelectLocationDealsIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C240EEF21C9FC8D2002B4283 /* SelectLocationDealsIcon@3x.png */; };
 		C24383F41C5B5BF100ACEBF8 /* DealDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24383F21C5B5BF100ACEBF8 /* DealDetailsViewController.m */; };
 		C24383F51C5B5BF100ACEBF8 /* DealDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */; };
 		C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */; };
@@ -2247,8 +2253,6 @@
 		8A84C3641C7FF447006A0D76 /* SeetishopVerifiedIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeetishopVerifiedIcon@3x.png"; sourceTree = "<group>"; };
 		8A84C3661C7FF447006A0D76 /* SelectLocationAutoDetectIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectLocationAutoDetectIcon@2x.png"; sourceTree = "<group>"; };
 		8A84C3671C7FF447006A0D76 /* SelectLocationAutoDetectIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectLocationAutoDetectIcon@3x.png"; sourceTree = "<group>"; };
-		8A84C3681C7FF447006A0D76 /* SelectLocationDealsIcon copy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectLocationDealsIcon copy@2x.png"; sourceTree = "<group>"; };
-		8A84C3691C7FF447006A0D76 /* SelectLocationDealsIcon copy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectLocationDealsIcon copy@3x.png"; sourceTree = "<group>"; };
 		8A84C36B1C7FF447006A0D76 /* TabBarHomeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarHomeIcon@2x.png"; sourceTree = "<group>"; };
 		8A84C36C1C7FF447006A0D76 /* TabBarHomeIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarHomeIcon@3x.png"; sourceTree = "<group>"; };
 		8A84C36D1C7FF447006A0D76 /* TabBarHomeIconActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TabBarHomeIconActive@2x.png"; sourceTree = "<group>"; };
@@ -3538,6 +3542,13 @@
 		C23FB69F1C99023900021D1F /* FilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterModel.m; path = Filter/FilterModel.m; sourceTree = "<group>"; };
 		C23FB6A11C99481400021D1F /* FilterCurrencyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCurrencyModel.h; sourceTree = "<group>"; };
 		C23FB6A21C99481400021D1F /* FilterCurrencyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCurrencyModel.m; sourceTree = "<group>"; };
+		C240EEEA1C9FB2D1002B4283 /* SearchLocationCountryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationCountryCell.h; sourceTree = "<group>"; };
+		C240EEEB1C9FB2D1002B4283 /* SearchLocationCountryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationCountryCell.m; sourceTree = "<group>"; };
+		C240EEEC1C9FB2D1002B4283 /* SearchLocationCountryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationCountryCell.xib; sourceTree = "<group>"; };
+		C240EEEF1C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectLocationAutoDetectIconDeactivated@2x.png"; sourceTree = "<group>"; };
+		C240EEF01C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectLocationAutoDetectIconDeactivated@3x.png"; sourceTree = "<group>"; };
+		C240EEF11C9FC8D2002B4283 /* SelectLocationDealsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectLocationDealsIcon@2x.png"; sourceTree = "<group>"; };
+		C240EEF21C9FC8D2002B4283 /* SelectLocationDealsIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SelectLocationDealsIcon@3x.png"; sourceTree = "<group>"; };
 		C24383F11C5B5BF100ACEBF8 /* DealDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealDetailsViewController.h; sourceTree = "<group>"; };
 		C24383F21C5B5BF100ACEBF8 /* DealDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealDetailsViewController.m; sourceTree = "<group>"; };
 		C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailsViewController.xib; sourceTree = "<group>"; };
@@ -5217,10 +5228,12 @@
 		8A84C3651C7FF447006A0D76 /* Select Location */ = {
 			isa = PBXGroup;
 			children = (
+				C240EEEF1C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@2x.png */,
+				C240EEF01C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@3x.png */,
+				C240EEF11C9FC8D2002B4283 /* SelectLocationDealsIcon@2x.png */,
+				C240EEF21C9FC8D2002B4283 /* SelectLocationDealsIcon@3x.png */,
 				8A84C3661C7FF447006A0D76 /* SelectLocationAutoDetectIcon@2x.png */,
 				8A84C3671C7FF447006A0D76 /* SelectLocationAutoDetectIcon@3x.png */,
-				8A84C3681C7FF447006A0D76 /* SelectLocationDealsIcon copy@2x.png */,
-				8A84C3691C7FF447006A0D76 /* SelectLocationDealsIcon copy@3x.png */,
 			);
 			path = "Select Location";
 			sourceTree = "<group>";
@@ -7469,6 +7482,9 @@
 				8AFF084E1C90379000918582 /* SeetizensTableViewCell.h */,
 				8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */,
 				8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */,
+				C240EEEA1C9FB2D1002B4283 /* SearchLocationCountryCell.h */,
+				C240EEEB1C9FB2D1002B4283 /* SearchLocationCountryCell.m */,
+				C240EEEC1C9FB2D1002B4283 /* SearchLocationCountryCell.xib */,
 			);
 			path = SearchV3;
 			sourceTree = "<group>";
@@ -8116,6 +8132,7 @@
 				8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */,
 				8A84C6EE1C7FF448006A0D76 /* MoreBtn@3x.png in Resources */,
 				8AF867A91C7ECD2700B0195D /* CT3_EnableLocationViewController.xib in Resources */,
+				C240EEF51C9FC8D2002B4283 /* SelectLocationDealsIcon@2x.png in Resources */,
 				8AC8F7331BDA414E00DEF14A /* ProfilePagePostCollectionViewCell.xib in Resources */,
 				8A84C5D41C7FF448006A0D76 /* Caret@2x.png in Resources */,
 				8A84C7051C7FF448006A0D76 /* DraftsIcon@2x.png in Resources */,
@@ -8353,6 +8370,7 @@
 				8AFF08581C90379000918582 /* PostsTableViewCell.xib in Resources */,
 				8A84C7A71C7FF448006A0D76 /* CampaignLogo@2x.png in Resources */,
 				8A84C5CF1C7FF448006A0D76 /* launch.png in Resources */,
+				C240EEEE1C9FB2D1002B4283 /* SearchLocationCountryCell.xib in Resources */,
 				0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */,
 				8AD6C0AE1B706CF30040437E /* LandingV2ViewController.xib in Resources */,
 				8A84C6FB1C7FF448006A0D76 /* WhiteCollected@2x.png in Resources */,
@@ -8626,6 +8644,7 @@
 				8A84C88E1C7FF448006A0D76 /* SSGreyBackIcon@2x.png in Resources */,
 				8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */,
 				8A84C6291C7FF448006A0D76 /* HomePlayNight.png in Resources */,
+				C240EEF31C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@2x.png in Resources */,
 				C238E3341C4649AA00570A25 /* slider-default7-trackBackground@2x.png in Resources */,
 				8A84C7DE1C7FF448006A0D76 /* InviteFacebookIcon@3x.png in Resources */,
 				C238E33A1C4649AA00570A25 /* slider-metal-handle@2x.png in Resources */,
@@ -8660,6 +8679,7 @@
 				8A84C74D1C7FF448006A0D76 /* ExploreFollow@3x.png in Resources */,
 				C22A8C331C96D5A400D6E5A3 /* MeInviteFriendsIcon@2x.png in Resources */,
 				8A84C6AF1C7FF448006A0D76 /* Icon-Small-50.png in Resources */,
+				C240EEF41C9FC8D2002B4283 /* SelectLocationAutoDetectIconDeactivated@3x.png in Resources */,
 				8A84C7861C7FF448006A0D76 /* FollowingIcon@2x.png in Resources */,
 				8A84C85F1C7FF448006A0D76 /* ProfileOverlay@2x.png in Resources */,
 				8A84C6181C7FF448006A0D76 /* HomeMorning1.png in Resources */,
@@ -8769,6 +8789,7 @@
 				C238E3281C4649AA00570A25 /* slider-default-handle@2x.png in Resources */,
 				8A84C83C1C7FF448006A0D76 /* FollowBtn@3x.png in Resources */,
 				8A84C8591C7FF448006A0D76 /* ProfileFollowIcon@2x.png in Resources */,
+				C240EEF61C9FC8D2002B4283 /* SelectLocationDealsIcon@3x.png in Resources */,
 				8A84C6741C7FF448006A0D76 /* SeetishopFoodIcon@2x.png in Resources */,
 				8A84C67D1C7FF448006A0D76 /* SeetishopPhotoIcon@3x.png in Resources */,
 				C24384101C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib in Resources */,
@@ -8955,6 +8976,7 @@
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
 				8AD6C2951B7072FB0040437E /* DraftsViewController.m in Sources */,
 				8A0F50D41C0EAD9A002B1E22 /* SeDealsTableViewCell.m in Sources */,
+				C240EEED1C9FB2D1002B4283 /* SearchLocationCountryCell.m in Sources */,
 				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
 				0B40B3FB1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
