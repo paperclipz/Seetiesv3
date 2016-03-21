@@ -57,7 +57,7 @@
 - (IBAction)btnSegmentedControlClicked:(UISegmentedControl *)sender
 {
     [self.ibScrollView setContentOffset:CGPointMake(self.view.frame.size.width * sender.selectedSegmentIndex, 0) animated:YES];
-
+    [self refreshCategoryLbl];
 }
 
 - (IBAction)btnFilterClicked:(id)sender {
@@ -81,10 +81,21 @@
 
 -(void)refreshView
 {
-//    [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.selectedQuickBrowse.name];
-//    [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.selectedQuickBrowse.name];
+    [self refreshCategoryLbl];
+    
     [self.collectionListingTableViewController refreshRequestWithHomeLocation:self.homeLocationModel filterDictionary:[self getCollectionFilter]];
     [self.shopListingTableViewController refreshRequestWithHomeLocation:self.homeLocationModel filterDictionary:[self getShopFilter]];
+}
+
+-(void)refreshCategoryLbl{
+    if (self.ibSegmentedControl.selectedSegmentIndex == 0) {
+        NSString *categories = [self getShopFilterCategories];
+        self.lblCategory.text = categories;
+    }
+    else if (self.ibSegmentedControl.selectedSegmentIndex == 1){
+        NSString *categories = [self getCollectionFilterCategories];
+        self.lblCategory.text = categories;
+    }
 }
 
 
@@ -188,13 +199,18 @@
                 
             case FilterTypeCat:
             {
+                BOOL isFirst = YES;
                 for (FilterModel *filter in filterCategory.filtersArray) {
                     if (filter.isSelected) {
-                        [catString appendFormat:@"%@,", filter.filterId];
+                        if (isFirst) {
+                            isFirst = NO;
+                        }
+                        else{
+                            [catString appendString:@","];
+                        }
+                        
+                        [catString appendString:filter.name];
                     }
-                }
-                if (![Utils isStringNull:catString]) {
-                    [catString substringToIndex:[catString length]-1];
                 }
             }
                 break;
@@ -216,10 +232,38 @@
              @"open_now": @(isOpen)};
 }
 
+-(NSString*)getShopFilterCategories{
+    NSMutableString *catString = [[NSMutableString alloc] init];
+    BOOL isFirst = YES;
+    for (FilterCategoryModel *filterCategory in self.shopFilterModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        if (isFirst) {
+                            isFirst = NO;
+                        }
+                        else{
+                            [catString appendString:@", "];
+                        }
+                    
+                        [catString appendString:filter.name];
+                    }
+                }
+            }
+                
+            default:
+                break;
+        }
+    }
+    return catString;
+}
+
 -(void)formatCollectionFilter{
     self.collectionFilterModel = [[FiltersModel alloc] init];
     self.collectionFilterModel.filterCategories = [[NSMutableArray<FilterCategoryModel> alloc] init];
-    self.shopFilterModel.filterViewType = FilterViewTypeCollection;
+    self.collectionFilterModel.filterViewType = FilterViewTypeCollection;
     
     //Sort
     FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
@@ -261,7 +305,7 @@
 -(NSDictionary*)getCollectionFilter{
     int sort = 1;
     NSMutableString *catString = [[NSMutableString alloc] init];
-    for (FilterCategoryModel *filterCategory in self.shopFilterModel.filterCategories) {
+    for (FilterCategoryModel *filterCategory in self.collectionFilterModel.filterCategories) {
         switch (filterCategory.filterCategoryType) {
             case FilterTypeSort:
             {
@@ -275,13 +319,18 @@
                 
             case FilterTypeCat:
             {
+                BOOL isFirst = YES;
                 for (FilterModel *filter in filterCategory.filtersArray) {
                     if (filter.isSelected) {
-                        [catString appendFormat:@"%@,", filter.filterId];
+                        if (isFirst) {
+                            isFirst = NO;
+                        }
+                        else{
+                            [catString appendString:@","];
+                        }
+                        
+                        [catString appendString:filter.name];
                     }
-                }
-                if (![Utils isStringNull:catString]) {
-                    [catString substringToIndex:[catString length]-1];
                 }
             }
                 break;
@@ -293,6 +342,34 @@
     
     return @{@"sort": @(sort),
              @"category_group": catString};
+}
+
+-(NSString*)getCollectionFilterCategories{
+    NSMutableString *catString = [[NSMutableString alloc] init];
+    BOOL isFirst = YES;
+    for (FilterCategoryModel *filterCategory in self.collectionFilterModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        if (isFirst) {
+                            isFirst = NO;
+                        }
+                        else{
+                            [catString appendString:@", "];
+                        }
+                        
+                        [catString appendString:filter.name];
+                    }
+                }
+            }
+                
+            default:
+                break;
+        }
+    }
+    return catString;
 }
 
 -(void)applyFilterClicked:(FiltersModel *)filtersModel{
