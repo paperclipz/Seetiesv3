@@ -22,6 +22,7 @@ typedef enum{
     PopOutViewTypeEnterVerification,
     PopOutViewTypeVerified,
     PopOutViewTypeError,
+    PopOutViewTypeThankYou,
     PopOutViewTypeQuit
 } PopOutViewType;
 

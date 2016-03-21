@@ -23,6 +23,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self.lblFeatured setSideCurveBorder];
+    [self.lblDiscount setSideCurveBorder];
+    
+    [self.ibImageView setStandardBorder];
     
     self.lblFeatured.text = LocalisedString(@"Value");
 }
@@ -35,10 +39,7 @@
 
 -(void)initSelfView
 {
-    [self.lblFeatured setSideCurveBorder];
-    [self.lblDiscount setSideCurveBorder];
-
-    [self.ibImageView setStandardBorder];
+    
 }
 
 -(void)initData:(DealModel*)model

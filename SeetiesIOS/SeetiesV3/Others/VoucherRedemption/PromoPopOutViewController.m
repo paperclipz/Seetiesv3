@@ -69,6 +69,14 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibErrorView;
 @property (weak, nonatomic) IBOutlet UIView *ibErrorContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibErrorTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibErrorDesc;
+@property (weak, nonatomic) IBOutlet UILabel *ibErrorDescDetails;
+
+@property (strong, nonatomic) IBOutlet UIView *ibThankYouView;
+@property (weak, nonatomic) IBOutlet UIView *ibThankYouContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibThankYouTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibThankYouDesc;
 
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
@@ -141,6 +149,7 @@
         case PopOutViewTypeConfirmPhone:
         case PopOutViewTypeChangeVerifiedPhone:
         case PopOutViewTypeRedemptionSuccessful:
+        case PopOutViewTypeThankYou:
             self.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 270);
             break;
             
@@ -507,6 +516,14 @@
             break;
             
         case PopOutViewTypeError:
+        {
+            if (YES) {
+                [nextVC setViewType:PopOutViewTypeQuit];
+            }
+        }
+            break;
+            
+        case PopOutViewTypeThankYou:
         {
             if (YES) {
                 [nextVC setViewType:PopOutViewTypeQuit];
