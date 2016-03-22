@@ -209,7 +209,7 @@
                             [catString appendString:@","];
                         }
                         
-                        [catString appendString:filter.name];
+                        [catString appendString:filter.filterId];
                     }
                 }
             }
@@ -329,7 +329,7 @@
                             [catString appendString:@","];
                         }
                         
-                        [catString appendString:filter.name];
+                        [catString appendString:filter.filterId];
                     }
                 }
             }
