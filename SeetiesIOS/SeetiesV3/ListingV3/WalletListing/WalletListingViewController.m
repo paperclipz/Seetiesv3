@@ -45,6 +45,11 @@
     
     [Utils setRoundBorder:self.ibEmptyBtn color:DEVICE_COLOR borderRadius:self.ibEmptyBtn.frame.size.height/2 borderWidth:1.0f];
     
+    [self.ibTableView addPullToRefreshWithActionHandler:^{
+        self.dealsModel = nil;
+        [self requestServerForVoucherListing];
+    }];
+    
     self.isLoading = NO;
     [self requestServerForVoucherListing];
 }
@@ -454,10 +459,12 @@
         [self rearrangeVoucherList];
         [self.ibTableView reloadData];
         [LoadingManager hide];
+        [self.ibTableView.pullToRefreshView stopAnimating];
         self.isLoading = NO;
     } errorBlock:^(id object) {
         [LoadingManager hide];
         self.isLoading = NO;
+        [self.ibTableView.pullToRefreshView stopAnimating];
     }];
 }
 
