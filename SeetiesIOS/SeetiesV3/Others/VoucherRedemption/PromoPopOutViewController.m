@@ -489,6 +489,10 @@
                 [nextVC setSelectedCountryCode:self.selectedCountryCode];
                 [nextVC setEnteredPhoneNumber:self.ibEnterPhoneTxtField.text];
             }
+            else{
+                [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please enter your phone number and country code") Type:TSMessageNotificationTypeError];
+                return;
+            }
         }
             break;
             
