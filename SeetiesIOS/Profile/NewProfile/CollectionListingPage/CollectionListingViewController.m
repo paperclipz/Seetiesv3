@@ -215,7 +215,7 @@
         
         _myCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showCollectionDisplayViewWithCollectionID:model ProfileType:weakSelf.profileType];
+            [weakSelf showCollectionDisplayViewWithCollectionID:model];
         };
         
     }
@@ -240,7 +240,7 @@
         
         _followingCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showCollectionDisplayViewWithCollectionID:model ProfileType:ProfileViewTypeOthers];
+            [weakSelf showCollectionDisplayViewWithCollectionID:model];
         };
     }
     
@@ -292,10 +292,10 @@
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 
--(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel ProfileType:(ProfileViewType)profileType
+-(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel
 {
     _collectionViewController = nil;
-    if (self.profileType == ProfileViewTypeOwn) {
+    if ([colModel.user_info.uid isEqualToString:[Utils getUserID]]) {
         [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:colModel.user_info.uid];
 
     }

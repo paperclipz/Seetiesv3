@@ -25,6 +25,9 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jdf-nV-fNL">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gtv-td-y4J">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcG-kC-xi2">
                     <rect key="frame" x="30" y="375" width="123" height="44"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -126,6 +129,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Q1X-vP-vhI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="1f8-xA-08u"/>
+                <constraint firstAttribute="bottom" secondItem="Gtv-td-y4J" secondAttribute="bottom" id="1sL-CM-6v3"/>
                 <constraint firstAttribute="trailing" secondItem="jdf-nV-fNL" secondAttribute="trailing" id="5CA-U1-YGl"/>
                 <constraint firstItem="aRb-Kr-MAb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="8JT-67-q2m"/>
                 <constraint firstItem="hz3-yB-gbd" firstAttribute="top" secondItem="WHu-ND-0o9" secondAttribute="bottom" constant="12" id="9n8-rv-9T4"/>
@@ -137,12 +141,14 @@
                 <constraint firstItem="Q1X-vP-vhI" firstAttribute="top" secondItem="vcG-kC-xi2" secondAttribute="bottom" constant="8" id="DnF-qo-KXI"/>
                 <constraint firstItem="vcG-kC-xi2" firstAttribute="width" secondItem="t6b-cD-pS6" secondAttribute="width" id="H0p-yt-wtz"/>
                 <constraint firstAttribute="trailing" secondItem="aRb-Kr-MAb" secondAttribute="trailing" constant="10" id="HgY-Oc-PtU"/>
+                <constraint firstItem="Gtv-td-y4J" firstAttribute="top" secondItem="w2x-VK-Tak" secondAttribute="bottom" id="KIR-Pq-ga1"/>
                 <constraint firstItem="WHu-ND-0o9" firstAttribute="top" secondItem="oL5-oP-BVN" secondAttribute="bottom" constant="10" id="La8-yK-tvo"/>
                 <constraint firstItem="vcG-kC-xi2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="NRT-mb-gzb"/>
                 <constraint firstAttribute="trailing" secondItem="fvX-P8-daM" secondAttribute="trailing" id="Ngo-Bn-vZy"/>
                 <constraint firstItem="Q1X-vP-vhI" firstAttribute="width" secondItem="oL5-oP-BVN" secondAttribute="width" id="QsG-74-T9C"/>
                 <constraint firstItem="7rR-Qc-xUn" firstAttribute="centerX" secondItem="jdf-nV-fNL" secondAttribute="centerX" id="Sp9-nU-VCq"/>
                 <constraint firstItem="vcG-kC-xi2" firstAttribute="top" secondItem="7rR-Qc-xUn" secondAttribute="bottom" constant="20" id="Uky-Fc-vyi"/>
+                <constraint firstItem="t6b-cD-pS6" firstAttribute="top" secondItem="Gtv-td-y4J" secondAttribute="bottom" id="YfF-iT-Cwv"/>
                 <constraint firstAttribute="trailing" secondItem="w2x-VK-Tak" secondAttribute="trailing" id="cv7-bo-vV0"/>
                 <constraint firstItem="hz3-yB-gbd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="edb-yF-VtE"/>
                 <constraint firstItem="t6b-cD-pS6" firstAttribute="leading" secondItem="vcG-kC-xi2" secondAttribute="trailing" constant="15" id="fzU-dU-DnU"/>
@@ -154,15 +160,20 @@
                 <constraint firstItem="fvX-P8-daM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kNj-0c-lOA"/>
                 <constraint firstItem="w2x-VK-Tak" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lbe-Ph-lAc"/>
                 <constraint firstItem="WHu-ND-0o9" firstAttribute="centerX" secondItem="hz3-yB-gbd" secondAttribute="centerX" id="nVl-qS-JMA"/>
+                <constraint firstItem="Gtv-td-y4J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oRE-hl-ykz"/>
                 <constraint firstItem="aRb-Kr-MAb" firstAttribute="leading" secondItem="hz3-yB-gbd" secondAttribute="trailing" constant="-221" id="qIm-k5-UxU"/>
+                <constraint firstAttribute="trailing" secondItem="Gtv-td-y4J" secondAttribute="trailing" id="tPe-wo-de2"/>
                 <constraint firstAttribute="trailing" secondItem="hz3-yB-gbd" secondAttribute="trailing" constant="10" id="tdD-NC-P58"/>
                 <constraint firstAttribute="trailing" secondItem="oL5-oP-BVN" secondAttribute="trailing" constant="32" id="tl0-kp-Lp5"/>
                 <constraint firstItem="aRb-Kr-MAb" firstAttribute="top" secondItem="hz3-yB-gbd" secondAttribute="bottom" constant="12" id="tqf-He-Ndd"/>
+                <constraint firstItem="Gtv-td-y4J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vbG-5t-ct3"/>
                 <constraint firstAttribute="bottom" secondItem="aRb-Kr-MAb" secondAttribute="bottom" constant="8" id="xLY-HE-ha1"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="KIR-Pq-ga1"/>
+                    <exclude reference="YfF-iT-Cwv"/>
                     <exclude reference="qIm-k5-UxU"/>
                 </mask>
             </variation>
@@ -172,6 +183,7 @@
     <resources>
         <image name="InstagramBtnInactive.png" width="40" height="40"/>
         <image name="LoginFacebookIcon.png" width="44" height="44"/>
+        <image name="SplashOverlay.png" width="320" height="415"/>
         <image name="WhiteSeetiesLogo.png" width="225" height="105"/>
     </resources>
 </document>
