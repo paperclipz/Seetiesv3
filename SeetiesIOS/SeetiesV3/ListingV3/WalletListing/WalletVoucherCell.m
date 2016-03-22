@@ -50,7 +50,18 @@
     SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
     NSString *shopName = shopModel.name;
     NSString *shopAddress = shopModel.location.display_address;
-    self.ibVoucherShopLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
+    if ([Utils isStringNull:shopName]) {
+        self.ibVoucherShopLbl.text = shopAddress;
+    }
+    else if ([Utils isStringNull:shopAddress]){
+        self.ibVoucherShopLbl.text = shopName;
+    }
+    else if ([Utils isStringNull:shopName] && [Utils isStringNull:shopAddress]){
+        self.ibVoucherShopLbl.text = @"";
+    }
+    else{
+        self.ibVoucherShopLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
+    }
     
     @try {
         
@@ -98,6 +109,7 @@
     }
     else{
         self.ibVoucherExpiryLbl.text = LocalisedString(@"No expiry");
+        self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     }
     
     VoucherInfoModel *voucherModel = self.dealModel.voucher_info;

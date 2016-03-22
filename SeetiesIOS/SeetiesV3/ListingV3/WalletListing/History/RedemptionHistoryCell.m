@@ -45,7 +45,18 @@
     SeShopDetailModel *shopModel = self.voucher.voucher_info.shop_info;
     NSString *shopName = shopModel.name;
     NSString *shopAddress = shopModel.location.display_address;
-    self.ibDealOutletLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
+    if ([Utils isStringNull:shopName]) {
+        self.ibDealOutletLbl.text = shopAddress;
+    }
+    else if ([Utils isStringNull:shopAddress]){
+        self.ibDealOutletLbl.text = shopName;
+    }
+    else if ([Utils isStringNull:shopName] && [Utils isStringNull:shopAddress]){
+        self.ibDealOutletLbl.text = @"";
+    }
+    else{
+        self.ibDealOutletLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
+    }
     
     @try {
         NSString* imageURL = shopModel.profile_photo[@"picture"];
