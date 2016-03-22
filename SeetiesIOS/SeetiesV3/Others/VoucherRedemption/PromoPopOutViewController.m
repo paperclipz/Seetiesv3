@@ -282,7 +282,20 @@
             return self.ibRedemptionSuccessfulView;
             
         case PopOutViewTypeChangeVerifiedPhone:
+        {
             [self.ibChangeVerifiedPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            ProfileModel* model = [[ConnectionManager dataManager]userProfileModel];
+            
+            if (![Utils isStringNull:model.contact_no]) {
+                self.ibChangeVerifiedPhoneNumberLbl.text = model.contact_no;
+
+            }
+            else
+            {
+                self.ibVerifiedTitle.text = LocalisedString(@"Phone Number Verified");
+
+            }
+        }
             return self.ibChangeVerifiedPhoneView;
             
         case PopOutViewTypeEnterPhone:

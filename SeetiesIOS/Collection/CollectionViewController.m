@@ -206,9 +206,9 @@
         
         NSString *FullString;
         if ([GetLat length] == 0 || [GetLat isEqualToString:@""] || [GetLat isEqualToString:@"(null)"] || GetLat == nil) {
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,CurrentPage,GetExpertToken];
+            FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,GetID,CurrentPage,GetExpertToken];
         }else{
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
+            FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
         }
 
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];

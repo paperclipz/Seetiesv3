@@ -10,4 +10,5 @@
 
 @interface SettingsTableViewCell : CommonTableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @end

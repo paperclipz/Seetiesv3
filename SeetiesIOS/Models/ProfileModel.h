@@ -43,6 +43,7 @@
 @property (nonatomic,strong)NSString* provisioning;
 @property (nonatomic,strong)NSString* fb_id;
 @property (nonatomic,strong)NSString* insta_id;
+@property (nonatomic,strong)NSString* contact_no;
 
 @property (nonatomic,strong)NSArray<DraftModel>* posts;
 

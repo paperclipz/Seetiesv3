@@ -15,20 +15,26 @@
 #import "AccountSettingViewController.h"
 #import "CTWebViewController.h"
 #import "CT3_AcctSettingViewController.h"
+#import "PromoPopOutViewController.h"
 
 @interface CT3_MoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic,strong)NSArray* arrData;
+
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblVersion;
+
+
 @property (nonatomic,strong)RecommendationViewController* recommendationViewController;
 @property (nonatomic,strong)DoImagePickerController* imagePickerViewController;
-@property (nonatomic,strong)NSArray* arrData;
 @property(nonatomic)DraftAndRecommendationDelegate* recommendDelegate;
 @property(nonatomic)FeedbackViewController* feedbackViewController;
 @property(nonatomic)AccountSettingViewController* accountSettingViewController;
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (weak, nonatomic) IBOutlet UILabel *lblVersion;
+@property(nonatomic)PromoPopOutViewController* promoPopOutViewController;
+
 
 @end
 
@@ -111,12 +117,58 @@
     
     SettingsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsTableViewCell"];
     NSArray* temArray= self.arrData[indexPath.section];
-    NSString* text = LocalisedString(temArray[indexPath.row]);
-    cell.lblTitle.text = text;
     
+    
+    NSString* text = LocalisedString(temArray[indexPath.row]);
+    
+    
+    if ([text isEqualToString:@"Verify Phone Number"]) {
+        
+        if ([self isUserPhoneNumberVerified]) {
+            
+            cell.lblTitle.text = LocalisedString(@"Verified");
+            
+            @try {
+                cell.ibImageView.image = [self getIconImage:@"Verified"];
+
+            }
+            @catch (NSException *exception) {
+                
+            }
+          
+        }
+    
+    }
+    else{
+        cell.lblTitle.text = LocalisedString(text);
+
+        @try {
+            cell.ibImageView.image = [self getIconImage:text];
+
+        }
+        @catch (NSException *exception) {
+            
+        }
+       
+    };
+    
+
     return cell;
 }
 
+
+-(BOOL)isUserPhoneNumberVerified
+{
+    ProfileModel* model = [[ConnectionManager dataManager]userProfileModel];
+    if (model.phone_verified) {
+        
+        if (![Utils isStringNull:model.contact_no]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.section) {
@@ -158,6 +210,25 @@
             
                 CASE (@"Verify Phone Number"){
                     
+                    
+                    if ([self isUserPhoneNumberVerified]) {
+                        
+                        _promoPopOutViewController = nil;
+                        
+                        [self.promoPopOutViewController setViewType:PopOutViewTypeChangeVerifiedPhone];
+                        
+                        
+                        STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
+                        popOutController.containerView.backgroundColor = [UIColor clearColor];
+                        [popOutController setNavigationBarHidden:YES];
+                        [popOutController presentInViewController:self];
+
+                    }
+                    else{
+                        [Utils showVerifyPhoneNumber:self];
+
+                    }
+                   
                     break;
                 }
 
@@ -239,6 +310,15 @@
 
 #pragma mark - Declaration
 
+-(PromoPopOutViewController*)promoPopOutViewController
+{
+    if (!_promoPopOutViewController) {
+        _promoPopOutViewController = [PromoPopOutViewController new];
+    }
+    
+    return _promoPopOutViewController;
+}
+
 -(CT3_AcctSettingViewController*)ct3_AcctSettingViewController
 {
     if (!_ct3_AcctSettingViewController) {
@@ -279,7 +359,7 @@
     if (!_arrData) {
         
         if (![Utils isGuestMode]) {
-            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Add Place",@"Recommend",@"Drafts", nil];//@"Notification Settings"
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Suggest a Place",@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
             NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify Phone Number",@"Account Settings", @"Rate Us",@"About",@"Feedback", nil];
             NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
             _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
@@ -354,7 +434,111 @@
     [self.ibTableView reloadData];
 
 }
-
+-(UIImage*)getIconImage:(NSString*)str
+{
+    UIImage* image;
+    NSString* imageName;
+    
+    SWITCH(str)
+    {
+        
+        CASE(@"Suggest a Place")
+        {
+            imageName = @"MoreSuggestAPlaceIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+       
+        CASE(@"Write a Recommendation")
+        {
+            imageName = @"MoreWriteARecommendationIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+        CASE(@"Drafts")
+        {
+            imageName = @"MoreDraftsIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+       
+        CASE(@"Verify Phone Number")
+        {
+            imageName = @"MoreVerifyPhoneNumberIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+            
+        }
+        
+        CASE(@"Account Settings")
+        {
+            imageName = @"MoreAccountSettingsIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+        
+        CASE(@"Rate Us")
+        {
+            imageName = @"MoreRateUsIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+       
+        CASE(@"About")
+        {
+            imageName = @"MoreAboutIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+        
+        CASE(@"Feedback")
+        {
+            imageName = @"MoreFeedbackIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+            
+        }
+           CASE(@"Sign up or Log In")
+        {
+            imageName = @"MoreSignUpOrLogInIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+       
+        CASE(@"Verified")
+        {
+            imageName = @"MoreVerifiedPhoneNumberIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+        CASE(@"Sign out")
+        {
+            imageName = @"MoreLogoutIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+        
+        DEFAULT
+        {
+            imageName = @"NoImage";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+    }
+   
+}
 -(void)changeLanguage
 {
     SLog(@"%@",LocalisedString(@"More"));
