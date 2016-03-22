@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PromoPopOutViewController">
@@ -43,8 +43,9 @@
                 <outlet property="ibEnterVerificationTxtField" destination="1M7-7P-D80" id="2WY-Xk-G6K"/>
                 <outlet property="ibEnterVerificationView" destination="lWP-Mu-iJL" id="ue1-Mh-qvY"/>
                 <outlet property="ibErrorContentView" destination="lu6-op-zxh" id="ULz-9h-nLk"/>
+                <outlet property="ibErrorDateDay" destination="YKr-L5-nsy" id="ZQp-8I-SAo"/>
                 <outlet property="ibErrorDesc" destination="btb-Mw-wfI" id="waA-kA-ucS"/>
-                <outlet property="ibErrorDescDetails" destination="YKr-L5-nsy" id="EMX-yT-JEM"/>
+                <outlet property="ibErrorTime" destination="mR0-YB-2tX" id="tGO-Uh-YNf"/>
                 <outlet property="ibErrorTitle" destination="pqN-bF-NYs" id="NLd-x4-e5q"/>
                 <outlet property="ibErrorView" destination="DZf-rX-v5n" id="mq3-Kd-BJi"/>
                 <outlet property="ibPromoCodeText" destination="mWd-Bc-dOc" id="2fI-zp-gXf"/>
@@ -233,7 +234,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Congratulations!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZS-CI-8Cl" userLabel="congratulations">
-                            <rect key="frame" x="10" y="202.5" width="248" height="20.5"/>
+                            <rect key="frame" x="10" y="203" width="248" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="zSm-Z7-J6f"/>
                             </constraints>
@@ -247,7 +248,7 @@
                             </variation>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="SuccessfulRedeemImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="OAb-fA-uoK">
-                            <rect key="frame" x="45" y="45" width="178" height="112.5"/>
+                            <rect key="frame" x="45" y="45" width="178" height="113"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="has added into you wallet!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMQ-bU-idU" userLabel="desc">
                             <rect key="frame" x="8" y="298" width="252" height="18"/>
@@ -825,7 +826,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry! This voucher is not currently available for redemption" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqN-bF-NYs" userLabel="title">
-                            <rect key="frame" x="10" y="198" width="248" height="61"/>
+                            <rect key="frame" x="10" y="180" width="248" height="61"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="6nc-ua-VXB"/>
                             </constraints>
@@ -834,7 +835,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can only redeem this deal on" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btb-Mw-wfI" userLabel="desc">
-                            <rect key="frame" x="8" y="269" width="252" height="15"/>
+                            <rect key="frame" x="8" y="251" width="252" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="hbM-8P-lct"/>
                             </constraints>
@@ -842,10 +843,11 @@
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16 Feb 2016, 2:30pm - 9:00pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKr-L5-nsy" userLabel="desc details">
-                            <rect key="frame" x="8" y="292" width="252" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKr-L5-nsy" userLabel="day date lbl">
+                            <rect key="frame" x="8" y="274" width="252" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="OWF-8Q-AXZ"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="pTj-Vp-WzI"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -856,8 +858,23 @@
                                 </mask>
                             </variation>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mR0-YB-2tX" userLabel="time lbl">
+                            <rect key="frame" x="8" y="292" width="252" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="L5y-Ne-zG7"/>
+                                <constraint firstAttribute="height" constant="21" id="Qah-PF-htE"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Qah-PF-htE"/>
+                                </mask>
+                            </variation>
+                        </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="CannotRedeemAtThisMomentImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="eCo-U2-oeE">
-                            <rect key="frame" x="65" y="65" width="138" height="103"/>
+                            <rect key="frame" x="65" y="65" width="138" height="85"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -869,11 +886,14 @@
                         <constraint firstItem="9H2-bs-8HR" firstAttribute="top" secondItem="YKr-L5-nsy" secondAttribute="bottom" constant="10" id="I3W-1z-inr"/>
                         <constraint firstItem="pqN-bF-NYs" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eCo-U2-oeE" secondAttribute="bottom" constant="30" id="Lcx-Py-lEr"/>
                         <constraint firstItem="pqN-bF-NYs" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" constant="10" id="MV9-x7-2uB"/>
+                        <constraint firstAttribute="trailing" secondItem="mR0-YB-2tX" secondAttribute="trailing" constant="8" id="Ww5-M8-fYJ"/>
                         <constraint firstAttribute="trailing" secondItem="9H2-bs-8HR" secondAttribute="trailing" id="YqA-bh-iDC"/>
                         <constraint firstItem="YKr-L5-nsy" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" constant="8" id="ZGX-a4-695"/>
                         <constraint firstItem="YKr-L5-nsy" firstAttribute="top" secondItem="btb-Mw-wfI" secondAttribute="bottom" constant="8" id="ZOM-SD-CVz"/>
+                        <constraint firstItem="mR0-YB-2tX" firstAttribute="top" secondItem="YKr-L5-nsy" secondAttribute="bottom" id="bK8-Yq-KJU"/>
                         <constraint firstAttribute="bottom" secondItem="9H2-bs-8HR" secondAttribute="bottom" id="bof-gC-4e1"/>
                         <constraint firstItem="btb-Mw-wfI" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" constant="8" id="cwl-vr-sxg"/>
+                        <constraint firstItem="mR0-YB-2tX" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" constant="8" id="fBk-Q2-uZX"/>
                         <constraint firstAttribute="trailing" secondItem="pqN-bF-NYs" secondAttribute="trailing" constant="10" id="fap-hG-bZS"/>
                         <constraint firstItem="9H2-bs-8HR" firstAttribute="top" secondItem="btb-Mw-wfI" secondAttribute="bottom" constant="40" id="gSs-P5-xzD"/>
                         <constraint firstAttribute="height" constant="400" id="hDb-bK-ryl"/>
@@ -881,6 +901,7 @@
                         <constraint firstItem="eCo-U2-oeE" firstAttribute="top" secondItem="lu6-op-zxh" secondAttribute="top" constant="65" id="kG0-iI-gRL"/>
                         <constraint firstItem="eCo-U2-oeE" firstAttribute="leading" secondItem="lu6-op-zxh" secondAttribute="leading" constant="65" id="qIh-ZJ-i7I"/>
                         <constraint firstItem="btb-Mw-wfI" firstAttribute="top" secondItem="pqN-bF-NYs" secondAttribute="bottom" constant="10" id="qKL-gI-wrr"/>
+                        <constraint firstItem="9H2-bs-8HR" firstAttribute="top" secondItem="mR0-YB-2tX" secondAttribute="bottom" constant="10" id="s2G-se-EJu"/>
                         <constraint firstAttribute="trailing" secondItem="YKr-L5-nsy" secondAttribute="trailing" constant="8" id="ulz-o5-Hb5"/>
                         <constraint firstAttribute="trailing" secondItem="btb-Mw-wfI" secondAttribute="trailing" constant="8" id="yHc-oc-gMs"/>
                     </constraints>
@@ -890,6 +911,7 @@
                             <exclude reference="Dqm-Re-Xa1"/>
                             <exclude reference="EEl-dt-PDo"/>
                             <exclude reference="hDb-bK-ryl"/>
+                            <exclude reference="I3W-1z-inr"/>
                             <exclude reference="gSs-P5-xzD"/>
                         </mask>
                     </variation>

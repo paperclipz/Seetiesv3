@@ -21,6 +21,10 @@
 #import "TermsViewController.h"
 #import "PromoPopOutViewController.h"
 
+@protocol NSDictionary
+
+@end
+
 @interface DealDetailsViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, PromoPopOutDelegate, DealRedeemDelegate>
 
 -(void)setDealModel:(DealModel *)dealModel;// set before push

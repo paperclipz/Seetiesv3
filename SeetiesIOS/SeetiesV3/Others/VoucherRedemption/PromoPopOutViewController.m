@@ -71,7 +71,8 @@
 @property (weak, nonatomic) IBOutlet UIView *ibErrorContentView;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorDesc;
-@property (weak, nonatomic) IBOutlet UILabel *ibErrorDescDetails;
+@property (weak, nonatomic) IBOutlet UILabel *ibErrorDateDay;
+@property (weak, nonatomic) IBOutlet UILabel *ibErrorTime;
 
 @property (strong, nonatomic) IBOutlet UIView *ibThankYouView;
 @property (weak, nonatomic) IBOutlet UIView *ibThankYouContentView;

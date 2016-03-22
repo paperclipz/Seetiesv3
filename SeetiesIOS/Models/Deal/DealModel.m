@@ -17,7 +17,8 @@
                                                        @"deal_type_info.percentage": @"discount_percentage",
                                                        @"deal_id" : @"dID",
                                                        @"description": @"deal_desc",
-                                                       @"redemption_periods.periods_in_hours.period_text": @"redemption_period_in_hour_text"
+                                                       @"redemption_periods.periods_in_hours.period_text": @"redemption_period_in_hour_text",
+                                                       @"redemption_periods.periods_in_hours.period": @"daily_periods"
                                                        }];
 }
 
@@ -40,6 +41,32 @@
 
 -(NSUInteger)hash{
     return self.dID.hash;
+}
+
+-(NSMutableArray<DailyPeriodModel>*)getFormattedAvailablePeriods{
+    NSMutableArray<DailyPeriodModel> *formattedDailyPeriods = [[NSMutableArray<DailyPeriodModel> alloc] init];
+    
+    for (int dayNumber = 0; dayNumber < self.daily_periods.count; dayNumber++) {
+        NSArray *dayPeriod = self.daily_periods[dayNumber];
+        if ([Utils isArrayNull:dayPeriod]) {
+            continue;
+        }
+        
+        DailyPeriodModel *dailyPeriodModel = [[DailyPeriodModel alloc] init];
+        dailyPeriodModel.periods = [[NSMutableArray alloc] init];
+        dailyPeriodModel.dayNumber = dayNumber;
+        
+        for (NSDictionary *period in dayPeriod) {
+            PeriodModel *periodModel = [[PeriodModel alloc] init];
+            periodModel.open = period[@"open"];
+            periodModel.close = period[@"close"];
+            [dailyPeriodModel.periods addObject:periodModel];
+        }
+        
+        [formattedDailyPeriods addObject:dailyPeriodModel];
+    }
+    
+    return formattedDailyPeriods;
 }
 
 @end

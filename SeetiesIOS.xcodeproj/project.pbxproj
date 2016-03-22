@@ -1584,6 +1584,8 @@
 		C278147A1C7EB908006F11B8 /* DealExpiryDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C27814791C7EB908006F11B8 /* DealExpiryDateModel.m */; };
 		C28469B91C5F6FCD00B38885 /* NearbyShopsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */; };
 		C28469BA1C5F6FCD00B38885 /* NearbyShopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */; };
+		C28490F21CA0FC3A00FE4546 /* DailyPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C28490F11CA0FC3A00FE4546 /* DailyPeriodModel.m */; };
+		C28490F51CA0FD5C00FE4546 /* PeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C28490F41CA0FD5C00FE4546 /* PeriodModel.m */; };
 		C294FD261C9815B500C455C8 /* FilterCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD251C9815B500C455C8 /* FilterCategoryModel.m */; };
 		C294FD291C9817F200C455C8 /* FilterPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD281C9817F200C455C8 /* FilterPriceModel.m */; };
 		C294FD2C1C9819B500C455C8 /* FiltersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD2B1C9819B500C455C8 /* FiltersModel.m */; };
@@ -3669,6 +3671,10 @@
 		C28469B61C5F6FCD00B38885 /* NearbyShopsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopsCell.h; sourceTree = "<group>"; };
 		C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopsCell.m; sourceTree = "<group>"; };
 		C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyShopsCell.xib; sourceTree = "<group>"; };
+		C28490F01CA0FC3A00FE4546 /* DailyPeriodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyPeriodModel.h; sourceTree = "<group>"; };
+		C28490F11CA0FC3A00FE4546 /* DailyPeriodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyPeriodModel.m; sourceTree = "<group>"; };
+		C28490F31CA0FD5C00FE4546 /* PeriodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeriodModel.h; sourceTree = "<group>"; };
+		C28490F41CA0FD5C00FE4546 /* PeriodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeriodModel.m; sourceTree = "<group>"; };
 		C294FD241C9815B500C455C8 /* FilterCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterCategoryModel.h; path = Filter/FilterCategoryModel.h; sourceTree = "<group>"; };
 		C294FD251C9815B500C455C8 /* FilterCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterCategoryModel.m; path = Filter/FilterCategoryModel.m; sourceTree = "<group>"; };
 		C294FD271C9817F200C455C8 /* FilterPriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterPriceModel.h; path = Filter/FilterPriceModel.h; sourceTree = "<group>"; };
@@ -6021,6 +6027,10 @@
 				8AF6FDCE1C587958005AAE5D /* RegisterObject.m */,
 				C27814781C7EB908006F11B8 /* DealExpiryDateModel.h */,
 				C27814791C7EB908006F11B8 /* DealExpiryDateModel.m */,
+				C28490F01CA0FC3A00FE4546 /* DailyPeriodModel.h */,
+				C28490F11CA0FC3A00FE4546 /* DailyPeriodModel.m */,
+				C28490F31CA0FD5C00FE4546 /* PeriodModel.h */,
+				C28490F41CA0FD5C00FE4546 /* PeriodModel.m */,
 			);
 			path = AppModel;
 			sourceTree = "<group>";
@@ -9271,6 +9281,7 @@
 				C258101A1C7AD89000041A85 /* VoucherInfoModel.m in Sources */,
 				8A114CB11BE73F5D006AE3F0 /* LeveyTabBarController.m in Sources */,
 				8A69E0FD1C046DF900224BB4 /* ShareManager.m in Sources */,
+				C28490F21CA0FC3A00FE4546 /* DailyPeriodModel.m in Sources */,
 				8AFA51F51C47B4AB00E7920E /* FeedType_InviteFriendTblCell.m in Sources */,
 				8AD50D691C63146A00C9D952 /* PhotoCVCell.m in Sources */,
 				8AEDBFAF1C2031BA000BD2FF /* EditPhotoModel.m in Sources */,
@@ -9352,6 +9363,7 @@
 				8A114C831BE73F5D006AE3F0 /* BMXDataItem.m in Sources */,
 				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,
 				8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */,
+				C28490F51CA0FD5C00FE4546 /* PeriodModel.m in Sources */,
 				8AD6C2871B7072FB0040437E /* BrightnessViewController.m in Sources */,
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
 				8AEDBFAC1C2031BA000BD2FF /* RecommendationVenueModel.m in Sources */,
