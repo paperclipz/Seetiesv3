@@ -19,7 +19,6 @@
 #import "FeedType_CollectionSuggestedTblCell.h"
 #import "FeedType_AbroadQualityPostTblCell.h"
 #import "FeedType_SuggestionFetureTblCell.h"
-
 #import "FeedType_FollowingCollectionTblCell.h"
 
 #import "AddCollectionDataViewController.h"
@@ -434,8 +433,6 @@ static NSCache* heightCache = nil;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     
     [self.btnLocation setTitle:self.locationName forState:UIControlStateNormal];
 
@@ -1409,7 +1406,8 @@ static NSCache* heightCache = nil;
             self.newsFeedModels = model;
             [self.arrayNewsFeed addObjectsFromArray:model.items];
             [self.ibTableView reloadData];
-            
+//            [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
         } errorBlock:^(id object) {
             isMiddleOfLoadingServer = NO;
@@ -1481,6 +1479,8 @@ static NSCache* heightCache = nil;
         }
         
         [self.ibTableView reloadData];
+       // [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+
         //[self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
         
        // [self.ibTableView reloadData];

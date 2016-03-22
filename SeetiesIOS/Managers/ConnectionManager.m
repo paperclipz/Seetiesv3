@@ -1070,6 +1070,7 @@
             NSDictionary* dict = obj[@"countries"];
             
             self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:nil];
+            [self.dataManager.countriesModel processShouldDisplay];
         }
             break;
             

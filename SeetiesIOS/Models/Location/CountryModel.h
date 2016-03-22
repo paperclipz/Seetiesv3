@@ -24,7 +24,7 @@
 @property(nonatomic,strong)NSArray* place_display_fields;
 @property(nonatomic,assign)BOOL has_featured_deals;
 @property(nonatomic,strong)NSString* country_code;
-@property(nonatomic,assign)BOOL home_filter_display;
+@property(nonatomic,assign)BOOL home_filter_display;//check whether display on screen
 
 
 @end

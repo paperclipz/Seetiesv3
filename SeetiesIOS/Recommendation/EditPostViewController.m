@@ -758,7 +758,8 @@ static id ObjectOrNull(id object)
                       @"type":@(self.postModel.location.type),
                       @"rating":@"",
                       @"reference":[self stringOrBlank:self.postModel.location.reference],
-                      @"contact_no":[self stringOrBlank:self.postModel.location.contact_no],
+                      @"contact_no":[self stringOrBlank:self.postModel.location
+                                     .contact_no],
                       @"source":@"",
                       @"opening_hours":ObjectOrNull(openingHourDict),
                       @"link":[self stringOrBlank:self.postModel.location.link],
