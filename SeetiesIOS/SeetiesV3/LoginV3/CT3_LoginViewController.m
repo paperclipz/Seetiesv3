@@ -102,11 +102,11 @@
 {
     
 
-    imageArray = @[[UIImage imageNamed:@"Walkthrough1.png"],[UIImage imageNamed:@"Walkthrough2.png"],[UIImage imageNamed:@"Walkthrough3.png"],[UIImage imageNamed:@"Walkthrough4.png"]];
+    imageArray = @[[UIImage imageNamed:@"Splash1.jpg"],[UIImage imageNamed:@"Splash2.jpg"],[UIImage imageNamed:@"Splash3.jpg"],[UIImage imageNamed:@"Splash4.jpg"],[UIImage imageNamed:@"Splash5.jpg"]];
 
-    self.ibImageView.image = [imageArray objectAtIndex:0];
+    //self.ibImageView.image = [imageArray objectAtIndex:0];
 
-   // [self animateImages];
+    [self animateImages];
 
     [Utils setRoundBorder:self.lblFacebook color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
     [Utils setRoundBorder:self.lblInstagram color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];

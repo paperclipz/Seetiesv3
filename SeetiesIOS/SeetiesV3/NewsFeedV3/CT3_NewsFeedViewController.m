@@ -1674,9 +1674,15 @@ static NSCache* heightCache = nil;
 
 -(void)scrollToTop:(BOOL)animation
 {
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.ibTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    @try {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.ibTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+
+    }
+    @catch (NSException *exception) {
+        
+    }
+   
 }
 
 
@@ -1744,7 +1750,6 @@ static NSCache* heightCache = nil;
         
         NSDictionary* dict = [Utils getSavedUserLocation];
         
-
         
         HomeLocationModel* model = [HomeLocationModel new];
         model.type = @"none";

@@ -592,7 +592,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detox water.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-HW-lRS">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeGuestModeImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-HW-lRS">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="328"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="328" id="meD-Wy-vBe"/>
@@ -661,11 +661,11 @@
         <image name="MeCollectionIcon.png" width="39" height="44"/>
         <image name="MeCollectionIconBg.png" width="560" height="715"/>
         <image name="MeEnterPromoCodeIcon.png" width="19" height="21"/>
+        <image name="MeGuestModeImg.png" width="938" height="854"/>
         <image name="MeInviteFriendsIcon.png" width="21" height="19"/>
         <image name="MeNotificationIcon.png" width="16" height="21"/>
         <image name="MeVoucherWalletIcon.png" width="49" height="44"/>
         <image name="MeVoucherWalletIconBg.png" width="560" height="715"/>
         <image name="NotificationIcon.png" width="50" height="50"/>
-        <image name="detox water.jpg" width="640" height="360"/>
     </resources>
 </document>
