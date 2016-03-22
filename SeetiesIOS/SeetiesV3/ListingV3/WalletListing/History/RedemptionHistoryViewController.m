@@ -228,6 +228,8 @@
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/history", [Utils getUserID]];
     
     self.isLoading = YES;
+    
+    [LoadingManager show];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersHistoryList param:dict appendString:appendString completeHandler:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;

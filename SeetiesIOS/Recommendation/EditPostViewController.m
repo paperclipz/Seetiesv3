@@ -235,6 +235,9 @@
 {
 
     self.editPostType = EditPostTypePostEdit;
+    
+    self.postModel = model;
+    self.storedModel = [model copy];
    // self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
   //  self.tempSavedRecommendationModel = self.recommendationModel;
 

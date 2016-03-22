@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SeetiesShopViewController">
@@ -15,10 +16,12 @@
                 <outlet property="ibBranchView" destination="W86-8A-Eay" id="Z6L-Gt-tSW"/>
                 <outlet property="ibImgDropDownIndicator" destination="beE-KO-pTe" id="Y3J-uw-zg0"/>
                 <outlet property="ibImgViewOtherPadding" destination="scf-vQ-TpH" id="X7Z-32-LeJ"/>
+                <outlet property="ibReportShopView" destination="u86-Nt-etx" id="U8y-ZZ-BZN"/>
                 <outlet property="ibScrollView" destination="PfW-mD-EzJ" id="lRY-u4-pPr"/>
                 <outlet property="ibTblSelectOutletView" destination="QTS-hb-nNL" id="VYV-lx-R0x"/>
                 <outlet property="ibTopPaddingOverlay" destination="bEo-RN-euA" id="3QW-fG-8wx"/>
                 <outlet property="lblBigShopName" destination="FQJ-8e-vF7" id="M6p-D1-YMg"/>
+                <outlet property="lblReportTitle" destination="tM4-El-9BJ" id="Y0X-wC-90W"/>
                 <outlet property="lblSelectOutlet" destination="cDz-hf-Lbz" id="dZl-gs-I5O"/>
                 <outlet property="lblShopGroupName" destination="kBm-fV-x2p" id="I2b-xU-ReJ"/>
                 <outlet property="lblShopName" destination="dsD-HW-7h2" id="FLz-oY-3U0"/>
@@ -275,11 +278,69 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="529" y="101.5"/>
         </view>
+        <view contentMode="scaleToFill" id="u86-Nt-etx">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReportIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="qfU-hQ-J8t">
+                    <rect key="frame" x="0.0" y="0.0" width="51" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="qfU-hQ-J8t" secondAttribute="height" multiplier="1:1" id="rQM-kX-DGU"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report This Shop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tM4-El-9BJ">
+                    <rect key="frame" x="67" y="16" width="472" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="CqH-so-0Os">
+                    <rect key="frame" x="549" y="0.0" width="51" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="CqH-so-0Os" secondAttribute="height" multiplier="1:1" id="DX0-nK-e5E"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfH-iP-wQJ">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="btnReportShopClicked:" destination="-1" eventType="touchUpInside" id="ns1-Hy-toM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="UfH-iP-wQJ" firstAttribute="leading" secondItem="u86-Nt-etx" secondAttribute="leading" id="1Qi-2Y-c2D"/>
+                <constraint firstItem="UfH-iP-wQJ" firstAttribute="top" secondItem="u86-Nt-etx" secondAttribute="top" id="1t1-RW-Jgy"/>
+                <constraint firstAttribute="bottom" secondItem="CqH-so-0Os" secondAttribute="bottom" id="7bB-ij-a6l"/>
+                <constraint firstAttribute="bottom" secondItem="qfU-hQ-J8t" secondAttribute="bottom" id="Ddt-Bm-MRp"/>
+                <constraint firstItem="CqH-so-0Os" firstAttribute="top" secondItem="u86-Nt-etx" secondAttribute="top" id="ND4-pE-Ysb"/>
+                <constraint firstAttribute="bottom" secondItem="UfH-iP-wQJ" secondAttribute="bottom" id="TEZ-Ps-8FP"/>
+                <constraint firstAttribute="trailing" secondItem="UfH-iP-wQJ" secondAttribute="trailing" id="Uej-E8-zNi"/>
+                <constraint firstItem="CqH-so-0Os" firstAttribute="leading" secondItem="tM4-El-9BJ" secondAttribute="trailing" constant="10" id="Xdy-4H-1Lg"/>
+                <constraint firstItem="tM4-El-9BJ" firstAttribute="centerY" secondItem="qfU-hQ-J8t" secondAttribute="centerY" id="Y5q-p2-nm4"/>
+                <constraint firstItem="qfU-hQ-J8t" firstAttribute="top" secondItem="u86-Nt-etx" secondAttribute="top" id="Ymr-As-Nzn"/>
+                <constraint firstAttribute="trailing" secondItem="tM4-El-9BJ" secondAttribute="trailing" constant="16" id="daq-xP-nYU"/>
+                <constraint firstItem="qfU-hQ-J8t" firstAttribute="leading" secondItem="u86-Nt-etx" secondAttribute="leading" id="khz-HL-bEW"/>
+                <constraint firstItem="tM4-El-9BJ" firstAttribute="leading" secondItem="qfU-hQ-J8t" secondAttribute="trailing" constant="16" id="myg-uu-cuE"/>
+                <constraint firstAttribute="trailing" secondItem="CqH-so-0Os" secondAttribute="trailing" id="wwW-yq-JBK"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="daq-xP-nYU"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="43" y="516.5"/>
+        </view>
     </objects>
     <resources>
+        <image name="ArrowBtn.png" width="30" height="30"/>
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="NaviDropDownIcon.png" width="8" height="6"/>
         <image name="ProfileShareIcon.png" width="40" height="40"/>
+        <image name="ReportIcon.png" width="15" height="15"/>
         <image name="SSWhiteTranslateIcon.png" width="25" height="26"/>
     </resources>
 </document>

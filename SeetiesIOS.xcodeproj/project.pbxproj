@@ -708,6 +708,8 @@
 		8AFA52021C47B4AB00E7920E /* CT3_NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B41C47B4AB00E7920E /* CT3_NewsFeedViewController.xib */; };
 		8AFA52031C47B4AB00E7920E /* CT3_MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51B71C47B4AB00E7920E /* CT3_MeViewController.m */; };
 		8AFA52041C47B4AB00E7920E /* CT3_MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B81C47B4AB00E7920E /* CT3_MeViewController.xib */; };
+		8AFB068A1CA140E300DAEE22 /* ReportProblemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFB06881CA140E300DAEE22 /* ReportProblemViewController.m */; };
+		8AFB068B1CA140E300DAEE22 /* ReportProblemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFB06891CA140E300DAEE22 /* ReportProblemViewController.xib */; };
 		8AFF08331C90358E00918582 /* TagLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08321C90358E00918582 /* TagLocationModel.m */; };
 		8AFF08511C90379000918582 /* SearchComplexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08371C90379000918582 /* SearchComplexTableViewCell.m */; };
 		8AFF08521C90379000918582 /* SearchComplexTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08381C90379000918582 /* SearchComplexTableViewCell.xib */; };
@@ -2761,6 +2763,9 @@
 		8AFA51B61C47B4AB00E7920E /* CT3_MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_MeViewController.h; sourceTree = "<group>"; };
 		8AFA51B71C47B4AB00E7920E /* CT3_MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_MeViewController.m; sourceTree = "<group>"; };
 		8AFA51B81C47B4AB00E7920E /* CT3_MeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_MeViewController.xib; sourceTree = "<group>"; };
+		8AFB06871CA140E300DAEE22 /* ReportProblemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportProblemViewController.h; sourceTree = "<group>"; };
+		8AFB06881CA140E300DAEE22 /* ReportProblemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportProblemViewController.m; sourceTree = "<group>"; };
+		8AFB06891CA140E300DAEE22 /* ReportProblemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportProblemViewController.xib; sourceTree = "<group>"; };
 		8AFF08311C90358E00918582 /* TagLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagLocationModel.h; sourceTree = "<group>"; };
 		8AFF08321C90358E00918582 /* TagLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagLocationModel.m; sourceTree = "<group>"; };
 		8AFF08361C90379000918582 /* SearchComplexTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchComplexTableViewCell.h; sourceTree = "<group>"; };
@@ -6188,6 +6193,7 @@
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				8AFB06861CA140BE00DAEE22 /* ReportV3 */,
 				8A42051F1C894F0F00DB0D20 /* AccountSettingV3 */,
 				8AF867A11C7ECCE000B0195D /* EnableLocationV3 */,
 				8A5CFE1A1C7D8E21004E2CBA /* ProvisioningV3 */,
@@ -6427,6 +6433,16 @@
 				8AFA51B81C47B4AB00E7920E /* CT3_MeViewController.xib */,
 			);
 			path = PreProfileV3;
+			sourceTree = "<group>";
+		};
+		8AFB06861CA140BE00DAEE22 /* ReportV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8AFB06871CA140E300DAEE22 /* ReportProblemViewController.h */,
+				8AFB06881CA140E300DAEE22 /* ReportProblemViewController.m */,
+				8AFB06891CA140E300DAEE22 /* ReportProblemViewController.xib */,
+			);
+			path = ReportV3;
 			sourceTree = "<group>";
 		};
 		8AFF08341C90379000918582 /* SearchV3 */ = {
@@ -8492,6 +8508,7 @@
 				8AD6C2A41B7072FB0040437E /* SelectImageViewController.xib in Resources */,
 				8AFF2DEF1CA0320B008B66D8 /* LandmarkCultureIcon@3x.png in Resources */,
 				8AD6C0B01B706CF30040437E /* ExpertLoginViewController.xib in Resources */,
+				8AFB068B1CA140E300DAEE22 /* ReportProblemViewController.xib in Resources */,
 				8AD6C1051B706CF30040437E /* EditInterestV2ViewController.xib in Resources */,
 				8AFF2ECD1CA0320B008B66D8 /* SelectPhotoArrow@2x.png in Resources */,
 				8AFF2CC11CA0320A008B66D8 /* TabBarMoreIconActive@3x.png in Resources */,
@@ -9069,6 +9086,7 @@
 				8AC8F7281BDA414E00DEF14A /* PostListingViewController.m in Sources */,
 				8A3409441B8AD06A009B66C3 /* UIImage+Masking.m in Sources */,
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
+				8AFB068A1CA140E300DAEE22 /* ReportProblemViewController.m in Sources */,
 				8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */,
 				8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */,
 				8A114C7D1BE73F5D006AE3F0 /* BKCardNumberLabel.m in Sources */,

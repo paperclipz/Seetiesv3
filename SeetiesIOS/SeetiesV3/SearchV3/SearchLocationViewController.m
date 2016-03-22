@@ -126,11 +126,7 @@
 }
 
 -(void)initSelfView{
-//    NSArray *pj = @[@"All of Petaling Jaya", @"Damansara Jaya", @"Damansara Kim", @"Petaling Jaya"];
-//    NSArray *sj = @[@"All of Subang Jaya", @"SS 15", @"One City", @"Subang Jaya"];
-//    NSArray *other = @[@"Georgetown", @"Ipoh", @"Other Cities"];
-    
-   // _cityArray = @[pj, sj, other];
+
     
     [Utils setRoundBorder:self.ibHeaderContentView color:[UIColor clearColor] borderRadius:self.ibHeaderContentView.frame.size.height/2 borderWidth:0];
     self.hasSelectedCountry = NO;
@@ -482,7 +478,8 @@
 -(void)processPlaces:(AreaModel*)aModel ForCountry:(CountryModel*)cModel
 {
     
-    
+    cModel.paging = aModel.paging;
+
     if ([Utils isArrayNull:cModel.arrArea]) {
         [cModel.arrArea addObjectsFromArray:aModel.result];
         return;

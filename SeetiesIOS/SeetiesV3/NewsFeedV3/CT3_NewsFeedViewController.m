@@ -1309,6 +1309,7 @@ static NSCache* heightCache = nil;
 }
 -(void)showCollectioPageView:(CollectionModel*)model
 {
+    
     _displayCollectionViewController = nil;
     [self.navigationController pushViewController:self.displayCollectionViewController animated:YES onCompletion:^{
         [self.displayCollectionViewController GetCollectionID:model.collection_id GetPermision:@"Others" GetUserUid:model.user_info.uid];
@@ -1333,9 +1334,13 @@ static NSCache* heightCache = nil;
     
     if ([Utils isGuestMode]) {
         
-        [MessageManager showMessageWithCallBack:LocalisedString(@"system") SubTitle:LocalisedString(@"Please Login to Collect") Type:TSMessageNotificationTypeWarning ButtonOnClick:^{
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login To Collect") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
-            [Utils showLogin];
+            if (buttonIndex == 1) {
+                [Utils showLogin];
+
+            }
         }];
         return;
     }
@@ -1354,6 +1359,20 @@ static NSCache* heightCache = nil;
 -(void)requestServerForQuickCollection:(DraftModel*)model
 {
 
+    
+    if ([Utils isGuestMode]) {
+        
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login To Collect") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == 1) {
+                [Utils showLogin];
+                
+            }
+        }];
+        return;
+    }
+    
     NSDictionary* dictPost =  @{@"id": model.post_id};
 
     

@@ -30,6 +30,7 @@
 #import "BranchOutletTblCell.h"
 #import "DealDetailsViewController.h"
 #import "VoucherListingViewController.h"
+#import "ReportProblemViewController.h"
 
 @interface SeetiesShopViewController ()<UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
@@ -64,6 +65,8 @@
 @property (nonatomic,strong)ProfileViewController* profileViewController;
 @property (nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property (nonatomic,strong)VoucherListingViewController* voucherListingViewController;
+@property (nonatomic)ReportProblemViewController* reportProblemViewController;
+
 
 //$$============== CONTROLLERS ==================$$//
 @property (weak, nonatomic) IBOutlet UIImageView *ibTopPaddingOverlay;
@@ -83,6 +86,8 @@
 @property(nonatomic,assign)MKCoordinateRegion region;
 @property (weak, nonatomic) IBOutlet UILabel *lblShopGroupName;
 @property (weak, nonatomic) IBOutlet UILabel *lblShopName;
+@property (strong, nonatomic) IBOutlet UIView *ibReportShopView;
+@property (weak, nonatomic) IBOutlet UILabel *lblReportTitle;
 
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
@@ -98,6 +103,13 @@
 @implementation SeetiesShopViewController
 
 #pragma mark - IBACTION
+- (IBAction)btnReportShopClicked:(id)sender {
+    
+    _reportProblemViewController = nil;
+    
+    [self.reportProblemViewController initDataReportShop];
+    [self.navigationController pushViewController:self.reportProblemViewController animated:YES];
+}
 
 
 - (IBAction)btnCloseBranchClicked:(id)sender {
@@ -209,6 +221,8 @@
         [self.arrViews addObject:self.seNearbySeetishop];
 
     }
+    [self.arrViews addObject:self.ibReportShopView];
+
   
 }
 -(void)setupViewData
@@ -267,6 +281,14 @@
 
 #pragma mark - Declaration
 
+-(ReportProblemViewController*)reportProblemViewController
+{
+    if (!_reportProblemViewController) {
+        _reportProblemViewController = [ReportProblemViewController new];
+    }
+    
+    return _reportProblemViewController;
+}
 -(VoucherListingViewController*)voucherListingViewController
 {
     if (!_voucherListingViewController) {
@@ -778,6 +800,7 @@
 -(void)changeLanguage
 {
     lblSelectOutlet.text = LocalisedString(@"Select Outlet");
+    self.lblReportTitle.text = LocalisedString(@"Report this shop");
 }
 /*
 #pragma mark - Navigation

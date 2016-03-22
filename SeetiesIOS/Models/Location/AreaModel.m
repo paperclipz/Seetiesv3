@@ -18,7 +18,10 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"featured_places.result" :@"result",
-                                                       
+                                                       @"featured_places.paging" :@"paging",
+                                                       @"featured_places.offset" :@"offset",
+                                                       @"featured_places.limit" :@"limit",
+                                                       @"featured_places.total_count" :@"total_count",
                                                        }];
 }
 @end
