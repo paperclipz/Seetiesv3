@@ -99,6 +99,7 @@
 @property(nonatomic) BOOL isProcessing;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) NSMutableArray<SeShopDetailModel> *nearbyShopArray;
+@property(nonatomic) NSMutableArray<DailyPeriodModel> *dealAvailabilityArray;
 @property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic) DealRedeemViewController *dealRedeemViewController;
 @property(nonatomic) SeetiesShopViewController *seetiesShopViewController;
@@ -239,6 +240,13 @@
         _nearbyShopArray = [[NSMutableArray<SeShopDetailModel> alloc] init];
     }
     return _nearbyShopArray;
+}
+
+-(NSArray *)dayAvailabilityArrayAtIndexes:(NSIndexSet *)indexes{
+    if (!_dealAvailabilityArray) {
+        _dealAvailabilityArray = [[NSMutableArray<DailyPeriodModel> alloc] init];
+    }
+    return _dealAvailabilityArray;
 }
 
 -(SeetiesShopViewController *)seetiesShopViewController{
@@ -494,6 +502,9 @@
 
 
 -(void)updateAvailabilityView{
+    if (self.dealModel) {
+        self.dealAvailabilityArray = [self.dealModel getFormattedAvailablePeriods];
+    }
     [self.ibAvailabilityTable reloadData];
     
     if (self.dealModel.redemption_period_in_hour_text.allKeys.count == 0) {
@@ -784,7 +795,7 @@
 #pragma mark - TableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.ibAvailabilityTable) {
-        return self.dealModel.redemption_period_in_hour_text.allKeys.count;
+        return self.dealAvailabilityArray.count;
     }
     else if (tableView == self.ibShopTable){
         if (self.dealModel.shops.count > 3) {
@@ -811,8 +822,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.ibAvailabilityTable) {
         DealDetailsAvailabilityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DealDetailsAvailabilityCell"];
-        NSString *day = [self.dealModel.redemption_period_in_hour_text.allKeys objectAtIndex:indexPath.row];
-        NSString *time = [self.dealModel.redemption_period_in_hour_text objectForKey:day];
+        DailyPeriodModel *dailyPeriod = self.dealAvailabilityArray[indexPath.row];
+        NSString *day = dailyPeriod.day;
+        NSString *time = [NSString stringWithFormat:@"%@ - %@", dailyPeriod.earliestOpening, dailyPeriod.latestClosing];
         cell.ibDayLbl.text = day;
         cell.ibTimeLbl.text = time;
         return cell;

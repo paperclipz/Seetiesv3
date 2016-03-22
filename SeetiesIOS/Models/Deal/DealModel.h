@@ -8,6 +8,8 @@
 
 #import <JSONModel/JSONModel.h>
 #import "VoucherInfoModel.h"
+#import "DailyPeriodModel.h"
+#import "PeriodModel.h"
 
 #define DEAL_TYPE_DISCOUNT @"discount"
 #define DEAL_TYPE_FREE @"free"
@@ -22,6 +24,10 @@
 @end
 
 @protocol SeShopGroupModel
+
+@end
+
+@protocol DailyPeriodModel
 
 @end
 
@@ -51,5 +57,8 @@
 @property(nonatomic,assign) BOOL is_feature;
 @property(nonatomic, strong) NSDictionary *redemption_period_in_hour_text;
 @property(nonatomic, strong) NSArray *terms;
+@property(nonatomic, strong) NSArray *daily_periods;   //daily available time period
+
+-(NSMutableArray<DailyPeriodModel>*)getFormattedAvailablePeriods;
 
 @end
