@@ -20,7 +20,6 @@
     int varietyImageAnimationIndex;
 
 }
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (nonatomic) LoginPageViewController* loginPageViewController;
 @property(nonatomic)SignupPageViewController* signUpViewController;
@@ -418,7 +417,7 @@
 
 -(void)changeLanguage
 {
-    self.lblTitle.text = LocalisedString(@"City Deal & Places");
+    //self.lblTitle.text = LocalisedString(@"City Deal & Places");
     
     [self.lblFacebook setTitle:LocalisedString(@"Facebook") forState:UIControlStateNormal];
     [self.lblInstagram setTitle:LocalisedString(@"Instagram") forState:UIControlStateNormal];

@@ -27,7 +27,34 @@
         
         self.ssModel = model;
         self.lblShopName.text = self.ssModel.name;
-        self.lblLocation.text = self.ssModel.location.display_address;
+        
+        
+        NSMutableArray* arrWord = [NSMutableArray new];
+        if (![Utils isStringNull:self.ssModel.category.title]) {
+            [arrWord addObject:self.ssModel.category.title];
+        }
+        
+        if (![Utils isStringNull:self.ssModel.location.display_address]) {
+            [arrWord addObject:self.ssModel.location.display_address];
+        }
+        
+        NSMutableString* displayStr = [[NSMutableString alloc]init];
+        for (int i = 0; i<arrWord.count; i++) {
+            
+            if (i == 0) {
+                [displayStr appendString:arrWord[0]];
+            }
+            else
+            {
+                [displayStr appendString:[NSString stringWithFormat:@" \u2022 %@",arrWord[i]]];
+
+            }
+            
+        }
+        
+        self.lblLocation.text = displayStr;
+        
+        
         self.lblStatus.text = self.ssModel.location.opening_hours.open_now?LocalisedString(@"OPEN"):LocalisedString(@"CLOSED");
         self.lblStatus.backgroundColor = self.ssModel.location.opening_hours.open_now?GREEN_STATUS : TWO_ZERO_FOUR_COLOR;
 

@@ -91,6 +91,19 @@
 
 -(void)requestServerToFollowCollection:(CollectionModel*)colModel
 {
+    if ([Utils isGuestMode]) {
+        
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login To Collect") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == 1) {
+                [Utils showLogin];
+                
+            }
+        }];
+        return;
+    }
+
     
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",colModel.user_info.uid,colModel.collection_id];
     NSDictionary* dict = @{@"uid":colModel.user_info.uid,

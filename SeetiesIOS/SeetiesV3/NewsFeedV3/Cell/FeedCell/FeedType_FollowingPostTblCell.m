@@ -134,9 +134,9 @@
     }
     
     self.lblTitle.text = [feedModel getPostTitle];
-    self.lblLocation.text = feedModel.location.locality;
+    self.lblLocation.text = feedModel.location.name;
     
-    self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",feedModel.location.locality,feedModel.location.country];
+    //self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",feedModel.location.locality,feedModel.location.country];
  
     [self.lblDescription setStandardText:[feedModel getPostDescription]];
 
@@ -219,6 +219,20 @@
 }
 -(void)requestServerToLikePost
 {
+    
+    if ([Utils isGuestMode]) {
+        
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login To Like") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == 1) {
+                [Utils showLogin];
+                
+            }
+        }];
+        return;
+    }
+
     NSString* appendString = [NSString stringWithFormat:@"%@/like",self.newsFeedTypeModel.newsFeedData.post_id];
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
                            @"post_id" : self.newsFeedTypeModel.newsFeedData.post_id,
@@ -240,6 +254,20 @@
 
 -(void)requestServerToUnlikePost
 {
+    
+    if ([Utils isGuestMode]) {
+        
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login To UnLike") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == 1) {
+                [Utils showLogin];
+                
+            }
+        }];
+        return;
+    }
+    
     NSString* appendString = [NSString stringWithFormat:@"%@/like",self.newsFeedTypeModel.newsFeedData.post_id];
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
                            @"post_id" : self.newsFeedTypeModel.newsFeedData.post_id,

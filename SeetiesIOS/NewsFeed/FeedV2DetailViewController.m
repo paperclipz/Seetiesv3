@@ -4027,9 +4027,9 @@
 
 -(IBAction)SettingButton:(id)sender{
     NSLog(@"Setting Button Click.");
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetUsername = [defaults objectForKey:@"UserName"];
-    if ([GetUsername isEqualToString:GetPostName]) {
+
+    
+    if ([GetUserUid isEqualToString:[Utils getUserID]]) {
         //self
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
@@ -4283,6 +4283,7 @@
 
 -(void)OpenEdit{
     
+    _editPostViewController = nil;
     [self.editPostViewController requestServerForPostInfo:GetPostID completionBLock:^{
         
         DraftModel* editPost = [[ConnectionManager dataManager] editPostModel];
