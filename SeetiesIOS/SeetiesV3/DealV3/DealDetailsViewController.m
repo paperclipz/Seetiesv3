@@ -99,7 +99,7 @@
 @property(nonatomic) BOOL isProcessing;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) NSMutableArray<SeShopDetailModel> *nearbyShopArray;
-@property(nonatomic) NSMutableArray<DailyPeriodModel> *dealAvailabilityArray;
+@property(nonatomic) NSMutableArray<NSDictionary> *dealAvailabilityArray;
 @property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic) DealRedeemViewController *dealRedeemViewController;
 @property(nonatomic) SeetiesShopViewController *seetiesShopViewController;
@@ -178,6 +178,55 @@
   
 }
 
+-(void)formatDealAvailability{
+    if (self.dealModel.redemption_period_in_hour_text) {
+        [self.dealAvailabilityArray removeAllObjects];
+        for (int i=0 ; i<7; i++) {
+            NSString *day;
+            switch (i) {
+                case 0:
+                    day = @"Sunday";
+                    break;
+                    
+                case 1:
+                    day = @"Monday";
+                    break;
+                    
+                case 2:
+                    day = @"Tuesday";
+                    break;
+                    
+                case 3:
+                    day = @"Wednesday";
+                    break;
+                    
+                case 4:
+                    day = @"Thursday";
+                    break;
+                    
+                case 5:
+                    day = @"Friday";
+                    break;
+                    
+                case 6:
+                    day = @"Saturday";
+                    break;
+                    
+                default:
+                    day = @"";
+                    break;
+            }
+            
+            NSString *time = [self.dealModel.redemption_period_in_hour_text objectForKey:day];
+            if (time) {
+                NSDictionary *period = @{@"day" : day,
+                                         @"time" : time};
+                [self.dealAvailabilityArray addObject:period];
+            }
+        }
+    }
+}
+
 #pragma mark - IBAction
 - (IBAction)shopSeeMoreBtnClicked:(id)sender {
     self.seetieShopListingViewController = nil;
@@ -242,9 +291,9 @@
     return _nearbyShopArray;
 }
 
--(NSArray *)dayAvailabilityArrayAtIndexes:(NSIndexSet *)indexes{
+-(NSMutableArray<NSDictionary> *)dealAvailabilityArray{
     if (!_dealAvailabilityArray) {
-        _dealAvailabilityArray = [[NSMutableArray<DailyPeriodModel> alloc] init];
+        _dealAvailabilityArray = [[NSMutableArray<NSDictionary> alloc] init];
     }
     return _dealAvailabilityArray;
 }
@@ -502,17 +551,15 @@
 
 
 -(void)updateAvailabilityView{
-    if (self.dealModel) {
-        self.dealAvailabilityArray = [self.dealModel getFormattedAvailablePeriods];
-    }
+    [self formatDealAvailability];
     [self.ibAvailabilityTable reloadData];
     
-    if (self.dealModel.redemption_period_in_hour_text.allKeys.count == 0) {
+    if (self.dealAvailabilityArray.count == 0) {
         [self.ibAvailabilityView setHeight:0];
     }
     else{
         float cellHeight = [DealDetailsAvailabilityCell getHeight];
-        NSInteger numberOfDays = self.dealModel.redemption_period_in_hour_text.allKeys.count;
+        NSInteger numberOfDays = self.dealAvailabilityArray.count;
         float tableHeight = cellHeight * numberOfDays;
         CGFloat totalHeight = self.ibAvailabilityTable.frame.origin.y + tableHeight + 16 + contentHeightPadding;
         
@@ -822,9 +869,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.ibAvailabilityTable) {
         DealDetailsAvailabilityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DealDetailsAvailabilityCell"];
-        DailyPeriodModel *dailyPeriod = self.dealAvailabilityArray[indexPath.row];
-        NSString *day = dailyPeriod.day;
-        NSString *time = [NSString stringWithFormat:@"%@ - %@", dailyPeriod.earliestOpening, dailyPeriod.latestClosing];
+        NSDictionary *availabilityDict = self.dealAvailabilityArray[indexPath.row];
+        NSString *day = availabilityDict[@"day"];
+        NSString *time = availabilityDict[@"time"];
         cell.ibDayLbl.text = day;
         cell.ibTimeLbl.text = time;
         return cell;

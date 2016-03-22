@@ -20,7 +20,10 @@
 #import "VoucherListingViewController.h"
 #import "TermsViewController.h"
 #import "PromoPopOutViewController.h"
-#import "DailyPeriodModel.h"
+
+@protocol NSDictionary
+
+@end
 
 @interface DealDetailsViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, PromoPopOutDelegate, DealRedeemDelegate>
 
