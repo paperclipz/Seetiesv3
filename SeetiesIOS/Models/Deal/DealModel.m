@@ -18,7 +18,8 @@
                                                        @"deal_id" : @"dID",
                                                        @"description": @"deal_desc",
                                                        @"redemption_periods.periods_in_hours.period_text": @"redemption_period_in_hour_text",
-                                                       @"redemption_periods.periods_in_hours.period": @"daily_periods"
+                                                       @"redemption_periods.periods_in_hours.period": @"period",
+                                                       @"redemption_periods.periods_in_date": @"periods_in_date"
                                                        }];
 }
 
@@ -46,14 +47,14 @@
 -(NSMutableArray<DailyPeriodModel>*)getFormattedAvailablePeriods{
     NSMutableArray<DailyPeriodModel> *formattedDailyPeriods = [[NSMutableArray<DailyPeriodModel> alloc] init];
     
-    for (int dayNumber = 0; dayNumber < self.daily_periods.count; dayNumber++) {
-        NSArray *dayPeriod = self.daily_periods[dayNumber];
+    for (int dayNumber = 0; dayNumber < self.period.count; dayNumber++) {
+        NSArray *dayPeriod = self.period[dayNumber];
         if ([Utils isArrayNull:dayPeriod]) {
             continue;
         }
         
         DailyPeriodModel *dailyPeriodModel = [[DailyPeriodModel alloc] init];
-        dailyPeriodModel.periods = [[NSMutableArray alloc] init];
+        dailyPeriodModel.periods = [[NSMutableArray<PeriodModel> alloc] init];
         dailyPeriodModel.dayNumber = dayNumber;
         
         for (NSDictionary *period in dayPeriod) {
@@ -67,6 +68,11 @@
     }
     
     return formattedDailyPeriods;
+}
+
+-(NSString*)getNextAvailableRedemptionDateString{
+    NSMutableString *nextDateString = [[NSMutableString alloc] init];
+    return nextDateString;
 }
 
 @end

@@ -788,6 +788,20 @@
     return [components day];
 }
 
++(BOOL)isDate:(NSDate*)currentDate betweenFirstDate:(NSDate*)firstDate andLastDate:(NSDate*)lastDate{
+    NSComparisonResult firstDateResult = [currentDate compare:firstDate];
+    NSComparisonResult lastDateResult = [currentDate compare:lastDate];
+    
+    if (firstDateResult == NSOrderedSame && lastDateResult == NSOrderedSame) {
+        return true;
+    }
+    else if (firstDateResult == NSOrderedDescending && lastDateResult == NSOrderedAscending){
+        return true;
+    }
+    
+    return false;
+}
+
 +(BOOL)isValidDateString:(NSString*)dateString{
     if ([self isStringNull:dateString]) {
         return NO;
