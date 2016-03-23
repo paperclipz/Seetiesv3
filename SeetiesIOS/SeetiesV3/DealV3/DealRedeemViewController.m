@@ -122,42 +122,50 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     UIView *label = touch.view;
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        
-        if (touch.view == self.ibSwipeView) {
-            
-            if (!activateDropEffect) {
-                label.frame = oldFrame;
-            }
-        }
-        
-    }];
-    
     dragging = NO;
     
-    if (activateDropEffect) {
-        UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[self.ibBottomView]];
-          gravityBehaviour.gravityDirection = CGVectorMake(0, 5);
-        [self.animator addBehavior:gravityBehaviour];
-        
-        UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.ibBottomView]];
-        [itemBehaviour addAngularVelocity:-M_PI_2 forItem:self.ibBottomView];
-        [self.animator addBehavior:itemBehaviour];
-        
-        [UIView animateWithDuration:1.0f animations:^{
-           
-            self.ibDescBorderView.alpha = 1;
-
-        }];
-        
-        [self requestServerToRedeemVoucher];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
-        self.ibRedeemDateTime.text = [formatter stringFromDate:[[NSDate alloc] init]];
+    if(touch.view == self.ibSwipeView){
+        if (activateDropEffect) {
+            [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to redeem this voucher") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    [self dropBottomView];
+                }
+                else if (buttonIndex == 0){
+                    [UIView animateWithDuration:0.5 animations:^{
+                        label.frame = oldFrame;
+                    }];
+                }
+            }];
+        }
+        else{
+            [UIView animateWithDuration:0.5 animations:^{
+                label.frame = oldFrame;
+            }];
+        }
     }
+}
+
+-(void)dropBottomView{
+    UIGravityBehavior *gravityBehaviour = [[UIGravityBehavior alloc] initWithItems:@[self.ibBottomView]];
+    gravityBehaviour.gravityDirection = CGVectorMake(0, 5);
+    [self.animator addBehavior:gravityBehaviour];
     
+    UIDynamicItemBehavior *itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:@[self.ibBottomView]];
+    [itemBehaviour addAngularVelocity:-M_PI_2 forItem:self.ibBottomView];
+    [self.animator addBehavior:itemBehaviour];
     
+    [UIView animateWithDuration:1.0f animations:^{
+        
+        self.ibDescBorderView.alpha = 1;
+        
+    } completion:^(BOOL finished) {
+        self.ibBottomView.hidden = YES;
+    }];
+    
+    [self requestServerToRedeemVoucher];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
+    self.ibRedeemDateTime.text = [formatter stringFromDate:[[NSDate alloc] init]];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -212,12 +220,17 @@
                            @"token": [Utils getAppToken]
                            };
     
+    CLLocation *userLocation = [[SearchManager Instance] getAppLocation];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     NSDictionary *voucherDict = @{@"deal_id": self.dealModel.dID,
                                   @"voucher_id": self.dealModel.voucher_info.voucher_id,
-                                  @"datetime": [formatter stringFromDate:[[NSDate alloc] init]]
+                                  @"datetime": [formatter stringFromDate:[[NSDate alloc] init]],
+                                  @"lat": @(userLocation.coordinate.latitude),
+                                  @"lng": @(userLocation.coordinate.longitude)
                                   };
     
     
