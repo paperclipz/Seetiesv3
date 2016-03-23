@@ -304,6 +304,7 @@
         [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
     }
     else{
+        self.promoPopOutViewController = nil;
         [self.promoPopOutViewController setViewType:PopOutViewTypeError];
         
         STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];

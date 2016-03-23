@@ -225,7 +225,7 @@
                                @"deal_id" : self.dealID
                                };
         
-        NSString* appendString = [NSString stringWithFormat:@"%@/flag",@""];
+        NSString* appendString = [NSString stringWithFormat:@"%@/flag", self.dealID];
         
         [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostReportDeal param:dict appendString:appendString completeHandler:^(id object) {
             [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];

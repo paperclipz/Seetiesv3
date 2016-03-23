@@ -107,6 +107,7 @@
 @property(nonatomic) DealDetailsViewController *dealDetailsViewController;
 @property(nonatomic) VoucherListingViewController *voucherListingViewController;
 @property(nonatomic) TermsViewController *termsViewController;
+@property(nonatomic) ReportProblemViewController *reportProblemViewController;
 @end
 
 @implementation DealDetailsViewController
@@ -265,6 +266,12 @@
     [self.navigationController pushViewController:self.termsViewController animated:YES];
 }
 
+- (IBAction)reportBtnClicked:(id)sender {
+    self.reportProblemViewController = nil;
+    [self.reportProblemViewController initDataReportDeal:self.dealModel.dID];
+    [self.navigationController pushViewController:self.reportProblemViewController animated:YES];
+}
+
 #pragma mark - Declaration
 -(DealManager *)dealManager{
     return [DealManager Instance];
@@ -332,6 +339,13 @@
         _termsViewController = [TermsViewController new];
     }
     return _termsViewController;
+}
+
+-(ReportProblemViewController *)reportProblemViewController{
+    if (!_reportProblemViewController) {
+        _reportProblemViewController = [ReportProblemViewController new];
+    }
+    return _reportProblemViewController;
 }
 
 #pragma mark - UpdateView

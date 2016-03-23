@@ -20,6 +20,7 @@
 #import "VoucherListingViewController.h"
 #import "TermsViewController.h"
 #import "PromoPopOutViewController.h"
+#import "ReportProblemViewController.h"
 
 @protocol NSDictionary
 
