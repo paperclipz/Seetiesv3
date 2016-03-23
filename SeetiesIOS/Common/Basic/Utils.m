@@ -547,7 +547,7 @@
 
 +(UIImage*)getPlaceHolderImage
 {
-    return [UIImage imageNamed:@"NoImage.png"];
+    return [UIImage imageNamed:@"EmptyBlueImg.png"];
 }
 
 +(UIImage*)getProfilePlaceHolderImage

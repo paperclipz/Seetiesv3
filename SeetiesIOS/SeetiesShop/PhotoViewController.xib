@@ -46,7 +46,7 @@
                         <constraint firstAttribute="height" constant="50" id="BSc-9Z-Bdk"/>
                         <constraint firstAttribute="width" constant="50" id="mOi-zA-Urx"/>
                     </constraints>
-                    <state key="normal" image="CloseBtn.png"/>
+                    <state key="normal" image="CloseIcon.png"/>
                     <connections>
                         <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="6jA-cM-7HL"/>
                     </connections>
@@ -85,6 +85,6 @@
         </view>
     </objects>
     <resources>
-        <image name="CloseBtn.png" width="50" height="50"/>
+        <image name="CloseIcon.png" width="40" height="40"/>
     </resources>
 </document>

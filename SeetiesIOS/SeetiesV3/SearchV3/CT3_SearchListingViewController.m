@@ -14,6 +14,7 @@
 #import "DealHeaderView.h"
 #import "UILabel+Exntension.h"
 #import "DealDetailsViewController.h"
+#import "CAPSPageMenu.h"
 
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
@@ -38,6 +39,7 @@
 @property (nonatomic,strong)SearchManager* sManager;
 @property(nonatomic,assign)ProfileViewType profileType;
 
+@property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
 
 @property(nonatomic,strong)SearchLTabViewController *shopListingTableViewController;
 @property(nonatomic,strong)SearchLTabViewController *collectionListingTableViewController;
@@ -110,6 +112,8 @@
 -(void)InitSelfView{
     //self.ibScrollView.contentSize = CGSizeMake(850, 50);
 
+    [self.ibContentView adjustToScreenWidth];
+    [self.ibContentView addSubview:self.cAPSPageMenu.view];
     self.ibLocationText.delegate = self;
     self.ibSearchText.delegate = self;
     self.ibSearchText.placeholder = LocalisedString(@"Search");
@@ -196,15 +200,12 @@
 
     }
     
-    
     return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    NSLog(@"The did begin edit method was called");
     if(textField == self.ibSearchText){
-        NSLog(@"SearchTextField begin");
         self.ibLocationTableView.hidden = YES;
         self.ibSearchTableView.hidden = NO;
 
@@ -640,6 +641,34 @@
 
 #pragma mark - Declaration
 
+-(CAPSPageMenu*)cAPSPageMenu
+{
+    if(!_cAPSPageMenu)
+    {
+        CGRect deviceFrame = [Utils getDeviceScreenSize];
+        
+        NSArray *controllerArray = @[self.shopListingTableViewController,self.collectionListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
+        NSDictionary *parameters = @{
+                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
+                                     CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
+                                     CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
+                                     CAPSPageMenuOptionMenuHeight: @(40.0),
+                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/4 - 20),
+                                     CAPSPageMenuOptionCenterMenuItems: @(YES),
+                                     CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
+                                     CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
+                                     };
+        
+        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height) options:parameters];
+        _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
+       // _cAPSPageMenu.delegate = self;
+    }
+    return _cAPSPageMenu;
+}
+
+
 -(DealDetailsViewController*)dealDetailsViewController
 {
     if (!_dealDetailsViewController) {
@@ -677,7 +706,8 @@
     {
         _shopListingTableViewController = [SearchLTabViewController new];
         _shopListingTableViewController.searchListingType = SearchListingTypeShop;
-        
+        _shopListingTableViewController.title = LocalisedString(@"Shop");
+
         __weak typeof (self)weakSelf = self;
         _shopListingTableViewController.didSelectShopBlock = ^(SeShopDetailModel* model)
         {
@@ -695,6 +725,8 @@
     {
         _collectionListingTableViewController = [SearchLTabViewController new];
         _collectionListingTableViewController.searchListingType = SearchsListingTypeCollections;
+        _collectionListingTableViewController.title = LocalisedString(@"Collection");
+
         // [_collectionListingTableViewController refreshRequestWithText:self.ibSearchText.text];
         __weak typeof (self)weakSelf = self;
         
@@ -720,7 +752,8 @@
     {
         _PostsListingTableViewController = [SearchLTabViewController new];
         _PostsListingTableViewController.searchListingType = SearchsListingTypePosts;
-        
+        _PostsListingTableViewController.title = LocalisedString(@"Post");
+
         // [_PostsListingTableViewController refreshRequest:self.ibSearchText.text Latitude:self.Getlat Longtitude:self.Getlong CurrentLatitude:self.GetCurrentlat CurrentLongtitude:self.GetCurrentLong];
         
         __weak typeof (self)weakSelf = self;
@@ -759,7 +792,8 @@
     {
         _SeetizensListingTableViewController = [SearchLTabViewController new];
         _SeetizensListingTableViewController.searchListingType = SearchsListingTypeSeetizens;
-        
+        _SeetizensListingTableViewController.title = LocalisedString(@"People");
+
         // [_SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
         __weak typeof (self)weakSelf = self;
         

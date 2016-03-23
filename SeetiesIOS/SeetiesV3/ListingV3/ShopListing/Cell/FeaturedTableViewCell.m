@@ -14,14 +14,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
+
     [Utils setRoundBorder:self.lblValue color:[UIColor clearColor] borderRadius:self.lblValue.frame.size.height/2];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 -(void)initData:(DealModel*)model

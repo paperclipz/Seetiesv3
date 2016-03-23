@@ -8,6 +8,7 @@
 
 #import "DealDetailsViewController.h"
 #import "UILabel+Exntension.h"
+#import "PhotoViewController.h"
 
 @interface DealDetailsViewController (){
     float contentHeightPadding;
@@ -108,12 +109,43 @@
 @property(nonatomic) VoucherListingViewController *voucherListingViewController;
 @property(nonatomic) TermsViewController *termsViewController;
 @property(nonatomic) ReportProblemViewController *reportProblemViewController;
+@property(nonatomic) PhotoViewController *photoViewController;
+
 @end
 
 @implementation DealDetailsViewController
 
+- (void)tapImage:(UITapGestureRecognizer*)sender {
+
+    _photoViewController = nil;
+    
+    NSMutableArray* arrImages = [NSMutableArray new];
+    for (int i = 0; i<self.dealModel.photos.count; i++) {
+        
+        [arrImages addObject:self.dealModel.photos[i]];
+    }
+    
+    [self.photoViewController initData:arrImages scrollToIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    
+    CATransition* transition = [CATransition animation];
+    
+    transition.duration = 0.3;
+    transition.type = kCATransitionFade;
+    
+    [[self navigationController].view.layer addAnimation:transition forKey:kCATransition];
+    
+    [self.navigationController pushViewController:self.photoViewController animated:NO onCompletion:^{
+        
+    }];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UITapGestureRecognizer *tabImagesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
+    [self.ibHeaderImageScrollView addGestureRecognizer:tabImagesture];
+    
     // Do any additional setup after loading the view from its nib.
     self.isProcessing = NO;
     contentHeightPadding = 10.0;
@@ -273,6 +305,16 @@
 }
 
 #pragma mark - Declaration
+
+-(PhotoViewController*)photoViewController
+{
+    if (!_photoViewController) {
+        _photoViewController = [PhotoViewController new];
+    }
+    
+    return _photoViewController;
+}
+
 -(DealManager *)dealManager{
     return [DealManager Instance];
 }
@@ -402,6 +444,7 @@
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageXOrigin, 0, self.ibHeaderImageScrollView.frame.size.width, self.ibHeaderImageContentView.frame.size.height)];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
+            
             [imageView sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
             [self.ibHeaderImageContentView addSubview:imageView];
             imageXOrigin += imageView.frame.size.width;
