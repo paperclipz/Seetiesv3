@@ -13,11 +13,9 @@
                 <outlet property="ibLocationContentView" destination="q3U-Md-ejz" id="8RZ-HL-Z8Y"/>
                 <outlet property="ibLocationTableView" destination="Oft-NT-KdD" id="OPh-GL-DPf"/>
                 <outlet property="ibLocationText" destination="Zmd-g1-JdJ" id="ar8-Qp-gpn"/>
-                <outlet property="ibScrollView" destination="ed9-Gn-4kz" id="nNo-xt-LVa"/>
                 <outlet property="ibSearchContentView" destination="vNe-4D-Hiu" id="Rpt-PY-B4K"/>
                 <outlet property="ibSearchTableView" destination="4ir-jD-rLi" id="ZpP-vf-3j0"/>
                 <outlet property="ibSearchText" destination="shj-sB-MV9" id="MfV-Ch-gti"/>
-                <outlet property="ibSegmentedControl" destination="65a-RL-bLb" id="avK-1M-MEb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,23 +27,6 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7Y-6D-e5h">
                     <rect key="frame" x="0.0" y="103" width="320" height="465"/>
                     <subviews>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="65a-RL-bLb">
-                            <rect key="frame" x="10" y="10" width="300" height="29"/>
-                            <segments>
-                                <segment title="Shops"/>
-                                <segment title="Collections"/>
-                                <segment title="Posts"/>
-                                <segment title="People"/>
-                            </segments>
-                            <color key="tintColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="searchSegmentedControl:" destination="-1" eventType="valueChanged" id="OQ2-By-ezH"/>
-                            </connections>
-                        </segmentedControl>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ed9-Gn-4kz">
-                            <rect key="frame" x="0.0" y="50" width="320" height="415"/>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </scrollView>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oft-NT-KdD">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="465"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,19 +39,12 @@
                     <constraints>
                         <constraint firstItem="Oft-NT-KdD" firstAttribute="leading" secondItem="B7Y-6D-e5h" secondAttribute="leading" id="869-5S-CfY"/>
                         <constraint firstItem="Oft-NT-KdD" firstAttribute="top" secondItem="B7Y-6D-e5h" secondAttribute="top" id="9jk-du-hlQ"/>
-                        <constraint firstAttribute="trailing" secondItem="ed9-Gn-4kz" secondAttribute="trailing" id="CJW-bh-yiA"/>
-                        <constraint firstItem="ed9-Gn-4kz" firstAttribute="leading" secondItem="B7Y-6D-e5h" secondAttribute="leading" id="Cnz-sZ-Qdb"/>
-                        <constraint firstAttribute="bottom" secondItem="ed9-Gn-4kz" secondAttribute="bottom" id="Lqy-4L-wlJ"/>
-                        <constraint firstItem="65a-RL-bLb" firstAttribute="top" secondItem="B7Y-6D-e5h" secondAttribute="top" constant="10" id="NBX-ya-0LM"/>
                         <constraint firstAttribute="trailing" secondItem="Oft-NT-KdD" secondAttribute="trailing" id="O2O-C6-Jba"/>
                         <constraint firstAttribute="bottom" secondItem="Oft-NT-KdD" secondAttribute="bottom" id="RhT-U6-eWI"/>
                         <constraint firstAttribute="trailing" secondItem="4ir-jD-rLi" secondAttribute="trailing" id="Rvs-iK-lc6"/>
                         <constraint firstAttribute="bottom" secondItem="4ir-jD-rLi" secondAttribute="bottom" id="eJo-Eg-c6u"/>
-                        <constraint firstAttribute="trailing" secondItem="65a-RL-bLb" secondAttribute="trailing" constant="10" id="lWr-xf-Afw"/>
                         <constraint firstItem="4ir-jD-rLi" firstAttribute="leading" secondItem="B7Y-6D-e5h" secondAttribute="leading" id="msM-Sg-qcS"/>
-                        <constraint firstItem="65a-RL-bLb" firstAttribute="leading" secondItem="B7Y-6D-e5h" secondAttribute="leading" constant="10" id="tdf-NG-edN"/>
                         <constraint firstItem="4ir-jD-rLi" firstAttribute="top" secondItem="B7Y-6D-e5h" secondAttribute="top" id="xmg-15-GUG"/>
-                        <constraint firstItem="ed9-Gn-4kz" firstAttribute="top" secondItem="65a-RL-bLb" secondAttribute="bottom" constant="12" id="zyZ-4L-KXE"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4xE-PA-eq6">

@@ -10,10 +10,14 @@
 #import "SearchLTabViewController.h"
 #import "CT3_SearchListingViewController.h"
 #import "SearchLocationViewController.h"
-@interface SearchQuickBrowseListingController ()
+#import "DealDetailsViewController.h"
+#import "CAPSPageMenu.h"
 
-@property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
+@interface SearchQuickBrowseListingController ()<CAPSPageMenuDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *ibCotentView;
+@property (weak, nonatomic) IBOutlet UIButton *btnLocation;
+
 @property(nonatomic,strong)SearchLTabViewController *shopListingTableViewController;
 @property(nonatomic,strong)SearchLTabViewController *collectionListingTableViewController;
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
@@ -26,8 +30,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblCategory;
 @property(nonatomic, strong) SearchLocationViewController *searchLocationViewController;
 @property(nonatomic, strong) CT3_SearchListingViewController *searchListingViewController;
+@property(nonatomic, strong) DealDetailsViewController *dealDetailsViewController;
+@property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
 
-@property (weak, nonatomic) IBOutlet UIButton *btnLocation;
 
 @property(nonatomic) FiltersModel *shopFilterModel;
 @property(nonatomic) FiltersModel *collectionFilterModel;
@@ -54,17 +59,12 @@
     [self.navigationController pushViewController:self.searchLocationViewController animated:YES];
 }
 
-- (IBAction)btnSegmentedControlClicked:(UISegmentedControl *)sender
-{
-    [self.ibScrollView setContentOffset:CGPointMake(self.view.frame.size.width * sender.selectedSegmentIndex, 0) animated:YES];
-    [self refreshCategoryLbl];
-}
 
 - (IBAction)btnFilterClicked:(id)sender {
-    if (self.ibSegmentedControl.selectedSegmentIndex == 0) {
+    if (self.cAPSPageMenu.currentPageIndex == 0) {
         [self presentViewController:self.shopFilterViewController animated:YES completion:nil];
     }
-    else if (self.ibSegmentedControl.selectedSegmentIndex == 1){
+    else if (self.cAPSPageMenu.currentPageIndex == 1){
         [self presentViewController:self.collectionFilterViewController animated:YES completion:nil];
     }
 }
@@ -88,11 +88,11 @@
 }
 
 -(void)refreshCategoryLbl{
-    if (self.ibSegmentedControl.selectedSegmentIndex == 0) {
+    if (self.cAPSPageMenu.currentPageIndex == 0) {
         NSString *categories = [self getShopFilterCategories];
         self.lblCategory.text = categories;
     }
-    else if (self.ibSegmentedControl.selectedSegmentIndex == 1){
+    else if (self.cAPSPageMenu.currentPageIndex == 1){
         NSString *categories = [self getCollectionFilterCategories];
         self.lblCategory.text = categories;
     }
@@ -102,24 +102,16 @@
 -(void)initSelfView
 {
 
-    CGRect frame = [Utils getDeviceScreenSize];
-    [self.ibScrollView setWidth:frame.size.width];
-    [self.shopListingTableViewController.view setWidth:frame.size.width];
-    [self.shopListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.ibScrollView addSubview:self.shopListingTableViewController.view];
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width, self.ibScrollView.frame.size.height);
-    self.shopListingTableViewController.constFilterHeight.constant = 0;
+    //CGRect frame = [Utils getDeviceScreenSize]
+    [self.ibCotentView adjustToScreenWidth];
 
+    [self.ibCotentView addSubview:self.cAPSPageMenu.view];
     
-    [self.collectionListingTableViewController.view setWidth:frame.size.width];
-    [self.collectionListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.ibScrollView addSubview:self.collectionListingTableViewController.view];
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
-    self.ibScrollView.pagingEnabled = YES;
-    [self.collectionListingTableViewController.view setX:self.shopListingTableViewController.view.frame.size.width];
+    self.shopListingTableViewController.constFilterHeight.constant = 0;
     self.collectionListingTableViewController.constFilterHeight.constant = 0;
 
-    [self formatShopFilter];
+    
+      [self formatShopFilter];
     [self formatCollectionFilter];
 }
 - (void)didReceiveMemoryWarning {
@@ -381,8 +373,60 @@
     }
     [self refreshView];
 }
+#pragma mark - CSMENU DELEGATE
+- (void)didMoveToPage:(UIViewController *)controller index:(NSInteger)index
+{
+    [self refreshCategoryLbl];
+
+}
 
 #pragma mark - Declaration
+
+-(CAPSPageMenu*)cAPSPageMenu
+{
+    if(!_cAPSPageMenu)
+    {
+        CGRect deviceFrame = [Utils getDeviceScreenSize];
+        
+        NSArray *controllerArray = @[self.shopListingTableViewController,self.collectionListingTableViewController];
+        NSDictionary *parameters = @{
+                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
+                                     CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
+                                     CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
+                                     CAPSPageMenuOptionMenuHeight: @(40.0),
+                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2 - 20),
+                                     CAPSPageMenuOptionCenterMenuItems: @(YES),
+                                     CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
+                                     CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
+                                     };
+        
+        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibCotentView.frame.size.width, self.ibCotentView.frame.size.height) options:parameters];
+        _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
+        _cAPSPageMenu.delegate = self;
+    }
+    return _cAPSPageMenu;
+}
+
+-(SeetiesShopViewController*)seetiesShopViewController
+{
+    if (!_seetiesShopViewController) {
+        _seetiesShopViewController = [SeetiesShopViewController new];
+    }
+    
+    return _seetiesShopViewController;
+}
+
+-(DealDetailsViewController*)dealDetailsViewController
+{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    
+    return _dealDetailsViewController;
+}
+
 -(CT3_SearchListingViewController*)searchListingViewController
 {
     if (!_searchListingViewController) {
@@ -405,11 +449,17 @@
     {
         _shopListingTableViewController = [SearchLTabViewController new];
         _shopListingTableViewController.searchListingType = SearchListingTypeShop;
-        
+        _shopListingTableViewController.title = LocalisedString(@"Shop");
+
         __weak typeof (self)weakSelf = self;
         _shopListingTableViewController.didSelectShopBlock = ^(SeShopDetailModel* model)
         {
             [weakSelf showSeetieshopView:model];
+        };
+        
+        _shopListingTableViewController.didSelectDealBlock = ^(DealModel* model)
+        {
+            [weakSelf showDealDetailView:model];
         };
     }
     return _shopListingTableViewController;
@@ -420,12 +470,12 @@
         _collectionListingTableViewController = [SearchLTabViewController new];
         _collectionListingTableViewController.searchListingType = SearchsListingTypeCollections;
         // [_collectionListingTableViewController refreshRequestWithText:self.ibSearchText.text];
+        _collectionListingTableViewController.title = LocalisedString(@"Collection");
 
         __weak typeof (self)weakSelf = self;
         
         _collectionListingTableViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            // [weakSelf showCollectionDisplayViewWithCollectionID:model.collection_id ProfileType:ProfileViewTypeOthers];
             _collectionViewController = nil;
             [weakSelf.collectionViewController GetCollectionID:model.collection_id GetPermision:@"Others" GetUserUid:model.user_info.uid];
             [weakSelf.navigationController pushViewController:weakSelf.collectionViewController animated:YES];
@@ -497,6 +547,16 @@
 }
 
 #pragma mark - Show View
+
+-(void)showDealDetailView:(DealModel*)model
+{
+    _dealDetailsViewController = nil;
+        [self.dealDetailsViewController setDealModel:model];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        
+        [self.dealDetailsViewController setupView];
+    }];
+}
 
 -(void)showSeetieshopView:(SeShopDetailModel*)model
 {

@@ -46,6 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
+    [self changeLanguage];
     [self someMethod];
     [self initColletionViewDelegate];
     [self.ibCollectionView setNeedsUpdateConstraints];
@@ -182,6 +183,11 @@
             self.triggerLoadMoreBlock();
         }
     }
+}
+
+-(void)changeLanguage
+{
+    self.lblTitle.text = LocalisedString(@"Swipe Up or Down to Close");
 }
 /*
 #pragma mark - Navigation
