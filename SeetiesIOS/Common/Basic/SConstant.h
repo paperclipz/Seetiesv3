@@ -127,9 +127,13 @@ typedef enum
     
     //===PromoCode===//
     ServerRequestTypeGetPromoCode,
-    ServerRequestTypePostRedeemPromoCode
+    ServerRequestTypePostRedeemPromoCode,
     //===PromoCode===//
-    
+    /*Report Shop*/
+    ServerRequestTypePostReportShop,
+    ServerRequestTypePostReportDeal,
+    /*Report Shop*/
+
 }ServerRequestType;
 
 typedef enum

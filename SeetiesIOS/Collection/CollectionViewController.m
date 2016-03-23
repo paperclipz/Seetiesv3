@@ -1569,9 +1569,8 @@
     [ShowActivity startAnimating];
     //[self.spinnerView startAnimating];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/translate?token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,GetExpertToken];
+    NSString *GetExpertToken = [Utils getAppToken];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@collections/%@/translate?token=%@",DataUrl.UserWallpaper_Url,GetID,GetExpertToken];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];

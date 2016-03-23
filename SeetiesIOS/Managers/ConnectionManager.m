@@ -631,6 +631,19 @@
             str = [NSString stringWithFormat:@"%@/places", API_VERION_URL];
             break;
             
+#pragma mark Report
+        case ServerRequestTypePostReportShop:
+            
+            str = [NSString stringWithFormat:@"%@/seetishops", API_VERION_URL];
+
+            break;
+        case ServerRequestTypePostReportDeal:
+            
+            str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
+            
+            break;
+            
+            
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];

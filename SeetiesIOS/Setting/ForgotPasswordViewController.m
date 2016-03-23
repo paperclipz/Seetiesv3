@@ -54,6 +54,8 @@
     
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
+        
+        return;
     }
     [self dismissViewControllerAnimated:NO completion:nil];
 }
