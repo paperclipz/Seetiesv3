@@ -65,9 +65,20 @@
         }];
     }
     
-    if (![Utils isArrayNull:self.dealModel.shops]) {
-        SeShopDetailModel *shopModel = [self.dealModel.shops objectAtIndex:0];
-        self.ibVoucherShopLbl.text = shopModel.name;
+    SeShopDetailModel *shopModel = self.dealModel.shops[0];
+    NSString *shopName = shopModel.name;
+    NSString *shopAddress = shopModel.location.display_address;
+    if ([Utils isStringNull:shopName]) {
+        self.ibVoucherShopLbl.text = shopAddress;
+    }
+    else if ([Utils isStringNull:shopAddress]){
+        self.ibVoucherShopLbl.text = shopName;
+    }
+    else if ([Utils isStringNull:shopName] && [Utils isStringNull:shopAddress]){
+        self.ibVoucherShopLbl.text = @"";
+    }
+    else{
+        self.ibVoucherShopLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
     }
     
     [self setDealType];
