@@ -107,7 +107,7 @@
     
     _reportProblemViewController = nil;
     
-    [self.reportProblemViewController initDataReportShop];
+    [self.reportProblemViewController initDataReportShop:self.seShopModel];
     [self.navigationController pushViewController:self.reportProblemViewController animated:YES];
 }
 
@@ -221,6 +221,7 @@
         [self.arrViews addObject:self.seNearbySeetishop];
 
     }
+    [self.ibReportShopView adjustToScreenWidth];
     [self.arrViews addObject:self.ibReportShopView];
 
   

@@ -1544,7 +1544,7 @@ static NSCache* heightCache = nil;
 
 -(void)processUpdater
 {
-    updateLocation = YES;
+    //updateLocation = YES;
     //updateData = YES;
     if (updateLocation) {
         

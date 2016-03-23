@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ReportProblemViewController : CommonViewController
--(void)initDataReportShop;
--(void)initDataReportDeal;
+-(void)initDataReportShop:(SeShopDetailModel*)model;
+-(void)initDataReportDeal:(NSString*)dealID;
 
 @end

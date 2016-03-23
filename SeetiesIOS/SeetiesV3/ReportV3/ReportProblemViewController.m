@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgThreeTick;
 @property (assign, nonatomic) int type;
 @property (assign, nonatomic) int reportType;//1 == shop 2 == deal
+@property (nonatomic) NSString*  dealID;
+@property (nonatomic) SeShopDetailModel*  shopModel;
 
 @end
 
@@ -39,10 +41,20 @@
 
 }
 
+- (IBAction)btnDoneClicked:(id)sender {
+    
+    if (self.reportType == 1) {
+        [self requestServerForFlagShop];
+    }
+    else if(self.reportType == 2)
+    {
+        [self requestServerForFlagDeal];
+    }
+}
 
 -(void)changeViewType:(int)type
 {
-    
+    self.type = type;
     self.ibImgOneTick.hidden = YES;
     self.ibImgTwoTick.hidden = YES;
     self.ibImgThreeTick.hidden = YES;
@@ -69,14 +81,16 @@
     
 }
 
--(void)initDataReportShop
+-(void)initDataReportShop:(SeShopDetailModel*)model
 {
     self.reportType = 1;
+    self.shopModel = model;
 }
 
--(void)initDataReportDeal
+-(void)initDataReportDeal:(NSString*)dealID
 {
     self.reportType = 2;
+    self.dealID = dealID;
 
 }
 - (void)viewDidLoad {
@@ -144,4 +158,85 @@
 }
 
 
+-(NSString*)getReportMessage
+{
+    if(self.type == 1)
+    {
+        return self.lblOneDesc.text;
+        
+    }
+    else if(self.type == 2)
+    {
+        return self.lblTwoDesc.text;
+
+    }
+    else{
+        return self.ibTxtView.text;
+
+    }
+}
+#pragma mark - Request Server
+-(void)requestServerForFlagShop
+{
+    
+    NSString* reportMessage = [self getReportMessage];
+    NSString* shopID = @"";
+
+    
+    if(![Utils isStringNull:self.shopModel.seetishop_id])
+    {
+        shopID = self.shopModel.seetishop_id;
+        
+    }
+    else if(![Utils isStringNull:self.shopModel.place_id]){
+        shopID = self.shopModel.seetishop_id;
+
+    }
+    else if(![Utils isStringNull:self.shopModel.location.location_id])
+    {
+        shopID = self.shopModel.location.location_id;
+
+    }
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                           @"message" : reportMessage?reportMessage:@"",
+                           @"seetishop_id" : shopID?shopID:@""
+                           };
+    
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/flag",shopID];
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostReportShop param:dict appendString:appendString completeHandler:^(id object) {
+        
+        
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)requestServerForFlagDeal
+{
+    NSString* reportMessage = [self getReportMessage];
+
+    @try {
+        NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                               @"message" : reportMessage?reportMessage:@"",
+                               @"deal_id" : self.dealID
+                               };
+        
+        NSString* appendString = [NSString stringWithFormat:@"%@/flag",@""];
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostReportDeal param:dict appendString:appendString completeHandler:^(id object) {
+            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+
+        } errorBlock:^(id object) {
+            
+        }];
+    }
+    @catch (NSException *exception) {
+        
+    }
+    
+  }
 @end
