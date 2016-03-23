@@ -16,6 +16,7 @@
 #import "PromoPopOutViewController.h"
 #import "DealRedeemViewController.h"
 #import "SearchLocationViewController.h"
+#import "SearchManager.h"
 
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate, FilterViewControllerDelegate>
 -(void)initWithLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;

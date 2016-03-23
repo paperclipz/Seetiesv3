@@ -759,12 +759,22 @@
         return;
     }
     
-    NSDictionary *dict = @{@"deal_id":model.dID,
+    NSMutableDictionary *finalDict = [[NSMutableDictionary alloc] init];
+    
+    NSDictionary *coreDict = @{@"deal_id":model.dID,
                            @"shop_id":shopModel.seetishop_id,
                            @"token": [Utils getAppToken]};
     
+    CLLocation *userLocation = [[SearchManager Instance] getAppLocation];
+    
+    NSDictionary *locationDict = @{@"lat": @(userLocation.coordinate.latitude),
+                                   @"lng": @(userLocation.coordinate.longitude)};
+    
+    [finalDict addEntriesFromDictionary:coreDict];
+    [finalDict addEntriesFromDictionary:locationDict];
+    
     self.isCollecting = YES;
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:finalDict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         model.voucher_info = dealModel.voucher_info;
         [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];

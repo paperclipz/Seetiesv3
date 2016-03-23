@@ -398,6 +398,7 @@
     
     self.ibHeaderExpiryView.hidden = NO;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     [dateFormatter setDateFormat:@"yyy-MM-dd HH:mm:ss"];
     NSString *status = self.dealModel.voucher_info.status;
     if ([status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
@@ -412,6 +413,7 @@
         self.ibHeaderRedeemExpiryDescLbl.text = LocalisedString(@"Flash this screen to the shop's worker or owner to redeem the deal");
         
         NSDate *redeemDate = [dateFormatter dateFromString:self.dealModel.voucher_info.redeemed_at];
+        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
         [dateFormatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
         self.ibHeaderRedeemExpiryLbl.text = [dateFormatter stringFromDate:redeemDate];
     }
@@ -424,6 +426,7 @@
         [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsExpiredIcon.png"]];
         
         NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
         [dateFormatter setDateFormat:@"dd MMM yyyy"];
         self.ibHeaderNormalExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), [dateFormatter stringFromDate:expiredDate]];
     }
@@ -443,6 +446,7 @@
             self.ibHeaderExpiryHeightConstraint.constant = 50;
             
             NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
             [dateFormatter setDateFormat:@"dd MMM yyyy"];
             self.ibHeaderNormalExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires"), [dateFormatter stringFromDate:expiredDate]];
         }
@@ -1005,12 +1009,22 @@
         return;
     }
     
-    NSDictionary *dict = @{@"deal_id":self.dealModel.dID,
+    NSMutableDictionary *finalDict = [[NSMutableDictionary alloc] init];
+    
+    NSDictionary *coreDict = @{@"deal_id":self.dealModel.dID,
                            @"shop_id":shopModel.seetishop_id,
                            @"token": [Utils getAppToken]};
     
+    CLLocation *userLocation = [[SearchManager Instance] getAppLocation];
+    
+    NSDictionary *locationDict = @{@"lat": @(userLocation.coordinate.latitude),
+                                   @"lng": @(userLocation.coordinate.longitude)};
+    
+    [finalDict addEntriesFromDictionary:coreDict];
+    [finalDict addEntriesFromDictionary:locationDict];
+    
     self.isProcessing = YES;
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:finalDict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         self.dealModel = dealModel;
         [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
