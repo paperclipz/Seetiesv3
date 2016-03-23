@@ -33,11 +33,16 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:TOKEN];
     [defaults setObject:nil forKey:USERID];
+     BOOL walkthrough = [[defaults objectForKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH] boolValue];
+    BOOL warning = [[defaults objectForKey:FIRST_TIME_SHOW_DEAL_WARNING] boolValue];
 
     [defaults synchronize];
     
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+
+    [defaults setBool:walkthrough forKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH];
+    [defaults setBool:warning forKey:FIRST_TIME_SHOW_DEAL_WARNING];
 
     AppDelegate *appdelegate;
     
