@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="ibCollectionView" destination="qj5-BD-3CX" id="mcM-zE-T9E"/>
                 <outlet property="ibDragableView" destination="VeS-Fo-Znk" id="DwF-oI-Bd5"/>
+                <outlet property="lblTitle" destination="JYe-KR-Hdy" id="zeB-HI-SDh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
