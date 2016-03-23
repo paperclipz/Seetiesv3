@@ -1544,7 +1544,7 @@ static NSCache* heightCache = nil;
 
 -(void)processUpdater
 {
-    //updateLocation = YES;
+    updateLocation = YES;
     //updateData = YES;
     if (updateLocation) {
         
@@ -1610,14 +1610,16 @@ static NSCache* heightCache = nil;
             hModel.address_components.administrative_area_level_1 = model.state;
             hModel.address_components.political = model.political;
             
-            if (![Utils isStringNull:model.subLocality]) {
-                hModel.locationName = model.subLocality;
+            hModel.locationName = model.locationName;
 
-            }
-            else{
-                hModel.locationName = model.subLocality_lvl_1;
-
-            }
+//            if (![Utils isStringNull:model.subLocality]) {
+//                hModel.locationName = model.locationName;
+//
+//            }
+//            else{
+//                hModel.locationName = model.subLocality_lvl_1;
+//
+//            }
             
             if (completionBlock) {
                 completionBlock(hModel);

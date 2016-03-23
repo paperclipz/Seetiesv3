@@ -57,7 +57,7 @@
 @property(nonatomic,strong)NSString<Ignore>* subLocality_lvl_1;
 
 @property(nonatomic,strong)NSDictionary<Optional>* address_components;
-@property(nonatomic,strong)NSString<Ignore>* locationName;
+@property(nonatomic,strong)NSString<Ignore>* locationName;//  use location name instead of the list above
 
 -(void)process;
 
