@@ -112,6 +112,9 @@
         
         _stSearchViewController.btnAddNewPlaceBlock = ^(id object)
         {
+            _addNewPlaceViewController = nil;
+            
+            [weakSelf.addNewPlaceViewController initData:weakSelf.postModel];
             [weakSelf.senderController.navigationController pushViewController:weakSelf.addNewPlaceViewController animated:YES];
             //  wealSelf.addNewPlaceViewController.title
             weakSelf.addNewPlaceViewController.title = @"Add New Place";

@@ -33,6 +33,8 @@
 @property (nonatomic, strong) LPGoogleFunctions *googleFunctions;
 
 @property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
+@property (nonatomic, strong) SuggestedPlaceModel *suggestedPlaceModel;
+
 
 @end
 
@@ -209,6 +211,7 @@
             if (cell == nil) {
                 cell = [[STAddNewTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"STAddNewTableViewCell"];
             
+                
             }
             
             return cell;
@@ -218,6 +221,7 @@
         {
             STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
             
+            cell.ibImgVerified.hidden = YES;
             SearchLocationModel* model = self.searchModel.predictions[indexPath.row];
             
             NSDictionary* dict = model.terms[0];
@@ -232,7 +236,6 @@
     }
     else if (tableView == self.fourSquareSearchTableViewController.tableView){  //==== FOUR SQUARE ====
         
-        STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
 
         if (indexPath.row == self.nearbyVenues.count && self.placeViewType == PlaceViewTypeNew) {
             
@@ -246,7 +249,10 @@
             return cell;
         }
         else{
-        
+            STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
+
+            cell.ibImgVerified.hidden = YES;
+
             VenueModel* model = self.nearbyVenues[indexPath.row];
             
             cell.lblSubTitle.text = model.address;
@@ -259,7 +265,6 @@
     }
     else{
         
-        STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
         
         if (indexPath.row == self.arrSeetiesList.count && self.placeViewType == PlaceViewTypeNew) {
             
@@ -274,9 +279,14 @@
         }
         else{
             
+            STTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([STTableViewCell class])];
+
             Location* locationModel = self.arrSeetiesList[indexPath.row];
             cell.lblSubTitle.text = locationModel.formatted_address;
             cell.lblTitle.text = locationModel.name;
+            
+            cell.ibImgVerified.hidden = !locationModel.is_collaborate;
+
             return cell;
             
             
@@ -482,13 +492,14 @@
 
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
                            @"keyword" : self.txtSearch.text,
-                           @"limit" : @(10),
+                           @"limit" : @(30),
                            };
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetPlacesSuggestion param:dict appendString:@"" completeHandler:^(id object) {
         
         
         SuggestedPlaceModel* model = [[ConnectionManager dataManager]suggestedPlaceModel];
+        self.suggestedPlaceModel = model;
         [self.arrSeetiesList addObjectsFromArray:model.result];
         [self refreshSeetiesSearch];
         
@@ -505,5 +516,24 @@
     [self getFourSquareSuggestionPlaces];
     [self requestSeetiesSuggestedPlaces];
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    // UITableView only moves in one direction, y axis
+//    CGFloat currentOffset = scrollView.contentOffset.y;
+//    CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+//    
+//    // Change 10.0 to adjust the distance from bottom
+//    if (maximumOffset - currentOffset <= self.view.frame.size.height/2) {
+//        
+//        if(![Utils isStringNull:self.suggestedPlaceModel.paging.next] && self.searchType == SearchTypeSeeties)
+//        {
+//            
+//            [self requestSeetiesSuggestedPlaces];
+//        }
+//    }
+//
+//}
+
 
 @end

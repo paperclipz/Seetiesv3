@@ -126,16 +126,26 @@
     
     if(touch.view == self.ibSwipeView){
         if (activateDropEffect) {
-            [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to redeem this voucher") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    [self dropBottomView];
-                }
-                else if (buttonIndex == 0){
-                    [UIView animateWithDuration:0.5 animations:^{
-                        label.frame = oldFrame;
-                    }];
-                }
-            }];
+            
+            if ([self isNeedShowFirstTime]) {
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to redeem this voucher") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                    if (buttonIndex == 1) {
+                        [self dropBottomView];
+                    }
+                    else if (buttonIndex == 0){
+                        [UIView animateWithDuration:0.5 animations:^{
+                            label.frame = oldFrame;
+                        }];
+                    }
+                }];
+
+            }
+            else
+            {
+                [self dropBottomView];
+
+            }
+            
         }
         else{
             [UIView animateWithDuration:0.5 animations:^{
@@ -143,6 +153,17 @@
             }];
         }
     }
+}
+
+-(BOOL)isNeedShowFirstTime
+{
+    BOOL isSeemWarningBefore = [[[NSUserDefaults standardUserDefaults]objectForKey:FIRST_TIME_SHOW_DEAL_WARNING]boolValue];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FIRST_TIME_SHOW_DEAL_WARNING];
+     
+     [[NSUserDefaults standardUserDefaults]synchronize];
+     
+    return !isSeemWarningBefore;
 }
 
 -(void)dropBottomView{
@@ -191,7 +212,7 @@
                 label.frame = frame;
                 
                 if (label.frame.origin.x - oldFrame.origin.x > (self.ibSwipeBg.frame.size.width - label.frame.size.width - 20)) {
-                    SLog(@"activated");
+                  //  SLog(@"activated");
                     activateDropEffect = YES;
                 }
             }
