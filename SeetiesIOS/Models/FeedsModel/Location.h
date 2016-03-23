@@ -39,6 +39,7 @@
 @property(nonatomic,strong)NSString* location_id;
 @property(nonatomic,assign)int type;//for google type forusquare or seeties
 
+@property(nonatomic,assign)BOOL is_collaborate;//for seeties shop use only
 
 
 -(void)processLocationFrom:(RecommendationVenueModel*)model;

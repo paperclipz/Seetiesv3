@@ -199,7 +199,7 @@
 {
     self.addNewPlaceSubView.txtPlaceName.text = self.postModel.location.name;
     self.addNewPlaceSubView.txtAddress.text = self.postModel.location.formatted_address;
-    self.addNewPlaceSubView.txtURL.text = self.postModel.link;
+    self.addNewPlaceSubView.txtURL.text = self.postModel.location.link;
     self.addNewPlaceSubView.txtPhoneNo.text = self.postModel.location.contact_no;
     [self.addNewPlaceSubView.btnCurrency setTitle:self.postModel.location.currency?self.postModel.location.currency:USD forState:UIControlStateNormal];
     self.addNewPlaceSubView.txtPerPax.text = self.postModel.location.price;
@@ -309,6 +309,14 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 */
 
 #pragma  mark - Declaration
+
+-(DraftModel*)postModel
+{
+    if (!_postModel) {
+        _postModel = [DraftModel new];
+    }
+    return _postModel;
+}
 
 -(EditHoursViewController*)editHoursViewController
 {

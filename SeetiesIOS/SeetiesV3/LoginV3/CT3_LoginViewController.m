@@ -80,6 +80,8 @@
 {
     BOOL isProduction = [Utils getIsDevelopment];
     NSDictionary* dict = [Utils getSavedUserLocation];
+    BOOL walkthrough = [[[NSUserDefaults standardUserDefaults]objectForKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH] boolValue];
+    BOOL warning = [[[NSUserDefaults standardUserDefaults]objectForKey:FIRST_TIME_SHOW_DEAL_WARNING] boolValue];
 
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
@@ -88,6 +90,8 @@
     @try {
         [Utils setIsDevelopment:isProduction];
         [Utils saveUserLocation:dict[KEY_LOCATION] Longtitude:dict[KEY_LONGTITUDE] Latitude:dict[KEY_LATITUDE]PlaceID:dict[KEY_PLACE_ID]];
+        [[NSUserDefaults standardUserDefaults]setBool:walkthrough forKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH];
+        [[NSUserDefaults standardUserDefaults]setBool:warning forKey:FIRST_TIME_SHOW_DEAL_WARNING];
 
     }
     @catch (NSException *exception) {
