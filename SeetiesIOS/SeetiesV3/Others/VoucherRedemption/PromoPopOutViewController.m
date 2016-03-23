@@ -364,10 +364,7 @@
 }
 
 -(DealManager *)dealManager{
-    if (!_dealManager) {
-        _dealManager = [DealManager Instance];
-    }
-    return _dealManager;
+    return [DealManager Instance];
 }
 
 #pragma mark - IBAction
@@ -738,7 +735,7 @@
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
         if (self.promoPopOutDelegate) {
-            [self.promoPopOutDelegate promoHasBeenRedeemed:self.dealModel];
+            [self.promoPopOutDelegate promoHasBeenRedeemed:self.dealsModel];
         }
         
     } errorBlock:^(id object) {
