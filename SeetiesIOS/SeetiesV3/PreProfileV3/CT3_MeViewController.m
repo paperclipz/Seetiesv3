@@ -10,6 +10,9 @@
 #import "CT3_NotificationViewController.h"
 
 @interface CT3_MeViewController ()
+{
+    int notification_Count;
+}
 
 @property(nonatomic)CT3_NotificationViewController* ct3_notificationViewController;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibMainScrollView;
@@ -147,10 +150,18 @@
 }
 
 #pragma mark InitMethod
+
+-(instancetype)init{
+    self = [super init];
+    if(self) {
+        [self registerNotification];
+
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     
     ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
     self.ibProfileName.text = model.username;
@@ -206,6 +217,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self initSelfView];
+
     [self reloadData];
     self.ibGuestView.hidden = ![Utils isGuestMode];
     
@@ -225,9 +237,8 @@
             [self.ibProfileImg sd_setImageCroppedWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images] completed:nil];
         }
         
-        [self requestServerForNotificationCount];
+        [self setNotificationCount:notification_Count];
         self.btnNotification.hidden = NO;
-        self.ibNotificationCountLbl.hidden = NO;
         
         [self requestServerForVouchersCount];
         [self requestServerForUserCollection];
@@ -312,34 +323,6 @@
 }
 
 #pragma mark - Request Server
--(void)requestServerForNotificationCount
-{
-
-    NSString* token = [Utils getAppToken];
-    NSDictionary* dict = @{@"token" : token};
-
-    if (![Utils isStringNull:token]) {
-        
-        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotificationCount param:dict appendString:nil completeHandler:^(id object) {
-            
-            NSDictionary* returnDict = object[@"data"];
-            
-            @try {
-                int notCount = [returnDict[@"total_new_notifications"] intValue];
-                
-                [self setNotificationCount:notCount];
-                
-            }
-            @catch (NSException *exception) {
-                SLog(@"server count not found");
-            }
-            
-        } errorBlock:^(id object) {
-            
-        }];
-    }
-    
-}
 
 -(void)setNotificationCount:(int)count
 {
@@ -393,6 +376,43 @@
     } errorBlock:^(id object) {
         
     }];
+}
+
+-(void)registerNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateNotificationCount:)
+                                                 name:@"UpdateNotification"
+                                               object:nil];
+    
+}
+
+- (void) updateNotificationCount:(NSNotification *) notification
+{
+    // [notification name] should always be @"TestNotification"
+    // unless you use this method for observation of other notifications
+    // as well.
+    
+    if ([[notification name] isEqualToString:@"UpdateNotification"])
+    {
+        if (![Utils isGuestMode]) {
+            
+            @try {
+                NSDictionary* dict = notification.userInfo;
+                
+                NSString* count = [dict objectForKey:@"NOTIFICATION_COUNT"];
+                notification_Count = [count intValue];
+                [self setNotificationCount:notification_Count];
+            }
+            @catch (NSException *exception) {
+                
+            }
+            
+        }
+
+    }
+    
+    
 }
 
 @end

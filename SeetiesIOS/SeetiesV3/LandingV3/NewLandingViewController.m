@@ -11,7 +11,8 @@
 #import "UITabBar+Extension.h"
 
 @interface NewLandingViewController()<UITabBarControllerDelegate>
-
+{
+}
 /*navigation controller*/
 @property (nonatomic)UINavigationController* firstViewController;
 @property (nonatomic)UINavigationController* secondViewController;
@@ -29,16 +30,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
     [self.view addSubview:self.tabBarController.view];
-
-    [self requestServerForLanguageList];
+    [NSTimer scheduledTimerWithTimeInterval:30.0
+                                     target:self
+                                   selector:@selector(requestServerForNotificationCount)
+                                   userInfo:nil
+                                    repeats:YES];
     
+    
+    [self requestServerForLanguageList];
+ //   [self registerNotification];
     if (![Utils checkUserIsLogin]) {
         [Utils showLogin];
     }
     else{
-        
+        [self requestServerForNotificationCount];
         [self requestServerForUserInfo];
         [Utils reloadAppView];
     }
@@ -243,7 +249,6 @@
         _ct3MeViewController = [CT3_MeViewController new];
         UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:@"TabBarMeIcon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:@"TabBarMeIconActive.png"]];
         _ct3MeViewController.tabBarItem = item2;
-
         _ct3MeViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
         _ct3MeViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -2.0f, -7, 2);
 
@@ -365,5 +370,72 @@
     return YES;
 }
 
+-(void)registerNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateNotificationCount:)
+                                                 name:@"UpdateNotification"
+                                               object:nil];
+
+}
+
+- (void) updateNotificationCount:(NSNotification *) notification
+{
+    // [notification name] should always be @"TestNotification"
+    // unless you use this method for observation of other notifications
+    // as well.
+    
+    if ([[notification name] isEqualToString:@"UpdateNotification"])
+    {
+    
+    
+        if (![Utils isGuestMode]) {
+            
+            @try {
+                NSDictionary* dict = notification.userInfo;
+                self.ct3MeViewController.tabBarItem.badgeValue = [dict objectForKey:@"NOTIFICATION_COUNT"];
+            }
+            @catch (NSException *exception) {
+                
+            }
+
+        }
+        else {
+            self.ct3_MoreViewController.tabBarItem.badgeValue = nil;
+
+        }
+    }
+}
+-(void)requestServerForNotificationCount
+{
+    
+    NSString* token = [Utils getAppToken];
+    
+    NSDictionary* dict = @{@"token" : token?token:@""};
+    
+    if (![Utils isStringNull:token]) {
+        
+        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotificationCount param:dict appendString:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = object[@"data"];
+            
+            @try {
+                int notCount = [returnDict[@"total_new_notifications"] intValue];
+                
+                NSDictionary* dict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",notCount] forKey:@"NOTIFICATION_COUNT"];
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"UpdateNotification"
+                 object:nil userInfo:dict];
+            }
+            @catch (NSException *exception) {
+                SLog(@"server count not found");
+            }
+            
+        } errorBlock:^(id object) {
+            
+        }];
+    }
+    
+}
 
 @end

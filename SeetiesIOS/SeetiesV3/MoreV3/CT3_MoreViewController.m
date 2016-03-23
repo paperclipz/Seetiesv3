@@ -137,6 +137,19 @@
             }
           
         }
+        else {
+            
+            cell.lblTitle.text = LocalisedString(text);
+            
+            @try {
+                cell.ibImageView.image = [self getIconImage:text];
+                
+            }
+            @catch (NSException *exception) {
+                
+            }
+
+        }
     
     }
     else{
