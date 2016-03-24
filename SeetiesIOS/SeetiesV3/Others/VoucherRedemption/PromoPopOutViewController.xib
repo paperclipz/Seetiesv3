@@ -451,7 +451,7 @@
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. 01xxxxxxxx" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WfA-wl-k5B" userLabel="phone number">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="eg. 01xxxxxxxx" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WfA-wl-k5B" userLabel="phone number">
                             <rect key="frame" x="20" y="310" width="228" height="42"/>
                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -603,7 +603,7 @@
                                 <action selector="buttonSubmitClicked:" destination="-1" eventType="touchUpInside" id="MTN-Yo-iv8"/>
                             </connections>
                         </button>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter 6 digits" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-7P-D80" userLabel="verification code">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="enter 6 digits" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-7P-D80" userLabel="verification code">
                             <rect key="frame" x="20" y="231" width="228" height="42"/>
                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -1181,7 +1181,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf6-Jp-siL" userLabel="phone number">
-                            <rect key="frame" x="10" y="231" width="248" height="21"/>
+                            <rect key="frame" x="10" y="201" width="248" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="K3i-2c-NMI"/>
                             </constraints>
@@ -1189,11 +1189,14 @@
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="VerifyPhoneNumberImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xku-0x-yLJ">
-                            <rect key="frame" x="60" y="60" width="148" height="111"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="PhoneNumberVerifiedImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xku-0x-yLJ">
+                            <rect key="frame" x="80" y="25" width="128" height="146"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="146" id="NhV-p5-9j9"/>
+                            </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This phone number has been verified" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWE-2j-wPP" userLabel="desc">
-                            <rect key="frame" x="8" y="262" width="252" height="36"/>
+                            <rect key="frame" x="8" y="232" width="252" height="66"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="gz0-EO-dar"/>
                             </constraints>
@@ -1216,10 +1219,10 @@
                         <constraint firstAttribute="width" constant="300" id="bGP-Gd-QmN"/>
                         <constraint firstItem="fWE-2j-wPP" firstAttribute="leading" secondItem="oxO-hl-LHL" secondAttribute="leading" constant="8" id="cBH-8p-NCQ"/>
                         <constraint firstAttribute="width" constant="300" id="fbE-a1-SZY"/>
-                        <constraint firstItem="Xku-0x-yLJ" firstAttribute="top" secondItem="oxO-hl-LHL" secondAttribute="top" constant="60" id="icu-3J-Hnn"/>
-                        <constraint firstItem="Xku-0x-yLJ" firstAttribute="leading" secondItem="oxO-hl-LHL" secondAttribute="leading" constant="60" id="rTn-N5-iUi"/>
+                        <constraint firstItem="Xku-0x-yLJ" firstAttribute="top" secondItem="oxO-hl-LHL" secondAttribute="top" constant="25" id="icu-3J-Hnn"/>
+                        <constraint firstItem="Xku-0x-yLJ" firstAttribute="leading" secondItem="oxO-hl-LHL" secondAttribute="leading" constant="80" id="rTn-N5-iUi"/>
                         <constraint firstItem="fWE-2j-wPP" firstAttribute="top" secondItem="gf6-Jp-siL" secondAttribute="bottom" constant="10" id="rbf-fe-9se"/>
-                        <constraint firstItem="gf6-Jp-siL" firstAttribute="top" secondItem="Xku-0x-yLJ" secondAttribute="bottom" constant="60" id="whI-3V-uOF"/>
+                        <constraint firstItem="gf6-Jp-siL" firstAttribute="top" secondItem="Xku-0x-yLJ" secondAttribute="bottom" constant="30" id="whI-3V-uOF"/>
                         <constraint firstItem="6IC-La-oMU" firstAttribute="top" secondItem="fWE-2j-wPP" secondAttribute="bottom" constant="25" id="xPY-3t-oL0"/>
                         <constraint firstAttribute="trailing" secondItem="gf6-Jp-siL" secondAttribute="trailing" constant="10" id="yTq-GZ-wso"/>
                     </constraints>

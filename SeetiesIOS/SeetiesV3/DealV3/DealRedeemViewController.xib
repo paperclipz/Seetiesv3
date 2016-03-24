@@ -26,11 +26,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealRedeemBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="ORX-Vq-Sxe">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeToRedeemBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="ORX-Vq-Sxe">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGy-Uf-mib">
-                    <rect key="frame" x="60" y="410" width="255" height="63"/>
+                    <rect key="frame" x="60" y="408" width="255" height="63"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal has been redeemed on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fm-vt-8fD">
                             <rect key="frame" x="20" y="8" width="215" height="30"/>
@@ -68,7 +68,7 @@
                     </variation>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FRX-IV-Orm" userLabel="BottomView">
-                    <rect key="frame" x="45" y="395" width="285" height="93"/>
+                    <rect key="frame" x="45" y="393" width="285" height="93"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealRedeemCardDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="bwF-Qu-mY0">
                             <rect key="frame" x="0.0" y="0.0" width="285" height="93"/>
@@ -311,6 +311,13 @@
                         </mask>
                     </variation>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeetiesLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="rAw-vx-Aqr">
+                    <rect key="frame" x="167" y="50" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="U47-nq-kTH"/>
+                        <constraint firstAttribute="height" constant="40" id="uTQ-iO-Xa9"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -320,7 +327,7 @@
                 <constraint firstAttribute="trailing" secondItem="FRX-IV-Orm" secondAttribute="trailing" constant="10" id="3Ea-u6-pkM"/>
                 <constraint firstAttribute="trailing" secondItem="FRX-IV-Orm" secondAttribute="trailing" id="5py-8N-yoI"/>
                 <constraint firstAttribute="trailing" secondItem="6yp-Fc-qax" secondAttribute="trailing" constant="2" id="6QT-DY-8Oe"/>
-                <constraint firstItem="FRX-IV-Orm" firstAttribute="top" secondItem="6yp-Fc-qax" secondAttribute="bottom" constant="-5" id="84y-nb-fjx"/>
+                <constraint firstItem="FRX-IV-Orm" firstAttribute="top" secondItem="6yp-Fc-qax" secondAttribute="bottom" constant="-7" id="84y-nb-fjx"/>
                 <constraint firstAttribute="bottom" secondItem="FRX-IV-Orm" secondAttribute="bottom" constant="262" id="8Bm-8T-YRZ"/>
                 <constraint firstItem="TGy-Uf-mib" firstAttribute="centerX" secondItem="FRX-IV-Orm" secondAttribute="centerX" id="9gN-h0-of5"/>
                 <constraint firstItem="ORX-Vq-Sxe" firstAttribute="top" secondItem="FRX-IV-Orm" secondAttribute="bottom" id="APw-kM-98w"/>
@@ -337,6 +344,7 @@
                 <constraint firstItem="pDY-W6-TMS" firstAttribute="leading" secondItem="6yp-Fc-qax" secondAttribute="leading" id="WVb-Fm-bm1"/>
                 <constraint firstItem="TGy-Uf-mib" firstAttribute="width" secondItem="FRX-IV-Orm" secondAttribute="width" constant="-30" id="af3-c7-tc0"/>
                 <constraint firstItem="ORX-Vq-Sxe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="buj-2T-0y1"/>
+                <constraint firstItem="rAw-vx-Aqr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dCt-Uo-Pdd"/>
                 <constraint firstItem="FRX-IV-Orm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dcO-hN-MKJ"/>
                 <constraint firstItem="TGy-Uf-mib" firstAttribute="top" secondItem="FRX-IV-Orm" secondAttribute="bottom" id="exo-W0-mHq"/>
                 <constraint firstItem="LSE-Hl-Y7Q" firstAttribute="top" secondItem="hm8-p1-4oN" secondAttribute="bottom" constant="8" id="fjv-G1-L55"/>
@@ -346,6 +354,7 @@
                 <constraint firstItem="6yp-Fc-qax" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pUC-hP-WGl"/>
                 <constraint firstAttribute="bottom" secondItem="LSE-Hl-Y7Q" secondAttribute="bottom" constant="20" id="q1G-fx-TyN"/>
                 <constraint firstItem="pDY-W6-TMS" firstAttribute="leading" secondItem="2oY-5p-x83" secondAttribute="leading" id="qhN-bk-rWY"/>
+                <constraint firstItem="6yp-Fc-qax" firstAttribute="top" secondItem="rAw-vx-Aqr" secondAttribute="bottom" constant="10" id="rWC-hd-mNN"/>
                 <constraint firstAttribute="trailing" secondItem="ORX-Vq-Sxe" secondAttribute="trailing" id="rcR-0R-upG"/>
                 <constraint firstItem="pDY-W6-TMS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="w1I-3H-fFX"/>
                 <constraint firstItem="TGy-Uf-mib" firstAttribute="top" secondItem="FRX-IV-Orm" secondAttribute="top" id="wqs-02-7JR"/>
@@ -377,10 +386,11 @@
     <resources>
         <image name="BlueLink.png" width="25" height="25"/>
         <image name="CollectionCrossBtn.png" width="25" height="25"/>
-        <image name="DealRedeemBg.png" width="640" height="1136"/>
         <image name="DealRedeemCardDown.png" width="580" height="198"/>
         <image name="DealRedeemCardUp.png" width="580" height="597"/>
         <image name="SSBlueDirectionIcon.png" width="26" height="26"/>
+        <image name="SeetiesLogo.png" width="55" height="50"/>
+        <image name="SwipeToRedeemBg.png" width="1242" height="2208"/>
         <image name="SwipeToRedeemRedeemIcon.png" width="22" height="20"/>
         <image name="SwipeToRedeemSwipeIcon.png" width="10" height="9"/>
     </resources>
