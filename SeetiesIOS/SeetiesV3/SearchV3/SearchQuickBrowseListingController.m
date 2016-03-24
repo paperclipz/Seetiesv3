@@ -221,7 +221,7 @@
     
     return @{@"sort": @(sort),
              @"category_group": catString,
-             @"open_now": @(isOpen)};
+             @"opening_now": @(isOpen)};
 }
 
 -(NSString*)getShopFilterCategories{

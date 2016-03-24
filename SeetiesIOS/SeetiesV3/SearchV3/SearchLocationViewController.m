@@ -10,6 +10,10 @@
 #import "CT3_EnableLocationViewController.h"
 
 @interface SearchLocationViewController ()
+{
+
+    BOOL isMiddleOfRequesting;
+}
 @property (weak, nonatomic) IBOutlet UILabel *lblAutoDetect;
 @property (weak, nonatomic) IBOutlet UITextField *ibSearchTxtField;
 @property (weak, nonatomic) IBOutlet UITableView *ibCountryTable;
@@ -127,7 +131,7 @@
 
 -(void)initSelfView{
 
-    
+    isMiddleOfRequesting = NO;
     [Utils setRoundBorder:self.ibHeaderContentView color:[UIColor clearColor] borderRadius:self.ibHeaderContentView.frame.size.height/2 borderWidth:0];
     self.hasSelectedCountry = NO;
     
@@ -474,12 +478,14 @@
     }];
 }
 
-
 -(void)processPlaces:(AreaModel*)aModel ForCountry:(CountryModel*)cModel
 {
     
     cModel.paging = aModel.paging;
-
+    cModel.offset = aModel.offset;
+    cModel.limit = aModel.limit;
+    cModel.total_count = aModel.total_count;
+    
     if ([Utils isArrayNull:cModel.arrArea]) {
         [cModel.arrArea addObjectsFromArray:aModel.result];
         return;
@@ -523,14 +529,21 @@
 
 -(void)requestServerForCountryPlaces:(CountryModel*)countryModel
 {
+    
+    if (isMiddleOfRequesting) {
+        return;
+    }
     NSDictionary* dict = @{@"country_id":@(countryModel.country_id),
                            @"offset":@(countryModel.offset + countryModel.limit),
                            @"limit":@"10"};
 
     NSString* appendString = [NSString stringWithFormat:@"%i/places",countryModel.country_id];
     
+    isMiddleOfRequesting = YES;
+    
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeCountryPlace param:dict appendString:appendString completeHandler:^(id object) {
         
+        isMiddleOfRequesting = NO;
         NSDictionary* dict = object[@"data"];
         AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
         [self processPlaces:model ForCountry:countryModel];
@@ -549,12 +562,20 @@
     CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
     
     // Change 10.0 to adjust the distance from bottom
-    if (maximumOffset - currentOffset <= self.ibAreaTable.frame.size.height/2) {
-
-        if(![Utils isStringNull:self.currentSelectedCountry.paging.next])
-        {
-            [self requestServerForCountryPlaces:self.currentSelectedCountry];
+    
+    if (self.ibAreaTable == scrollView) {
+        
+        if (isMiddleOfRequesting) {
+            return;
         }
+        if (maximumOffset - currentOffset <= self.ibAreaTable.frame.size.height/2) {
+            
+            if(![Utils isStringNull:self.currentSelectedCountry.paging.next])
+            {
+                [self requestServerForCountryPlaces:self.currentSelectedCountry];
+            }
+        }
+
     }
     
 //    /*for top navigation bar alpha setting*/
