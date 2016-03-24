@@ -326,6 +326,8 @@
 		8A84C8D21C7FFDF8006A0D76 /* UIWindow+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D11C7FFDF8006A0D76 /* UIWindow+Extra.m */; };
 		8A84C8D61C800A0C006A0D76 /* DealCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */; };
 		8A84C8D91C8036FD006A0D76 /* SeShopGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D81C8036FD006A0D76 /* SeShopGroupModel.m */; };
+		8A94B0F01CA38D1400ED568B /* CT3_LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A94B0EE1CA38D1400ED568B /* CT3_LoadingViewController.m */; };
+		8A94B0F11CA38D1400ED568B /* CT3_LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A94B0EF1CA38D1400ED568B /* CT3_LoadingViewController.xib */; };
 		8A988FB91C29049800D0F0EF /* WMATweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A988FB81C29049800D0F0EF /* WMATweetView.m */; };
 		8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */; };
 		8A993CCB1C2960D5009359E2 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CCA1C2960D5009359E2 /* NSArray+Extension.m */; };
@@ -2148,6 +2150,9 @@
 		8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealCollectionModel.m; sourceTree = "<group>"; };
 		8A84C8D71C8036FD006A0D76 /* SeShopGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopGroupModel.h; sourceTree = "<group>"; };
 		8A84C8D81C8036FD006A0D76 /* SeShopGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopGroupModel.m; sourceTree = "<group>"; };
+		8A94B0ED1CA38D1400ED568B /* CT3_LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_LoadingViewController.h; sourceTree = "<group>"; };
+		8A94B0EE1CA38D1400ED568B /* CT3_LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_LoadingViewController.m; sourceTree = "<group>"; };
+		8A94B0EF1CA38D1400ED568B /* CT3_LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_LoadingViewController.xib; sourceTree = "<group>"; };
 		8A988FB71C29049800D0F0EF /* WMATweetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMATweetView.h; sourceTree = "<group>"; };
 		8A988FB81C29049800D0F0EF /* WMATweetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMATweetView.m; sourceTree = "<group>"; };
 		8A993CC31C290CE4009359E2 /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
@@ -3994,6 +3999,7 @@
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
+				8A94B0EC1CA38CFD00ED568B /* CT3_LoadingView */,
 				8AFF288C1C9FF9C7008B66D8 /* AutoCoding */,
 				C238E3051C4649AA00570A25 /* NMRangeSlider */,
 				C24AE22A1C43AF0100B96317 /* RangeSlider */,
@@ -5023,6 +5029,16 @@
 				8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */,
 			);
 			path = CollectionModel;
+			sourceTree = "<group>";
+		};
+		8A94B0EC1CA38CFD00ED568B /* CT3_LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				8A94B0ED1CA38D1400ED568B /* CT3_LoadingViewController.h */,
+				8A94B0EE1CA38D1400ED568B /* CT3_LoadingViewController.m */,
+				8A94B0EF1CA38D1400ED568B /* CT3_LoadingViewController.xib */,
+			);
+			path = CT3_LoadingView;
 			sourceTree = "<group>";
 		};
 		8A988FB61C29049800D0F0EF /* WMATweetView */ = {
@@ -8247,6 +8263,7 @@
 				8AFF2EF11CA0320B008B66D8 /* NotificationIconActive@3x.png in Resources */,
 				8AD6C29E1B7072FB0040437E /* PublishViewController.xib in Resources */,
 				8A0035381C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.xib in Resources */,
+				8A94B0F11CA38D1400ED568B /* CT3_LoadingViewController.xib in Resources */,
 				8AFF2E711CA0320B008B66D8 /* FollowingBtn@3x.png in Resources */,
 				8AFF2E0C1CA0320B008B66D8 /* InviteBtnInactive@2x.png in Resources */,
 				8AFF2C0F1CA0320A008B66D8 /* VerifiedIconBlue@2x.png in Resources */,
@@ -9293,6 +9310,7 @@
 				8A5CFE171C7C6D42004E2CBA /* CollectionListingSinglePageViewController.m in Sources */,
 				8AFA51E31C47B4AB00E7920E /* AbroadQualityPostCVCell.m in Sources */,
 				8A317C041BE1C5620010CAEE /* ShareToFrenViewController.m in Sources */,
+				8A94B0F01CA38D1400ED568B /* CT3_LoadingViewController.m in Sources */,
 				8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */,
 				8AFA51E91C47B4AB00E7920E /* FeedType_AbroadQualityPostTblCell.m in Sources */,
 				8AFA51DF1C47B4AB00E7920E /* WalletVoucherCell.m in Sources */,
