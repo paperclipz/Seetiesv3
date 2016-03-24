@@ -61,5 +61,5 @@
 @property(nonatomic, strong) NSArray *periods_in_date;
 
 -(NSMutableArray<DailyPeriodModel>*)getFormattedAvailablePeriods;
-
+-(NSString*)getNextAvailableRedemptionDateString;
 @end

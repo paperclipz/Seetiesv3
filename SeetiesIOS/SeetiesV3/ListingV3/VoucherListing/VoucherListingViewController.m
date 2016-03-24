@@ -549,6 +549,7 @@
         }
         else{
             [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+            [self.promoPopOutViewController setDealModel:dealModel];
             
             STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
             popupController.containerView.backgroundColor = [UIColor clearColor];

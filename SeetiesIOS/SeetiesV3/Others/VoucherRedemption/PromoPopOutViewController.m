@@ -212,12 +212,15 @@
 -(UIView*)getMainView{
     switch (self.viewType) {
         case PopOutViewTypeEnterPromo:
+        {
             [self.view refreshConstraint];
             [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder: self.ibPromoCodeText color:[UIColor clearColor] borderRadius:self.ibPromoCodeText.frame.size.height/2];
+        }
             return self.ibEnterPromoView;
             
         case PopOutViewTypeChooseShop:
+        {
             [self.ibShopTable registerClass:[PromoOutletCell class] forCellReuseIdentifier:@"PromoOutletCell"];
             
 //            int counter = 4;
@@ -244,10 +247,11 @@
                     self.ibShopDealLbl.text = deal.cover_title;
                 }
             }
-            
+        }
             return self.ibChooseShopView;
             
         case PopOutViewTypeRedemptionSuccessful:
+        {
             [self.ibRedemptionSuccessfulContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             
             if (self.dealsModel) {
@@ -279,7 +283,7 @@
                     self.ibDealTitleContentHeightConstraint.constant = dealTitlesRect.size.height;
                 }
             }
-            
+        }
             return self.ibRedemptionSuccessfulView;
             
         case PopOutViewTypeChangeVerifiedPhone:
@@ -300,22 +304,27 @@
             return self.ibChangeVerifiedPhoneView;
             
         case PopOutViewTypeEnterPhone:
+        {
             self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, 470);
             [self.ibEnterPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibEnterPhoneTxtField color:[UIColor clearColor] borderRadius:self.ibEnterPhoneTxtField.frame.size.height/2];
             [Utils setRoundBorder:self.ibEnterPhoneCountryCodeView color:DEVICE_COLOR borderRadius:self.ibEnterPhoneCountryCodeView.frame.size.height/2];
             [self requestServerToGetHomeCountry];
+        }
             return self.ibEnterPhoneView;
             
         case PopOutViewTypeConfirmPhone:
+        {
             [self.ibConfirmPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibConfirmPhoneChangeBtn color:DEVICE_COLOR borderRadius:self.ibConfirmPhoneChangeBtn.frame.size.height/2];
             if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
                 self.ibConfirmPhoneNumberLbl.text = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
             }
+        }
             return self.ibConfirmPhoneView;
             
         case PopOutViewTypeEnterVerification:
+        {
             [self.ibEnterVerificationContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor clearColor] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
             [Utils setRoundBorder:self.ibEnterVerificationResendBtn color:DEVICE_COLOR borderRadius:self.ibEnterVerificationResendBtn.frame.size.height/2];
@@ -323,18 +332,30 @@
                 NSString *phoneNumber = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
                 self.ibEnterVerificationDesc.text = [NSString stringWithFormat:@"%@ %@", @"Enter the 6 digits that we have send to", phoneNumber];
             }
+        }
             return self.ibEnterVerificationView;
             
         case PopOutViewTypeVerified:
+        {
             [self.ibVerifiedContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+        }
             return self.ibVerifiedView;
             
         case PopOutViewTypeError:
+        {
             [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            NSString *nextAvailability = [self.dealModel getNextAvailableRedemptionDateString];
+            NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
+            
+            self.ibErrorDateDay.text = stringArray[0];
+            self.ibErrorTime.text = stringArray[1];
+        }
             return self.ibErrorView;
             
         default:
+        {
             [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+        }
             return self.ibEnterPromoView;
     }
 }

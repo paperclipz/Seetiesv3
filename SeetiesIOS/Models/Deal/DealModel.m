@@ -71,8 +71,106 @@
 }
 
 -(NSString*)getNextAvailableRedemptionDateString{
-    NSMutableString *nextDateString = [[NSMutableString alloc] init];
-    return nextDateString;
+    NSDate *currentDateTime = [[NSDate alloc] init];
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    unsigned int dateFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    NSDateComponents* dateComponents = [calendar components:dateFlags fromDate:currentDateTime];
+    NSDate *currentDateOnly = [calendar dateFromComponents:dateComponents];
+    
+    unsigned int timeFlags = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    NSDateComponents* timeComponents = [calendar components:timeFlags fromDate:currentDateTime];
+    NSDate *currentTimeOnly = [calendar dateFromComponents:timeComponents];
+    
+    NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
+    [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [utcDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSDateFormatter *localDateFormatter = [[NSDateFormatter alloc] init];
+    [localDateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [localDateFormatter setDateFormat:@"dd MMM yyyy (EEEE)"];
+    
+    NSDateFormatter *utcTimeFormatter = [[NSDateFormatter alloc] init];
+    [utcTimeFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [utcTimeFormatter setDateFormat:@"HHmm"];
+    
+    NSDateFormatter *localTimeFormatter = [[NSDateFormatter alloc] init];
+    [localTimeFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [localTimeFormatter setDateFormat:@"hh:mmaa"];
+    
+    for (NSDictionary *periodDate in self.periods_in_date) {
+        NSDate *fromDate = [utcDateFormatter dateFromString:periodDate[@"from"]];
+        NSDate *toDate = [utcDateFormatter dateFromString:periodDate[@"to"]];
+        
+        if ([Utils isDate:currentDateOnly betweenFirstDate:fromDate andLastDate:toDate]) {
+            int count = 0;
+            NSDate *nextDate = [[NSDate alloc] init];
+            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+            
+            while (count < 7) {
+                NSDateComponents *comps = [gregorian components:NSCalendarUnitWeekday fromDate:nextDate];
+                NSInteger weekday = ([comps weekday] - 1);
+                NSArray *periodArray = self.period[weekday];
+                
+                if (![Utils isArrayNull:periodArray]) {
+                    for (NSDictionary *period in periodArray) {
+                        NSDate *openTime = [utcTimeFormatter dateFromString:period[@"open"]];
+                        NSDate *closeTime = [utcTimeFormatter dateFromString:period[@"close"]];
+                        
+                        if (count == 0) {
+                            NSComparisonResult timeResult = [currentTimeOnly compare:openTime];
+                            if (timeResult == NSOrderedAscending) {
+                                NSString *dateString = [localDateFormatter stringFromDate:nextDate];
+                                NSString *openString = [localTimeFormatter stringFromDate:openTime];
+                                NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
+                                
+                                return [NSString stringWithFormat:@"%@\n%@ - %@", dateString, openString, closeString];
+                            }
+                        }
+                        
+                        NSString *dateString = [localDateFormatter stringFromDate:nextDate];
+                        NSString *openString = [localTimeFormatter stringFromDate:openTime];
+                        NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
+                        
+                        return [NSString stringWithFormat:@"%@\n%@ - %@", dateString, openString, closeString];
+                    }
+                }
+                
+                count++;
+                nextDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:count toDate:currentDateOnly options:NSCalendarWrapComponents];
+                
+            }
+        }
+        else if ([currentDateOnly compare:fromDate] == NSOrderedAscending){
+            int count = 0;
+            NSDate *nextDate = fromDate;
+            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+            
+            while (count < 7) {
+                NSDateComponents *comps = [gregorian components:NSCalendarUnitWeekday fromDate:nextDate];
+                NSInteger weekday = ([comps weekday] - 1);
+                NSArray *periodArray = self.period[weekday];
+                
+                if (![Utils isArrayNull:periodArray]) {
+                    for (NSDictionary *period in periodArray) {
+                        NSDate *openTime = [utcTimeFormatter dateFromString:period[@"open"]];
+                        NSDate *closeTime = [utcTimeFormatter dateFromString:period[@"close"]];
+                        
+                        NSString *dateString = [localDateFormatter stringFromDate:nextDate];
+                        NSString *openString = [localTimeFormatter stringFromDate:openTime];
+                        NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
+                        
+                        return [NSString stringWithFormat:@"%@\n%@ - %@", dateString, openString, closeString];
+                    }
+                }
+                
+                count++;
+                nextDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:count toDate:fromDate options:NSCalendarWrapComponents];
+            }
+        }
+    }
+    
+    return @"";
 }
 
 @end
