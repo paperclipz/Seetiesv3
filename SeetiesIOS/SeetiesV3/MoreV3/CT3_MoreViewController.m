@@ -122,8 +122,7 @@
     NSArray* temArray= self.arrData[indexPath.section];
     
     
-    NSString* text = LocalisedString(temArray[indexPath.row]);
-    
+    NSString* text = temArray[indexPath.row];
     
     if ([text isEqualToString:@"Verify Phone Number"]) {
         

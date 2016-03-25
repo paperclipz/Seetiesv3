@@ -64,7 +64,6 @@
     [self setCustomSelected:self.categoryModel.isSelected];
     
     NSString* defaultLangCode = [Utils getDeviceDefaultLanguageCode];
-    SLog(@"aaa: %@",model.single_line[defaultLangCode]);
     self.lblTitle.text = model.single_line[defaultLangCode];
 
 }

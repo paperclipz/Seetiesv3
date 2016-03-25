@@ -835,7 +835,6 @@
 /*base on bundle indetifier to return either live or dev*/
 +(BOOL)isAppProductionBuild
 {
-    
     NSString*bundleIdentifer  = [[NSBundle mainBundle] bundleIdentifier];
     
     if ([bundleIdentifer rangeOfString:@"Dev"].location == NSNotFound) {

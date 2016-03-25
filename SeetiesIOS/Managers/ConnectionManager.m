@@ -712,7 +712,7 @@
     
     if ([self isNeedRelogin:obj]) {
         
-        
+        SLog(@"change to dev");
         [self saveProductionSetting:obj];
       
         return;
