@@ -18,6 +18,7 @@
 @property (nonatomic,strong)NSString* defaultImageUrl;
 @property (nonatomic,strong)NSString* selectedImageUrl;
 @property (nonatomic,strong)NSDictionary* multiple_line;
+@property (nonatomic,strong)NSDictionary* single_line;
 @property (nonatomic,assign)BOOL isSelected;
 
 @property (nonatomic,assign)int category_id;

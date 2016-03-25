@@ -56,12 +56,14 @@
                 <outlet property="btnNext" destination="AcB-nI-H3O" id="vyF-ik-QWN"/>
                 <outlet property="ibContentView" destination="xyf-mW-6EL" id="hgw-MP-SnZ"/>
                 <outlet property="ibScrollView" destination="iuP-M9-bsR" id="mQl-26-TcF"/>
-                <outletCollection property="arrCoverHome" destination="Q5x-Z2-cwd" id="nUw-IC-xrP"/>
-                <outletCollection property="arrCoverHome" destination="JB7-ei-pkG" id="h2g-Z2-vNc"/>
-                <outletCollection property="arrCoverHome" destination="h2d-OP-bCz" id="0v5-A9-uyQ"/>
-                <outletCollection property="arrCoverWallet" destination="yK9-ox-9Nw" id="Eqx-Ht-PwA"/>
-                <outletCollection property="arrCoverWallet" destination="HdX-JK-LQU" id="qBR-TP-lgf"/>
-                <outletCollection property="arrCoverWallet" destination="iJM-7j-dzi" id="gZG-lf-oaI"/>
+                <outletCollection property="arrCoverHome" destination="Q5x-Z2-cwd" id="UbG-fS-y1b"/>
+                <outletCollection property="arrCoverHome" destination="JB7-ei-pkG" id="cUb-Ye-4c0"/>
+                <outletCollection property="arrCoverHome" destination="h2d-OP-bCz" id="8z2-7o-j4s"/>
+                <outletCollection property="arrCoverHome" destination="qwR-qg-kPU" id="qXh-e0-iE9"/>
+                <outletCollection property="arrCoverHome" destination="ToI-J9-iJE" id="xlq-gT-vcq"/>
+                <outletCollection property="arrCoverWallet" destination="yK9-ox-9Nw" id="7xr-zW-8Sj"/>
+                <outletCollection property="arrCoverWallet" destination="HdX-JK-LQU" id="gaf-wg-VtH"/>
+                <outletCollection property="arrCoverWallet" destination="iJM-7j-dzi" id="KtJ-h9-pFF"/>
             </connections>
             <point key="canvasLocation" x="433" y="219"/>
         </view>
@@ -69,7 +71,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkHome1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eJu-fy-CAt">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkHome1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eJu-fy-CAt">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalkHome1.png" translatesAutoresizingMaskIntoConstraints="NO" id="C15-H8-PFQ">
@@ -103,7 +105,7 @@
                     </variation>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="C15-H8-PFQ" firstAttribute="top" secondItem="eJu-fy-CAt" secondAttribute="bottom" constant="-289" id="8NM-sP-lBf"/>
                 <constraint firstAttribute="trailing" secondItem="O69-34-lkz" secondAttribute="trailing" constant="16" id="EyT-CN-r9j"/>
@@ -133,7 +135,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkHome2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Xk5-ff-GaW">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkHome2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Xk5-ff-GaW">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalkHome2.png" translatesAutoresizingMaskIntoConstraints="NO" id="phw-9e-va8">
@@ -177,7 +179,7 @@
                     </variation>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Gwl-85-qkg" firstAttribute="leading" secondItem="phw-9e-va8" secondAttribute="leading" id="7hU-vW-Npp"/>
                 <constraint firstItem="phw-9e-va8" firstAttribute="centerY" secondItem="Xk5-ff-GaW" secondAttribute="centerY" constant="-164.5" id="80V-b6-KPe"/>
@@ -199,7 +201,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkHome3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="XLL-Za-YaF">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkHome3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="XLL-Za-YaF">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalkHome3.png" translatesAutoresizingMaskIntoConstraints="NO" id="M6Z-pU-Kay">
@@ -213,8 +215,8 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="CXD-Yh-BB1"/>
                             <exclude reference="1Ve-q6-Fwi"/>
+                            <exclude reference="CXD-Yh-BB1"/>
                             <exclude reference="IWb-MV-8L8"/>
                         </mask>
                     </variation>
@@ -243,7 +245,7 @@
                     </variation>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="XLL-Za-YaF" secondAttribute="bottom" id="9Lv-aJ-naD"/>
                 <constraint firstItem="CmO-5L-550" firstAttribute="top" secondItem="1Ns-tY-aP4" secondAttribute="bottom" constant="8" id="Gjv-NC-OyD"/>
@@ -266,7 +268,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Location" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBp-Hc-2cl">
-                    <rect key="frame" x="28" y="254" width="262" height="21"/>
+                    <rect key="frame" x="28" y="254" width="264" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="ftg-lQ-R9H"/>
                     </constraints>
@@ -275,7 +277,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access your voucher wallet here &amp; keep track of your local vouchers to be redeemed.  " textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeR-i2-lve">
-                    <rect key="frame" x="28" y="283" width="262" height="51"/>
+                    <rect key="frame" x="28" y="283" width="264" height="51"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="8Op-tU-eEL"/>
                     </constraints>
@@ -300,35 +302,29 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="QiC-Do-iwm"/>
-                            <exclude reference="lzf-3h-eV4"/>
                             <exclude reference="be4-2U-Iyy"/>
+                            <exclude reference="lzf-3h-eV4"/>
                         </mask>
                     </variation>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkHome4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3Hc-8u-eIx">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="sFo-yG-b2I" firstAttribute="centerX" secondItem="3Hc-8u-eIx" secondAttribute="centerX" id="0UW-Bp-8Yd"/>
                 <constraint firstItem="PeR-i2-lve" firstAttribute="leading" secondItem="qBp-Hc-2cl" secondAttribute="leading" id="2iK-Hy-xzt"/>
+                <constraint firstItem="qBp-Hc-2cl" firstAttribute="trailing" secondItem="sFo-yG-b2I" secondAttribute="trailing" constant="-13" id="4zl-L8-lIe"/>
                 <constraint firstAttribute="trailing" secondItem="sFo-yG-b2I" secondAttribute="trailing" constant="15" id="9QQ-SS-x5x"/>
                 <constraint firstItem="qBp-Hc-2cl" firstAttribute="trailing" secondItem="sFo-yG-b2I" secondAttribute="trailing" constant="-15" id="AYh-3X-7xK"/>
-                <constraint firstItem="3Hc-8u-eIx" firstAttribute="top" secondItem="qwR-qg-kPU" secondAttribute="top" id="Ay5-Nr-U7U"/>
-                <constraint firstItem="3Hc-8u-eIx" firstAttribute="leading" secondItem="qwR-qg-kPU" secondAttribute="leading" id="CD8-nu-jhc"/>
                 <constraint firstItem="PeR-i2-lve" firstAttribute="top" secondItem="qBp-Hc-2cl" secondAttribute="bottom" constant="8" id="LcD-lv-fSE"/>
                 <constraint firstItem="qBp-Hc-2cl" firstAttribute="top" secondItem="sFo-yG-b2I" secondAttribute="bottom" constant="14" id="P64-Xq-24J"/>
-                <constraint firstAttribute="trailing" secondItem="3Hc-8u-eIx" secondAttribute="trailing" id="TlH-d4-jAm"/>
                 <constraint firstItem="PeR-i2-lve" firstAttribute="trailing" secondItem="qBp-Hc-2cl" secondAttribute="trailing" id="UGz-Mw-Mtr"/>
-                <constraint firstItem="sFo-yG-b2I" firstAttribute="centerY" secondItem="3Hc-8u-eIx" secondAttribute="centerY" constant="-79.5" id="bzF-ce-2BJ"/>
-                <constraint firstAttribute="bottom" secondItem="3Hc-8u-eIx" secondAttribute="bottom" id="jfp-m4-YFq"/>
-                <constraint firstItem="qBp-Hc-2cl" firstAttribute="leading" secondItem="3Hc-8u-eIx" secondAttribute="trailing" constant="-292" id="o1U-h4-sSo"/>
+                <constraint firstItem="sFo-yG-b2I" firstAttribute="centerY" secondItem="qwR-qg-kPU" secondAttribute="centerY" constant="-79.5" id="Umz-h1-qdZ"/>
+                <constraint firstAttribute="trailing" secondItem="sFo-yG-b2I" secondAttribute="trailing" constant="15" id="h2R-ci-lUO"/>
+                <constraint firstItem="qBp-Hc-2cl" firstAttribute="leading" secondItem="qwR-qg-kPU" secondAttribute="leading" constant="28" id="iNp-yg-ZuP"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="0UW-Bp-8Yd"/>
+                    <exclude reference="AYh-3X-7xK"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="1956" y="219"/>
@@ -337,18 +333,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkWallet1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="CQf-i3-VoF">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher History" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6u-Hs-WPC">
-                    <rect key="frame" x="123" y="162" width="133" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="zRx-tz-Zw1"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalkWallet1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ppe-ft-gdy">
                     <rect key="frame" x="200" y="74" width="56" height="71"/>
                     <constraints>
@@ -360,12 +344,21 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="HxG-fH-dq1"/>
                             <exclude reference="7AU-wx-7IS"/>
                             <exclude reference="EZv-DD-Dku"/>
+                            <exclude reference="HxG-fH-dq1"/>
                         </mask>
                     </variation>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher History" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6u-Hs-WPC">
+                    <rect key="frame" x="123" y="162" width="133" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="zRx-tz-Zw1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See all redeemed and expired vouchers." textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FH9-uu-26w">
                     <rect key="frame" x="16" y="191" width="240" height="34"/>
                     <constraints>
@@ -381,41 +374,23 @@
                     </variation>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="CQf-i3-VoF" secondAttribute="trailing" id="2M3-WB-Vgy"/>
-                <constraint firstItem="Ppe-ft-gdy" firstAttribute="leading" secondItem="CQf-i3-VoF" secondAttribute="trailing" constant="-136" id="75F-a0-D0a"/>
+                <constraint firstAttribute="trailing" secondItem="Ppe-ft-gdy" secondAttribute="trailing" constant="64" id="14W-Az-vt6"/>
                 <constraint firstItem="FH9-uu-26w" firstAttribute="leading" secondItem="yK9-ox-9Nw" secondAttribute="leading" constant="16" id="AUd-FZ-D0e"/>
-                <constraint firstItem="Ppe-ft-gdy" firstAttribute="leading" secondItem="CQf-i3-VoF" secondAttribute="trailing" constant="-120" id="BKZ-AO-65T"/>
-                <constraint firstItem="CQf-i3-VoF" firstAttribute="leading" secondItem="yK9-ox-9Nw" secondAttribute="leading" id="DLv-hZ-vH4"/>
-                <constraint firstItem="Ppe-ft-gdy" firstAttribute="centerX" secondItem="CQf-i3-VoF" secondAttribute="centerX" constant="52" id="Lpd-Ph-whB"/>
-                <constraint firstAttribute="bottom" secondItem="CQf-i3-VoF" secondAttribute="bottom" id="Rvn-9E-HFN"/>
                 <constraint firstItem="FH9-uu-26w" firstAttribute="trailing" secondItem="Z6u-Hs-WPC" secondAttribute="trailing" id="arT-LU-Mq2"/>
-                <constraint firstItem="Ppe-ft-gdy" firstAttribute="centerY" secondItem="CQf-i3-VoF" secondAttribute="centerY" constant="-174.5" id="cJr-gZ-wuz"/>
-                <constraint firstItem="CQf-i3-VoF" firstAttribute="leading" secondItem="FH9-uu-26w" secondAttribute="trailing" constant="-256" id="ftb-M7-Y6u"/>
                 <constraint firstItem="Z6u-Hs-WPC" firstAttribute="trailing" secondItem="Ppe-ft-gdy" secondAttribute="trailing" id="hIX-it-CLY"/>
-                <constraint firstItem="CQf-i3-VoF" firstAttribute="top" secondItem="yK9-ox-9Nw" secondAttribute="top" id="mbD-hM-ORz"/>
-                <constraint firstItem="CQf-i3-VoF" firstAttribute="leading" secondItem="Z6u-Hs-WPC" secondAttribute="trailing" constant="-256" id="ons-Ld-8qg"/>
+                <constraint firstItem="Ppe-ft-gdy" firstAttribute="centerY" secondItem="yK9-ox-9Nw" secondAttribute="centerY" constant="-174.5" id="pqp-tf-ogz"/>
                 <constraint firstItem="FH9-uu-26w" firstAttribute="top" secondItem="Z6u-Hs-WPC" secondAttribute="bottom" constant="8" id="qRd-XC-EUh"/>
                 <constraint firstItem="Z6u-Hs-WPC" firstAttribute="top" secondItem="Ppe-ft-gdy" secondAttribute="bottom" constant="17" id="vYQ-yE-3Oh"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="ftb-M7-Y6u"/>
-                    <exclude reference="75F-a0-D0a"/>
-                    <exclude reference="Lpd-Ph-whB"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="797" y="866"/>
         </view>
         <view contentMode="scaleToFill" id="HdX-JK-LQU">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkWallet2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nxe-iz-kPc">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalkWallet2.png" translatesAutoresizingMaskIntoConstraints="NO" id="0cH-yi-Xff">
                     <rect key="frame" x="20" y="302" width="150" height="71"/>
                     <constraints>
@@ -457,20 +432,17 @@
                     </variation>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="0cH-yi-Xff" secondAttribute="trailing" constant="150" id="5PK-9f-nNf"/>
                 <constraint firstItem="ms9-0L-0yF" firstAttribute="trailing" secondItem="OyL-tU-Je5" secondAttribute="trailing" id="5iD-uM-lom"/>
                 <constraint firstItem="ms9-0L-0yF" firstAttribute="leading" secondItem="OyL-tU-Je5" secondAttribute="leading" id="Tz2-bq-loF"/>
-                <constraint firstAttribute="trailing" secondItem="nxe-iz-kPc" secondAttribute="trailing" id="W4t-48-IDD"/>
-                <constraint firstItem="nxe-iz-kPc" firstAttribute="leading" secondItem="HdX-JK-LQU" secondAttribute="leading" id="bvX-xP-fFo"/>
                 <constraint firstItem="ms9-0L-0yF" firstAttribute="top" secondItem="OyL-tU-Je5" secondAttribute="bottom" constant="8" id="cLC-4N-586"/>
                 <constraint firstAttribute="trailing" secondItem="OyL-tU-Je5" secondAttribute="trailing" constant="16" id="cSs-5x-22S"/>
                 <constraint firstItem="OyL-tU-Je5" firstAttribute="top" secondItem="0cH-yi-Xff" secondAttribute="bottom" constant="21" id="cg4-Se-eQ5"/>
                 <constraint firstItem="OyL-tU-Je5" firstAttribute="leading" secondItem="0cH-yi-Xff" secondAttribute="leading" constant="40" id="hs5-pB-NCx"/>
-                <constraint firstAttribute="bottom" secondItem="nxe-iz-kPc" secondAttribute="bottom" id="l66-kX-k9f"/>
-                <constraint firstItem="nxe-iz-kPc" firstAttribute="top" secondItem="HdX-JK-LQU" secondAttribute="top" id="lSH-3R-VlB"/>
-                <constraint firstItem="0cH-yi-Xff" firstAttribute="centerY" secondItem="nxe-iz-kPc" secondAttribute="centerY" constant="53.5" id="tPM-gq-3nH"/>
+                <constraint firstItem="0cH-yi-Xff" firstAttribute="centerY" secondItem="HdX-JK-LQU" secondAttribute="centerY" constant="53.5" id="qvS-UY-8Jg"/>
+                <constraint firstItem="0cH-yi-Xff" firstAttribute="leading" secondItem="HdX-JK-LQU" secondAttribute="leading" constant="20" id="uyk-ui-942"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="1186" y="875"/>
@@ -479,7 +451,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkWallet3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6OQ-bA-K3c">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkWallet3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6OQ-bA-K3c">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher Usage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j95-to-Zct">
@@ -519,7 +491,7 @@
                     </variation>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="mVZ-8q-Bet" firstAttribute="trailing" secondItem="j95-to-Zct" secondAttribute="trailing" id="0FR-un-wtj"/>
                 <constraint firstItem="mVZ-8q-Bet" firstAttribute="leading" secondItem="j95-to-Zct" secondAttribute="leading" id="B9c-70-qus"/>
@@ -541,9 +513,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkHome5.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MUN-3C-5Eg">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalkHome5.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vx0-5U-wh2">
                     <rect key="frame" x="40" y="289" width="240" height="71"/>
                     <constraints>
@@ -575,30 +544,18 @@
                     </variation>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="uqF-AV-y5A" secondAttribute="trailing" constant="16" id="6yT-et-CGL"/>
-                <constraint firstItem="MUN-3C-5Eg" firstAttribute="leading" secondItem="ToI-J9-iJE" secondAttribute="leading" id="DRa-lJ-roq"/>
-                <constraint firstItem="Vx0-5U-wh2" firstAttribute="centerX" secondItem="MUN-3C-5Eg" secondAttribute="centerX" id="E9T-EL-HHT"/>
+                <constraint firstItem="Vx0-5U-wh2" firstAttribute="centerY" secondItem="ToI-J9-iJE" secondAttribute="centerY" constant="40.5" id="9Oj-0Y-WqB"/>
                 <constraint firstAttribute="trailing" secondItem="lPd-dJ-cNF" secondAttribute="trailing" constant="16" id="PT7-Rm-i73"/>
-                <constraint firstItem="MUN-3C-5Eg" firstAttribute="top" secondItem="ToI-J9-iJE" secondAttribute="top" id="Rk3-Tu-TdC"/>
                 <constraint firstItem="uqF-AV-y5A" firstAttribute="top" secondItem="Vx0-5U-wh2" secondAttribute="bottom" constant="14" id="Si1-tQ-wIf"/>
                 <constraint firstItem="lPd-dJ-cNF" firstAttribute="top" secondItem="uqF-AV-y5A" secondAttribute="bottom" constant="8" id="UPA-EJ-1h3"/>
                 <constraint firstItem="lPd-dJ-cNF" firstAttribute="leading" secondItem="ToI-J9-iJE" secondAttribute="leading" constant="16" id="Wd8-Qu-JCb"/>
-                <constraint firstItem="Vx0-5U-wh2" firstAttribute="top" secondItem="MUN-3C-5Eg" secondAttribute="bottom" constant="-289" id="bVO-Y1-iBP"/>
-                <constraint firstItem="Vx0-5U-wh2" firstAttribute="bottom" secondItem="MUN-3C-5Eg" secondAttribute="bottom" constant="-204" id="cq7-Pb-QN7"/>
-                <constraint firstAttribute="trailing" secondItem="MUN-3C-5Eg" secondAttribute="trailing" id="jfa-Gp-xJq"/>
-                <constraint firstAttribute="bottom" secondItem="MUN-3C-5Eg" secondAttribute="bottom" id="rDM-fI-uBM"/>
+                <constraint firstItem="Vx0-5U-wh2" firstAttribute="centerX" secondItem="ToI-J9-iJE" secondAttribute="centerX" id="s4W-vY-Lki"/>
                 <constraint firstItem="uqF-AV-y5A" firstAttribute="leading" secondItem="ToI-J9-iJE" secondAttribute="leading" constant="16" id="sSV-ZJ-5Eo"/>
-                <constraint firstItem="Vx0-5U-wh2" firstAttribute="centerY" secondItem="MUN-3C-5Eg" secondAttribute="centerY" constant="40" id="sYR-3g-0Pm"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="bVO-Y1-iBP"/>
-                    <exclude reference="cq7-Pb-QN7"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="2364" y="219"/>
         </view>
     </objects>
@@ -606,10 +563,6 @@
         <image name="BgWalkHome1.jpg" width="375" height="667"/>
         <image name="BgWalkHome2.jpg" width="375" height="667"/>
         <image name="BgWalkHome3.jpg" width="375" height="667"/>
-        <image name="BgWalkHome4.jpg" width="375" height="667"/>
-        <image name="BgWalkHome5.jpg" width="375" height="667"/>
-        <image name="BgWalkWallet1.jpg" width="375" height="667"/>
-        <image name="BgWalkWallet2.jpg" width="375" height="667"/>
         <image name="BgWalkWallet3.jpg" width="375" height="667"/>
         <image name="WalkHome1.png" width="1026" height="286"/>
         <image name="WalkHome2.png" width="150" height="416"/>

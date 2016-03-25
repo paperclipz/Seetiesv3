@@ -13,5 +13,6 @@
 
 @property(nonatomic,copy)VoidBlock didFinishLoginBlock;
 @property(nonatomic,copy)VoidBlock continueWithoutLoginBlock;
+@property(nonatomic,copy)VoidBlock didFinishSignupBlock;
 
 @end

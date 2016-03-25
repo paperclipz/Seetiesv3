@@ -14,6 +14,7 @@
 @property(nonatomic,strong)NSArray* arrCoverViews;
 @property(nonatomic,strong)NSArray* arrBackGroundImages;
 
--(void)initWithCoverViews:(NSArray*)views backgroundImages:(NSArray*)images;
+@property(nonatomic,copy)VoidBlock didEndClickedBlock;
+-(void)initDataAll;
 
 @end

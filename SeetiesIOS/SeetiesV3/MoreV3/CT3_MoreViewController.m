@@ -17,6 +17,7 @@
 #import "CT3_AcctSettingViewController.h"
 #import "PromoPopOutViewController.h"
 #import "IntroCoverView.h"
+#import "AppDelegate.h"
 
 @interface CT3_MoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -383,7 +384,7 @@
         
         if (![Utils isGuestMode]) {
             NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify Phone Number",@"Account Settings",@"Tour Seeties App" @"Rate Us",@"About",@"Feedback", nil];
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify Phone Number",@"Account Settings",@"Tour Seeties App", @"Rate Us",@"About",@"Feedback", nil];
             NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
             _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
 
@@ -551,7 +552,14 @@
             return image;
             break;
         }
-        
+        CASE(@"Tour Seeties App")
+        {
+            imageName = @"MoreTourGuideIcon";
+            image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
+            return image;
+            break;
+        }
+
         DEFAULT
         {
             imageName = @"NoImage";
@@ -564,23 +572,14 @@
 }
 -(void)showIntroView
 {
-    CGRect frame = [Utils getDeviceScreenSize];
-    
-    UIView* view1 = [[UIView alloc]initWithFrame:frame];
-    view1.alpha = 0.5;
-    view1.backgroundColor = [UIColor redColor];
-    UIView* view2 = [[UIView alloc]initWithFrame:frame];
-    view2.alpha = 0.5;
-    view2.backgroundColor = [UIColor yellowColor];
-    UIView* view3 = [[UIView alloc]initWithFrame:frame];
-    view3.alpha = 0.5;
-    view3.backgroundColor = [UIColor blueColor];
     
     
+    AppDelegate *appdelegate;
     
-    IntroCoverView* introView = [IntroCoverView initializeCustomView];
-    [self.view addSubview:introView];
-    [introView initWithCoverViews:@[view1,view2,view3] backgroundImages:@[@"splash1.jpg",@"splash2.jpg",@"splash3.jpg"]];
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    [appdelegate.landingViewController showIntroView];
+    
     
 }
 

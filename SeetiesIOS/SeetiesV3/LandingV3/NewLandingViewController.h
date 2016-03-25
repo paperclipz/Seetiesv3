@@ -28,5 +28,6 @@
 
 -(void)showLoginView;
 -(void)reloadData;
+-(void)showIntroView;
 
 @end

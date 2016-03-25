@@ -13,6 +13,9 @@
 
 
 @property(nonatomic,copy)VoidBlock btnLoginClickedBlock;
+@property(nonatomic,assign)BOOL needShowIntroView;
+
+
 
 -(void)scrollToTop:(BOOL)animation;
 
