@@ -57,8 +57,9 @@
 @property(nonatomic,assign) BOOL is_feature;
 @property(nonatomic, strong) NSDictionary *redemption_period_in_hour_text;
 @property(nonatomic, strong) NSArray *terms;
-@property(nonatomic, strong) NSArray *daily_periods;   //daily available time period
+@property(nonatomic, strong) NSArray *period;
+@property(nonatomic, strong) NSArray *periods_in_date;
 
 -(NSMutableArray<DailyPeriodModel>*)getFormattedAvailablePeriods;
-
+-(NSString*)getNextAvailableRedemptionDateString;
 @end

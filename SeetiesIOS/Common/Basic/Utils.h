@@ -156,6 +156,7 @@ typedef enum {
 +(NSString*)getTimeZone;
 +(NSInteger)numberOfDaysLeft:(NSDate*)date;
 +(BOOL)isValidDateString:(NSString*)dateString;
++(BOOL)isDate:(NSDate*)currentDate betweenFirstDate:(NSDate*)firstDate andLastDate:(NSDate*)lastDate;
 
 // ========================  Day ==========================
 
