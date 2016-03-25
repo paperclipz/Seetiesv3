@@ -828,7 +828,7 @@
         return;
     }
     else{
-        ProfileModel *profile = [[DataManager Instance] userProfileModel];
+        ProfileModel *profile = [[DataManager Instance] currentUserProfileModel];
         if (!profile.phone_verified) {
             [Utils showVerifyPhoneNumber:self];
             return;

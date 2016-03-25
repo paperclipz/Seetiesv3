@@ -110,7 +110,7 @@
 }
 
 - (IBAction)btnPromoClicked:(id)sender {
-    self.profileModel = [[DataManager Instance] userProfileModel];
+    self.profileModel = [[DataManager Instance] currentUserProfileModel];
     if (!self.profileModel.phone_verified) {
         [Utils showVerifyPhoneNumber:self];
         return;
