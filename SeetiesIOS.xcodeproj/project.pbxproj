@@ -328,8 +328,6 @@
 		8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CCD1C2A8113009359E2 /* MapManager.m */; };
 		8A993CD41C322E5D009359E2 /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CD21C322E5D009359E2 /* TestingViewController.m */; };
 		8A993CD51C322E5D009359E2 /* TestingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A993CD31C322E5D009359E2 /* TestingViewController.xib */; };
-		8A9AB3B81CA4019B0067FACA /* IntroCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9AB3B71CA4019B0067FACA /* IntroCoverView.m */; };
-		8A9AB3BA1CA401A90067FACA /* IntroCoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB3B91CA401A90067FACA /* IntroCoverView.xib */; };
 		8A9AB71D1CA4EE6E0067FACA /* CollectIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB3BE1CA4EE6C0067FACA /* CollectIcon@2x.png */; };
 		8A9AB71E1CA4EE6E0067FACA /* CollectIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB3BF1CA4EE6C0067FACA /* CollectIcon@3x.png */; };
 		8A9AB71F1CA4EE6E0067FACA /* RedeemIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB3C01CA4EE6C0067FACA /* RedeemIcon@2x.png */; };
@@ -1149,6 +1147,8 @@
 		8A9ABA4D1CA4EE6F0067FACA /* WalkWallet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB71A1CA4EE6E0067FACA /* WalkWallet1.png */; };
 		8A9ABA4E1CA4EE6F0067FACA /* WalkWallet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB71B1CA4EE6E0067FACA /* WalkWallet2.png */; };
 		8A9ABA4F1CA4EE6F0067FACA /* WalkWallet3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB71C1CA4EE6E0067FACA /* WalkWallet3.png */; };
+		8A9ABA541CA52B890067FACA /* IntroCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9ABA521CA52B890067FACA /* IntroCoverView.m */; };
+		8A9ABA551CA52B890067FACA /* IntroCoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9ABA531CA52B890067FACA /* IntroCoverView.xib */; };
 		8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */; };
 		8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */; };
 		8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25CC1B8ED8BC00BB13BA /* EditHoursViewController.m */; };
@@ -2171,9 +2171,6 @@
 		8A993CD11C322E5D009359E2 /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
 		8A993CD21C322E5D009359E2 /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
 		8A993CD31C322E5D009359E2 /* TestingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestingViewController.xib; sourceTree = "<group>"; };
-		8A9AB3B61CA4019B0067FACA /* IntroCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroCoverView.h; sourceTree = "<group>"; };
-		8A9AB3B71CA4019B0067FACA /* IntroCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroCoverView.m; sourceTree = "<group>"; };
-		8A9AB3B91CA401A90067FACA /* IntroCoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroCoverView.xib; sourceTree = "<group>"; };
 		8A9AB3BE1CA4EE6C0067FACA /* CollectIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectIcon@2x.png"; sourceTree = "<group>"; };
 		8A9AB3BF1CA4EE6C0067FACA /* CollectIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CollectIcon@3x.png"; sourceTree = "<group>"; };
 		8A9AB3C01CA4EE6C0067FACA /* RedeemIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RedeemIcon@2x.png"; sourceTree = "<group>"; };
@@ -2993,6 +2990,9 @@
 		8A9AB71A1CA4EE6E0067FACA /* WalkWallet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkWallet1.png; sourceTree = "<group>"; };
 		8A9AB71B1CA4EE6E0067FACA /* WalkWallet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkWallet2.png; sourceTree = "<group>"; };
 		8A9AB71C1CA4EE6E0067FACA /* WalkWallet3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WalkWallet3.png; sourceTree = "<group>"; };
+		8A9ABA511CA52B890067FACA /* IntroCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroCoverView.h; sourceTree = "<group>"; };
+		8A9ABA521CA52B890067FACA /* IntroCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroCoverView.m; sourceTree = "<group>"; };
+		8A9ABA531CA52B890067FACA /* IntroCoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroCoverView.xib; sourceTree = "<group>"; };
 		8A9F25871B8D69E100BB13BA /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewController.xib; sourceTree = "<group>"; };
@@ -5092,17 +5092,6 @@
 			path = Testing;
 			sourceTree = "<group>";
 		};
-		8A9AB3B01CA3E0850067FACA /* IntroV3 */ = {
-			isa = PBXGroup;
-			children = (
-				8A9AB3B61CA4019B0067FACA /* IntroCoverView.h */,
-				8A9AB3B71CA4019B0067FACA /* IntroCoverView.m */,
-				8A9AB3B91CA401A90067FACA /* IntroCoverView.xib */,
-			);
-			name = IntroV3;
-			path = ../../../../../Desktop/IntroV3;
-			sourceTree = "<group>";
-		};
 		8A9AB3BB1CA4EE6C0067FACA /* SeetiesArtWork */ = {
 			isa = PBXGroup;
 			children = (
@@ -6297,6 +6286,16 @@
 			path = Walkthrough;
 			sourceTree = "<group>";
 		};
+		8A9ABA501CA52B890067FACA /* IntroV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8A9ABA511CA52B890067FACA /* IntroCoverView.h */,
+				8A9ABA521CA52B890067FACA /* IntroCoverView.m */,
+				8A9ABA531CA52B890067FACA /* IntroCoverView.xib */,
+			);
+			path = IntroV3;
+			sourceTree = "<group>";
+		};
 		8A9F25CA1B8ED89300BB13BA /* EditHours */ = {
 			isa = PBXGroup;
 			children = (
@@ -7446,7 +7445,7 @@
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
-				8A9AB3B01CA3E0850067FACA /* IntroV3 */,
+				8A9ABA501CA52B890067FACA /* IntroV3 */,
 				8AFB06861CA140BE00DAEE22 /* ReportV3 */,
 				8A42051F1C894F0F00DB0D20 /* AccountSettingV3 */,
 				8AF867A11C7ECCE000B0195D /* EnableLocationV3 */,
@@ -8619,7 +8618,6 @@
 				8A9AB8981CA4EE6E0067FACA /* EditDisplayPhoto@2x.png in Resources */,
 				8A9ABA441CA4EE6F0067FACA /* BgWalkWallet2@2x.jpg in Resources */,
 				8A9AB7931CA4EE6E0067FACA /* MeInviteFriendsIcon@3x.png in Resources */,
-				8A9AB3BA1CA401A90067FACA /* IntroCoverView.xib in Resources */,
 				8A9AB92E1CA4EE6F0067FACA /* LeisureEntertainmentIcon@2x.png in Resources */,
 				8A9AB7DA1CA4EE6E0067FACA /* SeetishopPhotoIcon@3x.png in Resources */,
 				8A9AB8571CA4EE6E0067FACA /* ListViewActive@3x.png in Resources */,
@@ -8806,6 +8804,7 @@
 				8A9AB9231CA4EE6F0067FACA /* BlueTick@3x.png in Resources */,
 				8A9AB94B1CA4EE6F0067FACA /* InviteBtnInactive@3x.png in Resources */,
 				C28469BA1C5F6FCD00B38885 /* NearbyShopsCell.xib in Resources */,
+				8A9ABA551CA52B890067FACA /* IntroCoverView.xib in Resources */,
 				8A69E0F51C04066100224BB4 /* ShareV2ViewController.xib in Resources */,
 				8A9AB84B1CA4EE6E0067FACA /* FollowingCollectionIcon@3x.png in Resources */,
 				C238E3361C4649AA00570A25 /* slider-default7-trackCrossedOver@2x.png in Resources */,
@@ -9448,7 +9447,6 @@
 				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,
 				8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */,
 				C28490F51CA0FD5C00FE4546 /* PeriodModel.m in Sources */,
-				8A9AB3B81CA4019B0067FACA /* IntroCoverView.m in Sources */,
 				8AD6C2871B7072FB0040437E /* BrightnessViewController.m in Sources */,
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
 				8AEDBFAC1C2031BA000BD2FF /* RecommendationVenueModel.m in Sources */,
@@ -9621,6 +9619,7 @@
 				8A4205231C894F2300DB0D20 /* CT3_AcctSettingViewController.m in Sources */,
 				8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */,
 				8A114CB21BE73F5D006AE3F0 /* LLARingSpinnerView.m in Sources */,
+				8A9ABA541CA52B890067FACA /* IntroCoverView.m in Sources */,
 				C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */,
 				8AC8F7381BDA414E00DEF14A /* ProfileCollectionViewController.m in Sources */,
 				C266761C1C6483030021B6B0 /* RedemptionHistoryViewController.m in Sources */,
