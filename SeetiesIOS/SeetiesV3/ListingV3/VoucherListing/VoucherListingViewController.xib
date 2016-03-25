@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoucherListingViewController">
             <connections>
                 <outlet property="ibAltTitle" destination="YyX-Cg-CIA" id="5eT-WU-erG"/>
                 <outlet property="ibDropDownIcon" destination="HWW-7K-ot0" id="Man-1J-rkE"/>
+                <outlet property="ibEmptyStateDesc" destination="rgu-g8-PJd" id="TeW-xh-Lfg"/>
+                <outlet property="ibEmptyStateTitle" destination="dBt-xo-KA4" id="9HQ-hG-8Bi"/>
+                <outlet property="ibEmptyStateView" destination="FIj-xa-a0g" id="m9h-ex-sqX"/>
                 <outlet property="ibFilterBtn" destination="aZJ-d8-8P6" id="0Qu-7k-taK"/>
                 <outlet property="ibFooterHeightConstraint" destination="ePM-Fm-4d2" id="72R-YG-hvN"/>
                 <outlet property="ibLocationBtn" destination="PgP-Mz-cA7" id="kmI-ZH-o8g"/>
@@ -55,14 +59,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-7K-ot0" userLabel="drop down icon">
-                            <rect key="frame" x="93" y="28" width="15" height="15"/>
+                            <rect key="frame" x="94" y="28" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="UtW-HE-80K"/>
                                 <constraint firstAttribute="width" constant="15" id="YhM-I8-hlK"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal of the Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp8-Jp-ABW">
-                            <rect key="frame" x="40" y="42" width="111" height="18"/>
+                            <rect key="frame" x="40" y="43" width="111" height="18"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -286,12 +290,68 @@
                 </mask>
             </variation>
         </view>
+        <view contentMode="scaleToFill" id="FIj-xa-a0g">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBt-xo-KA4">
+                    <rect key="frame" x="132" y="249" width="57" height="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This feature is currently not available in your place." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgu-g8-PJd">
+                    <rect key="frame" x="60" y="274" width="200" height="39"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="erN-qk-XgT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="EmptyStateImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="mNP-4F-m9m">
+                    <rect key="frame" x="125" y="149" width="70" height="70"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="mNP-4F-m9m" secondAttribute="height" multiplier="2:2" id="0s1-J3-GWW"/>
+                        <constraint firstAttribute="height" constant="200" id="Bn2-Ha-SF7"/>
+                        <constraint firstAttribute="width" constant="200" id="iAP-SZ-txX"/>
+                        <constraint firstAttribute="width" secondItem="mNP-4F-m9m" secondAttribute="height" multiplier="1:1" id="qcL-xI-hLq"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="0s1-J3-GWW"/>
+                            <exclude reference="Bn2-Ha-SF7"/>
+                            <exclude reference="iAP-SZ-txX"/>
+                        </mask>
+                    </variation>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="dBt-xo-KA4" firstAttribute="top" secondItem="mNP-4F-m9m" secondAttribute="bottom" constant="30" id="MSb-pu-tfF"/>
+                <constraint firstItem="rgu-g8-PJd" firstAttribute="centerX" secondItem="FIj-xa-a0g" secondAttribute="centerX" id="P2D-BA-APz"/>
+                <constraint firstAttribute="trailing" secondItem="mNP-4F-m9m" secondAttribute="trailing" constant="125" id="W3l-lq-uai"/>
+                <constraint firstAttribute="trailing" secondItem="rgu-g8-PJd" secondAttribute="trailing" constant="60" id="cyJ-CD-b4H"/>
+                <constraint firstItem="rgu-g8-PJd" firstAttribute="leading" secondItem="FIj-xa-a0g" secondAttribute="leading" constant="60" id="iNe-mk-zFU"/>
+                <constraint firstItem="rgu-g8-PJd" firstAttribute="top" secondItem="dBt-xo-KA4" secondAttribute="bottom" constant="5" id="lIq-l8-8Iz"/>
+                <constraint firstItem="dBt-xo-KA4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FIj-xa-a0g" secondAttribute="leading" constant="10" id="mzq-OT-adq"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dBt-xo-KA4" secondAttribute="trailing" constant="10" id="oGy-bE-eD2"/>
+                <constraint firstItem="mNP-4F-m9m" firstAttribute="leading" secondItem="FIj-xa-a0g" secondAttribute="leading" constant="125" id="rdh-YB-Ux6"/>
+                <constraint firstItem="dBt-xo-KA4" firstAttribute="centerX" secondItem="mNP-4F-m9m" secondAttribute="centerX" id="sFA-rn-Yzt"/>
+                <constraint firstItem="mNP-4F-m9m" firstAttribute="centerX" secondItem="FIj-xa-a0g" secondAttribute="centerX" id="xi7-vJ-sYE"/>
+                <constraint firstItem="mNP-4F-m9m" firstAttribute="centerY" secondItem="FIj-xa-a0g" secondAttribute="centerY" constant="-100" id="zi8-VQ-MWw"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="1005" y="306"/>
+        </view>
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="DealsListingGoIcon.png" width="7" height="10"/>
         <image name="DealsListingVoucherWalletBar.png" width="320" height="50"/>
         <image name="DealsListingVoucherWalletIcon.png" width="23" height="21"/>
+        <image name="EmptyStateImg.png" width="288" height="288"/>
         <image name="FilterIcon.png" width="40" height="40"/>
         <image name="NaviDropDownIcon.png" width="8" height="6"/>
         <image name="SearchIcon.png" width="40" height="40"/>

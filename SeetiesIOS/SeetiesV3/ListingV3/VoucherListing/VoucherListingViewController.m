@@ -37,6 +37,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibWalletCountLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibFooterHeightConstraint;
 
+@property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
+@property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateDesc;
+
 @property (strong, nonatomic)GeneralFilterViewController* filterController;
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
 @property (nonatomic) WalletListingViewController *walletListingViewController;
@@ -429,6 +433,22 @@
 }
 
 #pragma mark - TableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if ([Utils isArrayNull:self.dealsArray]) {
+        self.ibEmptyStateTitle.text = LocalisedString(@"Oops...");
+        self.ibEmptyStateDesc.text = LocalisedString(@"This feature is currently not available in your place.");
+        self.ibVoucherTable.backgroundView = self.ibEmptyStateView;
+        self.view.backgroundColor = [UIColor whiteColor];
+        return 0;
+    }
+    else{
+        self.ibVoucherTable.backgroundView = nil;
+        self.view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+        return self.dealsArray.count;
+    }
+    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.dealsArray) {
         return self.dealsArray.count;
