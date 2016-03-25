@@ -9656,7 +9656,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5797fc75-a5a4-4c3a-9ba7-607ea4a94c92";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -9696,7 +9696,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5797fc75-a5a4-4c3a-9ba7-607ea4a94c92";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
