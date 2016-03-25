@@ -20,17 +20,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="102" height="144"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLc-6O-vWX">
-                                <rect key="frame" x="8" y="115" width="86" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLc-6O-vWX">
+                                <rect key="frame" x="8" y="96" width="86" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="amJ-a6-BS1"/>
+                                    <constraint firstAttribute="height" constant="40" id="amJ-a6-BS1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HuN-wA-ghV">
-                                <rect key="frame" x="0.0" y="0.0" width="102" height="116"/>
+                                <rect key="frame" x="0.0" y="0.0" width="102" height="97"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -434,6 +434,17 @@ static NSCache* heightCache = nil;
 {
     [super viewDidAppear:animated];
     
+    if (self.needShowIntroView) {
+        
+        AppDelegate *appdelegate;
+        
+        appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        [appdelegate.landingViewController showIntroView];
+        
+        self.needShowIntroView = NO;
+    }
+    
     [self.btnLocation setTitle:self.locationName forState:UIControlStateNormal];
 
     if (!isFirstLoad) {

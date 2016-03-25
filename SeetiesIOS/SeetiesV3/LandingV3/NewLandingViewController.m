@@ -19,6 +19,8 @@
 @property (nonatomic)UINavigationController* secondViewController;
 @property (nonatomic)UINavigationController* thirdViewController;
 @property (nonatomic, strong)UINavigationController* navLoginViewController;
+@property (nonatomic, strong)IntroCoverView* introView;
+
 
 
 @property (nonatomic,strong)NSArray* arryViewController;
@@ -141,6 +143,16 @@
         _loginViewController.continueWithoutLoginBlock = ^(void)
         {
             [weakSelf.newsFeedViewController reloadData];
+        };
+        
+        _loginViewController.didFinishSignupBlock = ^(void)
+        {
+            
+            [weakSelf.navLoginViewController dismissViewControllerAnimated:YES completion:^{
+                weakSelf.newsFeedViewController.needShowIntroView = YES;
+                [weakSelf processLogin];
+
+            }];
         };
         
 
@@ -446,23 +458,36 @@
 -(void)showIntroView
 {
     CGRect frame = [Utils getDeviceScreenSize];
+    
+    self.introView = nil;
+    self.introView = [IntroCoverView initializeCustomView];
+    self.introView.frame = frame;
+    
+    self.introView.alpha = 0;
+    [self.view addSubview:self.introView];
+    [self.introView initDataAll];
 
-    UIView* view1 = [[UIView alloc]initWithFrame:frame];
-    view1.alpha = 0.5;
-    view1.backgroundColor = [UIColor redColor];
-    UIView* view2 = [[UIView alloc]initWithFrame:frame];
-    view2.alpha = 0.5;
-    view2.backgroundColor = [UIColor yellowColor];
-    UIView* view3 = [[UIView alloc]initWithFrame:frame];
-    view3.alpha = 0.5;
-    view3.backgroundColor = [UIColor blueColor];
-    
-    
-    
-    IntroCoverView* introView = [IntroCoverView initializeCustomView];
-    [self.view addSubview:introView];
-    [introView initWithCoverViews:@[view1,view2,view3] backgroundImages:@[@"splash1.jpg",@"splash2.jpg",@"splash3.jpg"]];
+    [UIView animateWithDuration:1.0 animations:^{
+        self.introView.alpha = 1;
 
+    }completion:^(BOOL finished) {
+        
+
+    }];
+    
+
+    
+    __weak IntroCoverView* weakIntroView = self.introView;
+    self.introView.didEndClickedBlock = ^(void)
+    {
+        weakIntroView.alpha = 1;
+        [UIView animateWithDuration:1.0 animations:^{
+            weakIntroView.alpha = 0;
+
+        }completion:^(BOOL finished) {
+            [weakIntroView removeFromSuperview];
+        }];
+    };
 }
 
 @end

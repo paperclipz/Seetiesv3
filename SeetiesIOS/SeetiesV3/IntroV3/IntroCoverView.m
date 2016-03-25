@@ -29,7 +29,15 @@
 //    [UIView animateWithDuration:1.0f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
 //        self.ibScrollView.contentOffset = CGPointMake((currentPage+1)*self.ibScrollView.frame.size.width,0);
 //    } completion:NULL];
-//    
+//
+    
+    if (currentPage == self.arrCoverViews.count - 1) {
+        if (self.didEndClickedBlock) {
+            self.didEndClickedBlock();
+            
+            return;
+        }
+    }
     float width = CGRectGetWidth(self.ibScrollView.frame);
     float height = CGRectGetHeight(self.ibScrollView.frame);
     float newPosition = self.ibScrollView.contentOffset.x+width;
@@ -39,28 +47,21 @@
     
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
--(void)initWithCoverViews:(NSArray*)views backgroundImages:(NSArray*)images
-{
-    self.arrBackGroundImages = images;
-    self.arrCoverViews = views;
-    
-    
-    [self loadCoverViews];
-    //[self loadBackgroundImages];
-    [self addBackgroundViews];
-}
-
 -(void)initDataAll
 {
-    self.arrBackgroundHome = @[];
+    
+    self.arrBackGroundImages = nil;
+    self.arrCoverViews = nil;
+    NSMutableArray* arraybackground = [[NSMutableArray alloc]initWithArray:self.arrBackgroundHome];
+    [arraybackground addObjectsFromArray:self.arrBackgroundWallet];
+    self.arrBackGroundImages = arraybackground;
+    
+    NSMutableArray* arrCoverVIew = [[NSMutableArray alloc]initWithArray:self.arrCoverHome];
+    [arrCoverVIew addObjectsFromArray:self.arrCoverWallet];
+    self.arrCoverViews = arrCoverVIew;
+    [self loadCoverViews];
+    [self addBackgroundViews];
+
 }
 
 -(void)initSelfView
@@ -68,7 +69,8 @@
     
     self.ibScrollView.delegate = self;
   
-
+    self.arrBackgroundHome = @[@"BgWalkHome1.jpg",@"BgWalkHome2.jpg",@"BgWalkHome3.jpg",@"BgWalkHome4.jpg",@"BgWalkHome5.jpg"];
+    self.arrBackgroundWallet = @[@"BgWalkWallet1.jpg",@"BgWalkWallet2.jpg",@"BgWalkWallet3.jpg"];
 }
 
 -(void)loadCoverViews
@@ -79,10 +81,11 @@
         SLog(@"view frame: %f",frame.size.width);
         for (int i = 0; i<self.arrCoverViews.count; i++) {
             UIView* view = self.arrCoverViews[i];
+            view.frame = frame;
+            view.backgroundColor = [UIColor clearColor];
             [view setX:(i*view.frame.size.width)];
             [self.ibScrollView addSubview:view];
         }
-        SLog(@"scroll view frame: %f",self.ibScrollView.frame.size.width);
         
         self.ibScrollView.contentSize = CGSizeMake(frame.size.width*self.arrCoverViews.count, frame.size.height);
     }
@@ -142,7 +145,7 @@
 }
 - (BOOL)isLast
 {
-    return currentPage == currentPage + 1;
+    return currentPage == self.arrCoverViews.count - 1;
 }
 
 - (NSInteger)numberOfPagesInPagingScrollView

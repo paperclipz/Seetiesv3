@@ -59,14 +59,12 @@
 
 -(void)initData:(CategoryModel*)model
 {
-    
     [self refreshConstraint];
     self.categoryModel = model;
     [self setCustomSelected:self.categoryModel.isSelected];
     
-    
     NSString* defaultLangCode = [Utils getDeviceDefaultLanguageCode];
-    self.lblTitle.text = model.multiple_line[defaultLangCode];
+    self.lblTitle.text = model.single_line[defaultLangCode];
 
 }
 

@@ -408,7 +408,7 @@
 -(void)showSelectCategoryView
 {
     _selectCategoryViewController = nil;
-    self.selectCategoryViewController.didFinishProvisioningBlock = self.didFinishLoginBlock;
+    self.selectCategoryViewController.didFinishProvisioningBlock = self.didFinishSignupBlock;
     [self.navigationController pushViewController:self.selectCategoryViewController animated:YES];
     
 }
