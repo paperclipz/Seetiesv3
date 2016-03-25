@@ -386,6 +386,8 @@
 
         [view.btnDeals setTitle:[NSString stringWithFormat:@"%@ (%lu)",LocalisedString(@"Deals"),(unsigned long)self.dealsModel.total_count] forState:UIControlStateNormal];
 
+        [Utils setRoundBorder:view color:OUTLINE_COLOR borderRadius:0];
+
         [view setSquareBorder];
 
         return view;

@@ -16,6 +16,7 @@
 #import "CTWebViewController.h"
 #import "CT3_AcctSettingViewController.h"
 #import "PromoPopOutViewController.h"
+#import "IntroCoverView.h"
 
 @interface CT3_MoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -35,6 +36,7 @@
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
 @property(nonatomic)PromoPopOutViewController* promoPopOutViewController;
 
+@property(nonatomic)IntroCoverView* introView;
 
 @end
 
@@ -285,6 +287,14 @@
                     break;
                     
                 }
+                CASE (@"Tour Seeties App")
+                {
+                   
+                    [self showIntroView];
+                    break;
+                    
+                }
+
                 
                 DEFAULT
                 {
@@ -372,8 +382,8 @@
     if (!_arrData) {
         
         if (![Utils isGuestMode]) {
-            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Suggest a Place",@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify Phone Number",@"Account Settings", @"Rate Us",@"About",@"Feedback", nil];
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify Phone Number",@"Account Settings",@"Tour Seeties App" @"Rate Us",@"About",@"Feedback", nil];
             NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
             _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
 
@@ -552,6 +562,28 @@
     }
    
 }
+-(void)showIntroView
+{
+    CGRect frame = [Utils getDeviceScreenSize];
+    
+    UIView* view1 = [[UIView alloc]initWithFrame:frame];
+    view1.alpha = 0.5;
+    view1.backgroundColor = [UIColor redColor];
+    UIView* view2 = [[UIView alloc]initWithFrame:frame];
+    view2.alpha = 0.5;
+    view2.backgroundColor = [UIColor yellowColor];
+    UIView* view3 = [[UIView alloc]initWithFrame:frame];
+    view3.alpha = 0.5;
+    view3.backgroundColor = [UIColor blueColor];
+    
+    
+    
+    IntroCoverView* introView = [IntroCoverView initializeCustomView];
+    [self.view addSubview:introView];
+    [introView initWithCoverViews:@[view1,view2,view3] backgroundImages:@[@"splash1.jpg",@"splash2.jpg",@"splash3.jpg"]];
+    
+}
+
 -(void)changeLanguage
 {
     SLog(@"%@",LocalisedString(@"More"));

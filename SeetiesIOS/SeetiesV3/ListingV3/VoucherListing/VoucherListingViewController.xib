@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoucherListingViewController">
@@ -55,14 +55,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="HWW-7K-ot0" userLabel="drop down icon">
-                            <rect key="frame" x="94" y="28" width="15" height="15"/>
+                            <rect key="frame" x="93" y="28" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="UtW-HE-80K"/>
                                 <constraint firstAttribute="width" constant="15" id="YhM-I8-hlK"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal of the Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp8-Jp-ABW">
-                            <rect key="frame" x="40" y="43" width="111" height="18"/>
+                            <rect key="frame" x="40" y="42" width="111" height="18"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -74,23 +74,29 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msM-T5-Qek" userLabel="search button">
-                            <rect key="frame" x="230" y="14" width="40" height="50"/>
+                            <rect key="frame" x="230" y="0.0" width="40" height="64"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="747-d6-OOm"/>
-                                <constraint firstAttribute="height" constant="50" id="K7o-lJ-w0V"/>
                             </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                             <state key="normal" image="SearchIcon.png"/>
                             <connections>
                                 <action selector="btnSearchLocationClicked:" destination="-1" eventType="touchUpInside" id="P9P-sK-3PA"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZJ-d8-8P6" userLabel="filter button">
-                            <rect key="frame" x="270" y="14" width="40" height="50"/>
+                            <rect key="frame" x="270" y="0.0" width="40" height="64"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="Edj-O7-EBR"/>
                                 <constraint firstAttribute="width" constant="40" id="i3G-6d-ONb"/>
                             </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                             <state key="normal" image="FilterIcon.png"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Edj-O7-EBR"/>
+                                </mask>
+                            </variation>
                             <connections>
                                 <action selector="filterClicked:" destination="-1" eventType="touchUpInside" id="4Kr-aV-nAE"/>
                             </connections>
@@ -132,6 +138,7 @@
                         <constraint firstAttribute="bottom" secondItem="PgP-Mz-cA7" secondAttribute="bottom" id="dO7-XM-a6Q"/>
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="top" secondItem="wJH-T7-Mrw" secondAttribute="top" id="e1z-9u-bOI"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="centerY" secondItem="I2e-bV-XI7" secondAttribute="centerY" id="ggE-KY-Yu6"/>
+                        <constraint firstItem="aZJ-d8-8P6" firstAttribute="top" secondItem="I2e-bV-XI7" secondAttribute="top" id="in9-ay-5mU"/>
                         <constraint firstAttribute="trailing" secondItem="aZJ-d8-8P6" secondAttribute="trailing" constant="10" id="kM6-Xs-rEG"/>
                         <constraint firstItem="PgP-Mz-cA7" firstAttribute="leading" secondItem="KB9-ER-GDk" secondAttribute="leading" id="md4-db-GbX"/>
                         <constraint firstItem="HWW-7K-ot0" firstAttribute="centerY" secondItem="KB9-ER-GDk" secondAttribute="centerY" id="n5c-ho-0sq"/>
@@ -139,6 +146,7 @@
                         <constraint firstItem="KB9-ER-GDk" firstAttribute="leading" secondItem="I2e-bV-XI7" secondAttribute="leading" constant="40" id="onx-qK-lak"/>
                         <constraint firstItem="Qp8-Jp-ABW" firstAttribute="leading" secondItem="wJH-T7-Mrw" secondAttribute="trailing" id="qrj-zX-wZ1"/>
                         <constraint firstAttribute="height" constant="64" id="qzp-N1-tWS"/>
+                        <constraint firstItem="msM-T5-Qek" firstAttribute="top" secondItem="I2e-bV-XI7" secondAttribute="top" id="r18-np-dpp"/>
                         <constraint firstAttribute="trailing" secondItem="KB9-ER-GDk" secondAttribute="trailing" constant="40" id="tbh-2L-hgd"/>
                         <constraint firstAttribute="bottom" secondItem="aZJ-d8-8P6" secondAttribute="bottom" id="tcE-gk-wZb"/>
                         <constraint firstItem="YyX-Cg-CIA" firstAttribute="centerX" secondItem="I2e-bV-XI7" secondAttribute="centerX" id="vIy-Qy-ubr"/>

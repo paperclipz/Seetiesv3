@@ -13,11 +13,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Caret.png" translatesAutoresizingMaskIntoConstraints="NO" id="V0m-2Z-mA4">
-                        <rect key="frame" x="304" y="15" width="8" height="12"/>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GoIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="V0m-2Z-mA4">
+                        <rect key="frame" x="295" y="15" width="9" height="11"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4E-Ox-8u9">
                         <rect key="frame" x="68" y="0.0" width="231" height="44"/>
@@ -51,7 +51,7 @@
                     <constraint firstItem="V0m-2Z-mA4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="kQj-3y-dVI"/>
                     <constraint firstItem="N4E-Ox-8u9" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="mqy-SF-Knq"/>
                     <constraint firstAttribute="bottomMargin" secondItem="N4E-Ox-8u9" secondAttribute="bottom" constant="-9" id="otf-yd-HZR"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="V0m-2Z-mA4" secondAttribute="trailing" id="pXG-Yb-GOp"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="V0m-2Z-mA4" secondAttribute="trailing" constant="8" id="pXG-Yb-GOp"/>
                     <constraint firstAttribute="bottomMargin" secondItem="N4E-Ox-8u9" secondAttribute="bottom" constant="-9" id="thQ-5H-fxZ"/>
                 </constraints>
                 <variation key="default">
@@ -76,7 +76,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Caret.png" width="8" height="12"/>
+        <image name="GoIcon.png" width="9" height="11"/>
         <image name="MoreDeafaultIcon.png" width="8" height="12"/>
     </resources>
 </document>

@@ -134,7 +134,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-detect my location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXy-3f-Ytg">
-                            <rect key="frame" x="10" y="20" width="230" height="21"/>
+                            <rect key="frame" x="16" y="20" width="224" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="sow-9j-mK6"/>
                             </constraints>
@@ -149,7 +149,7 @@
                         <constraint firstItem="AMa-vn-Oca" firstAttribute="centerY" secondItem="F2M-i7-pnI" secondAttribute="centerY" id="FO3-Vf-xL7"/>
                         <constraint firstAttribute="bottom" secondItem="MBW-T4-0bl" secondAttribute="bottom" id="LON-JP-C5U"/>
                         <constraint firstAttribute="height" constant="60" id="OXZ-ft-qj2"/>
-                        <constraint firstItem="bXy-3f-Ytg" firstAttribute="leading" secondItem="F2M-i7-pnI" secondAttribute="leading" constant="10" id="d7J-cO-fOp"/>
+                        <constraint firstItem="bXy-3f-Ytg" firstAttribute="leading" secondItem="F2M-i7-pnI" secondAttribute="leading" constant="16" id="d7J-cO-fOp"/>
                         <constraint firstAttribute="trailing" secondItem="AMa-vn-Oca" secondAttribute="trailing" constant="10" id="eBk-64-CrL"/>
                         <constraint firstAttribute="trailing" secondItem="MBW-T4-0bl" secondAttribute="trailing" id="mCx-Sz-JQQ"/>
                         <constraint firstAttribute="trailing" secondItem="bXy-3f-Ytg" secondAttribute="trailing" constant="80" id="psZ-p3-t16"/>
@@ -157,7 +157,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUL-G6-q0D" userLabel="area table view">
-                    <rect key="frame" x="107" y="165" width="213" height="403"/>
+                    <rect key="frame" x="120" y="165" width="200" height="403"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="gka-kQ-6LA"/>
@@ -165,7 +165,7 @@
                     </connections>
                 </tableView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o0r-TB-YhJ" userLabel="country table view">
-                    <rect key="frame" x="0.0" y="165" width="107" height="403"/>
+                    <rect key="frame" x="0.0" y="165" width="120" height="403"/>
                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Kz7-b4-wka"/>
@@ -178,7 +178,7 @@
                         <action selector="btnutoDetectClicked:" destination="-1" eventType="touchUpInside" id="6rQ-bA-BcN"/>
                     </connections>
                 </button>
-                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mw0-bq-tIH" userLabel="search table view">
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mw0-bq-tIH" userLabel="search table view">
                     <rect key="frame" x="0.0" y="105" width="320" height="463"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -210,7 +210,7 @@
                 <constraint firstItem="EUG-6q-JiX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aQu-f9-PPv"/>
                 <constraint firstItem="o0r-TB-YhJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bRM-2E-NVk"/>
                 <constraint firstItem="pDV-R3-Xee" firstAttribute="top" secondItem="EUG-6q-JiX" secondAttribute="bottom" id="biW-rD-VNP"/>
-                <constraint firstItem="o0r-TB-YhJ" firstAttribute="width" secondItem="iUL-G6-q0D" secondAttribute="width" multiplier="0.5" id="opK-j6-Afe"/>
+                <constraint firstItem="o0r-TB-YhJ" firstAttribute="width" secondItem="iUL-G6-q0D" secondAttribute="width" multiplier="0.6" id="opK-j6-Afe"/>
                 <constraint firstAttribute="trailing" secondItem="EUG-6q-JiX" secondAttribute="trailing" id="sHP-Uq-4WL"/>
                 <constraint firstAttribute="trailing" secondItem="mw0-bq-tIH" secondAttribute="trailing" id="sUK-G1-POJ"/>
                 <constraint firstItem="mw0-bq-tIH" firstAttribute="top" secondItem="EUG-6q-JiX" secondAttribute="bottom" id="szI-sk-Ju6"/>
@@ -223,7 +223,7 @@
                     <exclude reference="CEm-aL-bzf"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="466" y="211"/>
+            <point key="canvasLocation" x="711" y="155"/>
         </view>
     </objects>
     <resources>

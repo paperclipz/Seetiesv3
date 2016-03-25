@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblViewAll;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @end
 @implementation PhotoCVCell
 
@@ -25,6 +26,7 @@
 {
     self.lblViewAll.textColor = [UIColor whiteColor];
     [self.lblViewAll setSideCurveBorder];
+    [self.lblTitle setFont:[UIFont fontWithName:@"olivier" size:17.0f]];
 
 }
 

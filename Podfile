@@ -35,18 +35,20 @@ pod 'A3ParallaxScrollView', '~> 1.0'
 pod 'STPopup'
 
 pod 'APParallaxHeader'
-pod 'PureLayout'
+#pod 'PureLayout'
 pod 'MZAppearance'
 pod 'ViewMonitor'
 pod 'MGInstagram'
 pod 'InstagramKit', '~> 3.0'
-pod 'ESTabBarController'
+#pod 'ESTabBarController'
 pod 'Fabric'
 pod 'Crashlytics'
 
 pod 'NSDate-Time-Ago'
 pod 'MMPickerView', '~> 0.0.1'
 
+
+pod 'ZWIntroductionViewController'
 #pod 'iCarousel'
 #================ debugging =====================#
 #pod 'CocoaLumberjack'

@@ -98,7 +98,7 @@
 
 -(void)setSquareBorder
 {
-    [Utils setRoundBorder:self color:LINE_COLOR borderRadius:0];
+    [Utils setRoundBorder:self color:OUTLINE_COLOR borderRadius:0];
     
 }
 

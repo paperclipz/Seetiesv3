@@ -655,7 +655,7 @@
                                      CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
                                      CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
                                      CAPSPageMenuOptionMenuHeight: @(40.0),
-                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/4 - 20),
+                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/4 - 10),
                                      CAPSPageMenuOptionCenterMenuItems: @(YES),
                                      CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
                                      CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,

@@ -9,6 +9,7 @@
 #import "NewLandingViewController.h"
 #import <ESTabBarController/ESTabBarController.h>
 #import "UITabBar+Extension.h"
+#import "IntroCoverView.h"
 
 @interface NewLandingViewController()<UITabBarControllerDelegate>
 {
@@ -18,6 +19,7 @@
 @property (nonatomic)UINavigationController* secondViewController;
 @property (nonatomic)UINavigationController* thirdViewController;
 @property (nonatomic, strong)UINavigationController* navLoginViewController;
+
 
 @property (nonatomic,strong)NSArray* arryViewController;
 
@@ -50,6 +52,8 @@
     }
     
     [self requestServerForCountry];
+   // [self showIntroView];
+
 }
 
 -(UITabBarController*)tabBarController
@@ -435,7 +439,30 @@
             
         }];
     }
+}
+
+#pragma mark - Intro View
+
+-(void)showIntroView
+{
+    CGRect frame = [Utils getDeviceScreenSize];
+
+    UIView* view1 = [[UIView alloc]initWithFrame:frame];
+    view1.alpha = 0.5;
+    view1.backgroundColor = [UIColor redColor];
+    UIView* view2 = [[UIView alloc]initWithFrame:frame];
+    view2.alpha = 0.5;
+    view2.backgroundColor = [UIColor yellowColor];
+    UIView* view3 = [[UIView alloc]initWithFrame:frame];
+    view3.alpha = 0.5;
+    view3.backgroundColor = [UIColor blueColor];
     
+    
+    
+    IntroCoverView* introView = [IntroCoverView initializeCustomView];
+    [self.view addSubview:introView];
+    [introView initWithCoverViews:@[view1,view2,view3] backgroundImages:@[@"splash1.jpg",@"splash2.jpg",@"splash3.jpg"]];
+
 }
 
 @end

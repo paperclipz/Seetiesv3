@@ -60,6 +60,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="5mr-xC-lGW" secondAttribute="height" multiplier="0.6:1" id="6xj-Iy-lNb"/>
                             </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                             <state key="normal" image="SearchIcon.png"/>
                             <connections>
                                 <action selector="btnSearchClicked:" destination="-1" eventType="touchUpInside" id="i8e-Nl-Ckb"/>
@@ -74,7 +75,7 @@
                                 <action selector="btnLocationClicked:" destination="-1" eventType="touchUpInside" id="eMk-UW-xoE"/>
                             </connections>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SelectPhotoArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="XBv-gO-M25">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XBv-gO-M25">
                             <rect key="frame" x="70" y="14" width="33" height="33"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -87,6 +88,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="RVj-Ec-BnN" secondAttribute="height" multiplier="0.6:1" id="Yo5-30-TYp"/>
                             </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                             <state key="normal" image="FilterIcon.png"/>
                             <connections>
                                 <action selector="btnFilterClicked:" destination="-1" eventType="touchUpInside" id="AhW-cj-3le"/>
@@ -147,7 +149,7 @@
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="FilterIcon.png" width="40" height="40"/>
+        <image name="NaviDropDownIcon.png" width="8" height="6"/>
         <image name="SearchIcon.png" width="40" height="40"/>
-        <image name="SelectPhotoArrow.png" width="20" height="20"/>
     </resources>
 </document>

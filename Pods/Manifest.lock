@@ -30,7 +30,6 @@ PODS:
     - Fabric (~> 1.6.3)
   - DBCamera (2.4.1):
     - GPUImage (~> 0.1)
-  - ESTabBarController (0.1.2)
   - Fabric (1.6.7)
   - GoogleMaps (1.12.3)
   - GPUImage (0.1.7)
@@ -59,7 +58,6 @@ PODS:
   - MMPickerView (0.0.1)
   - MZAppearance (1.1.6)
   - NSDate-Time-Ago (1.0.1)
-  - PureLayout (3.0.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -70,6 +68,7 @@ PODS:
   - TTTAttributedLabel (1.13.4)
   - UITextView+Placeholder (1.1.1)
   - ViewMonitor (1.0.9)
+  - ZWIntroductionViewController (0.2.2)
 
 DEPENDENCIES:
   - A3ParallaxScrollView (~> 1.0)
@@ -80,7 +79,6 @@ DEPENDENCIES:
   - CLLocationManager-blocks
   - Crashlytics
   - DBCamera (~> 2.4)
-  - ESTabBarController
   - Fabric
   - GoogleMaps
   - HMSegmentedControl
@@ -94,7 +92,6 @@ DEPENDENCIES:
   - MMPickerView (~> 0.0.1)
   - MZAppearance
   - NSDate-Time-Ago
-  - PureLayout
   - SDWebImage
   - STPopup
   - SVPullToRefresh
@@ -102,6 +99,7 @@ DEPENDENCIES:
   - TTTAttributedLabel
   - UITextView+Placeholder
   - ViewMonitor
+  - ZWIntroductionViewController
 
 EXTERNAL SOURCES:
   TSMessages:
@@ -122,7 +120,6 @@ SPEC CHECKSUMS:
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
-  ESTabBarController: ef57e22d9835c7142d3681d38ac158006c40465f
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   GoogleMaps: a4ac67918d0b5ba5f6b9893ac80487e357779e6c
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
@@ -138,7 +135,6 @@ SPEC CHECKSUMS:
   MMPickerView: 6ba6bd5d0ef1fd60372d3f5e4fa80ad4237a86a0
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
-  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   STPopup: f32dc6a944b57311b6d2d6e3afd789f83a0c4cbc
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
@@ -146,5 +142,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UITextView+Placeholder: a6fc3e0378f3870036ec562a7537cbf6dbae4bf6
   ViewMonitor: 3bf94bdead583c7ed08fdab9212fe08661173477
+  ZWIntroductionViewController: 4ba9df33f091312e3518e3866ffa3cb49b4890e7
 
 COCOAPODS: 0.39.0
