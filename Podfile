@@ -35,7 +35,7 @@ pod 'A3ParallaxScrollView', '~> 1.0'
 pod 'STPopup'
 
 pod 'APParallaxHeader'
-#pod 'PureLayout'
+pod 'PureLayout'
 pod 'MZAppearance'
 pod 'ViewMonitor'
 pod 'MGInstagram'

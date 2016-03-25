@@ -7,7 +7,6 @@
 //
 
 #import "NewLandingViewController.h"
-#import <ESTabBarController/ESTabBarController.h>
 #import "UITabBar+Extension.h"
 #import "IntroCoverView.h"
 
