@@ -89,6 +89,10 @@
 }
 
 -(void)setDealType{
+    
+    self.ibDealTypeLbl.hidden = NO;
+    self.ibDiscountLbl.hidden = NO;
+    
     if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE]) {
         self.ibDealTypeLbl.text = [NSString stringWithFormat:@"%@", [self.dealModel.deal_type uppercaseString]];
         self.ibDiscountLbl.hidden = YES;

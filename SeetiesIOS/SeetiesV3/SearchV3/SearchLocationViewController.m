@@ -255,8 +255,9 @@
         SearchLocationModel *slModel = [self.searchModel.predictions objectAtIndex:indexPath.row];
         NSDictionary *term = [slModel.terms objectAtIndex:0];
         cell.textLabel.text = [term objectForKey:@"value"];
+        cell.textLabel.textColor = TEXT_GRAY_COLOR;
         cell.detailTextLabel.text = [slModel longDescription];
-
+        cell.detailTextLabel.textColor = ONE_ZERO_TWO_COLOR;
         return cell;
     }
     

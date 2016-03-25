@@ -50,6 +50,8 @@
 
 -(void)initSelfView
 {
+    
+    [self changeLanguage];
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
@@ -606,4 +608,8 @@
     }];
 }
 
+-(void)changeLanguage
+{
+    self.lblTitle.text = LocalisedString(@"Account Settings");
+}
 @end

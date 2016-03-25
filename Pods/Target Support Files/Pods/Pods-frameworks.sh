@@ -92,7 +92,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/BOString.framework"
   install_framework "Pods/CLLocationManager_blocks.framework"
   install_framework "Pods/DBCamera.framework"
-  install_framework "Pods/ESTabBarController.framework"
   install_framework "Pods/GPUImage.framework"
   install_framework "Pods/HMSegmentedControl.framework"
   install_framework "Pods/HexColors.framework"
@@ -105,7 +104,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/MMPickerView.framework"
   install_framework "Pods/MZAppearance.framework"
   install_framework "Pods/NSDate_Time_Ago.framework"
-  install_framework "Pods/PureLayout.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/STPopup.framework"
   install_framework "Pods/SVPullToRefresh.framework"
@@ -113,6 +111,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/ViewMonitor.framework"
+  install_framework "Pods/ZWIntroductionViewController.framework"
   install_framework "Pods/iOSBlocks.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -124,7 +123,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/BOString.framework"
   install_framework "Pods/CLLocationManager_blocks.framework"
   install_framework "Pods/DBCamera.framework"
-  install_framework "Pods/ESTabBarController.framework"
   install_framework "Pods/GPUImage.framework"
   install_framework "Pods/HMSegmentedControl.framework"
   install_framework "Pods/HexColors.framework"
@@ -137,7 +135,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/MMPickerView.framework"
   install_framework "Pods/MZAppearance.framework"
   install_framework "Pods/NSDate_Time_Ago.framework"
-  install_framework "Pods/PureLayout.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/STPopup.framework"
   install_framework "Pods/SVPullToRefresh.framework"
@@ -145,5 +142,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/ViewMonitor.framework"
+  install_framework "Pods/ZWIntroductionViewController.framework"
   install_framework "Pods/iOSBlocks.framework"
 fi

@@ -164,8 +164,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];
-    self.ibProfileName.text = model.username;
+    self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
+    self.ibProfileName.text = self.profileModel.username;
 
 }
 
@@ -319,7 +319,7 @@
 {
     
     DataManager* dataManager = [ConnectionManager dataManager];
-    ProfileModel* model = dataManager.userProfileModel;
+    ProfileModel* model = dataManager.currentUserProfileModel;
     self.profileModel = model;
 }
 

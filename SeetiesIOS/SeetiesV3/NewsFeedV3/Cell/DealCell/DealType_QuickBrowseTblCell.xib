@@ -22,14 +22,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeFindShopsAndPlaces.png" translatesAutoresizingMaskIntoConstraints="NO" id="86s-Wz-tPb">
-                                        <rect key="frame" x="10" y="15" width="40" height="40"/>
+                                        <rect key="frame" x="10" y="12" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="TAQ-qw-xqx"/>
                                             <constraint firstAttribute="height" constant="40" id="XSX-FX-Ifg"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Browse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-pX-mf2">
-                                        <rect key="frame" x="58" y="15" width="252" height="21"/>
+                                        <rect key="frame" x="58" y="12" width="252" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="C36-qN-GWU"/>
                                         </constraints>
@@ -38,7 +38,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check out your collected deals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF5-Sd-5r8">
-                                        <rect key="frame" x="58" y="34" width="252" height="21"/>
+                                        <rect key="frame" x="58" y="31" width="252" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="lUf-cX-jI5"/>
                                         </constraints>
@@ -56,7 +56,7 @@
                                     <constraint firstItem="aF5-Sd-5r8" firstAttribute="leading" secondItem="86s-Wz-tPb" secondAttribute="trailing" constant="8" id="eDx-e2-qRK"/>
                                     <constraint firstItem="Gqx-pX-mf2" firstAttribute="leading" secondItem="86s-Wz-tPb" secondAttribute="trailing" constant="8" id="gnd-9b-aIR"/>
                                     <constraint firstItem="86s-Wz-tPb" firstAttribute="centerY" secondItem="bbv-yO-ExO" secondAttribute="centerY" id="lLb-RK-eMd"/>
-                                    <constraint firstAttribute="bottom" secondItem="86s-Wz-tPb" secondAttribute="bottom" id="nn9-Mp-gMt"/>
+                                    <constraint firstAttribute="bottom" secondItem="86s-Wz-tPb" secondAttribute="bottom" constant="3" id="nn9-Mp-gMt"/>
                                     <constraint firstAttribute="trailing" secondItem="Gqx-pX-mf2" secondAttribute="trailing" constant="10" id="r7o-ag-rjc"/>
                                     <constraint firstItem="86s-Wz-tPb" firstAttribute="leading" secondItem="bbv-yO-ExO" secondAttribute="leading" constant="10" id="uEJ-Ev-tsQ"/>
                                     <constraint firstItem="aF5-Sd-5r8" firstAttribute="bottom" secondItem="86s-Wz-tPb" secondAttribute="bottom" id="uaP-zI-umY"/>

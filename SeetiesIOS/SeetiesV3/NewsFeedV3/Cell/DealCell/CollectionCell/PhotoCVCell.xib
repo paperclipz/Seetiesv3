@@ -120,6 +120,7 @@
                 <outlet property="ibImageView" destination="6Ad-r4-7gE" id="hXt-ei-awg"/>
                 <outlet property="lblDescription" destination="VGq-Ap-gl4" id="w3P-ZC-nUy"/>
                 <outlet property="lblName" destination="X9G-io-wPj" id="EPX-jf-aRf"/>
+                <outlet property="lblTitle" destination="3hd-Rm-Ahw" id="EXa-lg-Bqj"/>
                 <outlet property="lblViewAll" destination="NLv-uy-AtS" id="SCp-mV-yme"/>
             </connections>
             <point key="canvasLocation" x="501" y="513"/>

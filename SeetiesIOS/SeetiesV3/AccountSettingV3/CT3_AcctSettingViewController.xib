@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_AcctSettingViewController">
             <connections>
                 <outlet property="ibTableView" destination="5m2-ek-JfW" id="nA0-0p-3je"/>
+                <outlet property="lblTitle" destination="eW7-gh-pDo" id="SD9-oa-PHO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
