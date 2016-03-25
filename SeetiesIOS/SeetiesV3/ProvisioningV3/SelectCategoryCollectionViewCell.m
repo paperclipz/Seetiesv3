@@ -59,11 +59,9 @@
 
 -(void)initData:(CategoryModel*)model
 {
-    
     [self refreshConstraint];
     self.categoryModel = model;
     [self setCustomSelected:self.categoryModel.isSelected];
-    
     
     NSString* defaultLangCode = [Utils getDeviceDefaultLanguageCode];
     SLog(@"aaa: %@",model.single_line[defaultLangCode]);
