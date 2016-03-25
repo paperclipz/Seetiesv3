@@ -783,7 +783,10 @@
 
 +(NSInteger)numberOfDaysLeft:(NSDate*)date{
     NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:[NSDate new] toDate:date options:NSCalendarWrapComponents];
+    NSDateComponents *fromDateComponent = [cal components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:[NSDate new]];
+    NSDateComponents *toDateComponent = [cal components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:date];
+    
+    NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:[cal dateFromComponents:fromDateComponent] toDate:[cal dateFromComponents:toDateComponent] options:NSCalendarWrapComponents];
     
     return [components day];
 }

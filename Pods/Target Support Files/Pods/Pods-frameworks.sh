@@ -111,7 +111,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/ViewMonitor.framework"
-  install_framework "Pods/ZWIntroductionViewController.framework"
   install_framework "Pods/iOSBlocks.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -142,6 +141,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/ViewMonitor.framework"
-  install_framework "Pods/ZWIntroductionViewController.framework"
   install_framework "Pods/iOSBlocks.framework"
 fi

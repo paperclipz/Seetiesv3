@@ -117,10 +117,15 @@
                         NSDate *openTime = [utcTimeFormatter dateFromString:period[@"open"]];
                         NSDate *closeTime = [utcTimeFormatter dateFromString:period[@"close"]];
                         
+                        NSDateComponents *displayDateComponent = [gregorian components:dateFlags|NSCalendarUnitWeekday fromDate:nextDate];
+                        NSDateComponents *displayTimeComponent = [gregorian components:timeFlags fromDate:openTime];
+                        NSDate *displayDate = [gregorian dateFromComponents:displayDateComponent];
+                        displayDate = [gregorian dateBySettingHour:[displayTimeComponent hour] minute:[displayTimeComponent minute] second:[displayTimeComponent second] ofDate:displayDate options:NSCalendarWrapComponents];
+                        
                         if (count == 0) {
                             NSComparisonResult timeResult = [currentTimeOnly compare:openTime];
                             if (timeResult == NSOrderedAscending) {
-                                NSString *dateString = [localDateFormatter stringFromDate:nextDate];
+                                NSString *dateString = [localDateFormatter stringFromDate:displayDate];
                                 NSString *openString = [localTimeFormatter stringFromDate:openTime];
                                 NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
                                 
@@ -128,7 +133,7 @@
                             }
                         }
                         
-                        NSString *dateString = [localDateFormatter stringFromDate:nextDate];
+                        NSString *dateString = [localDateFormatter stringFromDate:displayDate];
                         NSString *openString = [localTimeFormatter stringFromDate:openTime];
                         NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
                         
@@ -156,7 +161,12 @@
                         NSDate *openTime = [utcTimeFormatter dateFromString:period[@"open"]];
                         NSDate *closeTime = [utcTimeFormatter dateFromString:period[@"close"]];
                         
-                        NSString *dateString = [localDateFormatter stringFromDate:nextDate];
+                        NSDateComponents *displayDateComponent = [gregorian components:dateFlags|NSCalendarUnitWeekday fromDate:nextDate];
+                        NSDateComponents *displayTimeComponent = [gregorian components:timeFlags fromDate:openTime];
+                        NSDate *displayDate = [gregorian dateFromComponents:displayDateComponent];
+                        displayDate = [gregorian dateBySettingHour:[displayTimeComponent hour] minute:[displayTimeComponent minute] second:[displayTimeComponent second] ofDate:displayDate options:NSCalendarWrapComponents];
+                        
+                        NSString *dateString = [localDateFormatter stringFromDate:displayDate];
                         NSString *openString = [localTimeFormatter stringFromDate:openTime];
                         NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
                         

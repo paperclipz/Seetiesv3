@@ -68,7 +68,6 @@ PODS:
   - TTTAttributedLabel (1.13.4)
   - UITextView+Placeholder (1.1.1)
   - ViewMonitor (1.0.9)
-  - ZWIntroductionViewController (0.2.2)
 
 DEPENDENCIES:
   - A3ParallaxScrollView (~> 1.0)
@@ -99,7 +98,6 @@ DEPENDENCIES:
   - TTTAttributedLabel
   - UITextView+Placeholder
   - ViewMonitor
-  - ZWIntroductionViewController
 
 EXTERNAL SOURCES:
   TSMessages:
@@ -142,6 +140,5 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UITextView+Placeholder: a6fc3e0378f3870036ec562a7537cbf6dbae4bf6
   ViewMonitor: 3bf94bdead583c7ed08fdab9212fe08661173477
-  ZWIntroductionViewController: 4ba9df33f091312e3518e3866ffa3cb49b4890e7
 
 COCOAPODS: 0.39.0
