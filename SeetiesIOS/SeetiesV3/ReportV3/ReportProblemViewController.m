@@ -12,9 +12,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *ibTxtView;
 @property (weak, nonatomic) IBOutlet UILabel *lblOneDesc;
 
+@property (weak, nonatomic) IBOutlet UITextView *txtTwoDesc;
 @property (weak, nonatomic) IBOutlet UILabel *lblOneTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblTwoTitle;
-@property (weak, nonatomic) IBOutlet UILabel *lblTwoDesc;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgOneTick;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgTwoTick;
 
@@ -114,22 +114,24 @@
             self.lblOneDesc.text = LocalisedString(@"The shop could not be found in the area specified");
 
             self.lblTwoTitle.text = LocalisedString(@"Inaccurate information");
-            self.lblTwoDesc.text = LocalisedString(@"Shop information provided is inaccurate (eg.Business hours, address etc.)");
             
-
+            self.txtTwoDesc.placeholder = LocalisedString(@"Shop information provided is inaccurate (eg.Business hours, address etc.)");
 
             break;
         case 2:
             
             self.lblTitle.text = LocalisedString(@"Report Deal");
-
-            
             self.lblOneTitle.text = LocalisedString(@"Deal is not available");
             self.lblOneDesc.text = LocalisedString(@"The deal is not available in the shop promoted.");
             
             self.lblTwoTitle.text = LocalisedString(@"Deal is different value");
-            self.lblTwoDesc.text = LocalisedString(@"The deal does not reflect the promoted value");
             
+            self.txtTwoDesc.text = LocalisedString(@"The deal does not reflect the promoted value");
+
+
+            self.txtTwoDesc.editable = false;
+            self.txtTwoDesc.userInteractionEnabled = NO;
+
         default:
             break;
     }
@@ -152,8 +154,16 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self changeViewType:3];
     
+    if (textView == self.txtTwoDesc) {
+        [self changeViewType:2];
+
+    }
+    else if(textView == self.ibTxtView)
+    {
+        [self changeViewType:3];
+
+    }
     return YES;
 }
 
@@ -167,7 +177,7 @@
     }
     else if(self.type == 2)
     {
-        return self.lblTwoDesc.text;
+        return self.self.txtTwoDesc.text;
 
     }
     else{

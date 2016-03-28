@@ -1456,6 +1456,8 @@
 		8AF6FDF01C5B08A3005AAE5D /* DealRedeemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDEE1C5B08A3005AAE5D /* DealRedeemViewController.xib */; };
 		8AF6FE041C5F3EB7005AAE5D /* CountryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FE031C5F3EB7005AAE5D /* CountryModel.m */; };
 		8AF6FE071C5F3F36005AAE5D /* CountriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FE061C5F3F36005AAE5D /* CountriesModel.m */; };
+		8AF711C31CA92228004D52A2 /* ReportShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF711C11CA92228004D52A2 /* ReportShopViewController.m */; };
+		8AF711C41CA92228004D52A2 /* ReportShopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF711C21CA92228004D52A2 /* ReportShopViewController.xib */; };
 		8AF8679B1C7DA8CA00B0195D /* AppInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF8679A1C7DA8CA00B0195D /* AppInfoModel.m */; };
 		8AF8679F1C7DAC1100B0195D /* SelectCategoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF8679D1C7DAC1100B0195D /* SelectCategoryCollectionViewCell.m */; };
 		8AF867A01C7DAC1100B0195D /* SelectCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF8679E1C7DAC1100B0195D /* SelectCategoryCollectionViewCell.xib */; };
@@ -3494,6 +3496,9 @@
 		8AF6FE031C5F3EB7005AAE5D /* CountryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryModel.m; sourceTree = "<group>"; };
 		8AF6FE051C5F3F36005AAE5D /* CountriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesModel.h; sourceTree = "<group>"; };
 		8AF6FE061C5F3F36005AAE5D /* CountriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesModel.m; sourceTree = "<group>"; };
+		8AF711C01CA92228004D52A2 /* ReportShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportShopViewController.h; sourceTree = "<group>"; };
+		8AF711C11CA92228004D52A2 /* ReportShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportShopViewController.m; sourceTree = "<group>"; };
+		8AF711C21CA92228004D52A2 /* ReportShopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportShopViewController.xib; sourceTree = "<group>"; };
 		8AF867991C7DA8CA00B0195D /* AppInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInfoModel.h; sourceTree = "<group>"; };
 		8AF8679A1C7DA8CA00B0195D /* AppInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInfoModel.m; sourceTree = "<group>"; };
 		8AF8679C1C7DAC1100B0195D /* SelectCategoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCategoryCollectionViewCell.h; sourceTree = "<group>"; };
@@ -7694,6 +7699,9 @@
 				8AFB06871CA140E300DAEE22 /* ReportProblemViewController.h */,
 				8AFB06881CA140E300DAEE22 /* ReportProblemViewController.m */,
 				8AFB06891CA140E300DAEE22 /* ReportProblemViewController.xib */,
+				8AF711C01CA92228004D52A2 /* ReportShopViewController.h */,
+				8AF711C11CA92228004D52A2 /* ReportShopViewController.m */,
+				8AF711C21CA92228004D52A2 /* ReportShopViewController.xib */,
 			);
 			path = ReportV3;
 			sourceTree = "<group>";
@@ -8731,6 +8739,7 @@
 				8AFA51D81C47B4AB00E7920E /* VoucherCell.xib in Resources */,
 				8A9AB8291CA4EE6E0067FACA /* AddTagIcon@3x.png in Resources */,
 				8A9AB7C11CA4EE6E0067FACA /* CannotRedeemAtThisMomentImg.png in Resources */,
+				8AF711C41CA92228004D52A2 /* ReportShopViewController.xib in Resources */,
 				8A9AB80F1CA4EE6E0067FACA /* ErrorIcon@3x.png in Resources */,
 				8A9AB7D61CA4EE6E0067FACA /* SeetishopOtherIcon@3x.png in Resources */,
 				8A9AB86E1CA4EE6E0067FACA /* DeleteIconSwipe@2x.png in Resources */,
@@ -9512,6 +9521,7 @@
 				8AEDBFAB1C2031BA000BD2FF /* RecommendationModel.m in Sources */,
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
 				8A509D6A1C9911CD004C74C7 /* FeedType_headerTblCell.m in Sources */,
+				8AF711C31CA92228004D52A2 /* ReportShopViewController.m in Sources */,
 				8A6BB42D1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationControllerAnimator.m in Sources */,
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
 				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,

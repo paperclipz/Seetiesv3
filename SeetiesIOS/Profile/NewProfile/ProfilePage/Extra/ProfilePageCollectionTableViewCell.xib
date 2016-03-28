@@ -12,11 +12,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZWw-DX-Gtz" id="Cad-BQ-EAB">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="204.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-oM-VeY" userLabel="innerContentView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-oM-VeY" userLabel="innerContentView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="cXO-xp-Gkt">
                                 <rect key="frame" x="161" y="0.0" width="161" height="126"/>
@@ -159,7 +159,8 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
-                <outlet property="btnEdit" destination="Bl0-UK-jJ9" id="wYQ-P3-y5N"/>
+                <outlet property="btnEdit" destination="Bl0-UK-jJ9" id="Nbo-gm-A3o"/>
+                <outlet property="constEditWidth" destination="TbI-8t-0G8" id="W57-l6-btS"/>
                 <outlet property="ibCollectionNameLeadingConstraint" destination="TLQ-9P-mGa" id="wY9-tL-2pc"/>
                 <outlet property="ibImageLock" destination="1t0-2b-t7N" id="V3c-2n-muB"/>
                 <outlet property="ibImageViewA" destination="1l0-BW-VUP" id="aWH-UL-plQ"/>

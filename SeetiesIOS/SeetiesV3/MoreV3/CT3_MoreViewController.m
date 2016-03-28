@@ -440,7 +440,18 @@
 
 -(void)logout
 {
-    [self serverRequestLogout];
+    
+    [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to leave") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        
+        if (buttonIndex == 0) {
+            
+        }
+        else{
+            [self serverRequestLogout];
+
+        }
+    }];
+    
    
     
 }

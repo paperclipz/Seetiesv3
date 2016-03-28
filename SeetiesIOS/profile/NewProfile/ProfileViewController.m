@@ -1426,11 +1426,13 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
    // [self.shareViewController GetCollectionID:colModel.collection_id GetCollectionTitle:colModel.name];
 
     _shareV2ViewController = nil;
+    
+    CGRect frame = [Utils getDeviceScreenSize];
     UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
     [naviVC setNavigationBarHidden:YES animated:NO];
     [self.shareV2ViewController share:@"" title:colModel.name imagURL:@"" shareType:ShareTypeCollection shareID:colModel.collection_id userID:colModel.user_info.uid];
     MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.contentViewSize = frame.size;
     formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
     formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
     [self presentViewController:formSheetController animated:YES completion:nil];

@@ -118,6 +118,12 @@
 {
     
     NSLog(@"\n\n ===== Request Server ===== : %@ \n\n Request Json : %@",url,[dict bv_jsonStringWithPrettyPrint:YES]);
+    
+    if ([self validateBeforeRequest:type]) {
+        
+        return;
+    }
+    
     if(isPost)
     {
         [self.manager POST:url parameters:dict
@@ -166,7 +172,10 @@
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
-    
+    if ([self validateBeforeRequest:type]) {
+        
+        return;
+    }
     NSString* fullURL = [self getFullURLwithType:type];
     
     SLog(@"\n\n ===== [REQUEST SERVER WITH POST][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
@@ -192,6 +201,11 @@
 
 -(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
+    
+    if ([self validateBeforeRequest:type]) {
+        
+        return;
+    }
     
     NSString* fullURL;
     
@@ -237,6 +251,12 @@
 }
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
+    
+    if ([self validateBeforeRequest:type]) {
+        
+        return;
+    }
+    
     [LoadingManager show];
     
     NSString* fullURL;
@@ -281,6 +301,11 @@
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
 //    [LoadingManager show];
+    
+    if ([self validateBeforeRequest:type]) {
+        
+        return;
+    }
     
     NSString* fullURL;
     if (appendString) {
@@ -362,6 +387,11 @@
 -(void)requestServerWithDelete:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
+    if ([self validateBeforeRequest:type]) {
+        
+        return;
+    }
+    
     NSString* fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
     
     NSLog(@"\n\n ===== Request Server DELETE ===== : %@ \n\n Request Json : %@",fullURL,dict);
@@ -386,7 +416,10 @@
 
 -(void)requestServerWithPut:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
-    
+    if ([self validateBeforeRequest:type]) {
+        
+        return;
+    }
     
     NSString* fullURL;
     
@@ -1275,5 +1308,37 @@
     }];
 }
 
+
+#pragma mark - PRE REQUEST VALIDATION
+
+-(BOOL)validateBeforeRequest:(ServerRequestType)type
+{
+    BOOL flag = false;
+    
+    switch (type) {
+        case ServerRequestTypeDeleteLikeAPost:
+        case ServerRequestTypePutCollectPost:
+
+            
+            if ([Utils isGuestMode]) {
+                
+                flag = true;
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                    
+                    if (buttonIndex == 1) {
+                        [Utils showLogin];
+                        
+                    }
+                }];
+            }
+
+            break;
+            
+        default:
+            break;
+    }
+    
+    return flag;
+}
 
 @end

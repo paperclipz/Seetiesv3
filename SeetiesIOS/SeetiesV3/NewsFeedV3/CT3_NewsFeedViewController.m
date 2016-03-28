@@ -1369,20 +1369,6 @@ static NSCache* heightCache = nil;
 
 -(void)requestServerForQuickCollection:(DraftModel*)model
 {
-
-    
-    if ([Utils isGuestMode]) {
-        
-        
-        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login To Collect") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            
-            if (buttonIndex == 1) {
-                [Utils showLogin];
-                
-            }
-        }];
-        return;
-    }
     
     NSDictionary* dictPost =  @{@"id": model.post_id};
 

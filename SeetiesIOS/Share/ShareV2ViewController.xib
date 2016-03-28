@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkS-M9-msm">
-                    <rect key="frame" x="0.0" y="255" width="375" height="62"/>
+                    <rect key="frame" x="0.0" y="155" width="375" height="62"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send to friends in Seeties" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h83-fy-WNO">
                             <rect key="frame" x="53" y="14" width="251" height="21"/>
@@ -83,17 +83,17 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6e-ve-R82">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="247"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="147"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="wMu-KJ-GGV"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbW-Cy-UcE">
-                    <rect key="frame" x="0.0" y="317" width="375" height="350"/>
+                    <rect key="frame" x="0.0" y="217" width="375" height="450"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="u22-ES-Rch">
-                            <rect key="frame" x="0.0" y="10" width="375" height="320"/>
+                            <rect key="frame" x="0.0" y="10" width="375" height="420"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="388" id="105-uh-iIO"/>
@@ -121,7 +121,7 @@
                         <constraint firstItem="u22-ES-Rch" firstAttribute="top" secondItem="pbW-Cy-UcE" secondAttribute="top" constant="10" id="FLQ-Ek-7Gl"/>
                         <constraint firstItem="u22-ES-Rch" firstAttribute="leading" secondItem="pbW-Cy-UcE" secondAttribute="leading" id="QPI-oM-j0S"/>
                         <constraint firstAttribute="trailing" secondItem="u22-ES-Rch" secondAttribute="trailing" id="tUj-Av-uAQ"/>
-                        <constraint firstAttribute="height" constant="350" id="vkg-Rg-T0I"/>
+                        <constraint firstAttribute="height" constant="450" id="vkg-Rg-T0I"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aor-KQ-HKC">

@@ -16,6 +16,7 @@
 
     __weak IBOutlet NSLayoutConstraint *ibCollectionNameLeadingConstraint;
 
+    __weak IBOutlet NSLayoutConstraint *constEditWidth;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewA;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewB;
@@ -137,6 +138,8 @@
     }
     
     if (self.profileType == ProfileViewTypeOwn) {
+        
+        constEditWidth.constant = 88;
         [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
         //[Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:0];
         [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
@@ -146,6 +149,9 @@
 
     }
     else{
+        
+        constEditWidth.constant = 120;
+
       //  [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
         [Utils setRoundBorder:self.btnEdit color:[UIColor clearColor] borderRadius:0];
 
