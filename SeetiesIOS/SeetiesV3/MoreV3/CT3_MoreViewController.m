@@ -52,6 +52,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self changeLanguage];
+    [self.ibTableView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

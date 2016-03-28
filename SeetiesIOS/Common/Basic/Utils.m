@@ -175,6 +175,11 @@
     }
 }
 
++(BOOL)isPhoneNumberVerified{
+    ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
+    return profileModel.phone_verified;
+}
+
 #pragma mark - Utilities
 +(NSString*)getWeekName:(int)integer
 {
