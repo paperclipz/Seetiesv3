@@ -12,6 +12,7 @@
 -(void)initData:(AnnouncementModel*)model;
 -(void)initDataWithURL:(NSString *)url andTitle:(NSString*)title;
 -(void)initDataForInstagram;
+-(void)initDataAppStore;
 
 @property(nonatomic,copy)VoidBlock didFinishLoadConnectionBlock;
 @end
