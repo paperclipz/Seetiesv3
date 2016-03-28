@@ -21,7 +21,10 @@
                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-9q-tNj">
-                                <rect key="frame" x="222" y="127" width="97" height="38"/>
+                                <rect key="frame" x="198" y="127" width="120" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Mfw-xo-dOK"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <state key="selected" image="FollowingCollectionIcon.png"/>
                                 <connections>
@@ -29,7 +32,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="sq" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjh-6O-bqi">
-                                <rect key="frame" x="36" y="142" width="20" height="25"/>
+                                <rect key="frame" x="36" y="141" width="20" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="1iu-kS-YM5"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="rXC-IB-GTs"/>
@@ -46,28 +49,28 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someone Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7X-58-wkk">
-                                <rect key="frame" x="48" y="120" width="164" height="21"/>
+                                <rect key="frame" x="48" y="120" width="140" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollectionPostIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Txd-2a-F4A">
-                                <rect key="frame" x="16" y="144" width="20" height="20"/>
+                                <rect key="frame" x="16" y="143" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="4Cz-8t-Ixx"/>
                                     <constraint firstAttribute="height" constant="20" id="Xtn-ce-n9a"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FollowerNumber.png" translatesAutoresizingMaskIntoConstraints="NO" id="iHG-6M-6T6">
-                                <rect key="frame" x="72" y="140" width="30" height="30"/>
+                                <rect key="frame" x="72" y="139" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="6Pc-Em-adS"/>
                                     <constraint firstAttribute="height" constant="30" id="sbd-Yr-yRZ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTh-gj-GhX">
-                                <rect key="frame" x="102" y="143" width="9" height="25"/>
+                                <rect key="frame" x="102" y="142" width="9" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="WBx-uO-gvN"/>
                                 </constraints>
@@ -76,7 +79,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="PrivateCollectionIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="KzQ-cg-qKU">
-                                <rect key="frame" x="16" y="120" width="20" height="21"/>
+                                <rect key="frame" x="16" y="120" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="if3-I0-nGQ"/>
                                 </constraints>
