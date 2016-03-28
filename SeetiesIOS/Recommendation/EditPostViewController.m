@@ -675,8 +675,6 @@
     
     self.postModel.post.title = self.editPostView.txtTitle.text;
     self.postModel.post.message = self.editPostView.txtDescription.text;
-   // self.recommendationModel.postSecondTitle = self.editPostViewSecond.txtTitle.text;
-    //self.recommendationModel.postSecondDescription = self.editPostViewSecond.txtDescription.text;
 }
 
 #pragma mark - Server Request

@@ -130,7 +130,12 @@
     {
         _editPostViewController = [EditPostViewController new];
         
-        //_editPostViewController.editPostDoneBlock = self.donePostBlock;
+        
+        _editPostViewController.editPostDoneBlock = ^(id object)
+        {
+            
+        };
+        
         
     }
     return _editPostViewController;

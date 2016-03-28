@@ -118,7 +118,7 @@
     {
         CGRect deviceFrame = [Utils getDeviceScreenSize];
         
-        NSArray *controllerArray = @[self.seetiesSearchTableViewController,self.fourSquareSearchTableViewController, self.googleSearchTableViewController];
+        NSArray *controllerArray = @[self.seetiesSearchTableViewController, self.googleSearchTableViewController,self.fourSquareSearchTableViewController];
         NSDictionary *parameters = @{
                                      CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
@@ -484,7 +484,6 @@
             [self refreshViewGoogle];
         }
     }];
-    
 }
 
 -(void)requestSeetiesSuggestedPlaces
@@ -496,7 +495,6 @@
                            };
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetPlacesSuggestion param:dict appendString:@"" completeHandler:^(id object) {
-        
         
         SuggestedPlaceModel* model = [[ConnectionManager dataManager]suggestedPlaceModel];
         self.suggestedPlaceModel = model;

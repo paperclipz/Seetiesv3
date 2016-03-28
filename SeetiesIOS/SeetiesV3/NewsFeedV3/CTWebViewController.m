@@ -50,6 +50,15 @@
     
 }
 
+-(void)initDataAppStore
+{
+  
+    NSString *iTunesLink = @"https://itunes.apple.com/us/app/apple-store/id956400552?mt=8";
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+
+}
+
 -(void)initDataForInstagram
 {
     

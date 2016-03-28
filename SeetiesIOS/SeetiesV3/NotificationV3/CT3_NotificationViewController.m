@@ -37,17 +37,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initSelfView];
   
     [self.followingTableViewController requestServer:1];
     [self.notificationTableViewController requestServer:2];
+    
+    [self initSelfView];
+
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)initSelfView
 {
    
-      [self.ibContentView addSubview:self.cAPSPageMenu.view];
+    [self.ibContentView addSubview:self.cAPSPageMenu.view];
 
 }
 
@@ -97,13 +99,14 @@
     }
     return _feedDetailViewCOntroller;
 }
+
 -(CAPSPageMenu*)cAPSPageMenu
 {
     if(!_cAPSPageMenu)
     {
         CGRect deviceFrame = [Utils getDeviceScreenSize];
         
-        NSArray *controllerArray = @[self.followingTableViewController,self.notificationTableViewController];
+        NSArray *controllerArray = @[self.notificationTableViewController, self.followingTableViewController];
         NSDictionary *parameters = @{
                                      CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],

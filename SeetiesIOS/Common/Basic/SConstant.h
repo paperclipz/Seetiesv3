@@ -215,7 +215,7 @@ extern NSString *const SERVER_PATH_DEV;
 extern NSString *const SERVER_SUBPATH;
 extern NSString *const IP_URL_PATH;
 
-
+extern NSString *const URL_RATE_US;
 extern NSString *const URL_ABOUT_US;
 extern NSString *const URL_TERM_OF_USE;
 extern NSString *const URL_PRIVACY_POLICY;
