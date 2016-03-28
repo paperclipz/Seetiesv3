@@ -658,19 +658,23 @@
         
         
         NSDictionary* appInfo = dict[@"APIINFO"];
-        BOOL is_Production = [[appInfo objectForKey:@"is_production"]boolValue];
         
-       // is_Production = true;
-        BOOL app_is_production = ![Utils getIsDevelopment];
-        
-        if(is_Production == app_is_production)
-        {
-            return NO;
-        }
-        else{
+        if (appInfo) {
+            BOOL is_Production = [[appInfo objectForKey:@"is_production"]boolValue];
+            // is_Production = true;
+            is_Production?SLog(@"[current app status] : LIVE"):SLog(@"[current app status] : development");
+            BOOL app_is_production = ![Utils getIsDevelopment];
             
-            SLog(@"App relog due to changing of server path (Dev to Production)");
-            return YES;
+            if(is_Production == app_is_production)
+            {
+                return NO;
+            }
+            else{
+                
+                SLog(@"App relog due to changing of server path (Dev to Production)");
+                return YES;
+            }
+
         }
         
     }

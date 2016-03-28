@@ -197,13 +197,11 @@
             else
             {
                 switch (indexPath.row) {
-                    case 0://add place
-                        
-                        break;
-                    case 1://recommend
+                
+                    case 0://recommend
                         [self gotoRecommendationPage];
                         break;
-                    case 2://draft
+                    case 1://draft
                         [self gotoDraftPage];
                         break;
                         
