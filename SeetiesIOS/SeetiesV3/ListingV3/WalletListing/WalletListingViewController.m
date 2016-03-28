@@ -253,13 +253,26 @@
     }];
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
+    DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
+    
+    if ([voucher.voucher_type isEqualToString:VOUCHER_TYPE_PUBLIC]) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    else{
+        return UITableViewCellEditingStyleNone;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [UIAlertView showWithTitle:LocalisedString(@"Remove Voucher") message:LocalisedString(@"Are you sure you want to remove this voucher?") cancelButtonTitle:LocalisedString(@"Maybe not!") otherButtonTitles:@[LocalisedString(@"Yes, sure!")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
                 DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
-                [self requestServerToDeleteVoucher:voucher];
+                [self requestServerToDeleteVoucher:voucher withIndexPath:indexPath];
             }
             
         }];
@@ -470,19 +483,37 @@
     }];
 }
 
--(void)requestServerToDeleteVoucher:(DealModel*)deal{
+-(void)requestServerToDeleteVoucher:(DealModel*)deal withIndexPath:(NSIndexPath*)indexPath{
+    if (self.isLoading) {
+        return;
+    }
+    
     NSDictionary *dict = @{@"voucher_id":deal.voucher_info.voucher_id,
                            @"token": [Utils getAppToken]
                            };
     
     NSString *appendString = deal.voucher_info.voucher_id;
     
+    [LoadingManager show];
+    self.isLoading = YES;
     [[ConnectionManager Instance] requestServerWithDelete:ServerRequestTypeDeleteVoucher param:dict appendString:appendString completeHandler:^(id object) {
+        [self.ibTableView beginUpdates];
+        DealExpiryDateModel *expiryModel = self.voucherArray[indexPath.section];
+        BOOL deleteRow = expiryModel.dealModelArray.count > 1? YES : NO;
         [self removeDealFromVoucherArray:deal];
         [self.dealManager removeCollectedDeal:deal.dID];
-        [self.ibTableView  reloadData];
+        if (deleteRow) {
+            [self.ibTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        }
+        else{
+            [self.ibTableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+        }
+        [self.ibTableView endUpdates];
+        [LoadingManager hide];
+        self.isLoading = NO;
     } errorBlock:^(id object) {
-        
+        [LoadingManager hide];
+        self.isLoading = NO;
     }];
 }
 
