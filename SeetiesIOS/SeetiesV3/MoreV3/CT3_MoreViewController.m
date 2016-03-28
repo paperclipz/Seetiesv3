@@ -36,7 +36,7 @@
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
 @property(nonatomic)PromoPopOutViewController* promoPopOutViewController;
-
+@property(nonatomic)SKStoreProductViewController* skStoreProductViewController;
 @property(nonatomic)IntroCoverView* introView;
 
 @end
@@ -247,13 +247,12 @@
 
                 
                 CASE (@"Rate Us"){
-                  
-                    _ctWebViewController = nil;
                     
-                    [self.navigationController pushViewController:self.ctWebViewController animated:YES onCompletion:^{
-                        
-                        [self.ctWebViewController initDataWithURL:URL_ABOUT_US andTitle:text];
-                    }];
+                    self.skStoreProductViewController = nil;
+                    [LoadingManager show];
+                    [self presentViewController:self.skStoreProductViewController animated:YES completion:^{
+                                                                                [LoadingManager hide];
+                                                                            }];
 
                     break;
                 }
@@ -329,6 +328,12 @@
 
 }
 
+#pragma mark - SKStoreProductViewControllerDelegate
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Declaration
 
 -(PromoPopOutViewController*)promoPopOutViewController
@@ -372,6 +377,16 @@
     }
     
     return _feedbackViewController;
+}
+
+-(SKStoreProductViewController *)skStoreProductViewController{
+    if (!_skStoreProductViewController) {
+        _skStoreProductViewController = [SKStoreProductViewController new];
+        _skStoreProductViewController.delegate = self;
+        NSDictionary *parameters = @{ SKStoreProductParameterITunesItemIdentifier:[NSNumber numberWithInteger:ITUNES_ITEM_IDENTIFIER] };
+        [_skStoreProductViewController loadProductWithParameters:parameters completionBlock:nil];
+    }
+    return _skStoreProductViewController;
 }
 
 

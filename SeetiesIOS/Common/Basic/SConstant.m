@@ -17,6 +17,7 @@ NSString *const GOOGLE_PLACE_AUTOCOMPLETE_API = @"https://maps.googleapis.com/ma
 NSString *const GOOGLE_PLACE_DETAILS_API = @"https://maps.googleapis.com/maps/api/place/details/json";
 NSString *const GOOGLE_GEOCODE_API = @"https://maps.googleapis.com/maps/api/geocode/json";
 
+NSInteger const ITUNES_ITEM_IDENTIFIER = 956400552;
 
 NSString * const kAFAviaryAPIKey = @"b42bd0c6f4c5104f";
 NSString * const kAFAviarySecret = @"80ee1b7f54c2ed86";
