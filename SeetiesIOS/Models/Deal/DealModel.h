@@ -19,6 +19,10 @@
 #define REDEMPTION_TYPE_DINE_IN @"dine_in"
 #define REDEMPTION_TYPE_TAKE_AWAY @"take_away"
 
+#define VOUCHER_TYPE_PUBLIC @"public"
+#define VOUCHER_TYPE_PROMO @"promo"
+#define VOUCHER_TYPE_REFERRAL @"referral"
+
 @protocol VoucherInfoModel
 
 @end
@@ -50,6 +54,7 @@
 @property(nonatomic,strong) NSArray<PhotoModel> *photos;
 @property(nonatomic,strong) PhotoModel *cover_photo;
 @property(nonatomic,strong) NSArray<SeShopDetailModel> *shops;
+@property(nonatomic,strong) NSString *voucher_type;
 
 @property(nonatomic,strong) SeShopDetailModel* shop;//current usage in supedeal shop
 

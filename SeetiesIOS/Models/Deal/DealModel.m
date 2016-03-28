@@ -19,7 +19,8 @@
                                                        @"description": @"deal_desc",
                                                        @"redemption_periods.periods_in_hours.period_text": @"redemption_period_in_hour_text",
                                                        @"redemption_periods.periods_in_hours.period": @"period",
-                                                       @"redemption_periods.periods_in_date": @"periods_in_date"
+                                                       @"redemption_periods.periods_in_date": @"periods_in_date",
+                                                       @"type": @"voucher_type"
                                                        }];
 }
 
