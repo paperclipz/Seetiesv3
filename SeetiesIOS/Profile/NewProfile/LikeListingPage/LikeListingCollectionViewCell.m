@@ -14,7 +14,6 @@
 
 -(void)awakeFromNib
 {
-    [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
 }
 
@@ -33,11 +32,11 @@
 }
 -(void)initData:(PhotoModel*)model
 {
-    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-        self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
-        
-    }];
+    
+    //[self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.imageURL] withPlaceHolder:[Utils getPlaceHolderImage] completed:nil];
+    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL]];
+    
+    //cropped image may lead to size not adjust to autolayout
 }
 
 @end

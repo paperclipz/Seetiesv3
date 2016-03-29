@@ -1426,6 +1426,7 @@ static NSCache* heightCache = nil;
 
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
         } errorBlock:^(id object) {
+            [self.ibTableView.pullToRefreshView stopAnimating];
             isMiddleOfLoadingServer = NO;
 
         }];
@@ -1502,7 +1503,8 @@ static NSCache* heightCache = nil;
        // [self.ibTableView reloadData];
   
     } errorBlock:^(id object) {
-        
+        [self.ibTableView.pullToRefreshView stopAnimating];
+
     }];
 }
 

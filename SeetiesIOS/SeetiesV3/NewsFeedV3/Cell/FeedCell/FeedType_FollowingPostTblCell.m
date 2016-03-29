@@ -11,6 +11,8 @@
 @interface FeedType_FollowingPostTblCell()
 {
 
+    __weak IBOutlet UIView *ibProfileContentView;
+    __weak IBOutlet UIImageView *ibImgProfilePadding;
     __weak IBOutlet NSLayoutConstraint *constTitleHeight;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgDistance;
@@ -84,6 +86,9 @@
 
 -(void)initSelfView
 {
+    ibImgProfilePadding.alpha = 0.3;
+    [ibProfileContentView setRoundedBorder];
+    ibImgProfilePadding.backgroundColor = [UIColor whiteColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [Utils setRoundBorder:self.ibProfileImageView color:[UIColor grayColor] borderRadius:self.ibProfileImageView.frame.size.width/2 borderWidth:1.0f];
     

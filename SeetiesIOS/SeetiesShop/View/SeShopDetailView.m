@@ -284,19 +284,22 @@
 
     }
     
-    if (self.seShopModel.location.distance<1000) {
-        self.lblDistanceIndicator.text = LocalisedString(@"Walk");
+    self.lblDistanceIndicator.text = self.seShopModel.location.display_address;
 
-    }
-    else if(self.seShopModel.location.distance<30000)
-    {
-        self.lblDistanceIndicator.text = LocalisedString(@"Drive");
-
-    }
-    else{
-        self.lblDistanceIndicator.text = LocalisedString(@"Swim or Fly");
-
-    }
+    
+//    if (self.seShopModel.location.distance<1000) {
+//        self.lblDistanceIndicator.text = LocalisedString(@"Walk");
+//
+//    }
+//    else if(self.seShopModel.location.distance<30000)
+//    {
+//        self.lblDistanceIndicator.text = LocalisedString(@"Drive");
+//
+//    }
+//    else{
+//        self.lblDistanceIndicator.text = LocalisedString(@"Swim or Fly");
+//
+//    }
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.seShopModel.location.lat doubleValue], [self.seShopModel.location.lng doubleValue]);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 500, 500);
     

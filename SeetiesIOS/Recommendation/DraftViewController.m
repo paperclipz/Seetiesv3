@@ -225,6 +225,17 @@
             [weakSelf requestServerForDraft];
         
         };
+        
+        _editPostViewController.editPostDoneBlock = ^(id object)
+        {
+            EditPostViewController* obj  = (EditPostViewController*)object;
+            obj = nil;
+            _draftsModel = nil;
+            _arrDraftList = nil;
+            [weakSelf.tableView reloadData];
+            [weakSelf requestServerForDraft];
+            
+        };
     }
     return _editPostViewController;
 }
