@@ -29,7 +29,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
-                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="pXO-eK-9tg" secondAttribute="trailing" constant="-8" id="2UI-9h-zec"/>
                     <constraint firstAttribute="bottomMargin" secondItem="pXO-eK-9tg" secondAttribute="bottom" id="OKv-ed-5pA"/>

@@ -65,36 +65,37 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NlE-Gq-bip">
-                    <rect key="frame" x="0.0" y="65" width="320" height="128"/>
+                    <rect key="frame" x="0.0" y="65" width="320" height="240"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="128" id="vSg-0R-Ma3"/>
+                        <constraint firstAttribute="height" constant="240" id="vSg-0R-Ma3"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Sl-Nl-bEF">
+                    <rect key="frame" x="240" y="270" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="1Zg-6D-7uc"/>
+                        <constraint firstAttribute="height" constant="70" id="rho-yP-X3p"/>
                     </constraints>
                 </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJ8-sw-mI3">
-                    <rect key="frame" x="5" y="193" width="310" height="375"/>
+                    <rect key="frame" x="16" y="335" width="288" height="233"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Sl-Nl-bEF">
-                    <rect key="frame" x="260" y="163" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="50" id="1Zg-6D-7uc"/>
-                        <constraint firstAttribute="height" constant="50" id="rho-yP-X3p"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="2k6-rM-ci1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3Z9-1u-Cj1"/>
-                <constraint firstAttribute="trailing" secondItem="DJ8-sw-mI3" secondAttribute="trailing" constant="5" id="9DT-Va-4Je"/>
+                <constraint firstAttribute="trailing" secondItem="DJ8-sw-mI3" secondAttribute="trailing" constant="16" id="9DT-Va-4Je"/>
                 <constraint firstAttribute="trailing" secondItem="NlE-Gq-bip" secondAttribute="trailing" id="A8C-ld-6f5"/>
-                <constraint firstItem="DJ8-sw-mI3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="Fkr-zk-kvP"/>
+                <constraint firstItem="DJ8-sw-mI3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="Fkr-zk-kvP"/>
                 <constraint firstAttribute="trailing" secondItem="1Sl-Nl-bEF" secondAttribute="trailing" constant="10" id="NDw-gC-Prc"/>
                 <constraint firstItem="2k6-rM-ci1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PtH-SX-fGk"/>
-                <constraint firstItem="1Sl-Nl-bEF" firstAttribute="bottom" secondItem="NlE-Gq-bip" secondAttribute="bottom" constant="20" id="Szs-2U-WwT"/>
-                <constraint firstItem="DJ8-sw-mI3" firstAttribute="top" secondItem="NlE-Gq-bip" secondAttribute="bottom" id="Utu-lZ-9uB"/>
+                <constraint firstItem="1Sl-Nl-bEF" firstAttribute="bottom" secondItem="NlE-Gq-bip" secondAttribute="bottom" constant="35" id="Szs-2U-WwT"/>
+                <constraint firstItem="DJ8-sw-mI3" firstAttribute="top" secondItem="NlE-Gq-bip" secondAttribute="bottom" constant="30" id="Utu-lZ-9uB"/>
                 <constraint firstAttribute="trailing" secondItem="2k6-rM-ci1" secondAttribute="trailing" id="V20-JD-pAo"/>
                 <constraint firstItem="NlE-Gq-bip" firstAttribute="top" secondItem="2k6-rM-ci1" secondAttribute="bottom" constant="1" id="b92-Dh-OLG"/>
                 <constraint firstItem="NlE-Gq-bip" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tQr-s1-y7o"/>

@@ -16,7 +16,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Collections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uvz-Z6-M0m">
-                    <rect key="frame" x="58" y="29" width="246" height="21"/>
+                    <rect key="frame" x="50" y="29" width="254" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Yax-SW-WS7"/>
                     </constraints>
@@ -38,17 +38,17 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoCollectionIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="lc3-rK-apr">
-                    <rect key="frame" x="16" y="18" width="40" height="40"/>
+                    <rect key="frame" x="16" y="28" width="20" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="Q33-ai-BbW"/>
-                        <constraint firstAttribute="height" constant="40" id="RO0-LJ-g4q"/>
+                        <constraint firstAttribute="width" constant="20" id="Q33-ai-BbW"/>
+                        <constraint firstAttribute="height" constant="20" id="RO0-LJ-g4q"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Uvz-Z6-M0m" firstAttribute="top" secondItem="nzL-6M-0Zm" secondAttribute="top" constant="29" id="2cj-Rp-jFV"/>
-                <constraint firstItem="Uvz-Z6-M0m" firstAttribute="leading" secondItem="nzL-6M-0Zm" secondAttribute="leading" constant="58" id="A33-dJ-uXZ"/>
+                <constraint firstItem="Uvz-Z6-M0m" firstAttribute="leading" secondItem="nzL-6M-0Zm" secondAttribute="leading" constant="50" id="A33-dJ-uXZ"/>
                 <constraint firstItem="Ctp-b2-A4i" firstAttribute="top" secondItem="Hfm-bL-PFc" secondAttribute="bottom" constant="3" id="AFT-qz-XB9"/>
                 <constraint firstItem="lc3-rK-apr" firstAttribute="leading" secondItem="NW4-ad-t21" secondAttribute="leading" constant="16" id="BQZ-lz-5tH"/>
                 <constraint firstItem="Ctp-b2-A4i" firstAttribute="leading" secondItem="nzL-6M-0Zm" secondAttribute="leading" id="Fcs-h1-IzE"/>

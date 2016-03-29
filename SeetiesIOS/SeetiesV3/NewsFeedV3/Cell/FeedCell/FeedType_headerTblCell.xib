@@ -42,15 +42,24 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7po-f5-1z6">
+                        <rect key="frame" x="0.0" y="64" width="320" height="1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="CNC-mA-LdT"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="dlF-H4-hg0" secondAttribute="bottom" constant="8" id="1jq-yP-9mm"/>
                     <constraint firstItem="dlF-H4-hg0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="9Os-eO-N5m"/>
                     <constraint firstItem="sLq-gI-7TA" firstAttribute="bottom" secondItem="dlF-H4-hg0" secondAttribute="bottom" id="Bfi-fO-kfE"/>
                     <constraint firstItem="sLq-gI-7TA" firstAttribute="top" secondItem="qcX-No-Tx8" secondAttribute="bottom" id="Dre-Ei-kwG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7po-f5-1z6" secondAttribute="trailing" constant="-8" id="JDI-kx-mZg"/>
                     <constraint firstItem="sLq-gI-7TA" firstAttribute="leading" secondItem="dlF-H4-hg0" secondAttribute="trailing" constant="18" id="JbH-Fd-ywC"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="7po-f5-1z6" secondAttribute="bottom" constant="-7" id="Jvu-3q-BRF"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qcX-No-Tx8" secondAttribute="trailing" constant="16" id="Lwd-8f-Xmb"/>
                     <constraint firstAttribute="trailingMargin" secondItem="sLq-gI-7TA" secondAttribute="trailing" constant="8" id="Mxe-SD-Cmc"/>
+                    <constraint firstItem="7po-f5-1z6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="OnX-vR-BHf"/>
                     <constraint firstItem="dlF-H4-hg0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S51-de-PuO"/>
                     <constraint firstItem="qcX-No-Tx8" firstAttribute="leading" secondItem="dlF-H4-hg0" secondAttribute="trailing" constant="18" id="ghw-MT-c9O"/>
                     <constraint firstItem="qcX-No-Tx8" firstAttribute="top" secondItem="dlF-H4-hg0" secondAttribute="top" constant="-2" id="q0y-DY-kfw"/>

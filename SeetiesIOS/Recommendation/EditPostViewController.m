@@ -664,7 +664,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     if (_editPostDoneBlock) {
-        self.editPostDoneBlock(nil);
+        self.editPostDoneBlock(self);
     }
 }
 

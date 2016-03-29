@@ -8,8 +8,8 @@
 
 #import "ProfilePageCollectionTableViewCell.h"
 
-#define NO_LOCK_CONSTRSINT_CONSTANT 10.0f
-#define LOCK_CONSTRSINT_CONSTANT 33.0f
+#define NO_LOCK_CONSTRSINT_CONSTANT 16.0f
+#define LOCK_CONSTRSINT_CONSTANT 40.0f
 
 @interface ProfilePageCollectionTableViewCell()
 {

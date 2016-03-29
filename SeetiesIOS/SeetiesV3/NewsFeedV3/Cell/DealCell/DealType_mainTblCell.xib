@@ -9,27 +9,27 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="YmA-0z-CZX" customClass="DealType_mainTblCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YmA-0z-CZX" id="Wqc-aQ-XgU">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeNight1.png" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-yl-BBB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="290"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bWp-Im-Td5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                     </imageView>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aTM-Uy-Vif">
-                        <rect key="frame" x="0.0" y="50" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="70" width="320" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good morning, John." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyK-1B-BXv">
                                 <rect key="frame" x="16" y="8" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="GDX-qO-jEj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -61,7 +61,7 @@
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jEb-eL-sGT">
-                        <rect key="frame" x="0.0" y="100" width="320" height="170"/>
+                        <rect key="frame" x="0.0" y="120" width="320" height="170"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="170" id="TiM-Um-pbB"/>
@@ -75,7 +75,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
-                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="jEb-eL-sGT" firstAttribute="top" secondItem="aTM-Uy-Vif" secondAttribute="bottom" id="5MY-6C-Ywv"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bWp-Im-Td5" secondAttribute="trailing" constant="-8" id="9YD-2V-VON"/>
@@ -108,7 +108,7 @@
                 <outlet property="lblDesc" destination="C4m-WS-Bgc" id="xQz-UC-b3p"/>
                 <outlet property="lblTitle" destination="NyK-1B-BXv" id="4Ih-3k-g5g"/>
             </connections>
-            <point key="canvasLocation" x="373" y="324.5"/>
+            <point key="canvasLocation" x="373" y="324"/>
         </tableViewCell>
     </objects>
     <resources>
