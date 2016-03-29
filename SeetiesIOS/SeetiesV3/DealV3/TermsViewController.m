@@ -39,7 +39,7 @@
         
         NSString *formattedTerm = [NSString stringWithFormat:@"- %@", term];
         CGRect rect = [formattedTerm boundingRectWithSize:CGSizeMake(self.ibContentView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
-        UILabel *tncLbl = [[UILabel alloc]initWithFrame:CGRectMake(8, yOrigin, ceilf(rect.size.width), ceilf(rect.size.height))];
+        UILabel *tncLbl = [[UILabel alloc]initWithFrame:CGRectMake(0, yOrigin, ceilf(rect.size.width), ceilf(rect.size.height))];
         tncLbl.font = [UIFont systemFontOfSize:fontSize];
         tncLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
         tncLbl.numberOfLines = 0;

@@ -245,13 +245,13 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [self imageFromBundle:@"slider-default-trackBackground"];
+            UIImage* image = [UIImage imageNamed:@"FilterSliderGrey.png"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 5.0, 0.0, 5.0)];
             _trackBackgroundImage = image;
         }
         else
         {
-            UIImage *image = [self imageFromBundle:@"slider-default7-trackBackground"];
+            UIImage *image = [UIImage imageNamed:@"FilterSliderGrey.png"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
             _trackBackgroundImage = image;
         }
@@ -266,16 +266,16 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [self imageFromBundle:@"slider-default-track"];
+            UIImage* image = [UIImage imageNamed:@"FilterSliderBlue.png"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
             _trackImage = image;
         }
         else
         {
             
-            UIImage* image = [self imageFromBundle:@"slider-default7-track"];
+            UIImage* image = [UIImage imageNamed:@"FilterSliderBlue.png"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
-            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             _trackImage = image;
         }
     }
@@ -311,12 +311,12 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [self imageFromBundle:@"slider-default-handle"];
+            UIImage* image = [UIImage imageNamed:@"FilterSliderBtn.png"];
             _lowerHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
         }
         else
         {
-            UIImage *image = [self imageFromBundle:@"slider-default7-handle"];
+            UIImage *image = [UIImage imageNamed:@"FilterSliderBtn.png"];
             _lowerHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
 
@@ -331,14 +331,14 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [self imageFromBundle:@"slider-default-handle-highlighted"];
+            UIImage* image = [UIImage imageNamed:@"FilterSliderBtn.png"];
             _lowerHandleImageHighlighted = image;
             _lowerHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
             
         }
         else
         {
-            UIImage *image = [self imageFromBundle:@"slider-default7-handle"];
+            UIImage *image = [UIImage imageNamed:@"FilterSliderBtn.png"];
             _lowerHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
     }
@@ -352,13 +352,13 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [self imageFromBundle:@"slider-default-handle"];
+            UIImage* image = [UIImage imageNamed:@"FilterSliderBtn.png"];
             _upperHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
             
         }
         else
         {
-            UIImage *image = [self imageFromBundle:@"slider-default7-handle"];
+            UIImage *image = [UIImage imageNamed:@"FilterSliderBtn.png"];
             _upperHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
     }
@@ -372,12 +372,12 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [self imageFromBundle:@"slider-default-handle-highlighted"];
+            UIImage* image = [UIImage imageNamed:@"FilterSliderBtn.png"];
             _upperHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
         }
         else
         {
-            UIImage *image = [self imageFromBundle:@"slider-default7-handle"];
+            UIImage *image = [UIImage imageNamed:@"FilterSliderBtn.png"];
             _upperHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
     }

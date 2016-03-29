@@ -269,7 +269,7 @@
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="I2e-bV-XI7" secondAttribute="trailing" id="7hH-vh-pib"/>
                 <constraint firstItem="Vzi-NU-OdU" firstAttribute="top" secondItem="vEe-3n-SBv" secondAttribute="bottom" id="KdW-hY-GQd"/>
@@ -327,7 +327,7 @@
                     </variation>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="dBt-xo-KA4" firstAttribute="top" secondItem="mNP-4F-m9m" secondAttribute="bottom" constant="30" id="MSb-pu-tfF"/>
                 <constraint firstItem="rgu-g8-PJd" firstAttribute="centerX" secondItem="FIj-xa-a0g" secondAttribute="centerX" id="P2D-BA-APz"/>

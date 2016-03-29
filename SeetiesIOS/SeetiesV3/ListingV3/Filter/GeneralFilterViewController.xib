@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GeneralFilterViewController">
@@ -43,7 +43,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6n-hj-CEu" userLabel="filter">
-                            <rect key="frame" x="139" y="30" width="43" height="21"/>
+                            <rect key="frame" x="139" y="29" width="43" height="21"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                                 <constraint firstAttribute="height" constant="50" id="V0p-Yi-4f3"/>
                                 <constraint firstAttribute="width" constant="50" id="YyO-2f-QCj"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="Reset"/>
                             <connections>
                                 <action selector="resetBtnClicked:" destination="-1" eventType="touchUpInside" id="9ui-21-nOL"/>
@@ -85,24 +85,10 @@
                         </mask>
                     </variation>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agL-Zx-3Ds">
-                    <rect key="frame" x="0.0" y="526" width="320" height="42"/>
-                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="42" id="F5g-Xw-kdi"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="Apply Filter">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="applyFilterBtnClicked:" destination="-1" eventType="touchUpInside" id="pKH-Ql-6KI"/>
-                    </connections>
-                </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1QX-FR-yjt">
-                    <rect key="frame" x="0.0" y="64" width="320" height="462"/>
+                    <rect key="frame" x="16" y="64" width="288" height="454"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ojg-h2-5wL">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="8" id="ojg-h2-5wL">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="50" height="50"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -113,19 +99,33 @@
                         <outlet property="delegate" destination="-1" id="wSZ-qE-Ggb"/>
                     </connections>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agL-Zx-3Ds">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="F5g-Xw-kdi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Apply Filter">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="applyFilterBtnClicked:" destination="-1" eventType="touchUpInside" id="pKH-Ql-6KI"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="wgQ-wX-C2u" secondAttribute="trailing" id="6i0-nf-dUi"/>
                 <constraint firstItem="wgQ-wX-C2u" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CSf-lm-mKP"/>
-                <constraint firstAttribute="trailing" secondItem="1QX-FR-yjt" secondAttribute="trailing" id="ECK-Xv-4xN"/>
+                <constraint firstAttribute="trailing" secondItem="1QX-FR-yjt" secondAttribute="trailing" constant="16" id="ECK-Xv-4xN"/>
                 <constraint firstAttribute="bottom" secondItem="1QX-FR-yjt" secondAttribute="bottom" id="Fy8-QY-zNf"/>
                 <constraint firstItem="wgQ-wX-C2u" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Rr4-1D-VrN"/>
                 <constraint firstItem="agL-Zx-3Ds" firstAttribute="top" secondItem="1QX-FR-yjt" secondAttribute="bottom" id="UvT-HV-KNP"/>
                 <constraint firstItem="1QX-FR-yjt" firstAttribute="top" secondItem="wgQ-wX-C2u" secondAttribute="bottom" id="ZmR-Ko-n80"/>
                 <constraint firstAttribute="bottom" secondItem="agL-Zx-3Ds" secondAttribute="bottom" id="aOp-yr-dLt"/>
                 <constraint firstItem="1QX-FR-yjt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fdF-gg-gq6"/>
-                <constraint firstItem="1QX-FR-yjt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tBU-Xx-4wI"/>
+                <constraint firstItem="1QX-FR-yjt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="tBU-Xx-4wI"/>
                 <constraint firstItem="agL-Zx-3Ds" firstAttribute="leading" secondItem="wgQ-wX-C2u" secondAttribute="leading" id="vwx-8N-5M7"/>
                 <constraint firstItem="agL-Zx-3Ds" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zTf-Vy-L2E"/>
                 <constraint firstAttribute="trailing" secondItem="agL-Zx-3Ds" secondAttribute="trailing" id="zWd-Zo-ydE"/>

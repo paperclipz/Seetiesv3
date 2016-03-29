@@ -252,7 +252,7 @@
             
         default:
         {
-            CGFloat width = (collectionView.frame.size.width)/3;
+            CGFloat width = (collectionView.frame.size.width-64)/3;
             return CGSizeMake(width, 52);
         }
     }
@@ -275,7 +275,7 @@
         return CGSizeMake(0, 0);
     }
     else{
-        return CGSizeMake(collectionView.frame.size.width, 50);
+        return CGSizeMake(collectionView.frame.size.width, 42);
     }
 }
 

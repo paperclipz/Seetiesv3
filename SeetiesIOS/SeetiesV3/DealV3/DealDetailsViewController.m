@@ -670,14 +670,23 @@
                 break;
             }
             
-            NSString *formattedTerm = [NSString stringWithFormat:@"- %@", term];
-            CGRect rect = [formattedTerm boundingRectWithSize:CGSizeMake(self.ibTnCContent.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
-            UILabel *tncLbl = [[UILabel alloc]initWithFrame:CGRectMake(8, yOrigin, ceilf(rect.size.width), ceilf(rect.size.height))];
+            UILabel *bulletPoint = [[UILabel alloc] initWithFrame:CGRectMake(0, yOrigin+3, 7, 7)];
+            bulletPoint.font = [UIFont systemFontOfSize:fontSize];
+            bulletPoint.textColor = [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1];
+            bulletPoint.text = [NSString stringWithFormat:@"\u2022"];
+            
+            NSString *formattedTerm = [NSString stringWithFormat:@"%@", term];
+            if (count == 4) {
+                formattedTerm = [NSString stringWithFormat:@"%@ ...", term];
+            }
+            CGRect rect = [formattedTerm boundingRectWithSize:CGSizeMake(self.ibTnCContent.frame.size.width-16, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
+            UILabel *tncLbl = [[UILabel alloc]initWithFrame:CGRectMake(16, yOrigin, ceilf(rect.size.width), ceilf(rect.size.height))];
             tncLbl.font = [UIFont systemFontOfSize:fontSize];
             tncLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
             tncLbl.numberOfLines = 0;
             tncLbl.text = formattedTerm;
             
+            [self.ibTnCContent addSubview:bulletPoint];
             [self.ibTnCContent addSubview:tncLbl];
             yOrigin += tncLbl.frame.size.height + 10;
             count++;
