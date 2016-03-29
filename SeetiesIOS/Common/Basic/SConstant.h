@@ -220,6 +220,8 @@ extern NSString *const URL_ABOUT_US;
 extern NSString *const URL_TERM_OF_USE;
 extern NSString *const URL_PRIVACY_POLICY;
 
+extern NSInteger const ITUNES_ITEM_IDENTIFIER;
+
 //=============== social media key =================//
 extern NSString *const GOOGLE_API_KEY;
 extern NSString *const GOOGLE_PLACE_AUTOCOMPLETE_API;

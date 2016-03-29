@@ -3736,6 +3736,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AD6C2C51B707A600040437E /* StoreKit.framework in Frameworks */,
 				0BC789A61BF4A31C00D126A3 /* AdSupport.framework in Frameworks */,
 				8A3409D31B8B0DE6009B66C3 /* ImageIO.framework in Frameworks */,
 				8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */,
@@ -3747,7 +3748,6 @@
 				8AD6C2CB1B707ABE0040437E /* MessageUI.framework in Frameworks */,
 				8AD6C2C91B707AAF0040437E /* libstdc++.dylib in Frameworks */,
 				8AD6C2C71B707A8C0040437E /* OpenGLES.framework in Frameworks */,
-				8AD6C2C51B707A600040437E /* StoreKit.framework in Frameworks */,
 				8AD6C2C31B707A5A0040437E /* libsqlite3.0.dylib in Frameworks */,
 				8AD6C2C01B707A470040437E /* ParseFacebookUtils.framework in Frameworks */,
 				8AD6C2B91B707A1B0040437E /* MobileCoreServices.framework in Frameworks */,
@@ -9698,6 +9698,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -9744,6 +9745,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;

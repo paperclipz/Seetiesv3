@@ -281,8 +281,7 @@
 
 #pragma mark - IBAction
 - (IBAction)footerBtnClicked:(id)sender {
-    ProfileModel *profile = [[DataManager Instance] currentUserProfileModel];
-    if (!profile.phone_verified) {
+    if (![Utils isPhoneNumberVerified]) {
         [Utils showVerifyPhoneNumber:self];
         return;
     }
@@ -309,6 +308,10 @@
 
 -(void)redeemVoucherClicked:(DealModel*)deal{
 //    To do more checking whether voucher can be redeemed
+    if (![Utils isPhoneNumberVerified]) {
+        [Utils showVerifyPhoneNumber:self];
+        return;
+    }
     
     if (deal.voucher_info.redeem_now) {
         self.dealRedeemViewController = nil;

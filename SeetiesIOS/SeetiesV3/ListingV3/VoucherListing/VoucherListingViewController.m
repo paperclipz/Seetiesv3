@@ -444,7 +444,7 @@
     else{
         self.ibVoucherTable.backgroundView = nil;
         self.view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
-        return self.dealsArray.count;
+        return 1;
     }
     
 }
@@ -534,8 +534,7 @@
         return;
     }
     else{
-        ProfileModel *profile = [[DataManager Instance] currentUserProfileModel];
-        if (!profile.phone_verified) {
+        if (![Utils isPhoneNumberVerified]) {
             [Utils showVerifyPhoneNumber:self];
             return;
         }
