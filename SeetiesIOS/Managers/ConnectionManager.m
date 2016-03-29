@@ -613,7 +613,7 @@
             break;
             
         case ServerRequestTypeGetSuperDeals:
-            str = [NSString stringWithFormat:@"%@/home/superdeals", API_VERION_URL];
+            str = [NSString stringWithFormat:@"%@/home/featured-deals", API_VERION_URL];
             break;
             
         case ServerRequestTypeGetDealCollectionDeals:
@@ -1144,7 +1144,7 @@
             
         case ServerRequestTypeGetSuperDeals:
         {
-            NSDictionary *dict = obj[@"data"][@"superdeals"];
+            NSDictionary *dict = obj[@"data"][@"featured_deals"];
             self.dataManager.dealsModel = [[DealsModel alloc] initWithDictionary:dict error:nil];
             
         }

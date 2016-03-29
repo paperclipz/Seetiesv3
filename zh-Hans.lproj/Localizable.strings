@@ -1407,6 +1407,6 @@
 "Log in/Sign up" = "登入/注册";
 "" = "";
 "" = "";
-"Phone Number = {!phone number}" = "手机号码 = {!phone number}"
+"Phone Number = {!phone number}" = "手机号码 = {!phone number}";
 
 
