@@ -121,6 +121,9 @@
     
     if ([self validateBeforeRequest:type]) {
         
+        if (error) {
+            error(nil);
+        }
         return;
     }
     
@@ -174,6 +177,9 @@
 {
     if ([self validateBeforeRequest:type]) {
         
+        if (error) {
+            error(nil);
+        }
         return;
     }
     NSString* fullURL = [self getFullURLwithType:type];
@@ -204,6 +210,9 @@
     
     if ([self validateBeforeRequest:type]) {
         
+        if (errorBlock) {
+            errorBlock(nil);
+        }
         return;
     }
     
@@ -254,6 +263,9 @@
     
     if ([self validateBeforeRequest:type]) {
         
+        if (errorBlock) {
+            errorBlock(nil);
+        }
         return;
     }
     
@@ -304,6 +316,9 @@
     
     if ([self validateBeforeRequest:type]) {
         
+        if (errorBlock) {
+            errorBlock(nil);
+        }
         return;
     }
     
@@ -389,6 +404,9 @@
     
     if ([self validateBeforeRequest:type]) {
         
+        if (error) {
+            error(nil);
+        }
         return;
     }
     
@@ -418,6 +436,9 @@
 {
     if ([self validateBeforeRequest:type]) {
         
+        if (error) {
+            error(nil);
+        }
         return;
     }
     
@@ -1318,7 +1339,6 @@
     switch (type) {
         case ServerRequestTypeDeleteLikeAPost:
         case ServerRequestTypePutCollectPost:
-
             
             if ([Utils isGuestMode]) {
                 
@@ -1331,7 +1351,23 @@
                     }
                 }];
             }
+        case ServerRequestTypePostCollectDeals:
+        {
+            if ([Utils isGuestMode]) {
+                flag = true;
+                
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                    
+                    if (buttonIndex == 1) {
+                        [Utils showLogin];
+                        
+                    }
+                }];
 
+            }
+            
+        }
+           
             break;
             
         default:

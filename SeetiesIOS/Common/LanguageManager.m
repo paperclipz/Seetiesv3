@@ -183,4 +183,23 @@
     
     [userDefault synchronize];
 }
+
++(NSString*)stringForKey:(NSString*)key withPlaceHolder:(NSDictionary*)dict
+{
+    NSString* str = LocalisedString(key);
+    
+    NSArray*allKeys = [dict allKeys];
+    
+    for (int i = 0; i < allKeys.count; i++) {
+        
+        NSString* tempKey = allKeys[0];
+        NSString* value = dict[tempKey];
+        
+        str = [str stringByReplacingOccurrencesOfString:tempKey
+                                             withString:value];
+    }
+    
+    return str;
+}
+
 @end

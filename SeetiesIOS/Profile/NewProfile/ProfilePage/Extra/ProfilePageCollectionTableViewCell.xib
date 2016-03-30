@@ -18,11 +18,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-oM-VeY" userLabel="innerContentView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="cXO-xp-Gkt">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SSDefaultCoverPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="cXO-xp-Gkt">
                                 <rect key="frame" x="161" y="0.0" width="161" height="126"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="1l0-BW-VUP">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SSDefaultCoverPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="1l0-BW-VUP">
                                 <rect key="frame" x="0.0" y="0.0" width="161" height="126"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -176,9 +176,9 @@
     <resources>
         <image name="CollectionOverlay.png" width="300" height="165"/>
         <image name="CollectionPostIcon.png" width="18" height="18"/>
-        <image name="EmptyCollection.png" width="134" height="91"/>
         <image name="FollowerNumber.png" width="25" height="25"/>
         <image name="GreyShareIcon.png" width="22" height="15"/>
         <image name="PrivateCollectionIcon.png" width="17" height="20"/>
+        <image name="SSDefaultCoverPhoto.png" width="1242" height="776"/>
     </resources>
 </document>

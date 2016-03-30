@@ -534,11 +534,8 @@
 }
 
 -(void)voucherCollectRedeemClicked:(DealModel *)dealModel{
-    if ([Utils isGuestMode]) {
-        [Utils showLogin];
-        return;
-    }
-    else{
+    
+    if (![Utils isGuestMode]) {
         if (![Utils isPhoneNumberVerified]) {
             [Utils showVerifyPhoneNumber:self];
             return;
@@ -615,12 +612,26 @@
     
     NSMutableDictionary *finalDict = [[NSMutableDictionary alloc] init];
     
-    NSDictionary *fixedDict = @{@"token":[Utils getAppToken],
-                                @"timezone_offset":[Utils getTimeZone],
-                                @"type":@"search",
-                                @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
-                                @"limit":@(ARRAY_LIST_SIZE)
-                                };
+    NSDictionary *fixedDict;
+    
+    if ([Utils isGuestMode]) {
+       fixedDict = @{@"guest_id":[Utils getUniqueDeviceIdentifier],
+                                    @"timezone_offset":[Utils getTimeZone],
+                                    @"type":@"search",
+                                    @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
+                                    @"limit":@(ARRAY_LIST_SIZE)
+                                    };
+
+    }
+    else{
+        fixedDict = @{@"token":[Utils getAppToken],
+                                    @"timezone_offset":[Utils getTimeZone],
+                                    @"type":@"search",
+                                    @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
+                                    @"limit":@(ARRAY_LIST_SIZE)
+                                    };
+
+    }
     
     NSDictionary *placeDict = @{@"place_id": self.locationModel.place_id? self.locationModel.place_id : @"",
                                 @"lat": self.locationModel.latitude? self.locationModel.latitude : @"",

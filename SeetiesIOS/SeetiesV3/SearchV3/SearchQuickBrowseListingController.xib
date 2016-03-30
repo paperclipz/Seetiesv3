@@ -144,6 +144,7 @@
                 <constraint firstAttribute="trailing" secondItem="G9u-8j-FnC" secondAttribute="trailing" id="lpm-LU-bP8"/>
                 <constraint firstItem="G9u-8j-FnC" firstAttribute="top" secondItem="MTZ-am-oe6" secondAttribute="bottom" id="z9m-pt-ZRX"/>
             </constraints>
+            <point key="canvasLocation" x="365" y="362"/>
         </view>
     </objects>
     <resources>
