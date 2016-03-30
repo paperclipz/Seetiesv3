@@ -140,7 +140,7 @@
 //        
 //    }];
     
-    [self showPhotoViewer:self.ibHeaderImageScrollView Index:0];
+    [self showPhotoViewer:self.ibHeaderImageScrollView Index:photoPage];
 }
 
 -(void)showPhotoViewer:(UIView*)view Index:(int)index
@@ -1051,7 +1051,9 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;{
     if (scrollView == self.ibHeaderImageScrollView) {
         int page = scrollView.contentOffset.x / scrollView.frame.size.width;
-        self.ibHeaderImageCountLbl.text = [NSString stringWithFormat:@"%d/%lu", page+1, (unsigned long)self.dealModel.photos.count];
+        
+        photoPage = page +1;
+        self.ibHeaderImageCountLbl.text = [NSString stringWithFormat:@"%d/%lu", photoPage, (unsigned long)self.dealModel.photos.count];
     }
 }
 

@@ -57,6 +57,8 @@
 @property(nonatomic,strong)NSString* collections_count;
 @property(nonatomic,strong)NSString* wallpaper;
 @property(nonatomic,strong)NSArray<SePhotoModel>* arrPhotos;
+@property(nonatomic,assign)BOOL is_collaborate;
+
 
 -(void)process;
 
