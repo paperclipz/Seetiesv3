@@ -16,6 +16,8 @@ typedef void (^DealBlock)(DealModel* model);
 
 @interface SearchLTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 
+@property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
+
 @property(nonatomic,copy)DidSelectIDBlock didSelectUserRowBlock;
 @property(nonatomic,copy)DidSelectIDBlock didSelectPostsRowBlock;
 @property(nonatomic,copy)DidSelectShopBlock didSelectShopBlock;

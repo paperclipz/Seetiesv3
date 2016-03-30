@@ -646,7 +646,7 @@
     if(!_cAPSPageMenu)
     {
         CGRect deviceFrame = [Utils getDeviceScreenSize];
-        
+        _cAPSPageMenu.view.backgroundColor = [UIColor redColor];
         NSArray *controllerArray = @[self.shopListingTableViewController,self.collectionListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
         NSDictionary *parameters = @{
                                      CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
@@ -661,7 +661,7 @@
                                      CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
                                      };
         
-        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height) options:parameters];
+        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibContentView.frame.size.width, deviceFrame.size.height - 105 - 50) options:parameters];
         _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
        // _cAPSPageMenu.delegate = self;
     }
@@ -701,7 +701,9 @@
     
     return _editCollectionViewController;
 }
+
 -(SearchLTabViewController*)shopListingTableViewController{
+    
     if(!_shopListingTableViewController)
     {
         _shopListingTableViewController = [SearchLTabViewController new];
@@ -709,6 +711,11 @@
         _shopListingTableViewController.title = LocalisedString(@"Shop");
 
         __weak typeof (self)weakSelf = self;
+
+        _shopListingTableViewController.viewDidFinishLoadBlock = ^(void)
+        {
+            [weakSelf.cAPSPageMenu.view refreshConstraint];
+        };
         _shopListingTableViewController.didSelectShopBlock = ^(SeShopDetailModel* model)
         {
             [weakSelf showSeetieshopView:model];
@@ -848,7 +855,6 @@
     [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
     [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
     
-   
 }
 
 @end
