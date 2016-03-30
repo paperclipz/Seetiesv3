@@ -11,7 +11,9 @@
 
 @interface PhotoCVCell : CommonCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
+@property (weak, nonatomic) IBOutlet UIView *ibCoverPhotoView;
 
 -(void)initData:(DealModel*)model;
+-(void)initCoverTitle:(NSString*)title CoverImage:(NSString*)coverImage;
 
 @end

@@ -714,7 +714,7 @@ static NSCache* heightCache = nil;
                 }
                 
                 if (self.homeModel) {
-                    [cell initData:self.homeModel.superdeals];
+                    [cell initData:self.homeModel];
 
                 }
                 
@@ -1474,7 +1474,7 @@ static NSCache* heightCache = nil;
             constTopScrollView.constant = TopBarHeight;
         }
 
-        if (![Utils isArrayNull:self.homeModel.superdeals]) {
+        if (![Utils isArrayNull:self.homeModel.featured_deals]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_SuperDeal]];
             needToShowWallet = YES;
 
