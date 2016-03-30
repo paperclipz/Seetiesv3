@@ -1410,7 +1410,7 @@
 "Log in/Sign up" = "登入/註冊";
 "" = "";
 "" = "";
-"Phone Number = {!phone number}" = "手機號碼 = {!phone number}"
+"Phone Number = {!phone number}" = "手機號碼 = {!phone number}";
 
 
 

@@ -66,6 +66,7 @@
     _locality = model.city;
     _postal_code = model.postal_code;
     _route = model.route;
+    _address_components = model.address_components;
 }
 
 -(void)processLocationFrom:(RecommendationVenueModel*)model

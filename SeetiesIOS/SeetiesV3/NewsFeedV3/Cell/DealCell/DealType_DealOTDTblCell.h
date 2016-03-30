@@ -10,7 +10,7 @@
 
 
 @interface DealType_DealOTDTblCell : CommonTableViewCell
--(void)initData:(NSArray*)arrDeals;
+-(void)initData:(HomeModel*)model;
 -(void)stopAnimationScrolling;
 
 

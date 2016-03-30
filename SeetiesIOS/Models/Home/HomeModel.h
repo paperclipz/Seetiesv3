@@ -25,7 +25,10 @@
 @interface HomeModel : JSONModel
 
 @property(nonatomic,assign)int wallet_count;
-@property(nonatomic,strong)NSArray<DealModel>* superdeals;
+@property(nonatomic,strong)NSArray<DealModel>* featured_deals;
+@property(nonatomic,strong)NSString* featured_title;
+@property(nonatomic,strong)NSString* featured_image;
+
 @property(nonatomic,strong)NSArray<AnnouncementModel>* announcements;
 @property(nonatomic,strong)NSArray<QuickBrowseModel>* quick_browse;
 @property(nonatomic,strong)NSArray<DealCollectionModel>* deal_collections;

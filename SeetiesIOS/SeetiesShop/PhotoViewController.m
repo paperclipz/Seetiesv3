@@ -158,7 +158,10 @@
     [cell layoutIfNeeded];
 
     SePhotoModel* model = self.arrImageList[indexPath.row];
-    [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.imageURL] completed:nil];
+ //   [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL] completed:nil];
+    [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        cell.ibImageView.image = image;
+    }];
 
     return cell;
 }

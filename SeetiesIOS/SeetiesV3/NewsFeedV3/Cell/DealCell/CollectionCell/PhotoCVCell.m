@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblViewAll;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *ibCoverPhoto;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgCoverTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblViewAllTwo;
 @end
 @implementation PhotoCVCell
 
@@ -27,11 +30,17 @@
     self.lblViewAll.textColor = [UIColor whiteColor];
     [self.lblViewAll setSideCurveBorder];
     [self.lblTitle setFont:[UIFont fontWithName:@"olivier" size:17.0f]];
+    [self.lblViewAllTwo setSideCurveBorder];
+
+    
 
 }
 
 -(void)initData:(DealModel*)model
 {
+    
+    self.ibCoverPhotoView.hidden = YES;
+
     self.dealModel = model;
     
     PhotoModel* pModel = self.dealModel.cover_photo;
@@ -50,4 +59,20 @@
     self.lblName.text = self.dealModel.shop.name;
     
 }
+
+-(void)initCoverTitle:(NSString*)title CoverImage:(NSString*)coverImage
+{
+    
+    @try {
+        [self.ibCoverPhoto sd_setImageWithURL:[NSURL URLWithString:coverImage]];
+        [self.ibImgCoverTitle sd_setImageWithURL:[NSURL URLWithString:title]];
+    }
+    @catch (NSException *exception) {
+        
+    }
+   
+    
+    self.ibCoverPhotoView.hidden = NO;
+}
+
 @end

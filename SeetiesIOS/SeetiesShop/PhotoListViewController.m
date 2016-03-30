@@ -9,14 +9,14 @@
 #import "PhotoListViewController.h"
 #import "LikeListingCollectionViewCell.h"
 #import "PhotoViewController.h"
+#import "IDMPhotoBrowser.h"
 
-@interface PhotoListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface PhotoListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,IDMPhotoBrowserDelegate>
 {
     BOOL isMiddleOfCallingServer;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property(nonatomic,strong)PhotoViewController* photoVC;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 // -------------------- MODEL -----------------------------//
 @property(nonatomic,strong)NSMutableArray* arrImagesList;
@@ -91,23 +91,24 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-   // LikeListingCollectionViewCell* cell = (LikeListingCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    _photoVC = nil;
-    SLog(@"index row : %@",indexPath);
-    [self.photoVC initData:self.arrImagesList scrollToIndexPath:indexPath];
-    
-    CATransition* transition = [CATransition animation];
-    
-    transition.duration = 0.3;
-    transition.type = kCATransitionFade;
-    
-    [[self navigationController].view.layer addAnimation:transition forKey:kCATransition];
+    LikeListingCollectionViewCell* cell = (LikeListingCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+//    _photoVC = nil;
+//    SLog(@"index row : %@",indexPath);
+//    [self.photoVC initData:self.arrImagesList scrollToIndexPath:indexPath];
+//    
+//    CATransition* transition = [CATransition animation];
+//    
+//    transition.duration = 0.3;
+//    transition.type = kCATransitionFade;
+//    
+//    [[self navigationController].view.layer addAnimation:transition forKey:kCATransition];
+//
+//    [self.navigationController pushViewController:self.photoVC animated:NO onCompletion:^{
+//        [self.photoVC collectionViewSrollToIndexPath];
+//
+//    }];
 
-    [self.navigationController pushViewController:self.photoVC animated:NO onCompletion:^{
-        [self.photoVC collectionViewSrollToIndexPath];
-
-    }];
-
+    [self showPhotoViewer:cell Index:(int)indexPath.row];
 }
 
 
@@ -221,6 +222,26 @@
 
     }];
     
+}
+
+#pragma mark - Show View
+
+-(void)showPhotoViewer:(UICollectionViewCell*)cell Index:(int)index
+{
+   
+    NSMutableArray *photos = [NSMutableArray new];
+    
+    for (SePhotoModel* photo in self.arrImagesList) {
+
+        NSURL *url  = [NSURL URLWithString:photo.imageURL];
+        IDMPhoto *photo = [IDMPhoto photoWithURL:url];
+        [photos addObject:photo];
+    }
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos animatedFromView:cell];
+    [self presentViewController:browser animated:YES completion:nil];
+    [browser setInitialPageIndex:index];
+    
+    // Or use this constructor to receive an NSArray of IDMPhoto objects from your NSURL objects
 }
 
 

@@ -9,10 +9,12 @@
 #import "DealDetailsViewController.h"
 #import "UILabel+Exntension.h"
 #import "PhotoViewController.h"
+#import "IDMPhotoBrowser.h"
 
 @interface DealDetailsViewController (){
     float contentHeightPadding;
     float footerHeight;
+    int photoPage;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitleLbl;
@@ -117,26 +119,44 @@
 
 - (void)tapImage:(UITapGestureRecognizer*)sender {
 
-    _photoViewController = nil;
+//    _photoViewController = nil;
+//    
+//    NSMutableArray* arrImages = [NSMutableArray new];
+//    for (int i = 0; i<self.dealModel.photos.count; i++) {
+//        
+//        [arrImages addObject:self.dealModel.photos[i]];
+//    }
+//    
+//    [self.photoViewController initData:arrImages scrollToIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    
+//    CATransition* transition = [CATransition animation];
+//    
+//    transition.duration = 0.3;
+//    transition.type = kCATransitionFade;
+//    
+//    [[self navigationController].view.layer addAnimation:transition forKey:kCATransition];
+//    
+//    [self.navigationController pushViewController:self.photoViewController animated:NO onCompletion:^{
+//        
+//    }];
     
-    NSMutableArray* arrImages = [NSMutableArray new];
-    for (int i = 0; i<self.dealModel.photos.count; i++) {
+    [self showPhotoViewer:self.ibHeaderImageScrollView Index:0];
+}
+
+-(void)showPhotoViewer:(UIView*)view Index:(int)index
+{
+    
+    NSMutableArray *photos = [NSMutableArray new];
+    
+    for (PhotoModel* photo in self.dealModel.photos) {
         
-        [arrImages addObject:self.dealModel.photos[i]];
+        NSURL *url  = [NSURL URLWithString:photo.imageURL];
+        IDMPhoto *photo = [IDMPhoto photoWithURL:url];
+        [photos addObject:photo];
     }
-    
-    [self.photoViewController initData:arrImages scrollToIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    
-    CATransition* transition = [CATransition animation];
-    
-    transition.duration = 0.3;
-    transition.type = kCATransitionFade;
-    
-    [[self navigationController].view.layer addAnimation:transition forKey:kCATransition];
-    
-    [self.navigationController pushViewController:self.photoViewController animated:NO onCompletion:^{
-        
-    }];
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos animatedFromView:view];
+    [self presentViewController:browser animated:YES completion:nil];
+    [browser setInitialPageIndex:index];
     
 }
 

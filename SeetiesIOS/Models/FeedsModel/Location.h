@@ -41,6 +41,7 @@
 
 @property(nonatomic,assign)BOOL is_collaborate;//for seeties shop use only
 
+@property(nonatomic,strong)NSDictionary* address_components;
 
 -(void)processLocationFrom:(RecommendationVenueModel*)model;
 -(void)processLocationFromVenue:(VenueModel*)model;

@@ -12,6 +12,7 @@
 @interface DealType_DealOTDTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
     int imageIndex;
+    BOOL isNeedShowCoverPhoto;
 
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
@@ -21,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblShopName;
 
 @property(nonatomic)NSMutableArray* arrDeals;
+@property(nonatomic)HomeModel* homeModel;
+
 @end
 @implementation DealType_DealOTDTblCell
 
@@ -51,18 +54,16 @@
     [self.ibCollectionView registerClass:[PhotoCVCell class] forCellWithReuseIdentifier:@"PhotoCVCell"];
 }
 
--(void)initData:(NSArray*)arrDeals
+-(void)initData:(HomeModel*)model
 {
     
-    for (int i = 0; i<arrDeals.count; i++) {
-        DealModel* model = arrDeals[i];
-        
-        if (![Utils isStringNull:model.cover_photo.imageURL]) {
-            
-            [self.arrDeals addObject:model];
-        }
-    }
-    
+    self.homeModel = model;
+    self.arrDeals = model.featured_deals;
+    isNeedShowCoverPhoto = YES;
+
+//    if ([Utils isStringNull:model.featured_title]) {
+//        isNeedShowCoverPhoto = YES;
+//    }
 //    PhotoModel* model = [PhotoModel new];
 //    model.imageURL = @"http://www.wallpapereast.com/static/images/b807c2282ab0a491bd5c5c1051c6d312_LebkKlA.jpg";
 //    [arrImages addObject:model];
@@ -80,7 +81,7 @@
 
     }
    
-   // [self.ibCollectionView reloadData];
+    [self.ibCollectionView reloadData];
 }
 
 -(void)stopAnimationScrolling
@@ -119,26 +120,38 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.arrDeals.count;
+    if (isNeedShowCoverPhoto) {
+        
+        return self.arrDeals.count + 1;
+
+    }
+    else
+    {
+        return self.arrDeals.count;
+
+    }
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     PhotoCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCVCell" forIndexPath:indexPath];
     
-    
     DealModel* model = self.arrDeals[indexPath.row];
-    
-    [cell initData:model];
-    
-   
-//    cell.alpha = 0;
-//    [UIView animateWithDuration:0.8f animations:^(void){
-//        cell.alpha = 1;
-//    }];
+    if (isNeedShowCoverPhoto && indexPath.row == 0) {
+        
+        [cell initCoverTitle:self.homeModel.featured_title CoverImage:self.homeModel.featured_image];
+    }else{
+        [cell initData:model];
 
+    }
+
+    
     return cell;
+    
+
+
 }
 
 
