@@ -288,7 +288,6 @@
     
     self.promoPopOutViewController = nil;
     [self.promoPopOutViewController setViewType:PopOutViewTypeEnterPromo];
-    self.promoPopOutViewController.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 260);
     
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
     popupController.containerView.backgroundColor = [UIColor clearColor];
