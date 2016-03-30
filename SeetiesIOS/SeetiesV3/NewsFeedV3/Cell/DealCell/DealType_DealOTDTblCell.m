@@ -91,28 +91,44 @@
 }
 -(void)animateImages
 {
-    [UIView animateWithDuration:1.0
-                     animations: ^{ [self.ibCollectionView reloadData]; }
-                     completion:^(BOOL finished) {
-                         
-                         if (self.arrDeals.count>0) {
-                             int counter = imageIndex % self.arrDeals.count;
-                             NSIndexPath *iPath = [NSIndexPath indexPathForItem:counter inSection:0];
-                             [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-
+    
+        [UIView animateWithDuration:1.0
+                         animations: ^{ [self.ibCollectionView reloadData]; }
+                         completion:^(BOOL finished) {
                              
-                             if (counter == 0) {
-                                 [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-                             }
-                             else{
-                                 [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+                             if (self.arrDeals.count>0) {
+                                 int counter;
+                                 if (isNeedShowCoverPhoto) {
+                                     counter = imageIndex % self.arrDeals.count;
 
+                                 }
+                                 else{
+                                     counter = imageIndex % self.arrDeals.count-1;
 
+                                 }
+                                 
+                                 CGRect frame = self.ibCollectionView.frame;
+                                 frame.origin.x = frame.size.width * counter;
+                                 frame.origin.y = 0;
+                                 [self.ibCollectionView scrollRectToVisible:frame animated:YES];
+                                
+//                                 NSIndexPath *iPath = [NSIndexPath indexPathForItem:counter inSection:0];
+//                                 [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+//                                 
+//                                 if (counter == 0) {
+//                                     [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+//                                 }
+//                                 else{
+//                                     [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+//                                     
+//                                     
+//                                 }
+                                 imageIndex ++;
                              }
-                             imageIndex ++;
-                         }
-                        
-                     }];
+                             
+                         }];
+   
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -152,6 +168,15 @@
     
 
 
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;{
+    if (scrollView == self.ibCollectionView) {
+        int page = scrollView.contentOffset.x / scrollView.frame.size.width;
+        
+        imageIndex = page+1;
+    
+    }
 }
 
 

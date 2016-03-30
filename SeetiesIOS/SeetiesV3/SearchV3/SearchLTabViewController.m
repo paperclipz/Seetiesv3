@@ -95,6 +95,8 @@
             [self.ibTableView registerClass:[ShopTableViewCell class] forCellReuseIdentifier:@"ShopTableViewCell"];
             self.ibTableView.estimatedRowHeight = [ShopTableViewCell getHeight];
             self.ibTableView.rowHeight = UITableViewAutomaticDimension;
+            [self.ibTableView refreshConstraint];
+
             break;
         case SearchsListingTypeCollections:
            // self.constFilterHeight.constant = 0;

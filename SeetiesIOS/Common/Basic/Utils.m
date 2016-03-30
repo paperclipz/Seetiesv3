@@ -601,6 +601,14 @@
 }
 
 #pragma mark - App Utilities
+
++(NSString*)getUniqueDeviceIdentifier
+{
+    NSString *UUID = [[NSUUID UUID] UUIDString];
+    
+    return UUID;
+}
+
 +(NSString*)getDeviceAppLanguageCode
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

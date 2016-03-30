@@ -701,9 +701,7 @@
     
     return _editCollectionViewController;
 }
-
 -(SearchLTabViewController*)shopListingTableViewController{
-    
     if(!_shopListingTableViewController)
     {
         _shopListingTableViewController = [SearchLTabViewController new];
@@ -855,6 +853,7 @@
     [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
     [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
     
+   
 }
 
 @end
