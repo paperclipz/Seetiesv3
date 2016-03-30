@@ -86,11 +86,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rlz-KN-YAW" userLabel="content view">
-                    <rect key="frame" x="50" y="50" width="275" height="567"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rlz-KN-YAW" userLabel="content view">
+                    <rect key="frame" x="50" y="50" width="230" height="567"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops... No redemption history yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmC-N5-fPu" userLabel="title">
-                            <rect key="frame" x="30" y="261" width="215" height="41"/>
+                            <rect key="frame" x="30" y="239" width="170" height="61"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="u6N-1j-5qG"/>
                             </constraints>
@@ -99,17 +99,20 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="EmptyStateImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bn2-Ah-xGq">
-                            <rect key="frame" x="80" y="126" width="115" height="115"/>
+                            <rect key="frame" x="80" y="149" width="70" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="105" id="Ge3-ob-iio"/>
+                                <constraint firstAttribute="height" constant="70" id="OXC-0T-XD3"/>
                                 <constraint firstAttribute="height" constant="160" id="cKX-Nh-FqF"/>
                                 <constraint firstAttribute="width" secondItem="Bn2-Ah-xGq" secondAttribute="height" multiplier="1:1" id="gYz-gE-299"/>
+                                <constraint firstAttribute="width" constant="70" id="ilf-4y-3ku"/>
                                 <constraint firstAttribute="width" constant="100" id="yH8-4n-eNJ"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="Ge3-ob-iio"/>
                                     <exclude reference="cKX-Nh-FqF"/>
+                                    <exclude reference="gYz-gE-299"/>
                                     <exclude reference="yH8-4n-eNJ"/>
                                 </mask>
                             </variation>

@@ -92,8 +92,10 @@
     
     self.ibDealTypeLbl.hidden = NO;
     self.ibDiscountLbl.hidden = NO;
+    [self.ibDealTypeLbl setFont:[UIFont boldSystemFontOfSize:20]];
     
     if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE]) {
+        [self.ibDealTypeLbl setFont:[UIFont boldSystemFontOfSize:23]];
         self.ibDealTypeLbl.text = [NSString stringWithFormat:@"%@", [self.dealModel.deal_type uppercaseString]];
         self.ibDiscountLbl.hidden = YES;
     }
@@ -101,14 +103,14 @@
         self.ibDiscountLbl.hidden = NO;
         self.ibDealTypeLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"RM"), self.dealModel.discounted_item_price];
         NSDictionary *attributes = @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInt:NSUnderlineStyleSingle]};
-        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", LocalisedString(@"RM"), self.dealModel.original_item_price] attributes:attributes];
+        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ %@ ", LocalisedString(@"RM"), self.dealModel.original_item_price] attributes:attributes];
         self.ibDiscountLbl.attributedText = attrText;
     }
     else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]){
         self.ibDiscountLbl.hidden = NO;
         self.ibDealTypeLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"RM"), self.dealModel.discounted_item_price];
         NSDictionary *attributes = @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInt:NSUnderlineStyleSingle]};
-        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", LocalisedString(@"RM"), self.dealModel.original_item_price] attributes:attributes];
+        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@ %@ ", LocalisedString(@"RM"), self.dealModel.original_item_price] attributes:attributes];
         self.ibDiscountLbl.attributedText = attrText;
     }
     else{
@@ -185,10 +187,10 @@
         [Utils setRoundBorder:self.ibDaysLeftLbl color:[UIColor clearColor] borderRadius:self.ibDaysLeftLbl.frame.size.height/2];
         
         if (self.ibVoucherLeftLbl.hidden) {
-            self.ibDaysLeftTopConstraint.constant = 10;
+            self.ibDaysLeftTopConstraint.constant = 16;
         }
         else{
-            self.ibDaysLeftTopConstraint.constant = self.ibVoucherLeftLbl.frame.size.height + 10 + 5;
+            self.ibDaysLeftTopConstraint.constant = self.ibVoucherLeftLbl.frame.size.height + 16 + 5;
         }
     }
     else{

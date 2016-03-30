@@ -76,7 +76,7 @@
         @try {
             NSString* imageURL = shopModel.profile_photo[@"picture"];
             [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:nil];
-            [self.ibShopImg setRoundedCorners:UIRectCornerAllCorners radius:5.0f];
+            [Utils  setRoundBorder:self.ibShopImg color:OUTLINE_COLOR borderRadius:5.0f];
 
             PhotoModel *photo = self.dealModel.photos[0];
             [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
