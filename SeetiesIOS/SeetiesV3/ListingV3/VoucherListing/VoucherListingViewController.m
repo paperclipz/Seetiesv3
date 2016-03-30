@@ -470,7 +470,8 @@
         DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
         
         if ([self.dealManager checkIfDealIsCollected:deal.dID]) {
-            [voucherCell setDealModel:[self.dealManager getCollectedDeal:deal.dID]];
+            deal.voucher_info.voucher_id = [self.dealManager getCollectedDealVoucherId:deal.dID];
+            [voucherCell setDealModel:deal];
         }
         else{
             deal.voucher_info.voucher_id = nil;
@@ -801,7 +802,7 @@
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:finalDict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         model.voucher_info = dealModel.voucher_info;
-        [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
+        [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
         [self RequestServerForVouchersCount];
         [self.ibVoucherTable reloadData];
         self.isCollecting = NO;

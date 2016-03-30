@@ -1119,7 +1119,9 @@
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:finalDict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         self.dealModel = dealModel;
-        [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
+        [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
+        int walletCount = [self.dealManager getWalletCount];
+        [self.dealManager setWalletCount:walletCount+1];
         [self updateFooterView];
         self.isProcessing = NO;
     } errorBlock:^(id object) {

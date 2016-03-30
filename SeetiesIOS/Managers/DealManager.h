@@ -11,11 +11,11 @@
 @interface DealManager : NSObject
 +(id)Instance;
 
--(void)setCollectedDeal:(NSString*)dealId forDeal:(DealModel*)dealModel;
+-(void)setCollectedDeal:(NSString*)dealId withVoucherId:(NSString*)voucherId;
 
 -(BOOL)checkIfDealIsCollected:(NSString*)dealId;
 
--(DealModel*)getCollectedDeal:(NSString*)dealId;
+-(NSString*)getCollectedDealVoucherId:(NSString*)dealId;
 
 -(void)removeAllCollectedDeals;
 
