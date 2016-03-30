@@ -89,6 +89,7 @@
     
     
     [self refreshSearch];
+    [self.cAPSPageMenu moveToPage:1];
     
     self.ibLocationTableView.hidden = YES;
     self.ibSearchTableView.hidden = YES;
@@ -199,7 +200,8 @@
         self.ibLocationTableView.hidden = YES;
 
     }
-    
+    self.ibLocationTableView.hidden = NO;
+    self.ibSearchTableView.hidden = NO;
     return YES;
 }
 
@@ -216,6 +218,8 @@
         self.ibSearchTableView.hidden = YES;
 
     }
+    self.ibLocationTableView.hidden = NO;
+    self.ibSearchTableView.hidden = NO;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -647,7 +651,7 @@
     {
         CGRect deviceFrame = [Utils getDeviceScreenSize];
         _cAPSPageMenu.view.backgroundColor = [UIColor redColor];
-        NSArray *controllerArray = @[self.shopListingTableViewController,self.collectionListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
+        NSArray *controllerArray = @[self.collectionListingTableViewController,self.shopListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
         NSDictionary *parameters = @{
                                      CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
@@ -655,13 +659,13 @@
                                      CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
                                      CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
                                      CAPSPageMenuOptionMenuHeight: @(40.0),
-                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/4 - 10),
+                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/4 - 15),
                                      CAPSPageMenuOptionCenterMenuItems: @(YES),
                                      CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
                                      CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
                                      };
         
-        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibContentView.frame.size.width, deviceFrame.size.height - 105 - 50) options:parameters];
+        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibContentView.frame.size.width, deviceFrame.size.height - 105 - 50 - 20) options:parameters];
         _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
        // _cAPSPageMenu.delegate = self;
     }
@@ -710,10 +714,6 @@
 
         __weak typeof (self)weakSelf = self;
 
-        _shopListingTableViewController.viewDidFinishLoadBlock = ^(void)
-        {
-            [weakSelf.cAPSPageMenu.view refreshConstraint];
-        };
         _shopListingTableViewController.didSelectShopBlock = ^(SeShopDetailModel* model)
         {
             [weakSelf showSeetieshopView:model];

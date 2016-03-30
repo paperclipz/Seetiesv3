@@ -338,6 +338,8 @@
     self.profileViewType = type;
     self.userID = uID;
     
+    [self adjustTableView];
+
     if ([uID isEqualToString:[Utils getUserID]]) {
         
         self.btnFollow.hidden = YES;

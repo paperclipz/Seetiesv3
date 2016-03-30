@@ -569,10 +569,8 @@
         [self.ibTableView stopFooterLoadingView];
         [self.ibTableView reloadData];
 
-        if (self.viewDidFinishLoadBlock) {
-            self.viewDidFinishLoadBlock();
-        }
-
+      //  [self.ibTableView refreshConstraint];
+       
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
