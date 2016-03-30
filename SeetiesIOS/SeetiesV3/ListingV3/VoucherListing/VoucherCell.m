@@ -64,6 +64,9 @@
             
         }];
     }
+    else{
+        [self.ibVoucherImage setImage:[UIImage imageNamed:@"SSCoverPhotoOverlay.png"]];
+    }
     
     SeShopDetailModel *shopModel = self.dealModel.shops[0];
     NSString *shopName = shopModel.name;

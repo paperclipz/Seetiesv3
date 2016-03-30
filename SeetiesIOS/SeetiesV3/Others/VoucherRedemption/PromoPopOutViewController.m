@@ -385,7 +385,11 @@
 }
 
 -(DealManager *)dealManager{
-    return [DealManager Instance];
+    if(!_dealManager)
+    {
+        _dealManager = [DealManager Instance];
+    }
+    return _dealManager;
 }
 
 #pragma mark - IBAction

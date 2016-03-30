@@ -22,7 +22,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rh6-37-7gS" userLabel="upper view">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="140"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detox water.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="iom-7V-9c6" userLabel="background image">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SSCoverPhotoOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="iom-7V-9c6" userLabel="background image">
                                         <rect key="frame" x="0.0" y="0.0" width="480" height="140"/>
                                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -320,7 +320,7 @@
                                     <constraint firstAttribute="trailing" secondItem="fV9-sr-WSl" secondAttribute="trailing" id="uPk-PH-fCc"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pqm-Vv-mnB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pqm-Vv-mnB" userLabel="line">
                                 <rect key="frame" x="0.0" y="256" width="480" height="1"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -382,6 +382,6 @@
         <image name="DealsListingSoldOutIcon.png" width="73" height="56"/>
         <image name="GreyDotSix.png" width="703" height="51"/>
         <image name="LocationPinGrey.png" width="10" height="13"/>
-        <image name="detox water.jpg" width="15" height="15"/>
+        <image name="SSCoverPhotoOverlay.png" width="320" height="200"/>
     </resources>
 </document>
