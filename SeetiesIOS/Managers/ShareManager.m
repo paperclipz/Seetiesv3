@@ -359,6 +359,15 @@
             
         }
             break;
+            
+        case ShareTypeDeal:
+        {
+            message = [NSString stringWithFormat:@"Check out this deal on Seeties!"];
+            message = [NSString stringWithFormat:@"%@ %@",message,isNeedAppendURL?[self getShareLink:type]:@""];
+            
+            
+        }
+            break;
         
     }
     
@@ -410,6 +419,12 @@
             subLink = @"seetishops/";
             finalLink = [NSString stringWithFormat:@"%@%@%@/%@",seetiesLink,subLink,self.shareID,self.postID];
 
+        }
+        case ShareTypeDeal:
+        {
+            subLink = @"deals/";
+            finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
+            
         }
 
             break;

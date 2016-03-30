@@ -124,7 +124,7 @@
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="kGf-Sh-UHB"/>
                             </connections>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4at-IQ-F61" userLabel="share button">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4at-IQ-F61" userLabel="share button">
                             <rect key="frame" x="555" y="19" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Hkz-8g-c0K"/>

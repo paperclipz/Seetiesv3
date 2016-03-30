@@ -42,8 +42,8 @@
     return self;
 }
 
--(void)setCollectedDeal:(NSString*)dealId forDeal:(DealModel*)dealModel{
-    [self.dealsDict setObject:[dealModel toJSONString] forKey:dealId];
+-(void)setCollectedDeal:(NSString*)dealId withVoucherId:(NSString*)voucherId{
+    [self.dealsDict setObject:voucherId forKey:dealId];
     [self saveCollectedDealsToDb];
 }
 
@@ -51,9 +51,9 @@
     return [self.dealsDict objectForKey:dealId] == nil? NO : YES;
 }
 
--(DealModel*)getCollectedDeal:(NSString*)dealId{
-    NSString *jsonString = [self.dealsDict objectForKey:dealId];
-    return [[DealModel alloc] initWithString:jsonString error:nil];
+-(NSString*)getCollectedDealVoucherId:(NSString*)dealId{
+    NSString *voucherId = [self.dealsDict objectForKey:dealId];
+    return voucherId;
 }
 
 -(void)removeAllCollectedDeals{
@@ -72,8 +72,9 @@
 
 -(void)setAllCollectedDeals:(DealsModel*)dealsModel{
     for (DealModel *dealModel in dealsModel.arrDeals) {
-        if (![Utils isStringNull:dealModel.voucher_info.voucher_id]) {
-            [self.dealsDict setObject:[dealModel toJSONString] forKey:dealModel.dID];
+        NSString *voucherId = dealModel.voucher_info.voucher_id;
+        if (![Utils isStringNull:voucherId]) {
+            [self.dealsDict setObject:voucherId forKey:dealModel.dID];
         }
     }
     [self saveCollectedDealsToDb];

@@ -16,7 +16,8 @@ typedef enum
     ShareTypeCollection,
     ShareTypePostUser,
     ShareTypeSeetiesShop,
-    ShareTypeNonSeetiesShop
+    ShareTypeNonSeetiesShop,
+    ShareTypeDeal
 } ShareType;
 
 @interface ShareManager : NSObject

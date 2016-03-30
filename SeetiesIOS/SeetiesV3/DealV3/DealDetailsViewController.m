@@ -112,6 +112,7 @@
 @property(nonatomic) TermsViewController *termsViewController;
 @property(nonatomic) ReportProblemViewController *reportProblemViewController;
 @property(nonatomic) PhotoViewController *photoViewController;
+@property(nonatomic) ShareV2ViewController *shareViewController;
 
 @end
 
@@ -412,6 +413,13 @@
         _reportProblemViewController = [ReportProblemViewController new];
     }
     return _reportProblemViewController;
+}
+
+-(ShareV2ViewController *)shareViewController{
+    if (!_shareViewController) {
+        _shareViewController = [ShareV2ViewController new];
+    }
+    return _shareViewController;
 }
 
 #pragma mark - UpdateView
@@ -850,6 +858,18 @@
 
 #pragma mark - Delegate
 - (IBAction)buttonShareClicked:(id)sender {
+    self.shareViewController = nil;
+    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareViewController];
+    [naviVC setNavigationBarHidden:YES animated:NO];
+    PhotoModel *photo = self.dealModel.photos[0];
+    NSString *shareTitle = [Utils isStringNull:self.dealModel.title]? self.dealModel.cover_title : self.dealModel.title;
+    [self.shareViewController share:@"" title:shareTitle imagURL:photo.imageURL shareType:ShareTypeDeal shareID:self.dealModel.dID userID:[Utils getUserID]];
+    
+    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+    [self presentViewController:formSheetController animated:YES completion:nil];
 }
 
 - (IBAction)buttonTranslateClicked:(id)sender {
@@ -1119,7 +1139,9 @@
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:finalDict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         self.dealModel = dealModel;
-        [self.dealManager setCollectedDeal:dealModel.dID forDeal:dealModel];
+        [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
+        int walletCount = [self.dealManager getWalletCount];
+        [self.dealManager setWalletCount:walletCount+1];
         [self updateFooterView];
         self.isProcessing = NO;
     } errorBlock:^(id object) {
