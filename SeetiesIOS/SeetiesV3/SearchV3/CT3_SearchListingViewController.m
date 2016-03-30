@@ -79,6 +79,7 @@
 
     self.sManager = [SearchManager Instance];
     
+    [self.ibSearchText becomeFirstResponder];
     _homeLocationModel = nil;
     self.homeLocationModel.locationName = self.locationName;
     self.homeLocationModel.latitude = self.locationLatitude;

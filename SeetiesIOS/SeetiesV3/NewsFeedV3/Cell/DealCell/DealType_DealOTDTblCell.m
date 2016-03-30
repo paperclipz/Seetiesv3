@@ -155,10 +155,13 @@
     PhotoCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCVCell" forIndexPath:indexPath];
     
     DealModel* model = self.arrDeals[indexPath.row];
+    
     if (isNeedShowCoverPhoto && indexPath.row == 0) {
         
         [cell initCoverTitle:self.homeModel.featured_title CoverImage:self.homeModel.featured_image];
+        
     }else{
+        
         [cell initData:model];
 
     }
