@@ -695,7 +695,7 @@
         if (appInfo) {
             BOOL is_Production = [[appInfo objectForKey:@"is_production"]boolValue];
             // is_Production = true;
-            is_Production?SLog(@"[current app status] : LIVE"):SLog(@"[current app status] : development");
+//            is_Production?SLog(@"[current app status] : LIVE"):SLog(@"[current app status] : development");
             BOOL app_is_production = ![Utils getIsDevelopment];
             
             if(is_Production == app_is_production)
