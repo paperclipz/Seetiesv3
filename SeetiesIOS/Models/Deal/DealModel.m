@@ -143,7 +143,7 @@
                 }
                 
                 count++;
-                nextDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:count toDate:currentDateOnly options:NSCalendarWrapComponents];
+                nextDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:count toDate:currentDateOnly options:NSCalendarMatchNextTime];
                 
             }
         }

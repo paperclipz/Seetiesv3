@@ -572,6 +572,7 @@
             [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
         }
         else{
+            self.promoPopOutViewController = nil;
             [self.promoPopOutViewController setViewType:PopOutViewTypeError];
             [self.promoPopOutViewController setDealModel:dealModel];
             
