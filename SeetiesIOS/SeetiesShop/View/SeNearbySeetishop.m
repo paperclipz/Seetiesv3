@@ -111,13 +111,13 @@
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
             NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",shopModel.profile_photo[@"picture"]];
             if ([ImageData1 length] == 0) {
-                ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultLogo.png"];
+                ShowUserProfileImage.image = [Utils getShopPlaceHolderImage];
             }else{
                 NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
                 ShowUserProfileImage.imageURL = url_NearbySmall;
             }
         }else{
-           ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultLogo.png"];
+           ShowUserProfileImage.image = [Utils getShopPlaceHolderImage];
         }
 
 

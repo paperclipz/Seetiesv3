@@ -167,6 +167,7 @@ typedef enum {
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius borderWidth:(float)borderWidth;
 +(UIImage*)getPlaceHolderImage;
 +(UIImage*)getProfilePlaceHolderImage;
++(UIImage*)getShopPlaceHolderImage;
 
 // ========================  FONT ==========================
 +(UIFont*)defaultFont;

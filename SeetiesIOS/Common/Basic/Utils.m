@@ -559,6 +559,10 @@
 {
     return [UIImage imageNamed:@"DefaultProfilePic.png"];
 }
++(UIImage*)getShopPlaceHolderImage
+{
+    return [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
+}
 
 +(NSURL*)getPrefixedURLFromString:(NSString*)url
 {

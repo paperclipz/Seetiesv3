@@ -1056,8 +1056,8 @@
     if (scrollView == self.ibHeaderImageScrollView) {
         int page = scrollView.contentOffset.x / scrollView.frame.size.width;
         
-        photoPage = page +1;
-        self.ibHeaderImageCountLbl.text = [NSString stringWithFormat:@"%d/%lu", photoPage, (unsigned long)self.dealModel.photos.count];
+        photoPage = page;
+        self.ibHeaderImageCountLbl.text = [NSString stringWithFormat:@"%d/%lu", photoPage + 1, (unsigned long)self.dealModel.photos.count];
     }
 }
 

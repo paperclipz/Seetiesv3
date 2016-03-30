@@ -56,7 +56,7 @@
                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="253" horizontalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="9cI-4T-6i2">
                         <rect key="frame" x="0.0" y="0.0" width="407" height="125"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SSDefaultLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Uh-7C-qCc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SsDefaultDisplayPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Uh-7C-qCc">
                                 <rect key="frame" x="16" y="10" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -163,6 +163,7 @@
                 <outlet property="constDotHeight" destination="45S-If-Hei" id="1DX-PJ-4iQ"/>
                 <outlet property="ibDealView" destination="loM-pc-hq1" id="DTM-9l-JmA"/>
                 <outlet property="ibImageView" destination="6Uh-7C-qCc" id="i3H-Wj-sfY"/>
+                <outlet property="ibImgIsCollaborated" destination="PvH-wT-O2A" id="zdc-gn-mTb"/>
                 <outlet property="ibTableView" destination="rWk-mA-E0q" id="3ke-2V-V5U"/>
                 <outlet property="lblLocation" destination="OEJ-Cl-7TV" id="WW9-3e-Vec"/>
                 <outlet property="lblShopName" destination="opY-3m-Hcv" id="grQ-d5-3eN"/>
@@ -175,6 +176,6 @@
         <image name="GreyDotSix.png" width="703" height="51"/>
         <image name="LocationPinGrey.png" width="10" height="13"/>
         <image name="SSBlueVerifiedIcon.png" width="18" height="18"/>
-        <image name="SSDefaultLogo.png" width="70" height="70"/>
+        <image name="SsDefaultDisplayPhoto.png" width="30" height="30"/>
     </resources>
 </document>

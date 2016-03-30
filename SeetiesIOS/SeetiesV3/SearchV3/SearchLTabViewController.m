@@ -563,10 +563,13 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",model.total_count,LocalisedString(@"Shops")];
         [self.arrList addObjectsFromArray:model.shops];
         
-        [self.ibTableView reloadData];
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
+        [self.ibTableView reloadData];
 
+        if (self.viewDidFinishLoadBlock) {
+            self.viewDidFinishLoadBlock();
+        }
 
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;

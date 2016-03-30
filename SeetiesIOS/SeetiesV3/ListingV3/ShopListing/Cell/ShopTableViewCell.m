@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property(nonatomic)SeShopDetailModel* ssModel;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgIsCollaborated;
 
 @end
 @implementation ShopTableViewCell
@@ -28,7 +29,7 @@
         self.ssModel = model;
         self.lblShopName.text = self.ssModel.name;
         
-        
+        self.ibImgIsCollaborated.hidden = !self.ssModel.is_collaborate;
         NSMutableArray* arrWord = [NSMutableArray new];
         if (![Utils isStringNull:self.ssModel.category.title]) {
             [arrWord addObject:self.ssModel.category.title];
@@ -58,7 +59,7 @@
         self.lblStatus.text = self.ssModel.location.opening_hours.open_now?LocalisedString(@"OPEN"):LocalisedString(@"CLOSED");
         self.lblStatus.backgroundColor = self.ssModel.location.opening_hours.open_now?GREEN_STATUS : TWO_ZERO_FOUR_COLOR;
 
-        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:self.ssModel.profile_photo[@"picture"]]];
+        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:self.ssModel.profile_photo[@"picture"]] placeholderImage:[Utils getShopPlaceHolderImage]];
 
     }
     @catch (NSException *exception) {

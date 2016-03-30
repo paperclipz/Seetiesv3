@@ -272,7 +272,7 @@
     self.lblImageCount.text = [NSString stringWithFormat:@"%d",self.seShopPhotoModel.total_photos];
 
     
-    self.ibImageVerified.hidden = [Utils stringIsNilOrEmpty:self.seShopModel.seetishop_id];
+    self.ibImageVerified.hidden = !self.seShopModel.is_collaborate;
     
     if (self.seShopModel.location.opening_hours.open_now) {
         self.lblOpenNow.textColor = UIColorFromRGB(156, 204, 101, 1);
