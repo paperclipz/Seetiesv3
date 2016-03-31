@@ -443,6 +443,12 @@
     }];
     
 }
+
+-(void)getCurrentSelectedCountry
+{
+    
+}
+
 -(void)requestServerForCountry
 {
     NSDictionary* dict = @{@"language_code":ENGLISH_CODE};
@@ -456,19 +462,40 @@
         
         @try {
             
-            NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:1 inSection:0];
+            
+            CountryModel* currentCountry = self.countriesModel.current_country;
 
-            [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
-                                             animated:NO
-                                       scrollPosition:UITableViewScrollPositionNone];
+            for (int i = 0 ;i <self.arrCountries.count ;i++) {
+                
+                CountryModel* country = self.arrCountries[i];
+                
+                if (country.country_id == currentCountry.country_id) {
+                    
+                    self.currentSelectedCountry = country;
+                    
+                    NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:i inSection:0];
+                    
+                    [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
+                                                     animated:NO
+                                               scrollPosition:UITableViewScrollPositionNone];
+                    
+
+                    break;
+
+                }
+            }
             
+            if (!self.currentSelectedCountry) {
+                self.currentSelectedCountry = self.arrCountries[0];
+                NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:0 inSection:0];
+                
+                [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
+                                                 animated:NO
+                                           scrollPosition:UITableViewScrollPositionNone];
+            }
             
-            CountryModel* countryModel = self.arrCountries[selectedCellIndexPath.row];
-            self.currentSelectedCountry = countryModel;
-            
-            
-            if ([Utils isArrayNull:countryModel.arrArea]) {
-                [self requestServerForCountryPlaces:countryModel];
+            if ([Utils isArrayNull:self.currentSelectedCountry.arrArea]) {
+                [self requestServerForCountryPlaces:self.currentSelectedCountry];
             }
             else{
                 [self.ibAreaTable reloadData];

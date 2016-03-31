@@ -164,7 +164,7 @@
                   failure:
          ^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
-             [self showErrorHandling:error];
+             [self showErrorHandling:operation Error:error];
 
              [LoadingManager hide];
              
@@ -205,7 +205,7 @@
              errorBlock(error);
          }
          
-         [self showErrorHandling:error];
+         [self showErrorHandling:operation Error:error];
 
          
          [LoadingManager hide];
@@ -266,7 +266,7 @@
          }
          NSLog(@"\n\n Error: %@", error);
 
-         [self showErrorHandling:error];
+         [self showErrorHandling:operation Error:error];
 
          [LoadingManager hide];
      }];
@@ -319,7 +319,7 @@
         
         [LoadingManager hide];
         
-        [self showErrorHandling:error];
+        [self showErrorHandling:operation Error:error];
 
         NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
     }];
@@ -398,7 +398,7 @@
             }
            
         }
-        [self showErrorHandling:error];
+        [self showErrorHandling:operation Error:error];
 
         [LoadingManager hide];
         
@@ -444,7 +444,7 @@
                  failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          
-         [self showErrorHandling:error];
+         [self showErrorHandling:operation Error:error];
          NSLog(@"Error: %@ ***** %@", operation.responseString, error);
          [LoadingManager hide];
          
@@ -486,7 +486,7 @@
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          
          NSLog(@"\n\n Error: %@", error);
-         [self showErrorHandling:error];
+         [self showErrorHandling:operation Error:error];
          [LoadingManager hide];
          
      }];
@@ -1400,9 +1400,13 @@
 #pragma mark  - ERROR handling
 
 
--(void)showErrorHandling:(NSError*)error
+-(void)showErrorHandling:(AFHTTPRequestOperation*)operation Error:(NSError*)error
 {
-    [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Network Error") Type:TSMessageNotificationTypeError];
+    
+    NSLog(@"error code %ld",[operation.response statusCode]);
+    NSLog(@"error string %@",[error localizedDescription]);
+
+   // [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Network Error") Type:TSMessageNotificationTypeError];
 
 }
 @end

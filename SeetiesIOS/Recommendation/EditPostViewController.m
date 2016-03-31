@@ -505,11 +505,11 @@
 -(NSArray*)arrTabImages
 {
     if ( self.editPostType == EditPostTypePostEdit) {
-        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"StarRecommendationBtn.png"],[UIImage imageNamed:@"LocationBtn.png"]];
+        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"LocationBtn.png"]];
 
     }
     else{
-        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"StarRecommendationBtn.png"],[UIImage imageNamed:@"LocationBtn.png"],[UIImage imageNamed:@"SaveDraftBtn.png"]];
+        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"LocationBtn.png"],[UIImage imageNamed:@"SaveDraftBtn.png"]];
 
     }
 }
