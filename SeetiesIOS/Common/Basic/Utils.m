@@ -854,6 +854,9 @@
 {
     NSString*bundleIdentifer  = [[NSBundle mainBundle] bundleIdentifier];
     
+    //delete this for live
+   // return NO;
+
     if ([bundleIdentifer rangeOfString:@"Dev"].location == NSNotFound) {
         NSLog(@"App is On Live Server");
         

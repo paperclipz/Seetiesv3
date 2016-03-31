@@ -114,6 +114,7 @@
 //
 //}
 
+
 -(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {
     
@@ -163,6 +164,8 @@
                   failure:
          ^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"Error: %@", error);
+             [self showErrorHandling:error];
+
              [LoadingManager hide];
              
          }];
@@ -173,12 +176,12 @@
 
 
 
--(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+-(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
 {
     if ([self validateBeforeRequest:type]) {
         
-        if (error) {
-            error(nil);
+        if (errorBlock) {
+            errorBlock(nil);
         }
         return;
     }
@@ -190,13 +193,21 @@
     [self.manager POST:fullURL parameters:dict
                success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:error];
+         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
          
          [LoadingManager hide];
      }
                failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          NSLog(@"\n\n  Error: %@", error);
+         
+         if (errorBlock) {
+             errorBlock(error);
+         }
+         
+         [self showErrorHandling:error];
+
+         
          [LoadingManager hide];
 
      }];
@@ -254,6 +265,9 @@
              errorBlock(error);
          }
          NSLog(@"\n\n Error: %@", error);
+
+         [self showErrorHandling:error];
+
          [LoadingManager hide];
      }];
     
@@ -305,6 +319,8 @@
         
         [LoadingManager hide];
         
+        [self showErrorHandling:error];
+
         NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
     }];
     
@@ -382,7 +398,8 @@
             }
            
         }
-        
+        [self showErrorHandling:error];
+
         [LoadingManager hide];
         
         NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
@@ -426,6 +443,8 @@
      }
                  failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
+         
+         [self showErrorHandling:error];
          NSLog(@"Error: %@ ***** %@", operation.responseString, error);
          [LoadingManager hide];
          
@@ -467,6 +486,7 @@
      ^(AFHTTPRequestOperation *operation, NSError *error) {
          
          NSLog(@"\n\n Error: %@", error);
+         [self showErrorHandling:error];
          [LoadingManager hide];
          
      }];
@@ -1377,4 +1397,12 @@
     return flag;
 }
 
+#pragma mark  - ERROR handling
+
+
+-(void)showErrorHandling:(NSError*)error
+{
+    [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Network Error") Type:TSMessageNotificationTypeError];
+
+}
 @end

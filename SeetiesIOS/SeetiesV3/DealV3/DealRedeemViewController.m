@@ -7,6 +7,8 @@
 //
 
 #import "DealRedeemViewController.h"
+#import "YLImageView.h"
+#import "YLGIFImage.h"
 
 @interface DealRedeemViewController ()
 {
@@ -18,6 +20,9 @@
     BOOL activateDropEffect;
 
 }
+@property (strong, nonatomic) IBOutlet UIView *ibGifContentView;
+@property (weak, nonatomic) IBOutlet YLImageView *ibImgGifView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgDeal;
 @property (weak, nonatomic) IBOutlet UIView *ibDescBorderView;
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeView;
@@ -37,6 +42,13 @@
 @end
 
 @implementation DealRedeemViewController
+- (IBAction)btnIntroClicked:(id)sender {
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+     [self.view addSubview:self.ibGifContentView];
+        self.ibGifContentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    self.ibImgGifView.image = [YLGIFImage imageNamed:@"How-to-redeem.gif"];
+}
 
 -(void)viewDidAppear:(BOOL)animated
 {

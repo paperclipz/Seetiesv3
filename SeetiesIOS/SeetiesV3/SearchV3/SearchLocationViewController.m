@@ -169,11 +169,18 @@
     }
     else if (tableView == self.ibAreaTable){
         
-        NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
+        @try {
+            NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
+            
+            CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
+            PlacesModel* pModel = cModel.arrArea[section];
+            return pModel.places.count;
 
-        CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
-        PlacesModel* pModel = cModel.arrArea[section];
-        return pModel.places.count;
+        }
+        @catch (NSException *exception) {
+            
+        }
+      
     }
     else if (tableView == self.ibSearchTable){
         return self.searchModel.predictions.count;
