@@ -41,6 +41,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateDesc;
 
+@property (strong, nonatomic) IBOutlet UIView *ibFooterView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicatorView;
+
 @property (strong, nonatomic)GeneralFilterViewController* filterController;
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
 @property (nonatomic) WalletListingViewController *walletListingViewController;
@@ -66,6 +69,8 @@
     self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
     [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
     
+    self.ibVoucherTable.tableFooterView = self.ibFooterView;
+    
     if (self.locationModel) {
         self.ibUserLocationLbl.text = self.locationModel.locationName;
     }
@@ -82,6 +87,7 @@
             self.ibLocationBtn.enabled = NO;
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
+            [LoadingManager show];
             [self requestServerForShopDeal];
             break;
             
@@ -90,11 +96,13 @@
                 NSDictionary *collectionDict = self.dealCollectionModel.content[0];
                 self.ibTitle.text = collectionDict[@"title"];
             }
+            [LoadingManager show];
             [self requestServerForDealListing];
             break;
             
         case 3:
             self.ibTitle.text = LocalisedString(@"Deal of the day");
+            [LoadingManager show];
             [self requestServerForSuperDealListing];
             break;
             
@@ -110,6 +118,7 @@
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
             self.ibFooterHeightConstraint.constant = 0;
+            [LoadingManager show];
             [self requestServerForDealRelevantDeals];
             break;
             
@@ -424,9 +433,13 @@
             [weakSelf.dealsArray removeAllObjects];
             weakSelf.dealsModel = nil;
             if (weakSelf.dealCollectionModel) {
+                [LoadingManager show];
+                weakSelf.ibVoucherTable.tableFooterView = weakSelf.ibFooterView;
                 [weakSelf requestServerForDealListing];
             }
             else{
+                [LoadingManager show];
+                weakSelf.ibVoucherTable.tableFooterView = weakSelf.ibFooterView;
                 [weakSelf requestServerForSuperDealListing];
             }
             
@@ -443,11 +456,13 @@
         self.ibEmptyStateDesc.text = LocalisedString(@"This feature is currently not available in your place.");
         self.ibVoucherTable.backgroundView = self.ibEmptyStateView;
         self.view.backgroundColor = [UIColor whiteColor];
+        self.ibVoucherTable.tableFooterView = nil;
         return 0;
     }
     else{
         self.ibVoucherTable.backgroundView = nil;
         self.view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+        self.ibVoucherTable.tableFooterView = self.ibFooterView;
         return 1;
     }
     
@@ -506,7 +521,7 @@
         
         if(![Utils isStringNull:self.dealsModel.paging.next] && !self.isLoading)
         {
-//            [(UIActivityIndicatorView *)self.ibVoucherTable startAnimating];
+            [self.ibActivityIndicatorView startAnimating];
             
             switch (self.dealViewType) {
                 case 1:
@@ -592,9 +607,13 @@
     self.dealsModel = nil;
     [self.dealsArray removeAllObjects];
     if (self.dealViewType == 2) {
+        [LoadingManager show];
+        self.ibVoucherTable.tableFooterView = self.ibFooterView;
         [self requestServerForDealListing];
     }
     else if (self.dealViewType == 3){
+        [LoadingManager show];
+        self.ibVoucherTable.tableFooterView = self.ibFooterView;
         [self requestServerForSuperDealListing];
     }
 }
@@ -607,7 +626,6 @@
         return;
     }
     
-    [LoadingManager show];
     self.isLoading = YES;
     
     NSMutableDictionary *finalDict = [[NSMutableDictionary alloc] init];
@@ -654,6 +672,10 @@
         [self.ibVoucherTable reloadData];
         self.isLoading = NO;
         [LoadingManager hide];
+        [self.ibActivityIndicatorView stopAnimating];
+        if ([Utils isStringNull:self.dealsModel.paging.next]) {
+            self.ibVoucherTable.tableFooterView = nil;
+        }
     } errorBlock:^(id object) {
         self.isLoading = NO;
         [LoadingManager hide];
@@ -666,7 +688,6 @@
         return;
     }
     
-    [LoadingManager show];
     self.isLoading = YES;
     
     NSMutableDictionary *finalDict = [[NSMutableDictionary alloc] init];
@@ -708,7 +729,10 @@
         [self.ibVoucherTable reloadData];
         self.isLoading = NO;
         [LoadingManager hide];
-        
+        [self.ibActivityIndicatorView stopAnimating];
+        if ([Utils isStringNull:self.dealsModel.paging.next]) {
+            self.ibVoucherTable.tableFooterView = nil;
+        }
     } errorBlock:^(id object) {
         self.isLoading = NO;
         [LoadingManager hide];
@@ -736,7 +760,6 @@
         
     }
     
-    [LoadingManager show];
     self.isLoading = YES;
 
     
@@ -751,7 +774,10 @@
         [self.ibVoucherTable reloadData];
 
         self.isLoading = NO;
-
+        [self.ibActivityIndicatorView stopAnimating];
+        if ([Utils isStringNull:self.dealsModel.paging.next]) {
+            self.ibVoucherTable.tableFooterView = nil;
+        }
     } errorBlock:^(id object) {
         self.isLoading = NO;
 
@@ -764,7 +790,6 @@
         return;
     }
     
-    [LoadingManager show];
     self.isLoading = YES;
     
     NSString* appendString = [NSString stringWithFormat:@"%@/relevent-deals", self.dealId];
@@ -784,7 +809,10 @@
         
         self.isLoading = NO;
         [LoadingManager hide];
-        
+        [self.ibActivityIndicatorView stopAnimating];
+        if ([Utils isStringNull:self.dealsModel.paging.next]) {
+            self.ibVoucherTable.tableFooterView = nil;
+        }
     } errorBlock:^(id object) {
         self.isLoading = NO;
         [LoadingManager hide];

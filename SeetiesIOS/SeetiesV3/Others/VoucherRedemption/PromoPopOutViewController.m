@@ -430,22 +430,25 @@
                 [nextVC setEnteredPromoCode:self.enteredPromoCode];
                 nextVC.promoPopOutDelegate = self.promoPopOutDelegate;
                 
-                DealModel *deal = self.dealsModel.arrDeals[0];
-                if (deal.shops.count > 1) {
-                    [nextVC setViewType:PopOutViewTypeChooseShop];
-                    [nextVC setShopArray:deal.shops];
-                }
-                else{
-                    if (self.hasRedeemed) {
-                        [nextVC setSelectedShop:self.selectedShop];
-                        [nextVC setViewType:PopOutViewTypeRedemptionSuccessful];
+                if (![Utils isArrayNull:self.dealsModel.arrDeals]) {
+                    DealModel *deal = self.dealsModel.arrDeals[0];
+                    if (deal.shops.count > 1) {
+                        [nextVC setViewType:PopOutViewTypeChooseShop];
+                        [nextVC setShopArray:deal.shops];
                     }
                     else{
-                        self.selectedShop = deal.shops[0];
-                        [self requestServerToRedeemPromoCode];
-                        return;
+                        if (self.hasRedeemed) {
+                            [nextVC setSelectedShop:self.selectedShop];
+                            [nextVC setViewType:PopOutViewTypeRedemptionSuccessful];
+                        }
+                        else{
+                            self.selectedShop = deal.shops[0];
+                            [self requestServerToRedeemPromoCode];
+                            return;
+                        }
                     }
                 }
+                
             }
             else{
                 self.enteredPromoCode = self.ibPromoCodeText.text;

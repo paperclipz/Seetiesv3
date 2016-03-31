@@ -18,6 +18,9 @@
 @property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
 @property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateDesc;
 
+@property (strong, nonatomic) IBOutlet UIView *ibTableFooterView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicatorView;
+
 @property(nonatomic) BOOL isLoading;
 @property(nonatomic) DealsModel *dealsModel;
 @property(nonatomic) NSMutableArray<DealExpiryDateModel> *voucherArray;
@@ -37,6 +40,9 @@
     self.ibHistoryTable.estimatedRowHeight = [RedemptionHistoryCell getHeight];
     self.ibHistoryTable.rowHeight = UITableViewAutomaticDimension;
     
+    self.ibHistoryTable.tableFooterView = self.ibTableFooterView;
+    
+    [LoadingManager show];
     [self requestServerForVouchersHistoryList];
 }
 
@@ -114,7 +120,7 @@
     if (maximumOffset - currentOffset <= self.ibHistoryTable.frame.size.height/2) {
         if(![Utils isStringNull:self.dealsModel.paging.next])
         {
-            //            [(UIActivityIndicatorView *)self.ibVoucherTable startAnimating];
+            [self.ibActivityIndicatorView startAnimating];
             [self requestServerForVouchersHistoryList];
         }
     }
@@ -151,11 +157,13 @@
         self.ibEmptyStateDesc.text = LocalisedString(@"Oops... No redemption history yet");
         self.ibHistoryTable.backgroundView = self.ibEmptyStateView;
         self.view.backgroundColor = [UIColor whiteColor];
+        self.ibHistoryTable.tableFooterView = nil;
         return 0;
     }
     else{
         self.ibHistoryTable.backgroundView = nil;
         self.view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+        self.ibHistoryTable.tableFooterView = self.ibTableFooterView;
         return self.voucherArray.count;
     }
     
@@ -236,6 +244,10 @@
         [self rearrangeVoucherList];
         [self.ibHistoryTable reloadData];
         self.isLoading = NO;
+        [self.ibActivityIndicatorView stopAnimating];
+        if ([Utils stringIsNilOrEmpty:self.dealsModel.paging.next]) {
+            self.ibHistoryTable.tableFooterView = nil;
+        }
     } errorBlock:^(id object) {
         self.isLoading = NO;
     }];

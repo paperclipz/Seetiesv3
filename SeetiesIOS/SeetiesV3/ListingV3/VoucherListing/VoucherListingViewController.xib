@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VoucherListingViewController">
             <connections>
+                <outlet property="ibActivityIndicatorView" destination="19J-5R-uTV" id="YHF-1L-DkT"/>
                 <outlet property="ibAltTitle" destination="YyX-Cg-CIA" id="5eT-WU-erG"/>
                 <outlet property="ibDropDownIcon" destination="HWW-7K-ot0" id="Man-1J-rkE"/>
                 <outlet property="ibEmptyStateDesc" destination="rgu-g8-PJd" id="TeW-xh-Lfg"/>
@@ -15,6 +16,7 @@
                 <outlet property="ibEmptyStateView" destination="FIj-xa-a0g" id="m9h-ex-sqX"/>
                 <outlet property="ibFilterBtn" destination="aZJ-d8-8P6" id="0Qu-7k-taK"/>
                 <outlet property="ibFooterHeightConstraint" destination="ePM-Fm-4d2" id="72R-YG-hvN"/>
+                <outlet property="ibFooterView" destination="TkC-Q4-ZKc" id="V6P-jU-NYQ"/>
                 <outlet property="ibLocationBtn" destination="PgP-Mz-cA7" id="kmI-ZH-o8g"/>
                 <outlet property="ibSearchBtn" destination="msM-T5-Qek" id="81K-Aq-B9g"/>
                 <outlet property="ibTitle" destination="Qp8-Jp-ABW" id="Ywm-Q2-kzG"/>
@@ -290,7 +292,7 @@
                 </mask>
             </variation>
         </view>
-        <view hidden="YES" contentMode="scaleToFill" id="FIj-xa-a0g">
+        <view contentMode="scaleToFill" id="FIj-xa-a0g">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -344,6 +346,23 @@
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="1005" y="306"/>
+        </view>
+        <view contentMode="scaleToFill" id="TkC-Q4-ZKc">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="19J-5R-uTV">
+                    <rect key="frame" x="150" y="17" width="20" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="19J-5R-uTV" firstAttribute="centerY" secondItem="TkC-Q4-ZKc" secondAttribute="centerY" id="dKf-aW-ee1"/>
+                <constraint firstItem="19J-5R-uTV" firstAttribute="centerX" secondItem="TkC-Q4-ZKc" secondAttribute="centerX" id="xlE-p1-of7"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="465" y="708"/>
         </view>
     </objects>
     <resources>
