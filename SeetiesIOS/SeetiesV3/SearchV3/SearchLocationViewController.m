@@ -12,6 +12,7 @@
 @interface SearchLocationViewController ()
 {
 
+    int selectedIndex;
     BOOL isMiddleOfRequesting;
 }
 @property (weak, nonatomic) IBOutlet UILabel *lblAutoDetect;
@@ -170,9 +171,8 @@
     else if (tableView == self.ibAreaTable){
         
         @try {
-            NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
             
-            CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
+            CountryModel* cModel = self.arrCountries[selectedIndex];
             PlacesModel* pModel = cModel.arrArea[section];
             return pModel.places.count;
 
@@ -190,15 +190,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(tableView == self.ibAreaTable){
-        NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
 
-        if (selectedIndexPath) {
-            CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
-            return cModel.arrArea.count;
-        }
-        else{
+        if ([Utils isArrayNull:self.arrCountries]) {
             return 0;
         }
+        else{
+            CountryModel* cModel = self.arrCountries[selectedIndex];
+            return cModel.arrArea.count;
+        }
+       
         
     }
     return 1;
@@ -222,12 +222,18 @@
         areaLbl.textColor = DEVICE_COLOR;
         areaLbl.font = [UIFont boldSystemFontOfSize:15.0f];
         
-        NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
-        CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
-        PlacesModel* pModel = cModel.arrArea[section];
-        areaLbl.text = pModel.area_name;
-        
-        [contentView addSubview:areaLbl];
+        @try {
+
+            CountryModel* cModel = self.arrCountries[selectedIndex];
+            PlacesModel* pModel = cModel.arrArea[section];
+            areaLbl.text = pModel.area_name;
+            
+            [contentView addSubview:areaLbl];
+        } @catch (NSException *exception) {
+            
+           
+        }
+       
         
         return contentView;
     }
@@ -246,8 +252,7 @@
     else if (tableView == self.ibAreaTable){
         SearchLocationAreaCell *areaCell = [tableView dequeueReusableCellWithIdentifier:@"SearchLocationAreaCell"];
        
-        NSIndexPath *selectedIndexPath = [self.ibCountryTable indexPathForSelectedRow];
-        CountryModel* cModel = self.arrCountries[selectedIndexPath.row];
+        CountryModel* cModel = self.arrCountries[selectedIndex];
         PlacesModel* psModel = cModel.arrArea[indexPath.section];
         PlaceModel* pModel = psModel.places[indexPath.row];
         [areaCell initCellWithPlace:pModel];
@@ -277,7 +282,7 @@
         
         CountryModel* countryModel = self.arrCountries[indexPath.row];
         self.currentSelectedCountry = countryModel;
-        
+        selectedIndex = (int)indexPath.row;
         
         if ([Utils isArrayNull:countryModel.arrArea]) {
             [self requestServerForCountryPlaces:countryModel];
@@ -473,6 +478,7 @@
                     
                     self.currentSelectedCountry = country;
                     
+                    selectedIndex = i;
                     NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:i inSection:0];
                     
                     [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
@@ -487,7 +493,8 @@
             
             if (!self.currentSelectedCountry) {
                 self.currentSelectedCountry = self.arrCountries[0];
-                NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:0 inSection:0];
+                selectedIndex = 0;
+                NSIndexPath* selectedCellIndexPath = [NSIndexPath indexPathForRow:selectedIndex inSection:0];
                 
                 [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
                                                  animated:NO
