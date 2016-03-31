@@ -53,6 +53,8 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibGuestView;
 @property (weak, nonatomic) IBOutlet UIButton *btnNotification;
+@property (weak, nonatomic) IBOutlet UILabel *ibGuestViewTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibGuestViewLoginLbl;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 
@@ -210,12 +212,11 @@
     [self.ibGuestView adjustToScreenWidth];
     
     [self.btnLogin setSideCurveBorder];
-    
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self changeLanguage];
     [self initSelfView];
 
     [self reloadData];
@@ -245,6 +246,15 @@
     }
     
   
+}
+
+-(void)changeLanguage{
+    self.ibHeaderTitle.text = LocalisedString(@"Me");
+    self.ibViewProfileLbl.text = LocalisedString(@"View Profile");
+    self.ibWalletTitleLbl.text = LocalisedString(@"Voucher Wallet");
+    self.ibCollectionTitleLbl.text = LocalisedString(@"Collection");
+    self.ibInviteLbl.text = LocalisedString(@"Invite your buddies");
+    self.ibPromoLbl.text = LocalisedString(@"Enter a promo code");
 }
 
 #pragma mark Declaration
@@ -335,10 +345,6 @@
     }
 }
 
--(void)changeLanguage
-{
-    self.ibHeaderTitle.text = LocalisedString(@"Me");
-}
 -(void)requestServerForVouchersCount{
     NSDictionary *dict = @{@"token": [Utils getAppToken]};
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
@@ -346,7 +352,7 @@
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
-        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d %@", count, LocalisedString(@"vouchers")];
+        self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @(count)}];
     } errorBlock:^(id object) {
         
     }];
@@ -371,7 +377,7 @@
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
         NSDictionary *dict = object[@"data"];
         NSInteger collectionCount = [dict[@"total_result"] integerValue];
-        self.ibCollectionCountLbl.text = [NSString stringWithFormat:@"%ld %@", collectionCount, LocalisedString(@"collections")];
+        self.ibCollectionCountLbl.text = [LanguageManager stringForKey:@"{!number} Collections" withPlaceHolder:@{@"{!number}" : @(collectionCount)}];
         
     } errorBlock:^(id object) {
         
@@ -411,8 +417,6 @@
         }
 
     }
-    
-    
 }
 
 @end

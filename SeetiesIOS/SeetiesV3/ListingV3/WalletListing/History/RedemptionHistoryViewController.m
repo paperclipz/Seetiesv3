@@ -14,6 +14,7 @@
 @end
 
 @interface RedemptionHistoryViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *ibHistoryTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibHistoryTable;
 @property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
 @property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateDesc;
@@ -44,6 +45,14 @@
     
     [LoadingManager show];
     [self requestServerForVouchersHistoryList];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self changeLanguage];
+}
+
+-(void)changeLanguage{
+    self.ibHistoryTitle.text = LocalisedString(@"History");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -157,13 +166,11 @@
         self.ibEmptyStateDesc.text = LocalisedString(@"Oops... No redemption history yet");
         self.ibHistoryTable.backgroundView = self.ibEmptyStateView;
         self.view.backgroundColor = [UIColor whiteColor];
-        self.ibHistoryTable.tableFooterView = nil;
         return 0;
     }
     else{
         self.ibHistoryTable.backgroundView = nil;
         self.view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
-        self.ibHistoryTable.tableFooterView = self.ibTableFooterView;
         return self.voucherArray.count;
     }
     
@@ -172,7 +179,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (![Utils isArrayNull:self.voucherArray]) {
         DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
-        SLog(@"number of row: %ld", expiryModel.dealModelArray.count);
         return expiryModel.dealModelArray.count;
     }
     
@@ -250,6 +256,7 @@
         }
     } errorBlock:^(id object) {
         self.isLoading = NO;
+        self.ibHistoryTable.tableFooterView = nil;
     }];
 }
 

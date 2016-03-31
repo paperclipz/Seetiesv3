@@ -17,6 +17,7 @@
                 <outlet property="ibFooterLbl" destination="b41-zZ-lpA" id="t20-hM-Gq1"/>
                 <outlet property="ibTableFooterView" destination="Oib-YS-xDh" id="F6j-qi-GJD"/>
                 <outlet property="ibTableView" destination="Iyd-eR-Gia" id="doP-Lc-19c"/>
+                <outlet property="ibWalletHeader" destination="MjX-tX-4Bm" id="jie-c9-eGZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -171,7 +172,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAP-L3-PYe" userLabel="content view">
                     <rect key="frame" x="38" y="114" width="300" height="400"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK1-0L-TUM" userLabel="title">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK1-0L-TUM" userLabel="title">
                             <rect key="frame" x="15" y="274" width="270" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Ve8-ed-woq"/>
@@ -180,7 +181,7 @@
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4l-sT-W1B" userLabel="desc">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4l-sT-W1B" userLabel="desc">
                             <rect key="frame" x="15" y="309" width="270" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="gAY-ay-Ez3"/>

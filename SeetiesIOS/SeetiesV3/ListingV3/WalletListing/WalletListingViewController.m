@@ -13,6 +13,7 @@
 @end
 
 @interface WalletListingViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *ibWalletHeader;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIButton *ibFooterBtn;
 @property (weak, nonatomic) IBOutlet UILabel *ibFooterLbl;
@@ -59,6 +60,18 @@
     self.isLoading = NO;
     [LoadingManager show];
     [self requestServerForVoucherListing];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self changeLanguage];
+}
+
+-(void)changeLanguage{
+    self.ibWalletHeader.text = LocalisedString(@"Voucher Wallet");
+    self.ibFooterLbl.text = LocalisedString(@"Enter a promo code");
+    self.ibEmptyTitle.text = LocalisedString(@"Start filling your voucher wallet now!");
+    self.ibEmptyDesc.text = LocalisedString(@"You currently do not have any vouchers. Start collecting now!");
+    [self.ibEmptyBtn setTitle:LocalisedString(@"See Deals of the Day") forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -183,19 +196,14 @@
 #pragma mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([Utils isArrayNull:self.voucherArray]) {
-        self.ibEmptyTitle.text = LocalisedString(@"Collect some voucher now!");
-        self.ibEmptyDesc.text = LocalisedString(@"You don't have any voucher, go and collect some now!");
-        [self.ibEmptyBtn setTitle:LocalisedString(@"Check Deals of the Day") forState:UIControlStateNormal];
         [self.ibEmptyBtn setTitleColor:DEVICE_COLOR forState:UIControlStateNormal];
         self.ibTableView.backgroundView = self.ibEmptyView;
         self.view.backgroundColor = [UIColor whiteColor];
-        self.ibTableView.tableFooterView = nil;
         return 0;
     }
     else{
         self.ibTableView.backgroundView = nil;
         self.view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
-        self.ibTableView.tableFooterView = self.ibTableFooterView;
         return self.voucherArray.count;
     }
 }
@@ -239,10 +247,10 @@
     
     DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
     if ([expiryModel.expiryDate isEqualToString:@"new"]) {
-        label.text = LocalisedString(@"New!");
+        label.text = LocalisedString(@"New Deals");
     }
     else if ([expiryModel.expiryDate isEqualToString:@"noDate"]){
-        label.text = LocalisedString(@"No expiry date");
+        label.text = LocalisedString(@"No expiry");
     }
     else{
         label.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), expiryModel.expiryDate];
@@ -277,7 +285,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [UIAlertView showWithTitle:LocalisedString(@"Remove Voucher") message:LocalisedString(@"Are you sure you want to remove this voucher?") cancelButtonTitle:LocalisedString(@"Maybe not!") otherButtonTitles:@[LocalisedString(@"Yes, sure!")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"Remove Voucher") message:LocalisedString(@"Are you sure you want to delete this voucher?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
                 DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
@@ -495,6 +503,7 @@
         [LoadingManager hide];
         self.isLoading = NO;
         [self.ibTableView.pullToRefreshView stopAnimating];
+        self.ibTableView.tableFooterView = nil;
     }];
 }
 

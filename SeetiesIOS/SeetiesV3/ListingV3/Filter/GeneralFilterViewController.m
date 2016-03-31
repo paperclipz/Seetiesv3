@@ -31,6 +31,16 @@
 //    self.navigationController.navigationBarHidden = YES;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self changeLanguage];
+}
+
+-(void)changeLanguage{
+    self.ibFilterTitleLbl.text = LocalisedString(@"Filter");
+    [self.ibApplyFilterBtn setTitle:LocalisedString(@"ApplyFilter") forState:UIControlStateNormal];
+    [self.ibFilterResetBtn setTitle:LocalisedString(@"Reset") forState:UIControlStateNormal];
+}
+
 -(void)initWithFilter:(FiltersModel *)filtersModel{
     _filtersModel = filtersModel;
     

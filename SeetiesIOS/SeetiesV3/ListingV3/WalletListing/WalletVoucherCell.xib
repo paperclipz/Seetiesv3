@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -22,14 +22,15 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="NGz-vN-cXb" userLabel="upper view">
                                 <rect key="frame" x="0.0" y="0.0" width="573" height="118"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="fUJ-VL-T90" userLabel="voucher image">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fUJ-VL-T90" userLabel="voucher image">
                                         <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="8TZ-vr-z5R"/>
                                             <constraint firstAttribute="width" constant="50" id="MlP-j5-HP5"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u04-yq-o0b" userLabel="voucher title">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u04-yq-o0b" userLabel="voucher title">
                                         <rect key="frame" x="68" y="8" width="497" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="GvR-qh-SFa"/>
@@ -51,7 +52,7 @@
                                             <constraint firstAttribute="height" constant="27" id="d3t-Lc-OO2"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Voucher Shop" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sr-Y9-XxY" userLabel="voucher shop">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sr-Y9-XxY" userLabel="voucher shop">
                                         <rect key="frame" x="81" y="35" width="484" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="ZIQ-cG-8Ki"/>
@@ -100,8 +101,8 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sp8-d2-t3F" userLabel="lower view">
                                 <rect key="frame" x="0.0" y="123" width="573" height="63"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9w-Q1-xvq" userLabel="voucher expiry">
-                                        <rect key="frame" x="8" y="14" width="33" height="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9w-Q1-xvq" userLabel="voucher expiry">
+                                        <rect key="frame" x="8" y="14" width="0.0" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="mDZ-9P-Y6a"/>
                                         </constraints>
@@ -114,8 +115,8 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best deal   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoZ-p6-6hj" userLabel="usage lbl" customClass="TTTAttributedLabel">
-                                        <rect key="frame" x="8" y="34" width="44" height="15"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoZ-p6-6hj" userLabel="usage lbl" customClass="TTTAttributedLabel">
+                                        <rect key="frame" x="8" y="34" width="0.0" height="15"/>
                                         <color key="backgroundColor" red="0.40784313725490196" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="acU-ec-yc6"/>
@@ -218,7 +219,6 @@
     <resources>
         <image name="GreyDotSix.png" width="703" height="51"/>
         <image name="LocationPinGrey.png" width="10" height="13"/>
-        <image name="NoImage.png" width="800" height="800"/>
         <image name="RedeemIcon.png" width="22" height="21"/>
     </resources>
 </document>

@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ibLocationBtn;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
 @property (weak, nonatomic) IBOutlet UILabel *ibWalletCountLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibWalletLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibFooterHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
@@ -101,7 +102,7 @@
             break;
             
         case 3:
-            self.ibTitle.text = LocalisedString(@"Deal of the day");
+            self.ibTitle.text = LocalisedString(@"Deals of the day");
             [LoadingManager show];
             [self requestServerForSuperDealListing];
             break;
@@ -143,6 +144,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.ibWalletLbl.text = LocalisedString(@"Voucher Wallet");
+    
     if (![Utils isGuestMode]) {
         [self RequestServerForVouchersCount];
         
@@ -173,7 +176,7 @@
     //Sort
     FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
     sortCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    sortCategory.categoryName = LocalisedString(@"Sort By");
+    sortCategory.categoryName = LocalisedString(@"Sort by");
     sortCategory.filterCategoryType = FilterTypeSort;
     
     FilterModel *latest = [[FilterModel alloc] init];
@@ -251,9 +254,16 @@
                 
             case FilterTypeCat:
             {
+                BOOL isFirst = YES;
                 for (FilterModel *filter in filterCategory.filtersArray) {
                     if (filter.isSelected) {
-                        [catString appendFormat:@"%@,", filter.filterId];
+                        if (isFirst) {
+                            isFirst = NO;
+                        }
+                        else{
+                            [catString appendString:@","];
+                        }
+                        [catString appendString:filter.filterId];
                     }
                 }
                 if (![Utils isStringNull:catString]) {
@@ -453,16 +463,14 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([Utils isArrayNull:self.dealsArray]) {
         self.ibEmptyStateTitle.text = LocalisedString(@"Oops...");
-        self.ibEmptyStateDesc.text = LocalisedString(@"This feature is currently not available in your place.");
+        self.ibEmptyStateDesc.text = LocalisedString(@"This feature is temporarily unavailable in your country.");
         self.ibVoucherTable.backgroundView = self.ibEmptyStateView;
         self.view.backgroundColor = [UIColor whiteColor];
-        self.ibVoucherTable.tableFooterView = nil;
         return 0;
     }
     else{
         self.ibVoucherTable.backgroundView = nil;
         self.view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
-        self.ibVoucherTable.tableFooterView = self.ibFooterView;
         return 1;
     }
     
@@ -558,6 +566,10 @@
     }
     
     if ([Utils isStringNull:dealModel.voucher_info.voucher_id]) {
+        if (dealModel.total_available_vouchers == 0) {
+            return;
+        }
+        
         if (dealModel.shops.count == 1) {
             SeShopDetailModel *shopModel = [dealModel.shops objectAtIndex:0];
             [self requestServerToCollectVoucher:dealModel fromShop:shopModel];
@@ -679,6 +691,7 @@
     } errorBlock:^(id object) {
         self.isLoading = NO;
         [LoadingManager hide];
+        self.ibVoucherTable.tableFooterView = nil;
     }];
 }
 
@@ -736,6 +749,7 @@
     } errorBlock:^(id object) {
         self.isLoading = NO;
         [LoadingManager hide];
+        self.ibVoucherTable.tableFooterView = nil;
     }];
 }
 
@@ -780,6 +794,7 @@
         }
     } errorBlock:^(id object) {
         self.isLoading = NO;
+        self.ibVoucherTable.tableFooterView = nil;
 
     }];
     
@@ -816,6 +831,7 @@
     } errorBlock:^(id object) {
         self.isLoading = NO;
         [LoadingManager hide];
+        self.ibVoucherTable.tableFooterView = nil;
     }];
 }
 

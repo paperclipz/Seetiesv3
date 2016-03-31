@@ -188,15 +188,14 @@
 {
     NSString* str = LocalisedString(key);
     
-    NSArray*allKeys = [dict allKeys];
-    
-    for (int i = 0; i < allKeys.count; i++) {
+    for (NSString *key in dict.allKeys) {
+        @try {
+            
+            str = [str stringByReplacingOccurrencesOfString:key withString:[dict[key] stringValue]];
+        } @catch (NSException *exception) {
+            SLog(@"Language manager error key: %@", key);
+        }
         
-        NSString* tempKey = allKeys[0];
-        NSString* value = dict[tempKey];
-        
-        str = [str stringByReplacingOccurrencesOfString:tempKey
-                                             withString:value];
     }
     
     return str;

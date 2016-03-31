@@ -23,6 +23,7 @@
                 <outlet property="ibUserLocationLbl" destination="KB9-ER-GDk" id="7Jm-Qn-RFC"/>
                 <outlet property="ibVoucherTable" destination="vEe-3n-SBv" id="VUM-tK-L0O"/>
                 <outlet property="ibWalletCountLbl" destination="TL0-PQ-q1H" id="Mq3-KF-PrZ"/>
+                <outlet property="ibWalletLbl" destination="EaS-vd-HRF" id="ZzG-Ce-Leb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -73,12 +74,6 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgP-Mz-cA7" userLabel="location button">
-                            <rect key="frame" x="40" y="28" width="180" height="36"/>
-                            <connections>
-                                <action selector="locationBtnClicked:" destination="-1" eventType="touchUpInside" id="QEp-Ap-dxu"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msM-T5-Qek" userLabel="search button">
                             <rect key="frame" x="230" y="0.0" width="40" height="64"/>
                             <constraints>
@@ -113,6 +108,12 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgP-Mz-cA7" userLabel="location button">
+                            <rect key="frame" x="40" y="28" width="180" height="36"/>
+                            <connections>
+                                <action selector="locationBtnClicked:" destination="-1" eventType="touchUpInside" id="QEp-Ap-dxu"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

@@ -99,7 +99,7 @@
     
     if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE]) {
         [self.ibDealTypeLbl setFont:[UIFont boldSystemFontOfSize:23]];
-        self.ibDealTypeLbl.text = [NSString stringWithFormat:@"%@", [self.dealModel.deal_type uppercaseString]];
+        self.ibDealTypeLbl.text = LocalisedString(@"FREE");
         self.ibDiscountLbl.hidden = YES;
     }
     else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT]){
@@ -126,7 +126,7 @@
     if (self.dealModel.total_available_vouchers > 0 && self.dealModel.total_available_vouchers <= 10) {
         self.ibVoucherLeftLbl.hidden = NO;
         self.ibVoucherBlackOverylay.hidden = YES;
-        self.ibVoucherLeftLbl.text = [NSString stringWithFormat:@"%ld %@", self.dealModel.total_available_vouchers, LocalisedString(@"Vouchers Left")];
+        self.ibVoucherLeftLbl.text = [LanguageManager stringForKey:@"{!number} voucher(s) left" withPlaceHolder:@{@"{!number}": @(self.dealModel.total_available_vouchers)}];
         self.ibVoucherLeftLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
         [Utils setRoundBorder:self.ibVoucherLeftLbl color:[UIColor clearColor] borderRadius:self.ibVoucherLeftLbl.frame.size.height/2];
     }
@@ -142,33 +142,29 @@
 
 -(void)setRedeemCollect{
     if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
-        [self.ibVoucherCollectBtn setTitle:@"Collect" forState:UIControlStateNormal];
-        [self.ibVoucherCollectBtn setBackgroundColor:DEVICE_COLOR];
-        [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"CollectIcon.png"] forState:UIControlStateNormal];
+        if (self.dealModel.total_available_vouchers == 0) {
+            [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Collect") forState:UIControlStateNormal];
+            [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+            [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"CollectIcon.png"] forState:UIControlStateNormal];
+        }
+        else{
+            [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Collect") forState:UIControlStateNormal];
+            [self.ibVoucherCollectBtn setBackgroundColor:DEVICE_COLOR];
+            [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"CollectIcon.png"] forState:UIControlStateNormal];
+        }
     }
     else{
         if (self.dealModel.voucher_info.redeem_now) {
-            [self.ibVoucherCollectBtn setTitle:@"Redeem" forState:UIControlStateNormal];
+            [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
             [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:109/255.0 blue:125/255.0 alpha:1]];
             [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
         }
         else{
-            [self.ibVoucherCollectBtn setTitle:@"Redeem" forState:UIControlStateNormal];
+            [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
             [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
             [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
         }
         
-    }
-}
-
--(void)setCollectBtnSelectedState:(BOOL)isSelected{
-    if (isSelected) {
-        [self.ibVoucherCollectBtn setTitle:@"Redeem" forState:UIControlStateNormal];
-        [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:239.0f green:83.0f blue:105.0f alpha:1]];
-    }
-    else{
-        [self.ibVoucherCollectBtn setTitle:@"Collect" forState:UIControlStateNormal];
-        [self.ibVoucherCollectBtn setBackgroundColor:DEVICE_COLOR];
     }
 }
 
@@ -185,7 +181,7 @@
     
     if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
         self.ibDaysLeftLbl.hidden = NO;
-        self.ibDaysLeftLbl.text = [NSString stringWithFormat:@"%ld %@", numberOfDaysLeft, LocalisedString(@"Days Left")];
+        self.ibDaysLeftLbl.text = [LanguageManager stringForKey:@"{!number} day(s) left" withPlaceHolder:@{@"{!number}": @(numberOfDaysLeft)}];
         self.ibDaysLeftLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
         [Utils setRoundBorder:self.ibDaysLeftLbl color:[UIColor clearColor] borderRadius:self.ibDaysLeftLbl.frame.size.height/2];
         

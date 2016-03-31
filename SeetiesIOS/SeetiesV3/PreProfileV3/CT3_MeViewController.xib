@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_MeViewController">
@@ -17,6 +17,8 @@
                 <outlet property="ibContentView" destination="M7j-ex-CwS" id="2r4-Z8-UBM"/>
                 <outlet property="ibFriendsPromoView" destination="iqO-Ng-cmd" id="h6d-PR-l9d"/>
                 <outlet property="ibGuestView" destination="6wc-bF-QIY" id="gBo-aE-TCH"/>
+                <outlet property="ibGuestViewLoginLbl" destination="2gm-6M-kfn" id="c2h-hf-5UF"/>
+                <outlet property="ibGuestViewTitle" destination="B1J-TM-0ka" id="sd3-Nl-hxe"/>
                 <outlet property="ibHeaderTitle" destination="Clc-9c-SaE" id="zbu-N8-73Z"/>
                 <outlet property="ibHeaderView" destination="FCf-GI-pJP" id="n5k-AL-Rln"/>
                 <outlet property="ibInviteFriendsView" destination="z1I-jJ-gWF" id="NNU-dX-4vn"/>
