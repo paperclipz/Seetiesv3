@@ -1111,8 +1111,6 @@
 		8A9ABA331CA4EE6F0067FACA /* ProfileIconActive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB6FF1CA4EE6E0067FACA /* ProfileIconActive@3x.png */; };
 		8A9ABA341CA4EE6F0067FACA /* RecommendBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB7001CA4EE6E0067FACA /* RecommendBtn@2x.png */; };
 		8A9ABA351CA4EE6F0067FACA /* RecommendBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB7011CA4EE6E0067FACA /* RecommendBtn@3x.png */; };
-		8A9ABA361CA4EE6F0067FACA /* WriteRecommendationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB7021CA4EE6E0067FACA /* WriteRecommendationIcon@2x.png */; };
-		8A9ABA371CA4EE6F0067FACA /* WriteRecommendationIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB7031CA4EE6E0067FACA /* WriteRecommendationIcon@3x.png */; };
 		8A9ABA381CA4EE6F0067FACA /* BgWalkHome1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB7051CA4EE6E0067FACA /* BgWalkHome1@2x.jpg */; };
 		8A9ABA391CA4EE6F0067FACA /* BgWalkHome1@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB7061CA4EE6E0067FACA /* BgWalkHome1@3x.jpg */; };
 		8A9ABA3A1CA4EE6F0067FACA /* BgWalkHome2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A9AB7071CA4EE6E0067FACA /* BgWalkHome2@2x.jpg */; };
@@ -2944,8 +2942,6 @@
 		8A9AB6FF1CA4EE6E0067FACA /* ProfileIconActive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProfileIconActive@3x.png"; sourceTree = "<group>"; };
 		8A9AB7001CA4EE6E0067FACA /* RecommendBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecommendBtn@2x.png"; sourceTree = "<group>"; };
 		8A9AB7011CA4EE6E0067FACA /* RecommendBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RecommendBtn@3x.png"; sourceTree = "<group>"; };
-		8A9AB7021CA4EE6E0067FACA /* WriteRecommendationIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WriteRecommendationIcon@2x.png"; sourceTree = "<group>"; };
-		8A9AB7031CA4EE6E0067FACA /* WriteRecommendationIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WriteRecommendationIcon@3x.png"; sourceTree = "<group>"; };
 		8A9AB7051CA4EE6E0067FACA /* BgWalkHome1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "BgWalkHome1@2x.jpg"; sourceTree = "<group>"; };
 		8A9AB7061CA4EE6E0067FACA /* BgWalkHome1@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "BgWalkHome1@3x.jpg"; sourceTree = "<group>"; };
 		8A9AB7071CA4EE6E0067FACA /* BgWalkHome2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "BgWalkHome2@2x.jpg"; sourceTree = "<group>"; };
@@ -6168,8 +6164,6 @@
 				8A9AB6FF1CA4EE6E0067FACA /* ProfileIconActive@3x.png */,
 				8A9AB7001CA4EE6E0067FACA /* RecommendBtn@2x.png */,
 				8A9AB7011CA4EE6E0067FACA /* RecommendBtn@3x.png */,
-				8A9AB7021CA4EE6E0067FACA /* WriteRecommendationIcon@2x.png */,
-				8A9AB7031CA4EE6E0067FACA /* WriteRecommendationIcon@3x.png */,
 			);
 			path = "Tab Bar";
 			sourceTree = "<group>";
@@ -8507,7 +8501,6 @@
 				8A9AB7871CA4EE6E0067FACA /* Loading5@2x.png in Resources */,
 				8A9AB78A1CA4EE6E0067FACA /* CollectionFollowIcon@3x.png in Resources */,
 				8A9ABA461CA4EE6F0067FACA /* BgWalkWallet3@2x.jpg in Resources */,
-				8A9ABA371CA4EE6F0067FACA /* WriteRecommendationIcon@3x.png in Resources */,
 				8A9AB8001CA4EE6E0067FACA /* GreyDotFive.png in Resources */,
 				8A9AB95C1CA4EE6F0067FACA /* CorrectFill@2x.png in Resources */,
 				8A9ABA401CA4EE6F0067FACA /* BgWalkHome5@2x.jpg in Resources */,
@@ -8656,7 +8649,6 @@
 				8A9AB9A31CA4EE6F0067FACA /* CollectionPhotosOverlay@3x.png in Resources */,
 				8A9AB9591CA4EE6F0067FACA /* InviteWhatsappIcon@3x.png in Resources */,
 				8A9AB7891CA4EE6E0067FACA /* CollectionFollowIcon@2x.png in Resources */,
-				8A9ABA361CA4EE6F0067FACA /* WriteRecommendationIcon@2x.png in Resources */,
 				0B1D9F271BE2317700AAE8CE /* Launch Screen.storyboard in Resources */,
 				8A9AB80C1CA4EE6E0067FACA /* EditHoursIcon@2x.png in Resources */,
 				8AFA51E81C47B4AB00E7920E /* SuggestionFeatureCVCell.xib in Resources */,
@@ -9713,8 +9705,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -9737,9 +9729,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -9752,8 +9744,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -9776,9 +9768,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;
