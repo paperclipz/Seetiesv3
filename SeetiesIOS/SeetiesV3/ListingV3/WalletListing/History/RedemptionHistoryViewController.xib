@@ -8,9 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RedemptionHistoryViewController">
             <connections>
+                <outlet property="ibActivityIndicatorView" destination="UCO-TD-ebG" id="36n-ZM-0pi"/>
                 <outlet property="ibEmptyStateDesc" destination="nmC-N5-fPu" id="Ny7-Ra-CdD"/>
                 <outlet property="ibEmptyStateView" destination="Crk-ws-uWK" id="MIC-ZO-GF2"/>
                 <outlet property="ibHistoryTable" destination="Uck-Hk-jfY" id="TQ7-bq-fid"/>
+                <outlet property="ibTableFooterView" destination="tvs-9h-liL" id="TuF-xd-Rwf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -167,6 +169,23 @@
                 </mask>
             </variation>
             <point key="canvasLocation" x="1111.5" y="439.5"/>
+        </view>
+        <view contentMode="scaleToFill" id="tvs-9h-liL">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UCO-TD-ebG">
+                    <rect key="frame" x="150" y="17" width="20" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="UCO-TD-ebG" firstAttribute="centerY" secondItem="tvs-9h-liL" secondAttribute="centerY" id="nEz-ew-6Eg"/>
+                <constraint firstItem="UCO-TD-ebG" firstAttribute="centerX" secondItem="tvs-9h-liL" secondAttribute="centerX" id="vSu-0R-WZn"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="586" y="718"/>
         </view>
     </objects>
     <resources>

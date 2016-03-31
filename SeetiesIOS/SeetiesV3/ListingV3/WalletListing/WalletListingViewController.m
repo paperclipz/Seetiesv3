@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibEmptyDesc;
 @property (weak, nonatomic) IBOutlet UIButton *ibEmptyBtn;
 
+@property (strong, nonatomic) IBOutlet UIView *ibTableFooterView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicatorView;
+
 @property (nonatomic)PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic)RedemptionHistoryViewController *redemptionHistoryViewController;
 @property (nonatomic) DealDetailsViewController *dealDetailsViewController;
@@ -45,12 +48,16 @@
     
     [Utils setRoundBorder:self.ibEmptyBtn color:DEVICE_COLOR borderRadius:self.ibEmptyBtn.frame.size.height/2 borderWidth:1.0f];
     
+    self.ibTableView.tableFooterView = self.ibTableFooterView;
+    
     [self.ibTableView addPullToRefreshWithActionHandler:^{
         self.dealsModel = nil;
+        self.ibTableView.tableFooterView = self.ibTableFooterView;
         [self requestServerForVoucherListing];
     }];
     
     self.isLoading = NO;
+    [LoadingManager show];
     [self requestServerForVoucherListing];
 }
 
@@ -182,11 +189,13 @@
         [self.ibEmptyBtn setTitleColor:DEVICE_COLOR forState:UIControlStateNormal];
         self.ibTableView.backgroundView = self.ibEmptyView;
         self.view.backgroundColor = [UIColor whiteColor];
+        self.ibTableView.tableFooterView = nil;
         return 0;
     }
     else{
         self.ibTableView.backgroundView = nil;
         self.view.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+        self.ibTableView.tableFooterView = self.ibTableFooterView;
         return self.voucherArray.count;
     }
 }
@@ -288,7 +297,6 @@
     
     self.promoPopOutViewController = nil;
     [self.promoPopOutViewController setViewType:PopOutViewTypeEnterPromo];
-    self.promoPopOutViewController.contentSizeInPopup = CGSizeMake([Utils getDeviceScreenSize].size.width - 40, [Utils getDeviceScreenSize].size.height - 260);
     
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
     popupController.containerView.backgroundColor = [UIColor clearColor];
@@ -340,6 +348,7 @@
 
 - (IBAction)emptyBtnClicked:(id)sender {
     self.voucherListingViewController = nil;
+//    [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel filterCurrency:self.homeModel.filter_currency quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
     [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
     }];
 }
@@ -353,7 +362,7 @@
     if (maximumOffset - currentOffset <= self.ibTableView.frame.size.height/2) {
         if(![Utils isStringNull:self.dealsModel.paging.next] && !self.isLoading)
         {
-            //            [(UIActivityIndicatorView *)self.ibVoucherTable startAnimating];
+            [self.ibActivityIndicatorView startAnimating];
             [self requestServerForVoucherListing];
         }
     }
@@ -465,7 +474,6 @@
     
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers", [Utils getUserID]];
     
-    [LoadingManager show];
     self.isLoading = YES;
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersList param:dict appendString:appendString completeHandler:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
@@ -479,6 +487,10 @@
         [LoadingManager hide];
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.isLoading = NO;
+        [self.ibActivityIndicatorView stopAnimating];
+        if ([Utils isStringNull:self.dealsModel.paging.next]) {
+            self.ibTableView.tableFooterView = nil;
+        }
     } errorBlock:^(id object) {
         [LoadingManager hide];
         self.isLoading = NO;

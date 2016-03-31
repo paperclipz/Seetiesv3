@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletListingViewController">
             <connections>
+                <outlet property="ibActivityIndicatorView" destination="lcb-Re-49R" id="Keq-ha-kSr"/>
                 <outlet property="ibEmptyBtn" destination="dNI-ml-W0d" id="Qt9-jm-rlB"/>
                 <outlet property="ibEmptyDesc" destination="Y4l-sT-W1B" id="CLd-5k-Utq"/>
                 <outlet property="ibEmptyTitle" destination="bK1-0L-TUM" id="l6c-rW-dVF"/>
                 <outlet property="ibEmptyView" destination="nBc-es-yJ3" id="Iqq-xo-Plc"/>
                 <outlet property="ibFooterBtn" destination="bRZ-GB-qwj" id="2WS-Lt-7Gy"/>
                 <outlet property="ibFooterLbl" destination="b41-zZ-lpA" id="t20-hM-Gq1"/>
+                <outlet property="ibTableFooterView" destination="Oib-YS-xDh" id="F6j-qi-GJD"/>
                 <outlet property="ibTableView" destination="Iyd-eR-Gia" id="doP-Lc-19c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -281,6 +283,23 @@
                 </mask>
             </variation>
             <point key="canvasLocation" x="1111.5" y="439.5"/>
+        </view>
+        <view contentMode="scaleToFill" id="Oib-YS-xDh">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lcb-Re-49R">
+                    <rect key="frame" x="150" y="17" width="20" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="lcb-Re-49R" firstAttribute="centerX" secondItem="Oib-YS-xDh" secondAttribute="centerX" id="9dI-7T-eoM"/>
+                <constraint firstItem="lcb-Re-49R" firstAttribute="centerY" secondItem="Oib-YS-xDh" secondAttribute="centerY" id="WD7-kx-kjP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="559" y="790"/>
         </view>
     </objects>
     <resources>
