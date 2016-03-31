@@ -77,11 +77,11 @@
     }
     
     if (self.dealModel.total_available_vouchers == -1) {
-        self.ibDealUsageLbl.text = LocalisedString(@"REUSABLE");
+        self.ibDealUsageLbl.text = LocalisedString(@"Reusable");
         [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:122/255.0f green:210/255.0f blue:26/255.0f alpha:1]];
     }
     else{
-        self.ibDealUsageLbl.text = LocalisedString(@"1 TIME USE");
+        self.ibDealUsageLbl.text = LocalisedString(@"1-time-use");
         [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:253/255.0f green:175/255.0f blue:23/255.0f alpha:1]];
     }
     self.ibDealUsageLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -98,13 +98,13 @@
     }
     
     if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
-        self.ibVoucherExpiryLbl.text = [NSString stringWithFormat:@"%@ %ld %@", LocalisedString(@"Expires in "), numberOfDaysLeft, LocalisedString(@"Days")];
+        self.ibVoucherExpiryLbl.text = [LanguageManager stringForKey:@"Expires in {!number} day(s)" withPlaceHolder:@{@"{!number}": @(numberOfDaysLeft)}];
         self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:244/255.0f green:64/255.0f blue:64/255.0f alpha:1];
     }
     else if(numberOfDaysLeft > 8){
         NSDate *expiryDate = [dateFormatter dateFromString:expiryString];
         [dateFormatter setDateFormat:@"dd MMM yyyy"];
-        self.ibVoucherExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires "), [dateFormatter stringFromDate:expiryDate]];
+        self.ibVoucherExpiryLbl.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]}];
         self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     }
     else{

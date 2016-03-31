@@ -12,6 +12,7 @@
                 <outlet property="ibEmptyStateDesc" destination="nmC-N5-fPu" id="Ny7-Ra-CdD"/>
                 <outlet property="ibEmptyStateView" destination="Crk-ws-uWK" id="MIC-ZO-GF2"/>
                 <outlet property="ibHistoryTable" destination="Uck-Hk-jfY" id="TQ7-bq-fid"/>
+                <outlet property="ibHistoryTitle" destination="th4-sq-r5x" id="iHh-89-STn"/>
                 <outlet property="ibTableFooterView" destination="tvs-9h-liL" id="TuF-xd-Rwf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
