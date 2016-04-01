@@ -49,13 +49,18 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXH-lG-RTN" userLabel="reset button">
-                            <rect key="frame" x="262" y="14" width="50" height="50"/>
+                            <rect key="frame" x="273" y="14" width="39" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="V0p-Yi-4f3"/>
                                 <constraint firstAttribute="width" constant="50" id="YyO-2f-QCj"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="Reset"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="YyO-2f-QCj"/>
+                                </mask>
+                            </variation>
                             <connections>
                                 <action selector="resetBtnClicked:" destination="-1" eventType="touchUpInside" id="9ui-21-nOL"/>
                             </connections>

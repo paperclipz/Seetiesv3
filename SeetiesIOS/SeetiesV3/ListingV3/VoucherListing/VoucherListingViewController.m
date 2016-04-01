@@ -118,7 +118,6 @@
             self.ibLocationBtn.enabled = NO;
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
-            self.ibFooterHeightConstraint.constant = 0;
             [LoadingManager show];
             [self requestServerForDealRelevantDeals];
             break;
@@ -149,7 +148,7 @@
     if (![Utils isGuestMode]) {
         [self RequestServerForVouchersCount];
         
-        if (self.dealViewType == 4 || self.dealViewType == 5) {
+        if (self.dealViewType == 5) {
             self.ibFooterHeightConstraint.constant = 0;
         }
         else{

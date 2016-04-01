@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibRedemptionSuccessfulVoucherTitle;
 @property (weak, nonatomic) IBOutlet UIButton *ibRedemptionSuccessfulBtn;
 @property (weak, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulDealTitleContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibRedemptionSuccessfulTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibRedemptionSuccessfulDesc;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibDealTitleScrollViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibDealTitleContentHeightConstraint;
 
@@ -28,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibShopTable;
 @property (weak, nonatomic) IBOutlet UILabel *ibShopDealLbl;
 @property (weak, nonatomic) IBOutlet UIButton *ibShopConfirmBtn;
+@property (weak, nonatomic) IBOutlet UILabel *ibChooseShopRedeemAt;
 
 @property (strong, nonatomic) IBOutlet UIView *ibChangeVerifiedPhoneView;
 @property (weak, nonatomic) IBOutlet UIView *ibChangeVerifiedPhoneContentView;
@@ -38,7 +41,6 @@
 @property (strong, nonatomic) IBOutlet UIView *ibEnterPhoneView;
 @property (weak, nonatomic) IBOutlet UIView *ibEnterPhoneContentView;
 @property (weak, nonatomic) IBOutlet UIButton *ibEnterPhoneConfirmBtn;
-@property (weak, nonatomic) IBOutlet UILabel *ibEnterPhoneNote;
 @property (weak, nonatomic) IBOutlet UITextField *ibEnterPhoneTxtField;
 @property (weak, nonatomic) IBOutlet UILabel *ibEnterPhoneDesc;
 @property (weak, nonatomic) IBOutlet UILabel *ibEnterPhoneTitle;
@@ -73,11 +75,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorDesc;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorDateDay;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorTime;
+@property (weak, nonatomic) IBOutlet UIButton *ibErrorOkBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibThankYouView;
 @property (weak, nonatomic) IBOutlet UIView *ibThankYouContentView;
 @property (weak, nonatomic) IBOutlet UILabel *ibThankYouTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibThankYouDesc;
+@property (weak, nonatomic) IBOutlet UIButton *ibThankYouOkBtn;
 
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
@@ -213,6 +217,10 @@
     switch (self.viewType) {
         case PopOutViewTypeEnterPromo:
         {
+            self.ibTitleLbl.text = LocalisedString(@"Enter a promo code");
+            self.ibPromoCodeText.placeholder = LocalisedString(@"Enter here");
+            [self.ibEnterPromoSubmitBtn setTitle:LocalisedString(@"Submit") forState:UIControlStateNormal];
+            
             [self.view refreshConstraint];
             [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder: self.ibPromoCodeText color:[UIColor clearColor] borderRadius:self.ibPromoCodeText.frame.size.height/2];
@@ -222,6 +230,9 @@
         case PopOutViewTypeChooseShop:
         {
             [self.ibShopTable registerClass:[PromoOutletCell class] forCellReuseIdentifier:@"PromoOutletCell"];
+            
+            self.ibChooseShopRedeemAt.text = LocalisedString(@"Select outlet to redeem from");
+            [self.ibShopConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
             
 //            int counter = 4;
 //            float headerAndFooterHeight = 140;
@@ -252,6 +263,10 @@
             
         case PopOutViewTypeRedemptionSuccessful:
         {
+            self.ibRedemptionSuccessfulTitle.text = LocalisedString(@"Yay!");
+            self.ibRedemptionSuccessfulDesc.text = [LanguageManager stringForKey:@"{!voucher name} is now in your wallet!" withPlaceHolder:@{@"{!voucher name}":@""}];
+            [self.ibRedemptionSuccessfulBtn setTitle:LocalisedString(@"View voucher details") forState:UIControlStateNormal];
+            
             [self.ibRedemptionSuccessfulContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             
             if (self.dealsModel) {
@@ -288,6 +303,9 @@
             
         case PopOutViewTypeChangeVerifiedPhone:
         {
+            self.ibChangeVerifiedPhoneDescLbl.text = LocalisedString(@"This phone number has been verified.");
+            [self.ibChangeVerifiedPhoneBtn setTitle:LocalisedString(@"Change Phone Number") forState:UIControlStateNormal];
+            
             [self.ibChangeVerifiedPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             ProfileModel* model = [[ConnectionManager dataManager]userProfileModel];
             
@@ -305,6 +323,12 @@
             
         case PopOutViewTypeEnterPhone:
         {
+            self.ibEnterPhoneTitle.text = LocalisedString(@"Enter Phone Number");
+            self.ibEnterPhoneDesc.text = LocalisedString(@"Please verify your phone number to collect the voucher.");
+            self.ibEnterPhoneCountryCodeLbl.text = LocalisedString(@"Select Country Code");
+            self.ibEnterPhoneTxtField.placeholder = LocalisedString(@"eg. 01x xxx xxxx");
+            [self.ibEnterPhoneConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
+            
             self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, 470);
             [self.ibEnterPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibEnterPhoneTxtField color:[UIColor clearColor] borderRadius:self.ibEnterPhoneTxtField.frame.size.height/2];
@@ -315,6 +339,10 @@
             
         case PopOutViewTypeConfirmPhone:
         {
+            self.ibConfirmPhoneDescLbl.text = [LanguageManager stringForKey:@"{!phone number} Is this your phone number?" withPlaceHolder:@{@"{!phone number}":@""}];
+            [self.ibConfirmPhoneChangeBtn setTitle:@"Change Phone Number" forState:UIControlStateNormal];
+            [self.ibConfirmPhoneBtn setTitle:@"Confirm" forState:UIControlStateNormal];
+            
             [self.ibConfirmPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibConfirmPhoneChangeBtn color:DEVICE_COLOR borderRadius:self.ibConfirmPhoneChangeBtn.frame.size.height/2];
             if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
@@ -325,24 +353,37 @@
             
         case PopOutViewTypeEnterVerification:
         {
+            self.ibEnterVerificationTitle.text = LocalisedString(@"Enter Verification Code");
+            [self.ibEnterVerificationResendBtn setTitle:LocalisedString(@"Resend Code") forState:UIControlStateNormal];
+            [self.ibEnterVerificationConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
+            self.ibEnterVerificationTxtField.placeholder = LocalisedString(@"Enter 6-digit verification code");
+            
             [self.ibEnterVerificationContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor clearColor] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
             [Utils setRoundBorder:self.ibEnterVerificationResendBtn color:DEVICE_COLOR borderRadius:self.ibEnterVerificationResendBtn.frame.size.height/2];
             if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
                 NSString *phoneNumber = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
-                self.ibEnterVerificationDesc.text = [NSString stringWithFormat:@"%@ %@", @"Enter the 6 digits that we have send to", phoneNumber];
+                self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the 6-digit verification code that was sent to {!contact number} Code will expire in 30mins." withPlaceHolder:@{@"{!contact number}": phoneNumber}];
             }
         }
             return self.ibEnterVerificationView;
             
         case PopOutViewTypeVerified:
         {
+            self.ibVerifiedTitle.text = LocalisedString(@"Phone number verification.");
+            self.ibVerifiedDesc.text = LocalisedString(@"Thank you for verifying your phone number!");
+            [self.ibVerifiedOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            
             [self.ibVerifiedContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
         }
             return self.ibVerifiedView;
             
         case PopOutViewTypeError:
         {
+            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is not currently available for redemption.");
+            self.ibErrorDesc.text = LocalisedString(@"This deal can only be redeemed on");
+            [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            
             [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             NSString *nextAvailability = [self.dealModel getNextAvailableRedemptionDateString];
             NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
@@ -351,6 +392,14 @@
             self.ibErrorTime.text = stringArray[1];
         }
             return self.ibErrorView;
+            
+        case PopOutViewTypeThankYou:
+        {
+            self.ibThankYouTitle.text = LocalisedString(@"Thank you for your suggestion!");
+            self.ibThankYouDesc.text = LocalisedString(@"We'll get back to you soonest possible with an email update on your suggested place.");
+            [self.ibThankYouOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+        }
+            return self.ibThankYouView;
             
         default:
         {
@@ -395,7 +444,7 @@
 #pragma mark - IBAction
 
 - (IBAction)selectCountryCodeBtnClicked:(id)sender {
-    [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select country code")
+    [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
                                             rows:self.countryCodeArray
                                 initialSelection:0
                                 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
@@ -688,7 +737,7 @@
         [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
         self.ibEnterVerificationTxtField.backgroundColor = [UIColor whiteColor];
         self.ibEnterVerificationTxtField.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Invalid verification code, make sure the code you enter is right") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The verification code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         self.isVerified = NO;
         self.isLoading = NO;
         [LoadingManager hide];
@@ -735,7 +784,7 @@
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Invalid promo code, make sure the code you enter is right") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         [LoadingManager hide];
         self.isLoading = NO;
         self.hasRequestedPromo = NO;
@@ -770,7 +819,7 @@
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Invalid promo code, make sure the code you enter is right") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         self.hasRedeemed = NO;
         [LoadingManager hide];
         self.isLoading = NO;
