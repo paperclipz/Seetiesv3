@@ -88,7 +88,7 @@
 @property(nonatomic,copy)NSArray* arrListTranslated;
 @property(nonatomic,copy)NSArray* arrListNonTranslated;
 
-@property(nonatomic,copy)DealsModel* dealsModel;
+@property(nonatomic)DealsModel* dealsModel;
 
 @end
 
