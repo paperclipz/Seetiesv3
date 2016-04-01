@@ -90,11 +90,13 @@
     
     
     [self refreshSearch];
-    [self.cAPSPageMenu moveToPage:1];
+   // [self.cAPSPageMenu moveToPage:1];
     
     self.ibLocationTableView.hidden = YES;
     self.ibSearchTableView.hidden = YES;
-  
+    [self.ibContentView bringSubviewToFront:self.ibSearchTableView];
+    [self.ibContentView bringSubviewToFront:self.ibLocationTableView];
+
 //    [self.ibContentView addSubview:self.ibLocationTableView];
 //    [self.ibContentView addSubview:self.ibSearchTableView];
 //
@@ -219,8 +221,7 @@
         self.ibSearchTableView.hidden = YES;
 
     }
-    self.ibLocationTableView.hidden = NO;
-    self.ibSearchTableView.hidden = NO;
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -652,7 +653,7 @@
     {
         CGRect deviceFrame = [Utils getDeviceScreenSize];
         _cAPSPageMenu.view.backgroundColor = [UIColor redColor];
-        NSArray *controllerArray = @[self.collectionListingTableViewController,self.shopListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
+        NSArray *controllerArray = @[self.shopListingTableViewController,self.collectionListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
         NSDictionary *parameters = @{
                                      CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
                                      CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
@@ -666,7 +667,7 @@
                                      CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
                                      };
         
-        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibContentView.frame.size.width, deviceFrame.size.height - 105 - 50 - 20) options:parameters];
+        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height) options:parameters];
         _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
        // _cAPSPageMenu.delegate = self;
     }

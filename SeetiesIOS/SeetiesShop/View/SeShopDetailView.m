@@ -404,11 +404,12 @@
     if (self.ibTableView == tableView) {
       return self.arrayList.count;
     }
-    else
+    else if(self.ibDealTableView == tableView)
     {
         return self.dealsModel.arrDeals.count;
 
     }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -22,6 +22,7 @@ typedef void (^DealBlock)(DealModel* model);
 @property(nonatomic,copy)DidSelectCollectionBlock didSelectDisplayCollectionRowBlock;
 @property(nonatomic,copy)DidSelectCollectionBlock didSelectEditDisplayCollectionRowBlock;
 @property(nonatomic,copy)DealBlock didSelectDealBlock;
+@property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
 
 @property(nonatomic,copy)DidSelectDraftBlock didSelectCollectionOpenViewBlock;
 @property(nonatomic,assign)SearchListingType searchListingType;
