@@ -116,7 +116,6 @@
 
 - (void)viewDidLayoutSubviews
 {
-  
     self.shopListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
     self.collectionListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
     self.PostsListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
@@ -204,7 +203,6 @@
         
         [self getGoogleSearchPlaces:newString];
     
-    
     }else if(textField == self.ibSearchText){
         
         NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
@@ -243,7 +241,10 @@
 
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
     NSLog(@"textFieldShouldReturn:");
+    
+    [self.cAPSPageMenu moveToPage:0];
     
     [textField resignFirstResponder];
     if (textField == self.ibSearchText) {

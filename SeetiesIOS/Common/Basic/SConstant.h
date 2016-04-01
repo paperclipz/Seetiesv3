@@ -13,6 +13,7 @@
 
 typedef enum
 {
+    ServerRequestTypeDefault,
     /*Login*/
     ServerRequestTypeLogin = 1,
     ServerRequestTypeLoginFacebook,

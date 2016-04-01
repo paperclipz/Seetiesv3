@@ -25,8 +25,11 @@
 @property(nonatomic,strong)CT3_LoginViewController* loginViewController;
 @property(nonatomic,strong)CT3_MoreViewController* ct3_MoreViewController;
 @property(nonatomic, strong)CT3_MeViewController *ct3MeViewController;
+@property (nonatomic, strong)UINavigationController* navLoginViewController;
 
 -(void)showLoginView;
+-(void)showLoginViewWithCompletion:(VoidBlock)completionBlock;
+
 -(void)reloadData;
 -(void)showIntroView;
 

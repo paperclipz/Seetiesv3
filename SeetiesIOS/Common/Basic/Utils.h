@@ -20,6 +20,7 @@
 // ======================== STTRING SWITCH CASE ========================
 
 typedef void(^ButtonBlock) (id sender);
+typedef void(^NullBlock) (void);
 
 typedef enum
 {
@@ -237,6 +238,8 @@ typedef enum {
 #pragma mark - LOGIN
 +(void)showLogin;
 +(void)showVerifyPhoneNumber:(UIViewController*)viewController;
++(void)presentView:(UIViewController*)vc Completion:(NullBlock)completionBlock;
+
 
 #pragma mark - SYSTEM
 +(BOOL)isAppProductionBuild;

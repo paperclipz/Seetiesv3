@@ -17,7 +17,6 @@
 @property (nonatomic)UINavigationController* firstViewController;
 @property (nonatomic)UINavigationController* secondViewController;
 @property (nonatomic)UINavigationController* thirdViewController;
-@property (nonatomic, strong)UINavigationController* navLoginViewController;
 @property (nonatomic, strong)IntroCoverView* introView;
 
 
@@ -100,7 +99,6 @@
 -(UINavigationController*)navLoginViewController
 {
     if (!_navLoginViewController) {
-        _loginViewController = nil;
         _navLoginViewController = [[UINavigationController alloc]initWithRootViewController:self.loginViewController];
         [_navLoginViewController hideStatusBar];
 
@@ -317,11 +315,20 @@
 {
     _navLoginViewController = nil;
 
-    [self presentViewController:self.navLoginViewController animated:YES completion:nil];
+    if (!(self.loginViewController.isViewLoaded && self.loginViewController.view.window)) {
+        [self presentViewController:self.navLoginViewController animated:YES completion:nil];
 
+    }
 
 }
 
+-(void)showLoginViewWithCompletion:(VoidBlock)completionBlock
+{
+    _navLoginViewController = nil;
+    
+    [self presentViewController:self.navLoginViewController animated:YES completion:completionBlock];
+    
+}
 
 #pragma mark - Request Server
 

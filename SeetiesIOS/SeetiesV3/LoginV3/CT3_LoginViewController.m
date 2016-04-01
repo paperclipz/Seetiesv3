@@ -36,7 +36,7 @@
 
 @implementation CT3_LoginViewController
 - (IBAction)btnInstagramClicked:(id)sender {
-    
+  
     [self validateBeforeLogin];
     __weak typeof (self)weakSelf = self;
     self.webViewController.didFinishLoadConnectionBlock = ^(void)

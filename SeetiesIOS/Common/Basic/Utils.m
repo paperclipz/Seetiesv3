@@ -22,6 +22,18 @@
     
 }
 
+
++(void)presentView:(UIViewController*)vc Completion:(NullBlock)completionBlock
+{
+
+    AppDelegate *appdelegate;
+    
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    [appdelegate.landingViewController.loginViewController presentViewController:vc animated:YES completion:nil];
+    
+}
+
 +(void)setLogout
 {
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
@@ -716,6 +728,7 @@
 
 }
 
+
 +(void)showVerifyPhoneNumber:(UIViewController*)viewController{
     PromoPopOutViewController *popOut = [PromoPopOutViewController new];
     [popOut setViewType:PopOutViewTypeEnterPhone];
@@ -723,7 +736,6 @@
     
     STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:popOut];
     popOutController.containerView.backgroundColor = [UIColor clearColor];
-//    [popOutController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
     [popOutController presentInViewController:viewController];
     [popOutController setNavigationBarHidden:YES];
 }

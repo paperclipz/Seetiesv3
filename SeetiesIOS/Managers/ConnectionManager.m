@@ -8,9 +8,11 @@
 
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
+#import <StoreKit/StoreKit.h>
 
-@interface ConnectionManager()
+@interface ConnectionManager()<SKStoreProductViewControllerDelegate>
 @property (strong, nonatomic) DataManager *dataManager;
+@property(nonatomic)SKStoreProductViewController* skStoreProductViewController;
 
 @end
 
@@ -163,7 +165,7 @@
          }
                   failure:
          ^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", error);
+             NSLog(@"Error: %@", operation);
              [self showErrorHandling:operation Error:error];
 
              [LoadingManager hide];
@@ -1399,14 +1401,72 @@
 
 #pragma mark  - ERROR handling
 
-
 -(void)showErrorHandling:(AFHTTPRequestOperation*)operation Error:(NSError*)error
 {
     
-    NSLog(@"error code %ld",[operation.response statusCode]);
-    NSLog(@"error string %@",[error localizedDescription]);
+    if([operation.response statusCode] == 503)
+    {
+        // Use the appropriate key to get the error data
+        NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+        
+        // Serialize the data into JSON
+        NSDictionary *serializedData = [NSJSONSerialization JSONObjectWithData: errorData options:kNilOptions error:nil];
+        
+        // Print out the error JSON body
+        NSLog(@"AFNetworking error response body: %@", serializedData);
+        
+        NSString* code = serializedData[@"error"];
+        NSString* message = serializedData[@"message"];
 
-   // [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Network Error") Type:TSMessageNotificationTypeError];
+        if ([code isEqualToString:@"seeties.api.under_maintenance"]) {
+            
+            [Utils showLogin];
 
+            [UIAlertView showWithTitle:LocalisedString(@"system") message:message cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                
+                
+            }];
+        }
+        else if ([code isEqualToString:@"seeties.apiversion.message"]) {
+         
+            
+            [Utils showLogin];
+            [UIAlertView showWithTitle:LocalisedString(@"system") message:message cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                
+                if (buttonIndex == 0) {//cancel
+                    
+                }else if(buttonIndex == 1)//route to app store
+                {
+                    _skStoreProductViewController = nil;
+                    
+                    
+                    [Utils presentView:self.skStoreProductViewController Completion:^{
+                        
+                    }];
+                    
+                   // }];
+                    
+                }
+                
+            }];
+        }
+    }
+    
 }
+
+-(SKStoreProductViewController *)skStoreProductViewController{
+    if (!_skStoreProductViewController) {
+        _skStoreProductViewController = [SKStoreProductViewController new];
+        _skStoreProductViewController.delegate = self;
+        NSDictionary *parameters = @{ SKStoreProductParameterITunesItemIdentifier:[NSNumber numberWithInteger:ITUNES_ITEM_IDENTIFIER] };
+        [_skStoreProductViewController loadProductWithParameters:parameters completionBlock:nil];
+    }
+    return _skStoreProductViewController;
+}
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+    [LoadingManager hide];
+}
+
 @end
