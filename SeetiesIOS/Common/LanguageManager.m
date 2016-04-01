@@ -191,7 +191,13 @@
     for (NSString *key in dict.allKeys) {
         @try {
             
-            str = [str stringByReplacingOccurrencesOfString:key withString:[dict[key] stringValue]];
+            if ([dict[key] isKindOfClass:[NSString class]]) {
+                str = [str stringByReplacingOccurrencesOfString:key withString:dict[key]];
+            }
+            else {
+                str = [str stringByReplacingOccurrencesOfString:key withString:[dict[key] stringValue]];
+            }
+            
         } @catch (NSException *exception) {
             SLog(@"Language manager error key: %@", key);
         }
