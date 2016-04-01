@@ -85,7 +85,8 @@
 @property (strong, nonatomic) IBOutlet UIView *ibNearbyShopView;
 @property (weak, nonatomic) IBOutlet UIView *ibNearbyShopContentView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibNearbyShopCollection;
-@property (weak, nonatomic) IBOutlet UIView *ibNearbyShopTitle;
+@property (weak, nonatomic) IBOutlet UIView *ibNearbyShopHeaderView;
+@property (weak, nonatomic) IBOutlet UILabel *ibNearbyShopTitle;
 @property (weak, nonatomic) IBOutlet UIButton *ibNearbyShopSeeMoreBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibReportView;
@@ -177,6 +178,10 @@
     [self.ibDealsTable registerNib:[UINib nibWithNibName:@"SeDealsFeaturedTblCell" bundle:nil] forCellReuseIdentifier:@"SeDealsFeaturedTblCell"];
     [self.ibNearbyShopCollection registerNib:[UINib nibWithNibName:@"NearbyShopsCell" bundle:nil] forCellWithReuseIdentifier:@"NearbyShopsCell"];
     
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    self.ibReportLbl.text = LocalisedString(@"Report this deal");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -273,7 +278,7 @@
             
             NSString *time = [self.dealModel.redemption_period_in_hour_text objectForKey:day];
             if (time) {
-                NSDictionary *period = @{@"day" : day,
+                NSDictionary *period = @{@"day" : LocalisedString(day),
                                          @"time" : time};
                 [self.dealAvailabilityArray addObject:period];
             }
@@ -284,7 +289,7 @@
 #pragma mark - IBAction
 - (IBAction)shopSeeMoreBtnClicked:(id)sender {
     self.seetieShopListingViewController = nil;
-    self.seetieShopListingViewController.title = @"Participate Shops";
+    self.seetieShopListingViewController.title = LocalisedString(@"Participate outlet");
     [self.navigationController pushViewController:self.seetieShopListingViewController animated:YES onCompletion:^{
         NSMutableArray *copyOfShopModel = [[NSMutableArray alloc] initWithArray:self.dealModel.shops];
         [self.seetieShopListingViewController initWithArray:copyOfShopModel];
@@ -293,7 +298,7 @@
 
 - (IBAction)nearbyShopSeeMoreBtnClicked:(id)sender {
     self.seetieShopListingViewController = nil;
-    self.seetieShopListingViewController.title = @"Nearby Shops";
+    self.seetieShopListingViewController.title = LocalisedString(@"Shops nearby");
     SeShopDetailModel *shopModel;
     if (![Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
         shopModel = self.dealModel.voucher_info.shop_info;
@@ -499,7 +504,7 @@
         [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsRedeemedIcon.png"]];
         
         self.ibHeaderRedeemExpiryTitleLbl.text = LocalisedString(@"Deal have been redeemed on");
-        self.ibHeaderRedeemExpiryDescLbl.text = LocalisedString(@"Flash this screen to the shop's worker or owner to redeem the deal");
+        self.ibHeaderRedeemExpiryDescLbl.text = LocalisedString(@"Flash this screen to a staff and swipe to redeem this deal.");
         
         NSDate *redeemDate = [dateFormatter dateFromString:self.dealModel.voucher_info.redeemed_at];
         [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
@@ -537,7 +542,7 @@
             NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
             [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
             [dateFormatter setDateFormat:@"dd MMM yyyy"];
-            self.ibHeaderNormalExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expires"), [dateFormatter stringFromDate:expiredDate]];
+            self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]}];
         }
         else{
             self.ibHeaderExpiryView.hidden = YES;
@@ -555,6 +560,7 @@
 -(void)updateDetailsView{
     self.ibDealDetailsTitleLbl.text = self.dealModel.title;
     [self.ibDealDetailsDesc setStandardText:self.dealModel.deal_desc numberOfLine:0];
+    self.ibDealDetailsDescLbl.text = LocalisedString(@"Deal description");
     
     CGFloat tagHeight = 20.0f;
     CGFloat spacing = 10.0f;
@@ -576,7 +582,7 @@
         xOrigin += tagLbl.frame.size.width + spacing;
     }
     if (self.dealModel.total_available_vouchers <= 10 && self.dealModel.total_available_vouchers > 0) {
-        NSString *tag = [NSString stringWithFormat:@"%ld %@", self.dealModel.total_available_vouchers, LocalisedString(@"Vouchers Left")];
+        NSString *tag = [LanguageManager stringForKey:@"{!number} voucher(s) left" withPlaceHolder:@{@"{!number}": @(self.dealModel.total_available_vouchers)}];
         CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
         UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, yOrigin, lblSize.width+padding, tagHeight)];
         [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
@@ -602,7 +608,7 @@
         xOrigin += tagLbl.frame.size.width + spacing;
     }
     else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT] || [self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]) {
-        NSString *tag = [NSString stringWithFormat:@"%@%% %@", self.dealModel.discount_percentage, LocalisedString(@"OFF")];
+        NSString *tag = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage}];
         CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
         UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, yOrigin, lblSize.width+padding, tagHeight)];
         [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
@@ -646,6 +652,8 @@
 -(void)updateAvailabilityView{
     [self formatDealAvailability];
     [self.ibAvailabilityTable reloadData];
+    self.ibAvailabilityTitle.text = LocalisedString(@"Deal availability");
+    self.ibAvailabilityDesc.text = LocalisedString(@"This deal can only be redeemed at time as stated below:");
     
     if (self.dealAvailabilityArray.count == 0) {
         [self.ibAvailabilityView setHeight:0];
@@ -661,8 +669,8 @@
 }
 
 -(void)updateShopView{
-    self.ibShopTitle.text = [NSString stringWithFormat:@"%@ (%ld)", LocalisedString(@"Participate Shop"), self.dealModel.shops.count];
-    
+    self.ibShopTitle.text = [LanguageManager stringForKey:@"Participate outlet ({!number})" withPlaceHolder:@{@"{!number}": @(self.dealModel.shops.count)}];
+    [self.ibShopSeeMoreBtn setTitle:LocalisedString(@"See more") forState:UIControlStateNormal];
     [self.ibShopTable reloadData];
     
     float cellHeight = [PromoOutletCell getHeight];
@@ -686,6 +694,8 @@
 }
 
 -(void)updateTnCView{
+    self.ibTnCTitle.text = LocalisedString(@"Terms & Conditions");
+    [self.ibTnCReadMoreBtn setTitle:LocalisedString(@"Read the full T&Cs here") forState:UIControlStateNormal];
     
     if ([Utils isArrayNull:self.dealModel.terms]) {
         [self.ibTnCView setHeight:0];
@@ -708,7 +718,7 @@
             bulletPoint.text = [NSString stringWithFormat:@"\u2022"];
             
             NSString *formattedTerm = [NSString stringWithFormat:@"%@", term];
-            if (count == 4) {
+            if (count == 4 && self.dealModel.terms.count > 5) {
                 formattedTerm = [NSString stringWithFormat:@"%@ ...", term];
             }
             CGRect rect = [formattedTerm boundingRectWithSize:CGSizeMake(self.ibTnCContent.frame.size.width-bulletPoint.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
@@ -741,9 +751,11 @@
 }
 
 -(void)updateNearbyShopView{
+    self.ibNearbyShopTitle.text = LocalisedString(@"Shops nearby");
+    [self.ibNearbyShopSeeMoreBtn setTitle:LocalisedString(@"See more") forState:UIControlStateNormal];
     [self.ibNearbyShopCollection reloadData];
     
-    [self.ibNearbyShopTitle prefix_addLowerBorder:OUTLINE_COLOR];
+    [self.ibNearbyShopHeaderView prefix_addLowerBorder:OUTLINE_COLOR];
     
     if (self.nearbyShopArray.count > 0) {
         CGFloat contentHeight = self.ibNearbyShopCollection.frame.origin.y + 132 + 16 + contentHeightPadding;
@@ -756,6 +768,7 @@
 
 -(void)updateDealsView{
     self.ibDealsTitleLbl.text = [NSString stringWithFormat:@"%@ (%d)", LocalisedString(@"Deals"), self.dealsModel.total_count];
+    [self.ibDealsSeeMoreBtn setTitle:LocalisedString(@"See more") forState:UIControlStateNormal];
     [self.ibDealsTitle prefix_addLowerBorder:OUTLINE_COLOR];
     [self.ibDealsTable reloadData];
     
@@ -799,7 +812,7 @@
         }
         
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
+        self.ibFooterTitle.text = LocalisedString(@"Collect this deal");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
         if (self.dealModel.voucher_info.redeem_now) {
@@ -809,22 +822,22 @@
             [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         }
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
+        self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
+        self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_EXPIRED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Redeem Now");
+        self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_CANCELLED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Collect This Voucher");
+        self.ibFooterTitle.text = LocalisedString(@"Collect this deal");
     }
     else{
         self.ibFooterView.hidden = YES;

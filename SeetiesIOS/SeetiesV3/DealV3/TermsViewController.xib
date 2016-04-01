@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="ibContentView" destination="tKz-dt-fZx" id="9Ka-qQ-FQU"/>
                 <outlet property="ibContentViewHeightConstraint" destination="PWR-Ay-Ofq" id="O4a-ht-VGP"/>
+                <outlet property="ibHeaderLbl" destination="od2-3g-vWE" id="MsC-FY-To4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

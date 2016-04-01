@@ -41,6 +41,7 @@
     self.shoplat = [[SearchManager Instance]getAppLocation].coordinate.latitude;
     self.shopLgn = [[SearchManager Instance]getAppLocation].coordinate.longitude;
     [self changLanguage];
+    
 }
 
 -(void)initTableViewDelegate

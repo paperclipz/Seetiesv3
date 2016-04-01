@@ -10,6 +10,7 @@
 
 @interface TermsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *ibContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibContentViewHeightConstraint;
 @property (nonatomic) NSArray *termsArray;
 @end
@@ -31,6 +32,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    self.ibHeaderLbl.text = LocalisedString(@"Terms & Conditions");
+    
     float yOrigin = 0;
     float fontSize = 15.0f;
     self.ibContentViewHeightConstraint.constant = 0;

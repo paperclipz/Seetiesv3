@@ -377,7 +377,7 @@
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
         NSDictionary *dict = object[@"data"];
         NSInteger collectionCount = [dict[@"total_result"] integerValue];
-        self.ibCollectionCountLbl.text = [LanguageManager stringForKey:@"{!number} Collections" withPlaceHolder:@{@"{!number}" : @(collectionCount)}];
+        self.ibCollectionCountLbl.text = [LanguageManager stringForKey:@"{!number} Collection(s)" withPlaceHolder:@{@"{!number}" : @(collectionCount)}];
         
     } errorBlock:^(id object) {
         
