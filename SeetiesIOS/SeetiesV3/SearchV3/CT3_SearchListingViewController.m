@@ -113,11 +113,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)viewDidLayoutSubviews
+{
+  
+    self.shopListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+    self.collectionListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+    self.PostsListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+    self.SeetizensListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+
+}
+
 -(void)InitSelfView{
     //self.ibScrollView.contentSize = CGSizeMake(850, 50);
 
     [self.ibContentView adjustToScreenWidth];
     [self.ibContentView addSubview:self.cAPSPageMenu.view];
+    
     self.ibLocationText.delegate = self;
     self.ibSearchText.delegate = self;
     self.ibSearchText.placeholder = LocalisedString(@"Search");
@@ -203,8 +215,7 @@
         self.ibLocationTableView.hidden = YES;
 
     }
-    self.ibLocationTableView.hidden = NO;
-    self.ibSearchTableView.hidden = NO;
+
     return YES;
 }
 

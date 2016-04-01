@@ -15,6 +15,7 @@ typedef void (^DidSelectShopBlock)(SeShopDetailModel* model);
 typedef void (^DealBlock)(DealModel* model);
 
 @interface SearchLTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 
 @property(nonatomic,copy)DidSelectIDBlock didSelectUserRowBlock;
 @property(nonatomic,copy)DidSelectIDBlock didSelectPostsRowBlock;

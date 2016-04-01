@@ -68,7 +68,13 @@
         [self presentViewController:self.collectionFilterViewController animated:YES completion:nil];
     }
 }
-
+- (void)viewDidLayoutSubviews
+{
+    
+    self.shopListingTableViewController.view.frame = CGRectMake(0, 0, self.ibCotentView.frame.size.width, self.ibCotentView.frame.size.height);
+    self.collectionListingTableViewController.view.frame = CGRectMake(0, 0, self.ibCotentView.frame.size.width, self.ibCotentView.frame.size.height);
+   
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
