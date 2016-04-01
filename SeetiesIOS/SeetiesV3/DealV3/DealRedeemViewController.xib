@@ -200,8 +200,8 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealRedeemCardDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="bwF-Qu-mY0">
                             <rect key="frame" x="0.0" y="0.0" width="358" height="120"/>
                         </imageView>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xsS-C4-sNW" userLabel="swipe bg">
-                            <rect key="frame" x="20" y="31" width="318" height="55"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsS-C4-sNW" userLabel="swipe bg">
+                            <rect key="frame" x="20" y="32" width="318" height="55"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeToRedeemSwipeIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="LR4-8K-3va">
                                     <rect key="frame" x="108" y="15" width="25" height="25"/>
@@ -305,7 +305,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've got 15 mins to redeem this deal after you swipe. No undo." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSE-Hl-Y7Q">
-                    <rect key="frame" x="28" y="592" width="358" height="36"/>
+                    <rect key="frame" x="28" y="593" width="358" height="36"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="k3z-1k-Njz"/>
                         <constraint firstAttribute="height" constant="21" id="rLI-sJ-dpJ"/>
@@ -328,7 +328,7 @@
                     </constraints>
                 </imageView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeQ-96-aWT">
-                    <rect key="frame" x="28" y="687" width="358" height="31"/>
+                    <rect key="frame" x="28" y="687" width="358" height="30"/>
                     <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Button"/>
                     <connections>
@@ -433,8 +433,8 @@
     <resources>
         <image name="BlueLink.png" width="25" height="25"/>
         <image name="CloseIcon.png" width="40" height="40"/>
-        <image name="DealRedeemCardDown.png" width="580" height="198"/>
-        <image name="DealRedeemCardUp.png" width="580" height="597"/>
+        <image name="DealRedeemCardDown.png" width="1162" height="402"/>
+        <image name="DealRedeemCardUp.png" width="1162" height="1162"/>
         <image name="How-to-redeem.gif" width="1108" height="1702"/>
         <image name="SSBlueDirectionIcon.png" width="26" height="26"/>
         <image name="SwipeToRedeemBg.png" width="1242" height="2208"/>

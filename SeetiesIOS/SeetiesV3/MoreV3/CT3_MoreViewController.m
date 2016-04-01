@@ -406,7 +406,7 @@
         else
         {
             NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log In", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Rate Us",@"About",@"Feedback", nil];
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Rate Us",@"About Seeties",@"Send Feedback", nil];
             //NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
             _arrData = @[firstItemsArray,secondItemsArray];
         }
