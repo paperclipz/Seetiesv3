@@ -25,14 +25,14 @@
                                     <constraint firstAttribute="height" constant="45" id="iH6-f3-byQ"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shop title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCR-Zu-csV" userLabel="Outlet title">
-                                <rect key="frame" x="61" y="16" width="71" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCR-Zu-csV" userLabel="Outlet title">
+                                <rect key="frame" x="61" y="16" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationPinGrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="zri-ly-21j" userLabel="local icon">
-                                <rect key="frame" x="56" y="34" width="20" height="25"/>
+                                <rect key="frame" x="56" y="16" width="20" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="7F1-CY-s5c"/>
                                     <constraint firstAttribute="height" constant="25" id="cPx-FN-QyL"/>
@@ -78,14 +78,14 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="VerifiedIconBlue.png" translatesAutoresizingMaskIntoConstraints="NO" id="NXJ-tU-sw8" userLabel="seeties shop icon">
-                                <rect key="frame" x="140" y="18" width="15" height="15"/>
+                                <rect key="frame" x="69" y="9" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="5Ia-ic-3d4"/>
                                     <constraint firstAttribute="width" constant="15" id="YM7-uK-2tY"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shop address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wj-9w-PtH" userLabel="outlet address">
-                                <rect key="frame" x="81" y="39" width="84" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wj-9w-PtH" userLabel="outlet address">
+                                <rect key="frame" x="81" y="21" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

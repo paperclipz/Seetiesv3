@@ -82,11 +82,11 @@
         
         if (self.cellType == PromoOutletCellTypeStatus) {
             if (self.shopModel.location.opening_hours.open_now) {
-                self.ibShopStatusLbl.text = LocalisedString(@"OPEN");
+                self.ibShopStatusLbl.text = LocalisedString(@"Open");
                 self.ibShopStatusLbl.backgroundColor = [UIColor colorWithRed:122/255.0f green:210/255.0f blue:26/255.0f alpha:1];
             }
             else{
-                self.ibShopStatusLbl.text = LocalisedString(@"CLOSED");
+                self.ibShopStatusLbl.text = LocalisedString(@"Closed");
                 self.ibShopStatusLbl.backgroundColor = [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1];
             }
         }

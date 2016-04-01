@@ -51,12 +51,12 @@
         
         constLblDiscountLeading.constant = 90;
         
-        if ([self.dealModel.deal_type isEqualToString:@"discount"]) {
+        if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT]) {
             
-            self.lblDiscount.text = [NSString stringWithFormat:@"%@ %% OFF",self.dealModel.discount_percentage];
+            self.lblDiscount.text = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage}];
             self.lblDiscount.backgroundColor = SELECTED_GREEN;
         }
-        else if([self.dealModel.deal_type isEqualToString:@"free"])
+        else if([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE])
         {
             self.lblDiscount.text = LocalisedString(@"FREE");
             
@@ -64,15 +64,15 @@
 
             
         }
-        else if([self.dealModel.deal_type isEqualToString:@"package"])
+        else if([self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE])
         {
-            self.lblDiscount.text = [NSString stringWithFormat:@"%@ %% OFF",self.dealModel.discount_percentage];
+            self.lblDiscount.text = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage}];
             self.lblDiscount.backgroundColor = SELECTED_GREEN;
 
         }
         
         else{
-            self.lblDiscount.text = [NSString stringWithFormat:@"%@ %% OFF",self.dealModel.discount_percentage];
+            self.lblDiscount.text = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage}];
             self.lblDiscount.backgroundColor = SELECTED_GREEN;
 
         }

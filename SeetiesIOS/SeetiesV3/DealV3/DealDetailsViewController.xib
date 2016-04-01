@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DealDetailsViewController">
@@ -52,8 +52,9 @@
                 <outlet property="ibMainContentView" destination="CQm-43-dC2" id="zxt-72-e41"/>
                 <outlet property="ibNearbyShopCollection" destination="Rdq-yf-iuG" id="vhK-H9-jn9"/>
                 <outlet property="ibNearbyShopContentView" destination="h3B-5k-J9N" id="gFG-gZ-Ect"/>
+                <outlet property="ibNearbyShopHeaderView" destination="Oai-qc-YQR" id="Cvg-K6-SzF"/>
                 <outlet property="ibNearbyShopSeeMoreBtn" destination="McU-Nk-qHg" id="CIz-nq-Tdw"/>
-                <outlet property="ibNearbyShopTitle" destination="Oai-qc-YQR" id="K21-bY-ivr"/>
+                <outlet property="ibNearbyShopTitle" destination="x6p-hm-yLr" id="MxD-WU-9pe"/>
                 <outlet property="ibNearbyShopView" destination="B0e-U4-BAx" id="JG9-FK-fvy"/>
                 <outlet property="ibRedemptionContentViewHeightConstraint" destination="xeQ-XY-Obg" id="PTa-tg-2G6"/>
                 <outlet property="ibReportContentView" destination="AEG-Sl-3TJ" id="vcf-XX-fxJ"/>
@@ -429,8 +430,8 @@
                                 </mask>
                             </variation>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjv-x5-GSR">
-                            <rect key="frame" x="16" y="146" width="27" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjv-x5-GSR">
+                            <rect key="frame" x="16" y="146" width="0.0" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="a1S-UW-nck"/>
                             </constraints>

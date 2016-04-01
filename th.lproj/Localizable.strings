@@ -1257,8 +1257,8 @@
 "" = "";
 "" = "";
 "Enter Verification Code" = "พิมพ์รหัสยืนยัน ";
-"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "โปรดพิมพ์รหัสยืนยัน 7 ตัว ส่งไปที่ {!contact number} รหัสยืนยันมีอายุนาน 30 นาที ";
-"Enter 7-digit verification code" = "พิมพ์รหัสยืนยัน 7 ตัว ";
+"Please enter the 6-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "โปรดพิมพ์รหัสยืนยัน 6 ตัว ส่งไปที่ {!contact number} รหัสยืนยันมีอายุนาน 30 นาที ";
+"Enter 6-digit verification code" = "พิมพ์รหัสยืนยัน 6 ตัว ";
 "" = "";
 "Resend Code" = "ขอรหัสยืนยันอีกครั้ง ";
 "Confirm" = "คอนเฟิร์ม ";
