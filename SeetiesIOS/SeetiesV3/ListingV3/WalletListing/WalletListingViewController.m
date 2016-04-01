@@ -356,7 +356,19 @@
 
 - (IBAction)emptyBtnClicked:(id)sender {
     self.voucherListingViewController = nil;
-//    [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel filterCurrency:self.homeModel.filter_currency quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+    HomeModel *homeModel = [[DataManager Instance] homeModel];
+    NSDictionary *locationDict = [Utils getSavedUserLocation];
+    HomeLocationModel *locationModel = [[HomeLocationModel alloc] init];
+    @try {
+        locationModel.latitude = locationDict[KEY_LATITUDE];
+        locationModel.longtitude = locationDict[KEY_LONGTITUDE];
+        locationModel.place_id = locationDict[KEY_PLACE_ID];
+        locationModel.locationName = locationDict[KEY_LOCATION];
+    } @catch (NSException *exception) {
+        SLog(@"Wallet location exception: %@", exception);
+    }
+    
+    [self.voucherListingViewController initWithLocation:locationModel filterCurrency:homeModel.filter_currency quickBrowseModel:[homeModel.quick_browse mutableCopy]];
     [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
     }];
 }
