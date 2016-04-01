@@ -285,7 +285,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [UIAlertView showWithTitle:LocalisedString(@"Remove Voucher") message:LocalisedString(@"Are you sure you want to delete this voucher?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"Delete Voucher") message:LocalisedString(@"Are you sure you want to delete this voucher?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
                 DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
@@ -356,7 +356,19 @@
 
 - (IBAction)emptyBtnClicked:(id)sender {
     self.voucherListingViewController = nil;
-//    [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel filterCurrency:self.homeModel.filter_currency quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+    HomeModel *homeModel = [[DataManager Instance] homeModel];
+    NSDictionary *locationDict = [Utils getSavedUserLocation];
+    HomeLocationModel *locationModel = [[HomeLocationModel alloc] init];
+    @try {
+        locationModel.latitude = locationDict[KEY_LATITUDE];
+        locationModel.longtitude = locationDict[KEY_LONGTITUDE];
+        locationModel.place_id = locationDict[KEY_PLACE_ID];
+        locationModel.locationName = locationDict[KEY_LOCATION];
+    } @catch (NSException *exception) {
+        SLog(@"Wallet location exception: %@", exception);
+    }
+    
+    [self.voucherListingViewController initWithLocation:locationModel filterCurrency:homeModel.filter_currency quickBrowseModel:[homeModel.quick_browse mutableCopy]];
     [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
     }];
 }

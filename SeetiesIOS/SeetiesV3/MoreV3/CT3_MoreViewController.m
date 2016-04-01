@@ -125,11 +125,12 @@
     
     NSString* text = temArray[indexPath.row];
     
-    if ([text isEqualToString:@"Verify Phone Number"]) {
+    if ([text isEqualToString:@"Verify your phone number"]) {
         
         if ([self isUserPhoneNumberVerified]) {
             
-            cell.lblTitle.text = LocalisedString(@"Verified");
+            ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
+            cell.lblTitle.text = [LanguageManager stringForKey:@"Phone Number = {!phone number}" withPlaceHolder:@{@"{!phone number}": profileModel.contact_no}];
             
             @try {
                 cell.ibImageView.image = [self getIconImage:@"Verified"];
@@ -222,7 +223,7 @@
             
             SWITCH(text){
             
-                CASE (@"Verify Phone Number"){
+                CASE (@"Verify your phone number"){
                     
                     
                     if ([self isUserPhoneNumberVerified]) {
@@ -258,7 +259,7 @@
                     break;
                 }
                 
-                CASE (@"About")
+                CASE (@"About Seeties")
                 {
                     _ctWebViewController = nil;
                     [self.navigationController pushViewController:self.ctWebViewController animated:YES onCompletion:^{
@@ -270,7 +271,7 @@
                     
                     
                 }
-                CASE (@"Feedback")
+                CASE (@"Send Feedback")
                 {
                     
                     [self.navigationController pushViewController:self.feedbackViewController animated:YES];
@@ -397,8 +398,8 @@
         
         if (![Utils isGuestMode]) {
             NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify Phone Number",@"Account Settings",@"Tour Seeties App", @"Rate Us",@"About",@"Feedback", nil];
-            NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify your phone number",@"Account Settings",@"Tour Seeties App", @"Rate Us",@"About Seeties",@"Send Feedback", nil];
+            NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Log out", nil];
             _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
 
         }
@@ -442,7 +443,7 @@
 -(void)logout
 {
     
-    [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to leave") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+    [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to sign out of Seeties?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Maybe not..") otherButtonTitles:@[@"Yeah!!"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
         
         if (buttonIndex == 0) {
             
@@ -513,7 +514,7 @@
             break;
         }
        
-        CASE(@"Verify Phone Number")
+        CASE(@"Verify your phone number")
         {
             imageName = @"MoreVerifyPhoneNumberIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
@@ -538,7 +539,7 @@
             break;
         }
        
-        CASE(@"About")
+        CASE(@"About Seeties")
         {
             imageName = @"MoreAboutIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
@@ -546,7 +547,7 @@
             break;
         }
         
-        CASE(@"Feedback")
+        CASE(@"Send Feedback")
         {
             imageName = @"MoreFeedbackIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
@@ -569,7 +570,7 @@
             return image;
             break;
         }
-        CASE(@"Sign out")
+        CASE(@"Log out")
         {
             imageName = @"MoreLogoutIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];

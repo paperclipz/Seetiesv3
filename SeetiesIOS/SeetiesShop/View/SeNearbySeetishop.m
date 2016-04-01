@@ -91,6 +91,7 @@
         ShowUserProfileImage.layer.masksToBounds = YES;
         ShowUserProfileImage.layer.borderWidth = 1.0f;
         ShowUserProfileImage.layer.borderColor = OUTLINE_COLOR.CGColor;
+        ShowUserProfileImage.contentMode = UIViewContentModeCenter;
         
 //        if (![shopModel.arrPhotos isNull])
 //        {

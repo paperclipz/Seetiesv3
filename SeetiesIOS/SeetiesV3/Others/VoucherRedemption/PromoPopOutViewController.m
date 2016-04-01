@@ -279,8 +279,7 @@
                     else{
                         [dealTitles appendFormat:@"\n"];
                     }
-                    
-                    [dealTitles appendString:deal.title];
+                    [dealTitles appendFormat:@"\u2022 %@", deal.title];
                 }
                 
                 float fontSize = 15.0f;
