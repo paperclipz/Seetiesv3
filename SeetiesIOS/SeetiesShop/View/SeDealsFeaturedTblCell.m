@@ -28,7 +28,7 @@
     
     [self.ibImageView setStandardBorder];
     
-    self.lblFeatured.text = LocalisedString(@"Value");
+    self.lblFeatured.text = LocalisedString(@"FEATURED");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

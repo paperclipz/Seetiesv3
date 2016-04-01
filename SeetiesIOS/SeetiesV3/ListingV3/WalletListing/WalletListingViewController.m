@@ -285,7 +285,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [UIAlertView showWithTitle:LocalisedString(@"Remove Voucher") message:LocalisedString(@"Are you sure you want to delete this voucher?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"Delete Voucher") message:LocalisedString(@"Are you sure you want to delete this voucher?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
                 DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];

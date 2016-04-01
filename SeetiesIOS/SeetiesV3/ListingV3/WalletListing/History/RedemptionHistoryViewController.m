@@ -163,7 +163,7 @@
 #pragma mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([Utils isArrayNull:self.voucherArray]) {
-        self.ibEmptyStateDesc.text = LocalisedString(@"Oops... No redemption history yet");
+        self.ibEmptyStateDesc.text = LocalisedString(@"You've got no redemption history yet. Start one now!");
         self.ibHistoryTable.backgroundView = self.ibEmptyStateView;
         self.view.backgroundColor = [UIColor whiteColor];
         return 0;
