@@ -93,38 +93,39 @@
 {
     
         [UIView animateWithDuration:1.0
-                         animations: ^{ [self.ibCollectionView reloadData]; }
-                         completion:^(BOOL finished) {
-                             
+                         animations: ^{
+                         
                              if (self.arrDeals.count>0) {
                                  int counter;
                                  if (isNeedShowCoverPhoto) {
-                                     counter = imageIndex % self.arrDeals.count;
-
+                                     counter = imageIndex % (self.arrDeals.count + 1);
+                                     
                                  }
                                  else{
-                                     counter = imageIndex % self.arrDeals.count-1;
-
+                                     counter = imageIndex % self.arrDeals.count;
+                                     
                                  }
                                  
                                  CGRect frame = self.ibCollectionView.frame;
                                  frame.origin.x = frame.size.width * counter;
                                  frame.origin.y = 0;
                                  [self.ibCollectionView scrollRectToVisible:frame animated:YES];
-                                
-//                                 NSIndexPath *iPath = [NSIndexPath indexPathForItem:counter inSection:0];
-//                                 [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-//                                 
-//                                 if (counter == 0) {
-//                                     [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-//                                 }
-//                                 else{
-//                                     [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-//                                     
-//                                     
-//                                 }
+                                 
+                                 //                                 NSIndexPath *iPath = [NSIndexPath indexPathForItem:counter inSection:0];
+                                 //                                 [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+                                 //
+                                 //                                 if (counter == 0) {
+                                 //                                     [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+                                 //                                 }
+                                 //                                 else{
+                                 //                                     [self.ibCollectionView scrollToItemAtIndexPath:iPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+                                 //                                     
+                                 //                                     
+                                 //                                 }
                                  imageIndex ++;
                              }
+                         }
+                         completion:^(BOOL finished) {
                              
                          }];
    
@@ -154,14 +155,13 @@
     
     PhotoCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCVCell" forIndexPath:indexPath];
     
-    DealModel* model = self.arrDeals[indexPath.row];
-    
     if (isNeedShowCoverPhoto && indexPath.row == 0) {
         
         [cell initCoverTitle:self.homeModel.featured_title CoverImage:self.homeModel.featured_image];
         
     }else{
-        
+        DealModel* model = self.arrDeals[indexPath.row - 1];
+
         [cell initData:model];
 
     }
