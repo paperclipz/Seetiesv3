@@ -15,6 +15,7 @@ typedef void (^DidSelectShopBlock)(SeShopDetailModel* model);
 typedef void (^DealBlock)(DealModel* model);
 
 @interface SearchLTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 
 @property(nonatomic,copy)DidSelectIDBlock didSelectUserRowBlock;
 @property(nonatomic,copy)DidSelectIDBlock didSelectPostsRowBlock;
@@ -22,6 +23,7 @@ typedef void (^DealBlock)(DealModel* model);
 @property(nonatomic,copy)DidSelectCollectionBlock didSelectDisplayCollectionRowBlock;
 @property(nonatomic,copy)DidSelectCollectionBlock didSelectEditDisplayCollectionRowBlock;
 @property(nonatomic,copy)DealBlock didSelectDealBlock;
+@property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
 
 @property(nonatomic,copy)DidSelectDraftBlock didSelectCollectionOpenViewBlock;
 @property(nonatomic,assign)SearchListingType searchListingType;

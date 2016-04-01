@@ -88,7 +88,7 @@
 @property(nonatomic,copy)NSArray* arrListTranslated;
 @property(nonatomic,copy)NSArray* arrListNonTranslated;
 
-@property(nonatomic,copy)DealsModel* dealsModel;
+@property(nonatomic)DealsModel* dealsModel;
 
 @end
 
@@ -404,11 +404,12 @@
     if (self.ibTableView == tableView) {
       return self.arrayList.count;
     }
-    else
+    else if(self.ibDealTableView == tableView)
     {
         return self.dealsModel.arrDeals.count;
 
     }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

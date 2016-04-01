@@ -31,7 +31,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
 
-@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIView *FilterView;
 
 @property(nonatomic,strong)ProfilePostModel* userProfilePostModel;
