@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SelectImageViewController.h"
 #import "AssetHelper.h"
-
 #import "DoImagePickerController.h"
-#import "WhereIsThisViewController.h"
 #import "EditPhotoViewController.h"
 #import "EditPostViewController.h"
 #import "STSearchViewController.h"
@@ -21,19 +18,13 @@
 
 @interface RecommendationViewController : BaseViewController<DoImagePickerControllerDelegate>
 
-@property(nonatomic,strong)SelectImageViewController* assetPickerViewController;
 @property(nonatomic,strong)UINavigationController* navRecommendationViewController;
 
 @property(nonatomic,strong)STSearchViewController* stSearchViewController;
 @property(nonatomic,strong)DoImagePickerController* doImagePickerController;
-
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property(nonatomic,strong)UINavigationController* navEditPostViewController;
-
-
 @property(nonatomic,strong)AddNewPlaceViewController* addNewPlaceViewController;
-
-
 @property(nonatomic,strong)DraftViewController* draftViewController;
 
 @property(nonatomic,copy)IDBlock backBlock;

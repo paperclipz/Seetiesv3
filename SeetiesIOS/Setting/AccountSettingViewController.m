@@ -15,7 +15,6 @@
 #import "ExploreViewController.h"
 #import "Explore2ViewController.h"
 #import "NotificationViewController.h"
-#import "SelectImageViewController.h"
 #import "FeedV2ViewController.h"
 
 #import "LanguageManager.h"

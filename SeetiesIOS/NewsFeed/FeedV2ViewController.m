@@ -7,7 +7,6 @@
 //
 
 #import "FeedV2ViewController.h"
-#import "SelectImageViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 
