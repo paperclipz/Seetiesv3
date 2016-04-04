@@ -376,16 +376,8 @@
 
         }
             break;
-        case 1:
-        {
-         
-            [self showQrRecommendationView];
-         
-        }
-
-            break;
             
-        case 2:
+        case 1:
         {
             
             [self.addNewPlaceViewController initData:self.postModel];
@@ -398,7 +390,7 @@
             
         }
             break;
-        case 3:
+        case 2:
             
             [self requestToSaveDraftOrPublish:YES];
             break;
@@ -655,9 +647,7 @@
 //button done
 -(void)buttonDoneAction
 {
-    
-    SLog(@"buttonDoneAction");
-    if (self.navigationController) {
+        if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
     }
     
@@ -665,6 +655,8 @@
     
     if (_editPostDoneBlock) {
         self.editPostDoneBlock(self);
+        
+        [Utils reloadHomeView:1];
     }
 }
 

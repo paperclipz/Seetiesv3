@@ -16,6 +16,7 @@
 @property(nonatomic,assign)BOOL needShowIntroView;
 
 
+-(void)reloadNewsFeed;
 
 -(void)scrollToTop:(BOOL)animation;
 

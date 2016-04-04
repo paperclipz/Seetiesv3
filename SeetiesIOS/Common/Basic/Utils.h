@@ -114,8 +114,11 @@ typedef enum {
 +(BOOL)isGuestMode;
 +(BOOL)checkUserIsLogin;//new check user login using token
 +(void)setLogout;
+
 +(void)reloadAppView;
 +(void)reloadProfileView;
++(void)reloadHomeView:(int)type;
+
 +(void)setParseToken:(NSData*)data;
 +(void)registerParseAfterLogin:(NSString*)userID;
 +(BOOL)isPhoneNumberVerified;

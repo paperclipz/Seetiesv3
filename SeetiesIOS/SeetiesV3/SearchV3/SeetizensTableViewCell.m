@@ -49,12 +49,16 @@
 -(void)initData:(UserModel*)model{
     
     
+    self.ibImageUserProfile.image = [Utils getProfilePlaceHolderImage];
     @try {
         self.lblUserName.text = model.username;
         
         
         if (![Utils isStringNull:model.profile_photo]) {
             [self.ibImageUserProfile sd_setImageCroppedWithURL:[NSURL URLWithString:model.profile_photo] withPlaceHolder:[UIImage imageNamed:@"DefaultProfilePic.png"] completed:nil];
+        }
+        else{
+        
         }
         
         self.lblLocation.text = model.location;
@@ -66,6 +70,13 @@
     
     [self setFollowButtonSelected:model.following button:self.btnFollow];
     
+    if ([[Utils getUserID]isEqualToString:model.userUID]) {
+        self.btnFollow.hidden = YES;
+    }
+    else{
+        self.btnFollow.hidden = NO;
+
+    }
     
 
 }

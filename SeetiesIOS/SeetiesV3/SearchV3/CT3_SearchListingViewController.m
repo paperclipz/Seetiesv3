@@ -114,17 +114,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidLayoutSubviews
-{
-    self.shopListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-    self.collectionListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-    self.PostsListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-    self.SeetizensListingTableViewController.view.frame = CGRectMake(0, 0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-
-}
+//- (void)viewDidLayoutSubviews
+//{
+//    
+//    self.shopListingTableViewController.view.frame = CGRectMake(self.shopListingTableViewController.view.frame.origin.x, self.shopListingTableViewController.view.frame.origin.y, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+//    self.collectionListingTableViewController.view.frame = CGRectMake(self.collectionListingTableViewController.view.frame.origin.x, self.collectionListingTableViewController.view.frame.origin.y, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+//    self.PostsListingTableViewController.view.frame = CGRectMake(self.PostsListingTableViewController.view.frame.origin.x, self.PostsListingTableViewController.view.frame.origin.x, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+//    self.SeetizensListingTableViewController.view.frame = CGRectMake(self.SeetizensListingTableViewController.view.frame.origin.x, self.SeetizensListingTableViewController.view.frame.origin.x, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+//
+//}
 
 -(void)InitSelfView{
-    //self.ibScrollView.contentSize = CGSizeMake(850, 50);
 
     [self.ibContentView adjustToScreenWidth];
     [self.ibContentView addSubview:self.cAPSPageMenu.view];
@@ -788,8 +788,10 @@
         _PostsListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)
         {
             _profileViewController = nil;
-            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
-            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES onCompletion:^{
+                [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+
+            }];
             
         };
         _PostsListingTableViewController.didSelectCollectionOpenViewBlock = ^(DraftModel* model)
@@ -819,8 +821,11 @@
         _SeetizensListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)
         {
             _profileViewController = nil;
-            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
-            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES onCompletion:^{
+                
+                [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+
+            }];
             
         };
     }

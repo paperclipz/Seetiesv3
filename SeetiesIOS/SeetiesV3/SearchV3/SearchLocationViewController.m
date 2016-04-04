@@ -280,17 +280,28 @@
     
     if (tableView == self.ibCountryTable) {
         
-        CountryModel* countryModel = self.arrCountries[indexPath.row];
-        self.currentSelectedCountry = countryModel;
-        selectedIndex = (int)indexPath.row;
         
-        if ([Utils isArrayNull:countryModel.arrArea]) {
-            [self requestServerForCountryPlaces:countryModel];
-        }
-        else{
-            [self.ibAreaTable reloadData];
-        }
+        if (![Utils isArrayNull:self.arrCountries]) {
+         
+            CountryModel* countryModel = self.arrCountries[indexPath.row];
+          
+            self.currentSelectedCountry = countryModel;
+            
+            selectedIndex = (int)indexPath.row;
+            
+            if ([Utils isArrayNull:countryModel.arrArea]) {
+                
+                if (self.currentSelectedCountry) {
+                    
+                    [self requestServerForCountryPlaces:self.currentSelectedCountry];
+                }
+            }
+            else{
+                [self.ibAreaTable reloadData];
+            }
 
+        }
+       
     }
     else if (tableView == self.ibAreaTable){
         SLog(@"Clicked: %ld,%ld", indexPath.section, indexPath.row);
@@ -614,7 +625,11 @@
             
             if(![Utils isStringNull:self.currentSelectedCountry.paging.next])
             {
-                [self requestServerForCountryPlaces:self.currentSelectedCountry];
+                
+                if (self.currentSelectedCountry) {
+                    [self requestServerForCountryPlaces:self.currentSelectedCountry];
+
+                }
             }
         }
 
