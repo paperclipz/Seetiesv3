@@ -12,9 +12,7 @@
 #import "SettingsViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "FullImageViewController.h"
-#import "RecommendV2ViewController.h"
 #import "FeedV2DetailViewController.h"
-#import "SelectImageViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "NSString+ChangeAsciiString.h"
@@ -2676,9 +2674,9 @@ NSLog(@"Init Draft click");
         [defaults setObject:GetCategoryID forKey:@"PublishV2_Category"];
         [defaults synchronize];
         
-        RecommendV2ViewController *ShowImageView = [[RecommendV2ViewController alloc]init];
-        [self presentViewController:ShowImageView animated:YES completion:nil];
-        [ShowImageView GetIsupdatePost:@"YES" GetPostID:[DraftData_IDArray objectAtIndex:getbuttonIDN]];
+       // RecommendV2ViewController *ShowImageView = [[RecommendV2ViewController alloc]init];
+      //  [self presentViewController:ShowImageView animated:YES completion:nil];
+        //[ShowImageView GetIsupdatePost:@"YES" GetPostID:[DraftData_IDArray objectAtIndex:getbuttonIDN]];
     }
 
     

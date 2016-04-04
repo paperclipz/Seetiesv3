@@ -539,7 +539,7 @@
     cModel.limit = aModel.limit;
     cModel.total_count = aModel.total_count;
     
-    if ([Utils isArrayNull:cModel.arrArea]) {
+    if ([Utils isArrayNull:cModel.arrArea] && ![Utils isArrayNull:aModel.result]) {
         [cModel.arrArea addObjectsFromArray:aModel.result];
         return;
     }

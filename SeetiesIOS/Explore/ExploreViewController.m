@@ -5,7 +5,6 @@
 //  Created by Chong Chee Yong on 11/11/14.
 //  Copyright (c) 2014 Ahyong87. All rights reserved.
 //
-
 #import "ExploreViewController.h"
 #import "AsyncImageView.h"
 #import "SearchViewController.h"
@@ -17,7 +16,6 @@
 
 #import "SearchViewV2.h"
 #import "ExploreCountryV2ViewController.h"
-#import "SelectImageViewController.h"
 #import "OpenWebViewController.h"
 #import "LLARingSpinnerView.h"
 #import "NSAttributedString+DVSTracking.h"

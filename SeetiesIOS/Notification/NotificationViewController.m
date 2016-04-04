@@ -10,7 +10,6 @@
 #import "AsyncImageView.h"
 //#import "NewUserProfileV2ViewController.h"
 #import "FeedV2DetailViewController.h"
-#import "SelectImageViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 
