@@ -342,10 +342,13 @@
 
     if ([uID isEqualToString:[Utils getUserID]]) {
         
+        self.profileViewType = ProfileViewTypeOwn;
         self.btnFollow.hidden = YES;
         self.btnEditProfile.hidden = NO;
     }
     else{
+        self.profileViewType = ProfileViewTypeOthers;
+
         self.btnEditProfile.hidden = YES;
         followButtonConstraint.constant = 8.0f;
         self.btnFollow.hidden = NO;

@@ -63,7 +63,7 @@
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="GY0-TL-oDx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="8Z3-xj-8IC"/>
                 <constraint firstItem="GY0-TL-oDx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="INq-kf-Id1"/>

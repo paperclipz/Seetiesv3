@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="ProximaNovaSoft-Regular.ttf">
@@ -98,19 +98,6 @@
                                 <outlet property="delegate" destination="-1" id="usY-7Z-mrc"/>
                             </connections>
                         </scrollView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkk-Lg-epB">
-                            <rect key="frame" x="53" y="89" width="110" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="110" id="mpA-DI-oII"/>
-                                <constraint firstAttribute="height" constant="30" id="x02-ui-AvB"/>
-                            </constraints>
-                            <state key="normal" title="... Follower">
-                                <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="btnFollowerClicked:" destination="-1" eventType="touchUpInside" id="B6m-06-rfZ"/>
-                            </connections>
-                        </button>
                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="FollowerNumber.png" translatesAutoresizingMaskIntoConstraints="NO" id="kzZ-ZA-GD0">
                             <rect key="frame" x="17" y="91" width="25" height="25"/>
                             <constraints>
@@ -170,6 +157,19 @@
                             </state>
                             <connections>
                                 <action selector="btnEditProfileClicked:" destination="-1" eventType="touchUpInside" id="0ti-GC-4qH"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkk-Lg-epB">
+                            <rect key="frame" x="53" y="89" width="110" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="mpA-DI-oII"/>
+                                <constraint firstAttribute="height" constant="30" id="x02-ui-AvB"/>
+                            </constraints>
+                            <state key="normal" title="... Follower">
+                                <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnFollowerClicked:" destination="-1" eventType="touchUpInside" id="B6m-06-rfZ"/>
                             </connections>
                         </button>
                     </subviews>

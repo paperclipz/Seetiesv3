@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIView *ibPasswordContentView;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 @property (weak, nonatomic) IBOutlet UIButton *btnForgetPassword;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @end
 
 @implementation LoginPageViewController
@@ -38,9 +37,21 @@
     }
 }
 
+-(void)refreshView
+{
+    self.lblUserName.text = @"";
+    self.lblPassword.text = @"";
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self refreshView];
 }
 
 -(BOOL)validate

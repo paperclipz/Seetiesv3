@@ -73,6 +73,19 @@
     appdelegate.landingViewController.tabBarController.selectedIndex = 0;
 }
 
++(void)reloadHomeView:(int)type
+{
+
+    if (type == 1) {
+        
+        AppDelegate *appdelegate;
+        
+        appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appdelegate.landingViewController.newsFeedViewController reloadNewsFeed];
+        
+    }
+}
+
 +(void)reloadProfileView
 {
     AppDelegate *appdelegate;

@@ -89,6 +89,13 @@
 
     
 }
+
+-(void)reloadHomeView
+{
+    [self.newsFeedViewController reloadData];
+
+}
+
 -(void)initSelfView
 {
    // [self.view addSubview:self.leveyTabBarController.view];

@@ -98,7 +98,14 @@
         self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%d %@",collectionDetailTotal_posts,LocalisedString(@"Recommendations")];
         
         self.btnDone.hidden = NO;
-        self.btnDeleteCollection.hidden = ![[Utils getUserID]isEqualToString:self.collectionModel.user_info.uid];
+
+        if (self.collectionModel.is_default) {
+            self.btnDeleteCollection.hidden = YES;
+        }
+        else{
+            self.btnDeleteCollection.hidden = ![[Utils getUserID]isEqualToString:self.collectionModel.user_info.uid];
+
+        }
         
     } completion:nil];
 }
