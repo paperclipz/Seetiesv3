@@ -63,7 +63,6 @@
     
     self.isLoading = NO;
     self.isCollecting = NO;
-    [self.dealManager removeAllCollectedDeals];
     [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
     
     self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
@@ -77,6 +76,7 @@
     }
     
     switch (self.dealViewType) {
+        //Shop deals listing
         case 1:
             self.ibAltTitle.text = LocalisedString(@"Shop Deals");
             self.ibAltTitle.hidden = NO;
@@ -88,25 +88,31 @@
             self.ibLocationBtn.enabled = NO;
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
+            [self.dealManager removeAllCollectedDeals];
             [LoadingManager show];
             [self requestServerForShopDeal];
             break;
-            
+        
+        //Collection deals listing
         case 2:
             if (self.dealCollectionModel) {
                 NSDictionary *collectionDict = self.dealCollectionModel.content[0];
                 self.ibTitle.text = collectionDict[@"title"];
             }
+            [self.dealManager removeAllCollectedDeals];
             [LoadingManager show];
             [self requestServerForDealListing];
             break;
-            
+        
+        //Featured deals listing
         case 3:
             self.ibTitle.text = LocalisedString(@"Deals of the day");
+            [self.dealManager removeAllCollectedDeals];
             [LoadingManager show];
             [self requestServerForSuperDealListing];
             break;
-            
+          
+        //Relevant deals listing
         case 4:
             self.ibAltTitle.text = LocalisedString(@"Relevant Deals");
             self.ibAltTitle.hidden = NO;
@@ -118,10 +124,12 @@
             self.ibLocationBtn.enabled = NO;
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
+            [self.dealManager removeAllCollectedDeals];
             [LoadingManager show];
             [self requestServerForDealRelevantDeals];
             break;
-            
+         
+        //Voucher listing from promo code
         case 5:
             self.ibAltTitle.text = LocalisedString(@"Vouchers");
             self.ibAltTitle.hidden = NO;
@@ -134,6 +142,7 @@
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
             self.ibFooterHeightConstraint.constant = 0;
+            self.ibVoucherTable.tableFooterView = nil;
             [self.ibVoucherTable reloadData];
             break;
             
