@@ -29,7 +29,7 @@
 {
     self.lblViewAll.textColor = [UIColor whiteColor];
     [self.lblViewAll setSideCurveBorder];
-    [self.lblTitle setFont:[UIFont fontWithName:@"olivier" size:17.0f]];
+    [self.lblTitle setFont:[UIFont fontWithName:@"olivier" size:25.0f]];
     [self.lblViewAllTwo setSideCurveBorder];
 
     
