@@ -17,8 +17,8 @@
 
 }
 @property(nonatomic,strong)NSMutableArray* arrSeetiesList;
-
 @property(nonatomic,strong)NSArray* nearbyVenues;
+
 @property(nonatomic,strong)SearchModel* searchModel;
 @property (weak, nonatomic) IBOutlet UITextField *txtSearch;
 @property (nonatomic,strong)GMSPlacesClient* placesClient;
@@ -508,6 +508,9 @@
 #pragma server request
 -(void)requestSearch
 {
+    
+    _arrSeetiesList = nil;
+    [self.seetiesSearchTableViewController.tableView reloadData];
     if (![self.txtSearch.text isEqualToString:@""]) {
         [self getGoogleSearchPlaces];
     }

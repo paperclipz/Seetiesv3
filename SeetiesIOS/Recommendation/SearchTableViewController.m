@@ -14,6 +14,11 @@
 
 @implementation SearchTableViewController
 
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    SLog(@"SearchTableViewController appear");
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

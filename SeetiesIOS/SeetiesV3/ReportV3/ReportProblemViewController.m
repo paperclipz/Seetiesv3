@@ -102,12 +102,15 @@
 
 -(void)initSelfView
 {
+    
     [Utils setRoundBorder:self.ibTxtView color:LINE_COLOR borderRadius:5.0f borderWidth:1.0f];
     
     [self changeViewType:1];
     switch (self.reportType) {
         case 1:
             
+            [Utils setRoundBorder:self.txtTwoDesc color:LINE_COLOR borderRadius:5.0f borderWidth:1.0f];
+
             self.lblTitle.text = LocalisedString(@"Report Shop");
 
             self.lblOneTitle.text = LocalisedString(@"Shop could not be found");

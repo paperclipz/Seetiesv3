@@ -68,6 +68,7 @@
     [self.navigationController pushViewController:self.signUpViewController animated:YES];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
