@@ -455,11 +455,6 @@ static NSCache* heightCache = nil;
 -(void)initSelfView
 {
     
-    [self.ibTableView addPullToRefreshWithActionHandler:^{
-    
-        [self reloadData];
-    }];
-    
     self.automaticallyAdjustsScrollViewInsets = NO;
     constTopScrollView.constant = TopBarHeight;
 
