@@ -133,7 +133,7 @@
     //Sort
     FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
     sortCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    sortCategory.categoryName = LocalisedString(@"Sort By");
+    sortCategory.categoryName = LocalisedString(@"Sort by");
     sortCategory.filterCategoryType = FilterTypeSort;
     
     FilterModel *latest = [[FilterModel alloc] init];
@@ -266,7 +266,7 @@
     //Sort
     FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
     sortCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    sortCategory.categoryName = LocalisedString(@"Sort By");
+    sortCategory.categoryName = LocalisedString(@"Sort by");
     sortCategory.filterCategoryType = FilterTypeSort;
     
     FilterModel *latest = [[FilterModel alloc] init];

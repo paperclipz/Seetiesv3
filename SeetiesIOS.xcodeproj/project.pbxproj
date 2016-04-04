@@ -239,8 +239,6 @@
 		8A4BEB1B1CAE379E00C2EDFD /* CollectIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE8581CAE379D00C2EDFD /* CollectIcon@3x.png */; };
 		8A4BEB1C1CAE379E00C2EDFD /* RedeemIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE8591CAE379D00C2EDFD /* RedeemIcon@2x.png */; };
 		8A4BEB1D1CAE379E00C2EDFD /* RedeemIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE85A1CAE379D00C2EDFD /* RedeemIcon@3x.png */; };
-		8A4BEB1E1CAE379E00C2EDFD /* DealRedeemCardDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE85C1CAE379D00C2EDFD /* DealRedeemCardDown.png */; };
-		8A4BEB1F1CAE379E00C2EDFD /* DealRedeemCardUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE85D1CAE379D00C2EDFD /* DealRedeemCardUp.png */; };
 		8A4BEB201CAE379E00C2EDFD /* DealsCollectIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE85E1CAE379D00C2EDFD /* DealsCollectIcon@2x.png */; };
 		8A4BEB211CAE379E00C2EDFD /* DealsCollectIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE85F1CAE379D00C2EDFD /* DealsCollectIcon@3x.png */; };
 		8A4BEB221CAE379E00C2EDFD /* DealsExpiredIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE8601CAE379D00C2EDFD /* DealsExpiredIcon@2x.png */; };
@@ -965,8 +963,6 @@
 		8A84C5D21C7FF448006A0D76 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2A71C7FF447006A0D76 /* 3.png */; };
 		8A84C5D41C7FF448006A0D76 /* Caret@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2A91C7FF447006A0D76 /* Caret@2x.png */; };
 		8A84C5D51C7FF448006A0D76 /* Caret@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AA1C7FF447006A0D76 /* Caret@3x.png */; };
-		8A84C5D71C7FF448006A0D76 /* DealRedeemCardDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AC1C7FF447006A0D76 /* DealRedeemCardDown.png */; };
-		8A84C5D81C7FF448006A0D76 /* DealRedeemCardUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AD1C7FF447006A0D76 /* DealRedeemCardUp.png */; };
 		8A84C5DA1C7FF448006A0D76 /* LoginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AF1C7FF447006A0D76 /* LoginBackground.png */; };
 		8A84C5DB1C7FF448006A0D76 /* LongSearchBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B01C7FF447006A0D76 /* LongSearchBar@2x.png */; };
 		8A84C5DC1C7FF448006A0D76 /* LowerCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B11C7FF447006A0D76 /* LowerCard.png */; };
@@ -1454,6 +1450,8 @@
 		C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoPopOutViewController.m */; };
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
+		C738490C1CAEA12E004D4C96 /* DealRedeemCardDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE85C1CAE379D00C2EDFD /* DealRedeemCardDown.png */; };
+		C738490D1CAEA12E004D4C96 /* DealRedeemCardUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BE85D1CAE379D00C2EDFD /* DealRedeemCardUp.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2632,8 +2630,6 @@
 		8A84C2A71C7FF447006A0D76 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		8A84C2A91C7FF447006A0D76 /* Caret@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Caret@2x.png"; sourceTree = "<group>"; };
 		8A84C2AA1C7FF447006A0D76 /* Caret@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Caret@3x.png"; sourceTree = "<group>"; };
-		8A84C2AC1C7FF447006A0D76 /* DealRedeemCardDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DealRedeemCardDown.png; sourceTree = "<group>"; };
-		8A84C2AD1C7FF447006A0D76 /* DealRedeemCardUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DealRedeemCardUp.png; sourceTree = "<group>"; };
 		8A84C2AF1C7FF447006A0D76 /* LoginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBackground.png; sourceTree = "<group>"; };
 		8A84C2B01C7FF447006A0D76 /* LongSearchBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LongSearchBar@2x.png"; sourceTree = "<group>"; };
 		8A84C2B11C7FF447006A0D76 /* LowerCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LowerCard.png; sourceTree = "<group>"; };
@@ -5615,8 +5611,6 @@
 				8A84C2A71C7FF447006A0D76 /* 3.png */,
 				8A84C2A91C7FF447006A0D76 /* Caret@2x.png */,
 				8A84C2AA1C7FF447006A0D76 /* Caret@3x.png */,
-				8A84C2AC1C7FF447006A0D76 /* DealRedeemCardDown.png */,
-				8A84C2AD1C7FF447006A0D76 /* DealRedeemCardUp.png */,
 				8A84C2AF1C7FF447006A0D76 /* LoginBackground.png */,
 				8A84C2B01C7FF447006A0D76 /* LongSearchBar@2x.png */,
 				8A84C2B11C7FF447006A0D76 /* LowerCard.png */,
@@ -7380,6 +7374,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C738490C1CAEA12E004D4C96 /* DealRedeemCardDown.png in Resources */,
+				C738490D1CAEA12E004D4C96 /* DealRedeemCardUp.png in Resources */,
 				8AFF09361C92802400918582 /* olivier_demo.ttf in Resources */,
 				8A4BEC6D1CAE379E00C2EDFD /* EditPostOverlay@2x.png in Resources */,
 				8A7CEEC31C33E924005A3515 /* Main.storyboard in Resources */,
@@ -7402,7 +7398,6 @@
 				8A4BEBFB1CAE379E00C2EDFD /* ErrorIcon@2x.png in Resources */,
 				8A4BECEA1CAE379E00C2EDFD /* InstagramBtnInactive@3x.png in Resources */,
 				8A4BEC721CAE379E00C2EDFD /* SaveDraftBtn@3x.png in Resources */,
-				8A4BEB1E1CAE379E00C2EDFD /* DealRedeemCardDown.png in Resources */,
 				8A4BECA81CAE379E00C2EDFD /* CommentIcon@3x.png in Resources */,
 				8A4BEC6A1CAE379E00C2EDFD /* CategoriesCheck@3x.png in Resources */,
 				8A4BECA61CAE379E00C2EDFD /* CollectTraditonalChineseBtn@3x.png in Resources */,
@@ -7457,7 +7452,6 @@
 				8A4BEC641CAE379E00C2EDFD /* RearrangeIcon@3x.png in Resources */,
 				8A4BEC651CAE379E00C2EDFD /* AddLanguageBtn@2x.png in Resources */,
 				0BC8A0EB1C0D4CB000EB8548 /* SeCollectionView.xib in Resources */,
-				8A4BEB1F1CAE379E00C2EDFD /* DealRedeemCardUp.png in Resources */,
 				8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */,
 				C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */,
 				8A4BEC6C1CAE379E00C2EDFD /* CloseIcon@3x.png in Resources */,
@@ -7623,7 +7617,6 @@
 				8A4BED261CAE379E00C2EDFD /* ChangePlaceIcon@3x.png in Resources */,
 				8A3F35671BF5E89D002B704C /* SuggestedCollectionPostsViewController.xib in Resources */,
 				8A4BED281CAE379E00C2EDFD /* DirectionIcon@3x.png in Resources */,
-				8A84C5D71C7FF448006A0D76 /* DealRedeemCardDown.png in Resources */,
 				8A4BEB8A1CAE379E00C2EDFD /* MoreDraftsIcon@2x.png in Resources */,
 				8A4BEC1A1CAE379E00C2EDFD /* CheckGrey@3x.png in Resources */,
 				8A4BEBB61CAE379E00C2EDFD /* PopUpCloseBtn@3x.png in Resources */,
@@ -8245,7 +8238,6 @@
 				8A0035271C4E2F51002BD9A3 /* CTWebViewController.xib in Resources */,
 				8A4BEC091CAE379E00C2EDFD /* Icon-Small-40@2x.png in Resources */,
 				8AD6C0F71B706CF30040437E /* SearchDetailViewController.xib in Resources */,
-				8A84C5D81C7FF448006A0D76 /* DealRedeemCardUp.png in Resources */,
 				8AD6C0D71B706CF30040437E /* PSelectYourInterestViewController.xib in Resources */,
 				8A4BECBE1CAE379E00C2EDFD /* LocationInfoIcon@3x.png in Resources */,
 				8A4BED091CAE379E00C2EDFD /* SeetiesLogo@2x.png in Resources */,
