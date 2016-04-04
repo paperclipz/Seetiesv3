@@ -24,6 +24,12 @@
 @end
 
 @implementation IntroCoverView
+- (IBAction)btnSkipClicked:(id)sender {
+   
+    if (self.didEndClickedBlock) {
+        self.didEndClickedBlock();
+    }
+}
 - (IBAction)btnNextClicked:(id)sender {
     
 //    [UIView animateWithDuration:1.0f delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -67,9 +73,10 @@
 -(void)initSelfView
 {
     
+    [self.btnNext setSideCurveBorder];
     self.ibScrollView.delegate = self;
   
-    self.arrBackgroundHome = @[@"BgWalkHome1.jpg",@"BgWalkHome2.jpg",@"BgWalkHome3.jpg",@"BgWalkHome4.jpg",@"BgWalkHome5.jpg"];
+    self.arrBackgroundHome = @[@"BgWalkLanding.jpg",@"BgWalkHome1.jpg",@"BgWalkHome2.jpg",@"BgWalkHome3.jpg",@"BgWalkHome4.jpg",@"BgWalkHome5.jpg"];
     self.arrBackgroundWallet = @[@"BgWalkWallet1.jpg",@"BgWalkWallet2.jpg",@"BgWalkWallet3.jpg"];
 }
 

@@ -14,6 +14,8 @@
 
     int selectedIndex;
     BOOL isMiddleOfRequesting;
+    BOOL isMiddleOfRequestingCountry;
+
 }
 @property (weak, nonatomic) IBOutlet UILabel *lblAutoDetect;
 @property (weak, nonatomic) IBOutlet UITextField *ibSearchTxtField;
@@ -467,10 +469,16 @@
 
 -(void)requestServerForCountry
 {
+    
+    if (isMiddleOfRequestingCountry) {
+        return;
+    }
     NSDictionary* dict = @{@"language_code":ENGLISH_CODE};
     
+    isMiddleOfRequestingCountry = YES;
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeCountry param:dict appendString:nil completeHandler:^(id object) {
-        
+        isMiddleOfRequestingCountry = NO;
+
         self.countriesModel = [[ConnectionManager dataManager]countriesModel];
         [self.arrCountries addObjectsFromArray:self.countriesModel.countries];
         
@@ -519,7 +527,6 @@
                 [self.ibAreaTable reloadData];
             }
 
-
         }
         @catch (NSException *exception) {
             
@@ -527,7 +534,8 @@
         
         
     } errorBlock:^(id object) {
-        
+        isMiddleOfRequestingCountry = NO;
+
     }];
 }
 

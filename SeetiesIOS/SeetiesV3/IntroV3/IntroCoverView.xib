@@ -23,7 +23,7 @@
                     </connections>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AcB-nI-H3O">
-                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <rect key="frame" x="40" y="448" width="240" height="50"/>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="gJ7-Xf-ktg"/>
@@ -36,6 +36,24 @@
                         <action selector="btnNextClicked:" destination="Rsz-ww-wYt" eventType="touchUpInside" id="CIZ-TV-Rmd"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlI-WL-wvl">
+                    <rect key="frame" x="16" y="518" width="288" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="SLz-BI-0Vc"/>
+                        <constraint firstAttribute="height" constant="30" id="xGw-2t-lfE"/>
+                    </constraints>
+                    <state key="normal" title="Skip this">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="SLz-BI-0Vc"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="btnSkipClicked:" destination="Rsz-ww-wYt" eventType="touchUpInside" id="5tL-CS-SBm"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -43,31 +61,43 @@
                 <constraint firstAttribute="trailing" secondItem="xyf-mW-6EL" secondAttribute="trailing" id="GpZ-X9-aj2"/>
                 <constraint firstItem="iuP-M9-bsR" firstAttribute="top" secondItem="Rsz-ww-wYt" secondAttribute="top" id="KvM-Hm-Mme"/>
                 <constraint firstItem="xyf-mW-6EL" firstAttribute="leading" secondItem="Rsz-ww-wYt" secondAttribute="leading" id="Rwh-x5-y9R"/>
-                <constraint firstAttribute="bottom" secondItem="AcB-nI-H3O" secondAttribute="bottom" id="ehw-xv-Y8S"/>
+                <constraint firstAttribute="bottom" secondItem="AcB-nI-H3O" secondAttribute="bottom" constant="100" id="ehw-xv-Y8S"/>
+                <constraint firstItem="dlI-WL-wvl" firstAttribute="trailing" secondItem="xyf-mW-6EL" secondAttribute="trailing" constant="-16" id="fJv-wS-SVf"/>
                 <constraint firstAttribute="trailing" secondItem="iuP-M9-bsR" secondAttribute="trailing" id="gHJ-6Q-uls"/>
-                <constraint firstAttribute="trailing" secondItem="AcB-nI-H3O" secondAttribute="trailing" id="h4Q-qY-oiw"/>
+                <constraint firstAttribute="trailing" secondItem="AcB-nI-H3O" secondAttribute="trailing" constant="40" id="h4Q-qY-oiw"/>
                 <constraint firstAttribute="bottom" secondItem="xyf-mW-6EL" secondAttribute="bottom" id="i7i-jQ-rWh"/>
-                <constraint firstItem="AcB-nI-H3O" firstAttribute="leading" secondItem="Rsz-ww-wYt" secondAttribute="leading" id="jC1-29-qEJ"/>
+                <constraint firstItem="AcB-nI-H3O" firstAttribute="leading" secondItem="Rsz-ww-wYt" secondAttribute="leading" constant="40" id="jC1-29-qEJ"/>
                 <constraint firstItem="iuP-M9-bsR" firstAttribute="leading" secondItem="Rsz-ww-wYt" secondAttribute="leading" id="o1E-Zw-TPq"/>
+                <constraint firstItem="dlI-WL-wvl" firstAttribute="top" secondItem="xyf-mW-6EL" secondAttribute="bottom" constant="-299" id="qFQ-uT-mtO"/>
                 <constraint firstItem="xyf-mW-6EL" firstAttribute="top" secondItem="Rsz-ww-wYt" secondAttribute="top" id="tuq-ez-THq"/>
+                <constraint firstItem="dlI-WL-wvl" firstAttribute="top" secondItem="AcB-nI-H3O" secondAttribute="bottom" constant="20" id="vTy-wr-Y12"/>
+                <constraint firstItem="dlI-WL-wvl" firstAttribute="top" secondItem="xyf-mW-6EL" secondAttribute="bottom" constant="-50" id="vZB-IG-OFp"/>
+                <constraint firstItem="dlI-WL-wvl" firstAttribute="leading" secondItem="xyf-mW-6EL" secondAttribute="leading" constant="16" id="yR6-de-go7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ehw-xv-Y8S"/>
+                    <exclude reference="qFQ-uT-mtO"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="btnNext" destination="AcB-nI-H3O" id="vyF-ik-QWN"/>
                 <outlet property="ibContentView" destination="xyf-mW-6EL" id="hgw-MP-SnZ"/>
                 <outlet property="ibScrollView" destination="iuP-M9-bsR" id="mQl-26-TcF"/>
-                <outletCollection property="arrCoverHome" destination="Q5x-Z2-cwd" id="UbG-fS-y1b"/>
-                <outletCollection property="arrCoverHome" destination="JB7-ei-pkG" id="cUb-Ye-4c0"/>
-                <outletCollection property="arrCoverHome" destination="h2d-OP-bCz" id="8z2-7o-j4s"/>
-                <outletCollection property="arrCoverHome" destination="qwR-qg-kPU" id="qXh-e0-iE9"/>
-                <outletCollection property="arrCoverHome" destination="ToI-J9-iJE" id="xlq-gT-vcq"/>
                 <outletCollection property="arrCoverWallet" destination="yK9-ox-9Nw" id="7xr-zW-8Sj"/>
                 <outletCollection property="arrCoverWallet" destination="HdX-JK-LQU" id="gaf-wg-VtH"/>
                 <outletCollection property="arrCoverWallet" destination="iJM-7j-dzi" id="KtJ-h9-pFF"/>
+                <outletCollection property="arrCoverHome" destination="mXn-IL-yFc" id="Ywb-ub-GMY"/>
+                <outletCollection property="arrCoverHome" destination="Q5x-Z2-cwd" id="Q2P-4v-EBU"/>
+                <outletCollection property="arrCoverHome" destination="JB7-ei-pkG" id="ljz-RA-pyZ"/>
+                <outletCollection property="arrCoverHome" destination="h2d-OP-bCz" id="1Ho-zA-Hug"/>
+                <outletCollection property="arrCoverHome" destination="qwR-qg-kPU" id="xUH-wX-TZS"/>
+                <outletCollection property="arrCoverHome" destination="ToI-J9-iJE" id="okE-Jr-2lM"/>
             </connections>
-            <point key="canvasLocation" x="433" y="219"/>
+            <point key="canvasLocation" x="13" y="225"/>
         </view>
-        <view contentMode="scaleToFill" id="Q5x-Z2-cwd">
+        <view contentMode="scaleToFill" id="Q5x-Z2-cwd" userLabel="View1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -131,7 +161,7 @@
             </variation>
             <point key="canvasLocation" x="803" y="219"/>
         </view>
-        <view contentMode="scaleToFill" id="JB7-ei-pkG">
+        <view contentMode="scaleToFill" id="JB7-ei-pkG" userLabel="View2">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -197,7 +227,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="1186" y="219"/>
         </view>
-        <view contentMode="scaleToFill" id="h2d-OP-bCz">
+        <view contentMode="scaleToFill" id="h2d-OP-bCz" userLabel="View3">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -263,7 +293,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="1568" y="219"/>
         </view>
-        <view contentMode="scaleToFill" id="qwR-qg-kPU">
+        <view contentMode="scaleToFill" id="qwR-qg-kPU" userLabel="View4">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -455,7 +485,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher Usage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j95-to-Zct">
-                    <rect key="frame" x="167" y="292" width="137" height="21"/>
+                    <rect key="frame" x="177" y="292" width="127" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="h9Z-XE-jEe"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="oOG-Rj-clm"/>
@@ -470,14 +500,14 @@
                     </variation>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalkWallet3.png" translatesAutoresizingMaskIntoConstraints="NO" id="Uwx-35-cgY">
-                    <rect key="frame" x="90" y="252" width="80" height="100"/>
+                    <rect key="frame" x="100" y="252" width="80" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="MaV-ia-DQp"/>
                         <constraint firstAttribute="width" constant="80" id="hpQ-9I-yBu"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once you've collected a deal, be sure to redeem it before it expires. Don't let a good deal go to waste" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVZ-8q-Bet">
-                    <rect key="frame" x="167" y="323" width="137" height="51"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once you've collected a deal, be sure to redeem it before it expires. Don't let a good deal go to waste" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVZ-8q-Bet">
+                    <rect key="frame" x="177" y="323" width="127" height="84"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="7ZZ-hd-NjK"/>
                     </constraints>
@@ -497,7 +527,7 @@
                 <constraint firstItem="mVZ-8q-Bet" firstAttribute="leading" secondItem="j95-to-Zct" secondAttribute="leading" id="B9c-70-qus"/>
                 <constraint firstItem="6OQ-bA-K3c" firstAttribute="top" secondItem="iJM-7j-dzi" secondAttribute="top" id="CqS-qa-09N"/>
                 <constraint firstAttribute="bottom" secondItem="6OQ-bA-K3c" secondAttribute="bottom" id="F1S-xQ-VEX"/>
-                <constraint firstItem="Uwx-35-cgY" firstAttribute="leading" secondItem="iJM-7j-dzi" secondAttribute="leading" constant="90" id="JDq-dM-erJ"/>
+                <constraint firstItem="Uwx-35-cgY" firstAttribute="leading" secondItem="iJM-7j-dzi" secondAttribute="leading" constant="100" id="JDq-dM-erJ"/>
                 <constraint firstItem="mVZ-8q-Bet" firstAttribute="top" secondItem="j95-to-Zct" secondAttribute="bottom" constant="10" id="Pza-JN-gF7"/>
                 <constraint firstItem="j95-to-Zct" firstAttribute="centerY" secondItem="Uwx-35-cgY" secondAttribute="centerY" id="QU4-Ok-qbv"/>
                 <constraint firstItem="j95-to-Zct" firstAttribute="leading" secondItem="Uwx-35-cgY" secondAttribute="trailing" constant="-3" id="SSm-5a-oYc"/>
@@ -509,19 +539,19 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="1568" y="880"/>
         </view>
-        <view contentMode="scaleToFill" id="ToI-J9-iJE">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+        <view contentMode="scaleToFill" id="ToI-J9-iJE" userLabel="View5">
+            <rect key="frame" x="0.0" y="0.0" width="324" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalkHome5.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vx0-5U-wh2">
-                    <rect key="frame" x="40" y="289" width="240" height="71"/>
+                    <rect key="frame" x="42" y="289" width="240" height="71"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="71" id="5dU-qx-Nqq"/>
                         <constraint firstAttribute="width" constant="240" id="Qe2-Br-6UY"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shops &amp; Places" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqF-AV-y5A">
-                    <rect key="frame" x="16" y="374" width="288" height="21"/>
+                    <rect key="frame" x="16" y="374" width="292" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="WPX-zH-BUc"/>
                     </constraints>
@@ -530,7 +560,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover more deals &amp; collections of places to eat, hangout and play." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPd-dJ-cNF">
-                    <rect key="frame" x="16" y="403" width="288" height="34"/>
+                    <rect key="frame" x="16" y="403" width="292" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Mzc-Op-Slx"/>
                     </constraints>
@@ -556,14 +586,86 @@
                 <constraint firstItem="uqF-AV-y5A" firstAttribute="leading" secondItem="ToI-J9-iJE" secondAttribute="leading" constant="16" id="sSV-ZJ-5Eo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="2364" y="219"/>
+            <point key="canvasLocation" x="2362" y="219"/>
+        </view>
+        <view contentMode="scaleToFill" id="mXn-IL-yFc" userLabel="View0">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BgWalkHome1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="efk-n5-lfF">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Seeties" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUf-9E-HTN">
+                    <rect key="frame" x="16" y="174" width="288" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="fzK-Bc-56B"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will show you how to search, collect and redeem deals." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kmd-2R-0ZI">
+                    <rect key="frame" x="16" y="219" width="288" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="3B0-51-vm4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="3B0-51-vm4"/>
+                        </mask>
+                    </variation>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalkHome1.png" translatesAutoresizingMaskIntoConstraints="NO" id="wCg-fi-YD7">
+                    <rect key="frame" x="40" y="289" width="240" height="71"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="732-lC-65K"/>
+                        <constraint firstAttribute="height" constant="71" id="MHt-Ry-AZi"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="efk-n5-lfF" secondAttribute="bottom" id="2n6-T7-bsA"/>
+                <constraint firstAttribute="trailing" secondItem="efk-n5-lfF" secondAttribute="trailing" id="8dV-eW-onl"/>
+                <constraint firstItem="wCg-fi-YD7" firstAttribute="centerY" secondItem="efk-n5-lfF" secondAttribute="centerY" constant="40" id="JBj-kt-32f"/>
+                <constraint firstItem="nUf-9E-HTN" firstAttribute="centerY" secondItem="efk-n5-lfF" secondAttribute="centerY" constant="-100" id="Lme-dO-OUa"/>
+                <constraint firstItem="nUf-9E-HTN" firstAttribute="leading" secondItem="mXn-IL-yFc" secondAttribute="leading" constant="16" id="O2n-DS-02H"/>
+                <constraint firstItem="nUf-9E-HTN" firstAttribute="top" secondItem="efk-n5-lfF" secondAttribute="bottom" constant="-194" id="OI1-dM-JmE"/>
+                <constraint firstAttribute="trailing" secondItem="Kmd-2R-0ZI" secondAttribute="trailing" constant="16" id="Pkt-N0-h0C"/>
+                <constraint firstItem="Kmd-2R-0ZI" firstAttribute="leading" secondItem="mXn-IL-yFc" secondAttribute="leading" constant="16" id="VkU-9V-2sg"/>
+                <constraint firstItem="Kmd-2R-0ZI" firstAttribute="top" secondItem="nUf-9E-HTN" secondAttribute="bottom" constant="24" id="cVe-p5-mgy"/>
+                <constraint firstAttribute="trailing" secondItem="nUf-9E-HTN" secondAttribute="trailing" constant="16" id="ehL-sU-2Dg"/>
+                <constraint firstItem="efk-n5-lfF" firstAttribute="top" secondItem="mXn-IL-yFc" secondAttribute="top" id="hUs-Xu-34p"/>
+                <constraint firstItem="efk-n5-lfF" firstAttribute="leading" secondItem="mXn-IL-yFc" secondAttribute="leading" id="jHu-TR-GBn"/>
+                <constraint firstItem="wCg-fi-YD7" firstAttribute="top" secondItem="efk-n5-lfF" secondAttribute="bottom" constant="-289" id="kJO-rA-2a2"/>
+                <constraint firstItem="wCg-fi-YD7" firstAttribute="bottom" secondItem="efk-n5-lfF" secondAttribute="bottom" constant="-204" id="kKn-z5-Jlv"/>
+                <constraint firstItem="wCg-fi-YD7" firstAttribute="centerX" secondItem="efk-n5-lfF" secondAttribute="centerX" id="qof-y6-6Lm"/>
+                <constraint firstItem="nUf-9E-HTN" firstAttribute="top" secondItem="mXn-IL-yFc" secondAttribute="top" constant="100" id="rwL-3h-fU0"/>
+                <constraint firstItem="nUf-9E-HTN" firstAttribute="top" secondItem="wCg-fi-YD7" secondAttribute="bottom" constant="14" id="xjW-yU-lXj"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="wCg-fi-YD7"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="kJO-rA-2a2"/>
+                    <exclude reference="kKn-z5-Jlv"/>
+                    <exclude reference="OI1-dM-JmE"/>
+                    <exclude reference="rwL-3h-fU0"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="408" y="219"/>
         </view>
     </objects>
     <resources>
-        <image name="BgWalkHome1.jpg" width="375" height="667"/>
-        <image name="BgWalkHome2.jpg" width="375" height="667"/>
-        <image name="BgWalkHome3.jpg" width="375" height="667"/>
-        <image name="BgWalkWallet3.jpg" width="375" height="667"/>
+        <image name="BgWalkHome1.jpg" width="320" height="568"/>
+        <image name="BgWalkHome2.jpg" width="320" height="568"/>
+        <image name="BgWalkHome3.jpg" width="320" height="568"/>
+        <image name="BgWalkWallet3.jpg" width="320" height="568"/>
         <image name="WalkHome1.png" width="1026" height="286"/>
         <image name="WalkHome2.png" width="150" height="416"/>
         <image name="WalkHome3.png" width="150" height="316"/>
