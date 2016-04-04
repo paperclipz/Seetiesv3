@@ -282,6 +282,8 @@
     
     if (tableView == self.ibCountryTable) {
         
+        [self.ibAreaTable setContentOffset:self.ibAreaTable.contentOffset animated:NO];
+        [self.ibAreaTable setUserInteractionEnabled:NO];
         
         if (![Utils isArrayNull:self.arrCountries]) {
          
@@ -300,6 +302,7 @@
             }
             else{
                 [self.ibAreaTable reloadData];
+                [self.ibAreaTable setUserInteractionEnabled:YES];
             }
 
         }
@@ -307,6 +310,10 @@
     }
     else if (tableView == self.ibAreaTable){
         SLog(@"Clicked: %ld,%ld", indexPath.section, indexPath.row);
+        
+        if ([Utils isArrayNull:self.currentSelectedCountry.arrArea]) {
+            return;
+        }
         
         PlacesModel* psModel = self.currentSelectedCountry.arrArea[indexPath.section];
         PlaceModel* pModel = psModel.places[indexPath.row];
@@ -548,6 +555,8 @@
     cModel.total_count = aModel.total_count;
     
     if ([Utils isArrayNull:cModel.arrArea] && ![Utils isArrayNull:aModel.result]) {
+        CLS_LOG(@"Adding aModel.result to cModel.arrArea.... data:%@", aModel.result);
+        [CrashlyticsKit setObjectValue:aModel.result forKey:@"aModel.result"];
         [cModel.arrArea addObjectsFromArray:aModel.result];
         return;
     }
@@ -566,6 +575,8 @@
                 PlacesModel* pscModel = cModel.arrArea[j];
                 if ([pscModel.area_name isEqualToString:psaModel.area_name]) {
                     
+                    CLS_LOG(@"Adding psaModel.places to pscModel.place.... data:%@", psaModel.places);
+                    [CrashlyticsKit setObjectValue:psaModel.places forKey:@"psaModel.places"];
                     [pscModel.places addObjectsFromArray:psaModel.places];
                     isNeedAddNewArea = NO;
                     break;
@@ -580,6 +591,8 @@
 
         }
     
+    CLS_LOG(@"Adding temp array to cModel.arrArea.... data:%@", arrTemp);
+    [CrashlyticsKit setObjectValue:arrTemp forKey:@"arrTemp"];
     [cModel.arrArea addObjectsFromArray:arrTemp];
     
     cModel.paging = aModel.paging;
@@ -610,6 +623,7 @@
         [self processPlaces:model ForCountry:countryModel];
       
         [self.ibAreaTable reloadData];
+        [self.ibAreaTable setUserInteractionEnabled:YES];
         
     } errorBlock:^(id object) {
         
