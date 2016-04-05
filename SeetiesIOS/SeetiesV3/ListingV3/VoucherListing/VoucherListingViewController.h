@@ -19,9 +19,9 @@
 #import "SearchManager.h"
 
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate, FilterViewControllerDelegate>
--(void)initWithLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
+-(void)initWithLocation:(HomeLocationModel*)locationModel  quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
 -(void)initWithDealId:(NSString*)dealId;
--(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
+-(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
 -(void)initDataWithShopID:(NSString*)shopID;
 -(void)initWithDealsModel:(DealsModel*)dealsModel;
 @end

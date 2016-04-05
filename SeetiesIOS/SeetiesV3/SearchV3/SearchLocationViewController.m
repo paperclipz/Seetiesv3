@@ -331,7 +331,7 @@
         hModel.locationName = pModel.name;
 
         if (self.homeLocationRefreshBlock) {
-            self.homeLocationRefreshBlock(hModel);
+            self.homeLocationRefreshBlock(hModel, self.currentSelectedCountry);
         }
     
     }
@@ -381,7 +381,7 @@
         hModel.locationName = recommendationVenueModel.name;
         
         if (self.homeLocationRefreshBlock) {
-            self.homeLocationRefreshBlock(hModel);
+            self.homeLocationRefreshBlock(hModel, self.currentSelectedCountry);
         }
         
     } errorBlock:nil];
@@ -449,7 +449,7 @@
            
 
             if (self.homeLocationRefreshBlock) {
-                self.homeLocationRefreshBlock(hModel);
+                self.homeLocationRefreshBlock(hModel, self.currentSelectedCountry);
             }
         }
 

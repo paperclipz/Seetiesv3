@@ -10,6 +10,7 @@
 
 @interface FilterCurrencyModel : JSONModel
 @property(nonatomic,strong) NSString *currency;
+@property(nonatomic,strong) NSString *currency_symbol;
 @property(nonatomic,assign) int min;
 @property(nonatomic,assign) int max;
 @property(nonatomic,assign) int interval;

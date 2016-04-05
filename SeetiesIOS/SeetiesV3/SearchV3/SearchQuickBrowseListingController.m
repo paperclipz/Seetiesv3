@@ -512,12 +512,12 @@
         _searchLocationViewController = [SearchLocationViewController new];
         __weak typeof (self)weakself = self;
         
-        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model)
+        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model, CountryModel *countryModel)
         {
             
             weakself.homeLocationModel = model;
             
-            [Utils saveUserLocation:weakself.homeLocationModel.locationName Longtitude:weakself.homeLocationModel.longtitude Latitude:weakself.homeLocationModel.latitude PlaceID:model.place_id];
+            [Utils saveUserLocation:weakself.homeLocationModel.locationName Longtitude:weakself.homeLocationModel.longtitude Latitude:weakself.homeLocationModel.latitude PlaceID:model.place_id CountryID:countryModel.country_id];
             
             
             weakself.lblLocation.text = weakself.homeLocationModel.locationName;

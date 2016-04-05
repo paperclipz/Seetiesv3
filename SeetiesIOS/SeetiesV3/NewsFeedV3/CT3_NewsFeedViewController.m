@@ -148,7 +148,7 @@ static NSCache* heightCache = nil;
 
 - (IBAction)btnGrabNowClicked:(id)sender {
     _voucherListingViewController = nil;
-    [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel filterCurrency:self.homeModel.filter_currency quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+    [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
     [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
     
 }
@@ -395,13 +395,14 @@ static NSCache* heightCache = nil;
         _searchLocationViewController = [SearchLocationViewController new];
         __weak typeof (self)weakself = self;
         
-        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model)
+        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model, CountryModel *countryModel)
         {
             isFirstLoad = YES;
 
             weakself.currentHomeLocationModel = model;
+            weakself.currentHomeLocationModel.countryId = countryModel.country_id;
             
-            [Utils saveUserLocation:weakself.currentHomeLocationModel.locationName Longtitude:weakself.currentHomeLocationModel.longtitude Latitude:weakself.currentHomeLocationModel.latitude PlaceID:weakself.currentHomeLocationModel.place_id];
+            [Utils saveUserLocation:weakself.currentHomeLocationModel.locationName Longtitude:weakself.currentHomeLocationModel.longtitude Latitude:weakself.currentHomeLocationModel.latitude PlaceID:weakself.currentHomeLocationModel.place_id CountryID:countryModel.country_id];
             weakself.locationName = weakself.currentHomeLocationModel.locationName;
             [weakself.searchLocationViewController.navigationController popViewControllerAnimated:YES];
             
@@ -672,7 +673,7 @@ static NSCache* heightCache = nil;
                 cell.didSelectDealCollectionBlock = ^(DealCollectionModel* model)
                 {
                     _voucherListingViewController = nil;
-                    [self.voucherListingViewController initData:model withLocation:weakSelf.currentHomeLocationModel filterCurrency:self.homeModel.filter_currency quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+                    [self.voucherListingViewController initData:model withLocation:weakSelf.currentHomeLocationModel quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
                    
                     [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
                         
@@ -1054,7 +1055,7 @@ static NSCache* heightCache = nil;
             case DealType_SuperDeal:
             {
                 _voucherListingViewController = nil;
-                [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel filterCurrency:self.homeModel.filter_currency quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+                [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
                 [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
                     
                 }];
@@ -1551,7 +1552,7 @@ static NSCache* heightCache = nil;
                     
                     self.currentHomeLocationModel = model;
                     
-                    [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id];
+                    [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId];
                     self.locationName = self.currentHomeLocationModel.locationName;
                     [self reloadNewsFeed];
                     [self requestServerForHome:model];
@@ -1771,6 +1772,7 @@ static NSCache* heightCache = nil;
         model.latitude = dict[KEY_LATITUDE];
         model.longtitude = dict[KEY_LONGTITUDE];
         model.place_id = dict[KEY_PLACE_ID];
+        model.countryId = [dict[KEY_COUNTRY_ID] integerValue];
         model.locationName = dict[KEY_LOCATION];
         self.locationName = dict[KEY_LOCATION];
 
@@ -1792,6 +1794,7 @@ static NSCache* heightCache = nil;
         model.latitude = dict[KEY_LATITUDE];
         model.longtitude = dict[KEY_LONGTITUDE];
         model.place_id = dict[KEY_PLACE_ID];
+        model.countryId = [dict[KEY_COUNTRY_ID] integerValue];
         model.locationName = dict[KEY_LOCATION];
         self.locationName = dict[KEY_LOCATION];
         

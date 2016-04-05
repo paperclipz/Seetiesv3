@@ -16,6 +16,7 @@
                                                        @"deal_type_info.discounted_item_price": @"discounted_item_price",
                                                        @"deal_type_info.percentage": @"discount_percentage",
                                                        @"deal_type_info.currency.code": @"currency_code",
+                                                       @"deal_type_info.currency.symbol": @"currency_symbol",
                                                        @"deal_id" : @"dID",
                                                        @"description": @"deal_desc",
                                                        @"redemption_periods.periods_in_hours.period_text": @"redemption_period_in_hour_text",
