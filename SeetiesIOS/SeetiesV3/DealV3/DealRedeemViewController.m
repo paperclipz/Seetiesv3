@@ -21,7 +21,17 @@
 
 }
 @property (strong, nonatomic) IBOutlet UIView *ibGifContentView;
-@property (weak, nonatomic) IBOutlet YLImageView *ibImgGifView;
+@property (weak, nonatomic) IBOutlet UILabel *ibHowToRedeemTitle;
+@property (weak, nonatomic) IBOutlet YLImageView *ibFirstImage;
+@property (weak, nonatomic) IBOutlet UILabel *ibFirstNumber;
+@property (weak, nonatomic) IBOutlet UILabel *ibFirstInstruction;
+@property (weak, nonatomic) IBOutlet YLImageView *ibSecondImage;
+@property (weak, nonatomic) IBOutlet UILabel *ibSecondNumber;
+@property (weak, nonatomic) IBOutlet UILabel *ibSecondInstruction;
+@property (weak, nonatomic) IBOutlet YLImageView *ibThirdImage;
+@property (weak, nonatomic) IBOutlet UILabel *ibThirdNumber;
+@property (weak, nonatomic) IBOutlet UILabel *ibThirdInstruction;
+@property (weak, nonatomic) IBOutlet UILabel *ibFooterInstruction;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgDeal;
 @property (weak, nonatomic) IBOutlet UIView *ibDescBorderView;
@@ -35,23 +45,33 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibDealTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ibSwipeBtn;
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeBg;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibBottomDesc;
+@property (weak, nonatomic) IBOutlet UILabel *ibSwipeToRedeem;
+@property (weak, nonatomic) IBOutlet UIButton *ibHowToRedeem;
 
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) BOOL isRedeeming;
+@property(nonatomic) NSUserDefaults *userDefault;
 @end
 
 @implementation DealRedeemViewController
 - (IBAction)btnIntroClicked:(id)sender {
     
     CGRect frame = [Utils getDeviceScreenSize];
-     [self.view addSubview:self.ibGifContentView];
-        self.ibGifContentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    self.ibImgGifView.image = [YLGIFImage imageNamed:@"How-to-redeem.gif"];
+    [self.view addSubview:self.ibGifContentView];
+    self.ibGifContentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+}
+
+- (IBAction)btnHowToRedeemCloseClicked:(id)sender {
+    [self.ibGifContentView removeFromSuperview];
+    [self.userDefault setBool:YES forKey:@"ShownRedeemTutorial"];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self changeLanguage];
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     
 }
@@ -64,6 +84,11 @@
     self.isRedeeming = NO;
     
     [self initSelfView];
+    
+    BOOL shownRedeemTutorial = [self.userDefault boolForKey:@"ShownRedeemTutorial"];
+    if (!shownRedeemTutorial) {
+        [self btnIntroClicked:self.ibHowToRedeem];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,6 +104,14 @@
     [self.ibSwipeBg setSideCurveBorder];
     [self.ibSwipeBtn setSideCurveBorder];
     
+    [self.ibFirstNumber setRoundedBorder];
+    [self.ibSecondNumber setRoundedBorder];
+    [self.ibThirdNumber setRoundedBorder];
+    
+    self.ibFirstImage.image = [YLGIFImage imageNamed:@"HowToRedeem1.gif"];
+    self.ibSecondImage.image = [YLGIFImage imageNamed:@"HowToRedeem2.gif"];
+    self.ibThirdImage.image = [YLGIFImage imageNamed:@"HowToRedeem3.gif"];
+    
     if (self.dealModel) {
         SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
         self.ibShopTitle.text = shopModel.name;
@@ -91,7 +124,12 @@
             [Utils  setRoundBorder:self.ibShopImg color:OUTLINE_COLOR borderRadius:5.0f];
 
             PhotoModel *photo = self.dealModel.photos[0];
-            [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
+            if (![Utils isStringNull:photo.imageURL]) {
+                [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
+            }
+            else{
+                [self.ibImgDeal setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+            }
             self.ibDealTitle.text = self.dealModel.title;
         }
         @catch (NSException *exception) {
@@ -99,6 +137,20 @@
         }
        
     }
+}
+
+-(void)changeLanguage{
+    self.ibHeaderTitle.text = LocalisedString(@"Redeem Voucher");
+    self.ibSwipeToRedeem.text = LocalisedString(@"Swipe to Redeem");
+    NSString *formattedStr = LocalisedString(@"You must redeem in front of \n a shop personnel.");
+    self.ibBottomDesc.text = [NSString stringWithFormat:@"%@", formattedStr];
+    [self.ibHowToRedeem setTitle:LocalisedString(@"How to Redeem") forState:UIControlStateNormal];
+    
+    self.ibHowToRedeemTitle.text = LocalisedString(@"How to Redeem");
+    self.ibFirstInstruction.text = LocalisedString(@"When you order");
+    self.ibSecondInstruction.text = LocalisedString(@"Flash the redeem voucher screen");
+    self.ibThirdInstruction.text = LocalisedString(@"Swipe right to redeem in front of a shop personnel");
+    self.ibFooterInstruction.text = LocalisedString(@"Only one redemption per swipe");
 }
 
 /*
@@ -239,6 +291,13 @@
         _dealManager = [DealManager Instance];
     }
     return _dealManager;
+}
+
+-(NSUserDefaults *)userDefault{
+    if (!_userDefault) {
+        _userDefault = [NSUserDefaults standardUserDefaults];
+    }
+    return _userDefault;
 }
 
 #pragma mark - RequestServer

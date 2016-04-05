@@ -1177,7 +1177,7 @@
         [self.nearbyShopArray addObjectsFromArray:seetieShopModel.shops];
         [self updateViews];
         
-        [self drawBorders];
+//        [self drawBorders];
         [LoadingManager hide];
     } errorBlock:^(id object) {
         
@@ -1203,7 +1203,7 @@
                 [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
             }
             else{
-                [self drawBorders];
+//                [self drawBorders];
                 [LoadingManager hide];
             }
         }
@@ -1217,7 +1217,7 @@
                 [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
             }
             else{
-                [self drawBorders];
+//                [self drawBorders];
                 [LoadingManager hide];
             }
         }
