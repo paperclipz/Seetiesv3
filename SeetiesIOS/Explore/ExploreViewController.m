@@ -9,7 +9,6 @@
 #import "AsyncImageView.h"
 #import "SearchViewController.h"
 #import "ExploreCountryViewController.h"
-#import "LandingV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 
@@ -335,8 +334,8 @@
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
             [defaults synchronize];
             
-            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
-            [self presentViewController:LandingView animated:YES completion:nil];
+//            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
+//            [self presentViewController:LandingView animated:YES completion:nil];
         }else{
             //reset clicked
         }

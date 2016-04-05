@@ -45,8 +45,6 @@
 		0BC8A0F11C0D588C00EB8548 /* SeNearbySeetishop.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC8A0F01C0D588C00EB8548 /* SeNearbySeetishop.xib */; };
 		0BC8A0F51C0D934600EB8548 /* SeRecommendations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC8A0F41C0D934600EB8548 /* SeRecommendations.m */; };
 		0BC8A0F71C0D935500EB8548 /* SeRecommendations.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC8A0F61C0D935500EB8548 /* SeRecommendations.xib */; };
-		0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC9B3881B7DD287008334FF /* FeedViewController.m */; };
-		0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC9B3891B7DD287008334FF /* FeedViewController.xib */; };
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
 		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
@@ -368,14 +366,6 @@
 		8AC8F7391BDA414E00DEF14A /* ProfileCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F6FF1BDA414E00DEF14A /* ProfileCollectionViewController.xib */; };
 		8AC8F73A1BDA414E00DEF14A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7011BDA414E00DEF14A /* ProfileViewController.m */; };
 		8AC8F73B1BDA414E00DEF14A /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F7021BDA414E00DEF14A /* ProfileViewController.xib */; };
-		8AC8F73C1BDA414E00DEF14A /* UserProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7051BDA414E00DEF14A /* UserProfilePageViewController.m */; };
-		8AC8F73D1BDA414E00DEF14A /* UserProfilePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F7061BDA414E00DEF14A /* UserProfilePageViewController.xib */; };
-		8AC8F7401BDA414E00DEF14A /* NewUserProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F70C1BDA414E00DEF14A /* NewUserProfileV2ViewController.m */; };
-		8AC8F7411BDA414E00DEF14A /* NewUserProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F70D1BDA414E00DEF14A /* NewUserProfileV2ViewController.xib */; };
-		8AC8F7421BDA414E00DEF14A /* ProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F70F1BDA414E00DEF14A /* ProfileV2ViewController.m */; };
-		8AC8F7431BDA414E00DEF14A /* ProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F7101BDA414E00DEF14A /* ProfileV2ViewController.xib */; };
-		8AC8F7441BDA414E00DEF14A /* UserProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7121BDA414E00DEF14A /* UserProfileV2ViewController.m */; };
-		8AC8F7451BDA414E00DEF14A /* UserProfileV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F7131BDA414E00DEF14A /* UserProfileV2ViewController.xib */; };
 		8AC8F7461BDA414E00DEF14A /* EditCollectionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7161BDA414E00DEF14A /* EditCollectionDetailViewController.m */; };
 		8AC8F7471BDA414E00DEF14A /* EditCollectionDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F7171BDA414E00DEF14A /* EditCollectionDetailViewController.xib */; };
 		8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F7191BDA414E00DEF14A /* EditCollectionViewController.m */; };
@@ -421,12 +411,6 @@
 		8AD6BE5C1B706CF30040437E /* DoPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BB021B706CF10040437E /* DoPhotoCell.xib */; };
 		8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD641B706CF30040437E /* InviteFrenViewController.m */; };
 		8AD6C0AC1B706CF30040437E /* InviteFrenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD651B706CF30040437E /* InviteFrenViewController.xib */; };
-		8AD6C0AD1B706CF30040437E /* LandingV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD681B706CF30040437E /* LandingV2ViewController.m */; };
-		8AD6C0AE1B706CF30040437E /* LandingV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD691B706CF30040437E /* LandingV2ViewController.xib */; };
-		8AD6C0AF1B706CF30040437E /* ExpertLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD6C1B706CF30040437E /* ExpertLoginViewController.m */; };
-		8AD6C0B01B706CF30040437E /* ExpertLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD6D1B706CF30040437E /* ExpertLoginViewController.xib */; };
-		8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD6F1B706CF30040437E /* SignupViewController.m */; };
-		8AD6C0B21B706CF30040437E /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD701B706CF30040437E /* SignupViewController.xib */; };
 		8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD731B706CF30040437E /* ConnectionManager.m */; };
 		8AD6C0B51B706CF30040437E /* InstagramLoginWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD781B706CF30040437E /* InstagramLoginWebViewController.m */; };
 		8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD791B706CF30040437E /* InstagramLoginWebViewController.xib */; };
@@ -439,18 +423,12 @@
 		8AD6C0BD1B706CF30040437E /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD861B706CF30040437E /* CommentViewController.xib */; };
 		8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD881B706CF30040437E /* FeedV2DetailViewController.m */; };
 		8AD6C0BF1B706CF30040437E /* FeedV2DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD891B706CF30040437E /* FeedV2DetailViewController.xib */; };
-		8AD6C0C01B706CF30040437E /* FeedV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD8B1B706CF30040437E /* FeedV2ViewController.m */; };
-		8AD6C0C11B706CF30040437E /* FeedV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD8C1B706CF30040437E /* FeedV2ViewController.xib */; };
 		8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD8E1B706CF30040437E /* FullImageViewController.m */; };
 		8AD6C0C31B706CF30040437E /* FullImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD8F1B706CF30040437E /* FullImageViewController.xib */; };
 		8AD6C0C41B706CF30040437E /* LocationFeedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD911B706CF30040437E /* LocationFeedDetailViewController.m */; };
 		8AD6C0C51B706CF30040437E /* LocationFeedDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD921B706CF30040437E /* LocationFeedDetailViewController.xib */; };
 		8AD6C0C61B706CF30040437E /* NearByRecommtationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD941B706CF30040437E /* NearByRecommtationViewController.m */; };
 		8AD6C0C71B706CF30040437E /* NearByRecommtationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD951B706CF30040437E /* NearByRecommtationViewController.xib */; };
-		8AD6C0D01B706CF30040437E /* PInterestV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BDA71B706CF30040437E /* PInterestV2ViewController.m */; };
-		8AD6C0D11B706CF30040437E /* PInterestV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BDA81B706CF30040437E /* PInterestV2ViewController.xib */; };
-		8AD6C0D21B706CF30040437E /* PFollowTheExpertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BDAB1B706CF30040437E /* PFollowTheExpertsViewController.m */; };
-		8AD6C0D31B706CF30040437E /* PFollowTheExpertsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BDAC1B706CF30040437E /* PFollowTheExpertsViewController.xib */; };
 		8AD6C0D41B706CF30040437E /* PSearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BDAE1B706CF30040437E /* PSearchLocationViewController.m */; };
 		8AD6C0D51B706CF30040437E /* PSearchLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BDAF1B706CF30040437E /* PSearchLocationViewController.xib */; };
 		8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BDB11B706CF30040437E /* PSelectYourInterestViewController.m */; };
@@ -471,8 +449,6 @@
 		8AD6C0FD1B706CF30040437E /* SearchViewV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BDEE1B706CF30040437E /* SearchViewV2.xib */; };
 		8AD6C0FE1B706CF30040437E /* SearchViewV2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BDF01B706CF30040437E /* SearchViewV2Controller.m */; };
 		8AD6C0FF1B706CF30040437E /* SearchViewV2Controller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BDF11B706CF30040437E /* SearchViewV2Controller.xib */; };
-		8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BDF41B706CF30040437E /* AccountSettingViewController.m */; };
-		8AD6C1011B706CF30040437E /* AccountSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BDF51B706CF30040437E /* AccountSettingViewController.xib */; };
 		8AD6C1021B706CF30040437E /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BDF71B706CF30040437E /* ChangePasswordViewController.m */; };
 		8AD6C1031B706CF30040437E /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BDF81B706CF30040437E /* ChangePasswordViewController.xib */; };
 		8AD6C1041B706CF30040437E /* EditInterestV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BDFA1B706CF30040437E /* EditInterestV2ViewController.m */; };
@@ -481,7 +457,6 @@
 		8AD6C10B1B706CF30040437E /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE041B706CF30040437E /* FeedbackViewController.xib */; };
 		8AD6C10C1B706CF30040437E /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BE061B706CF30040437E /* ForgotPasswordViewController.m */; };
 		8AD6C10D1B706CF30040437E /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE071B706CF30040437E /* ForgotPasswordViewController.xib */; };
-		8AD6C10E1B706CF30040437E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BE091B706CF30040437E /* SettingsViewController.m */; };
 		8AD6C1111B706CF30040437E /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BE0F1B706CF30040437E /* CHANGELOG.md */; };
 		8AD6C1121B706CF30040437E /* Foursquare2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BE111B706CF30040437E /* Foursquare2.m */; };
 		8AD6C1131B706CF30040437E /* FSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BE131B706CF30040437E /* FSKeychain.m */; };
@@ -517,7 +492,6 @@
 		8AD6C2CF1B707B1E0040437E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2CE1B707B1E0040437E /* libz.1.2.5.dylib */; };
 		8AD6C2D11B707B270040437E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2D01B707B270040437E /* libicucore.dylib */; };
 		8AD6C80A1B7096BA0040437E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C80C1B7096BA0040437E /* Localizable.strings */; };
-		8AD6C8161B709A450040437E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C8151B709A450040437E /* SettingsViewController.xib */; };
 		8AD6C81D1B73382E0040437E /* Localisator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C81C1B73382E0040437E /* Localisator.m */; };
 		8AD6C8291B736C000040437E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8281B736C000040437E /* DataManager.m */; };
 		8AD6C82E1B737A830040437E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C82D1B737A830040437E /* CoreData.framework */; };
@@ -1501,9 +1475,6 @@
 		0BC8A0F31C0D934600EB8548 /* SeRecommendations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeRecommendations.h; sourceTree = "<group>"; };
 		0BC8A0F41C0D934600EB8548 /* SeRecommendations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeRecommendations.m; sourceTree = "<group>"; };
 		0BC8A0F61C0D935500EB8548 /* SeRecommendations.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeRecommendations.xib; sourceTree = "<group>"; };
-		0BC9B3871B7DD287008334FF /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
-		0BC9B3881B7DD287008334FF /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
-		0BC9B3891B7DD287008334FF /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
 		0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adriane Text Bold Italic.otf"; sourceTree = "<group>"; };
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
@@ -2048,18 +2019,6 @@
 		8AC8F7001BDA414E00DEF14A /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		8AC8F7011BDA414E00DEF14A /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		8AC8F7021BDA414E00DEF14A /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		8AC8F7041BDA414E00DEF14A /* UserProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfilePageViewController.h; sourceTree = "<group>"; };
-		8AC8F7051BDA414E00DEF14A /* UserProfilePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfilePageViewController.m; sourceTree = "<group>"; };
-		8AC8F7061BDA414E00DEF14A /* UserProfilePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfilePageViewController.xib; sourceTree = "<group>"; };
-		8AC8F70B1BDA414E00DEF14A /* NewUserProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserProfileV2ViewController.h; sourceTree = "<group>"; };
-		8AC8F70C1BDA414E00DEF14A /* NewUserProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserProfileV2ViewController.m; sourceTree = "<group>"; };
-		8AC8F70D1BDA414E00DEF14A /* NewUserProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserProfileV2ViewController.xib; sourceTree = "<group>"; };
-		8AC8F70E1BDA414E00DEF14A /* ProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileV2ViewController.h; sourceTree = "<group>"; };
-		8AC8F70F1BDA414E00DEF14A /* ProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileV2ViewController.m; sourceTree = "<group>"; };
-		8AC8F7101BDA414E00DEF14A /* ProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileV2ViewController.xib; sourceTree = "<group>"; };
-		8AC8F7111BDA414E00DEF14A /* UserProfileV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileV2ViewController.h; sourceTree = "<group>"; };
-		8AC8F7121BDA414E00DEF14A /* UserProfileV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileV2ViewController.m; sourceTree = "<group>"; };
-		8AC8F7131BDA414E00DEF14A /* UserProfileV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileV2ViewController.xib; sourceTree = "<group>"; };
 		8AC8F7151BDA414E00DEF14A /* EditCollectionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCollectionDetailViewController.h; sourceTree = "<group>"; };
 		8AC8F7161BDA414E00DEF14A /* EditCollectionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCollectionDetailViewController.m; sourceTree = "<group>"; };
 		8AC8F7171BDA414E00DEF14A /* EditCollectionDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditCollectionDetailViewController.xib; sourceTree = "<group>"; };
@@ -2138,15 +2097,6 @@
 		8AD6BD631B706CF30040437E /* InviteFrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFrenViewController.h; sourceTree = "<group>"; };
 		8AD6BD641B706CF30040437E /* InviteFrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFrenViewController.m; sourceTree = "<group>"; };
 		8AD6BD651B706CF30040437E /* InviteFrenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteFrenViewController.xib; sourceTree = "<group>"; };
-		8AD6BD671B706CF30040437E /* LandingV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingV2ViewController.h; sourceTree = "<group>"; };
-		8AD6BD681B706CF30040437E /* LandingV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingV2ViewController.m; sourceTree = "<group>"; };
-		8AD6BD691B706CF30040437E /* LandingV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingV2ViewController.xib; sourceTree = "<group>"; };
-		8AD6BD6B1B706CF30040437E /* ExpertLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertLoginViewController.h; sourceTree = "<group>"; };
-		8AD6BD6C1B706CF30040437E /* ExpertLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertLoginViewController.m; sourceTree = "<group>"; };
-		8AD6BD6D1B706CF30040437E /* ExpertLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpertLoginViewController.xib; sourceTree = "<group>"; };
-		8AD6BD6E1B706CF30040437E /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
-		8AD6BD6F1B706CF30040437E /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
-		8AD6BD701B706CF30040437E /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
 		8AD6BD721B706CF30040437E /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
 		8AD6BD731B706CF30040437E /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 		8AD6BD771B706CF30040437E /* InstagramLoginWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramLoginWebViewController.h; sourceTree = "<group>"; };
@@ -2166,9 +2116,6 @@
 		8AD6BD871B706CF30040437E /* FeedV2DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedV2DetailViewController.h; sourceTree = "<group>"; };
 		8AD6BD881B706CF30040437E /* FeedV2DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedV2DetailViewController.m; sourceTree = "<group>"; };
 		8AD6BD891B706CF30040437E /* FeedV2DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedV2DetailViewController.xib; sourceTree = "<group>"; };
-		8AD6BD8A1B706CF30040437E /* FeedV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedV2ViewController.h; sourceTree = "<group>"; };
-		8AD6BD8B1B706CF30040437E /* FeedV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedV2ViewController.m; sourceTree = "<group>"; };
-		8AD6BD8C1B706CF30040437E /* FeedV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedV2ViewController.xib; sourceTree = "<group>"; };
 		8AD6BD8D1B706CF30040437E /* FullImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullImageViewController.h; sourceTree = "<group>"; };
 		8AD6BD8E1B706CF30040437E /* FullImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullImageViewController.m; sourceTree = "<group>"; };
 		8AD6BD8F1B706CF30040437E /* FullImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullImageViewController.xib; sourceTree = "<group>"; };
@@ -2178,12 +2125,6 @@
 		8AD6BD931B706CF30040437E /* NearByRecommtationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearByRecommtationViewController.h; sourceTree = "<group>"; };
 		8AD6BD941B706CF30040437E /* NearByRecommtationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearByRecommtationViewController.m; sourceTree = "<group>"; };
 		8AD6BD951B706CF30040437E /* NearByRecommtationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearByRecommtationViewController.xib; sourceTree = "<group>"; };
-		8AD6BDA61B706CF30040437E /* PInterestV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PInterestV2ViewController.h; sourceTree = "<group>"; };
-		8AD6BDA71B706CF30040437E /* PInterestV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PInterestV2ViewController.m; sourceTree = "<group>"; };
-		8AD6BDA81B706CF30040437E /* PInterestV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PInterestV2ViewController.xib; sourceTree = "<group>"; };
-		8AD6BDAA1B706CF30040437E /* PFollowTheExpertsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFollowTheExpertsViewController.h; sourceTree = "<group>"; };
-		8AD6BDAB1B706CF30040437E /* PFollowTheExpertsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFollowTheExpertsViewController.m; sourceTree = "<group>"; };
-		8AD6BDAC1B706CF30040437E /* PFollowTheExpertsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PFollowTheExpertsViewController.xib; sourceTree = "<group>"; };
 		8AD6BDAD1B706CF30040437E /* PSearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSearchLocationViewController.h; sourceTree = "<group>"; };
 		8AD6BDAE1B706CF30040437E /* PSearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSearchLocationViewController.m; sourceTree = "<group>"; };
 		8AD6BDAF1B706CF30040437E /* PSearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PSearchLocationViewController.xib; sourceTree = "<group>"; };
@@ -2214,9 +2155,6 @@
 		8AD6BDEF1B706CF30040437E /* SearchViewV2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewV2Controller.h; sourceTree = "<group>"; };
 		8AD6BDF01B706CF30040437E /* SearchViewV2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewV2Controller.m; sourceTree = "<group>"; };
 		8AD6BDF11B706CF30040437E /* SearchViewV2Controller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewV2Controller.xib; sourceTree = "<group>"; };
-		8AD6BDF31B706CF30040437E /* AccountSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingViewController.h; sourceTree = "<group>"; };
-		8AD6BDF41B706CF30040437E /* AccountSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingViewController.m; sourceTree = "<group>"; };
-		8AD6BDF51B706CF30040437E /* AccountSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountSettingViewController.xib; sourceTree = "<group>"; };
 		8AD6BDF61B706CF30040437E /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
 		8AD6BDF71B706CF30040437E /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		8AD6BDF81B706CF30040437E /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
@@ -2229,8 +2167,6 @@
 		8AD6BE051B706CF30040437E /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		8AD6BE061B706CF30040437E /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		8AD6BE071B706CF30040437E /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
-		8AD6BE081B706CF30040437E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		8AD6BE091B706CF30040437E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		8AD6BE0F1B706CF30040437E /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		8AD6BE101B706CF30040437E /* Foursquare2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foursquare2.h; sourceTree = "<group>"; };
 		8AD6BE111B706CF30040437E /* Foursquare2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Foursquare2.m; sourceTree = "<group>"; };
@@ -2289,7 +2225,6 @@
 		8AD6C8121B70973F0040437E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		8AD6C8131B7097450040437E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		8AD6C8141B7097620040437E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
-		8AD6C8151B709A450040437E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		8AD6C81B1B73382E0040437E /* Localisator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localisator.h; sourceTree = "<group>"; };
 		8AD6C81C1B73382E0040437E /* Localisator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localisator.m; sourceTree = "<group>"; };
 		8AD6C8271B736C000040437E /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
@@ -4700,7 +4635,6 @@
 			isa = PBXGroup;
 			children = (
 				8AC8F6D51BDA414E00DEF14A /* NewProfile */,
-				8AC8F7071BDA414E00DEF14A /* OldProfile */,
 				8AC8F7141BDA414E00DEF14A /* Profile_EditCollection */,
 			);
 			path = Profile;
@@ -4718,7 +4652,6 @@
 				8AC8F7001BDA414E00DEF14A /* ProfileViewController.h */,
 				8AC8F7011BDA414E00DEF14A /* ProfileViewController.m */,
 				8AC8F7021BDA414E00DEF14A /* ProfileViewController.xib */,
-				8AC8F7031BDA414E00DEF14A /* userProfilePage */,
 			);
 			path = NewProfile;
 			sourceTree = "<group>";
@@ -4809,32 +4742,6 @@
 				8AC8F6FF1BDA414E00DEF14A /* ProfileCollectionViewController.xib */,
 			);
 			path = ProfileViewCollectionPage;
-			sourceTree = "<group>";
-		};
-		8AC8F7031BDA414E00DEF14A /* userProfilePage */ = {
-			isa = PBXGroup;
-			children = (
-				8AC8F7041BDA414E00DEF14A /* UserProfilePageViewController.h */,
-				8AC8F7051BDA414E00DEF14A /* UserProfilePageViewController.m */,
-				8AC8F7061BDA414E00DEF14A /* UserProfilePageViewController.xib */,
-			);
-			path = userProfilePage;
-			sourceTree = "<group>";
-		};
-		8AC8F7071BDA414E00DEF14A /* OldProfile */ = {
-			isa = PBXGroup;
-			children = (
-				8AC8F70B1BDA414E00DEF14A /* NewUserProfileV2ViewController.h */,
-				8AC8F70C1BDA414E00DEF14A /* NewUserProfileV2ViewController.m */,
-				8AC8F70D1BDA414E00DEF14A /* NewUserProfileV2ViewController.xib */,
-				8AC8F70E1BDA414E00DEF14A /* ProfileV2ViewController.h */,
-				8AC8F70F1BDA414E00DEF14A /* ProfileV2ViewController.m */,
-				8AC8F7101BDA414E00DEF14A /* ProfileV2ViewController.xib */,
-				8AC8F7111BDA414E00DEF14A /* UserProfileV2ViewController.h */,
-				8AC8F7121BDA414E00DEF14A /* UserProfileV2ViewController.m */,
-				8AC8F7131BDA414E00DEF14A /* UserProfileV2ViewController.xib */,
-			);
-			path = OldProfile;
 			sourceTree = "<group>";
 		};
 		8AC8F7141BDA414E00DEF14A /* Profile_EditCollection */ = {
@@ -4964,8 +4871,6 @@
 				8AD6BAE01B706CF10040437E /* Explore */,
 				8AD6BAED1B706CF10040437E /* FilterSorting */,
 				8AD6BD621B706CF30040437E /* InviteFriends */,
-				8AD6BD661B706CF30040437E /* LandingPage */,
-				8AD6BD6A1B706CF30040437E /* LoginPage */,
 				8AD6C8771B74A7CD0040437E /* Recommendation */,
 				8AC8F6D41BDA414E00DEF14A /* Profile */,
 				8AD6BD761B706CF30040437E /* Misc */,
@@ -5134,29 +5039,6 @@
 			path = InviteFriends;
 			sourceTree = "<group>";
 		};
-		8AD6BD661B706CF30040437E /* LandingPage */ = {
-			isa = PBXGroup;
-			children = (
-				8AD6BD671B706CF30040437E /* LandingV2ViewController.h */,
-				8AD6BD681B706CF30040437E /* LandingV2ViewController.m */,
-				8AD6BD691B706CF30040437E /* LandingV2ViewController.xib */,
-			);
-			path = LandingPage;
-			sourceTree = "<group>";
-		};
-		8AD6BD6A1B706CF30040437E /* LoginPage */ = {
-			isa = PBXGroup;
-			children = (
-				8AD6BD6B1B706CF30040437E /* ExpertLoginViewController.h */,
-				8AD6BD6C1B706CF30040437E /* ExpertLoginViewController.m */,
-				8AD6BD6D1B706CF30040437E /* ExpertLoginViewController.xib */,
-				8AD6BD6E1B706CF30040437E /* SignupViewController.h */,
-				8AD6BD6F1B706CF30040437E /* SignupViewController.m */,
-				8AD6BD701B706CF30040437E /* SignupViewController.xib */,
-			);
-			path = LoginPage;
-			sourceTree = "<group>";
-		};
 		8AD6BD711B706CF30040437E /* MANAGER */ = {
 			isa = PBXGroup;
 			children = (
@@ -5213,9 +5095,6 @@
 				8AD6BD871B706CF30040437E /* FeedV2DetailViewController.h */,
 				8AD6BD881B706CF30040437E /* FeedV2DetailViewController.m */,
 				8AD6BD891B706CF30040437E /* FeedV2DetailViewController.xib */,
-				8AD6BD8A1B706CF30040437E /* FeedV2ViewController.h */,
-				8AD6BD8B1B706CF30040437E /* FeedV2ViewController.m */,
-				8AD6BD8C1B706CF30040437E /* FeedV2ViewController.xib */,
 				8AD6BD8D1B706CF30040437E /* FullImageViewController.h */,
 				8AD6BD8E1B706CF30040437E /* FullImageViewController.m */,
 				8AD6BD8F1B706CF30040437E /* FullImageViewController.xib */,
@@ -5225,9 +5104,6 @@
 				8AD6BD931B706CF30040437E /* NearByRecommtationViewController.h */,
 				8AD6BD941B706CF30040437E /* NearByRecommtationViewController.m */,
 				8AD6BD951B706CF30040437E /* NearByRecommtationViewController.xib */,
-				0BC9B3871B7DD287008334FF /* FeedViewController.h */,
-				0BC9B3881B7DD287008334FF /* FeedViewController.m */,
-				0BC9B3891B7DD287008334FF /* FeedViewController.xib */,
 				0B99C1FD1BCBA1F0006D7E63 /* AnnounceViewController.h */,
 				0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */,
 				0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */,
@@ -5238,9 +5114,6 @@
 		8AD6BDA51B706CF30040437E /* Provisioning */ = {
 			isa = PBXGroup;
 			children = (
-				8AD6BDA61B706CF30040437E /* PInterestV2ViewController.h */,
-				8AD6BDA71B706CF30040437E /* PInterestV2ViewController.m */,
-				8AD6BDA81B706CF30040437E /* PInterestV2ViewController.xib */,
 				8AD6BDA91B706CF30040437E /* ProvisioningOld */,
 			);
 			path = Provisioning;
@@ -5249,9 +5122,6 @@
 		8AD6BDA91B706CF30040437E /* ProvisioningOld */ = {
 			isa = PBXGroup;
 			children = (
-				8AD6BDAA1B706CF30040437E /* PFollowTheExpertsViewController.h */,
-				8AD6BDAB1B706CF30040437E /* PFollowTheExpertsViewController.m */,
-				8AD6BDAC1B706CF30040437E /* PFollowTheExpertsViewController.xib */,
 				8AD6BDAD1B706CF30040437E /* PSearchLocationViewController.h */,
 				8AD6BDAE1B706CF30040437E /* PSearchLocationViewController.m */,
 				8AD6BDAF1B706CF30040437E /* PSearchLocationViewController.xib */,
@@ -5311,9 +5181,6 @@
 				0BBFE04C1B9D624C004B17E9 /* EditProfileV2ViewController.h */,
 				0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */,
 				0BBFE04E1B9D624C004B17E9 /* EditProfileV2ViewController.xib */,
-				8AD6BDF31B706CF30040437E /* AccountSettingViewController.h */,
-				8AD6BDF41B706CF30040437E /* AccountSettingViewController.m */,
-				8AD6BDF51B706CF30040437E /* AccountSettingViewController.xib */,
 				8AD6BDF61B706CF30040437E /* ChangePasswordViewController.h */,
 				8AD6BDF71B706CF30040437E /* ChangePasswordViewController.m */,
 				8AD6BDF81B706CF30040437E /* ChangePasswordViewController.xib */,
@@ -5326,9 +5193,6 @@
 				8AD6BE051B706CF30040437E /* ForgotPasswordViewController.h */,
 				8AD6BE061B706CF30040437E /* ForgotPasswordViewController.m */,
 				8AD6BE071B706CF30040437E /* ForgotPasswordViewController.xib */,
-				8AD6BE081B706CF30040437E /* SettingsViewController.h */,
-				8AD6BE091B706CF30040437E /* SettingsViewController.m */,
-				8AD6C8151B709A450040437E /* SettingsViewController.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -7333,7 +7197,6 @@
 				8AFF08601C90379000918582 /* SearchQuickBrowseListingController.xib in Resources */,
 				8ADFF7F51CB36D3900D27329 /* CampaignLogo@2x.png in Resources */,
 				8ADFF7C41CB36D3900D27329 /* CollectTraditonalChineseBtn@3x.png in Resources */,
-				8AD6C0D31B706CF30040437E /* PFollowTheExpertsViewController.xib in Resources */,
 				8ADFF70D1CB36D3900D27329 /* GreyDotSixPlus.png in Resources */,
 				8ADFF6621CB36D3900D27329 /* HomeHeaderOverlay@2x.png in Resources */,
 				8ADFF87E1CB36D3900D27329 /* ProfileFollowIcon@3x.png in Resources */,
@@ -7364,7 +7227,6 @@
 				8ADFF8791CB36D3900D27329 /* ProfileCollectionAddIcon@2x.png in Resources */,
 				8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */,
 				8ADFF83E1CB36D3900D27329 /* BluePin@3x.png in Resources */,
-				8AD6C0C11B706CF30040437E /* FeedV2ViewController.xib in Resources */,
 				8ADFF74F1CB36D3900D27329 /* FollowCollectionThaiIcon@2x.png in Resources */,
 				8ADFF8601CB36D3900D27329 /* CollectionPhotosOverlay@3x.png in Resources */,
 				8ADFF7CB1CB36D3900D27329 /* FeedLikeIcon@2x.png in Resources */,
@@ -7390,7 +7252,6 @@
 				8ADFF7CA1CB36D3900D27329 /* FeedCloseBtn@3x.png in Resources */,
 				8ADFF8881CB36D3900D27329 /* ProfileShareIcon@3x.png in Resources */,
 				8ADFF63B1CB36D3900D27329 /* DealsListingVoucherWalletIcon@2x.png in Resources */,
-				8AD6C8161B709A450040437E /* SettingsViewController.xib in Resources */,
 				8ADFF70F1CB36D3900D27329 /* WalletHistoryIcon@2x.png in Resources */,
 				8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */,
 				8ADFF6891CB36D3900D27329 /* MoreAboutIcon@3x.png in Resources */,
@@ -7466,7 +7327,6 @@
 				8A69E0FA1C0412F000224BB4 /* ShareV2CollectionViewCell.xib in Resources */,
 				8AC8F7271BDA414E00DEF14A /* PostListingTableViewCell.xib in Resources */,
 				8ADFF6BF1CB36D3900D27329 /* VerifyPhoneNumberImg.png in Resources */,
-				8AC8F73D1BDA414E00DEF14A /* UserProfilePageViewController.xib in Resources */,
 				8ADFF6DE1CB36D3900D27329 /* Splash3.jpg in Resources */,
 				8A3F35651BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.xib in Resources */,
 				8ADFF7C91CB36D3900D27329 /* FeedCloseBtn@2x.png in Resources */,
@@ -7523,7 +7383,6 @@
 				8ADFF86D1CB36D3900D27329 /* NewCollectionsIcon@2x.png in Resources */,
 				8ADFF71A1CB36D3900D27329 /* ErrorIcon@3x.png in Resources */,
 				C238E32E1C4649AA00570A25 /* slider-default_trackBackground@2x.png in Resources */,
-				8AD6C0D11B706CF30040437E /* PInterestV2ViewController.xib in Resources */,
 				8ADFF77A1CB36D3900D27329 /* SendCommentBtn@3x.png in Resources */,
 				8ADFF8201CB36D3900D27329 /* EyesCheck@3x.png in Resources */,
 				8ADFF8CE1CB36D3900D27329 /* ShareWhatsappIcon@2x.png in Resources */,
@@ -7635,7 +7494,6 @@
 				8ADFF8C31CB36D3900D27329 /* ShareCopyLinkIcon@3x.png in Resources */,
 				8AC8F7391BDA414E00DEF14A /* ProfileCollectionViewController.xib in Resources */,
 				8ADFF7C11CB36D3900D27329 /* CollectThaiBtn@2x.png in Resources */,
-				8AD6C1011B706CF30040437E /* AccountSettingViewController.xib in Resources */,
 				8A84C5DD1C7FF448006A0D76 /* NearbyBackground.png in Resources */,
 				8ADFF8021CB36D3900D27329 /* FacebookBtnActive@3x.png in Resources */,
 				0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */,
@@ -7677,7 +7535,6 @@
 				8ADFF8701CB36D3900D27329 /* NewLikesIcon@3x.png in Resources */,
 				8ADFF8AE1CB36D3900D27329 /* SSFeaturesIcon@2x.png in Resources */,
 				8ADFF7E41CB36D3900D27329 /* SearchIcon@3x.png in Resources */,
-				0BC9B38B1B7DD288008334FF /* FeedViewController.xib in Resources */,
 				8ADFF89A1CB36D3900D27329 /* TimeIcon@3x.png in Resources */,
 				8ADFF6BD1CB36D3900D27329 /* SuccessfulRedeemImg.png in Resources */,
 				8ADFF79C1CB36D3900D27329 /* EditDisplayPhoto@3x.png in Resources */,
@@ -7695,7 +7552,6 @@
 				8ADFF87F1CB36D3900D27329 /* ProfileFollowingIcon@2x.png in Resources */,
 				8ADFF7661CB36D3900D27329 /* MapBtn@3x.png in Resources */,
 				8ADFF7331CB36D3900D27329 /* AddTagIcon@2x.png in Resources */,
-				8AC8F7411BDA414E00DEF14A /* NewUserProfileV2ViewController.xib in Resources */,
 				8ADFF82D1CB36D3900D27329 /* NotificationBySeeties@2x.png in Resources */,
 				8AFA51F41C47B4AB00E7920E /* FeedType_FollowingPostTblCell.xib in Resources */,
 				8ADFF6E01CB36D3900D27329 /* Splash5.jpg in Resources */,
@@ -7705,7 +7561,6 @@
 				8ADFF6771CB36D3900D27329 /* Loading5@3x.png in Resources */,
 				8ADFF68D1CB36D3900D27329 /* MoreDeafaultIcon@3x.png in Resources */,
 				8ADFF6721CB36D3900D27329 /* Loading3@2x.png in Resources */,
-				8AD6C0B21B706CF30040437E /* SignupViewController.xib in Resources */,
 				8ADFF7611CB36D3900D27329 /* ListViewActive@2x.png in Resources */,
 				8ADFF7D61CB36D3900D27329 /* FollowingIcon@3x.png in Resources */,
 				8AD6C80A1B7096BA0040437E /* Localizable.strings in Resources */,
@@ -7765,7 +7620,6 @@
 				8ADFF7361CB36D3900D27329 /* Check@3x.png in Resources */,
 				C26676221C6485400021B6B0 /* RedemptionHistoryCell.xib in Resources */,
 				C238E32B1C4649AA00570A25 /* slider-default-trackBackground.png in Resources */,
-				8AD6C0B01B706CF30040437E /* ExpertLoginViewController.xib in Resources */,
 				8AFB068B1CA140E300DAEE22 /* ReportProblemViewController.xib in Resources */,
 				8AD6C1051B706CF30040437E /* EditInterestV2ViewController.xib in Resources */,
 				8AD6C11A1B706CF30040437E /* poweredByFoursquare_gray.png in Resources */,
@@ -7776,7 +7630,6 @@
 				8A317C051BE1C5620010CAEE /* ShareToFrenViewController.xib in Resources */,
 				8ADFF8171CB36D3900D27329 /* InviteWechatIcon@2x.png in Resources */,
 				8ADFF6C31CB36D3900D27329 /* SeetishopFoodIcon@3x.png in Resources */,
-				8AC8F7451BDA414E00DEF14A /* UserProfileV2ViewController.xib in Resources */,
 				8ADFF8AD1CB36D3900D27329 /* SSFacebookIcon@3x.png in Resources */,
 				8ADFF8621CB36D3900D27329 /* DefaultProfilePic@3x.png in Resources */,
 				8ADFF7981CB36D3900D27329 /* BrithdayIcon@3x.png in Resources */,
@@ -7802,7 +7655,6 @@
 				8ADFF6F31CB36D3900D27329 /* BgWalkHome2@2x.jpg in Resources */,
 				8ADFF7D21CB36D3900D27329 /* FilterIcon@3x.png in Resources */,
 				8ADFF67A1CB36D3900D27329 /* CollectionFollowingIcon@2x.png in Resources */,
-				8AD6C0AE1B706CF30040437E /* LandingV2ViewController.xib in Resources */,
 				8ADFF6881CB36D3900D27329 /* MoreAboutIcon@2x.png in Resources */,
 				8A0F50CF1C0D52BB002B1E22 /* PhotoCollectionViewCell.xib in Resources */,
 				8ADFF6C61CB36D3900D27329 /* SeetishopOtherIcon@2x.png in Resources */,
@@ -7936,7 +7788,6 @@
 				8ADFF69D1CB36D3900D27329 /* MoreVerifiedPhoneNumberIcon@3x.png in Resources */,
 				8AC8F72D1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.xib in Resources */,
 				8ADFF7311CB36D3900D27329 /* AddCollectionIcon@2x.png in Resources */,
-				8AC8F7431BDA414E00DEF14A /* ProfileV2ViewController.xib in Resources */,
 				8AFF08621C90379000918582 /* SeetizensTableViewCell.xib in Resources */,
 				8ADFF80F1CB36D3900D27329 /* InviteFriendsBgImg.png in Resources */,
 				8ADFF66F1CB36D3900D27329 /* Loading1@3x.png in Resources */,
@@ -8291,7 +8142,6 @@
 				8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */,
 				8AFB068A1CA140E300DAEE22 /* ReportProblemViewController.m in Sources */,
 				8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */,
-				8AD6C0B11B706CF30040437E /* SignupViewController.m in Sources */,
 				8A114C7D1BE73F5D006AE3F0 /* BKCardNumberLabel.m in Sources */,
 				8AFA51F71C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.m in Sources */,
 				8AC8F74A1BDA414E00DEF14A /* EditCollectionTableViewCell.m in Sources */,
@@ -8329,7 +8179,6 @@
 				8A84C8D91C8036FD006A0D76 /* SeShopGroupModel.m in Sources */,
 				8AD6C0F41B706CF30040437E /* SearchChangeLocationViewController.m in Sources */,
 				8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */,
-				8AD6C0D01B706CF30040437E /* PInterestV2ViewController.m in Sources */,
 				0BA94DCB1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m in Sources */,
 				8A114CA91BE73F5D006AE3F0 /* CRMotionView.m in Sources */,
 				8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */,
@@ -8355,7 +8204,6 @@
 				8A114CAB1BE73F5D006AE3F0 /* UIScrollView+CRScrollIndicator.m in Sources */,
 				8A3F35641BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */,
 				8A4205281C89501100DB0D20 /* AccountSettingTableViewCell.m in Sources */,
-				8AD6C0D21B706CF30040437E /* PFollowTheExpertsViewController.m in Sources */,
 				8A114C981BE73F5D006AE3F0 /* JTSImageInfo.m in Sources */,
 				8AFA51F91C47B4AB00E7920E /* FeedType_Two_TableViewCell.m in Sources */,
 				8A3409411B8AD06A009B66C3 /* UIImage+Blurring.m in Sources */,
@@ -8372,7 +8220,6 @@
 				8A114C7F1BE73F5D006AE3F0 /* BKCurrencyTextField.m in Sources */,
 				C23042E11C61F331001008CB /* DealsModel.m in Sources */,
 				8A114CA21BE73F5D006AE3F0 /* PECropRectView.m in Sources */,
-				8AD6C0AF1B706CF30040437E /* ExpertLoginViewController.m in Sources */,
 				8AF33A431C3F6F5C000A2021 /* PhotoModel.m in Sources */,
 				8A114CBF1BE73F5D006AE3F0 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				8A6BB4331BF0C338005AA1B3 /* MZMethodSwizzler.m in Sources */,
@@ -8405,7 +8252,6 @@
 				8A114CA11BE73F5D006AE3F0 /* LanguageManager.m in Sources */,
 				8AEDBFAE1C2031BA000BD2FF /* DraftModel.m in Sources */,
 				8A6CCA3E1C17E5A800BCD54E /* SeShopFeatureTableViewCell.m in Sources */,
-				8AC8F7441BDA414E00DEF14A /* UserProfileV2ViewController.m in Sources */,
 				C25A8B981C74872F0046F80A /* RedemptionTypeView.m in Sources */,
 				0BBFE08E1B9FCC00004B17E9 /* SubmitProfileViewController.m in Sources */,
 				0B6AEA861C48ED6A009B7D33 /* SettingsTableViewCell.m in Sources */,
@@ -8429,7 +8275,6 @@
 				8A114C961BE73F5D006AE3F0 /* JSONKit.m in Sources */,
 				8AEDBFAA1C2031BA000BD2FF /* OpeningPeriodModel.m in Sources */,
 				8AD50D651C61F23400C9D952 /* HomeModel.m in Sources */,
-				8AD6C0AD1B706CF30040437E /* LandingV2ViewController.m in Sources */,
 				8AF53F1B1BD8850E00AF6C9E /* NSObject+Extension.m in Sources */,
 				8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */,
 				8A6BB42E1BF0C338005AA1B3 /* MZFormSheetPresentationController.m in Sources */,
@@ -8445,7 +8290,6 @@
 				8AC8F72E1BDA414E00DEF14A /* ProfilePageCollectionHeaderView.m in Sources */,
 				C206B7A91C90319C00786128 /* TermsViewController.m in Sources */,
 				8A4831B21C85AB1500CE95F2 /* FeaturedTableViewCell.m in Sources */,
-				8AC8F73C1BDA414E00DEF14A /* UserProfilePageViewController.m in Sources */,
 				8AEDBFB31C2031BA000BD2FF /* LanguageModel.m in Sources */,
 				8A0F50C81C0C45C3002B1E22 /* SeDealsView.m in Sources */,
 				8AD6C1111B706CF30040437E /* CHANGELOG.md in Sources */,
@@ -8507,7 +8351,6 @@
 				8A114C881BE73F5D006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
 				8A3F35681BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m in Sources */,
 				8AFA51CD1C47B4AB00E7920E /* FilterHeaderCollectionReusableView.m in Sources */,
-				8AC8F7421BDA414E00DEF14A /* ProfileV2ViewController.m in Sources */,
 				8ADD47031C4CFD6D00AEAE2B /* AnnouncementModel.m in Sources */,
 				8AD6C1151B706CF30040437E /* FSOperation.m in Sources */,
 				8AFA51E71C47B4AB00E7920E /* SuggestionFeatureCVCell.m in Sources */,
@@ -8527,7 +8370,6 @@
 				8A114C9B1BE73F5D006AE3F0 /* UIApplication+JTSImageViewController.m in Sources */,
 				8A114C9C1BE73F5D006AE3F0 /* UIImage+JTSImageEffects.m in Sources */,
 				8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */,
-				8AC8F7401BDA414E00DEF14A /* NewUserProfileV2ViewController.m in Sources */,
 				8A4512341BDE2BEC008DE870 /* LikesListingViewController.m in Sources */,
 				8AFA51FB1C47B4AB00E7920E /* FeedSquareCollectionViewCell.m in Sources */,
 				8A114CCC1BE73F5D006AE3F0 /* ParallaxHeaderView.m in Sources */,
@@ -8582,7 +8424,6 @@
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,
 				8A6CCEEE1C19837100BCD54E /* SeetiShopListTableViewCell.m in Sources */,
 				0B6AEA6A1C47B7CF009B7D33 /* ConnectionsTabViewController.m in Sources */,
-				8AD6C1001B706CF30040437E /* AccountSettingViewController.m in Sources */,
 				8A84C8D21C7FFDF8006A0D76 /* UIWindow+Extra.m in Sources */,
 				8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */,
 				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,
@@ -8593,7 +8434,6 @@
 				8AD6C0FE1B706CF30040437E /* SearchViewV2Controller.m in Sources */,
 				8AF6FDEF1C5B08A3005AAE5D /* DealRedeemViewController.m in Sources */,
 				8A45097A1BAC012600A868CD /* NSArray+JSON.m in Sources */,
-				8AD6C0C01B706CF30040437E /* FeedV2ViewController.m in Sources */,
 				8A26D1091C51FFB800A50944 /* DraftAndRecommendationDelegate.m in Sources */,
 				8AEDBFAB1C2031BA000BD2FF /* RecommendationModel.m in Sources */,
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
@@ -8622,7 +8462,6 @@
 				8AF030C51C5F6CE400817E2F /* PlaceModel.m in Sources */,
 				8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */,
 				C2AB4A5A1C6D8C900053FCA8 /* FilterAvailabilityCell.m in Sources */,
-				0BC9B38A1B7DD287008334FF /* FeedViewController.m in Sources */,
 				8AEDBFB71C2031BA000BD2FF /* PriceModel.m in Sources */,
 				8AF2C27A1B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m in Sources */,
 				8AF6FE041C5F3EB7005AAE5D /* CountryModel.m in Sources */,
@@ -8675,7 +8514,6 @@
 				8A7EDA7B1C747DE000A9E76E /* NotificationModel.m in Sources */,
 				0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */,
 				8AFA52031C47B4AB00E7920E /* CT3_MeViewController.m in Sources */,
-				8AD6C10E1B706CF30040437E /* SettingsViewController.m in Sources */,
 				8AF39CDC1BC66536009C7F26 /* UITableView+NXEmptyView.m in Sources */,
 				8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */,
 				8AFA51EF1C47B4AB00E7920E /* FeedType_CountryPromotionTblCell.m in Sources */,

@@ -13,11 +13,8 @@
 #import "CommentViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "NewUserProfileV2ViewController.h"
 #import "LocationFeedDetailViewController.h"
 #import "NearByRecommtationViewController.h"
-
-#import "LandingV2ViewController.h"
 #import "NSString+ChangeAsciiString.h"
 #import "AddCollectionDataViewController.h"
 #import "LeveyTabBarController.h"
@@ -4734,10 +4731,10 @@
             //save back
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
             [defaults synchronize];
-            
-            
-            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
-            [self presentViewController:LandingView animated:YES completion:nil];
+//            
+//            
+//            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
+//            [self presentViewController:LandingView animated:YES completion:nil];
         }else{
             //reset clicked
         }

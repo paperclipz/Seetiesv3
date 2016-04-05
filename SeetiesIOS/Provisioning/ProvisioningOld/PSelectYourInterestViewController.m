@@ -7,7 +7,6 @@
 //
 
 #import "PSelectYourInterestViewController.h"
-#import "PFollowTheExpertsViewController.h"
 //#import "ProgressHUD.h"
 @interface PSelectYourInterestViewController ()
 
@@ -242,8 +241,8 @@
     [defaults setObject:GetSelectID forKey:@"Provisioning_Interest"];
     [defaults synchronize];
     
-    PFollowTheExpertsViewController *SelectYourInterestView = [[PFollowTheExpertsViewController alloc]init];
-    [self presentViewController:SelectYourInterestView animated:YES completion:nil];
+//    PFollowTheExpertsViewController *SelectYourInterestView = [[PFollowTheExpertsViewController alloc]init];
+//    [self presentViewController:SelectYourInterestView animated:YES completion:nil];
 }
 
 @end
