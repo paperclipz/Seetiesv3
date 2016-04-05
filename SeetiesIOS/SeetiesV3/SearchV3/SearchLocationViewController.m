@@ -480,6 +480,7 @@
     if (isMiddleOfRequestingCountry) {
         return;
     }
+    
     NSDictionary* dict = @{@"language_code":ENGLISH_CODE};
     
     isMiddleOfRequestingCountry = YES;
@@ -630,7 +631,6 @@
     }];
 }
 
-
 - (void)scrollViewDidScroll: (UIScrollView *)scrollView {
     // UITableView only moves in one direction, y axis
     CGFloat currentOffset = scrollView.contentOffset.y;
@@ -643,6 +643,7 @@
         if (isMiddleOfRequesting) {
             return;
         }
+        
         if (maximumOffset - currentOffset <= self.ibAreaTable.frame.size.height/2) {
             
             if(![Utils isStringNull:self.currentSelectedCountry.paging.next])
