@@ -441,7 +441,7 @@
             hModel.latitude = model.lat;
             hModel.longtitude = model.lng;
             hModel.place_id = @"";
-            hModel.locationName = model.locationName;
+            hModel.locationName = [model locationNameWithCustomKey:self.countriesModel.current_country.place_display_fields];
            
 
             if (self.homeLocationRefreshBlock) {

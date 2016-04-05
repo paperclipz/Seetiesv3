@@ -25,7 +25,6 @@
 		0B6AEA871C48ED6A009B7D33 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6AEA851C48ED6A009B7D33 /* SettingsTableViewCell.xib */; };
 		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
 		0B99C2011BCBA1F1006D7E63 /* AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */; };
-		0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */; };
 		0BA94DCB1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94DC91BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m */; };
 		0BA94DCC1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94DCA1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib */; };
 		0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */; };
@@ -393,13 +392,6 @@
 		8AD6BA7A1B705DF30040437E /* SeetiesIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA791B705DF30040437E /* SeetiesIOSTests.m */; };
 		8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA981B706CF10040437E /* NSMutableArray+MoveArray.m */; };
 		8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BA9A1B706CF10040437E /* UIIimage+Extra.m */; };
-		8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE21B706CF10040437E /* Explore2ViewController.m */; };
-		8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE51B706CF10040437E /* ExploreCountryV2ViewController.m */; };
-		8AD6BE4C1B706CF30040437E /* ExploreCountryV2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE61B706CF10040437E /* ExploreCountryV2ViewController.xib */; };
-		8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE81B706CF10040437E /* ExploreCountryViewController.m */; };
-		8AD6BE4E1B706CF30040437E /* ExploreCountryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAE91B706CF10040437E /* ExploreCountryViewController.xib */; };
-		8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAEB1B706CF10040437E /* ExploreViewController.m */; };
-		8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAEC1B706CF10040437E /* ExploreViewController.xib */; };
 		8AD6BE511B706CF30040437E /* Filter2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAEF1B706CF10040437E /* Filter2ViewController.m */; };
 		8AD6BE521B706CF30040437E /* Filter2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BAF01B706CF10040437E /* Filter2ViewController.xib */; };
 		8AD6BE561B706CF30040437E /* AssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BAF91B706CF10040437E /* AssetHelper.m */; };
@@ -1446,7 +1438,6 @@
 		0B99C1FD1BCBA1F0006D7E63 /* AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceViewController.h; sourceTree = "<group>"; };
 		0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceViewController.m; sourceTree = "<group>"; };
 		0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnounceViewController.xib; sourceTree = "<group>"; };
-		0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Explore2ViewController.xib; sourceTree = "<group>"; };
 		0BA94DC81BEAFA64003AB2E4 /* SuggestedCollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionsViewController.h; sourceTree = "<group>"; };
 		0BA94DC91BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionsViewController.m; sourceTree = "<group>"; };
 		0BA94DCA1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionsViewController.xib; sourceTree = "<group>"; };
@@ -2069,17 +2060,6 @@
 		8AD6BA981B706CF10040437E /* NSMutableArray+MoveArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+MoveArray.m"; sourceTree = "<group>"; };
 		8AD6BA991B706CF10040437E /* UIIimage+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIIimage+Extra.h"; sourceTree = "<group>"; };
 		8AD6BA9A1B706CF10040437E /* UIIimage+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIIimage+Extra.m"; sourceTree = "<group>"; };
-		8AD6BAE11B706CF10040437E /* Explore2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explore2ViewController.h; sourceTree = "<group>"; };
-		8AD6BAE21B706CF10040437E /* Explore2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Explore2ViewController.m; sourceTree = "<group>"; };
-		8AD6BAE41B706CF10040437E /* ExploreCountryV2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreCountryV2ViewController.h; sourceTree = "<group>"; };
-		8AD6BAE51B706CF10040437E /* ExploreCountryV2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreCountryV2ViewController.m; sourceTree = "<group>"; };
-		8AD6BAE61B706CF10040437E /* ExploreCountryV2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExploreCountryV2ViewController.xib; sourceTree = "<group>"; };
-		8AD6BAE71B706CF10040437E /* ExploreCountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreCountryViewController.h; sourceTree = "<group>"; };
-		8AD6BAE81B706CF10040437E /* ExploreCountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreCountryViewController.m; sourceTree = "<group>"; };
-		8AD6BAE91B706CF10040437E /* ExploreCountryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExploreCountryViewController.xib; sourceTree = "<group>"; };
-		8AD6BAEA1B706CF10040437E /* ExploreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
-		8AD6BAEB1B706CF10040437E /* ExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
-		8AD6BAEC1B706CF10040437E /* ExploreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExploreViewController.xib; sourceTree = "<group>"; };
 		8AD6BAEE1B706CF10040437E /* Filter2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter2ViewController.h; sourceTree = "<group>"; };
 		8AD6BAEF1B706CF10040437E /* Filter2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter2ViewController.m; sourceTree = "<group>"; };
 		8AD6BAF01B706CF10040437E /* Filter2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Filter2ViewController.xib; sourceTree = "<group>"; };
@@ -4868,7 +4848,6 @@
 				8A317BFD1BE1C5620010CAEE /* Share */,
 				0B3FF10B1BB131A20014AF2E /* Nearby */,
 				8A114CDC1BE75CA0006AE3F0 /* Collection */,
-				8AD6BAE01B706CF10040437E /* Explore */,
 				8AD6BAED1B706CF10040437E /* FilterSorting */,
 				8AD6BD621B706CF30040437E /* InviteFriends */,
 				8AD6C8771B74A7CD0040437E /* Recommendation */,
@@ -4961,25 +4940,6 @@
 			);
 			name = CATEGORY;
 			path = Category;
-			sourceTree = "<group>";
-		};
-		8AD6BAE01B706CF10040437E /* Explore */ = {
-			isa = PBXGroup;
-			children = (
-				8AD6BAE11B706CF10040437E /* Explore2ViewController.h */,
-				8AD6BAE21B706CF10040437E /* Explore2ViewController.m */,
-				0BA1CB2E1B85AEFA009FFD3E /* Explore2ViewController.xib */,
-				8AD6BAE41B706CF10040437E /* ExploreCountryV2ViewController.h */,
-				8AD6BAE51B706CF10040437E /* ExploreCountryV2ViewController.m */,
-				8AD6BAE61B706CF10040437E /* ExploreCountryV2ViewController.xib */,
-				8AD6BAE71B706CF10040437E /* ExploreCountryViewController.h */,
-				8AD6BAE81B706CF10040437E /* ExploreCountryViewController.m */,
-				8AD6BAE91B706CF10040437E /* ExploreCountryViewController.xib */,
-				8AD6BAEA1B706CF10040437E /* ExploreViewController.h */,
-				8AD6BAEB1B706CF10040437E /* ExploreViewController.m */,
-				8AD6BAEC1B706CF10040437E /* ExploreViewController.xib */,
-			);
-			path = Explore;
 			sourceTree = "<group>";
 		};
 		8AD6BAED1B706CF10040437E /* FilterSorting */ = {
@@ -7266,7 +7226,6 @@
 				8ADFF8AA1CB36D3900D27329 /* SSDefaultLogo@2x.png in Resources */,
 				0BBFE08B1B9FCC00004B17E9 /* EditInterestViewController.xib in Resources */,
 				8ADFF61A1CB36D3900D27329 /* DealRedeemCardUp.png in Resources */,
-				8AD6BE4C1B706CF30040437E /* ExploreCountryV2ViewController.xib in Resources */,
 				8ADFF74A1CB36D3900D27329 /* FollowCollectionBahasaIndoIcon@3x.png in Resources */,
 				8ADFF81E1CB36D3900D27329 /* CorrectFill@3x.png in Resources */,
 				8ADFF71E1CB36D3900D27329 /* TickIcon@3x.png in Resources */,
@@ -7496,7 +7455,6 @@
 				8ADFF7C11CB36D3900D27329 /* CollectThaiBtn@2x.png in Resources */,
 				8A84C5DD1C7FF448006A0D76 /* NearbyBackground.png in Resources */,
 				8ADFF8021CB36D3900D27329 /* FacebookBtnActive@3x.png in Resources */,
-				0BA1CB2F1B85AEFA009FFD3E /* Explore2ViewController.xib in Resources */,
 				8ADFF8681CB36D3900D27329 /* FollowerNumber@3x.png in Resources */,
 				8ADFF8491CB36D3900D27329 /* MoreIcon@2x.png in Resources */,
 				8ADFF7881CB36D3900D27329 /* CategoriesCheck@3x.png in Resources */,
@@ -7525,7 +7483,6 @@
 				C238E3381C4649AA00570A25 /* slider-metal-handle-highlighted@2x.png in Resources */,
 				0B6A54E11BB51F84005B9D6B /* ReportViewController.xib in Resources */,
 				8ADFF75C1CB36D3900D27329 /* FollowingCollectionTradChiIcon@3x.png in Resources */,
-				8AD6BE4E1B706CF30040437E /* ExploreCountryViewController.xib in Resources */,
 				8ADFF7B31CB36D3900D27329 /* NoResult@2x.png in Resources */,
 				8ADFF75E1CB36D3900D27329 /* GridViewActive@3x.png in Resources */,
 				8ADFF7701CB36D3900D27329 /* TranslateIcon@3x.png in Resources */,
@@ -7882,7 +7839,6 @@
 				8ADFF76D1CB36D3900D27329 /* ShareBase@2x.png in Resources */,
 				8ADFF7C51CB36D3900D27329 /* CommentIcon@2x.png in Resources */,
 				8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */,
-				8AD6BE501B706CF30040437E /* ExploreViewController.xib in Resources */,
 				8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */,
 				8ADFF82E1CB36D3900D27329 /* NotificationBySeeties@3x.png in Resources */,
 				C238E3341C4649AA00570A25 /* slider-default7-trackBackground@2x.png in Resources */,
@@ -8153,7 +8109,6 @@
 				8AD6BE241B706CF30040437E /* UIIimage+Extra.m in Sources */,
 				8A41471E1C23E18D00D633D1 /* NSDictionary+Extra.m in Sources */,
 				8A114CB41BE73F5D006AE3F0 /* NSMutableArray+MoveArray.m in Sources */,
-				8AD6BE4B1B706CF30040437E /* ExploreCountryV2ViewController.m in Sources */,
 				8AD6C10A1B706CF30040437E /* FeedbackViewController.m in Sources */,
 				8AFA51CB1C47B4AB00E7920E /* FilterCategoryCollectionCell.m in Sources */,
 				8A114CB31BE73F5D006AE3F0 /* NSAttributedString+DVSTracking.m in Sources */,
@@ -8197,7 +8152,6 @@
 				8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */,
 				8AFF08531C90379000918582 /* SearchSimpleTableViewCell.m in Sources */,
 				0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */,
-				8AD6BE4D1B706CF30040437E /* ExploreCountryViewController.m in Sources */,
 				8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */,
 				8AD6C0F81B706CF30040437E /* SearchResultV2ViewController.m in Sources */,
 				8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */,
@@ -8332,7 +8286,6 @@
 				8A114CAC1BE73F5D006AE3F0 /* FSConverter.m in Sources */,
 				8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */,
 				8A3409431B8AD06A009B66C3 /* UIImage+Filtering.m in Sources */,
-				8AD6BE491B706CF30040437E /* Explore2ViewController.m in Sources */,
 				8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
 				8A65843D1B9850CE00BC86B9 /* DraftViewController.m in Sources */,
@@ -8507,7 +8460,6 @@
 				C294FD2C1C9819B500C455C8 /* FiltersModel.m in Sources */,
 				8AFF08591C90379000918582 /* SearchLocationAreaCell.m in Sources */,
 				8A295FD11C50A50F00747DBA /* UITabBar+Extension.m in Sources */,
-				8AD6BE4F1B706CF30040437E /* ExploreViewController.m in Sources */,
 				8A114CD21BE73F5D006AE3F0 /* UrlDataClass.m in Sources */,
 				8AF6FDEA1C5A289B005AAE5D /* SeDealsFeaturedTblCell.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
@@ -8693,8 +8645,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8719,7 +8671,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a428988a-6fd7-4403-b58c-802446111ed3";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8732,8 +8684,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8758,7 +8710,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a428988a-6fd7-4403-b58c-802446111ed3";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;

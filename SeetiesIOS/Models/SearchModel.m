@@ -23,7 +23,6 @@
 @end
 
 
-
 @implementation SearchLocationDetailModel
 +(JSONKeyMapper*)keyMapper
 {
@@ -35,7 +34,6 @@
 }
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
-    
     return YES;
 }
 
@@ -54,6 +52,12 @@
                 return dict[@"long_name"];
 
             }
+//            else if ([value isEqualToString:@"administrative_area_level_3"]) {
+//                
+//                return dict[@"long_name"];
+//
+//            }
+
             else if ([value isEqualToString:@"administrative_area_level_2"]) {
                 return dict[@"long_name"];
 
@@ -69,6 +73,40 @@
         
     }
     return nil;
+}
+
+-(NSString*)locationNameWithCustomKey:(NSArray*)arrayKey
+{
+
+    for(int i = 0; i< arrayKey.count ; i++)
+    {
+        
+        
+        NSString* tempLocationName = arrayKey[i];
+        
+       
+        for (NSDictionary* dict in _address_components) {
+            
+            NSString* value = dict[@"types"][0];
+            
+            //SLog(@" value : %@ || tempLocation : %@",value,tempLocationName);
+
+            if ([value isEqualToString:tempLocationName]) {
+                
+                return dict[@"long_name"];
+                
+            }
+        }
+        
+      
+        
+    }
+
+    
+   
+    
+    
+        return self.locationName;
 }
 
 -(void)process
