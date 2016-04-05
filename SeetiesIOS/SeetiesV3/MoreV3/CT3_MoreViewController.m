@@ -12,7 +12,6 @@
 #import "DoImagePickerController.h"
 #import "DraftAndRecommendationDelegate.h"
 #import "FeedbackViewController.h"
-#import "AccountSettingViewController.h"
 #import "CTWebViewController.h"
 #import "CT3_AcctSettingViewController.h"
 #import "PromoPopOutViewController.h"
@@ -32,7 +31,6 @@
 @property (nonatomic,strong)DoImagePickerController* imagePickerViewController;
 @property(nonatomic)DraftAndRecommendationDelegate* recommendDelegate;
 @property(nonatomic)FeedbackViewController* feedbackViewController;
-@property(nonatomic)AccountSettingViewController* accountSettingViewController;
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
 @property(nonatomic)PromoPopOutViewController* promoPopOutViewController;
@@ -361,15 +359,6 @@
         _ctWebViewController = [CTWebViewController new];
     }
     return _ctWebViewController;
-}
-
--(AccountSettingViewController*)accountSettingViewController
-{
-    if (!_accountSettingViewController) {
-        _accountSettingViewController = [AccountSettingViewController new];
-    }
-    
-    return _accountSettingViewController;
 }
 
 -(FeedbackViewController*)feedbackViewController

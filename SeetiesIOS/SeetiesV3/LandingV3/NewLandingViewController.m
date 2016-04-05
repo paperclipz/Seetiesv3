@@ -210,14 +210,6 @@
     
     return _leveyTabBarController;
 }
--(Explore2ViewController*)explore2ViewController
-{
-    if (!_explore2ViewController) {
-        _explore2ViewController = [Explore2ViewController new];
-    }
-    
-    return _explore2ViewController;
-}
 
 -(ProfileViewController*)profileViewController
 {

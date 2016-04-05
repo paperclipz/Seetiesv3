@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "LandingV2ViewController.h"
 #import "GAI.h"
 #import "LanguageManager.h"
 #import "Locale.h"
@@ -20,7 +19,6 @@
 @import ViewMonitor;
 @interface AppDelegate ()
 
-@property(nonatomic,strong)LandingV2ViewController* landingV2ViewController;
 @end
 
 
@@ -368,9 +366,9 @@
     [PFPush handlePush:userInfo];
     
     
-    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+//    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
     
 }
 
@@ -414,7 +412,6 @@
 
 -(void)showWindow
 {
-    self.landingViewController = [NewLandingViewController new];
     UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:self.landingViewController];
     navigationController.navigationBar.hidden = YES;
     self.window.rootViewController = navigationController;//self.landingV2ViewController
@@ -446,13 +443,13 @@ NSString* deviceName()
 
 
 #pragma mark - Declaration
--(LandingV2ViewController*)landingV2ViewController
+
+-(NewLandingViewController*)landingViewController
 {
-    if(!_landingV2ViewController)
-    {
-        _landingV2ViewController = [LandingV2ViewController new];
+    if (!_landingViewController) {
+        _landingViewController = [NewLandingViewController new];
     }
     
-    return _landingV2ViewController;
+    return _landingViewController;
 }
 @end

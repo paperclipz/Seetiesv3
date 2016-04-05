@@ -10,7 +10,6 @@
 #import "WalletListingViewController.h"
 #import "ProfileViewController.h"
 #import "CollectionListingViewController.h"
-#import "NotificationViewController.h"
 #import "InviteFrenViewController.h"
 #import "PromoPopOutViewController.h"
 #import "STPopup.h"

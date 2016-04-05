@@ -184,12 +184,12 @@
     [self presentViewController:formSheetController animated:YES completion:nil];
 }
 
-- (IBAction)btnSettingClicked:(id)sender {
-    [self SaveProfileData];
-    _settingsViewController = nil;
-    [self.navigationController pushViewController:self.settingsViewController animated:YES];
-    
-}
+//- (IBAction)btnSettingClicked:(id)sender {
+//    [self SaveProfileData];
+//    _settingsViewController = nil;
+//    [self.navigationController pushViewController:self.settingsViewController animated:YES];
+//    
+//}
 
 - (IBAction)btnSegmentedControlClicked:(id)sender {
 }
@@ -1009,15 +1009,6 @@
         
     }
     return _likesListingViewController;
-}
-
--(SettingsViewController*)settingsViewController
-{
-    if (!_settingsViewController) {
-        _settingsViewController = [SettingsViewController new];
-    }
-    
-    return _settingsViewController;
 }
 
 -(EditCollectionViewController*)editCollectionViewController

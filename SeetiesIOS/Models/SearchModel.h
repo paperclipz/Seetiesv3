@@ -58,6 +58,7 @@
 
 @property(nonatomic,strong)NSDictionary<Optional>* address_components;
 @property(nonatomic,strong)NSString<Ignore>* locationName;//  use location name instead of the list above
+-(NSString*)locationNameWithCustomKey:(NSArray*)arrayKey; //Usage: use current country display field
 
 -(void)process;
 

@@ -9,9 +9,7 @@
 #import "CT3_LoginViewController.h"
 #import "LoginPageViewController.h"
 #import "SignupPageViewController.h"
-#import "PInterestV2ViewController.h"
 #import "CTWebViewController.h"
-#import "PInterestV2ViewController.h"
 #import "SelectCategoryViewController.h"
 
 @interface CT3_LoginViewController ()
@@ -23,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (nonatomic) LoginPageViewController* loginPageViewController;
 @property(nonatomic)SignupPageViewController* signUpViewController;
-@property(nonatomic)PInterestV2ViewController* pInterestV2ViewController;
 @property (weak, nonatomic) IBOutlet UIButton *lblFacebook;
 @property (weak, nonatomic) IBOutlet UIButton *lblInstagram;
 @property (nonatomic)CTWebViewController* webViewController;
@@ -233,14 +230,6 @@
     return _selectCategoryViewController;
 }
 
--(PInterestV2ViewController*)pInterestV2ViewController
-{
-    if (!_pInterestV2ViewController) {
-        _pInterestV2ViewController = [PInterestV2ViewController new];
-    }
-    
-    return _pInterestV2ViewController;
-}
 -(CTWebViewController*)webViewController
 {
     
@@ -398,12 +387,6 @@
     } errorBlock:^(id object) {
         
     }];
-}
-
--(void)showUserInterestPage
-{
-    _pInterestV2ViewController = nil;
-    [self.navigationController pushViewController:self.pInterestV2ViewController animated:YES];
 }
 
 -(void)showSelectCategoryView

@@ -366,6 +366,7 @@ static NSCache* heightCache = nil;
     }
     return _collectPostToCollectionVC;
 }
+
 -(NSMutableArray*)arrayNewsFeed
 {
     if (!_arrayNewsFeed) {

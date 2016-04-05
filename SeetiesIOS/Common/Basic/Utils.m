@@ -619,10 +619,20 @@
 +(BOOL)isArrayNull:(NSArray*)array
 {
     BOOL _isNUll = NO;
-    if (array == nil || [array count] == 0) {
+    
+    if ([array isKindOfClass:[NSArray class]] || [array isKindOfClass:[NSMutableArray class]]) {
+        
+        if (array == nil || [array count] == 0) {
+            _isNUll = YES;
+        }
+
+    }
+    else{
+        
         _isNUll = YES;
     }
-    return _isNUll;
+    
+       return _isNUll;
 }
 
 #pragma mark - App Utilities
