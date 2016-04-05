@@ -20,7 +20,6 @@
 @property (nonatomic)NewLandingViewController* landingViewController;
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 
-
 //com.Seeties.SeetiesIOS.Live
 //com.Seeties.SeetiesIOS.Dev
 @end

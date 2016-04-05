@@ -546,7 +546,7 @@
     cModel.limit = aModel.limit;
     cModel.total_count = aModel.total_count;
     
-    if ([Utils isArrayNull:cModel.arrArea] && ![Utils isArrayNull:aModel.result]) {
+    if ([Utils isArrayNull:cModel.arrArea]) {
         CLS_LOG(@"Adding aModel.result to cModel.arrArea.... data:%@", aModel.result);
         [CrashlyticsKit setObjectValue:aModel.result forKey:@"aModel.result"];
         [cModel.arrArea addObjectsFromArray:aModel.result];
@@ -612,6 +612,10 @@
         isMiddleOfRequesting = NO;
         NSDictionary* dict = object[@"data"];
         AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
+        
+        [CrashlyticsKit setObjectValue:model forKey:@"AreaModel.object"];
+        [CrashlyticsKit setObjectValue:dict forKey:@"AreaModel.dict"];
+
         [self processPlaces:model ForCountry:countryModel];
       
         [self.ibAreaTable reloadData];
