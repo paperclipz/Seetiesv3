@@ -255,9 +255,10 @@ typedef enum {
 #define KEY_LONGTITUDE @"longtitude_key"
 #define KEY_LOCATION @"location_key"
 #define KEY_PLACE_ID @"place_id_key"
+#define KEY_COUNTRY_ID @"country_id_key"
 
 +(NSDictionary*)getSavedUserLocation;
-+(void)saveUserLocation:(NSString*)location Longtitude:(NSString*)longtitude Latitude:(NSString*)latitude PlaceID:(NSString*)place_id;
++(void)saveUserLocation:(NSString*)location Longtitude:(NSString*)longtitude Latitude:(NSString*)latitude PlaceID:(NSString*)place_id CountryID:(int)countryId;
 
 
 #pragma mark - LANGUAGE

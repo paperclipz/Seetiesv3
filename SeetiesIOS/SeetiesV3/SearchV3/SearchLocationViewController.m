@@ -327,7 +327,7 @@
         hModel.locationName = pModel.name;
 
         if (self.homeLocationRefreshBlock) {
-            self.homeLocationRefreshBlock(hModel);
+            self.homeLocationRefreshBlock(hModel, countryModel);
         }
     
     }
@@ -377,7 +377,7 @@
         hModel.locationName = recommendationVenueModel.name;
         
         if (self.homeLocationRefreshBlock) {
-            self.homeLocationRefreshBlock(hModel);
+            self.homeLocationRefreshBlock(hModel, nil);
         }
         
     } errorBlock:nil];
@@ -445,7 +445,7 @@
            
 
             if (self.homeLocationRefreshBlock) {
-                self.homeLocationRefreshBlock(hModel);
+                self.homeLocationRefreshBlock(hModel, nil);
             }
         }
 

@@ -14,7 +14,6 @@
 @property (nonatomic) DealsModel *dealsModel;
 @property (nonatomic) DealCollectionModel *dealCollectionModel;
 @property (nonatomic) HomeLocationModel *locationModel;
-@property (nonatomic) FilterCurrencyModel *filterCurrencyModel;
 @property (nonatomic) NSArray<QuickBrowseModel> *quickBrowseModels;
 @property (nonatomic) FiltersModel *filtersModel;
 
@@ -177,6 +176,9 @@
 }
 
 -(void)formatFiltersModel{
+    //reset filter page
+    self.filterController = nil;
+    
     self.filtersModel = [[FiltersModel alloc] init];
     self.filtersModel.filterCategories = [[NSMutableArray<FilterCategoryModel> alloc] init];
     self.filtersModel.filterViewType = FilterViewTypeVoucher;
@@ -206,6 +208,8 @@
     [sortCategory.filtersArray addObject:distance];
     [sortCategory.filtersArray addObject:popular];
     
+    [self.filtersModel.filterCategories addObject:sortCategory];
+    
     //Category
     FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
     catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
@@ -220,6 +224,8 @@
         [catCategory.filtersArray addObject:filter];
     }
     
+    [self.filtersModel.filterCategories addObject:catCategory];
+    
     //Price
     FilterCategoryModel *priceCategory = [[FilterCategoryModel alloc] init];
     priceCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
@@ -228,19 +234,19 @@
     
     FilterModel *filter = [[FilterModel alloc] init];
     FilterPriceModel *filterPrice = [[FilterPriceModel alloc] init];
-    filterPrice.currency = self.filterCurrencyModel.currency;
-    filterPrice.min = self.filterCurrencyModel.min;
-    filterPrice.max = self.filterCurrencyModel.max;
-    filterPrice.interval = self.filterCurrencyModel.interval;
-    filterPrice.selectedMin = self.filterCurrencyModel.min;
-    filterPrice.selectedMax = self.filterCurrencyModel.max;
-    filter.filterPrice = filterPrice;
-    [priceCategory.filtersArray addObject:filter];
+    FilterCurrencyModel *filterCurrencyModel = [self getSelectedCountryFilterCurrencyModel];
     
-    [self.filtersModel.filterCategories addObject:sortCategory];
-    [self.filtersModel.filterCategories addObject:catCategory];
-    [self.filtersModel.filterCategories addObject:priceCategory];
-    
+    if (filterCurrencyModel) {
+        filterPrice.currency = filterCurrencyModel.currency_symbol;
+        filterPrice.min = filterCurrencyModel.min;
+        filterPrice.max = filterCurrencyModel.max;
+        filterPrice.interval = filterCurrencyModel.interval;
+        filterPrice.selectedMin = filterCurrencyModel.min;
+        filterPrice.selectedMax = filterCurrencyModel.max;
+        filter.filterPrice = filterPrice;
+        [priceCategory.filtersArray addObject:filter];
+        [self.filtersModel.filterCategories addObject:priceCategory];
+    }
 }
 
 -(NSDictionary*)getFilterDict{
@@ -248,6 +254,8 @@
     NSMutableString *catString = [[NSMutableString alloc] init];
     int minPrice = 0;
     int maxPrice = 0;
+    BOOL priceChanges = NO;
+    
     for (FilterCategoryModel *filterCategory in self.filtersModel.filterCategories) {
         switch (filterCategory.filterCategoryType) {
             case FilterTypeSort:
@@ -285,6 +293,10 @@
                 FilterModel *priceModel = filterCategory.filtersArray[0];
                 minPrice = priceModel.filterPrice.selectedMin;
                 maxPrice = priceModel.filterPrice.selectedMax;
+        
+                if (priceModel.filterPrice.selectedMin != priceModel.filterPrice.min || priceModel.filterPrice.selectedMax != priceModel.filterPrice.max) {
+                    priceChanges = YES;
+                }
             }
                 break;
                 
@@ -293,11 +305,30 @@
         }
     }
     
-    return @{@"sort": @(sort),
-             @"category_group": catString,
-             @"min_price": @(minPrice),
-             @"max_price": @(maxPrice)};
+    NSMutableDictionary *finalDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"sort": @(sort),
+                                                                                       @"category_group": catString}];
     
+    if (priceChanges) {
+        [finalDict addEntriesFromDictionary:@{@"min_price": @(minPrice),
+                                              @"max_price": @(maxPrice)}];
+    }
+    
+    return finalDict;
+}
+
+-(FilterCurrencyModel*)getSelectedCountryFilterCurrencyModel{
+    CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+    int selectedCountryId = self.locationModel.countryId;
+    if (selectedCountryId == 0) {
+        selectedCountryId = 7;   //Default country id set to Thailand
+    }
+    for (CountryModel *country in countries.countries) {
+        if (selectedCountryId == country.country_id) {
+            return country.filter_currency;
+        }
+    }
+    
+    return nil;
 }
 
 #pragma mark - Initialization
@@ -308,20 +339,18 @@
     self.dealViewType = 1;
 }
 
--(void)initWithLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(NSArray<QuickBrowseModel>*)quickBrowseModel{
+-(void)initWithLocation:(HomeLocationModel*)locationModel quickBrowseModel:(NSArray<QuickBrowseModel>*)quickBrowseModel{
     _locationModel = locationModel;
-    _filterCurrencyModel = filterCurrencyModel;
     _quickBrowseModels = quickBrowseModel;
     self.dealViewType = 3;
     [self formatFiltersModel];
 }
 
--(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel filterCurrency:(FilterCurrencyModel*)filterCurrencyModel quickBrowseModel:(NSArray<QuickBrowseModel>*)quickBrowseModel
+-(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel quickBrowseModel:(NSArray<QuickBrowseModel>*)quickBrowseModel
 {
     self.dealViewType = 2;
     self.dealCollectionModel = model;
     _locationModel = locationModel;
-    _filterCurrencyModel = filterCurrencyModel;
     _quickBrowseModels = quickBrowseModel;
     [self formatFiltersModel];
 }
@@ -444,8 +473,11 @@
         _searchLocationViewController = [SearchLocationViewController new];
         
         __weak VoucherListingViewController *weakSelf = self;
-        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel *hModel){
+        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel *hModel, CountryModel *countryModel){
             weakSelf.locationModel = hModel;
+            weakSelf.locationModel.countryId = countryModel.country_id;
+            
+            [Utils saveUserLocation:weakSelf.locationModel.locationName Longtitude:weakSelf.locationModel.longtitude Latitude:weakSelf.locationModel.latitude PlaceID:weakSelf.locationModel.place_id CountryID:countryModel.country_id];
             
             weakSelf.ibUserLocationLbl.text = weakSelf.locationModel.locationName;
             [weakSelf.dealsArray removeAllObjects];
@@ -461,6 +493,7 @@
                 [weakSelf requestServerForSuperDealListing];
             }
             
+            [weakSelf formatFiltersModel];
             [weakSelf.searchLocationViewController dismissViewControllerAnimated:YES completion:nil];
         };
     }

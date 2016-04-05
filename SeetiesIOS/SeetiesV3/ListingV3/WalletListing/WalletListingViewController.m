@@ -368,7 +368,7 @@
         SLog(@"Wallet location exception: %@", exception);
     }
     
-    [self.voucherListingViewController initWithLocation:locationModel filterCurrency:homeModel.filter_currency quickBrowseModel:[homeModel.quick_browse mutableCopy]];
+    [self.voucherListingViewController initWithLocation:locationModel quickBrowseModel:[homeModel.quick_browse mutableCopy]];
     [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
     }];
 }

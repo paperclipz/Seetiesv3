@@ -9,8 +9,11 @@
 #import <JSONModel/JSONModel.h>
 
 #import "PlacesModel.h"
+#import "FilterCurrencyModel.h"
 
 @protocol PlacesModel
+@end
+@protocol FilterCurrencyModel
 @end
 
 @interface CountryModel : PaginationModel
@@ -25,6 +28,6 @@
 @property(nonatomic,assign)BOOL has_featured_deals;
 @property(nonatomic,strong)NSString* country_code;
 @property(nonatomic,assign)BOOL home_filter_display;//check whether display on screen
-
+@property(nonatomic,strong)FilterCurrencyModel *filter_currency;
 
 @end

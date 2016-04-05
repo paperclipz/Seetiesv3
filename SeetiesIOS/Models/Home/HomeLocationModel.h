@@ -20,7 +20,7 @@
 @property(nonatomic,strong)NSString<Ignore>* locationName;
 @property(nonatomic,strong)NSDictionary* dictAddressComponent;
 @property(nonatomic,strong)NSString* stringAddressComponent;
-
+@property(nonatomic,assign)int countryId;  //current selected country id
 
 /*server properties*/
 

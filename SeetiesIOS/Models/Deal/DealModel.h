@@ -50,6 +50,7 @@
 @property(nonatomic,strong) NSString *discounted_item_price;
 @property(nonatomic,strong) NSString *discount_percentage;
 @property(nonatomic,strong) NSString *currency_code;
+@property(nonatomic,strong) NSString *currency_symbol;
 @property(nonatomic,strong) NSArray *redemption_type;
 @property(nonatomic,strong) VoucherInfoModel *voucher_info;
 @property(nonatomic,strong) NSArray<PhotoModel> *photos;
