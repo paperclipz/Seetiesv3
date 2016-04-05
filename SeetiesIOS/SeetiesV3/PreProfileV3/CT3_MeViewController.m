@@ -45,7 +45,6 @@
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic, strong)WalletListingViewController *walletListingViewController;
 @property(nonatomic, strong)CollectionListingViewController *collectionListingViewController;
-@property(nonatomic)NotificationViewController *notificationViewController;
 @property(nonatomic)InviteFrenViewController *inviteFriendViewController;
 @property(nonatomic)PromoPopOutViewController *promoCodeViewController;
 @property(nonatomic)VoucherListingViewController * voucherListingViewController;
@@ -286,13 +285,6 @@
         _collectionListingViewController = [CollectionListingViewController new];
     }
     return _collectionListingViewController;
-}
-
--(NotificationViewController*)notificationViewController{
-    if (!_notificationViewController) {
-        _notificationViewController = [NotificationViewController new];
-    }
-    return _notificationViewController;
 }
 
 -(InviteFrenViewController*)inviteFriendViewController{

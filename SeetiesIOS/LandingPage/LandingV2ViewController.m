@@ -619,7 +619,7 @@
     if(!_leveyTabBarController)
     {
         
-         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController,self.explore2ViewController,self.recommendationViewController,self.notificationViewController,self.profileViewController, nil];
+         NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.feedViewController,self.explore2ViewController,self.recommendationViewController,self.profileViewController, nil];
         _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
         [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
         [_leveyTabBarController setTabBarTransparent:YES];
@@ -794,16 +794,6 @@
     }
     return _recommendationViewController;
 }
-
--(NotificationViewController*)notificationViewController
-{
-    if(!_notificationViewController){
-        
-        _notificationViewController = [NotificationViewController new];
-    }
-    return _notificationViewController;
-}
-
 
 #pragma mark - IBAction
 -(IBAction)btnLoginClicked:(id)sender{

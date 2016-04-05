@@ -9,7 +9,6 @@
 #import "AsyncImageView.h"
 #import "SearchViewController.h"
 #import "ExploreCountryViewController.h"
-#import "NotificationViewController.h"
 #import "LandingV2ViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
@@ -604,9 +603,7 @@
     
 }
 -(IBAction)NotificationButton:(id)sender{
-    NotificationViewController *NotificationView = [[NotificationViewController alloc]init];
-    [self presentViewController:NotificationView animated:YES completion:nil];
-}
+  }
 -(void)CheckNotificationCount{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];

@@ -16,7 +16,6 @@
 #import "InstagramLoginWebViewController.h"
 #import "LeveyTabBarController.h"
 #import "Locale.h"
-#import "NotificationViewController.h"
 #import "OpenWebViewController.h"
 #import "PFollowTheExpertsViewController.h"
 #import "PInterestV2ViewController.h"
@@ -48,8 +47,6 @@
 @property(nonatomic,strong)Explore2ViewController* explore2ViewController;
 
 @property(nonatomic,strong)RecommendationViewController* recommendationViewController;
-
-@property(nonatomic,strong)NotificationViewController* notificationViewController;
 
 @property(nonatomic,strong)LeveyTabBarController *leveyTabBarController;
 

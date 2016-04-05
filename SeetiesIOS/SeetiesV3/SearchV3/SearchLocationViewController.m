@@ -32,8 +32,6 @@
 @property (nonatomic, strong) SearchModel *searchModel;
 
 @property (nonatomic, strong) CountriesModel *countriesModel;
-
-@property (nonatomic, strong) CountryModel *currentSelectedCountry;
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 @property (weak, nonatomic) IBOutlet UIImageView *btnCloseImage;
 @property(nonatomic)CT3_EnableLocationViewController* enableLocationViewController;
@@ -86,7 +84,6 @@
         [self presentViewController:self.enableLocationViewController animated:YES completion:nil];
        // [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please Enable Location Service") Type:TSMessageNotificationTypeError];
     }
-
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -288,16 +285,14 @@
         if (![Utils isArrayNull:self.arrCountries]) {
          
             CountryModel* countryModel = self.arrCountries[indexPath.row];
-          
-            self.currentSelectedCountry = countryModel;
             
             selectedIndex = (int)indexPath.row;
             
             if ([Utils isArrayNull:countryModel.arrArea]) {
                 
-                if (self.currentSelectedCountry) {
+                if (countryModel) {
                     
-                    [self requestServerForCountryPlaces:self.currentSelectedCountry];
+                    [self requestServerForCountryPlaces:countryModel];
                 }
             }
             else{
@@ -309,19 +304,20 @@
        
     }
     else if (tableView == self.ibAreaTable){
-        SLog(@"Clicked: %ld,%ld", indexPath.section, indexPath.row);
         
-        if ([Utils isArrayNull:self.currentSelectedCountry.arrArea]) {
+        
+        NSIndexPath* countrySelectedIndex = self.ibCountryTable.indexPathForSelectedRow;
+        CountryModel* countryModel = self.arrCountries[countrySelectedIndex.row];
+
+        if ([Utils isArrayNull:countryModel.arrArea]) {
             return;
         }
         
-        PlacesModel* psModel = self.currentSelectedCountry.arrArea[indexPath.section];
+        PlacesModel* psModel = countryModel.arrArea[indexPath.section];
         PlaceModel* pModel = psModel.places[indexPath.row];
-        
         
         self.locationName = pModel.name;
 
-        
         HomeLocationModel* hModel = [HomeLocationModel new];
         hModel.timezone = @"";
         hModel.type = @"none";
@@ -469,11 +465,6 @@
     
 }
 
--(void)getCurrentSelectedCountry
-{
-    
-}
-
 -(void)requestServerForCountry
 {
     
@@ -494,8 +485,8 @@
         
         @try {
             
-            
             CountryModel* currentCountry = self.countriesModel.current_country;
+            CountryModel* currentCountryFromList;
 
             for (int i = 0 ;i <self.arrCountries.count ;i++) {
                 
@@ -503,7 +494,7 @@
                 
                 if (country.country_id == currentCountry.country_id) {
                     
-                    self.currentSelectedCountry = country;
+                    currentCountryFromList = country;
                     
                     selectedIndex = i;
                     NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:i inSection:0];
@@ -518,8 +509,8 @@
                 }
             }
             
-            if (!self.currentSelectedCountry) {
-                self.currentSelectedCountry = self.arrCountries[0];
+            if (!currentCountryFromList) {
+                currentCountryFromList = self.arrCountries[0];
                 selectedIndex = 0;
                 NSIndexPath* selectedCellIndexPath = [NSIndexPath indexPathForRow:selectedIndex inSection:0];
                 
@@ -528,8 +519,8 @@
                                            scrollPosition:UITableViewScrollPositionNone];
             }
             
-            if ([Utils isArrayNull:self.currentSelectedCountry.arrArea]) {
-                [self requestServerForCountryPlaces:self.currentSelectedCountry];
+            if ([Utils isArrayNull:currentCountryFromList.arrArea]) {
+                [self requestServerForCountryPlaces:currentCountryFromList];
             }
             else{
                 [self.ibAreaTable reloadData];
@@ -646,11 +637,14 @@
         
         if (maximumOffset - currentOffset <= self.ibAreaTable.frame.size.height/2) {
             
-            if(![Utils isStringNull:self.currentSelectedCountry.paging.next])
+            NSIndexPath* countryIndexPath = self.ibCountryTable.indexPathForSelectedRow;
+            
+            CountryModel* model = self.arrCountries[countryIndexPath.row];
+            if(![Utils isStringNull:model.paging.next])
             {
                 
-                if (self.currentSelectedCountry) {
-                    [self requestServerForCountryPlaces:self.currentSelectedCountry];
+                if (model) {
+                    [self requestServerForCountryPlaces:model];
 
                 }
             }
@@ -682,13 +676,21 @@
     [UIView animateWithDuration:1 animations:^{
         self.ibImgLocation.alpha = 1;
 
+    }completion:^(BOOL finished){
+        
+        [UIView animateWithDuration:1 animations:^{
+            self.ibImgLocation.alpha = 0;
+            
+        }];
+         
     }];
+    
 }
 
 
 -(void)startBlinkGPS
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:self selector:@selector(onTimerEvent:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(onTimerEvent:) userInfo:nil repeats:YES];
 
 }
 
