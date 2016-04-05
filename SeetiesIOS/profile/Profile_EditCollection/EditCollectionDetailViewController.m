@@ -39,7 +39,6 @@ typedef enum{
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionTagView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *consTagHeight;
 @property (nonatomic, strong) IBOutlet TLTagsControl *blueEditingTagControl;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblCollectionName;
 @property (weak, nonatomic) IBOutlet UILabel *lblCollectionDesc;
 @property (strong, nonatomic)CollectionModel* collectionModel;

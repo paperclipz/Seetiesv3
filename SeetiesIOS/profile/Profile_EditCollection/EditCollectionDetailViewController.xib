@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HelveticaNeue.ttc">
@@ -102,7 +102,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdt-Lq-dv9" userLabel="bottomView">
-                    <rect key="frame" x="0.0" y="428" width="320" height="90"/>
+                    <rect key="frame" x="0.0" y="478" width="320" height="90"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set as public" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwL-k3-pQd">
                             <rect key="frame" x="20" y="20" width="222" height="21"/>
@@ -152,12 +152,12 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Fa-RN-9zv">
-                    <rect key="frame" x="0.0" y="64" width="320" height="363"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="413"/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="kdt-Lq-dv9" secondAttribute="bottom" constant="50" id="0Tb-ne-n2V"/>
+                <constraint firstAttribute="bottom" secondItem="kdt-Lq-dv9" secondAttribute="bottom" id="0Tb-ne-n2V"/>
                 <constraint firstItem="kdt-Lq-dv9" firstAttribute="top" secondItem="9Fa-RN-9zv" secondAttribute="bottom" constant="1" id="0za-nO-CLi"/>
                 <constraint firstItem="9Fa-RN-9zv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4D9-tJ-SwD"/>
                 <constraint firstItem="kdt-Lq-dv9" firstAttribute="trailing" secondItem="9Fa-RN-9zv" secondAttribute="trailing" id="4MJ-93-519"/>
