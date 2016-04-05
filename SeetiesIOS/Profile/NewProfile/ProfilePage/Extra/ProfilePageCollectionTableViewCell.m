@@ -101,9 +101,6 @@
     self.lblNoOfPost.text = [NSString stringWithFormat:@"%d",self.model.collection_posts_count];
     self.lblNoOfFollower.text = [NSString stringWithFormat:@"%d",self.model.follower_count];
 
-    self.ibImageViewA.image = [UIImage imageNamed:@"SSDefaultCoverPhoto.png"];
-    self.ibImageViewB.image = [UIImage imageNamed:@"SSDefaultCoverPhoto.png"];
-
     if (![self.model.arrayPost isNull])
     {
         DraftModel* draftModel = self.model.arrayPost[0];

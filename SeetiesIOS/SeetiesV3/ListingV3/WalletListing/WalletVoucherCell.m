@@ -70,6 +70,9 @@
             [self.ibVoucherImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageUrl] completed:^(UIImage *image) {
             }];
         }
+        else{
+            [self.ibVoucherImg setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+        }
         [Utils setRoundBorder:self.ibVoucherImg color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:2.5f];
     }
     @catch (NSException *exception) {
