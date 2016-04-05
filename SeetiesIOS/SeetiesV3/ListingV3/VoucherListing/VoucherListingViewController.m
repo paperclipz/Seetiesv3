@@ -319,6 +319,9 @@
 -(FilterCurrencyModel*)getSelectedCountryFilterCurrencyModel{
     CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
     int selectedCountryId = self.locationModel.countryId;
+    if (selectedCountryId == 0) {
+        selectedCountryId = 7;   //Default country id set to Thailand
+    }
     for (CountryModel *country in countries.countries) {
         if (selectedCountryId == country.country_id) {
             return country.filter_currency;
