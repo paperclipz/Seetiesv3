@@ -483,53 +483,53 @@
         
         [self.ibCountryTable reloadData];
         
-//        @try {
-//            
-//            CountryModel* currentCountry = self.countriesModel.current_country;
-//            CountryModel* currentCountryFromList;
-//
-//            for (int i = 0 ;i <self.arrCountries.count ;i++) {
-//                
-//                CountryModel* country = self.arrCountries[i];
-//                
-//                if (country.country_id == currentCountry.country_id) {
-//                    
-//                    currentCountryFromList = country;
-//                    
-//                    selectedIndex = i;
-//                    NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:i inSection:0];
-//                    
-//                    [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
-//                                                     animated:NO
-//                                               scrollPosition:UITableViewScrollPositionNone];
-//                    
-//
-//                    break;
-//
-//                }
-//            }
-//            
-//            if (!currentCountryFromList) {
-//                currentCountryFromList = self.arrCountries[0];
-//                selectedIndex = 0;
-//                NSIndexPath* selectedCellIndexPath = [NSIndexPath indexPathForRow:selectedIndex inSection:0];
-//                
-//                [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
-//                                                 animated:NO
-//                                           scrollPosition:UITableViewScrollPositionNone];
-//            }
-//            
-//            if ([Utils isArrayNull:currentCountryFromList.arrArea]) {
-//                [self requestServerForCountryPlaces:currentCountryFromList];
-//            }
-//            else{
-//                [self.ibAreaTable reloadData];
-//            }
-//
-//        }
-//        @catch (NSException *exception) {
-//            
-//        }
+        @try {
+            
+            CountryModel* currentCountry = self.countriesModel.current_country;
+            CountryModel* currentCountryFromList;
+
+            for (int i = 0 ;i <self.arrCountries.count ;i++) {
+                
+                CountryModel* country = self.arrCountries[i];
+                
+                if (country.country_id == currentCountry.country_id) {
+                    
+                    currentCountryFromList = country;
+                    
+                    selectedIndex = i;
+                    NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:i inSection:0];
+                    
+                    [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
+                                                     animated:NO
+                                               scrollPosition:UITableViewScrollPositionNone];
+                    
+
+                    break;
+
+                }
+            }
+            
+            if (!currentCountryFromList) {
+                currentCountryFromList = self.arrCountries[0];
+                selectedIndex = 0;
+                NSIndexPath* selectedCellIndexPath = [NSIndexPath indexPathForRow:selectedIndex inSection:0];
+                
+                [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
+                                                 animated:NO
+                                           scrollPosition:UITableViewScrollPositionNone];
+            }
+            
+            if ([Utils isArrayNull:currentCountryFromList.arrArea]) {
+                [self requestServerForCountryPlaces:currentCountryFromList];
+            }
+            else{
+                [self.ibAreaTable reloadData];
+            }
+
+        }
+        @catch (NSException *exception) {
+            
+        }
         
         
     } errorBlock:^(id object) {

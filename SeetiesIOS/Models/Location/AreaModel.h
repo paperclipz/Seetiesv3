@@ -9,6 +9,6 @@
 #import <JSONModel/JSONModel.h>
 
 @interface AreaModel : PaginationModel
-@property(nonatomic,assign)NSArray<PlacesModel>*result;
+@property(nonatomic,strong) NSArray<PlacesModel>*result;
 
 @end
