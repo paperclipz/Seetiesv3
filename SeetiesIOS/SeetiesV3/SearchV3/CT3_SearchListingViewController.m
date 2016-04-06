@@ -114,15 +114,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)viewDidLayoutSubviews
-//{
-//    
-//    self.shopListingTableViewController.view.frame = CGRectMake(self.shopListingTableViewController.view.frame.origin.x, self.shopListingTableViewController.view.frame.origin.y, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-//    self.collectionListingTableViewController.view.frame = CGRectMake(self.collectionListingTableViewController.view.frame.origin.x, self.collectionListingTableViewController.view.frame.origin.y, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-//    self.PostsListingTableViewController.view.frame = CGRectMake(self.PostsListingTableViewController.view.frame.origin.x, self.PostsListingTableViewController.view.frame.origin.x, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-//    self.SeetizensListingTableViewController.view.frame = CGRectMake(self.SeetizensListingTableViewController.view.frame.origin.x, self.SeetizensListingTableViewController.view.frame.origin.x, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-//
-//}
+- (void)viewDidLayoutSubviews
+{
+    
+    self.shopListingTableViewController.view.frame = CGRectMake(self.shopListingTableViewController.view.frame.origin.x, self.shopListingTableViewController.view.frame.origin.y, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+    self.collectionListingTableViewController.view.frame = CGRectMake(self.collectionListingTableViewController.view.frame.origin.x, self.collectionListingTableViewController.view.frame.origin.y, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+    self.PostsListingTableViewController.view.frame = CGRectMake(self.PostsListingTableViewController.view.frame.origin.x, self.PostsListingTableViewController.view.frame.origin.x, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+    self.SeetizensListingTableViewController.view.frame = CGRectMake(self.SeetizensListingTableViewController.view.frame.origin.x, self.SeetizensListingTableViewController.view.frame.origin.x, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+
+}
 
 -(void)InitSelfView{
 

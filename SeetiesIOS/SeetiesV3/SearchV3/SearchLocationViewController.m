@@ -483,53 +483,53 @@
         
         [self.ibCountryTable reloadData];
         
-        @try {
-            
-            CountryModel* currentCountry = self.countriesModel.current_country;
-            CountryModel* currentCountryFromList;
-
-            for (int i = 0 ;i <self.arrCountries.count ;i++) {
-                
-                CountryModel* country = self.arrCountries[i];
-                
-                if (country.country_id == currentCountry.country_id) {
-                    
-                    currentCountryFromList = country;
-                    
-                    selectedIndex = i;
-                    NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:i inSection:0];
-                    
-                    [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
-                                                     animated:NO
-                                               scrollPosition:UITableViewScrollPositionNone];
-                    
-
-                    break;
-
-                }
-            }
-            
-            if (!currentCountryFromList) {
-                currentCountryFromList = self.arrCountries[0];
-                selectedIndex = 0;
-                NSIndexPath* selectedCellIndexPath = [NSIndexPath indexPathForRow:selectedIndex inSection:0];
-                
-                [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
-                                                 animated:NO
-                                           scrollPosition:UITableViewScrollPositionNone];
-            }
-            
-            if ([Utils isArrayNull:currentCountryFromList.arrArea]) {
-                [self requestServerForCountryPlaces:currentCountryFromList];
-            }
-            else{
-                [self.ibAreaTable reloadData];
-            }
-
-        }
-        @catch (NSException *exception) {
-            
-        }
+//        @try {
+//            
+//            CountryModel* currentCountry = self.countriesModel.current_country;
+//            CountryModel* currentCountryFromList;
+//
+//            for (int i = 0 ;i <self.arrCountries.count ;i++) {
+//                
+//                CountryModel* country = self.arrCountries[i];
+//                
+//                if (country.country_id == currentCountry.country_id) {
+//                    
+//                    currentCountryFromList = country;
+//                    
+//                    selectedIndex = i;
+//                    NSIndexPath* selectedCellIndexPath= [NSIndexPath indexPathForRow:i inSection:0];
+//                    
+//                    [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
+//                                                     animated:NO
+//                                               scrollPosition:UITableViewScrollPositionNone];
+//                    
+//
+//                    break;
+//
+//                }
+//            }
+//            
+//            if (!currentCountryFromList) {
+//                currentCountryFromList = self.arrCountries[0];
+//                selectedIndex = 0;
+//                NSIndexPath* selectedCellIndexPath = [NSIndexPath indexPathForRow:selectedIndex inSection:0];
+//                
+//                [self.ibCountryTable selectRowAtIndexPath:selectedCellIndexPath
+//                                                 animated:NO
+//                                           scrollPosition:UITableViewScrollPositionNone];
+//            }
+//            
+//            if ([Utils isArrayNull:currentCountryFromList.arrArea]) {
+//                [self requestServerForCountryPlaces:currentCountryFromList];
+//            }
+//            else{
+//                [self.ibAreaTable reloadData];
+//            }
+//
+//        }
+//        @catch (NSException *exception) {
+//            
+//        }
         
         
     } errorBlock:^(id object) {
@@ -546,51 +546,52 @@
     cModel.limit = aModel.limit;
     cModel.total_count = aModel.total_count;
     
-    if ([Utils isArrayNull:cModel.arrArea]) {
-        CLS_LOG(@"Adding aModel.result to cModel.arrArea.... data:%@", aModel.result);
-        [CrashlyticsKit setObjectValue:aModel.result forKey:@"aModel.result"];
-        [cModel.arrArea addObjectsFromArray:aModel.result];
-        return;
+    if (![Utils isArrayNull:aModel.result]) {
+ 
+        if ([Utils isArrayNull:cModel.arrArea]) {
+            CLS_LOG(@"Adding aModel.result to cModel.arrArea.... data:%@", aModel.result);
+            [CrashlyticsKit setObjectValue:aModel.result forKey:@"aModel.result"];
+           
+                [cModel.arrArea addObjectsFromArray:aModel.result];
+
+            return;
+        }
+        
+        NSMutableArray* arrTemp = [NSMutableArray new];
+            for (int i = 0; i<aModel.result.count; i++) {
+                
+                PlacesModel* psaModel = aModel.result[i];
+                
+                BOOL isNeedAddNewArea = NO;
+               
+                for (int j = 0; j<cModel.arrArea.count; j++) {
+                    
+                    isNeedAddNewArea = YES;
+
+                    PlacesModel* pscModel = cModel.arrArea[j];
+                    if ([pscModel.area_name isEqualToString:psaModel.area_name]) {
+                        
+                        CLS_LOG(@"Adding psaModel.places to pscModel.place.... data:%@", psaModel.places);
+                        [CrashlyticsKit setObjectValue:psaModel.places forKey:@"psaModel.places"];
+                        [pscModel.places addObjectsFromArray:psaModel.places];
+                        isNeedAddNewArea = NO;
+                        break;
+                    }
+                  
+                }
+                
+                if (isNeedAddNewArea) {
+                    [arrTemp addObject:psaModel];
+
+                }
+
+            }
+        
+        CLS_LOG(@"Adding temp array to cModel.arrArea.... data:%@", arrTemp);
+        [CrashlyticsKit setObjectValue:arrTemp forKey:@"arrTemp"];
+        [cModel.arrArea addObjectsFromArray:arrTemp];
     }
     
-    NSMutableArray* arrTemp = [NSMutableArray new];
-        for (int i = 0; i<aModel.result.count; i++) {
-            
-            PlacesModel* psaModel = aModel.result[i];
-            
-            BOOL isNeedAddNewArea = NO;
-           
-            for (int j = 0; j<cModel.arrArea.count; j++) {
-                
-                isNeedAddNewArea = YES;
-
-                PlacesModel* pscModel = cModel.arrArea[j];
-                if ([pscModel.area_name isEqualToString:psaModel.area_name]) {
-                    
-                    CLS_LOG(@"Adding psaModel.places to pscModel.place.... data:%@", psaModel.places);
-                    [CrashlyticsKit setObjectValue:psaModel.places forKey:@"psaModel.places"];
-                    [pscModel.places addObjectsFromArray:psaModel.places];
-                    isNeedAddNewArea = NO;
-                    break;
-                }
-              
-            }
-            
-            if (isNeedAddNewArea) {
-                [arrTemp addObject:psaModel];
-
-            }
-
-        }
-    
-    CLS_LOG(@"Adding temp array to cModel.arrArea.... data:%@", arrTemp);
-    [CrashlyticsKit setObjectValue:arrTemp forKey:@"arrTemp"];
-    [cModel.arrArea addObjectsFromArray:arrTemp];
-    
-    cModel.paging = aModel.paging;
-    cModel.limit = aModel.limit;
-    cModel.offset = aModel.offset;
-    cModel.total_count = aModel.total_count;
 }
 
 -(void)requestServerForCountryPlaces:(CountryModel*)countryModel
@@ -611,12 +612,16 @@
         
         isMiddleOfRequesting = NO;
         NSDictionary* dict = object[@"data"];
+       
         AreaModel* model = [[AreaModel alloc]initWithDictionary:dict error:nil];
         
-        [CrashlyticsKit setObjectValue:model forKey:@"AreaModel.object"];
-        [CrashlyticsKit setObjectValue:dict forKey:@"AreaModel.dict"];
+        if (model) {
+            [self processPlaces:model ForCountry:countryModel];
+        }
+        
+        //[CrashlyticsKit setObjectValue:model forKey:@"AreaModel.object"];
+        //[CrashlyticsKit setObjectValue:dict forKey:@"AreaModel.dict"];
 
-        [self processPlaces:model ForCountry:countryModel];
       
         [self.ibAreaTable reloadData];
         [self.ibAreaTable setUserInteractionEnabled:YES];
