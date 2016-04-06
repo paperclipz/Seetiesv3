@@ -114,6 +114,7 @@
 @property(nonatomic) ReportProblemViewController *reportProblemViewController;
 @property(nonatomic) PhotoViewController *photoViewController;
 @property(nonatomic) ShareV2ViewController *shareViewController;
+@property(nonatomic) RedemptionHistoryViewController *redemptionHistoryViewController;
 
 @end
 
@@ -425,6 +426,13 @@
         _shareViewController = [ShareV2ViewController new];
     }
     return _shareViewController;
+}
+
+-(RedemptionHistoryViewController *)redemptionHistoryViewController{
+    if (!_redemptionHistoryViewController) {
+        _redemptionHistoryViewController = [RedemptionHistoryViewController new];
+    }
+    return _redemptionHistoryViewController;
 }
 
 #pragma mark - UpdateView
@@ -964,6 +972,8 @@
 -(void)onDealRedeemed:(DealModel *)dealModel{
     [self requestServerForVoucherInfo];
     
+    self.redemptionHistoryViewController = nil;
+    [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
 }
 
 #pragma mark - TableView
@@ -1153,6 +1163,7 @@
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         self.dealModel = dealModel;
         [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
         int walletCount = [self.dealManager getWalletCount];
         [self.dealManager setWalletCount:walletCount+1];
         [self updateFooterView];

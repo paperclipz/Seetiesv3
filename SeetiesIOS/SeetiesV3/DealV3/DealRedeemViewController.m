@@ -53,6 +53,7 @@
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) BOOL isRedeeming;
+@property(nonatomic) BOOL hasRedeemed;
 @property(nonatomic) NSUserDefaults *userDefault;
 @end
 
@@ -82,6 +83,7 @@
     [Utils setRoundBorder:self.ibDescBorderView color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
     self.ibDescBorderView.alpha = 0;
     self.isRedeeming = NO;
+    self.hasRedeemed = NO;
     
     [self initSelfView];
     
@@ -341,13 +343,12 @@
     }
     
     [[ConnectionManager Instance] requestServerWithPut:ServerRequestTypePutRedeemVoucher param:finalDict appendString:nil completeHandler:^(id object) {
-        //Update previous page if it is not reusable
+        //Remove voucher from deal manager if it is not reusable
         if (self.dealModel.total_available_vouchers != -1) {
             [self.dealManager removeCollectedDeal:self.dealModel.dID];
-            
-            if (self.dealRedeemDelegate) {
-                [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
-            }
+        }
+        if (self.dealRedeemDelegate) {
+            [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
         }
         
         self.isRedeeming = NO;

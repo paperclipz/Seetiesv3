@@ -51,6 +51,7 @@
 @property (nonatomic) DealRedeemViewController *dealRedeemViewController;
 @property (nonatomic) SearchLocationViewController *searchLocationViewController;
 @property (nonatomic) CT3_SearchListingViewController *ct3_SearchListingViewController;
+@property (nonatomic) RedemptionHistoryViewController *redemptionHistoryViewController;
 
 @end
 
@@ -501,6 +502,13 @@
     return _searchLocationViewController;
 }
 
+-(RedemptionHistoryViewController *)redemptionHistoryViewController{
+    if (!_redemptionHistoryViewController) {
+        _redemptionHistoryViewController = [RedemptionHistoryViewController new];
+    }
+    return _redemptionHistoryViewController;
+}
+
 #pragma mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([Utils isArrayNull:self.dealsArray]) {
@@ -635,6 +643,7 @@
         if (dealModel.voucher_info.redeem_now) {
             self.dealRedeemViewController = nil;
             [self.dealRedeemViewController setDealModel:dealModel];
+            self.dealRedeemViewController.dealRedeemDelegate = self;
             [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
         }
         else{
@@ -670,6 +679,11 @@
         self.ibVoucherTable.tableFooterView = self.ibFooterView;
         [self requestServerForSuperDealListing];
     }
+}
+
+-(void)onDealRedeemed:(DealModel*)dealModel{
+    self.redemptionHistoryViewController = nil;
+    [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
 }
 
 #pragma mark - RequestServer
@@ -901,6 +915,7 @@
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         model.voucher_info = dealModel.voucher_info;
         [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
         [self RequestServerForVouchersCount];
         [self.ibVoucherTable reloadData];
         self.isCollecting = NO;
