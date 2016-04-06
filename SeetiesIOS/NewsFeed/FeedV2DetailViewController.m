@@ -2338,10 +2338,15 @@
     ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowUserName];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetUsername = [defaults objectForKey:@"UserName"];
+    ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
+    NSString *GetUsername = profileModel.username;
     if ([GetUsername isEqualToString:GetPostName]) {
-        //follow button
+        UIButton *OpenProfileButton = [[UIButton alloc]init];
+        OpenProfileButton.frame = CGRectMake(20, GetMessageHeight + 10, 250, 50);
+        [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
+        [OpenProfileButton setBackgroundColor:[UIColor clearColor]];
+        [OpenProfileButton addTarget:self action:@selector(OpenProfileButton:) forControlEvents:UIControlEventTouchUpInside];
+        [MainScroll addSubview:OpenProfileButton];
         
     }else{
         UIButton *OpenProfileButton = [[UIButton alloc]init];
