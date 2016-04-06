@@ -45,7 +45,7 @@
         bulletPoint.textColor = [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1];
         bulletPoint.text = [NSString stringWithFormat:@"\u2022"];
         
-        NSString *formattedTerm = [NSString stringWithFormat:@"%@", term];
+        NSString *formattedTerm = [NSString stringWithFormat:@"%@\n", term];
         CGRect rect = [formattedTerm boundingRectWithSize:CGSizeMake(self.ibContentView.frame.size.width-bulletPoint.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
         UILabel *tncLbl = [[UILabel alloc]initWithFrame:CGRectMake(bulletPoint.frame.size.width, yOrigin, ceilf(rect.size.width), ceilf(rect.size.height))];
         tncLbl.font = [UIFont systemFontOfSize:fontSize];

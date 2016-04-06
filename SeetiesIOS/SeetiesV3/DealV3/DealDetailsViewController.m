@@ -70,6 +70,7 @@
 @property (weak, nonatomic) IBOutlet UIView *ibTnCContentView;
 @property (weak, nonatomic) IBOutlet UILabel *ibTnCTitle;
 @property (weak, nonatomic) IBOutlet UIButton *ibTnCReadMoreBtn;
+@property (weak, nonatomic) IBOutlet UILabel *ibTnCReadMoreLbl;
 @property (weak, nonatomic) IBOutlet UIView *ibTnCContent;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTnCSeeMoreHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTnCContentHeightConstraint;
@@ -689,7 +690,6 @@
     if (self.dealModel.shops.count > 3) {
         self.ibShopSeeMoreHeightConstraint.constant = footerHeight;
         self.ibShopSeeMoreBtn.hidden = NO;
-        [self.ibShopSeeMoreBtn prefix_addUpperBorder:OUTLINE_COLOR];
         totalHeight += self.ibShopSeeMoreHeightConstraint.constant;
     }
     else{
@@ -703,7 +703,7 @@
 
 -(void)updateTnCView{
     self.ibTnCTitle.text = LocalisedString(@"Terms & Conditions");
-    [self.ibTnCReadMoreBtn setTitle:LocalisedString(@"Read the full T&Cs here") forState:UIControlStateNormal];
+    self.ibTnCReadMoreLbl.text = LocalisedString(@"Read the full T&Cs here");
     
     if ([Utils isArrayNull:self.dealModel.terms]) {
         [self.ibTnCView setHeight:0];
@@ -745,16 +745,16 @@
         
         if (self.dealModel.terms.count > 5) {
             self.ibTnCSeeMoreHeightConstraint.constant = footerHeight;
-            self.ibTnCReadMoreBtn.hidden = NO;
-            [self.ibTnCReadMoreBtn prefix_addUpperBorder:OUTLINE_COLOR];
-            
+            self.ibTnCReadMoreBtn.enabled = YES;
+            self.ibTnCReadMoreLbl.hidden = NO;
         }
         else{
             self.ibTnCSeeMoreHeightConstraint.constant = 0;
-            self.ibTnCReadMoreBtn.hidden = YES;
+            self.ibTnCReadMoreBtn.enabled = NO;
+            self.ibTnCReadMoreLbl.hidden = NO;
         }
         
-        [self.ibTnCView setHeight:self.ibTnCReadMoreBtn.frame.origin.y + self.ibTnCSeeMoreHeightConstraint.constant + contentHeightPadding];
+        [self.ibTnCView setHeight:self.ibTnCReadMoreLbl.frame.origin.y + self.ibTnCSeeMoreHeightConstraint.constant + contentHeightPadding];
     }
 }
 
@@ -762,8 +762,6 @@
     self.ibNearbyShopTitle.text = LocalisedString(@"Shops nearby");
     [self.ibNearbyShopSeeMoreBtn setTitle:LocalisedString(@"See more") forState:UIControlStateNormal];
     [self.ibNearbyShopCollection reloadData];
-    
-    [self.ibNearbyShopHeaderView prefix_addLowerBorder:OUTLINE_COLOR];
     
     if (self.nearbyShopArray.count > 0) {
         CGFloat contentHeight = self.ibNearbyShopCollection.frame.origin.y + 132 + 16 + contentHeightPadding;
@@ -777,7 +775,6 @@
 -(void)updateDealsView{
     self.ibDealsTitleLbl.text = [NSString stringWithFormat:@"%@ (%d)", LocalisedString(@"Deals"), self.dealsModel.total_count];
     [self.ibDealsSeeMoreBtn setTitle:LocalisedString(@"See more") forState:UIControlStateNormal];
-    [self.ibDealsTitle prefix_addLowerBorder:OUTLINE_COLOR];
     [self.ibDealsTable reloadData];
     
     NSArray<DealModel> *dealsArray = self.dealsModel.arrDeals;
@@ -791,7 +788,6 @@
         if (totalDeals > 3) {
             self.ibDealsSeeMoreHeightConstraint.constant = footerHeight;
             self.ibDealsSeeMoreBtn.hidden = NO;
-            [self.ibDealsSeeMoreBtn prefix_addUpperBorder:OUTLINE_COLOR];
             totalHeight += self.ibDealsSeeMoreHeightConstraint.constant;
         }
         else{
