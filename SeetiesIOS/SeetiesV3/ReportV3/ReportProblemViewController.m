@@ -9,6 +9,7 @@
 #import "ReportProblemViewController.h"
 
 @interface ReportProblemViewController ()<UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
 @property (weak, nonatomic) IBOutlet UITextView *ibTxtView;
 @property (weak, nonatomic) IBOutlet UILabel *lblOneDesc;
 
@@ -111,7 +112,7 @@
             
             [Utils setRoundBorder:self.txtTwoDesc color:LINE_COLOR borderRadius:5.0f borderWidth:1.0f];
 
-            self.lblTitle.text = LocalisedString(@"Report Shop");
+            self.ibHeaderTitle.text = LocalisedString(@"Report Shop");
 
             self.lblOneTitle.text = LocalisedString(@"Shop could not be found");
             self.lblOneDesc.text = LocalisedString(@"The shop could not be found in the area specified");
@@ -123,7 +124,7 @@
             break;
         case 2:
             
-            self.lblTitle.text = LocalisedString(@"Report Deal");
+            self.ibHeaderTitle.text = LocalisedString(@"Report Deal");
             self.lblOneTitle.text = LocalisedString(@"Deal is not available");
             self.lblOneDesc.text = LocalisedString(@"The deal is not available in the shop promoted.");
             
