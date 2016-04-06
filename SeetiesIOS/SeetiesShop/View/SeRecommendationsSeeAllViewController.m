@@ -192,14 +192,12 @@
         
         PhotoModel* photoModel = model.arrPhotos[0];
         
-        
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-        NSString *GetImageWidth = [[NSString alloc]initWithFormat:@"%@",photoModel.imageWidth];
-        NSString *GetImageHeight = [[NSString alloc]initWithFormat:@"%@",photoModel.imageHeight];
-        float oldWidth = [GetImageWidth floatValue];
+
+        float oldWidth = photoModel.imageWidth;
         float scaleFactor = screenWidth / oldWidth;
-        float newHeight_ = [GetImageHeight floatValue] * scaleFactor;
+        float newHeight_ = photoModel.imageHeight * scaleFactor;
         int resultHeight = (int)newHeight_;
         ShowImage.frame = CGRectMake(10, heightcheck, screenWidth - 20, resultHeight);
         ShowImage.layer.masksToBounds = YES;

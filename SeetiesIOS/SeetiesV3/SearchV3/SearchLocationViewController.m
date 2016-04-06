@@ -549,8 +549,6 @@
     if (![Utils isArrayNull:aModel.result]) {
  
         if ([Utils isArrayNull:cModel.arrArea]) {
-            CLS_LOG(@"Adding aModel.result to cModel.arrArea.... data:%@", aModel.result);
-            [CrashlyticsKit setObjectValue:aModel.result forKey:@"aModel.result"];
            
                 [cModel.arrArea addObjectsFromArray:aModel.result];
 
@@ -571,9 +569,8 @@
                     PlacesModel* pscModel = cModel.arrArea[j];
                     if ([pscModel.area_name isEqualToString:psaModel.area_name]) {
                         
-                        CLS_LOG(@"Adding psaModel.places to pscModel.place.... data:%@", psaModel.places);
-                        [CrashlyticsKit setObjectValue:psaModel.places forKey:@"psaModel.places"];
                         [pscModel.places addObjectsFromArray:psaModel.places];
+                        
                         isNeedAddNewArea = NO;
                         break;
                     }
@@ -660,22 +657,7 @@
         }
 
     }
-    
-//    /*for top navigation bar alpha setting*/
-//    int profileBackgroundHeight = TopBarHeight;
-//    
-//    if (scrollView.contentOffset.y > profileBackgroundHeight)
-//    {
-//        ibHeaderBackgroundView.alpha = 1;
-//        
-//    }
-//    else{
-//        float adjustment = (scrollView.contentOffset.y
-//                            )/(profileBackgroundHeight);
-//        // SLog(@"adjustment : %f",adjustment);
-//        ibHeaderBackgroundView.alpha = adjustment;
-//    }
-    
+
 }
 
 - (void)onTimerEvent:(NSTimer*)timer

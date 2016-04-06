@@ -98,6 +98,7 @@ static NSCache* heightCache = nil;
 
 @property(nonatomic,strong)NSString* locationName;
 @property (nonatomic, strong) SearchManager *searchManager;
+@property (nonatomic) DealManager *dealManager;
 
 
 /* Model */
@@ -192,6 +193,14 @@ static NSCache* heightCache = nil;
 }
 
 #pragma mark - Declaration
+
+-(DealManager *)dealManager{
+    if(!_dealManager)
+    {
+        _dealManager = [DealManager Instance];
+    }
+    return _dealManager;
+}
 
 -(CT3_SearchListingViewController*)ct3_SearchListingViewController
 {
@@ -451,6 +460,10 @@ static NSCache* heightCache = nil;
 
     if (!isFirstLoad) {
         [self requestServerForHomeUpdate:self.currentHomeLocationModel];
+    }
+    
+    if (![Utils isGuestMode]) {
+        [self RequestServerForVouchersCount];
     }
 }
 
@@ -1363,6 +1376,22 @@ static NSCache* heightCache = nil;
     
 }
 #pragma mark - Request Server
+
+-(void)RequestServerForVouchersCount{
+    NSDictionary *dict = @{@"token": [Utils getAppToken]};
+    NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
+        NSDictionary *dict = object[@"data"];
+        int count = (int)[dict[@"count"] integerValue];
+        [self.dealManager setWalletCount:count];
+        
+        [self.ibTableView reloadData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
 
 -(void)requestServerForQuickCollection:(DraftModel*)model
 {
