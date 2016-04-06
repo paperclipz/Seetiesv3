@@ -835,6 +835,7 @@
 
 +(NSInteger)numberOfDaysLeft:(NSDate*)date{
     NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [cal setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     NSDateComponents *fromDateComponent = [cal components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:[NSDate new]];
     NSDateComponents *toDateComponent = [cal components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:date];
     

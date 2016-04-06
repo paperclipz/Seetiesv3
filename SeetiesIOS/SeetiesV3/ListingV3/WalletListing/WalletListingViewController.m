@@ -350,8 +350,14 @@
 }
 
 -(void)onDealRedeemed:(DealModel *)dealModel{
-    [self removeDealFromVoucherArray:dealModel];
+    if (dealModel.total_available_vouchers == -1) {
+        [self removeDealFromVoucherArray:dealModel];
+    }
+    
     [self.ibTableView reloadData];
+    
+    self.redemptionHistoryViewController = nil;
+    [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
 }
 
 - (IBAction)emptyBtnClicked:(id)sender {
