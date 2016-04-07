@@ -70,6 +70,10 @@
     [self.userDefault setBool:YES forKey:@"ShownRedeemTutorial"];
 }
 
+- (IBAction)btnDirectionClicked:(id)sender {
+    [[MapManager Instance]showMapOptions:self.view LocationLat:self.dealModel.voucher_info.shop_info.location.lat LocationLong:self.dealModel.voucher_info.shop_info.location.lng];
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [self changeLanguage];

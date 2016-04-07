@@ -370,6 +370,7 @@
         locationModel.longtitude = locationDict[KEY_LONGTITUDE];
         locationModel.place_id = locationDict[KEY_PLACE_ID];
         locationModel.locationName = locationDict[KEY_LOCATION];
+        locationModel.countryId = [locationDict[KEY_COUNTRY_ID] integerValue];
     } @catch (NSException *exception) {
         SLog(@"Wallet location exception: %@", exception);
     }
