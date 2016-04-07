@@ -93,7 +93,7 @@
     
     _profileViewController = nil;
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
-        [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
+        [self.profileViewController initDataWithUserID:[Utils getUserID]];
 
     }];
 

@@ -1294,8 +1294,9 @@
 //    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
 //    [ExpertsUserProfileView GetUserName:[GetUser_Comment_usernameArray objectAtIndex:getbuttonIDN]];
     
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[GetUser_Comment_uidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:GetUser_Comment_uidArray[getbuttonIDN]];
+    }];
 
 }
 -(IBAction)OpenExpertsButton3:(id)sender{
@@ -1312,8 +1313,9 @@
 //    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
 //    [ExpertsUserProfileView GetUserName:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
     
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Like_UseruidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:Like_UseruidArray[getbuttonIDN]];
+    }];
 
 }
 - (void)segmentAction:(UISegmentedControl *)segment

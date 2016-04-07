@@ -179,7 +179,7 @@
 {
     _editPostViewController = nil;
      [self.editPostViewController initDataDraft:self.postModel];
-    [self.senderController.navigationController pushViewController:self.editPostViewController animated:YES];
+    [self.senderController.navigationController pushViewController:self.editPostViewController animated:NO];
     
 }
 

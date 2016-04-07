@@ -71,8 +71,9 @@
         _FollowerConnectionsTabViewController.didSelectUserRowBlock = ^(NSString* userid)
         {
             _profileViewController = nil;
-            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
-            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES onCompletion:^{
+                [weakSelf.profileViewController initDataWithUserID:userid];
+            }];
 
         };
     }
@@ -90,9 +91,12 @@
         _FollowingConnectionsTabViewController.didSelectUserRowBlock = ^(NSString* userid)
         {
             _profileViewController = nil;
-            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
-            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
             
+           
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES onCompletion:^{
+                [weakSelf.profileViewController initDataWithUserID:userid];
+            }];
+
         };
     }
     return _FollowingConnectionsTabViewController;

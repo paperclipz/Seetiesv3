@@ -1608,8 +1608,9 @@
 //    [ExpertsUserProfileView GetUserName:[All_Experts_Username_Array objectAtIndex:getbuttonIDN]];
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[All_Experts_uid_Array objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:All_Experts_uid_Array[getbuttonIDN]];
+    }];
 }
 -(IBAction)AllExpertsButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -1625,8 +1626,9 @@
 //    [self presentViewController:ExpertsUserProfileView animated:NO completion:nil];
 //    [ExpertsUserProfileView GetUserName:[FB_Experts_Username_Array objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[FB_Experts_uid_Array objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:FB_Experts_uid_Array[getbuttonIDN]];
+    }];
 }
 -(IBAction)FollowerButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

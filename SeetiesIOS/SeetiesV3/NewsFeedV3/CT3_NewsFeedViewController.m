@@ -98,6 +98,7 @@ static NSCache* heightCache = nil;
 
 @property(nonatomic,strong)NSString* locationName;
 @property (nonatomic, strong) SearchManager *searchManager;
+@property (nonatomic) DealManager *dealManager;
 
 
 /* Model */
@@ -192,6 +193,14 @@ static NSCache* heightCache = nil;
 }
 
 #pragma mark - Declaration
+
+-(DealManager *)dealManager{
+    if(!_dealManager)
+    {
+        _dealManager = [DealManager Instance];
+    }
+    return _dealManager;
+}
 
 -(CT3_SearchListingViewController*)ct3_SearchListingViewController
 {
@@ -451,6 +460,10 @@ static NSCache* heightCache = nil;
 
     if (!isFirstLoad) {
         [self requestServerForHomeUpdate:self.currentHomeLocationModel];
+    }
+    
+    if (![Utils isGuestMode]) {
+        [self RequestServerForVouchersCount];
     }
 }
 
@@ -763,9 +776,9 @@ static NSCache* heightCache = nil;
             static NSString *CellIdentifier = @"FeedType_headerTblCell";
             FeedType_headerTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
-                cell = [[FeedType_headerTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                cell = [[FeedType_headerTblCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
-            
+            [cell setUserInteractionEnabled:NO];
             return cell;
         }
         
@@ -1272,12 +1285,12 @@ static NSCache* heightCache = nil;
         
         
         if ([pModel.uid isEqualToString:[Utils getUserID]]) {
-            [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
+            [self.profileViewController initDataWithUserID:[Utils getUserID]];
 
         }
         else{
-            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:pModel.uid];
-
+            [self.profileViewController initDataWithUserID:pModel.uid];
+            
         }
 
     }];
@@ -1363,6 +1376,22 @@ static NSCache* heightCache = nil;
     
 }
 #pragma mark - Request Server
+
+-(void)RequestServerForVouchersCount{
+    NSDictionary *dict = @{@"token": [Utils getAppToken]};
+    NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
+    
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
+        NSDictionary *dict = object[@"data"];
+        int count = (int)[dict[@"count"] integerValue];
+        [self.dealManager setWalletCount:count];
+        
+        [self.ibTableView reloadData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
 
 -(void)requestServerForQuickCollection:(DraftModel*)model
 {

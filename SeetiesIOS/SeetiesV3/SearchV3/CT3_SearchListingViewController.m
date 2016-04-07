@@ -70,6 +70,11 @@
     self.homeLocationModel = model;
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [IQKeyboardManager sharedManager].enable = false;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -230,6 +235,8 @@
         self.ibSearchTableView.hidden = YES;
 
     }
+    
+    textField.returnKeyType=UIReturnKeySearch;
 
 }
 
@@ -789,7 +796,7 @@
         {
             _profileViewController = nil;
             [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES onCompletion:^{
-                [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+                [weakSelf.profileViewController initDataWithUserID:userid];
 
             }];
             
@@ -824,7 +831,7 @@
             _profileViewController = nil;
             [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES onCompletion:^{
                 
-                [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userid];
+                [weakSelf.profileViewController initDataWithUserID:userid];
 
             }];
             

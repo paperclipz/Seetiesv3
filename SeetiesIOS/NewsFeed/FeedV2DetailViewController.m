@@ -713,7 +713,8 @@
                     GetSeetishopName = [[NSString alloc]initWithFormat:@"%@",[SeetishopInfo objectForKey:@"name"]];
                     NSDictionary *SeetishopLocation = [SeetishopInfo valueForKey:@"location"];
                     GetSeetishopAddress = [[NSString alloc]initWithFormat:@"%@",[SeetishopLocation objectForKey:@"formatted_address"]];
-                    GetSeetishopImage = [[NSString alloc]initWithFormat:@"%@",[SeetishopInfo objectForKey:@"profile_photo"]];
+                    GetSeetishopImage = [[NSString alloc]initWithFormat:@"%@",SeetishopInfo[@"profile_photo"][@"picture"]];
+
                 }
                 
                 NSLog(@"GetSeetishopID is %@",GetSeetishopID);
@@ -3601,8 +3602,10 @@
         //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
         //        [NewUserProfileV2View GetUserName:GetPostName];
         _profileViewController = nil;
-        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetUserUid];
-        [self.navigationController pushViewController:self.profileViewController animated:YES];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+            [self.profileViewController initDataWithUserID:GetUserUid];
+
+        }];
         
     }
     
@@ -3615,9 +3618,11 @@
     NSMutableArray *TempUser_User_Comment_uidArray = [[[User_Comment_uidArray reverseObjectEnumerator] allObjects]mutableCopy];
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[TempUser_User_Comment_uidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
-    
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:[TempUser_User_Comment_uidArray objectAtIndex:getbuttonIDN]];
+        
+    }];
 }
 -(IBAction)OpenProfileButton3:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -3628,8 +3633,12 @@
     //    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
+        
+    }];
     
 }
 -(IBAction)OpenProfileButton4:(id)sender{
@@ -3640,8 +3649,10 @@
     //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
     //    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby lastObject]];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
+
+    }];
     
     
 }
@@ -4672,8 +4683,10 @@
     //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
     //    [NewUserProfileV2View GetUserName:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Like_UseruidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        
+        [self.profileViewController initDataWithUserID:[Like_UseruidArray objectAtIndex:getbuttonIDN]];
+    }];
     
 }
 -(IBAction)OpenCommentProfileButton:(id)sender{
@@ -4694,8 +4707,9 @@
     //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
     //    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_Comment_uidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:User_Comment_uidArray[getbuttonIDN]];
+    }];
     
 }
 -(void)DeletePost{
@@ -4845,8 +4859,10 @@
     //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
     //    [NewUserProfileV2View GetUserName:Getname];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        
+        [self.profileViewController initDataWithUserID:arrUserID[getbuttonIDN]];
+    }];
     
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{

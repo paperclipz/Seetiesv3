@@ -1785,8 +1785,10 @@
 //    [ExpertsUserProfileView GetUserName:[Experts_Username_Array objectAtIndex:getbuttonIDN]];
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Experts_uid_Array objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:Experts_uid_Array[getbuttonIDN]];
+    }];
 }
 -(IBAction)ExpertsButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -1804,8 +1806,10 @@
 //    [ExpertsUserProfileView GetUserName:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:UserInfo_IDArray[getbuttonIDN]];
+    }];
 }
 -(IBAction)ProductButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -2201,8 +2205,10 @@
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:Getname];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Collection_arrUserID objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:Collection_arrUserID[getbuttonIDN]];
+    }];
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

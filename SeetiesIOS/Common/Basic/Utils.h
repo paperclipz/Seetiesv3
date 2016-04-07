@@ -237,6 +237,7 @@ typedef enum {
 
 // ======================================   Prompt Message      ============================
 #define SUCCESSFUL_COLLECTED @"Successful Collected"
+#define SUCCESSFUL_FOLLOWED @"Successful Followed"
 
 #pragma mark - LOGIN
 +(void)showLogin;

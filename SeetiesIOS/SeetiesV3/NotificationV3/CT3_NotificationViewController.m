@@ -346,8 +346,10 @@
     
     if (![Utils isStringNull:userID]) {
         _profileViewController = nil;
-        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:userID];
-        [self.navigationController pushViewController:self.profileViewController animated:YES];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+            [self.profileViewController initDataWithUserID:userID];
+
+        }];
 
     }
     
