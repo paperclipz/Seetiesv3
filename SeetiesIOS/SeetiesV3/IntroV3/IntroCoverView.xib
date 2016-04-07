@@ -652,10 +652,10 @@
                     <exclude reference="wCg-fi-YD7"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="kJO-rA-2a2"/>
-                    <exclude reference="kKn-z5-Jlv"/>
                     <exclude reference="OI1-dM-JmE"/>
                     <exclude reference="rwL-3h-fU0"/>
+                    <exclude reference="kJO-rA-2a2"/>
+                    <exclude reference="kKn-z5-Jlv"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="408" y="219"/>

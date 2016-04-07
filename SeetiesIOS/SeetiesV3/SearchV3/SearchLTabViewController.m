@@ -15,6 +15,7 @@
 #import "UITableView+Extension.h"
 #import "FeaturedTableViewCell.h"
 #import "NSMutableDictionary+Extra.h"
+#import "CustomEmptyView.h"
 
 @interface SearchLTabViewController ()
 {
@@ -48,6 +49,7 @@
 //@property(nonatomic,strong)NSMutableArray* arrUsers;
 //@property(nonatomic,strong)NSMutableArray* arrCollections;
 @property(nonatomic,strong)NSMutableArray* arrList;
+@property (strong, nonatomic) IBOutlet CustomEmptyView *ibEmptyStateView;
 
 @end
 
@@ -70,6 +72,7 @@
     self.lblCount.text = @"";
     
 
+    self.ibTableView.backgroundView = self.ibEmptyStateView;
     self.currentLatitude = @"";
     self.currentLongtitude = @"";
     
@@ -83,7 +86,7 @@
 -(void)initSelfView
 {
     
-    [self.ibTableView setupFooterView];
+   // [self.ibTableView setupFooterView];
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
@@ -557,8 +560,11 @@
     
     isMiddleOfCallingServer = YES;
     
+    [self.ibEmptyStateView showLoading];
+    
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeSearchShops param:finalDict appendString:nil completeHandler:^(id object) {
         
+
         SeShopsModel* model = [[ConnectionManager dataManager]seShopListingModel];
         self.seShopsModel = model;
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",model.total_count,LocalisedString(@"Shops")];
@@ -567,12 +573,12 @@
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
         [self.ibTableView reloadData];
-
-      //  [self.ibTableView refreshConstraint];
+        [self.ibEmptyStateView showEmptyState];
        
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
+        [self.ibEmptyStateView showEmptyState];
 
     }];
 }
@@ -611,6 +617,7 @@
     isMiddleOfCallingServer = YES;
     //[self.ibTableView startFooterLoadingView];
 
+    [self.ibEmptyStateView showLoading];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchPosts param:dict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
         [self.arrList addObjectsFromArray:self.userProfilePostModel.recommendations.posts];
@@ -618,11 +625,15 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.recommendations.total_count,LocalisedString(@"Posts")];
 
         isMiddleOfCallingServer = NO;
+        [self.ibEmptyStateView showEmptyState];
+
      //   [self.ibTableView stopFooterLoadingView];
 
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
       //  [self.ibTableView stopFooterLoadingView];
+        [self.ibEmptyStateView showEmptyState];
+
 
     }];
     
@@ -637,6 +648,8 @@
     isMiddleOfCallingServer = YES;
   //  NSDictionary* dict;
   //  NSString* appendString = [[NSString alloc]initWithFormat:@"user?token=%@&keyword=%@",[Utils getAppToken],self.getSearchText];
+
+    [self.ibEmptyStateView showLoading];
 
     NSDictionary* dict = @{@"page":self.usersModel.page?@(self.usersModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
@@ -654,12 +667,14 @@
         [self.ibTableView stopFooterLoadingView];
         
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.usersModel.total_count,LocalisedString(@"Users")];
+        [self.ibEmptyStateView showEmptyState];
 
 
     } errorBlock:^(id object) {
         
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
+        [self.ibEmptyStateView showEmptyState];
 
     }];
 }
@@ -693,7 +708,8 @@
     
     [self.ibTableView startFooterLoadingView];
 
-    
+    [self.ibEmptyStateView showLoading];
+
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchCollections param:finalDict appendString:nil completeHandler:^(id object) {
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
         [self.arrList addObjectsFromArray:self.userCollectionsModel.arrCollections];
@@ -703,11 +719,13 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_count,LocalisedString(@"Collections")];
 
         [self.ibTableView stopFooterLoadingView];
+        [self.ibEmptyStateView showEmptyState];
 
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
 
         [self.ibTableView stopFooterLoadingView];
+        [self.ibEmptyStateView showEmptyState];
 
     }];
 }

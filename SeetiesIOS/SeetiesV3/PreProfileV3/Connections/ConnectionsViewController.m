@@ -7,10 +7,13 @@
 //
 
 #import "ConnectionsViewController.h"
+#import "CAPSPageMenu.h"
 
 @interface ConnectionsViewController ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
+@property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
+@property (weak, nonatomic) IBOutlet UIView *ibContentView;
 
 @end
 
@@ -29,19 +32,9 @@
 -(void)InitSelfView{
     //self.ibScrollView.contentSize = CGSizeMake(850, 50);
     
-    CGRect frame = [Utils getDeviceScreenSize];
-    [self.ibScrollView setWidth:frame.size.width];
-    [self.FollowerConnectionsTabViewController.view setWidth:frame.size.width];
-    [self.FollowerConnectionsTabViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.ibScrollView addSubview:self.FollowerConnectionsTabViewController.view];
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width, self.ibScrollView.frame.size.height);
-    
-    [self.FollowingConnectionsTabViewController.view setWidth:frame.size.width];
-    [self.FollowingConnectionsTabViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.ibScrollView addSubview:self.FollowingConnectionsTabViewController.view];
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
-    self.ibScrollView.pagingEnabled = YES;
-    [self.FollowingConnectionsTabViewController.view setX:self.FollowerConnectionsTabViewController.view.frame.size.width];
+    [self.ibContentView adjustToScreenWidth];
+
+    [self.ibContentView addSubview:self.cAPSPageMenu.view];
     
     
 }
@@ -60,12 +53,45 @@
             break;
     }
 }
+
+#pragma mark - Declaration
+
+-(CAPSPageMenu*)cAPSPageMenu
+{
+    if(!_cAPSPageMenu)
+    {
+        CGRect deviceFrame = [Utils getDeviceScreenSize];
+        
+        NSArray *controllerArray = @[self.FollowerConnectionsTabViewController,self.FollowingConnectionsTabViewController];
+        NSDictionary *parameters = @{
+                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
+                                     CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
+                                     CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
+                                     CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
+                                     CAPSPageMenuOptionMenuHeight: @(40.0),
+                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2 - 20),
+                                     CAPSPageMenuOptionCenterMenuItems: @(YES),
+                                     CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
+                                     CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
+                                     };
+        
+        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height) options:parameters];
+        _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
+        //_cAPSPageMenu.delegate = self;
+    }
+    return _cAPSPageMenu;
+}
+
+
+
 -(ConnectionsTabViewController*)FollowerConnectionsTabViewController{
     if(!_FollowerConnectionsTabViewController)
     {
         _FollowerConnectionsTabViewController = [ConnectionsTabViewController new];
         _FollowerConnectionsTabViewController.usersListingType = UsersListingTypeFollower;
         _FollowerConnectionsTabViewController.userID = self.userID;
+        _FollowerConnectionsTabViewController.title = LocalisedString(@"Follower");
         __weak typeof (self)weakSelf = self;
         
         _FollowerConnectionsTabViewController.didSelectUserRowBlock = ^(NSString* userid)
@@ -85,7 +111,8 @@
         _FollowingConnectionsTabViewController = [ConnectionsTabViewController new];
         _FollowingConnectionsTabViewController.usersListingType = UsersListingTypeFollowing;
         _FollowingConnectionsTabViewController.userID = self.userID;
-        
+        _FollowingConnectionsTabViewController.title = LocalisedString(@"Following");
+
         __weak typeof (self)weakSelf = self;
         
         _FollowingConnectionsTabViewController.didSelectUserRowBlock = ^(NSString* userid)
