@@ -125,7 +125,7 @@
     
     if ([text isEqualToString:@"Verify your phone number"]) {
         
-        if ([self isUserPhoneNumberVerified]) {
+        if ([Utils isPhoneNumberVerified]) {
             
             ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
             cell.lblTitle.text = [LanguageManager stringForKey:@"Phone Number = {!phone number}" withPlaceHolder:@{@"{!phone number}": profileModel.contact_no}];
@@ -171,19 +171,6 @@
     return cell;
 }
 
-
--(BOOL)isUserPhoneNumberVerified
-{
-    ProfileModel* model = [[ConnectionManager dataManager]userProfileModel];
-    if (model.phone_verified) {
-        
-        if (![Utils isStringNull:model.contact_no]) {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.section) {
@@ -224,7 +211,7 @@
                 CASE (@"Verify your phone number"){
                     
                     
-                    if ([self isUserPhoneNumberVerified]) {
+                    if ([Utils isPhoneNumberVerified]) {
                         
                         _promoPopOutViewController = nil;
                         

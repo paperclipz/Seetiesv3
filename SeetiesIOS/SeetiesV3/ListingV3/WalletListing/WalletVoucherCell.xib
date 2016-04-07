@@ -130,6 +130,22 @@
                                             </mask>
                                         </variation>
                                     </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPN-JX-MVx" userLabel="promo lbl" customClass="TTTAttributedLabel">
+                                        <rect key="frame" x="18" y="34" width="0.0" height="15"/>
+                                        <color key="backgroundColor" red="0.5607843137254902" green="0.49411764705882355" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="DAP-rs-3DX"/>
+                                            <constraint firstAttribute="width" constant="72" id="nCk-gR-8uK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="nCk-gR-8uK"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9X-a6-9HS" userLabel="redeem voucher">
                                         <rect key="frame" x="445" y="14" width="120" height="35"/>
                                         <color key="backgroundColor" red="0.93725490196078431" green="0.32549019607843138" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
@@ -149,6 +165,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="l9X-a6-9HS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NPN-JX-MVx" secondAttribute="trailing" constant="10" id="1N5-O5-mRa"/>
                                     <constraint firstItem="CoZ-p6-6hj" firstAttribute="leading" secondItem="sp8-d2-t3F" secondAttribute="leading" constant="8" id="4Zf-sT-ked"/>
                                     <constraint firstItem="K9w-Q1-xvq" firstAttribute="leading" secondItem="sp8-d2-t3F" secondAttribute="leading" constant="8" id="53u-wL-PVj"/>
                                     <constraint firstItem="CoZ-p6-6hj" firstAttribute="bottom" secondItem="l9X-a6-9HS" secondAttribute="bottom" id="FYp-cN-SzI"/>
@@ -156,8 +173,10 @@
                                     <constraint firstAttribute="trailing" secondItem="l9X-a6-9HS" secondAttribute="trailing" constant="8" id="Gac-fW-xJp"/>
                                     <constraint firstAttribute="height" constant="63" id="Ib4-Ev-Vh7"/>
                                     <constraint firstItem="l9X-a6-9HS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="K9w-Q1-xvq" secondAttribute="trailing" constant="10" id="Oxh-bh-gMb"/>
+                                    <constraint firstItem="NPN-JX-MVx" firstAttribute="leading" secondItem="CoZ-p6-6hj" secondAttribute="trailing" constant="10" id="Ozr-Mk-LpC"/>
                                     <constraint firstItem="K9w-Q1-xvq" firstAttribute="top" secondItem="sp8-d2-t3F" secondAttribute="top" constant="8" id="V5i-CO-GfM"/>
                                     <constraint firstItem="K9w-Q1-xvq" firstAttribute="top" secondItem="l9X-a6-9HS" secondAttribute="top" id="bMf-iR-byD"/>
+                                    <constraint firstItem="NPN-JX-MVx" firstAttribute="bottom" secondItem="l9X-a6-9HS" secondAttribute="bottom" id="eN5-X2-fVg"/>
                                     <constraint firstItem="l9X-a6-9HS" firstAttribute="centerY" secondItem="sp8-d2-t3F" secondAttribute="centerY" id="vFk-98-kKd"/>
                                     <constraint firstItem="CoZ-p6-6hj" firstAttribute="top" secondItem="K9w-Q1-xvq" secondAttribute="bottom" constant="5" id="vgJ-oM-j0d"/>
                                     <constraint firstItem="l9X-a6-9HS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CoZ-p6-6hj" secondAttribute="trailing" constant="10" id="von-DL-D4d"/>
@@ -206,6 +225,7 @@
             <connections>
                 <outlet property="ibDealUsageLbl" destination="CoZ-p6-6hj" id="1hg-3e-mNA"/>
                 <outlet property="ibInnerContentView" destination="ubO-L0-b1F" id="WZ7-wZ-bHp"/>
+                <outlet property="ibPromoLbl" destination="NPN-JX-MVx" id="bIm-9W-bEu"/>
                 <outlet property="ibRedeemBtn" destination="l9X-a6-9HS" id="PNK-Ba-0ji"/>
                 <outlet property="ibVoucherExpiryLbl" destination="K9w-Q1-xvq" id="hia-i9-SbL"/>
                 <outlet property="ibVoucherImg" destination="fUJ-VL-T90" id="muy-E3-Gqq"/>
