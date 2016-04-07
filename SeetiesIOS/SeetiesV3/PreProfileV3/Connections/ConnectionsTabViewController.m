@@ -8,13 +8,18 @@
 
 #import "ConnectionsTabViewController.h"
 #import "SeetizensTableViewCell.h"
-@interface ConnectionsTabViewController ()
+#import "UITableView+NXEmptyView.h"
+
+@interface ConnectionsTabViewController ()<UITableViewNXEmptyViewDataSource>
 {
     BOOL isMiddleOfCallingServer;
+    BOOL showEmptyState;
+
 }
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property(nonatomic,strong)UsersModel* usersModel;
 @property(nonatomic,strong)NSMutableArray* arrUsers;
+
 @end
 
 @implementation ConnectionsTabViewController
@@ -32,6 +37,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initSelfView];
+    showEmptyState = NO;
     [self refreshRequest];
 }
 
@@ -111,9 +117,8 @@
 
 }
 -(void)requestServerForUserFollower{
-    SLog(@"requestServerForUserFollower work");
-    isMiddleOfCallingServer = true;
-    //need to input token for own profile private collection, no token is get other people public collection
+
+       //need to input token for own profile private collection, no token is get other people public collection
     NSString* appendString = [NSString stringWithFormat:@"%@/follower",self.userID];
     
     NSDictionary* dict = @{@"page":self.usersModel.page?@(self.usersModel.page + 1):@1,
@@ -122,8 +127,14 @@
                            @"uid":self.userID
                            };
     
+    showEmptyState = NO;
+    isMiddleOfCallingServer = true;
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeUserFollower param:dict appendString:appendString completeHandler:^(id object) {
+        
+        showEmptyState = YES;
         isMiddleOfCallingServer = false;
+        
         self.usersModel = [[ConnectionManager dataManager]usersModel];
         
         [self.arrUsers addObjectsFromArray:self.usersModel.follower];
@@ -131,12 +142,15 @@
         [self.ibTableView reloadData];
     } errorBlock:^(id object) {
        isMiddleOfCallingServer = false;
+        showEmptyState = YES;
+        [self.ibTableView reloadData];
+
         
     }];
 }
 -(void)requestServerForUserFollowing{
-    SLog(@"requestServerForUserFollowing work");
-    isMiddleOfCallingServer = true;
+  
+    
     //need to input token for own profile private collection, no token is get other people public collection
     NSString* appendString = [NSString stringWithFormat:@"%@/following",self.userID];
     
@@ -145,9 +159,14 @@
                            @"token":[Utils getAppToken],
                            @"uid":self.userID
                            };
-    
+    showEmptyState = NO;
+    isMiddleOfCallingServer = true;
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeUserFollower param:dict appendString:appendString completeHandler:^(id object) {
-        isMiddleOfCallingServer = false;
+
+        showEmptyState = YES;
+        isMiddleOfCallingServer = true;
+
         self.usersModel = [[ConnectionManager dataManager]usersModel];
         
         [self.arrUsers addObjectsFromArray:self.usersModel.following];
@@ -155,6 +174,9 @@
     } errorBlock:^(id object) {
         
         isMiddleOfCallingServer = false;
+        showEmptyState = YES;
+        [self.ibTableView reloadData];
+
     }];
 }
 -(NSMutableArray*)arrUsers
@@ -221,6 +243,13 @@
         
     }
 }
+
+#pragma mark - UIEmpty State Table View Data Source
+- (BOOL)tableViewShouldBypassNXEmptyView:(UITableView *)tableView
+{
+        return !showEmptyState;
+}
+
 #pragma mark - UIScrollView Delegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

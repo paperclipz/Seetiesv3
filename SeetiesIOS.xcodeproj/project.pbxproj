@@ -63,6 +63,7 @@
 		8A0035471C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */; };
 		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
 		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
+		8A0159CF1CB6741E00ED6D0F /* CustomEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0159CE1CB6741E00ED6D0F /* CustomEmptyView.m */; };
 		8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */; };
 		8A03487A1C154F9C0015E606 /* SeetiesMoreInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */; };
 		8A03487E1C1579640015E606 /* NSString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A03487D1C1579640015E606 /* NSString+Extra.m */; };
@@ -1494,6 +1495,8 @@
 		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
 		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
 		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		8A0159CD1CB6741E00ED6D0F /* CustomEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEmptyView.h; sourceTree = "<group>"; };
+		8A0159CE1CB6741E00ED6D0F /* CustomEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEmptyView.m; sourceTree = "<group>"; };
 		8A0348761C154F9C0015E606 /* SeetiesMoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesMoreInfoViewController.h; sourceTree = "<group>"; };
 		8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiesMoreInfoViewController.m; sourceTree = "<group>"; };
 		8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesMoreInfoViewController.xib; sourceTree = "<group>"; };
@@ -3487,6 +3490,15 @@
 			path = CollectionCell;
 			sourceTree = "<group>";
 		};
+		8A0159CC1CB6740700ED6D0F /* CustomEmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				8A0159CD1CB6741E00ED6D0F /* CustomEmptyView.h */,
+				8A0159CE1CB6741E00ED6D0F /* CustomEmptyView.m */,
+			);
+			path = CustomEmptyView;
+			sourceTree = "<group>";
+		};
 		8A03487B1C15793A0015E606 /* NSString+Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -3550,6 +3562,7 @@
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
+				8A0159CC1CB6740700ED6D0F /* CustomEmptyView */,
 				8A94B0EC1CA38CFD00ED568B /* CT3_LoadingView */,
 				8AFF288C1C9FF9C7008B66D8 /* AutoCoding */,
 				C238E3051C4649AA00570A25 /* NMRangeSlider */,
@@ -8400,6 +8413,7 @@
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,
 				8A114C7B1BE73F5D006AE3F0 /* BKCardNumberField.m in Sources */,
 				8ABA51F01C0F042000A3DC15 /* UINavigationController+Transition.m in Sources */,
+				8A0159CF1CB6741E00ED6D0F /* CustomEmptyView.m in Sources */,
 				8AEDBFBD1C2031BA000BD2FF /* SeShopPhotoModel.m in Sources */,
 				8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */,
 				C28469B91C5F6FCD00B38885 /* NearbyShopsCell.m in Sources */,

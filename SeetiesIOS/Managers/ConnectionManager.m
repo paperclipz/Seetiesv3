@@ -802,7 +802,6 @@
     [self saveProductionSetting:obj];
 
     
-    [self storeServerData:obj requestType:type];
     
     NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:obj];
     
@@ -846,6 +845,8 @@
     }
     else{
     
+        [self storeServerData:obj requestType:type];
+
         if (completionBlock) {
             completionBlock(dict);
         }

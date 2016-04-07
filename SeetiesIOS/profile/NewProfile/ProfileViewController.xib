@@ -53,11 +53,10 @@
                 <constraint firstItem="pdp-kG-bwS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zCa-1u-eot"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="527" y="108"/>
         </view>
         <view contentMode="scaleToFill" id="3Pb-zr-5rR" userLabel="ContentView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="618"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkl-HZ-BhG">
@@ -225,7 +224,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="222" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="y6b-tE-4Np">
-                    <rect key="frame" x="0.0" y="289" width="320" height="329"/>
+                    <rect key="frame" x="0.0" y="289" width="320" height="279"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -247,7 +246,6 @@
                 <constraint firstItem="lkl-HZ-BhG" firstAttribute="top" secondItem="3Pb-zr-5rR" secondAttribute="top" constant="50" id="nUB-18-VGe"/>
                 <constraint firstAttribute="bottom" secondItem="y6b-tE-4Np" secondAttribute="bottom" id="tHy-rH-8By"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="897" y="133"/>
         </view>
         <view contentMode="scaleToFill" id="0UY-Bu-A3h" userLabel="settingContentView">
