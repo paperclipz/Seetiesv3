@@ -9,12 +9,12 @@
 #import "PostListingViewController.h"
 #import "PostListingTableViewCell.h"
 #import "ListingHeaderView.h"
+#import "DraftAndRecommendationDelegate.h"
 
 @interface PostListingViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BOOL isMiddleOfCallingServer;
 }
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @property (strong, nonatomic)NSMutableArray* arrPostListing;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
@@ -25,18 +25,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
 
+@property(nonatomic,strong)DraftAndRecommendationDelegate* recommendDelegate;
 @end
 
 @implementation PostListingViewController
 - (IBAction)btnAddMoreClicked:(id)sender {
-    
-    if(_btnAddMorePostBlock)
-    {
-        self.btnAddMorePostBlock();
 
-    }
+    [self.recommendDelegate showRecommendationView:self];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.ibTableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,6 +79,17 @@
 }
 
 #pragma mark - Declaration
+
+-(DraftAndRecommendationDelegate*)recommendDelegate
+{
+    
+    if (!_recommendDelegate) {
+        _recommendDelegate = [DraftAndRecommendationDelegate new];
+    }
+    
+    return _recommendDelegate;
+}
+
 -(FeedV2DetailViewController*)feedV2DetailViewController
 {
     if (!_feedV2DetailViewController) {

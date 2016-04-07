@@ -633,8 +633,10 @@
         {
             
             _profileViewController = nil;
-            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:idn];
-            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES onCompletion:^{
+                [weakSelf.profileViewController initDataWithUserID:idn];
+            }];
         };
     }
     return _seRecommendations;

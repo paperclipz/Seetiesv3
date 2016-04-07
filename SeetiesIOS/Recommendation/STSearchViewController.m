@@ -427,15 +427,13 @@
 {
     Location* model = self.arrSeetiesList[indexPath.row];
     
-    
     model.type = SearchTypeSeeties;
-    if (self.didSelectOnLocationBlock) {
-        self.didSelectOnLocationBlock(model);
-    }
-}
+    
+    [self requestForSeetishopDetails:model.location_id];
+   }
 
 
-#pragma mark - Request Sever
+#pragma mark - Request Sever for location Details
 -(void)requestForGoogleMapDetails:(NSString*)placeID
 {
     
@@ -457,7 +455,33 @@
     } errorBlock:nil];
     
 }
+-(void)requestForSeetishopDetails:(NSString*)locationID
+{
+    
+    NSDictionary* dict = @{@"seetishop_id":locationID,
+                           @"token" : [Utils getAppToken]
+                           };
+    
+    NSString* appendString = locationID;
 
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:dict appendString:appendString completeHandler:^(id object) {
+        
+        SeShopDetailModel* model = [[ConnectionManager dataManager] seShopDetailModel];
+        model.location.type = SearchTypeSeeties;
+        
+        if (self.didSelectOnLocationBlock) {
+            self.didSelectOnLocationBlock(model.location);
+        }
+
+    } errorBlock:^(id object) {
+        
+        
+    }];
+
+    
+}
+
+#pragma mark - Reauest Server for location list
 -(void)getFourSquareSuggestionPlaces
 {
     self.type = SearchTypeFourSquare;
@@ -506,11 +530,12 @@
     }];
 }
 #pragma server request
+
 -(void)requestSearch
 {
-    
     _arrSeetiesList = nil;
     [self.seetiesSearchTableViewController.tableView reloadData];
+    
     if (![self.txtSearch.text isEqualToString:@""]) {
         [self getGoogleSearchPlaces];
     }

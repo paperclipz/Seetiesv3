@@ -14,8 +14,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UIWebView *ibWebView;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (nonatomic, weak)     InstagramEngine *instagramEngine;
+@property (nonatomic, weak) InstagramEngine *instagramEngine;
 
 @end
 
@@ -24,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.lblTitle.text = self.title;
     self.ibWebView.delegate = self;
     self.instagramEngine = [InstagramEngine sharedEngine];
     

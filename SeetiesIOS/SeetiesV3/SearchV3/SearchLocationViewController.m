@@ -583,9 +583,7 @@
                 }
 
             }
-        
-        CLS_LOG(@"Adding temp array to cModel.arrArea.... data:%@", arrTemp);
-        [CrashlyticsKit setObjectValue:arrTemp forKey:@"arrTemp"];
+
         [cModel.arrArea addObjectsFromArray:arrTemp];
     }
     

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LikesListingViewController">
@@ -63,7 +63,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qhO-On-UL4">
-                    <rect key="frame" x="0.0" y="64" width="320" height="456"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="dhh-lb-xA5">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="50" height="50"/>
@@ -90,7 +90,7 @@
                 <constraint firstAttribute="trailing" secondItem="qhO-On-UL4" secondAttribute="trailing" id="UMx-nd-cG2"/>
                 <constraint firstItem="qhO-On-UL4" firstAttribute="top" secondItem="EOY-yT-4bV" secondAttribute="bottom" id="hyd-cn-Kxl"/>
                 <constraint firstItem="ef7-s0-58p" firstAttribute="top" secondItem="EOY-yT-4bV" secondAttribute="bottom" id="olY-cB-dnc"/>
-                <constraint firstAttribute="bottom" secondItem="qhO-On-UL4" secondAttribute="bottom" constant="48" id="sGn-Ia-9d4"/>
+                <constraint firstAttribute="bottom" secondItem="qhO-On-UL4" secondAttribute="bottom" id="sGn-Ia-9d4"/>
                 <constraint firstItem="ef7-s0-58p" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sI3-Lk-fup"/>
                 <constraint firstAttribute="trailing" secondItem="EOY-yT-4bV" secondAttribute="trailing" id="tKs-fi-Shh"/>
                 <constraint firstItem="qhO-On-UL4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z7J-l9-tlq"/>

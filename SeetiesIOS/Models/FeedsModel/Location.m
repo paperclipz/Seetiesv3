@@ -97,7 +97,7 @@
    // _place_id = model.place_id;
     _contact_no = model.formattedPhone;
     _link = model.url;
-   
+    _reference = [NSString stringWithFormat:@"%d",model.id];
    // _distance = model.distance;
     
     if (model.address) {

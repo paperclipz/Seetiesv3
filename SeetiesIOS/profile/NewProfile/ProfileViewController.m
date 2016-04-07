@@ -333,9 +333,8 @@
 }
 
 #pragma mark - Request all Data
--(void)requestAllDataWithType:(ProfileViewType)type UserID:(NSString*)uID
+-(void)initDataWithUserID:(NSString*)uID
 {
-    self.profileViewType = type;
     self.userID = uID;
     
     [self adjustTableView];
@@ -794,7 +793,6 @@
             [self.postListingViewController initData:self.userProfilePostModel UserProfileModel:self.userProfileModel ProfileViewType:self.profileViewType];
             [self.navigationController pushViewController:self.postListingViewController animated:YES];
             
-            self.postListingViewController.btnAddMorePostBlock = self.btnAddMorePostClickedBlock;
         }
             
             break;

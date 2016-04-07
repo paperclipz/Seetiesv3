@@ -776,9 +776,9 @@ static NSCache* heightCache = nil;
             static NSString *CellIdentifier = @"FeedType_headerTblCell";
             FeedType_headerTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
-                cell = [[FeedType_headerTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                cell = [[FeedType_headerTblCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
-            
+            [cell setUserInteractionEnabled:NO];
             return cell;
         }
         
@@ -1285,12 +1285,12 @@ static NSCache* heightCache = nil;
         
         
         if ([pModel.uid isEqualToString:[Utils getUserID]]) {
-            [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
+            [self.profileViewController initDataWithUserID:[Utils getUserID]];
 
         }
         else{
-            [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:pModel.uid];
-
+            [self.profileViewController initDataWithUserID:pModel.uid];
+            
         }
 
     }];

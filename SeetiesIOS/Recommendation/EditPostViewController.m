@@ -719,7 +719,8 @@ static id ObjectOrNull(id object)
                                   @"administrative_area_level_1":ObjectOrNull(self.postModel.location.administrative_area_level_1),
                                   @"postalCode":ObjectOrNull(self.postModel.location.postal_code),
                                   @"country":ObjectOrNull(self.postModel.location.country),
-                                  @"political":@""};
+                                  @"political":@"",
+                                  };
     
     NSMutableArray* dictPeriods = [NSMutableArray new];
 
@@ -751,14 +752,17 @@ static id ObjectOrNull(id object)
                       @"type":@(self.postModel.location.type),
                       @"rating":@"",
                       @"reference":[self stringOrBlank:self.postModel.location.reference],
-                      @"contact_no":[self stringOrBlank:self.postModel.location
-                                     .contact_no],
+                      @"contact_no":[self stringOrBlank:self.postModel.location.contact_no],
                       @"source":@"",
                       @"opening_hours":ObjectOrNull(openingHourDict),
                       @"link":[self stringOrBlank:self.postModel.location.link],
                       @"lat":[self stringOrBlank:self.postModel.location.lat],
                       @"expense":[self dictOrBlank:expensesDict],
-                      @"lng":[self stringOrBlank:self.postModel.location.lng]
+                      @"lng":[self stringOrBlank:self.postModel.location.lng],
+                      @"location_id" : ObjectOrNull(self.postModel.location.location_id),
+                      @"place_id" : ObjectOrNull(self.postModel.location.place_id),
+                      @"reference" : ObjectOrNull(self.postModel.location.reference),
+
                       };
     
 //    NSMutableDictionary* finalLocationDict = [[NSMutableDictionary alloc]initWithDictionary:locationDict];
@@ -814,8 +818,11 @@ static id ObjectOrNull(id object)
 
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostSaveDraft param:finalDict appendString:self.postModel.post_id meta:arrMeta  completeHandler:^(id object) {
         
-        if (!isDraft) {
+        if (!isDraft) {//post recommendation
             
+            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Posted Successfully") Type:TSMessageNotificationTypeSuccess];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_POST object:nil];
+
             [self performSelector:@selector(buttonDoneAction) withObject:nil afterDelay:2.0f];
         }
         else{ // This is draft

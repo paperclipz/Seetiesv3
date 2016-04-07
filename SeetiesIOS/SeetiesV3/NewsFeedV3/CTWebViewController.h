@@ -9,6 +9,7 @@
 #import "CommonViewController.h"
 
 @interface CTWebViewController : CommonViewController
+
 -(void)initData:(AnnouncementModel*)model;
 -(void)initDataWithURL:(NSString *)url andTitle:(NSString*)title;
 -(void)initDataForInstagram;

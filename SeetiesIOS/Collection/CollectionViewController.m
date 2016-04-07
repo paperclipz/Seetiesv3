@@ -1735,8 +1735,10 @@
 }
 -(IBAction)OpenProfileButtonOnClick:(id)sender{
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetUserID];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:GetUserID];
+    }];
 
 }
 -(ProfileViewController*)profileViewController

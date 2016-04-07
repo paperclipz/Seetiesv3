@@ -519,8 +519,9 @@
     DraftModel* model = self.arrPostListing[getbuttonIDN];
 
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:model.user_info.uid];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:model.user_info.uid];
+    }];
 }
 -(IBAction)LikeButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
