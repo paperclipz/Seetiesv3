@@ -18,7 +18,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s32-CI-g3u" userLabel="inner content view">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CuP-er-0zT" userLabel="deal image">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SsDefaultDisplayPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="CuP-er-0zT" userLabel="deal image">
                                 <rect key="frame" x="8" y="8" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="O7U-hW-Xw6"/>
@@ -128,5 +128,6 @@
     <resources>
         <image name="HistoryCardPattern.png" width="1118" height="22"/>
         <image name="LocationPinGrey.png" width="10" height="13"/>
+        <image name="SsDefaultDisplayPhoto.png" width="30" height="30"/>
     </resources>
 </document>
