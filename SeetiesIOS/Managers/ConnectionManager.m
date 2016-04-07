@@ -1307,6 +1307,13 @@
             self.dataManager.suggestedPlaceModel = [[SuggestedPlaceModel alloc]initWithDictionary:dict error:nil];
         }
             break;
+        case ServerRequestTypePostUpdateUser:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.currentUserProfileModel = [[ProfileModel alloc] initWithDictionary:dict error:nil];
+
+        }
+            break;
             
         default:
             

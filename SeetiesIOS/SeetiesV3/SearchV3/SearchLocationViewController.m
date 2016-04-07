@@ -444,9 +444,15 @@
             hModel.locationName = [model locationNameWithCustomKey:self.countriesModel.current_country.place_display_fields];
            
 
-            if (self.homeLocationRefreshBlock) {
-                self.homeLocationRefreshBlock(hModel, nil);
-            }
+            [UIAlertView showWithTitle:LocalisedString(@"system") message:[NSString stringWithFormat:@"%@%@ ?",LocalisedString(@"Change Location To "),hModel.locationName] style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[LocalisedString(@"OK")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                
+                if (buttonIndex == 1) {
+                    if (self.homeLocationRefreshBlock) {
+                        self.homeLocationRefreshBlock(hModel, nil);
+                    }
+                }
+            }];
+           
         }
 
     }];
