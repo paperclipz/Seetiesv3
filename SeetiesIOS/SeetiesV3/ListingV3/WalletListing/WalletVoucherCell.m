@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherExpiryLbl;
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *ibDealUsageLbl;
 @property (weak, nonatomic) IBOutlet UIButton *ibRedeemBtn;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *ibPromoLbl;
 
 @property(nonatomic) DealModel *dealModel;
 
@@ -124,6 +125,16 @@
     else{
         [self.ibRedeemBtn setBackgroundColor:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.f alpha:1]];
     }
+    
+    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO]) {
+        self.ibPromoLbl.hidden = NO;
+    }
+    else{
+        self.ibPromoLbl.hidden = YES;
+    }
+    self.ibPromoLbl.text = LocalisedString(@"PROMO");
+    self.ibPromoLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+    [Utils setRoundBorder:self.ibPromoLbl color:[UIColor clearColor] borderRadius:self.ibPromoLbl.frame.size.height/2];
     
 }
 

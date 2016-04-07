@@ -350,7 +350,7 @@
 }
 
 -(void)onDealRedeemed:(DealModel *)dealModel{
-    if (dealModel.total_available_vouchers == -1) {
+    if (dealModel.total_available_vouchers != -1) {
         [self removeDealFromVoucherArray:dealModel];
     }
     
