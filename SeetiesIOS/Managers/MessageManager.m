@@ -42,4 +42,9 @@
         
     } atPosition:TSMessageNotificationPositionTop canBeDismissedByUser:YES];
 }
+
++(void)showMessageInPopOut:(NSString*)title subtitle:(NSString*)subtitle{
+    [UIAlertView showWithTitle:title message:subtitle cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:nil];
+}
+
 @end

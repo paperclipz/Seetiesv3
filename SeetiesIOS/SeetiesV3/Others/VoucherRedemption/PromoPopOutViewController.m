@@ -8,7 +8,10 @@
 
 #import "PromoPopOutViewController.h"
 
-@interface PromoPopOutViewController ()
+@interface PromoPopOutViewController (){
+    NSCharacterSet *alphaNumericSet;
+    NSCharacterSet *numericSet;
+}
 @property (strong, nonatomic) IBOutlet UIView *ibEnterPromoView;
 @property (weak, nonatomic) IBOutlet UITextField *ibPromoCodeText;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitleLbl;
@@ -118,6 +121,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    alphaNumericSet = [NSCharacterSet alphanumericCharacterSet];
+    numericSet = [NSCharacterSet decimalDigitCharacterSet];
     self.isLoading = NO;
     self.isVerified = NO;
     self.hasRequestedTotp = NO;
@@ -569,7 +574,8 @@
                 [nextVC setEnteredPhoneNumber:self.ibEnterPhoneTxtField.text];
             }
             else{
-                [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please enter your phone number and country code") Type:TSMessageNotificationTypeError];
+                [MessageManager showMessageInPopOut:LocalisedString(@"system")  subtitle:LocalisedString(@"Please enter your phone number and country code")];
+//                [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please enter your phone number and country code") Type:TSMessageNotificationTypeError];
                 return;
             }
         }
@@ -692,6 +698,20 @@
     }
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == self.ibPromoCodeText) {
+        BOOL isAlphaNumeric = [string rangeOfCharacterFromSet:alphaNumericSet].location != NSNotFound;
+        BOOL isBackspace = [string isEqualToString:@""]? YES : NO;
+        return (isAlphaNumeric || isBackspace);
+    }
+    else if (textField == self.ibEnterPhoneTxtField || textField != self.ibEnterVerificationTxtField){
+        BOOL isNumeric = [string rangeOfCharacterFromSet:numericSet].location != NSNotFound;
+        BOOL isBackspace = [string isEqualToString:@""]? YES : NO;
+        return (isNumeric || isBackspace);
+    }
+    return YES;
+}
+
 #pragma mark - RequestServer
 
 -(void)requestServerToGetTotp{
@@ -742,7 +762,8 @@
         [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
         self.ibEnterVerificationTxtField.backgroundColor = [UIColor whiteColor];
         self.ibEnterVerificationTxtField.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The verification code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessageInPopOut:LocalisedString(@"system") subtitle:LocalisedString(@"The verification code entered is invalid. Please check and try again.")];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The verification code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         self.isVerified = NO;
         self.isLoading = NO;
         [LoadingManager hide];
@@ -789,7 +810,8 @@
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessageInPopOut:LocalisedString(@"system") subtitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.")];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         [LoadingManager hide];
         self.isLoading = NO;
         self.hasRequestedPromo = NO;
@@ -824,7 +846,8 @@
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessageInPopOut:LocalisedString(@"system") subtitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.")];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         self.hasRedeemed = NO;
         [LoadingManager hide];
         self.isLoading = NO;
