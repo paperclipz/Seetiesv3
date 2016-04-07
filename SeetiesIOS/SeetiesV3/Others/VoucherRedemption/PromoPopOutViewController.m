@@ -704,7 +704,7 @@
         BOOL isBackspace = [string isEqualToString:@""]? YES : NO;
         return (isAlphaNumeric || isBackspace);
     }
-    else if (textField == self.ibEnterPhoneTxtField || textField != self.ibEnterVerificationTxtField){
+    else if (textField == self.ibEnterPhoneTxtField || textField == self.ibEnterVerificationTxtField){
         BOOL isNumeric = [string rangeOfCharacterFromSet:numericSet].location != NSNotFound;
         BOOL isBackspace = [string isEqualToString:@""]? YES : NO;
         return (isNumeric || isBackspace);
