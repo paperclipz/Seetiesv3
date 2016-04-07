@@ -387,8 +387,14 @@
             NSString *nextAvailability = [self.dealModel getNextAvailableRedemptionDateString];
             NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
             
-            self.ibErrorDateDay.text = stringArray[0];
-            self.ibErrorTime.text = stringArray[1];
+            if (stringArray.count == 2) {
+                self.ibErrorDateDay.text = stringArray[0];
+                self.ibErrorTime.text = stringArray[1];
+            }
+            else{
+                self.ibErrorDateDay.text = @"";
+                self.ibErrorTime.text = @"";
+            }
         }
             return self.ibErrorView;
             

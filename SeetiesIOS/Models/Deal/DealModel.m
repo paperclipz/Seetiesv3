@@ -128,7 +128,7 @@
                     //Loop through available periods for the current day
                     for (NSDictionary *period in periodArray) {
                         NSDate *openTime = [utcTimeFormatter dateFromString:period[@"open"]];
-                        NSDate *closeTime = [utcTimeFormatter dateFromString:period[@"close"]];
+//                        NSDate *closeTime = [utcTimeFormatter dateFromString:period[@"close"]];
                         
                         //Combine both date and opening time
                         NSString *dateString = [utcDateFormatter stringFromDate:nextDate];
@@ -140,17 +140,19 @@
                             if (timeResult == NSOrderedAscending) {
                                 NSString *displayDateString = [localDateFormatter stringFromDate:[utcDateTimeFormatter dateFromString:displayDateTimeString]];
                                 NSString *openString = [localTimeFormatter stringFromDate:openTime];
-                                NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
+//                                NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
                                 
-                                return [NSString stringWithFormat:@"%@\n%@ - %@", displayDateString, openString, closeString];
+//                                return [NSString stringWithFormat:@"%@\n%@ - %@", displayDateString, openString, closeString];
+                                return [NSString stringWithFormat:@"%@\n%@", displayDateString, openString];
                             }
                         }
                         
                         NSString *displayDateString = [localDateFormatter stringFromDate:[utcDateTimeFormatter dateFromString:displayDateTimeString]];
                         NSString *openString = [localTimeFormatter stringFromDate:openTime];
-                        NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
+//                        NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
                         
-                        return [NSString stringWithFormat:@"%@\n%@ - %@", displayDateString, openString, closeString];
+//                        return [NSString stringWithFormat:@"%@\n%@ - %@", displayDateString, openString, closeString];
+                        return [NSString stringWithFormat:@"%@\n%@", displayDateString, openString];
                     }
                 }
                 
@@ -171,16 +173,17 @@
                 if (![Utils isArrayNull:periodArray]) {
                     for (NSDictionary *period in periodArray) {
                         NSDate *openTime = [utcTimeFormatter dateFromString:period[@"open"]];
-                        NSDate *closeTime = [utcTimeFormatter dateFromString:period[@"close"]];
+//                        NSDate *closeTime = [utcTimeFormatter dateFromString:period[@"close"]];
                         
                         NSString *dateString = [utcDateFormatter stringFromDate:nextDate];
                         NSString *displayDateTimeString = [NSString stringWithFormat:@"%@ %@", dateString, period[@"open"]];
                         
                         NSString *displayDateString = [localDateFormatter stringFromDate:[utcDateTimeFormatter dateFromString:displayDateTimeString]];
                         NSString *openString = [localTimeFormatter stringFromDate:openTime];
-                        NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
+//                        NSString *closeString = [localTimeFormatter stringFromDate:closeTime];
                         
-                        return [NSString stringWithFormat:@"%@\n%@ - %@", displayDateString, openString, closeString];
+//                        return [NSString stringWithFormat:@"%@\n%@ - %@", displayDateString, openString, closeString];
+                        return [NSString stringWithFormat:@"%@\n%@", displayDateString, openString];
                     }
                 }
                 
