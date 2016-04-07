@@ -860,7 +860,7 @@
         NSComparisonResult firstDateResult = [currentDate compare:firstDate];
         NSComparisonResult lastDateResult = [currentDate compare:lastDate];
         
-        if (firstDateResult == NSOrderedSame && lastDateResult == NSOrderedSame) {
+        if (firstDateResult == NSOrderedSame || lastDateResult == NSOrderedSame) {
             return YES;
         }
         else if (firstDateResult == NSOrderedDescending && lastDateResult == NSOrderedAscending){
