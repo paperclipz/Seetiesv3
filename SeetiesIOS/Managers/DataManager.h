@@ -66,8 +66,11 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)DraftModel* savedDraftModel;
 
 @property(nonatomic,strong)TagModel* tagModel;
-@property(nonatomic,strong)ProfileModel* userProfileModel;//model from proifle page. has additional follow and following
-@property(nonatomic,strong)ProfileModel* currentUserProfileModel;//model from proifle page. has additional follow and following
+
+// /  ============== model from proifle page. has additional follow and following usage: for all profiles include me and others ================= ///
+@property(nonatomic,strong)ProfileModel* userProfileModel;
+// /  ================================== model for "ME" from proifle page. has additional follow and following ===================================== ///
+@property(nonatomic,strong)ProfileModel* currentUserProfileModel;//
 
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userFollowingCollectionsModel;

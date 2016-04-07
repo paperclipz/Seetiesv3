@@ -55,7 +55,7 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
-    self.profileModel = [[ConnectionManager dataManager]userProfileModel];
+    self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
     
     if ([Utils isStringNull:self.profileModel.fb_id]) {
         
@@ -225,6 +225,10 @@
                         if (flag) {
                             [self requestServerForFacebookInfo];
                         }
+                        else{
+                            [self requestServerToUpdateUserInfoFacebook:@"" facebookToken:@""];
+
+                        }
                     };
                 }
                 
@@ -237,10 +241,14 @@
                     
                     cell.didChangeSettingBlock = ^(BOOL flag)
                     {
-                        self.isConnectedInstagram = flag;
+                       // self.isConnectedInstagram = flag;
                         
                         if (flag) {
                             [self requestServerToGetInstagramInfo];
+                        }
+                        else
+                        {
+                            [self requestServerToUpdateUserInfoInstagram:@"" Token:@""];
                         }
                     };
 
@@ -468,7 +476,8 @@
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
         
-        
+        self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
+
     } errorBlock:^(id object) {
         
         self.isConnectedFacebook = NO;
@@ -500,7 +509,9 @@
     
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
         
+        self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
         
+       
     } errorBlock:^(id object) {
         self.isConnectedInstagram = NO;
         [self.ibTableView reloadData];
