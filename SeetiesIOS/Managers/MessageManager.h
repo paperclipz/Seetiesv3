@@ -11,5 +11,5 @@
 @interface MessageManager : NSObject
 +(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type;
 +(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack;
-
++(void)showMessageInPopOut:(NSString*)title subtitle:(NSString*)subtitle;
 @end
