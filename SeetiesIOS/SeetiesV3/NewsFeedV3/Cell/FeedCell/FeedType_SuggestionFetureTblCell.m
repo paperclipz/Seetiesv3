@@ -10,7 +10,9 @@
 #import "SuggestionFeatureCVCell.h"
 
 @interface FeedType_SuggestionFetureTblCell()<UICollectionViewDelegate,UICollectionViewDataSource>
-
+{
+    BOOL isRequestingServer;
+}
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property (weak, nonatomic) NSArray<ProfileModel*> *arrSuggestedFeatures;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -22,11 +24,13 @@
 {
     self.arrSuggestedFeatures = array;
     [self.ibCollectionView reloadData];
-    self.lblTitle.text = LocalisedString(@"Your friends are on Seeties");
+    self.lblTitle.text = LocalisedString(@"Suggested People");
 }
+
 -(void)initSelfView
 {
     [self initCollectionViewDelegate];
+    isRequestingServer = NO;
 }
 
 -(void)initCollectionViewDelegate
@@ -60,6 +64,12 @@
     
     ProfileModel* model = self.arrSuggestedFeatures[indexPath.row];
     [cell initData:model];
+    
+    cell.didSelectUserBlock = ^(id object)
+    {
+        [self requestServerToFollowUser:object];
+    };
+    
     return cell;
 }
 
@@ -80,5 +90,54 @@
     }
 }
 
+#pragma mark - Request Server
+
+-(void)requestServerToFollowUser:(ProfileModel*)model
+{
+    
+    if (isRequestingServer) {
+        return;
+    }
+    NSString* appendString = [NSString stringWithFormat:@"%@/follow",model.uid];
+    NSDictionary* dict = @{@"uid":model.uid,
+                           @"token":[Utils getAppToken]
+                           };
+    
+   // [LoadingManager show];
+    
+    isRequestingServer = YES;
+    if (!model.following) {
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+            
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
+            
+            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
+            model.following = following;
+            isRequestingServer = NO;
+            [self.ibCollectionView reloadData];
+
+        } errorBlock:^(id object) {
+            isRequestingServer = NO;
+
+        }];
+    }
+    else{
+        
+        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowUser param:dict appendString:appendString completeHandler:^(id object) {
+            isRequestingServer = NO;
+
+            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
+            BOOL following = [[returnDict objectForKey:@"data.following"] boolValue];
+            model.following = following;
+            [self.ibCollectionView reloadData];
+
+        } errorBlock:^(id object) {
+            isRequestingServer = NO;
+
+        }];
+    }
+    
+}
 
 @end

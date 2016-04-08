@@ -1283,7 +1283,6 @@ static NSCache* heightCache = nil;
     _profileViewController = nil;
     [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
         
-        
         if ([pModel.uid isEqualToString:[Utils getUserID]]) {
             [self.profileViewController initDataWithUserID:[Utils getUserID]];
 

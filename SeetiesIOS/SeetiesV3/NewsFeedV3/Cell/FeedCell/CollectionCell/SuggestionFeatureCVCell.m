@@ -13,9 +13,20 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibProfilePhoto;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *arrIBImages;
+@property (weak, nonatomic) IBOutlet UIButton *btnFollow;
 @end
 
 @implementation SuggestionFeatureCVCell
+
+- (IBAction)btnAddPeopleClicked:(id)sender {
+ 
+    UIButton* btn = (UIButton*)sender;
+    btn.selected = !btn.selected;
+    
+    if (self.didSelectUserBlock) {
+        self.didSelectUserBlock(self.profileModel);
+    }
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -29,12 +40,14 @@
     self.profileModel = model;
     self.lblTitle.text = self.profileModel.name;
     
+    self.btnFollow.selected = self.profileModel.following;
     if (![Utils isStringNull:self.profileModel.profile_photo_images]) {
         [self.ibProfilePhoto sd_setImageWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images]];
 
     }
     else{
-        //self.ibProfilePhoto.image = [UIImage imageNamed:@"NoImage.png"];
+        
+        self.ibProfilePhoto.image = [Utils getProfilePlaceHolderImage];
     }
     
     self.lblDescription.text = LocalisedString(@"Follow this Seetizen for more");
@@ -49,15 +62,12 @@
             
             DraftModel*dModel = self.profileModel.posts[i];
             
-
-
-            
             if (![Utils isArrayNull:dModel.arrPhotos]) {
                 
                 PhotoModel* pModel = dModel.arrPhotos[0];
                 UIImageView* imgView = self.arrIBImages[i];
                 [imgView setStandardBorder];
-              //  [imgView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
+
                 [imgView sd_setImageWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
             }
           
