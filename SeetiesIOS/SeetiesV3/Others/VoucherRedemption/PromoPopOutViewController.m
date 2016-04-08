@@ -365,6 +365,8 @@
             [self.ibEnterVerificationContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor clearColor] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
             [Utils setRoundBorder:self.ibEnterVerificationResendBtn color:DEVICE_COLOR borderRadius:self.ibEnterVerificationResendBtn.frame.size.height/2];
+            [self.ibEnterVerificationResendBtn setTitleColor:DEVICE_COLOR forState:UIControlStateNormal];
+            [self.ibEnterVerificationResendBtn setTitleColor:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1] forState:UIControlStateDisabled];
             if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
                 NSString *phoneNumber = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
                 self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the 6-digit verification code that was sent to {!contact number} Code will expire in 30mins." withPlaceHolder:@{@"{!contact number}": phoneNumber}];
@@ -471,6 +473,8 @@
 - (IBAction)resendCodeBtnClicked:(id)sender {
     self.isVerified = NO;
     [self requestServerToGetTotp];
+    self.ibEnterVerificationResendBtn.enabled = NO;
+    [Utils setRoundBorder:self.ibEnterVerificationResendBtn color:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1] borderRadius:self.ibEnterVerificationResendBtn.frame.size.height/2];
 }
 
 - (IBAction)changePhoneNumberBtnClicked:(id)sender {
