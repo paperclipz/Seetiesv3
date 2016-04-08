@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -49,6 +49,10 @@
                                     <constraint firstAttribute="width" constant="47" id="mto-nb-OPP"/>
                                 </constraints>
                                 <state key="normal" image="FollowIcon.png"/>
+                                <state key="selected" image="FollowingIcon.png"/>
+                                <connections>
+                                    <action selector="btnAddPeopleClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="3Mv-Py-60A"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oSn-k8-sif">
                                 <rect key="frame" x="115" y="60" width="97" height="97"/>
@@ -125,6 +129,7 @@
             <size key="customSize" width="342" height="178"/>
             <connections>
                 <outlet property="borderView" destination="hbi-1R-ZvQ" id="Jpm-I7-kY8"/>
+                <outlet property="btnFollow" destination="Qz1-5e-n2p" id="JCE-df-14c"/>
                 <outlet property="ibProfilePhoto" destination="9HN-9p-cDK" id="hpF-mg-aUL"/>
                 <outlet property="lblDescription" destination="3gn-S2-XCj" id="nZe-76-ykk"/>
                 <outlet property="lblTitle" destination="Lg8-Sv-XEj" id="59n-5c-EIE"/>
@@ -138,5 +143,6 @@
     </objects>
     <resources>
         <image name="FollowIcon.png" width="47" height="47"/>
+        <image name="FollowingIcon.png" width="47" height="47"/>
     </resources>
 </document>

@@ -150,8 +150,8 @@
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="QNj-tU-xCU"/>
-                                    <exclude reference="zmU-G5-S9t"/>
                                     <exclude reference="pKi-Hk-wxg"/>
+                                    <exclude reference="zmU-G5-S9t"/>
                                 </mask>
                             </variation>
                         </imageView>

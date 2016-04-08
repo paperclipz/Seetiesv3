@@ -11,4 +11,5 @@
 @interface SuggestionFeatureCVCell : CommonCollectionViewCell
 -(void)initData:(ProfileModel*)model;
 
+@property(nonatomic,copy)IDBlock didSelectUserBlock;//user profile
 @end
