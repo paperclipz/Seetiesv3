@@ -17,10 +17,15 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIButton *ibFooterBtn;
 @property (weak, nonatomic) IBOutlet UILabel *ibFooterLbl;
+
+@property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
 @property (strong, nonatomic) IBOutlet UIView *ibEmptyView;
 @property (weak, nonatomic) IBOutlet UILabel *ibEmptyTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibEmptyDesc;
 @property (weak, nonatomic) IBOutlet UIButton *ibEmptyBtn;
+@property (weak, nonatomic) IBOutlet UIView *ibLoadingView;
+@property (weak, nonatomic) IBOutlet UILabel *ibLoadingTxt;
+@property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
 
 @property (strong, nonatomic) IBOutlet UIView *ibTableFooterView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicatorView;
@@ -49,7 +54,7 @@
     
     [Utils setRoundBorder:self.ibEmptyBtn color:DEVICE_COLOR borderRadius:self.ibEmptyBtn.frame.size.height/2 borderWidth:1.0f];
     
-    self.ibTableView.tableFooterView = self.ibTableFooterView;
+    self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
     
     [self.ibTableView addPullToRefreshWithActionHandler:^{
         self.dealsModel = nil;
@@ -58,7 +63,6 @@
     }];
     
     self.isLoading = NO;
-    [LoadingManager show];
     [self requestServerForVoucherListing];
 }
 
@@ -72,6 +76,7 @@
     self.ibEmptyTitle.text = LocalisedString(@"Start filling your voucher wallet now!");
     self.ibEmptyDesc.text = LocalisedString(@"You currently do not have any vouchers. Start collecting now!");
     [self.ibEmptyBtn setTitle:LocalisedString(@"See Deals of the Day") forState:UIControlStateNormal];
+    self.ibLoadingTxt.text = [NSString stringWithFormat:@"%@\n%@", LocalisedString(@"Collect Now"), LocalisedString(@"Pay Later")];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -183,6 +188,11 @@
     }
 }
 
+-(void)toggleEmptyView:(BOOL)shouldShow{
+    self.ibEmptyView.hidden = !shouldShow;
+    self.ibLoadingView.hidden = shouldShow;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -197,7 +207,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([Utils isArrayNull:self.voucherArray]) {
         [self.ibEmptyBtn setTitleColor:DEVICE_COLOR forState:UIControlStateNormal];
-        self.ibTableView.backgroundView = self.ibEmptyView;
+        self.ibTableView.backgroundView = self.ibEmptyStateView;
         self.view.backgroundColor = [UIColor whiteColor];
         return 0;
     }
@@ -511,18 +521,26 @@
         }
         [self rearrangeVoucherList];
         [self.ibTableView reloadData];
-        [LoadingManager hide];
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.isLoading = NO;
         [self.ibActivityIndicatorView stopAnimating];
         if ([Utils isStringNull:self.dealsModel.paging.next]) {
             self.ibTableView.tableFooterView = nil;
         }
+        else{
+            self.ibTableView.tableFooterView = self.ibTableFooterView;
+        }
+        if ([Utils isArrayNull:self.voucherArray]) {
+            [self toggleEmptyView:YES];
+        }
+        else{
+            [self toggleEmptyView:NO];
+        }
     } errorBlock:^(id object) {
-        [LoadingManager hide];
         self.isLoading = NO;
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.ibTableView.tableFooterView = nil;
+        [self toggleEmptyView:YES];
     }];
 }
 

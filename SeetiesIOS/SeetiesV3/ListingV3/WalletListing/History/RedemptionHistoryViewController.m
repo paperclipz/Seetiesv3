@@ -16,8 +16,13 @@
 @interface RedemptionHistoryViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *ibHistoryTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibHistoryTable;
+
 @property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
+@property (weak, nonatomic) IBOutlet UIView *ibEmptyView;
 @property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateDesc;
+@property (weak, nonatomic) IBOutlet UIView *ibLoadingView;
+@property (weak, nonatomic) IBOutlet UILabel *ibLoadingTxt;
+@property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
 
 @property (strong, nonatomic) IBOutlet UIView *ibTableFooterView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicatorView;
@@ -41,9 +46,8 @@
     self.ibHistoryTable.estimatedRowHeight = [RedemptionHistoryCell getHeight];
     self.ibHistoryTable.rowHeight = UITableViewAutomaticDimension;
     
-    self.ibHistoryTable.tableFooterView = self.ibTableFooterView;
+    self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
     
-    [LoadingManager show];
     [self requestServerForVouchersHistoryList];
 }
 
@@ -53,6 +57,8 @@
 
 -(void)changeLanguage{
     self.ibHistoryTitle.text = LocalisedString(@"History");
+    self.ibLoadingTxt.text = [NSString stringWithFormat:@"%@\n%@", LocalisedString(@"Collect Now"), LocalisedString(@"Pay Later")];
+    self.ibEmptyStateDesc.text = LocalisedString(@"You've got no redemption history yet. Start one now!");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,6 +125,11 @@
     }
 }
 
+-(void)toggleEmptyView:(BOOL)shouldShow{
+    self.ibEmptyView.hidden = !shouldShow;
+    self.ibLoadingView.hidden = shouldShow;
+}
+
 #pragma mark - DelegateImplementation
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat currentOffset = self.ibHistoryTable.contentOffset.y;
@@ -163,7 +174,6 @@
 #pragma mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([Utils isArrayNull:self.voucherArray]) {
-        self.ibEmptyStateDesc.text = LocalisedString(@"You've got no redemption history yet. Start one now!");
         self.ibHistoryTable.backgroundView = self.ibEmptyStateView;
         self.view.backgroundColor = [UIColor whiteColor];
         return 0;
@@ -243,7 +253,6 @@
     
     self.isLoading = YES;
     
-    [LoadingManager show];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersHistoryList param:dict appendString:appendString completeHandler:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
@@ -254,9 +263,19 @@
         if ([Utils stringIsNilOrEmpty:self.dealsModel.paging.next]) {
             self.ibHistoryTable.tableFooterView = nil;
         }
+        else{
+            self.ibHistoryTable.tableFooterView = self.ibTableFooterView;
+        }
+        if ([Utils isArrayNull:self.voucherArray]) {
+            [self toggleEmptyView:YES];
+        }
+        else{
+            [self toggleEmptyView:NO];
+        }
     } errorBlock:^(id object) {
         self.isLoading = NO;
         self.ibHistoryTable.tableFooterView = nil;
+        [self toggleEmptyView:YES];
     }];
 }
 
