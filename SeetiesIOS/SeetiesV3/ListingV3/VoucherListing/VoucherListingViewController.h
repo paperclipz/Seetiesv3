@@ -17,6 +17,8 @@
 #import "DealRedeemViewController.h"
 #import "SearchLocationViewController.h"
 #import "SearchManager.h"
+#import "YLGIFImage.h"
+#import "YLImageView.h"
 
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate, FilterViewControllerDelegate, DealRedeemDelegate>
 -(void)initWithLocation:(HomeLocationModel*)locationModel  quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
