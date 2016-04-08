@@ -38,8 +38,12 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibFooterHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
-@property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateTitle;
-@property (weak, nonatomic) IBOutlet UILabel *ibEmptyStateDesc;
+@property (weak, nonatomic) IBOutlet UIView *ibEmptyView;;
+@property (weak, nonatomic) IBOutlet UILabel *ibEmptyTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibEmptyDesc;
+@property (weak, nonatomic) IBOutlet UIView *ibLoadingView;
+@property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
+@property (weak, nonatomic) IBOutlet UILabel *ibLoadingTxt;
 
 @property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicatorView;
@@ -68,8 +72,8 @@
     self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
     self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
     [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
-    
-    self.ibVoucherTable.tableFooterView = self.ibFooterView;
+  
+    self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
     
     if (self.locationModel) {
         self.ibUserLocationLbl.text = self.locationModel.locationName;
@@ -89,7 +93,6 @@
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
             [self.dealManager removeAllCollectedDeals];
-            [LoadingManager show];
             [self requestServerForShopDeal];
             break;
         
@@ -100,7 +103,6 @@
                 self.ibTitle.text = collectionDict[@"title"];
             }
             [self.dealManager removeAllCollectedDeals];
-            [LoadingManager show];
             [self requestServerForDealListing];
             break;
         
@@ -108,7 +110,6 @@
         case 3:
             self.ibTitle.text = LocalisedString(@"Deals of the day");
             [self.dealManager removeAllCollectedDeals];
-            [LoadingManager show];
             [self requestServerForSuperDealListing];
             break;
           
@@ -125,7 +126,6 @@
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
             [self.dealManager removeAllCollectedDeals];
-            [LoadingManager show];
             [self requestServerForDealRelevantDeals];
             break;
          
@@ -142,7 +142,6 @@
             self.ibSearchBtn.enabled = NO;
             self.ibFilterBtn.enabled = NO;
             self.ibFooterHeightConstraint.constant = 0;
-            self.ibVoucherTable.tableFooterView = nil;
             [self.ibVoucherTable reloadData];
             break;
             
@@ -152,7 +151,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.ibWalletLbl.text = LocalisedString(@"Voucher Wallet");
+    [self changeLanguage];
+    
     
     if (![Utils isGuestMode]) {
         [self RequestServerForVouchersCount];
@@ -169,6 +169,13 @@
     }
     
     [self.ibVoucherTable reloadData];
+}
+
+-(void)changeLanguage{
+    self.ibWalletLbl.text = LocalisedString(@"Voucher Wallet");
+    self.ibEmptyTitle.text = LocalisedString(@"Oops...");
+    self.ibEmptyDesc.text = LocalisedString(@"This feature is temporarily unavailable in your country.");
+    self.ibLoadingTxt.text = [NSString stringWithFormat:@"%@\n%@", LocalisedString(@"Collect Now"), LocalisedString(@"Pay Later")];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -333,6 +340,11 @@
     return nil;
 }
 
+-(void)toggleEmptyView:(BOOL)shouldShow{
+    self.ibEmptyView.hidden = !shouldShow;
+    self.ibLoadingView.hidden = shouldShow;
+}
+
 #pragma mark - Initialization
 
 -(void)initDataWithShopID:(NSString*)shopID
@@ -484,14 +496,12 @@
             weakSelf.ibUserLocationLbl.text = weakSelf.locationModel.locationName;
             [weakSelf.dealsArray removeAllObjects];
             weakSelf.dealsModel = nil;
+            weakSelf.ibVoucherTable.tableFooterView = nil;
+            [weakSelf toggleEmptyView:NO];
             if (weakSelf.dealCollectionModel) {
-                [LoadingManager show];
-                weakSelf.ibVoucherTable.tableFooterView = weakSelf.ibFooterView;
                 [weakSelf requestServerForDealListing];
             }
             else{
-                [LoadingManager show];
-                weakSelf.ibVoucherTable.tableFooterView = weakSelf.ibFooterView;
                 [weakSelf requestServerForSuperDealListing];
             }
             
@@ -512,8 +522,6 @@
 #pragma mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([Utils isArrayNull:self.dealsArray]) {
-        self.ibEmptyStateTitle.text = LocalisedString(@"Oops...");
-        self.ibEmptyStateDesc.text = LocalisedString(@"This feature is temporarily unavailable in your country.");
         self.ibVoucherTable.backgroundView = self.ibEmptyStateView;
         self.view.backgroundColor = [UIColor whiteColor];
         return 0;
@@ -678,14 +686,12 @@
     
     self.dealsModel = nil;
     [self.dealsArray removeAllObjects];
+    self.ibVoucherTable.tableFooterView = nil;
+    [self toggleEmptyView:NO];
     if (self.dealViewType == 2) {
-        [LoadingManager show];
-        self.ibVoucherTable.tableFooterView = self.ibFooterView;
         [self requestServerForDealListing];
     }
     else if (self.dealViewType == 3){
-        [LoadingManager show];
-        self.ibVoucherTable.tableFooterView = self.ibFooterView;
         [self requestServerForSuperDealListing];
     }
 }
@@ -747,16 +753,27 @@
         [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
+        
         self.isLoading = NO;
-        [LoadingManager hide];
         [self.ibActivityIndicatorView stopAnimating];
         if ([Utils isStringNull:self.dealsModel.paging.next]) {
             self.ibVoucherTable.tableFooterView = nil;
         }
+        else{
+            self.ibVoucherTable.tableFooterView = self.ibFooterView;
+        }
+        
+        if ([Utils isArrayNull:self.dealsArray]) {
+            [self toggleEmptyView:YES];
+        }
+        else{
+            [self toggleEmptyView:NO];
+        }
+        
     } errorBlock:^(id object) {
         self.isLoading = NO;
-        [LoadingManager hide];
         self.ibVoucherTable.tableFooterView = nil;
+        [self toggleEmptyView:YES];
     }];
 }
 
@@ -792,7 +809,6 @@
     }
     @catch (NSException *exception) {
         SLog(@"error passing model in requestServerForDealListing");
-        [LoadingManager hide];
         self.isLoading = NO;
     }
     
@@ -805,16 +821,26 @@
         [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
         [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
+        
         self.isLoading = NO;
-        [LoadingManager hide];
         [self.ibActivityIndicatorView stopAnimating];
         if ([Utils isStringNull:self.dealsModel.paging.next]) {
             self.ibVoucherTable.tableFooterView = nil;
         }
+        else{
+            self.ibVoucherTable.tableFooterView = self.ibFooterView;
+        }
+        
+        if ([Utils isArrayNull:self.dealsArray]) {
+            [self toggleEmptyView:YES];
+        }
+        else{
+            [self toggleEmptyView:NO];
+        }
     } errorBlock:^(id object) {
         self.isLoading = NO;
-        [LoadingManager hide];
         self.ibVoucherTable.tableFooterView = nil;
+        [self toggleEmptyView:YES];
     }];
 }
 
@@ -857,10 +883,20 @@
         if ([Utils isStringNull:self.dealsModel.paging.next]) {
             self.ibVoucherTable.tableFooterView = nil;
         }
+        else{
+            self.ibVoucherTable.tableFooterView = self.ibFooterView;
+        }
+        
+        if ([Utils isArrayNull:self.dealsArray]) {
+            [self toggleEmptyView:YES];
+        }
+        else{
+            [self toggleEmptyView:NO];
+        }
     } errorBlock:^(id object) {
         self.isLoading = NO;
         self.ibVoucherTable.tableFooterView = nil;
-
+        [self toggleEmptyView:YES];
     }];
     
 }
@@ -888,15 +924,24 @@
         [self.ibVoucherTable reloadData];
         
         self.isLoading = NO;
-        [LoadingManager hide];
         [self.ibActivityIndicatorView stopAnimating];
         if ([Utils isStringNull:self.dealsModel.paging.next]) {
             self.ibVoucherTable.tableFooterView = nil;
         }
+        else{
+            self.ibVoucherTable.tableFooterView = self.ibFooterView;
+        }
+        
+        if ([Utils isArrayNull:self.dealsArray]) {
+            [self toggleEmptyView:YES];
+        }
+        else{
+            [self toggleEmptyView:NO];
+        }
     } errorBlock:^(id object) {
         self.isLoading = NO;
-        [LoadingManager hide];
         self.ibVoucherTable.tableFooterView = nil;
+        [self toggleEmptyView:YES];
     }];
 }
 

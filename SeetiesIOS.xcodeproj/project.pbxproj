@@ -1331,8 +1331,6 @@
 		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
-		C2136EE31CB67A5E00948AAC /* Loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = C2136EE11CB67A5E00948AAC /* Loading@2x.gif */; };
-		C2136EE41CB67A5E00948AAC /* Loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = C2136EE21CB67A5E00948AAC /* Loading@3x.gif */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
 		C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */; };
 		C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */; };
@@ -1378,6 +1376,7 @@
 		C26676211C6485400021B6B0 /* RedemptionHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C266761F1C6485400021B6B0 /* RedemptionHistoryCell.m */; };
 		C26676221C6485400021B6B0 /* RedemptionHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */; };
 		C278147A1C7EB908006F11B8 /* DealExpiryDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C27814791C7EB908006F11B8 /* DealExpiryDateModel.m */; };
+		C27919431CB7A7CE009BC4EB /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = C27919421CB7A7CE009BC4EB /* Loading.gif */; };
 		C28469B91C5F6FCD00B38885 /* NearbyShopsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */; };
 		C28469BA1C5F6FCD00B38885 /* NearbyShopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */; };
 		C28490F21CA0FC3A00FE4546 /* DailyPeriodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C28490F11CA0FC3A00FE4546 /* DailyPeriodModel.m */; };
@@ -3151,8 +3150,6 @@
 		C20872941C59D1FA0063F203 /* PromoOutletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoOutletCell.h; sourceTree = "<group>"; };
 		C20872951C59D1FA0063F203 /* PromoOutletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoOutletCell.m; sourceTree = "<group>"; };
 		C20872961C59D1FA0063F203 /* PromoOutletCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoOutletCell.xib; sourceTree = "<group>"; };
-		C2136EE11CB67A5E00948AAC /* Loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Loading@2x.gif"; sourceTree = "<group>"; };
-		C2136EE21CB67A5E00948AAC /* Loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Loading@3x.gif"; sourceTree = "<group>"; };
 		C23042DF1C61F331001008CB /* DealsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsModel.h; sourceTree = "<group>"; };
 		C23042E01C61F331001008CB /* DealsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealsModel.m; sourceTree = "<group>"; };
 		C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
@@ -3211,6 +3208,7 @@
 		C26676201C6485400021B6B0 /* RedemptionHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedemptionHistoryCell.xib; sourceTree = "<group>"; };
 		C27814781C7EB908006F11B8 /* DealExpiryDateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealExpiryDateModel.h; sourceTree = "<group>"; };
 		C27814791C7EB908006F11B8 /* DealExpiryDateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealExpiryDateModel.m; sourceTree = "<group>"; };
+		C27919421CB7A7CE009BC4EB /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loading.gif; sourceTree = "<group>"; };
 		C28469B61C5F6FCD00B38885 /* NearbyShopsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyShopsCell.h; sourceTree = "<group>"; };
 		C28469B71C5F6FCD00B38885 /* NearbyShopsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyShopsCell.m; sourceTree = "<group>"; };
 		C28469B81C5F6FCD00B38885 /* NearbyShopsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyShopsCell.xib; sourceTree = "<group>"; };
@@ -5378,8 +5376,7 @@
 		8ADFF3651CB36D3700D27329 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				C2136EE11CB67A5E00948AAC /* Loading@2x.gif */,
-				C2136EE21CB67A5E00948AAC /* Loading@3x.gif */,
+				C27919421CB7A7CE009BC4EB /* Loading.gif */,
 				8ADFF3661CB36D3700D27329 /* AddedFriendIcon@2x.png */,
 				8ADFF3671CB36D3700D27329 /* AddedFriendIcon@3x.png */,
 				8ADFF3681CB36D3700D27329 /* AddFriendIcon@2x.png */,
@@ -7854,7 +7851,7 @@
 				8ADFF6CD1CB36D3900D27329 /* SeetishopProductAndServiceIcon@3x.png in Resources */,
 				8ADFF88D1CB36D3900D27329 /* AutoComplete@2x.png in Resources */,
 				8ADFF6F01CB36D3900D27329 /* TabBarMoreIconActive@3x.png in Resources */,
-				C2136EE41CB67A5E00948AAC /* Loading@3x.gif in Resources */,
+				C27919431CB7A7CE009BC4EB /* Loading.gif in Resources */,
 				8AD6C0F71B706CF30040437E /* SearchDetailViewController.xib in Resources */,
 				8ADFF6CA1CB36D3900D27329 /* SeetishopPhotoIcon@2x.png in Resources */,
 				8AD6C0D71B706CF30040437E /* PSelectYourInterestViewController.xib in Resources */,
@@ -7934,7 +7931,6 @@
 				8ADFF80E1CB36D3900D27329 /* InviteFacebookIcon@3x.png in Resources */,
 				8ADFF67F1CB36D3900D27329 /* MeEnterPromoCodeIcon@2x.png in Resources */,
 				8ADFF7801CB36D3900D27329 /* DeleteIcon@3x.png in Resources */,
-				C2136EE31CB67A5E00948AAC /* Loading@2x.gif in Resources */,
 				8ADFF82B1CB36D3900D27329 /* WrongFill@2x.png in Resources */,
 				8ADFF6491CB36D3900D27329 /* CloseIconGrey@2x.png in Resources */,
 				8ADFF6811CB36D3900D27329 /* MeInviteFriendsIcon@2x.png in Resources */,
