@@ -814,7 +814,7 @@ static id ObjectOrNull(id object)
 
     }
     
-    [LoadingManager showWithTitle:LocalisedString(@"Posting...")];
+    [LoadingManager show];
 
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostSaveDraft param:finalDict appendString:self.postModel.post_id meta:arrMeta  completeHandler:^(id object) {
         

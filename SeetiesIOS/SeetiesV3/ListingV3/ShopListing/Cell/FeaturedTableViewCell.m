@@ -16,6 +16,11 @@
     // Initialization code
 
     [Utils setRoundBorder:self.lblValue color:[UIColor clearColor] borderRadius:self.lblValue.frame.size.height/2];
+    
+}
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated{
+    self.selectedBackgroundView = nil;
 }
 
 -(void)initData:(DealModel*)model

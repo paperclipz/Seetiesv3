@@ -58,7 +58,7 @@
         
         self.lblStatus.text = self.ssModel.location.opening_hours.open_now?LocalisedString(@"Open"):LocalisedString(@"Closed");
         self.lblStatus.backgroundColor = self.ssModel.location.opening_hours.open_now?GREEN_STATUS : TWO_ZERO_FOUR_COLOR;
-
+        
         [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:self.ssModel.profile_photo[@"picture"]] placeholderImage:[Utils getShopPlaceHolderImage]];
 
     }
@@ -83,9 +83,8 @@
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[FeaturedTableViewCell class] forCellReuseIdentifier:@"FeaturedTableViewCell"];
     [Utils setRoundBorder:self.lblStatus color:[UIColor clearColor] borderRadius:self.lblStatus.frame.size.height/2];
-    [Utils setRoundBorder:self.ibImageView color:OUTLINE_COLOR borderRadius:5.0f];
+    [Utils setRoundBorder:self.ibImageView color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:5.0f];
 
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
