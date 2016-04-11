@@ -59,23 +59,26 @@
     AppDelegate *appdelegate;
     
     appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [Utils reloadAppView];
+    [Utils reloadAppView:YES];
     [appdelegate.landingViewController showLoginView];
     
 }
 
-+(void)reloadAppView
++(void)reloadAppView:(BOOL)navigateToHome
 {
     AppDelegate *appdelegate;
     
     appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appdelegate.landingViewController reloadData];
-    appdelegate.landingViewController.tabBarController.selectedIndex = 0;
+    
+    if (navigateToHome) {
+        appdelegate.landingViewController.tabBarController.selectedIndex = 0;
+    }
 }
+
 
 +(void)reloadHomeView:(int)type
 {
-
     if (type == 1) {
         
         AppDelegate *appdelegate;

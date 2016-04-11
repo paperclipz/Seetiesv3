@@ -312,7 +312,6 @@
             
             [self showPickerView];
 
-            
             break;
         case 1:
             if (indexPath.row == 1) {
@@ -431,6 +430,9 @@
                                                [self.ibTableView reloadData];
                                                
                                                [self requestServerToUpdateUserInfoLanguage];
+                                               
+                                               [self changeLanguage];
+
 
                                            }
                                            @catch (NSException *exception) {
@@ -444,6 +446,7 @@
                                      }
                                           origin:self.view];
 }
+
 
 
 #pragma mark - Request Server
@@ -542,6 +545,9 @@
     [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
         
         [self.ibTableView reloadData];
+        
+        [Utils reloadAppView:NO];
+        
     } errorBlock:^(id object) {
         
     }];

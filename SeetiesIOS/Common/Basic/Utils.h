@@ -115,7 +115,7 @@ typedef enum {
 +(BOOL)checkUserIsLogin;//new check user login using token
 +(void)setLogout;
 
-+(void)reloadAppView;
++(void)reloadAppView:(BOOL)navigateToHome;
 +(void)reloadProfileView;
 +(void)reloadHomeView:(int)type;
 

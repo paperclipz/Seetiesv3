@@ -38,7 +38,7 @@
     
     
 
-    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.greeting.photo.imageURL] withPlaceHolder:[UIImage imageNamed:@"HomeNight1.png"] completed:^(UIImage *image)
+    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.greeting.photo.imageURL] withPlaceHolder:[Utils getPlaceHolderImage] completed:^(UIImage *image)
     {
        // self.hModel.greeting.photo.image = image;
     }];
