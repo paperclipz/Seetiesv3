@@ -11,6 +11,7 @@
                 <outlet property="ibBottomDesc" destination="LSE-Hl-Y7Q" id="Mie-2Y-Ujw"/>
                 <outlet property="ibBottomView" destination="FRX-IV-Orm" id="ahs-Qx-1Fi"/>
                 <outlet property="ibDealTitle" destination="NSW-gB-Hig" id="oSU-AR-CNO"/>
+                <outlet property="ibDescBorderTitle" destination="9Fm-vt-8fD" id="ggw-cm-sp2"/>
                 <outlet property="ibDescBorderView" destination="TGy-Uf-mib" id="fcu-Ya-lNF"/>
                 <outlet property="ibFirstImage" destination="CSs-d2-WPy" id="spu-Ay-1SU"/>
                 <outlet property="ibFirstInstruction" destination="SEp-Ox-QE7" id="Tfb-6O-ZDB"/>

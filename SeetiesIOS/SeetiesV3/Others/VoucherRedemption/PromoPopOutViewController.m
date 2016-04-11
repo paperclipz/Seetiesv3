@@ -269,7 +269,7 @@
         case PopOutViewTypeRedemptionSuccessful:
         {
             self.ibRedemptionSuccessfulTitle.text = LocalisedString(@"Yay!");
-            self.ibRedemptionSuccessfulDesc.text = [LanguageManager stringForKey:@"{!voucher name} is now in your wallet!" withPlaceHolder:@{@"{!voucher name}":@""}];
+            self.ibRedemptionSuccessfulDesc.text = LocalisedString(@"is now in your wallet!");
             [self.ibRedemptionSuccessfulBtn setTitle:LocalisedString(@"View voucher details") forState:UIControlStateNormal];
             
             [self.ibRedemptionSuccessfulContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
@@ -343,7 +343,7 @@
             
         case PopOutViewTypeConfirmPhone:
         {
-            self.ibConfirmPhoneDescLbl.text = [LanguageManager stringForKey:@"{!phone number} Is this your phone number?" withPlaceHolder:@{@"{!phone number}":@""}];
+            self.ibConfirmPhoneDescLbl.text = LocalisedString(@"Is this your phone number?");
             [self.ibConfirmPhoneChangeBtn setTitle:@"Change Phone Number" forState:UIControlStateNormal];
             [self.ibConfirmPhoneBtn setTitle:@"Confirm" forState:UIControlStateNormal];
             
@@ -387,7 +387,7 @@
         case PopOutViewTypeError:
         {
             self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is not currently available for redemption.");
-            self.ibErrorDesc.text = LocalisedString(@"This deal can only be redeemed on");
+            self.ibErrorDesc.text = LocalisedString(@"This deal can only be redeemed on ");
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             
             [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];

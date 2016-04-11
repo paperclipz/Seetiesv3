@@ -49,6 +49,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibBottomDesc;
 @property (weak, nonatomic) IBOutlet UILabel *ibSwipeToRedeem;
 @property (weak, nonatomic) IBOutlet UIButton *ibHowToRedeem;
+@property (weak, nonatomic) IBOutlet UILabel *ibDescBorderTitle;
 
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) DealManager *dealManager;
@@ -147,15 +148,16 @@
 
 -(void)changeLanguage{
     self.ibHeaderTitle.text = LocalisedString(@"Redeem Voucher");
-    self.ibSwipeToRedeem.text = LocalisedString(@"Swipe to Redeem");
+    self.ibSwipeToRedeem.text = LocalisedString(@"Swipe to redeem");
     NSString *formattedStr = LocalisedString(@"You must redeem in front of \n a shop personnel.");
     self.ibBottomDesc.text = [NSString stringWithFormat:@"%@", formattedStr];
     [self.ibHowToRedeem setTitle:LocalisedString(@"How to Redeem") forState:UIControlStateNormal];
+    self.ibDescBorderTitle.text = LocalisedString(@"This deal has been redeemed on ");
     
     self.ibHowToRedeemTitle.text = LocalisedString(@"How to Redeem");
-    self.ibFirstInstruction.text = LocalisedString(@"When you order");
-    self.ibSecondInstruction.text = LocalisedString(@"Flash the redeem voucher screen");
-    self.ibThirdInstruction.text = LocalisedString(@"Swipe right to redeem in front of a shop personnel");
+    self.ibFirstInstruction.text = LocalisedString(@"Approach a shop staff to place your order");
+    self.ibSecondInstruction.text = LocalisedString(@"Flash the Redeem Voucher screen");
+    self.ibThirdInstruction.text = LocalisedString(@"Swipe right in front of a shop staff to redeem voucher");
     self.ibFooterInstruction.text = LocalisedString(@"Only one redemption per swipe");
 }
 
