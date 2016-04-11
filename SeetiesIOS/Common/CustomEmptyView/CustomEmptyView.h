@@ -14,6 +14,7 @@
 @property(nonatomic,weak)IBOutlet UIView* emptyStateView;
 -(void)showLoading;
 -(void)showEmptyState;
+-(void)hideAll;
 
 
 @end

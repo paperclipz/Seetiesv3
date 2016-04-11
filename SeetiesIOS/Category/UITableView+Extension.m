@@ -29,6 +29,8 @@ static const NSString *INDICATOR_KEY = @"indicator_key";
 {
     
     @try {
+        self.tableFooterView = self.ibCustomFooterView;
+
         [self.ibCustomActivityIndicator startAnimating];
 
     }
@@ -40,7 +42,7 @@ static const NSString *INDICATOR_KEY = @"indicator_key";
 {
     @try {
         [self.ibCustomActivityIndicator stopAnimating];
-        
+        self.tableFooterView = nil;
     }
     @catch (NSException *exception) {
     }

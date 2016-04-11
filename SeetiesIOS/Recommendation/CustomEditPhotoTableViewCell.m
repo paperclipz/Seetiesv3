@@ -97,7 +97,7 @@
 -(void)initSelfView
 {
     
-    [Utils setRoundBorder:self.wrapperIconView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
+  //  [Utils setRoundBorder:self.wrapperIconView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
     [Utils setRoundBorder:self.txtDescription color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
     [Utils setRoundBorder:self.ibContentWrapperview color: TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
     self.txtDescription.delegate = self;

@@ -191,9 +191,8 @@
         CurrentPage += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        NSString *GetLat = [defaults objectForKey:@"UserCurrentLocation_lat"];
-        NSString *Getlng = [defaults objectForKey:@"UserCurrentLocation_lng"];
-        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+        CLLocation* location = [[SearchManager Instance]getAppLocation];
+        
         
         if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
             GetMainUserID = [defaults objectForKey:@"Useruid"];
@@ -205,10 +204,27 @@
         
         
         NSString *FullString;
-        if ([GetLat length] == 0 || [GetLat isEqualToString:@""] || [GetLat isEqualToString:@"(null)"] || GetLat == nil) {
-            FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,GetID,CurrentPage,GetExpertToken];
+        if ([SearchManager isDeviceGPSTurnedOn]) {
+            
+            if ([Utils isGuestMode]) {
+                FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li",DataUrl.UserWallpaper_Url,GetID,CurrentPage];
+
+            }
+            else{
+                FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,GetID,CurrentPage,[Utils getAppToken]];
+
+            }
+
         }else{
-            FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
+            
+            if ([Utils isGuestMode]) {
+                FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&lat=%f&lng=%f",DataUrl.UserWallpaper_Url,GetID,CurrentPage,location.coordinate.latitude,location.coordinate.longitude];
+
+            }
+            else{
+                FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&lat=%f&lng=%f&token=%@",DataUrl.UserWallpaper_Url,GetID,CurrentPage,location.coordinate.latitude,location.coordinate.longitude,[Utils getAppToken]];
+
+            }
         }
 
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -928,6 +944,17 @@
         
         NSLog(@"follow collection button on click");
         if ([GetFollowing isEqualToString:@"0"]) {
+            
+            if ([Utils isGuestMode]) {
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                    
+                    if (buttonIndex == 1) {
+                        [Utils showLogin];
+                        
+                    }
+                }];
+
+            }
             [self FollowCollection];
            // GetFollowing = @"1";
             MainEditButton.selected = !MainEditButton.selected;

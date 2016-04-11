@@ -1369,6 +1369,8 @@
     switch (type) {
         case ServerRequestTypeDeleteLikeAPost:
         case ServerRequestTypePutCollectPost:
+        case ServerRequestTypePostFollowUser:
+        case ServerRequestTypePostFollowCollection:
             
             if ([Utils isGuestMode]) {
                 
@@ -1381,6 +1383,7 @@
                     }
                 }];
             }
+            break;
         case ServerRequestTypePostCollectDeals:
         {
             if ([Utils isGuestMode]) {
