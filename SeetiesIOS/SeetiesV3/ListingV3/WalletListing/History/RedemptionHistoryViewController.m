@@ -56,7 +56,7 @@
 }
 
 -(void)changeLanguage{
-    self.ibHistoryTitle.text = LocalisedString(@"History");
+    self.ibHistoryTitle.text = LocalisedString(@"Voucher History");
     self.ibLoadingTxt.text = [NSString stringWithFormat:@"%@\n%@", LocalisedString(@"Collect Now"), LocalisedString(@"Pay Later")];
     self.ibEmptyStateDesc.text = LocalisedString(@"You've got no redemption history yet. Start one now!");
 }

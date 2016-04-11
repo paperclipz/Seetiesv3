@@ -572,6 +572,9 @@
         [self.ibTableView endUpdates];
         [LoadingManager hide];
         self.isLoading = NO;
+        if ([Utils isArrayNull:self.voucherArray]) {
+            [self toggleEmptyView:YES];
+        }
     } errorBlock:^(id object) {
         [LoadingManager hide];
         self.isLoading = NO;

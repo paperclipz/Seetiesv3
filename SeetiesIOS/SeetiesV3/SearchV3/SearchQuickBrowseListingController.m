@@ -455,7 +455,7 @@
     {
         _shopListingTableViewController = [SearchLTabViewController new];
         _shopListingTableViewController.searchListingType = SearchListingTypeShop;
-        _shopListingTableViewController.title = LocalisedString(@"Shop");
+        _shopListingTableViewController.title = LocalisedString(@"Shops");
 
         __weak typeof (self)weakSelf = self;
         _shopListingTableViewController.didSelectShopBlock = ^(SeShopDetailModel* model)
@@ -476,7 +476,7 @@
         _collectionListingTableViewController = [SearchLTabViewController new];
         _collectionListingTableViewController.searchListingType = SearchsListingTypeCollections;
         // [_collectionListingTableViewController refreshRequestWithText:self.ibSearchText.text];
-        _collectionListingTableViewController.title = LocalisedString(@"Collection");
+        _collectionListingTableViewController.title = LocalisedString(@"Collections");
 
         __weak typeof (self)weakSelf = self;
         

@@ -21,7 +21,7 @@
 -(void)initData:(DealModel*)model
 {
     self.lblDesc.text = model.title;
-    
+    self.lblValue.text = LocalisedString(@"FEATURED");
     self.lblValue.hidden = !model.is_feature;
     
     if (model.is_feature) {

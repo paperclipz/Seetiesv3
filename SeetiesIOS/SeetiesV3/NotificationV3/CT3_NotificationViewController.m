@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NotificationTableViewController *followingTableViewController;
 @property (nonatomic, strong) NotificationTableViewController *notificationTableViewController;
 @property (weak, nonatomic) IBOutlet UIView *ibContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
 
 @property(nonatomic,strong)FeedV2DetailViewController* feedDetailViewCOntroller;
 /*model*/
@@ -44,6 +45,14 @@
     [self initSelfView];
 
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self changeLanguage];
+}
+
+-(void)changeLanguage{
+    self.ibHeaderTitle.text = LocalisedString(@"Activity");
 }
 
 -(void)initSelfView

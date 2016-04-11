@@ -111,7 +111,7 @@
     if(section == 1)
         return LocalisedString(@"Others");
     if(section == 2)
-        return LocalisedString(@"Log out");
+        return LocalisedString(@"Sign Out");
     return 0;
 }
 
@@ -244,7 +244,7 @@
                     break;
                 }
                 
-                CASE (@"About Seeties")
+                CASE (@"About Us")
                 {
                     _ctWebViewController = nil;
                     [self.navigationController pushViewController:self.ctWebViewController animated:YES onCompletion:^{
@@ -256,7 +256,7 @@
                     
                     
                 }
-                CASE (@"Send Feedback")
+                CASE (@"Speak to Us")
                 {
                     
                     [self.navigationController pushViewController:self.feedbackViewController animated:YES];
@@ -374,15 +374,15 @@
         
         if (![Utils isGuestMode]) {
             NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify your phone number",@"Account Settings",@"Tour Seeties App", @"Rate Us",@"About Seeties",@"Send Feedback", nil];
-            NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Log out", nil];
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify your phone number",@"Account Settings",@"Tour Seeties App", @"Rate Us",@"About Us",@"Speak to Us", nil];
+            NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign Out", nil];
             _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
 
         }
         else
         {
             NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log In", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Rate Us",@"About Seeties",@"Send Feedback", nil];
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Rate Us",@"About Us",@"Speak to Us", nil];
             //NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
             _arrData = @[firstItemsArray,secondItemsArray];
         }
@@ -515,7 +515,7 @@
             break;
         }
        
-        CASE(@"About Seeties")
+        CASE(@"About Us")
         {
             imageName = @"MoreAboutIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
@@ -523,7 +523,7 @@
             break;
         }
         
-        CASE(@"Send Feedback")
+        CASE(@"Speak to Us")
         {
             imageName = @"MoreFeedbackIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
@@ -546,7 +546,7 @@
             return image;
             break;
         }
-        CASE(@"Log out")
+        CASE(@"Sign Out")
         {
             imageName = @"MoreLogoutIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];
