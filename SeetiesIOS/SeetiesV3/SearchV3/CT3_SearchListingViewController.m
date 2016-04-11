@@ -95,19 +95,11 @@
     
     
     [self refreshSearch];
-   // [self.cAPSPageMenu moveToPage:1];
-    
     self.ibLocationTableView.hidden = YES;
     self.ibSearchTableView.hidden = YES;
     [self.ibContentView bringSubviewToFront:self.ibSearchTableView];
     [self.ibContentView bringSubviewToFront:self.ibLocationTableView];
 
-//    [self.ibContentView addSubview:self.ibLocationTableView];
-//    [self.ibContentView addSubview:self.ibSearchTableView];
-//
-//    CGRect frame = [Utils getDeviceScreenSize];
-//    self.ibLocationTableView.frame = CGRectMake(0, 0, frame.size.width, self.ibContentView.frame.size.height);
-//    self.ibSearchTableView.frame = CGRectMake(0, 0, frame.size.width, self.ibContentView.frame.size.height);
     self.ibLocationTableView.delegate = self;
     self.ibLocationTableView.dataSource = self;
     self.ibSearchTableView.delegate = self;
@@ -431,6 +423,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
+    [self.ibSearchText resignFirstResponder];
+    [self.ibLocationText resignFirstResponder];
     
     if(tableView == self.ibLocationTableView)
     {
@@ -853,6 +847,7 @@
     
     return _profileViewController;
 }
+
 -(CollectionViewController*)collectionViewController
 {
     if (!_collectionViewController) {

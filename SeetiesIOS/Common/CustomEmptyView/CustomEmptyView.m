@@ -20,14 +20,34 @@
 
 -(void)showLoading
 {
-    self.loadingView.hidden = NO;
-    self.emptyStateView.hidden = YES;
+    @try {
+        self.loadingView.hidden = NO;
+        self.emptyStateView.hidden = YES;
+    } @catch (NSException *exception) {
+        
+    }
+   
 }
 
 -(void)showEmptyState
 {
-    self.loadingView.hidden = YES;
-    self.emptyStateView.hidden = NO;
+    @try {
+        self.loadingView.hidden = YES;
+        self.emptyStateView.hidden = NO;
+    } @catch (NSException *exception) {
+        
+    }
+   
 }
 
+-(void)hideAll
+{
+    @try {
+        self.loadingView.hidden = YES;
+        self.emptyStateView.hidden = YES;
+
+    } @catch (NSException *exception) {
+        
+    }
+  }
 @end

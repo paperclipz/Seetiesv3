@@ -86,7 +86,7 @@
 -(void)initSelfView
 {
     
-   // [self.ibTableView setupFooterView];
+    [self.ibTableView setupFooterView];
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
@@ -573,13 +573,25 @@
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
         [self.ibTableView reloadData];
-        [self.ibEmptyStateView showEmptyState];
+        
+        if ([Utils isArrayNull:self.arrList]) {
+            [self.ibEmptyStateView showEmptyState];
+        }
+        else{
+            [self.ibEmptyStateView hideAll];
+            
+        }
        
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
-        [self.ibEmptyStateView showEmptyState];
-
+        if ([Utils isArrayNull:self.arrList]) {
+            [self.ibEmptyStateView showEmptyState];
+        }
+        else{
+            [self.ibEmptyStateView hideAll];
+            
+        }
     }];
 }
 
@@ -615,7 +627,7 @@
                            @"current_lng":[self convertStringToEmptyIfItsNull:self.currentLongtitude]
                            };
     isMiddleOfCallingServer = YES;
-    //[self.ibTableView startFooterLoadingView];
+    [self.ibTableView startFooterLoadingView];
 
     [self.ibEmptyStateView showLoading];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchPosts param:dict appendString:appendString completeHandler:^(id object) {
@@ -625,15 +637,27 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.recommendations.total_count,LocalisedString(@"Posts")];
 
         isMiddleOfCallingServer = NO;
-        [self.ibEmptyStateView showEmptyState];
-
-     //   [self.ibTableView stopFooterLoadingView];
+        if ([Utils isArrayNull:self.arrList]) {
+            [self.ibEmptyStateView showEmptyState];
+        }
+        else{
+            [self.ibEmptyStateView hideAll];
+            
+        }
+           [self.ibTableView stopFooterLoadingView];
 
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
-      //  [self.ibTableView stopFooterLoadingView];
-        [self.ibEmptyStateView showEmptyState];
-
+        
+        [self.ibTableView stopFooterLoadingView];
+        
+        if ([Utils isArrayNull:self.arrList]) {
+            [self.ibEmptyStateView showEmptyState];
+        }
+        else{
+            [self.ibEmptyStateView hideAll];
+            
+        }
 
     }];
     
@@ -667,16 +691,24 @@
         [self.ibTableView stopFooterLoadingView];
         
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.usersModel.total_count,LocalisedString(@"Users")];
-        [self.ibEmptyStateView showEmptyState];
-
-
+        if ([Utils isArrayNull:self.arrList]) {
+            [self.ibEmptyStateView showEmptyState];
+        }
+        else{
+            [self.ibEmptyStateView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
-        [self.ibEmptyStateView showEmptyState];
-
-    }];
+        if ([Utils isArrayNull:self.arrList]) {
+            [self.ibEmptyStateView showEmptyState];
+        }
+        else{
+            [self.ibEmptyStateView hideAll];
+            
+        }    }];
 }
 
 -(void)requestServerForSearchCollection{
@@ -719,14 +751,24 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_count,LocalisedString(@"Collections")];
 
         [self.ibTableView stopFooterLoadingView];
-        [self.ibEmptyStateView showEmptyState];
-
+        if ([Utils isArrayNull:self.arrList]) {
+            [self.ibEmptyStateView showEmptyState];
+        }
+        else{
+            [self.ibEmptyStateView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
 
         [self.ibTableView stopFooterLoadingView];
-        [self.ibEmptyStateView showEmptyState];
-
+        if ([Utils isArrayNull:self.arrList]) {
+            [self.ibEmptyStateView showEmptyState];
+        }
+        else{
+            [self.ibEmptyStateView hideAll];
+            
+        }
     }];
 }
 -(void)requestServerToFollowFromOthers:(UserModel*)colModel
