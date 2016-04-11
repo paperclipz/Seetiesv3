@@ -17,6 +17,7 @@
     BOOL isMiddleOfRequestingCountry;
 
 }
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblAutoDetect;
 @property (weak, nonatomic) IBOutlet UITextField *ibSearchTxtField;
 @property (weak, nonatomic) IBOutlet UITableView *ibCountryTable;
@@ -88,6 +89,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self changeLanguage];
+    
     if ([SearchManager isDeviceGPSTurnedOn]) {
         
         if (!self.userLocation) {
@@ -120,6 +123,11 @@
     [self requestServerForCountry];
     // Do any additional setup after loading the view from its nib.
     
+}
+
+-(void)changeLanguage{
+    self.lblAutoDetect.text = LocalisedString(@"Auto-detect your location");
+    self.ibHeaderTitle.text = LocalisedString(@"Select Location");
 }
 
 
@@ -389,10 +397,12 @@
 
 - (IBAction)searchDidBegin:(id)sender {
     self.ibSearchTable.hidden = NO;
+    self.ibHeaderTitle.text = LocalisedString(@"Search for a location");
 }
 
 - (IBAction)searchDidEnd:(id)sender {
     self.ibSearchTable.hidden = YES;
+    self.ibHeaderTitle.text = LocalisedString(@"Select Location");
 }
 
 - (IBAction)searchDidChange:(UITextField*)sender {

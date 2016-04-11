@@ -56,7 +56,7 @@
         self.lblLocation.text = displayStr;
         
         
-        self.lblStatus.text = self.ssModel.location.opening_hours.open_now?LocalisedString(@"OPEN"):LocalisedString(@"CLOSED");
+        self.lblStatus.text = self.ssModel.location.opening_hours.open_now?LocalisedString(@"Open"):LocalisedString(@"Closed");
         self.lblStatus.backgroundColor = self.ssModel.location.opening_hours.open_now?GREEN_STATUS : TWO_ZERO_FOUR_COLOR;
 
         [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:self.ssModel.profile_photo[@"picture"]] placeholderImage:[Utils getShopPlaceHolderImage]];

@@ -25,7 +25,7 @@
 {
     self.arrPosts = array;
     [self.ibCollectionview reloadData];
-    self.lblTitle.text = LocalisedString(@"Suggested foreign recommendation");
+    self.lblTitle.text = LocalisedString(@"Suggested foreign recommendations");
 }
 -(void)initSelfView
 {

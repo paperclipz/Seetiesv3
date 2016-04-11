@@ -11,6 +11,8 @@
 @interface DealType_YourWalletTblCell()
 @property (weak, nonatomic) IBOutlet UIView *ibCborderview;
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
+@property (weak, nonatomic) IBOutlet UILabel *ibTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibDesc;
 @end
 @implementation DealType_YourWalletTblCell
 
@@ -33,7 +35,10 @@
 
 -(void)initData:(int)walletCount
 {
+    self.ibTitle.text = LocalisedString(@"Voucher Wallet");
+    self.ibDesc.text = LocalisedString(@"Check out your collected deals");
     self.lblCount.text = [NSString stringWithFormat:@"%d",walletCount];
+    
 }
 
 @end

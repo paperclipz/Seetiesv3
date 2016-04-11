@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_NotificationViewController">
             <connections>
                 <outlet property="ibContentView" destination="VbA-G3-eeg" id="JrG-VR-Nwv"/>
+                <outlet property="ibHeaderTitle" destination="mmg-Kp-xXI" id="FfK-yc-SWP"/>
                 <outlet property="view" destination="yS3-Sg-2Ip" id="695-7o-EDD"/>
             </connections>
         </placeholder>
