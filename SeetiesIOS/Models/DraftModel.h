@@ -11,6 +11,7 @@
 #import "Location.h"
 
 @class ProfileModel;
+@class SeShopDetailModel;
 
 @protocol PhotoModel
 @end
@@ -66,7 +67,9 @@
 @property(nonatomic,assign)int collection_count;
 @property(nonatomic,strong)NSString* collection_note;
 
-/*notification*/
+/*SeetiShop*/
+@property(nonatomic,strong)SeShopDetailModel* seetishop_info;
+
 
 -(NSString*)getPostDescription;
 

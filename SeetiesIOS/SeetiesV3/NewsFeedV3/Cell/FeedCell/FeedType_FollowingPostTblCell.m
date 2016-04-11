@@ -139,7 +139,17 @@
     }
     
     self.lblTitle.text = [feedModel getPostTitle];
-    self.lblLocation.text = feedModel.location.name;
+    
+    //check whether is seetishop
+    if (feedModel.seetishop_info.name) {
+        
+        self.lblLocation.text = feedModel.seetishop_info.name;
+
+    }
+    else{
+        self.lblLocation.text = feedModel.location.name;
+
+    }
     
     //self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",feedModel.location.locality,feedModel.location.country];
  

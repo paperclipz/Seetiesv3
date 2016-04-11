@@ -266,6 +266,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    ShowTopTitle.hidden = NO;
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    ShowBarImg.frame = CGRectMake(0, 0, frame.size.width, 64);
+    
     // Do any additional setup after loading the view from its nib.
     DataUrl = [[UrlDataClass alloc]init];
     pageControlBeingUsed = NO;
@@ -715,6 +722,7 @@
                     GetSeetishopAddress = [[NSString alloc]initWithFormat:@"%@",[SeetishopLocation objectForKey:@"formatted_address"]];
                     GetSeetishopImage = [[NSString alloc]initWithFormat:@"%@",SeetishopInfo[@"profile_photo"][@"picture"]];
 
+                    GetPlaceName = GetSeetishopName;
                 }
                 
                 NSLog(@"GetSeetishopID is %@",GetSeetishopID);
@@ -3777,37 +3785,38 @@
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%i / %li",page + 1,(long)ImageCount];
         ShowImageCount.text = TempCount;
     }else{
+  
         
-        float HeightCheck = MainScroll.contentOffset.y;
+//        float HeightCheck = MainScroll.contentOffset.y;
         
-        if (HeightCheck > 64) {
-            [UIView animateWithDuration:0.2
-                                  delay:0
-                                options:UIViewAnimationOptionCurveEaseIn
-                             animations:^{
-                                 ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-                             }
-                             completion:^(BOOL finished) {
-                             }];
-            
-        }else{
-            [UIView animateWithDuration:0.2
-                                  delay:0
-                                options:UIViewAnimationOptionCurveEaseIn
-                             animations:^{
-                                 ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
-                             }
-                             completion:^(BOOL finished) {
-                             }];
-            
-            
-        }
-        if (HeightCheck > GetPlaceNameHeight) {
-            ShowTopTitle.hidden = NO;
-        }else{
-            ShowTopTitle.hidden = YES;
-        }
-        
+//        if (HeightCheck > 64) {
+//            [UIView animateWithDuration:0.2
+//                                  delay:0
+//                                options:UIViewAnimationOptionCurveEaseIn
+//                             animations:^{
+//                                 ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+//                             }
+//                             completion:^(BOOL finished) {
+//                             }];
+//            
+//        }else{
+//            [UIView animateWithDuration:0.2
+//                                  delay:0
+//                                options:UIViewAnimationOptionCurveEaseIn
+//                             animations:^{
+//                                 ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
+//                             }
+//                             completion:^(BOOL finished) {
+//                             }];
+//            
+//            
+//        }
+//        if (HeightCheck > GetPlaceNameHeight) {
+//            ShowTopTitle.hidden = NO;
+//        }else{
+//            ShowTopTitle.hidden = YES;
+//        }
+//        
         
         
         
@@ -4995,13 +5004,11 @@
 }
 -(IBAction)ViewSeetishopButtonOnClick:(id)sender{
     
-    // NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
-    // NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
     _seetiesShopViewController = nil;
+    
     [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
-    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
-    [nav setNavigationBarHidden:YES];
-    [self presentViewController:nav animated:YES completion:nil];
+
+    [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 }
 -(IBAction)LanguageButtonOnClick:(id)sender{
     

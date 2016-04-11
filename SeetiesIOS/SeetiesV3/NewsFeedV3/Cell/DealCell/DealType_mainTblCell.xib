@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="299.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeNight1.png" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-yl-BBB">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HVF-yl-BBB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="290"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bWp-Im-Td5">
@@ -111,7 +111,4 @@
             <point key="canvasLocation" x="373" y="324"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="HomeNight1.png" width="800" height="800"/>
-    </resources>
 </document>

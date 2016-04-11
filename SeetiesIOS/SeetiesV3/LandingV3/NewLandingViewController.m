@@ -48,7 +48,7 @@
     else{
         [self requestServerForNotificationCount];
         [self requestServerForUserInfo];
-        [Utils reloadAppView];
+        [Utils reloadAppView:YES];
     }
     
     [self requestServerForCountry];
@@ -171,7 +171,8 @@
     [self.navLoginViewController dismissViewControllerAnimated:YES completion:^{
         
     }];
-    [Utils reloadAppView];
+    
+    [Utils reloadAppView:YES];
     self.tabBarController.selectedIndex = 0;
     
     [TSMessage showNotificationInViewController:self.newsFeedViewController title:LocalisedString(@"system") subtitle:LocalisedString(@"Login Successfully") type:TSMessageNotificationTypeSuccess duration:1.0f canBeDismissedByUser:YES];
