@@ -20,7 +20,11 @@
 #import "YLGIFImage.h"
 #import "YLImageView.h"
 
+typedef void (^HomeModelBlock)(HomeLocationModel* model);
+
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate, FilterViewControllerDelegate, DealRedeemDelegate>
+@property(nonatomic,copy)HomeModelBlock didSelectHomeLocationBlock;
+
 -(void)initWithLocation:(HomeLocationModel*)locationModel  quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
 -(void)initWithDealId:(NSString*)dealId;
 -(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel quickBrowseModel:(QuickBrowseModel*)quickBrowseModel;
