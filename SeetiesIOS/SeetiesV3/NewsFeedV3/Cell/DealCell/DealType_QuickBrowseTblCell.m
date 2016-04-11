@@ -12,6 +12,8 @@
 @interface DealType_QuickBrowseTblCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *ibCborderview;
+@property (weak, nonatomic) IBOutlet UILabel *ibTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibDesc;
 
 @property (nonatomic)NSArray* arrQuickBrowse;
 
@@ -22,6 +24,9 @@
 
 -(void)initData:(NSArray*)array
 {
+    self.ibTitle.text = LocalisedString(@"Find Shops & Places");
+    self.ibDesc.text = LocalisedString(@"Shop for deals & collections of places");
+    
     self.arrQuickBrowse = array;
     [self.ibCollectionView reloadData];
 }
@@ -37,6 +42,7 @@
 }
 
 -(void)initSelfView{
+    
     [self initCollectionViewDelegate];
     
     [Utils setRoundBorder:self.ibCborderview color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];

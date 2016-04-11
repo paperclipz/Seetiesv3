@@ -11,6 +11,8 @@
 
 @interface FeedType_CollectionSuggestedTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *ibTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibSeeAll;
 @property (nonatomic,strong)CTFeedTypeModel* feedTypeModel;
 @property (nonatomic,copy)NSArray<CollectionModel>* arrCollections;
 
@@ -34,6 +36,9 @@
 
 -(void)initData:(NSArray<CollectionModel>*)array
 {
+    self.ibTitle.text = LocalisedString(@"Suggested Collections");
+    self.ibSeeAll.text = LocalisedString(@"See all");
+    
     self.arrCollections = array;
     [self.ibCollectionView reloadData];
 }
@@ -41,6 +46,7 @@
 -(void)initSelfView
 {
     [self initCollectionViewDelegate];
+    
 }
 
 -(void)initCollectionViewDelegate

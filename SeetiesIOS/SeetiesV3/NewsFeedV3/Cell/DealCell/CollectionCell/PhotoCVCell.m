@@ -31,13 +31,18 @@
     [self.lblViewAll setSideCurveBorder];
     [self.lblTitle setFont:[UIFont fontWithName:@"olivier" size:25.0f]];
     [self.lblViewAllTwo setSideCurveBorder];
-
     
+}
 
+-(void)changeLanguage{
+    self.lblViewAll.text = LocalisedString(@"View all");
+    self.lblViewAllTwo.text = LocalisedString(@"View all");
+    self.lblTitle.text = LocalisedString(@"Deals of the Day");
 }
 
 -(void)initData:(DealModel*)model
 {
+    [self changeLanguage];
     
     self.ibCoverPhotoView.hidden = YES;
 

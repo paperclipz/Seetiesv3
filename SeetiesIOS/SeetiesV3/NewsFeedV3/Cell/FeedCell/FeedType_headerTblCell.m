@@ -35,8 +35,8 @@
 
 -(void)changeLanguage
 {
-    self.lblTitle.text = LocalisedString(@"Recommended by Users");
-    self.lblDesc.text = LocalisedString(@"See what is happening around you");
+    self.lblTitle.text = LocalisedString(@"Other User Recommendations");
+    self.lblDesc.text = LocalisedString(@"See what's around you");
 
 }
 @end
