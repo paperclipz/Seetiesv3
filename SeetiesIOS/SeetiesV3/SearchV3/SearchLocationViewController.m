@@ -328,12 +328,11 @@
 
         HomeLocationModel* hModel = [HomeLocationModel new];
         hModel.timezone = @"";
-        hModel.type = @"none";
+        hModel.type = Type_Featured;
         hModel.latitude = pModel.latitude;
         hModel.longtitude = pModel.longtitude;
         hModel.place_id = pModel.place_id;
         hModel.locationName = pModel.name;
-
         if (self.homeLocationRefreshBlock) {
             self.homeLocationRefreshBlock(hModel, countryModel);
         }
@@ -374,7 +373,7 @@
         
         HomeLocationModel* hModel = [HomeLocationModel new];
         hModel.timezone = @"";
-        hModel.type = @"current";
+        hModel.type = Type_Current;
         hModel.latitude = recommendationVenueModel.lat;
         hModel.longtitude = recommendationVenueModel.lng;
         hModel.place_id = recommendationVenueModel.place_id;
@@ -383,7 +382,6 @@
         hModel.address_components.locality = recommendationVenueModel.city;
         hModel.address_components.administrative_area_level_1 = recommendationVenueModel.state;
         hModel.locationName = recommendationVenueModel.name;
-        
         if (self.homeLocationRefreshBlock) {
             self.homeLocationRefreshBlock(hModel, nil);
         }
@@ -447,12 +445,11 @@
             
             HomeLocationModel* hModel = [HomeLocationModel new];
             hModel.timezone = @"";
-            hModel.type = @"current";
+            hModel.type = Type_Current;
             hModel.latitude = model.lat;
             hModel.longtitude = model.lng;
             hModel.place_id = @"";
             hModel.locationName = [model locationNameWithCustomKey:self.countriesModel.current_country.place_display_fields];
-           
 
             [UIAlertView showWithTitle:LocalisedString(@"system") message:[NSString stringWithFormat:@"%@%@ ?",LocalisedString(@"Change Location To "),hModel.locationName] style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[LocalisedString(@"OK")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                 

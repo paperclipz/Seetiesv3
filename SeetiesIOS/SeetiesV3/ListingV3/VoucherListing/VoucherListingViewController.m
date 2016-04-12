@@ -499,7 +499,7 @@
             weakSelf.locationModel = hModel;
             weakSelf.locationModel.countryId = countryModel.country_id;
             
-            [Utils saveUserLocation:weakSelf.locationModel.locationName Longtitude:weakSelf.locationModel.longtitude Latitude:weakSelf.locationModel.latitude PlaceID:weakSelf.locationModel.place_id CountryID:countryModel.country_id];
+            [Utils saveUserLocation:weakSelf.locationModel.locationName Longtitude:weakSelf.locationModel.longtitude Latitude:weakSelf.locationModel.latitude PlaceID:weakSelf.locationModel.place_id CountryID:countryModel.country_id SourceType:weakSelf.locationModel.type];
             
             weakSelf.ibUserLocationLbl.text = weakSelf.locationModel.locationName;
             [weakSelf.dealsArray removeAllObjects];

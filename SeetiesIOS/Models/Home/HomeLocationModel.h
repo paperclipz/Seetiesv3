@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "AddressComponentModel.h"
 
+#define Type_Search @"search"
+#define Type_Featured @"featured"
+#define Type_Current @"current"
+
 @interface HomeLocationModel : JSONModel
 
 @property(nonatomic,strong)NSString* timezone;
-@property(nonatomic,strong)NSString* type;
+@property(nonatomic,strong)NSString* type;//1 : Search || 2: Current || 3 : Featured
 @property(nonatomic,strong)NSString* latitude;
 @property(nonatomic,strong)NSString* longtitude;
 @property(nonatomic,strong)NSString* place_id;
