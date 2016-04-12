@@ -263,7 +263,7 @@
         label.text = LocalisedString(@"No expiry");
     }
     else{
-        label.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), expiryModel.expiryDate];
+        label.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": expiryModel.expiryDate}];
     }
     
     [contentView addSubview:label];
