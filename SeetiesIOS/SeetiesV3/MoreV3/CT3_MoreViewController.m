@@ -94,25 +94,35 @@
     return tempArray.count;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.ibTableView.frame.size.width, 44)];
+    header.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(16, 15, header.frame.size.width, 21)];
+    [title setFont:[UIFont boldSystemFontOfSize:13]];
+    title.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     
     if(section == 0)
     {
         if ([Utils isGuestMode]) {
-            return LocalisedString(@"Get Started");
-
+            title.text = LocalisedString(@"Get Started");
         }
         else
         {
-            return LocalisedString(@"Shortcut");
-
+            title.text = LocalisedString(@"Shortcut");
         }
     }
     if(section == 1)
-        return LocalisedString(@"Others");
+        title.text = LocalisedString(@"Others");
     if(section == 2)
-        return LocalisedString(@"Sign Out");
-    return 0;
+        title.text = LocalisedString(@"Sign Out");
+    
+    [header addSubview:title];
+    
+    return header;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -382,7 +392,7 @@
         else
         {
             NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log In", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Rate Us",@"About Us",@"Speak to Us", nil];
+            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Tour Seeties App",@"Rate Us",@"About Us",@"Speak to Us", nil];
             //NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
             _arrData = @[firstItemsArray,secondItemsArray];
         }

@@ -254,6 +254,10 @@
     self.ibCollectionTitleLbl.text = LocalisedString(@"Collection");
     self.ibInviteLbl.text = LocalisedString(@"Invite your buddies");
     self.ibPromoLbl.text = LocalisedString(@"Enter a promo code");
+    
+    self.ibGuestViewTitle.text = LocalisedString(@"Join us to enjoy more exciting features!");
+    self.ibGuestViewLoginLbl.text = LocalisedString(@"Log in or Sign up to get started");
+    [self.btnLogin setTitle:LocalisedString(@"Get me started!") forState:UIControlStateNormal];
 }
 
 #pragma mark Declaration

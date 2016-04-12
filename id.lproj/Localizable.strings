@@ -1098,7 +1098,7 @@
 "Good afternoon" = "Selamat Siang";
 "Good evening" = "Selamat Malam";
 "Hey there," = "Halo";
-"Deals of the Day" = "Deals fo the Day";
+"Deals of the Day" = "Deals of the Day";
 "View all" = "Lihat semua";
 "Voucher Wallet" = "Dompet voucher";
 "Check out your collected deals" = "Lihat seluruh penawaran yang telah terkumpul";
@@ -1140,8 +1140,8 @@
 "History" = "Riwayat";
 "Voucher History" = "Riwayat voucher";
 "New Deals" = "Penawaran terbaru";
-"Reusable" = "Digunakan berkali-kali";
-"1-time-use" = "1 kali pemakaian";
+"REUSABLE" = "DIGUNAKAN BERKALI-KALI";
+"1-TIME-USE" = "1 KALI PEMAKAIAN";
 "Expires in {!number} day(s)" = "Kadaluarsa dalam {!number} hari";
 "Redeem" = "Redeem";
 "" = "";

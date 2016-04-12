@@ -48,8 +48,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deals of the Days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hd-Rm-Ahw">
-                        <rect key="frame" x="10" y="36" width="302" height="25"/>
+                        <rect key="frame" x="10" y="28" width="302" height="33"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="33" id="Ibu-Ie-lX3"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="LZ2-gR-Lt6"/>
                             <constraint firstAttribute="height" constant="25" id="dM7-Si-ACH"/>
                         </constraints>

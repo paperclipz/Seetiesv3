@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,10 +16,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VALUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ce0-wz-mZr">
-                        <rect key="frame" x="16" y="8" width="45" height="15"/>
+                        <rect key="frame" x="16" y="8" width="60" height="15"/>
                         <color key="backgroundColor" red="0.8862745098" green="0.23529411759999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="45" id="Cuc-hT-phr"/>
+                            <constraint firstAttribute="width" constant="60" id="Cuc-hT-phr"/>
                             <constraint firstAttribute="height" constant="15" id="fxn-Q8-et5"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
@@ -27,7 +27,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvU-Zp-CG2">
-                        <rect key="frame" x="74" y="5" width="232" height="21"/>
+                        <rect key="frame" x="84" y="5" width="222" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="kcX-ro-3iz"/>
                         </constraints>
@@ -38,7 +38,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ce0-wz-mZr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Q3B-Rx-2v8"/>
-                    <constraint firstItem="TvU-Zp-CG2" firstAttribute="leading" secondItem="ce0-wz-mZr" secondAttribute="trailing" constant="13" id="ZIf-xZ-U3M"/>
+                    <constraint firstItem="TvU-Zp-CG2" firstAttribute="leading" secondItem="ce0-wz-mZr" secondAttribute="trailing" constant="8" id="ZIf-xZ-U3M"/>
                     <constraint firstItem="ce0-wz-mZr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="ff0-kw-xSL"/>
                     <constraint firstAttribute="trailingMargin" secondItem="TvU-Zp-CG2" secondAttribute="trailing" constant="6" id="gTH-QR-qaS"/>
                     <constraint firstItem="TvU-Zp-CG2" firstAttribute="centerY" secondItem="ce0-wz-mZr" secondAttribute="centerY" id="o4a-cF-pBb"/>

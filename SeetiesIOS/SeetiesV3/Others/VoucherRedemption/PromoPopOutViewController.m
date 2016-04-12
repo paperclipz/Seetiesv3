@@ -344,8 +344,8 @@
         case PopOutViewTypeConfirmPhone:
         {
             self.ibConfirmPhoneDescLbl.text = LocalisedString(@"Is this your phone number?");
-            [self.ibConfirmPhoneChangeBtn setTitle:@"Change Phone Number" forState:UIControlStateNormal];
-            [self.ibConfirmPhoneBtn setTitle:@"Confirm" forState:UIControlStateNormal];
+            [self.ibConfirmPhoneChangeBtn setTitle:LocalisedString(@"Change Phone Number") forState:UIControlStateNormal];
+            [self.ibConfirmPhoneBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
             
             [self.ibConfirmPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibConfirmPhoneChangeBtn color:DEVICE_COLOR borderRadius:self.ibConfirmPhoneChangeBtn.frame.size.height/2];

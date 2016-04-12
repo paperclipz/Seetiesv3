@@ -394,6 +394,14 @@
 
 #pragma mark - IBAction
 
+- (IBAction)btnBackClicked:(id)sender {
+    
+    if (self.didSelectHomeLocationBlock) {
+        self.didSelectHomeLocationBlock(self.locationModel);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)btnSearchLocationClicked:(id)sender {
     _ct3_SearchListingViewController = nil;
     

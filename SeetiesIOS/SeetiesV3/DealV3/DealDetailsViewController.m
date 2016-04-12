@@ -512,7 +512,7 @@
         self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Redeemed");
         [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsRedeemedIcon.png"]];
         
-        self.ibHeaderRedeemExpiryTitleLbl.text = LocalisedString(@"This deal has been redeemed on");
+        self.ibHeaderRedeemExpiryTitleLbl.text = LocalisedString(@"This deal has been redeemed on ");
         self.ibHeaderRedeemExpiryDescLbl.text = LocalisedString(@"Flash this screen to a staff and swipe to redeem this deal.");
         
         NSDate *redeemDate = [dateFormatter dateFromString:self.dealModel.voucher_info.redeemed_at];

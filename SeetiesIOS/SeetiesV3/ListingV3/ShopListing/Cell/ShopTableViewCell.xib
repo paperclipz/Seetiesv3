@@ -58,7 +58,6 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SsDefaultDisplayPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Uh-7C-qCc">
                                 <rect key="frame" x="16" y="10" width="60" height="60"/>
-                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="YeW-4W-qpH"/>
                                     <constraint firstAttribute="width" constant="60" id="ghw-vB-3L5"/>

@@ -279,6 +279,14 @@ static NSCache* heightCache = nil;
 {
     if (!_voucherListingViewController) {
         _voucherListingViewController = [VoucherListingViewController new];
+        
+        __weak typeof (self)weakSelf = self;
+        _voucherListingViewController.didSelectHomeLocationBlock = ^(HomeLocationModel* model)
+        {
+            weakSelf.currentHomeLocationModel = model;
+            weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
+            [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
+        };
     }
     
     return _voucherListingViewController;
