@@ -9,9 +9,11 @@
             <connections>
                 <outlet property="ibAvailabilityContentView" destination="Y79-Pd-cow" id="WeF-fK-HGJ"/>
                 <outlet property="ibAvailabilityDesc" destination="ieh-tR-8ql" id="Fht-lM-t36"/>
+                <outlet property="ibAvailabilityEmptyTxt" destination="gpR-WC-K2D" id="NNA-VU-BKB"/>
                 <outlet property="ibAvailabilityTable" destination="5N0-bc-Rk2" id="DQf-f9-Wfs"/>
                 <outlet property="ibAvailabilityTitle" destination="JkB-BQ-U5a" id="jMo-1m-g0k"/>
                 <outlet property="ibAvailabilityView" destination="gRl-Eq-aKu" id="oKC-eb-WUv"/>
+                <outlet property="ibAvailabiltyEmptyTxtHeightConstraint" destination="J7O-Uu-6U6" id="d6W-W4-LAh"/>
                 <outlet property="ibDealDetailsContentView" destination="JIp-V7-DfW" id="z4d-Jc-xsA"/>
                 <outlet property="ibDealDetailsDesc" destination="y4x-ov-uHa" id="jas-rj-2tL"/>
                 <outlet property="ibDealDetailsDescLbl" destination="duK-1v-5Wn" id="rzY-U3-WQD"/>
@@ -719,11 +721,11 @@
             <point key="canvasLocation" x="1173" y="673"/>
         </view>
         <view clipsSubviews="YES" contentMode="scaleToFill" id="gRl-Eq-aKu" userLabel="Availability view">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="690"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y79-Pd-cow" userLabel="availability content">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="590"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Availability" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkB-BQ-U5a" userLabel="availability title">
                             <rect key="frame" x="16" y="16" width="568" height="21"/>
@@ -744,7 +746,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5N0-bc-Rk2" userLabel="availability table">
-                            <rect key="frame" x="16" y="78" width="568" height="496"/>
+                            <rect key="frame" x="16" y="99" width="568" height="565"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="pZf-Kw-Q1I"/>
@@ -759,18 +761,29 @@
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FT0-xz-w8v" userLabel="lower line">
-                            <rect key="frame" x="0.0" y="589" width="600" height="1"/>
+                            <rect key="frame" x="0.0" y="679" width="600" height="1"/>
                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="5F6-z1-wE7"/>
                             </constraints>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="748" text="This voucher is only applicable based on outlet operating hours." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpR-WC-K2D" userLabel="no availability">
+                            <rect key="frame" x="16" y="78" width="568" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="J7O-Uu-6U6"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="ieh-tR-8ql" secondAttribute="trailing" constant="16" id="8mF-LO-5Gp"/>
                         <constraint firstItem="ieh-tR-8ql" firstAttribute="top" secondItem="JkB-BQ-U5a" secondAttribute="bottom" constant="10" id="ATC-tl-MQE"/>
                         <constraint firstItem="5N0-bc-Rk2" firstAttribute="top" secondItem="ieh-tR-8ql" secondAttribute="bottom" constant="10" id="ET6-6g-pz5"/>
+                        <constraint firstItem="5N0-bc-Rk2" firstAttribute="top" secondItem="gpR-WC-K2D" secondAttribute="bottom" id="GJj-l9-Fhu"/>
+                        <constraint firstAttribute="trailing" secondItem="gpR-WC-K2D" secondAttribute="trailing" constant="16" id="Hdr-Ea-q0l"/>
                         <constraint firstAttribute="trailing" secondItem="201-Ej-M0L" secondAttribute="trailing" id="MPi-i3-mVp"/>
                         <constraint firstItem="ieh-tR-8ql" firstAttribute="leading" secondItem="Y79-Pd-cow" secondAttribute="leading" constant="16" id="Mfn-yY-GJi"/>
                         <constraint firstItem="201-Ej-M0L" firstAttribute="top" secondItem="Y79-Pd-cow" secondAttribute="top" id="QUE-gn-mvV"/>
@@ -780,11 +793,18 @@
                         <constraint firstItem="FT0-xz-w8v" firstAttribute="leading" secondItem="Y79-Pd-cow" secondAttribute="leading" id="c1u-lA-MjF"/>
                         <constraint firstAttribute="trailing" secondItem="JkB-BQ-U5a" secondAttribute="trailing" constant="16" id="cSB-b8-3Fb"/>
                         <constraint firstItem="JkB-BQ-U5a" firstAttribute="top" secondItem="Y79-Pd-cow" secondAttribute="top" constant="16" id="cUP-7h-g3a"/>
+                        <constraint firstItem="gpR-WC-K2D" firstAttribute="top" secondItem="ieh-tR-8ql" secondAttribute="bottom" constant="10" id="hdP-7k-zcF"/>
                         <constraint firstItem="201-Ej-M0L" firstAttribute="leading" secondItem="Y79-Pd-cow" secondAttribute="leading" id="ruB-l7-9Hh"/>
                         <constraint firstAttribute="trailing" secondItem="FT0-xz-w8v" secondAttribute="trailing" id="x0l-xB-n2T"/>
                         <constraint firstItem="5N0-bc-Rk2" firstAttribute="leading" secondItem="Y79-Pd-cow" secondAttribute="leading" constant="16" id="yAf-NQ-d7v"/>
                         <constraint firstAttribute="trailing" secondItem="5N0-bc-Rk2" secondAttribute="trailing" constant="16" id="yeh-0d-bzf"/>
+                        <constraint firstItem="gpR-WC-K2D" firstAttribute="leading" secondItem="Y79-Pd-cow" secondAttribute="leading" constant="16" id="zGy-SP-PKK"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ET6-6g-pz5"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -794,7 +814,8 @@
                 <constraint firstAttribute="trailing" secondItem="Y79-Pd-cow" secondAttribute="trailing" id="lrv-Yu-2dJ"/>
                 <constraint firstItem="Y79-Pd-cow" firstAttribute="leading" secondItem="gRl-Eq-aKu" secondAttribute="leading" id="vK1-89-ecH"/>
             </constraints>
-            <point key="canvasLocation" x="477" y="950"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="477" y="995"/>
         </view>
         <view clipsSubviews="YES" contentMode="scaleToFill" id="L5W-pG-Hcg" userLabel="Shop view">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
