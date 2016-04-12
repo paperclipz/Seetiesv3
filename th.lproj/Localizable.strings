@@ -1141,8 +1141,8 @@
 "History" = "";
 "Voucher History" = "ประวัติการแลก voucher";
 "New Deals" = "ดีลใหม่";
-"Reusable" = "ใช้หลายครั้ง";
-"1-time-use" = "ใช้ครั้งเดียว";
+"REUSABLE" = "ใช้หลายครั้ง";
+"1-TIME-USE" = "ใช้ครั้งเดียว";
 "Expires in {!number} day(s)" = "หมดอายุใน {!number} วัน";
 "Redeem" = "แลก";
 "" = "";

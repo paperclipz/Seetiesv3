@@ -81,11 +81,11 @@
     }
     
     if (self.dealModel.total_available_vouchers == -1) {
-        self.ibDealUsageLbl.text = LocalisedString(@"Reusable");
+        self.ibDealUsageLbl.text = LocalisedString(@"REUSABLE");
         [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:122/255.0f green:210/255.0f blue:26/255.0f alpha:1]];
     }
     else{
-        self.ibDealUsageLbl.text = LocalisedString(@"1-time-use");
+        self.ibDealUsageLbl.text = LocalisedString(@"1-TIME-USE");
         [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:253/255.0f green:175/255.0f blue:23/255.0f alpha:1]];
     }
     self.ibDealUsageLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -132,7 +132,7 @@
     else{
         self.ibPromoLbl.hidden = YES;
     }
-    self.ibPromoLbl.text = LocalisedString(@"PROMO");
+    self.ibPromoLbl.text = LocalisedString(@"PROMO CODE");
     self.ibPromoLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
     [Utils setRoundBorder:self.ibPromoLbl color:[UIColor clearColor] borderRadius:self.ibPromoLbl.frame.size.height/2];
     

@@ -1145,8 +1145,8 @@
 "History" = "纪录";
 "Voucher History" = "优惠劵纪录";
 "New Deals" = "最新收藏";
-"Reusable" = "可重用";
-"1-time-use" = "一次性";
+"REUSABLE" = "可重用";
+"1-TIME-USE" = "一次性";
 "Expires in {!number} day(s)" = "即将在{!number}日后截止";
 "Redeem" = "领取";
 "" = "";

@@ -195,7 +195,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNI-ml-W0d">
-                            <rect key="frame" x="15" y="710" width="570" height="42"/>
+                            <rect key="frame" x="45" y="710" width="510" height="42"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="185-wg-qL4"/>
                             </constraints>
@@ -227,7 +227,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="400" id="2Pa-v0-BMz"/>
-                        <constraint firstAttribute="trailing" secondItem="dNI-ml-W0d" secondAttribute="trailing" constant="15" id="3Sh-VJ-Fk8"/>
+                        <constraint firstAttribute="trailing" secondItem="dNI-ml-W0d" secondAttribute="trailing" constant="45" id="3Sh-VJ-Fk8"/>
                         <constraint firstItem="dNI-ml-W0d" firstAttribute="top" secondItem="Y4l-sT-W1B" secondAttribute="bottom" constant="10" id="3ug-Tv-gMy"/>
                         <constraint firstAttribute="trailing" secondItem="L5T-3u-f0m" secondAttribute="trailing" constant="100" id="9hP-qb-FvM"/>
                         <constraint firstAttribute="bottom" secondItem="dNI-ml-W0d" secondAttribute="bottom" constant="20" id="ASP-QZ-ao4"/>
@@ -251,7 +251,7 @@
                         <constraint firstItem="Y4l-sT-W1B" firstAttribute="top" secondItem="bK1-0L-TUM" secondAttribute="bottom" constant="10" id="nXn-kS-RIL"/>
                         <constraint firstItem="L5T-3u-f0m" firstAttribute="leading" secondItem="IAP-L3-PYe" secondAttribute="leading" constant="20" id="sYY-ku-UYY"/>
                         <constraint firstItem="L5T-3u-f0m" firstAttribute="top" secondItem="IAP-L3-PYe" secondAttribute="top" constant="20" id="sqX-te-GVr"/>
-                        <constraint firstItem="dNI-ml-W0d" firstAttribute="leading" secondItem="IAP-L3-PYe" secondAttribute="leading" constant="15" id="tSz-yf-e2P"/>
+                        <constraint firstItem="dNI-ml-W0d" firstAttribute="leading" secondItem="IAP-L3-PYe" secondAttribute="leading" constant="45" id="tSz-yf-e2P"/>
                         <constraint firstItem="L5T-3u-f0m" firstAttribute="leading" secondItem="IAP-L3-PYe" secondAttribute="leading" constant="100" id="xSI-1g-qHn"/>
                         <constraint firstAttribute="height" constant="400" id="yl4-3G-3qB"/>
                         <constraint firstItem="bK1-0L-TUM" firstAttribute="top" secondItem="IAP-L3-PYe" secondAttribute="top" constant="190" id="yvN-mG-NfP"/>
