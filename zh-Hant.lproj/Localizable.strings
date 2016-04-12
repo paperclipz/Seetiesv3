@@ -1238,10 +1238,6 @@
 "Enter Verification Code" = "输入验证码";
 "Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "验证码讯息已发送到{!contact number}。此验证码将在30分钟后失效";
 "Enter 7-digit verification code" = "7位数验证码";
-//====================Edited==================//
-"Please enter the 6-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "验证码讯息已发送到{!contact number}。此验证码将在30分钟后失效";
-"Enter 6-digit verification code" = "6位数验证码";
-//====================Edited==================//
 "Resend Code" = "申请重发";
 "Confirm" = "确认";
 "The verification code entered is invalid. Please check and try again." = "验证码无效, 请重新输入";

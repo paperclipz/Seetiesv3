@@ -1233,10 +1233,6 @@
 "Enter Verification Code" = "Masukan kode verifikasi";
 "Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "Mohon masukan 7 digit kode verifikasi yang terkirim ke {!contact number}. Kode akan hangus dalam waktu 30 menit.";
 "Enter 7-digit verification code" = "Masukan 7-digit kode verifikasi";
-//====================Edited==================//
-"Please enter the 6-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "Mohon masukan 6 digit kode verifikasi yang terkirim ke {!contact number}. Kode akan hangus dalam waktu 30 menit.";
-"Enter 6-digit verification code" = "Masukan 6-digit kode verifikasi";
-//====================Edited==================//
 "Resend Code" = "Kirim ulang kode";
 "Confirm" = "Konfirmasi";
 "The verification code entered is invalid. Please check and try again." = "Kode verifikasi salah. Mohon periksa ulang dan coba kembali.";
