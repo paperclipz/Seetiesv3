@@ -11,6 +11,8 @@
 #import "ShareViewController.h"
 #import "SearchDetailViewController.h"
 #import "AddCollectionDataViewController.h"
+#import "CT3_SearchListingViewController.h"
+
 @interface CollectionViewController (){
 
     int CheckButtonOnClick;
@@ -101,6 +103,7 @@
     BOOL OriginalText;
 }
 
+@property(nonatomic,strong)CT3_SearchListingViewController* searchListingViewController;
 @end
 
 @implementation CollectionViewController
@@ -160,17 +163,12 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     //self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_HIDE" object:nil];
 
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-   // self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
 }
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
@@ -983,6 +981,15 @@
 }
 #pragma mark - Declaration
 
+-(CT3_SearchListingViewController*)searchListingViewController
+{
+    if (!_searchListingViewController) {
+        _searchListingViewController = [CT3_SearchListingViewController new];
+    }
+    
+    return _searchListingViewController;
+}
+
 -(ShareV2ViewController*)shareV2ViewController
 {
     if (!_shareV2ViewController) {
@@ -1584,13 +1591,16 @@
 }
 
 -(IBAction)PersonalTagsButtonOnClick:(id)sender{
+    
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSString *GetTagsString = [[NSString alloc]initWithFormat:@"#%@",[ArrHashTag objectAtIndex:getbuttonIDN]];
     NSLog(@"ArrHashTag is %@",GetTagsString);
     
-    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
+    self.searchListingViewController.keyword = GetTagsString;
+    [self.navigationController pushViewController:self.searchListingViewController animated:YES onCompletion:^{
+        
+    }];
+
 }
 -(void)GetTranslateData{
     [ShowActivity startAnimating];
