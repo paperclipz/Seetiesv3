@@ -9,6 +9,7 @@
 #import "STSearchViewController.h"
 #import "STTableViewCell.h"
 #import "STAddNewTableViewCell.h"
+#import "HMSegmentedControl.h"
 
 
 @interface STSearchViewController ()
@@ -16,9 +17,16 @@
     CGRect searchViewFrame;
 
 }
+
+// for segmented control
+
+@property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+@property (nonatomic, strong) NSArray* arrViewControllers;
+@property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
+// for segmented control
+
 @property(nonatomic,strong)NSMutableArray* arrSeetiesList;
 @property(nonatomic,strong)NSArray* nearbyVenues;
-
 @property(nonatomic,strong)SearchModel* searchModel;
 @property (weak, nonatomic) IBOutlet UITextField *txtSearch;
 @property (nonatomic,strong)GMSPlacesClient* placesClient;
@@ -26,14 +34,13 @@
 @property (nonatomic,assign)SearchType type;
 @property (nonatomic,strong)SearchManager* sManager;
 
+
+// IBOUTLET
 @property (weak, nonatomic) IBOutlet UIView *ibSearchContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibContentSearchView;
-
-
 @property (nonatomic, strong) LPGoogleFunctions *googleFunctions;
-
-@property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
 @property (nonatomic, strong) SuggestedPlaceModel *suggestedPlaceModel;
+// IBOUTLET
 
 
 @end
@@ -59,6 +66,11 @@
 
 -(void)initSelfView
 {
+
+    // add segmented controls
+    self.arrViewControllers = @[self.seetiesSearchTableViewController,self.googleSearchTableViewController,self.fourSquareSearchTableViewController];
+    [self initSegmentedControlViewInView:self.ibScrollView ContentView:self.ibSearchContentView ViewControllers:self.arrViewControllers];
+    
     self.txtSearch.delegate = self;
     self.txtSearch.keyboardType = UIKeyboardTypeWebSearch;
     [self.txtSearch addTarget:self
@@ -67,11 +79,8 @@
     
     
     [Utils setRoundBorder:self.ibContentSearchView color:[UIColor clearColor] borderRadius:5.0f];
-    [self.ibSearchContentView addSubview:self.cAPSPageMenu.view];
 
     [self changeLanguage];
-
-    searchViewFrame = self.cAPSPageMenu.view.frame;
 }
 
 -(void)changeLanguage
@@ -80,63 +89,51 @@
     self.txtSearch.placeholder = LocalisedString(@"Search for a place");
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)initSegmentedControlViewInView:(UIScrollView*)view ContentView:(UIView*)contentView ViewControllers:(NSArray*)arryViewControllers
 {
-    self.fourSquareSearchTableViewController.view.frame = CGRectMake(0, self.fourSquareSearchTableViewController.view.frame.origin.y, self.cAPSPageMenu.view.frame.size.width, self.cAPSPageMenu.view.frame.size.height- self.cAPSPageMenu.menuHeight);
-
-    //[self setPageShowSingleView:YES];
-}
-
--(void)setPageShowSingleView:(BOOL)isSingleView
-{
-    if (isSingleView) {
-        self.cAPSPageMenu.controllerScrollView.scrollEnabled = NO;
-        [self.cAPSPageMenu moveToPage:0];
-
-        [UIView animateWithDuration:.3 animations:^{
-            self.cAPSPageMenu.view.frame = CGRectMake(0, 0-self.cAPSPageMenu.menuHeight,  self.cAPSPageMenu.view.frame.size.width,  searchViewFrame.size.height + self.cAPSPageMenu.menuHeight);
-
-        }completion:^(BOOL finished) {
-        }];
-    }
-    else{
-        self.cAPSPageMenu.controllerScrollView.scrollEnabled = YES;
-        
-        [UIView animateWithDuration:.3 animations:^{
-            self.cAPSPageMenu.view.frame = CGRectMake(0, 0,  self.cAPSPageMenu.view.frame.size.width,  searchViewFrame.size.height);
-            
-        }completion:^(BOOL finished) {
-        }];
-        
-
     
-    }
-  }
--(CAPSPageMenu*)cAPSPageMenu
-{
-    if(!_cAPSPageMenu)
-    {
-        CGRect deviceFrame = [Utils getDeviceScreenSize];
+    CGRect frame = [Utils getDeviceScreenSize];
+    view.delegate = self;
+    
+    
+    NSMutableArray* arrTitles = [NSMutableArray new];
+    
+    for (int i = 0; i<arryViewControllers.count; i++) {
         
-        NSArray *controllerArray = @[self.seetiesSearchTableViewController, self.googleSearchTableViewController,self.fourSquareSearchTableViewController];
-        NSDictionary *parameters = @{
-                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
-                                     CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
-                                     CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
-                                     CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
-                                     CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
-                                     CAPSPageMenuOptionMenuHeight: @(40.0),
-                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/3 - 20),
-                                     CAPSPageMenuOptionCenterMenuItems: @(YES),
-                                     CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
-                                     CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
-                                         };
-
-        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibSearchContentView.frame.size.width, self.ibSearchContentView.frame.size.height) options:parameters];
-        _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
+        UIViewController* vc = arryViewControllers[i];
+        [view addSubview:vc.view];
+        [arrTitles addObject:vc.title];
+        vc.view.frame = CGRectMake(i*frame.size.width, 0, view.frame.size.width, view.frame.size.height);
     }
-    return _cAPSPageMenu;
+    
+    view.contentSize = CGSizeMake(frame.size.width*arryViewControllers.count , view.frame.size.height);
+    
+    
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
+    self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : TEXT_GRAY_COLOR,
+                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : ONE_ZERO_TWO_COLOR,
+                                                          NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+    
+    self.segmentedControl.sectionTitles = arrTitles;
+    self.segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectionIndicatorColor = DEVICE_COLOR;
+    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    
+    [contentView addSubview:self.segmentedControl];
+    
+    
+    //__weak typeof(self) weakSelf = view;
+    [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+        [view scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
+    }];
+    
+    
+    
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -330,19 +327,19 @@
     //self.cAPSPageMenu.view.frame = searchViewFrame;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    _cAPSPageMenu.controllerScrollView.scrollEnabled = false;
-//    if (textField.text.length>0) {
-//        _cAPSPageMenu.menuScrollView.hidden = NO;
-//        _cAPSPageMenu.controllerScrollView.scrollEnabled = YES;
-//    }
-//    else{
-//        _cAPSPageMenu.menuScrollView.hidden = YES;
-//        _cAPSPageMenu.controllerScrollView.scrollEnabled = false;
-//    }
-    return YES;
-}
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    
+//    _cAPSPageMenu.controllerScrollView.scrollEnabled = false;
+////    if (textField.text.length>0) {
+////        _cAPSPageMenu.menuScrollView.hidden = NO;
+////        _cAPSPageMenu.controllerScrollView.scrollEnabled = YES;
+////    }
+////    else{
+////        _cAPSPageMenu.menuScrollView.hidden = YES;
+////        _cAPSPageMenu.controllerScrollView.scrollEnabled = false;
+////    }
+//    return YES;
+//}
 
 - (void)textFieldDidChange:(UITextField *)textField {
     
@@ -543,23 +540,16 @@
     [self requestSeetiesSuggestedPlaces];
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    // UITableView only moves in one direction, y axis
-//    CGFloat currentOffset = scrollView.contentOffset.y;
-//    CGFloat maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
-//    
-//    // Change 10.0 to adjust the distance from bottom
-//    if (maximumOffset - currentOffset <= self.view.frame.size.height/2) {
-//        
-//        if(![Utils isStringNull:self.suggestedPlaceModel.paging.next] && self.searchType == SearchTypeSeeties)
-//        {
-//            
-//            [self requestSeetiesSuggestedPlaces];
-//        }
-//    }
-//
-//}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger page = scrollView.contentOffset.x / pageWidth;
+    
+    [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
+}
+
 
 
 @end

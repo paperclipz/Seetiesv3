@@ -19,8 +19,8 @@
 
 @protocol DealCollectionModel@end
 
-@protocol FilterCurrencyModel
-@end
+//@protocol FilterCurrencyModel
+//@end
 
 @interface HomeModel : JSONModel
 

@@ -15,10 +15,18 @@
 #import "UILabel+Exntension.h"
 #import "DealDetailsViewController.h"
 #import "CAPSPageMenu.h"
+#import "HMSegmentedControl.h"
+#import "Masonry.h"
 
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
 }
+
+@property (weak, nonatomic) IBOutlet UIView *ibSegmentedControlView;
+@property (nonatomic, strong) NSArray* arrViewControllers;
+
+@property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UIScrollView *ibSegmentedControlScrollView;
 
 @property(nonatomic)SearchLocationDetailModel* googleLocationDetailModel;
 
@@ -26,7 +34,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *ibSearchTableView;
 @property (weak, nonatomic) IBOutlet UITableView *ibLocationTableView;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UITextField *ibSearchText;
 @property (weak, nonatomic) IBOutlet UITextField *ibLocationText;
@@ -111,20 +118,56 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidLayoutSubviews
+
+-(void)initSegmentedControlViewInView:(UIScrollView*)view ContentView:(UIView*)contentView ViewControllers:(NSArray*)arryViewControllers
 {
     
-    self.shopListingTableViewController.view.frame = CGRectMake(self.shopListingTableViewController.view.frame.origin.x, self.shopListingTableViewController.view.frame.origin.y, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-    self.collectionListingTableViewController.view.frame = CGRectMake(self.collectionListingTableViewController.view.frame.origin.x, self.collectionListingTableViewController.view.frame.origin.y, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-    self.PostsListingTableViewController.view.frame = CGRectMake(self.PostsListingTableViewController.view.frame.origin.x, self.PostsListingTableViewController.view.frame.origin.x, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
-    self.SeetizensListingTableViewController.view.frame = CGRectMake(self.SeetizensListingTableViewController.view.frame.origin.x, self.SeetizensListingTableViewController.view.frame.origin.x, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height);
+    CGRect frame = [Utils getDeviceScreenSize];
+    view.delegate = self;
+    
 
+    NSMutableArray* arrTitles = [NSMutableArray new];
+    
+    for (int i = 0; i<arryViewControllers.count; i++) {
+        
+        UIViewController* vc = arryViewControllers[i];
+        [view addSubview:vc.view];
+        [arrTitles addObject:vc.title];
+        vc.view.frame = CGRectMake(i*frame.size.width, 0, view.frame.size.width, self.ibSegmentedControlScrollView.frame.size.height);
+    }
+
+    view.contentSize = CGSizeMake(frame.size.width*arryViewControllers.count , view.frame.size.height);
+    
+    
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
+    self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : TEXT_GRAY_COLOR,
+                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : ONE_ZERO_TWO_COLOR,
+                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+
+    self.segmentedControl.sectionTitles = arrTitles;
+    self.segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectionIndicatorColor = DEVICE_COLOR;
+    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    
+    [contentView addSubview:self.segmentedControl];
+    
+
+    __weak typeof(self) weakSelf = self;
+    [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+           [weakSelf.ibSegmentedControlScrollView scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
+    }];
+    
+
+
+    
 }
 
 -(void)InitSelfView{
 
-    [self.ibContentView adjustToScreenWidth];
-    [self.ibContentView addSubview:self.cAPSPageMenu.view];
+    self.arrViewControllers = @[self.shopListingTableViewController,self.collectionListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
+    [self initSegmentedControlViewInView:self.ibSegmentedControlScrollView ContentView:self.ibSegmentedControlView ViewControllers:self.arrViewControllers];
     
     self.ibLocationText.delegate = self;
     self.ibSearchText.delegate = self;
@@ -135,33 +178,33 @@
     [self.ibSearchContentView setSideCurveBorder];
     [self.ibLocationContentView setSideCurveBorder];
 
-    CGRect frame = [Utils getDeviceScreenSize];
-    [self.ibScrollView setWidth:frame.size.width];
-    [self.shopListingTableViewController.view setWidth:frame.size.width];
-    [self.shopListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.ibScrollView addSubview:self.shopListingTableViewController.view];
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width, self.ibScrollView.frame.size.height);
-    
-    [self.collectionListingTableViewController.view setWidth:frame.size.width];
-    [self.collectionListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.ibScrollView addSubview:self.collectionListingTableViewController.view];
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
-    self.ibScrollView.pagingEnabled = YES;
-    [self.collectionListingTableViewController.view setX:self.shopListingTableViewController.view.frame.size.width];
-
-    [self.PostsListingTableViewController.view setWidth:frame.size.width];
-    [self.PostsListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.ibScrollView addSubview:self.PostsListingTableViewController.view];
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*3, self.ibScrollView.frame.size.height);
-    self.ibScrollView.pagingEnabled = YES;
-    [self.PostsListingTableViewController.view setX:self.collectionListingTableViewController.view.frame.size.width*2];
-    
-    [self.SeetizensListingTableViewController.view setWidth:frame.size.width];
-    [self.SeetizensListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.ibScrollView addSubview:self.SeetizensListingTableViewController.view];
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*4, self.ibScrollView.frame.size.height);
-    self.ibScrollView.pagingEnabled = YES;
-    [self.SeetizensListingTableViewController.view setX:self.PostsListingTableViewController.view.frame.size.width*3];
+//    CGRect frame = [Utils getDeviceScreenSize];
+//    [self.ibScrollView setWidth:frame.size.width];
+//    [self.shopListingTableViewController.view setWidth:frame.size.width];
+//    [self.shopListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
+//    [self.ibScrollView addSubview:self.shopListingTableViewController.view];
+//    self.ibScrollView.contentSize = CGSizeMake(frame.size.width, self.ibScrollView.frame.size.height);
+//    
+//    [self.collectionListingTableViewController.view setWidth:frame.size.width];
+//    [self.collectionListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
+//    [self.ibScrollView addSubview:self.collectionListingTableViewController.view];
+//    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
+//    self.ibScrollView.pagingEnabled = YES;
+//    [self.collectionListingTableViewController.view setX:self.shopListingTableViewController.view.frame.size.width];
+//
+//    [self.PostsListingTableViewController.view setWidth:frame.size.width];
+//    [self.PostsListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
+//    [self.ibScrollView addSubview:self.PostsListingTableViewController.view];
+//    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*3, self.ibScrollView.frame.size.height);
+//    self.ibScrollView.pagingEnabled = YES;
+//    [self.PostsListingTableViewController.view setX:self.collectionListingTableViewController.view.frame.size.width*2];
+//    
+//    [self.SeetizensListingTableViewController.view setWidth:frame.size.width];
+//    [self.SeetizensListingTableViewController.view setHeight:self.ibScrollView.frame.size.height];
+//    [self.ibScrollView addSubview:self.SeetizensListingTableViewController.view];
+//    self.ibScrollView.contentSize = CGSizeMake(frame.size.width*4, self.ibScrollView.frame.size.height);
+//    self.ibScrollView.pagingEnabled = YES;
+//    [self.SeetizensListingTableViewController.view setX:self.PostsListingTableViewController.view.frame.size.width*3];
     
 }
 - (IBAction)searchSegmentedControl:(UISegmentedControl *)sender
@@ -243,7 +286,7 @@
     
     NSLog(@"textFieldShouldReturn:");
     
-    [self.cAPSPageMenu moveToPage:0];
+  //  [self.cAPSPageMenu moveToPage:0];
     
     [textField resignFirstResponder];
     if (textField == self.ibSearchText) {
@@ -665,7 +708,6 @@
     if(!_cAPSPageMenu)
     {
         CGRect deviceFrame = [Utils getDeviceScreenSize];
-        _cAPSPageMenu.view.backgroundColor = [UIColor redColor];
         NSArray *controllerArray = @[self.shopListingTableViewController,self.collectionListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
         NSDictionary *parameters = @{
                                      CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
@@ -726,7 +768,7 @@
         _shopListingTableViewController = [SearchLTabViewController new];
         _shopListingTableViewController.searchListingType = SearchListingTypeShop;
         _shopListingTableViewController.title = LocalisedString(@"Shop");
-
+        
         __weak typeof (self)weakSelf = self;
 
         _shopListingTableViewController.didSelectShopBlock = ^(SeShopDetailModel* model)
@@ -876,6 +918,15 @@
     [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
     
    
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger page = scrollView.contentOffset.x / pageWidth;
+    
+    [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
 }
 
 @end

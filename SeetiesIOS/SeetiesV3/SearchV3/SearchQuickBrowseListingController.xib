@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="btnLocation" destination="uGs-n7-zIi" id="W2s-1Q-1Rq"/>
                 <outlet property="ibCotentView" destination="G9u-8j-FnC" id="DNm-Jj-qPg"/>
+                <outlet property="ibScrollView" destination="5uN-bC-Nzi" id="anV-mw-rgT"/>
                 <outlet property="lblCategory" destination="PfA-DZ-CZ2" id="4XK-dp-T0W"/>
                 <outlet property="lblLocation" destination="7Ha-DY-anw" id="dYr-YB-6oD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -131,7 +132,18 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G9u-8j-FnC">
                     <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5uN-bC-Nzi">
+                            <rect key="frame" x="0.0" y="50" width="600" height="486"/>
+                        </scrollView>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="5uN-bC-Nzi" firstAttribute="top" secondItem="G9u-8j-FnC" secondAttribute="top" constant="50" id="Bvn-E6-EmT"/>
+                        <constraint firstItem="5uN-bC-Nzi" firstAttribute="leading" secondItem="G9u-8j-FnC" secondAttribute="leading" id="KRd-tO-pK8"/>
+                        <constraint firstAttribute="trailing" secondItem="5uN-bC-Nzi" secondAttribute="trailing" id="VPO-kK-Pce"/>
+                        <constraint firstAttribute="bottom" secondItem="5uN-bC-Nzi" secondAttribute="bottom" id="adW-Bg-m4W"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

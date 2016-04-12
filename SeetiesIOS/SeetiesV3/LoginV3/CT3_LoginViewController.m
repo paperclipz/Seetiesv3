@@ -88,7 +88,7 @@
     
     @try {
         [Utils setIsDevelopment:isProduction];
-        [Utils saveUserLocation:dict[KEY_LOCATION] Longtitude:dict[KEY_LONGTITUDE] Latitude:dict[KEY_LATITUDE]PlaceID:dict[KEY_PLACE_ID] CountryID:[dict[KEY_COUNTRY_ID] integerValue]];
+        [Utils saveUserLocation:dict[KEY_LOCATION] Longtitude:dict[KEY_LONGTITUDE] Latitude:dict[KEY_LATITUDE]PlaceID:dict[KEY_PLACE_ID] CountryID:[dict[KEY_COUNTRY_ID] intValue] SourceType:dict[KEY_SOURCE_TYPE]];
         [[NSUserDefaults standardUserDefaults]setBool:walkthrough forKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH];
         [[NSUserDefaults standardUserDefaults]setBool:warning forKey:FIRST_TIME_SHOW_DEAL_WARNING];
 

@@ -16,6 +16,8 @@
                 <outlet property="ibSearchContentView" destination="vNe-4D-Hiu" id="Rpt-PY-B4K"/>
                 <outlet property="ibSearchTableView" destination="4ir-jD-rLi" id="ZpP-vf-3j0"/>
                 <outlet property="ibSearchText" destination="shj-sB-MV9" id="MfV-Ch-gti"/>
+                <outlet property="ibSegmentedControlScrollView" destination="zw8-yX-Lxr" id="jYf-R7-6s1"/>
+                <outlet property="ibSegmentedControlView" destination="9vk-hM-tvR" id="R8g-Gw-BkU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -27,6 +29,35 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7Y-6D-e5h">
                     <rect key="frame" x="0.0" y="105" width="600" height="495"/>
                     <subviews>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vk-hM-tvR" userLabel="SearchView">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="495"/>
+                            <subviews>
+                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zw8-yX-Lxr">
+                                    <rect key="frame" x="0.0" y="30" width="600" height="465"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </scrollView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="zw8-yX-Lxr" firstAttribute="top" secondItem="9vk-hM-tvR" secondAttribute="top" constant="50" id="10N-lt-dMY"/>
+                                <constraint firstItem="zw8-yX-Lxr" firstAttribute="top" secondItem="9vk-hM-tvR" secondAttribute="top" constant="30" id="9HT-Nz-E8N"/>
+                                <constraint firstAttribute="bottom" secondItem="zw8-yX-Lxr" secondAttribute="bottom" id="GtC-gF-13N"/>
+                                <constraint firstAttribute="bottom" secondItem="zw8-yX-Lxr" secondAttribute="bottom" id="KDM-0A-vK1"/>
+                                <constraint firstItem="zw8-yX-Lxr" firstAttribute="top" secondItem="9vk-hM-tvR" secondAttribute="top" constant="50" id="LFR-Ow-Lfa"/>
+                                <constraint firstItem="zw8-yX-Lxr" firstAttribute="leading" secondItem="9vk-hM-tvR" secondAttribute="leading" id="M1H-nL-OhA"/>
+                                <constraint firstItem="zw8-yX-Lxr" firstAttribute="height" secondItem="9vk-hM-tvR" secondAttribute="height" id="Wny-AF-sJL"/>
+                                <constraint firstAttribute="trailing" secondItem="zw8-yX-Lxr" secondAttribute="trailing" id="YAF-wm-JME"/>
+                                <constraint firstItem="zw8-yX-Lxr" firstAttribute="width" secondItem="9vk-hM-tvR" secondAttribute="width" id="dFf-FR-f8O"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="10N-lt-dMY"/>
+                                    <exclude reference="KDM-0A-vK1"/>
+                                    <exclude reference="LFR-Ow-Lfa"/>
+                                    <exclude reference="Wny-AF-sJL"/>
+                                </mask>
+                            </variation>
+                        </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oft-NT-KdD">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="495"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,9 +70,13 @@
                     <constraints>
                         <constraint firstItem="Oft-NT-KdD" firstAttribute="leading" secondItem="B7Y-6D-e5h" secondAttribute="leading" id="869-5S-CfY"/>
                         <constraint firstItem="Oft-NT-KdD" firstAttribute="top" secondItem="B7Y-6D-e5h" secondAttribute="top" id="9jk-du-hlQ"/>
+                        <constraint firstAttribute="trailing" secondItem="9vk-hM-tvR" secondAttribute="trailing" id="Cob-6i-Xai"/>
+                        <constraint firstItem="9vk-hM-tvR" firstAttribute="leading" secondItem="B7Y-6D-e5h" secondAttribute="leading" id="FTg-Wm-6m1"/>
                         <constraint firstAttribute="trailing" secondItem="Oft-NT-KdD" secondAttribute="trailing" id="O2O-C6-Jba"/>
                         <constraint firstAttribute="bottom" secondItem="Oft-NT-KdD" secondAttribute="bottom" id="RhT-U6-eWI"/>
                         <constraint firstAttribute="trailing" secondItem="4ir-jD-rLi" secondAttribute="trailing" id="Rvs-iK-lc6"/>
+                        <constraint firstAttribute="bottom" secondItem="9vk-hM-tvR" secondAttribute="bottom" id="VQV-JJ-TUH"/>
+                        <constraint firstItem="9vk-hM-tvR" firstAttribute="top" secondItem="B7Y-6D-e5h" secondAttribute="top" id="WM6-4c-LLA"/>
                         <constraint firstAttribute="bottom" secondItem="4ir-jD-rLi" secondAttribute="bottom" id="eJo-Eg-c6u"/>
                         <constraint firstItem="4ir-jD-rLi" firstAttribute="leading" secondItem="B7Y-6D-e5h" secondAttribute="leading" id="msM-Sg-qcS"/>
                         <constraint firstItem="4ir-jD-rLi" firstAttribute="top" secondItem="B7Y-6D-e5h" secondAttribute="top" id="xmg-15-GUG"/>

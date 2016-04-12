@@ -11,9 +11,16 @@
 #import "CT3_SearchListingViewController.h"
 #import "SearchLocationViewController.h"
 #import "DealDetailsViewController.h"
-#import "CAPSPageMenu.h"
+#import "HMSegmentedControl.h"
 
-@interface SearchQuickBrowseListingController ()<CAPSPageMenuDelegate>
+@interface SearchQuickBrowseListingController ()<UIScrollViewDelegate>
+
+// for segmented control
+
+@property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+@property (nonatomic, strong) NSArray* arrViewControllers;
+@property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
+// for segmented control
 
 @property (weak, nonatomic) IBOutlet UIView *ibCotentView;
 @property (weak, nonatomic) IBOutlet UIButton *btnLocation;
@@ -31,7 +38,6 @@
 @property(nonatomic, strong) SearchLocationViewController *searchLocationViewController;
 @property(nonatomic, strong) CT3_SearchListingViewController *searchListingViewController;
 @property(nonatomic, strong) DealDetailsViewController *dealDetailsViewController;
-@property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
 
 
 @property(nonatomic) FiltersModel *shopFilterModel;
@@ -61,20 +67,14 @@
 
 
 - (IBAction)btnFilterClicked:(id)sender {
-    if (self.cAPSPageMenu.currentPageIndex == 0) {
+    if (self.segmentedControl.selectedSegmentIndex == 0) {
         [self presentViewController:self.shopFilterViewController animated:YES completion:nil];
     }
-    else if (self.cAPSPageMenu.currentPageIndex == 1){
+    else if (self.segmentedControl.selectedSegmentIndex == 1){
         [self presentViewController:self.collectionFilterViewController animated:YES completion:nil];
     }
 }
-- (void)viewDidLayoutSubviews
-{
-    
-    self.shopListingTableViewController.view.frame = CGRectMake(0, 0, self.ibCotentView.frame.size.width, self.ibCotentView.frame.size.height);
-    self.collectionListingTableViewController.view.frame = CGRectMake(0, 0, self.ibCotentView.frame.size.width, self.ibCotentView.frame.size.height);
-   
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
@@ -93,12 +93,57 @@
     [self.shopListingTableViewController refreshRequestWithHomeLocation:self.homeLocationModel filterDictionary:[self getShopFilter]];
 }
 
+-(void)initSegmentedControlViewInView:(UIScrollView*)view ContentView:(UIView*)contentView ViewControllers:(NSArray*)arryViewControllers
+{
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    view.delegate = self;
+    
+    
+    NSMutableArray* arrTitles = [NSMutableArray new];
+    
+    for (int i = 0; i<arryViewControllers.count; i++) {
+        
+        UIViewController* vc = arryViewControllers[i];
+        [view addSubview:vc.view];
+        [arrTitles addObject:vc.title];
+        vc.view.frame = CGRectMake(i*frame.size.width, 0, view.frame.size.width, view.frame.size.height);
+    }
+    
+    view.contentSize = CGSizeMake(frame.size.width*arryViewControllers.count , view.frame.size.height);
+    
+    
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
+    self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : TEXT_GRAY_COLOR,
+                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : ONE_ZERO_TWO_COLOR,
+                                                          NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+    
+    self.segmentedControl.sectionTitles = arrTitles;
+    self.segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectionIndicatorColor = DEVICE_COLOR;
+    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    
+    [contentView addSubview:self.segmentedControl];
+    
+    
+    //__weak typeof(self) weakSelf = view;
+    [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+        [view scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
+    }];
+    
+    
+    
+    
+}
+
 -(void)refreshCategoryLbl{
-    if (self.cAPSPageMenu.currentPageIndex == 0) {
+    if (self.segmentedControl.selectedSegmentIndex == 0) {
         NSString *categories = [self getShopFilterCategories];
         self.lblCategory.text = categories;
     }
-    else if (self.cAPSPageMenu.currentPageIndex == 1){
+    else if (self.segmentedControl.selectedSegmentIndex == 1){
         NSString *categories = [self getCollectionFilterCategories];
         self.lblCategory.text = categories;
     }
@@ -109,10 +154,9 @@
 {
 
     //CGRect frame = [Utils getDeviceScreenSize]
-    [self.ibCotentView adjustToScreenWidth];
 
-    [self.ibCotentView addSubview:self.cAPSPageMenu.view];
-    
+    self.arrViewControllers = @[self.shopListingTableViewController,self.collectionListingTableViewController];
+    [self initSegmentedControlViewInView:self.ibScrollView ContentView:self.ibCotentView ViewControllers:self.arrViewControllers];
     self.shopListingTableViewController.constFilterHeight.constant = 0;
     self.collectionListingTableViewController.constFilterHeight.constant = 0;
 
@@ -388,32 +432,6 @@
 
 #pragma mark - Declaration
 
--(CAPSPageMenu*)cAPSPageMenu
-{
-    if(!_cAPSPageMenu)
-    {
-        CGRect deviceFrame = [Utils getDeviceScreenSize];
-        
-        NSArray *controllerArray = @[self.shopListingTableViewController,self.collectionListingTableViewController];
-        NSDictionary *parameters = @{
-                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
-                                     CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
-                                     CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
-                                     CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
-                                     CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
-                                     CAPSPageMenuOptionMenuHeight: @(40.0),
-                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2 - 20),
-                                     CAPSPageMenuOptionCenterMenuItems: @(YES),
-                                     CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
-                                     CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
-                                     };
-        
-        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibCotentView.frame.size.width, self.ibCotentView.frame.size.height) options:parameters];
-        _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
-        _cAPSPageMenu.delegate = self;
-    }
-    return _cAPSPageMenu;
-}
 
 -(SeetiesShopViewController*)seetiesShopViewController
 {
@@ -517,7 +535,7 @@
             
             weakself.homeLocationModel = model;
             
-            [Utils saveUserLocation:weakself.homeLocationModel.locationName Longtitude:weakself.homeLocationModel.longtitude Latitude:weakself.homeLocationModel.latitude PlaceID:model.place_id CountryID:countryModel.country_id];
+            [Utils saveUserLocation:weakself.homeLocationModel.locationName Longtitude:weakself.homeLocationModel.longtitude Latitude:weakself.homeLocationModel.latitude PlaceID:model.place_id CountryID:countryModel.country_id SourceType:weakself.homeLocationModel.type];
             
             
             weakself.lblLocation.text = weakself.homeLocationModel.locationName;
@@ -603,14 +621,14 @@
     
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger page = scrollView.contentOffset.x / pageWidth;
+    
+    [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
 }
-*/
 
 @end

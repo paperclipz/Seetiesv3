@@ -412,7 +412,7 @@ static NSCache* heightCache = nil;
             weakself.currentHomeLocationModel = model;
             weakself.currentHomeLocationModel.countryId = countryModel.country_id;
             
-            [Utils saveUserLocation:weakself.currentHomeLocationModel.locationName Longtitude:weakself.currentHomeLocationModel.longtitude Latitude:weakself.currentHomeLocationModel.latitude PlaceID:weakself.currentHomeLocationModel.place_id CountryID:countryModel.country_id];
+            [Utils saveUserLocation:weakself.currentHomeLocationModel.locationName Longtitude:weakself.currentHomeLocationModel.longtitude Latitude:weakself.currentHomeLocationModel.latitude PlaceID:weakself.currentHomeLocationModel.place_id CountryID:countryModel.country_id SourceType:model.type];
             weakself.locationName = weakself.currentHomeLocationModel.locationName;
             [weakself.searchLocationViewController.navigationController popViewControllerAnimated:YES];
             
@@ -1464,7 +1464,7 @@ static NSCache* heightCache = nil;
 {
     
     NSDictionary* dict = @{@"timezone_offset" : [Utils getTimeZone],
-                           @"type" : model.type,
+                           @"type" : model.type?model.type:@"none",
                            @"lat" : model.latitude?model.latitude:@"",
                            @"lng" : model.longtitude?model.longtitude:@"",
                            @"place_id" : model.place_id?model.place_id:@"",
@@ -1472,8 +1472,6 @@ static NSCache* heightCache = nil;
                            @"address_components" : model.dictAddressComponent?[Utils convertToJsonString:model.dictAddressComponent]:@"",
                            };
     
-  
-
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.homeModel = [[ConnectionManager dataManager]homeModel];
@@ -1545,7 +1543,10 @@ static NSCache* heightCache = nil;
                            @"current_lng" : @(location.coordinate.longitude),
                            @"last_updated" : lastUpdatedDateTime,
                            @"last_location_updated" : lastUpdatedLocation,
-                           @"token" : [Utils getAppToken]};
+                           @"token" : [Utils getAppToken],
+                           @"type" : model.type?model.type:@"",
+                           
+                           };
     
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeUpdater param:dict appendString:nil completeHandler:^(id object) {
@@ -1581,7 +1582,7 @@ static NSCache* heightCache = nil;
                     
                     self.currentHomeLocationModel = model;
                     
-                    [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId];
+                    [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
                     self.locationName = self.currentHomeLocationModel.locationName;
                     [self reloadNewsFeed];
                     [self requestServerForHome:model];
@@ -1624,7 +1625,7 @@ static NSCache* heightCache = nil;
             
             HomeLocationModel* hModel = [HomeLocationModel new];
             hModel.timezone = @"";
-            hModel.type = @"current";
+            hModel.type = Type_Current;
             hModel.latitude = model.lat;
             hModel.longtitude = model.lng;
             hModel.place_id = @"";
@@ -1633,7 +1634,6 @@ static NSCache* heightCache = nil;
             hModel.address_components.locality = model.city;
             hModel.address_components.administrative_area_level_1 = model.state;
             hModel.address_components.political = model.political;
-            
             hModel.locationName = model.locationName;
 
 //            if (![Utils isStringNull:model.subLocality]) {
@@ -1801,9 +1801,12 @@ static NSCache* heightCache = nil;
         model.latitude = dict[KEY_LATITUDE];
         model.longtitude = dict[KEY_LONGTITUDE];
         model.place_id = dict[KEY_PLACE_ID];
-        model.countryId = [dict[KEY_COUNTRY_ID] integerValue];
+        model.countryId = [dict[KEY_COUNTRY_ID] intValue];
         model.locationName = dict[KEY_LOCATION];
-        self.locationName = dict[KEY_LOCATION];
+        model.type = dict[KEY_SOURCE_TYPE];
+        model.locationName = dict[KEY_LOCATION];
+        
+        self.locationName = model.locationName;
 
         self.currentHomeLocationModel = model;
         
@@ -1823,7 +1826,7 @@ static NSCache* heightCache = nil;
         model.latitude = dict[KEY_LATITUDE];
         model.longtitude = dict[KEY_LONGTITUDE];
         model.place_id = dict[KEY_PLACE_ID];
-        model.countryId = [dict[KEY_COUNTRY_ID] integerValue];
+        model.countryId = [dict[KEY_COUNTRY_ID] intValue];
         model.locationName = dict[KEY_LOCATION];
         self.locationName = dict[KEY_LOCATION];
         
