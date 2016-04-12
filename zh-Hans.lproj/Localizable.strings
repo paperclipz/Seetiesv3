@@ -1234,10 +1234,6 @@
     "Enter Verification Code" = "輸入驗證碼";
     "Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "驗證碼訊息已發送到{!contact number}。 此驗證碼將在30分鐘後失效";
     "Enter 7-digit verification code" = "7位數驗證碼";
-    //====================Edited==================//
-    "Please enter the 6-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "驗證碼訊息已發送到{!contact number}。 此驗證碼將在30分鐘後失效";
-    "Enter 6-digit verification code" = "6位數驗證碼";
-    //====================Edited==================//
     "Resend Code" = "申請重發";
     "Confirm" = "確認";
     "The verification code entered is invalid. Please check and try again." = "驗證碼無效, 請重新輸入";
