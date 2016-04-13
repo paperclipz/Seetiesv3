@@ -128,15 +128,18 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
 
         let screenFrame:CGRect = Utils.getDeviceScreenSize()
         let cellWidth:CGFloat = ((screenFrame.size.width/3) - 15)
-        let cellSize = CGSizeMake(cellWidth,cellDefaultWidth/cellWidth*cellDefaultHeight)
+        let cellSize = CGSizeMake(cellWidth,cellWidth/cellDefaultWidth*cellDefaultHeight)
         return cellSize
     }
     
     func initShareFrenView()
     {
-        if(self.shareType == ShareTypePostUser){
-            self.ShareFrenView.hidden = true
-        }
+//        if(self.shareType == ShareTypePostUser){
+//            self.ShareFrenView.hidden = true
+//        }
+        
+        self.ShareFrenView.hidden = true
+
     }
     
     func initCollectionView()

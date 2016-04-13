@@ -65,7 +65,7 @@
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="contentEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="Instagram" image="InstagramBtnInactive.png"/>
+                    <state key="normal" title="Instagram" image="LoginInstagramIcon.png"/>
                     <connections>
                         <action selector="btnInstagramClicked:" destination="-1" eventType="touchUpInside" id="0e4-rO-Vpy"/>
                     </connections>
@@ -208,8 +208,8 @@
         </view>
     </objects>
     <resources>
-        <image name="InstagramBtnInactive.png" width="40" height="40"/>
         <image name="LoginFacebookIcon.png" width="44" height="44"/>
+        <image name="LoginInstagramIcon.png" width="44" height="44"/>
         <image name="SplashOverlay.png" width="320" height="415"/>
         <image name="SplashSeetiesLogo.png" width="720" height="318"/>
         <image name="SplashSlogan.png" width="720" height="96"/>

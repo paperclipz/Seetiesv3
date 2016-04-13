@@ -198,7 +198,7 @@
                    
                     cell.lblDesc.text = @"";
 
-                    ProfileModel*pModel = [[ConnectionManager dataManager] userProfileModel];
+                    ProfileModel*pModel = [[ConnectionManager dataManager] currentUserProfileModel];
                     cell.lblDesc.text = pModel.email;
                 }
                 else if(indexPath.row == 1)//change password
