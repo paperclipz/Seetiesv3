@@ -446,12 +446,10 @@
         
         UIButton *LikeButton = [[UIButton alloc]init];
         LikeButton.frame = CGRectMake(20, heightcheck + 4, 37, 37);
-        CheckLike = [[NSString alloc]initWithFormat:@"%@",model.like];
-        if ([CheckLike isEqualToString:@"0"]) {
-            [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
+
+        if (model.like) {
             [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateSelected];
         }else{
-            [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
             [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
         }
         LikeButton.backgroundColor = [UIColor clearColor];
