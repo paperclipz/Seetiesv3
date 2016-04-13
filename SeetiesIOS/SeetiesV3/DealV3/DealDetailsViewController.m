@@ -58,6 +58,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *ibAvailabilityTable;
 @property (weak, nonatomic) IBOutlet UILabel *ibAvailabilityTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibAvailabilityDesc;
+@property (weak, nonatomic) IBOutlet UILabel *ibAvailabilityEmptyTxt;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibAvailabiltyEmptyTxtHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibShopView;
 @property (weak, nonatomic) IBOutlet UIView *ibShopContentView;
@@ -543,21 +545,17 @@
             self.ibHeaderBlackShadeView.hidden = YES;
         }
         
+        self.ibHeaderRedeemExpiryView.hidden = YES;
+        self.ibHeaderNormalExpiryView.hidden = NO;
+        self.ibHeaderExpiryHeightConstraint.constant = 50;
         if ([Utils isValidDateString:self.dealModel.expired_at]) {
-            self.ibHeaderRedeemExpiryView.hidden = YES;
-            self.ibHeaderNormalExpiryView.hidden = NO;
-            self.ibHeaderExpiryHeightConstraint.constant = 50;
-            
             NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
             [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
             [dateFormatter setDateFormat:@"dd MMM yyyy"];
             self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]}];
         }
         else{
-            self.ibHeaderExpiryView.hidden = YES;
-            self.ibHeaderRedeemExpiryView.hidden = YES;
-            self.ibHeaderNormalExpiryView.hidden = YES;
-            self.ibHeaderExpiryHeightConstraint.constant = 0;
+            self.ibHeaderNormalExpiryLbl.text = LocalisedString(@"This deal has no expiry");
         }
         
     }
@@ -664,10 +662,16 @@
     self.ibAvailabilityTitle.text = LocalisedString(@"Deal availability");
     self.ibAvailabilityDesc.text = LocalisedString(@"This deal can only be redeemed at time as stated below:");
     
+    NSString *emptyText = LocalisedString(@"This voucher is only applicable based on outlet operating hours.");
+    CGRect rect = [emptyText boundingRectWithSize:CGSizeMake(self.ibAvailabilityEmptyTxt.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
+    self.ibAvailabilityEmptyTxt.text = emptyText;
+    
     if (self.dealAvailabilityArray.count == 0) {
-        [self.ibAvailabilityView setHeight:0];
+        self.ibAvailabiltyEmptyTxtHeightConstraint.constant = rect.size.height;
+        [self.ibAvailabilityView setHeight:self.ibAvailabilityEmptyTxt.frame.origin.y + self.ibAvailabiltyEmptyTxtHeightConstraint.constant + contentHeightPadding + 24];
     }
     else{
+        self.ibAvailabiltyEmptyTxtHeightConstraint.constant = 0;
         float cellHeight = [DealDetailsAvailabilityCell getHeight];
         NSInteger numberOfDays = self.dealAvailabilityArray.count;
         float tableHeight = cellHeight * numberOfDays;
