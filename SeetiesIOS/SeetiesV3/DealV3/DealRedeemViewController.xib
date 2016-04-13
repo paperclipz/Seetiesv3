@@ -21,6 +21,7 @@
                 <outlet property="ibHeaderTitle" destination="gSA-o2-hwg" id="5do-ox-Lil"/>
                 <outlet property="ibHowToRedeem" destination="WeQ-96-aWT" id="Cu7-1K-nR2"/>
                 <outlet property="ibHowToRedeemTitle" destination="QAX-OX-g48" id="rg0-SO-UuV"/>
+                <outlet property="ibHowToRedeemTopConstraint" destination="3RI-BM-yfY" id="mfn-vw-nLK"/>
                 <outlet property="ibImgDeal" destination="rl7-kF-Y0H" id="6xD-yk-Zz6"/>
                 <outlet property="ibRedeemDateTime" destination="fKC-ir-Fsh" id="Oor-si-8oP"/>
                 <outlet property="ibSecondImage" destination="WV8-AW-nus" id="cgs-gH-Rui"/>
