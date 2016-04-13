@@ -8,6 +8,8 @@
 
 #import "CollectionListingTabViewController.h"
 #import "ProfilePageCollectionTableViewCell.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
 
 @interface CollectionListingTabViewController ()
 {
@@ -153,16 +155,26 @@
     
     cell.btnShareClicked = ^(void)
     {
-        _shareV2ViewController = nil;
-        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-        [naviVC setNavigationBarHidden:YES animated:NO];
-        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:weakModel.collection_id userID:weakModel.user_info.uid];
-        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-        [self presentViewController:formSheetController animated:YES completion:nil];
+//        _shareV2ViewController = nil;
+//        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//        [naviVC setNavigationBarHidden:YES animated:NO];
+//        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:weakModel.collection_id userID:weakModel.user_info.uid];
+//        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//        [self presentViewController:formSheetController animated:YES completion:nil];
         
+        //New Sharing Screen
+        CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+        
+        dataToPost.title = weakModel.postDesc;
+        dataToPost.shareID = weakModel.collection_id;
+        dataToPost.userID = weakModel.user_info.uid;
+        dataToPost.shareType = ShareTypeCollection;
+        
+        [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
     };
     
     return cell;

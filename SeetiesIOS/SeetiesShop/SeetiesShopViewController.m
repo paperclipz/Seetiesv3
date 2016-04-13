@@ -32,6 +32,9 @@
 #import "VoucherListingViewController.h"
 #import "ReportProblemViewController.h"
 
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
+
 @interface SeetiesShopViewController ()<UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     
@@ -690,28 +693,46 @@
 }
 -(void)showShareView:(SeShopDetailModel*)shopModel
 {
-    _shareV2ViewController = nil;
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
+//    _shareV2ViewController = nil;
+//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//    [naviVC setNavigationBarHidden:YES animated:NO];
+//    
+//    if (![Utils isStringNull:shopModel.seetishop_id]) {
+//        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeSeetiesShop shareID:shopModel.seetishop_id userID:@""];
+//
+//    }
+//    else{
+//        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeNonSeetiesShop shareID:self.placeID userID:@"" postID:self.postID];
+//
+//    }
+//    
+//    SLog(@"self.placeID == %@",self.placeID);
+//    SLog(@"self.postID == %@",self.postID);
+//    SLog(@"shopModel.seetishop_id == %@",shopModel.seetishop_id);
+//    
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
+    
+    
+    //New Sharing Screen
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+    
+    dataToPost.title = shopModel.name;
     
     if (![Utils isStringNull:shopModel.seetishop_id]) {
-        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeSeetiesShop shareID:shopModel.seetishop_id userID:@""];
-
+        dataToPost.shareID = shopModel.seetishop_id;
+        dataToPost.shareType = ShareTypeSeetiesShop;
     }
-    else{
-        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeNonSeetiesShop shareID:self.placeID userID:@"" postID:self.postID];
-
+    else {
+        dataToPost.shareID = self.placeID;
+        dataToPost.shareType = ShareTypeNonSeetiesShop;
+        dataToPost.postID = self.postID;
     }
     
-    SLog(@"self.placeID == %@",self.placeID);
-    SLog(@"self.postID == %@",self.postID);
-    SLog(@"shopModel.seetishop_id == %@",shopModel.seetishop_id);
-    
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
     
 }
 

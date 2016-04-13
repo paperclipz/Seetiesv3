@@ -11,6 +11,9 @@
 #import "ProfileViewController.h"
 #import "AddCollectionDataViewController.h"
 #import "UrlDataClass.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
+
 @interface SeRecommendationsSeeAllViewController ()<UIScrollViewDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
@@ -571,15 +574,26 @@
     }
     PhotoModel* photoModel = model.arrPhotos[0];
     
-    _shareV2ViewController = nil;
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:TestTitle imagURL:photoModel.imageURL shareType:ShareTypePost shareID:model.post_id userID:@""];
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+//    _shareV2ViewController = nil;
+//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//    [naviVC setNavigationBarHidden:YES animated:NO];
+//    [self.shareV2ViewController share:@"" title:TestTitle imagURL:photoModel.imageURL shareType:ShareTypePost shareID:model.post_id userID:@""];
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
+    
+    //New Sharing Screen
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+    
+    dataToPost.title = TestTitle;
+    dataToPost.shareID = model.post_id;
+    dataToPost.shareType = ShareTypePost;
+    dataToPost.postImageURL = photoModel.imageURL;
+    
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
 }
 -(IBAction)CollectButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

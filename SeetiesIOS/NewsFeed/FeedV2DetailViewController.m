@@ -21,6 +21,9 @@
 #import "ReportViewController.h"
 #import "ShareViewController.h"
 #import "SearchDetailViewController.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
+
 @interface FeedV2DetailViewController (){
     
     NSMutableArray *arrCollectionID;
@@ -4015,15 +4018,26 @@
     //    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
     //  [ShareView GetPostID:GetPostID GetMessage:GetMessage GetTitle:GetTitle GetImageData:[UrlArray objectAtIndex:0]];
     
-    _shareV2ViewController = nil;
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:GetTitle imagURL:UrlArray[0] shareType:ShareTypePost shareID:GetPostID userID:@""];
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+//    _shareV2ViewController = nil;
+//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//    [naviVC setNavigationBarHidden:YES animated:NO];
+//    [self.shareV2ViewController share:@"" title:GetTitle imagURL:UrlArray[0] shareType:ShareTypePost shareID:GetPostID userID:@""];
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
+    
+    //New Sharing Screen
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+    
+    dataToPost.title = GetTitle;
+    dataToPost.shareID = GetPostID;
+    dataToPost.shareType = ShareTypePost;
+    dataToPost.postImageURL = UrlArray[0];
+    
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
 }
 
 -(IBAction)SettingButton:(id)sender{
