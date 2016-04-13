@@ -126,7 +126,7 @@
                                 <constraint firstAttribute="width" constant="50" id="du5-jL-8Tr"/>
                             </constraints>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_qu_direction_mylocation.png" translatesAutoresizingMaskIntoConstraints="NO" id="AMa-vn-Oca" userLabel="location image">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SelectLocationAutoDetectIconDeactivated.png" translatesAutoresizingMaskIntoConstraints="NO" id="AMa-vn-Oca" userLabel="location image">
                             <rect key="frame" x="285" y="18" width="25" height="25"/>
                             <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -230,6 +230,6 @@
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
         <image name="SearchBarIcon.png" width="30" height="30"/>
-        <image name="ic_qu_direction_mylocation.png" width="24" height="24"/>
+        <image name="SelectLocationAutoDetectIconDeactivated.png" width="23" height="23"/>
     </resources>
 </document>

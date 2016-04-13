@@ -349,6 +349,7 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
+    
     [Utils setParseToken:deviceToken];
     
   

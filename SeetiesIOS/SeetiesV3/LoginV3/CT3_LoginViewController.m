@@ -82,6 +82,8 @@
     BOOL walkthrough = [[[NSUserDefaults standardUserDefaults]objectForKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH] boolValue];
     BOOL warning = [[[NSUserDefaults standardUserDefaults]objectForKey:FIRST_TIME_SHOW_DEAL_WARNING] boolValue];
 
+    NSData* data = [Utils getParseToken];
+    
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     
@@ -92,6 +94,7 @@
         [[NSUserDefaults standardUserDefaults]setBool:walkthrough forKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH];
         [[NSUserDefaults standardUserDefaults]setBool:warning forKey:FIRST_TIME_SHOW_DEAL_WARNING];
 
+        [Utils setParseToken:data];
     }
     @catch (NSException *exception) {
         SLog(@"assign validateBeforeLogin fail");

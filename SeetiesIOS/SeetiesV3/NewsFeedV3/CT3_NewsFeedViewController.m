@@ -58,6 +58,11 @@
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
+
+#define LOCATION_INSTANT @"instant"
+#define LOCATION_PROMPT @"prompt"
+#define LOCATION_NONE @"update"
+
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
     BOOL isMiddleOfLoadingServer;
@@ -70,7 +75,7 @@ static NSCache* heightCache = nil;
     NSString* lastUpdatedDateTime;
     BOOL updateLocation;
     BOOL updateData;
-
+    NSString* update_location_method;
 
     BOOL isDealCollectionShown;
 
@@ -443,6 +448,8 @@ static NSCache* heightCache = nil;
     lastUpdatedDateTime = @"";
     
     lastUpdatedLocation = @"";
+    
+    update_location_method = @"";
     
     [self initSelfView];
 
@@ -1556,7 +1563,6 @@ static NSCache* heightCache = nil;
                            
                            };
     
-    
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeUpdater param:dict appendString:nil completeHandler:^(id object) {
         
         NSDictionary* returnDict = object[@"data"];
@@ -1564,10 +1570,26 @@ static NSCache* heightCache = nil;
         lastUpdatedLocation = returnDict[@"last_location_updated"];
         lastUpdatedDateTime = returnDict[@"last_updated"];
         
+        update_location_method = returnDict[@"update_location_method"];
         
         updateLocation = [returnDict[@"update_location"] boolValue];
         updateData = [returnDict[@"update_data"] boolValue];
-        [self processUpdater];
+        
+        int type = 3;
+        if ([update_location_method isEqualToString:LOCATION_INSTANT]) {
+            type = 1;
+        }
+        else if ([update_location_method isEqualToString:LOCATION_PROMPT])
+        {
+            type = 2;
+
+        }
+        else
+        {
+            type = 3;
+        }
+        
+        [self processUpdater:type];
 
         
     } errorBlock:^(id object) {
@@ -1575,44 +1597,73 @@ static NSCache* heightCache = nil;
     }];
 }
 
--(void)processUpdater
+-(void)processUpdater:(int)type//1 = instant || 2 = prompt || 3 = none
 {
-    //updateLocation = YES;
-    //updateData = YES;
-    if (updateLocation) {
-        
-        [self getGoogleGeoCode:^(HomeLocationModel *model) {
-            
-            [UIAlertView showWithTitle:LocalisedString(@"system") message:[NSString stringWithFormat:@"%@ %@",LocalisedString(@"Do You want to update your location to"),model.locationName] cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                
-                SLog(@"buttonIndex = %ld",(long)buttonIndex);
-                if (buttonIndex == 1) {
-                    
-                    self.currentHomeLocationModel = model;
-                    
-                    [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
-                    self.locationName = self.currentHomeLocationModel.locationName;
-                    [self reloadNewsFeed];
-                    [self requestServerForHome:model];
 
+    switch (type) {
+        case 1://instant
+        {
+            [self getGoogleGeoCode:^(HomeLocationModel *model) {
+                
+                        self.currentHomeLocationModel = model;
+                        
+                        [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
+                        self.locationName = self.currentHomeLocationModel.locationName;
+                        [self reloadNewsFeed];
+                        [self requestServerForHome:model];
+                
+            }];
+        
+        }
+            
+            break;
+            
+        case 2://prompt
+        {
+            [self getGoogleGeoCode:^(HomeLocationModel *model) {
+                
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:[NSString stringWithFormat:@"%@ %@",LocalisedString(@"Do You want to update your location to"),model.locationName] cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
-                    
-                }
-                else{
-                    
-                    if (updateData) {
-                        [self requestServerForHome:self.currentHomeLocationModel];
+                    if (buttonIndex == 1) {
+                        
+                        self.currentHomeLocationModel = model;
+                        
+                        [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
+                        self.locationName = self.currentHomeLocationModel.locationName;
+                        [self reloadNewsFeed];
+                        [self requestServerForHome:model];
+                                                
+                    }
+                    else{
+                        
+                        if (updateData) {
+                            [self requestServerForHome:self.currentHomeLocationModel];
+                            [self reloadNewsFeed];
+                        }
+                        
                         
                     }
-                    
-                    
-                }
+                }];
+                
+                
             }];
+        }
+            
+            break;
 
             
-        }];
-        
+        case 3://none
+        {
+            [self reloadNewsFeed];
+            [self requestServerForHome:self.currentHomeLocationModel];
+        }
+            break;
+
+            
+        default:
+            break;
     }
+    
 }
 
 -(void)getGoogleGeoCode:(HomeLocationBlock)completionBlock
