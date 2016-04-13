@@ -50,6 +50,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibSwipeToRedeem;
 @property (weak, nonatomic) IBOutlet UIButton *ibHowToRedeem;
 @property (weak, nonatomic) IBOutlet UILabel *ibDescBorderTitle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTopConstraint;
 
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) DealManager *dealManager;
@@ -84,6 +85,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    CGRect screenSize = [Utils getDeviceScreenSize];
+    if (screenSize.size.height > 480) {
+        self.ibTopConstraint.constant = 55;
+    }
+    else{
+        self.ibTopConstraint.constant = 10;
+    }
+    [self.view refreshConstraint];
+    
     activationDistance = 200;
     [Utils setRoundBorder:self.ibDescBorderView color:[UIColor whiteColor] borderRadius:5.0f borderWidth:1.0f];
     self.ibDescBorderView.alpha = 0;
@@ -154,10 +164,10 @@
     [self.ibHowToRedeem setTitle:LocalisedString(@"How to Redeem") forState:UIControlStateNormal];
     self.ibDescBorderTitle.text = LocalisedString(@"This deal has been redeemed on ");
     
-    self.ibHowToRedeemTitle.text = LocalisedString(@"How to Redeem");
+    self.ibHowToRedeemTitle.text = LocalisedString(@"Redeem in 3 simple steps");
     self.ibFirstInstruction.text = LocalisedString(@"Approach a shop staff to place your order");
     self.ibSecondInstruction.text = LocalisedString(@"Flash the Redeem Voucher screen");
-    self.ibThirdInstruction.text = LocalisedString(@"Swipe right in front of a shop staff to redeem voucher");
+    self.ibThirdInstruction.text = LocalisedString(@"Swipe right to redeem!");
     self.ibFooterInstruction.text = LocalisedString(@"Only one redemption per swipe");
 }
 
