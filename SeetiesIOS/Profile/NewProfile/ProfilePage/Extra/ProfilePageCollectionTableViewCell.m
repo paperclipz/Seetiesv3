@@ -139,7 +139,7 @@
         constEditWidth.constant = 88;
         [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
         //[Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:0];
-        [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
+        [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2 borderWidth:1];
         
         [self.btnEdit setImage:nil forState:UIControlStateNormal];
         [self.btnEdit setImage:nil forState:UIControlStateSelected];
@@ -147,13 +147,13 @@
     }
     else{
         
-        constEditWidth.constant = 120;
+        constEditWidth.constant = 59;
 
       //  [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
         [Utils setRoundBorder:self.btnEdit color:[UIColor clearColor] borderRadius:0];
 
-        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
-        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
+        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowIcon.png")] forState:UIControlStateNormal];
+        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowingIcon.png")] forState:UIControlStateSelected];
         [self.btnEdit setTitle:@"" forState:UIControlStateNormal];
         [self.btnEdit setTitle:@"" forState:UIControlStateSelected];
         

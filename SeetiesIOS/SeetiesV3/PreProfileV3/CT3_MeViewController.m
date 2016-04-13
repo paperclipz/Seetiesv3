@@ -213,7 +213,7 @@
     [self.btnLogin setSideCurveBorder];
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
     [self changeLanguage];
     [self initSelfView];

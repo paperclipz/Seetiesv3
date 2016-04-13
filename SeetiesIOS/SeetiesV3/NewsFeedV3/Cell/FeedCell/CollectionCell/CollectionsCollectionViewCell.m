@@ -109,8 +109,8 @@
     
         [Utils setRoundBorder:self.btnFollow color:[UIColor clearColor] borderRadius:0];
         
-        [self.btnFollow setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
-        [self.btnFollow setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
+        [self.btnFollow setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowIcon.png")] forState:UIControlStateNormal];
+        [self.btnFollow setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowingIcon.png")] forState:UIControlStateSelected];
         [self.btnFollow setTitle:@"" forState:UIControlStateNormal];
         [self.btnFollow setTitle:@"" forState:UIControlStateSelected];
         

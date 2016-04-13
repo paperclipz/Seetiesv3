@@ -16,10 +16,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-oM-VeY" userLabel="innerContentView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="195"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cXO-xp-Gkt">
-                                <rect key="frame" x="161" y="0.0" width="161" height="126"/>
+                                <rect key="frame" x="161" y="0.0" width="160" height="126"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1l0-BW-VUP">
@@ -43,7 +43,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="CollectionOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="dCT-4H-bvK" userLabel="CollectionOverlayB.png">
-                                <rect key="frame" x="161" y="0.0" width="161" height="126"/>
+                                <rect key="frame" x="161" y="0.0" width="160" height="126"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-jd-NEw" userLabel="share">
@@ -83,7 +83,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="1032 people collected this" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s22-4J-0gd">
-                                <rect key="frame" x="105" y="163" width="103" height="25"/>
+                                <rect key="frame" x="105" y="163" width="132" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="0mk-8H-B2j"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="fBg-9o-xAB"/>
@@ -93,11 +93,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bl0-UK-jJ9">
-                                <rect key="frame" x="216" y="143" width="88" height="42"/>
+                                <rect key="frame" x="245" y="143" width="59" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="0jW-RY-bfl"/>
-                                    <constraint firstAttribute="width" constant="88" id="TbI-8t-0G8"/>
+                                    <constraint firstAttribute="width" constant="59" id="TbI-8t-0G8"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Edit">
                                     <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -113,14 +114,24 @@
                                     <constraint firstAttribute="height" constant="15" id="zp5-Vf-fTQ"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xSL-SO-9CC" userLabel="line">
+                                <rect key="frame" x="0.0" y="194" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="vQc-eC-mNy"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Fau-SL-aTP" firstAttribute="centerY" secondItem="OgQ-Oe-3fP" secondAttribute="centerY" id="0Kc-Ev-HoD"/>
+                            <constraint firstAttribute="bottom" secondItem="xSL-SO-9CC" secondAttribute="bottom" id="2ew-nX-bzu"/>
                             <constraint firstItem="1t0-2b-t7N" firstAttribute="top" secondItem="1l0-BW-VUP" secondAttribute="bottom" constant="17" id="3N6-te-GXh"/>
+                            <constraint firstItem="xSL-SO-9CC" firstAttribute="leading" secondItem="cg4-oM-VeY" secondAttribute="leading" id="8Eo-rO-xK7"/>
                             <constraint firstItem="ZuT-nx-PRe" firstAttribute="top" secondItem="1l0-BW-VUP" secondAttribute="top" id="AAb-1F-wU0"/>
-                            <constraint firstItem="Bl0-UK-jJ9" firstAttribute="leading" secondItem="s22-4J-0gd" secondAttribute="trailing" constant="8" id="AAg-8t-Qza"/>
+                            <constraint firstItem="Bl0-UK-jJ9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s22-4J-0gd" secondAttribute="trailing" constant="8" id="AAg-8t-Qza"/>
                             <constraint firstItem="OgQ-Oe-3fP" firstAttribute="top" secondItem="1t0-2b-t7N" secondAttribute="bottom" constant="10" id="CJw-A8-cRg"/>
+                            <constraint firstAttribute="trailing" secondItem="xSL-SO-9CC" secondAttribute="trailing" id="CgO-FL-VJg"/>
                             <constraint firstItem="OgQ-Oe-3fP" firstAttribute="leading" secondItem="cg4-oM-VeY" secondAttribute="leading" constant="16" id="Cyr-ix-9Ge"/>
                             <constraint firstItem="Bl0-UK-jJ9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kHj-jv-4sW" secondAttribute="trailing" constant="10" id="E6P-4i-cmR"/>
                             <constraint firstItem="1l0-BW-VUP" firstAttribute="leading" secondItem="cg4-oM-VeY" secondAttribute="leading" id="E9e-Da-XaQ"/>
@@ -152,11 +163,12 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="cg4-oM-VeY" firstAttribute="trailing" secondItem="Cad-BQ-EAB" secondAttribute="trailingMargin" constant="8" id="HUi-Uq-qcH"/>
                     <constraint firstItem="cg4-oM-VeY" firstAttribute="top" secondItem="Cad-BQ-EAB" secondAttribute="topMargin" constant="-8" id="Kmh-k6-obU"/>
                     <constraint firstItem="cg4-oM-VeY" firstAttribute="leading" secondItem="Cad-BQ-EAB" secondAttribute="leadingMargin" constant="-8" id="Thw-oe-oTy"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="cg4-oM-VeY" secondAttribute="bottom" constant="-8" id="ho8-wd-kVA"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="cg4-oM-VeY" secondAttribute="bottom" constant="2" id="ho8-wd-kVA"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
