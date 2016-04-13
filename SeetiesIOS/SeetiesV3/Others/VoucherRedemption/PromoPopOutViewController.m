@@ -245,7 +245,6 @@
 //            
 //            self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, tableHeight+headerAndFooterHeight);
             [Utils setRoundBorder:self.ibChooseShopContentView color:[UIColor clearColor] borderRadius:8.0f];
-//            [self.ibChooseShopContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             
             if (self.dealModel) {
                 if ([Utils isStringNull:self.dealModel.cover_title]) {
