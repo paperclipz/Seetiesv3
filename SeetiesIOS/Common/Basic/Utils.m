@@ -48,6 +48,7 @@
      BOOL walkthrough = [[defaults objectForKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH] boolValue];
     BOOL warning = [[defaults objectForKey:FIRST_TIME_SHOW_DEAL_WARNING] boolValue];
 
+    NSData* data = [Utils getParseToken];
     [defaults synchronize];
     
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -55,7 +56,7 @@
 
     [defaults setBool:walkthrough forKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH];
     [defaults setBool:warning forKey:FIRST_TIME_SHOW_DEAL_WARNING];
-
+    [Utils setParseToken:data];
     AppDelegate *appdelegate;
     
     appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -178,19 +179,19 @@
 
 +(void)registerParseAfterLogin:(NSString*)userID
 {
-    if (![Utils isParseRegisered]) {
+   // if (![Utils isParseRegisered]) {
         
         PFInstallation *currentInstallation = [PFInstallation currentInstallation];
         NSString *parseToken = [[NSString alloc]initWithFormat:@"seeties_%@",userID];
         
-        if ([Utils getUserID]) {
-            NSString *previousParseToken = [[NSString alloc]initWithFormat:@"seeties_%@",[Utils getUserID]];
+        if (userID) {
+            NSString *previousParseToken = [[NSString alloc]initWithFormat:@"seeties_%@",userID];
             [currentInstallation removeObject:@"all" forKey:@"channels"];
             [currentInstallation removeObject:previousParseToken forKey:@"channels"];
             [currentInstallation saveInBackground];
         }
         
-        if ([self getParseToken]) {
+        if ([Utils getParseToken]) {
             [currentInstallation setDeviceTokenFromData:[self getParseToken]];
             currentInstallation.channels = @[parseToken,@"all"];
             [currentInstallation saveInBackground];
@@ -200,7 +201,7 @@
         {
             SLog(@"parse token not registed to user");
         }
-    }
+   // }
 }
 
 +(BOOL)isPhoneNumberVerified{

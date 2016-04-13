@@ -119,6 +119,7 @@ typedef enum {
 +(void)reloadProfileView;
 +(void)reloadHomeView:(int)type;
 
++(NSData*)getParseToken;
 +(void)setParseToken:(NSData*)data;
 +(void)registerParseAfterLogin:(NSString*)userID;
 +(BOOL)isPhoneNumberVerified;
