@@ -46,7 +46,6 @@
     [self.navigationController pushViewController:self.ct3_AcctSettingViewController animated:YES];
 }
 
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [self changeLanguage];
@@ -384,7 +383,17 @@
         
         if (![Utils isGuestMode]) {
             NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify your phone number",@"Account Settings",@"Tour Seeties App", @"Rate Us",@"About Us",@"Speak to Us", nil];
+           
+            NSArray *secondItemsArray;
+            if ([ [ UIScreen mainScreen ] bounds ].size.height > 480) {
+                secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify your phone number",@"Account Settings",@"Tour Seeties App", @"Rate Us",@"About Us",@"Speak to Us", nil];
+
+            }
+            else{
+                secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify your phone number",@"Account Settings", @"Rate Us",@"About Us",@"Speak to Us", nil];
+
+            }
+           
             NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign Out", nil];
             _arrData = @[firstItemsArray,secondItemsArray,threeItemsArray];
 
@@ -392,7 +401,19 @@
         else
         {
             NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log In", nil];//@"Notification Settings"
-            NSArray *secondItemsArray = [[NSArray alloc] initWithObjects:@"Tour Seeties App",@"Rate Us",@"About Us",@"Speak to Us", nil];
+            
+            NSArray *secondItemsArray;
+            if ([ [ UIScreen mainScreen ] bounds ].size.height > 480) {
+                
+                secondItemsArray = [[NSArray alloc] initWithObjects:@"Tour Seeties App",@"Rate Us",@"About Us",@"Speak to Us", nil];
+                
+            }
+            else{
+                secondItemsArray = [[NSArray alloc] initWithObjects:@"Rate Us",@"About Us",@"Speak to Us", nil];
+                
+            }
+
+            
             //NSArray *threeItemsArray = [[NSArray alloc] initWithObjects:@"Sign out", nil];
             _arrData = @[firstItemsArray,secondItemsArray];
         }

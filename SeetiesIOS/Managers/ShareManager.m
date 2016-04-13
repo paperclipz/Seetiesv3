@@ -377,7 +377,7 @@
 
 -(NSString*)getShareLink:(ShareType)type
 {
-    NSString* seetiesLink = [NSString stringWithFormat:@"https://%@/",[ConnectionManager getServerPath]];
+    NSString* seetiesLink = [NSString stringWithFormat:@"https://%@/",[self getSharePath]];
     
     NSString* subLink;
     NSString* finalLink;
@@ -486,4 +486,19 @@
     [viewController dismissViewControllerAnimated:YES completion:NULL];
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Path
+
+-(NSString*)getSharePath
+{
+    if ([Utils isAppProductionBuild]) {
+
+        return @"seeties.me";
+    }
+    else{
+    
+        return @"itcave2.seeties.me";
+    }
+}
+
 @end
