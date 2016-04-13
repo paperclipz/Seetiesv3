@@ -51,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ibHowToRedeem;
 @property (weak, nonatomic) IBOutlet UILabel *ibDescBorderTitle;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHowToRedeemTopConstraint;
 
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) DealManager *dealManager;
@@ -88,9 +89,11 @@
     CGRect screenSize = [Utils getDeviceScreenSize];
     if (screenSize.size.height > 480) {
         self.ibTopConstraint.constant = 55;
+        self.ibHowToRedeemTopConstraint.constant = 60;
     }
     else{
         self.ibTopConstraint.constant = 10;
+        self.ibHowToRedeemTopConstraint.constant = 8;
     }
     [self.view refreshConstraint];
     

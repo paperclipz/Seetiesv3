@@ -128,9 +128,10 @@
     [contentView addSubview:self.segmentedControl];
     
     
-    //__weak typeof(self) weakSelf = view;
+    __weak typeof(self) weakSelf = self;
     [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
         [view scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
+        [weakSelf refreshCategoryLbl];
     }];
     
     
@@ -423,12 +424,6 @@
     }
     [self refreshView];
 }
-#pragma mark - CSMENU DELEGATE
-- (void)didMoveToPage:(UIViewController *)controller index:(NSInteger)index
-{
-    [self refreshCategoryLbl];
-
-}
 
 #pragma mark - Declaration
 
@@ -629,6 +624,8 @@
     NSInteger page = scrollView.contentOffset.x / pageWidth;
     
     [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
+    [self refreshCategoryLbl];
+
 }
 
 @end
