@@ -31,6 +31,8 @@
 @property(nonatomic,strong)NSString* currentLongtitude;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
+@property (weak, nonatomic) IBOutlet UIButton *ibFilterBtn;
+
 
 @property (weak, nonatomic) IBOutlet UIView *FilterView;
 
@@ -90,6 +92,8 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
+    self.ibFilterBtn.hidden = !self.showFilter;
+    
     switch (self.searchListingType) {
         default:
         case SearchListingTypeShop:
@@ -114,7 +118,12 @@
             break;
     }
     
-    
+}
+
+- (IBAction)btnFilterClicked:(id)sender {
+    if (_filterBtnClickedBlock) {
+        self.filterBtnClickedBlock();
+    }
 }
 
 #pragma mark - initdata
@@ -176,6 +185,19 @@
     self.homeLocationModel = model;
     self.filterDict = filterDict;
     self.keyword = @"";
+    
+    self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
+    self.currentLongtitude = @(currentLocation.coordinate.longitude).stringValue;
+    
+    [self requestRefresh];
+}
+
+-(void)refreshRequestWithModel:(HomeLocationModel*)model Keyword:(NSString*)keyword filterDictionary:(NSDictionary*)filterDict{
+    CLLocation* currentLocation = [[SearchManager Instance]getAppLocation];
+    
+    self.homeLocationModel = model;
+    self.filterDict = filterDict;
+    self.keyword = keyword;
     
     self.currentLatitude = @(currentLocation.coordinate.latitude).stringValue;
     self.currentLongtitude = @(currentLocation.coordinate.longitude).stringValue;

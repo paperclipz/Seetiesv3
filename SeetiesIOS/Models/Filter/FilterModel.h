@@ -21,4 +21,5 @@ typedef enum{
 @property(nonatomic) BOOL isSelected;
 @property(nonatomic) FilterPriceModel *filterPrice;
 @property(nonatomic) SortType sortType;
+@property(nonatomic) NSString *imageUrl;
 @end

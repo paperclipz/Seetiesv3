@@ -90,6 +90,10 @@ static NSCache* heightCache = nil;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constantQuickBrowseHeight;
 @property (weak, nonatomic) IBOutlet UICollectionView *ibQuickBrowseCollectionView;
 
+@property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
+@property (weak, nonatomic) IBOutlet UILabel *ibLoadingTxt;
+@property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
+
 @property(nonatomic,strong)NSMutableArray* arrCacheHeight;
 @property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 
@@ -450,6 +454,9 @@ static NSCache* heightCache = nil;
     lastUpdatedLocation = @"";
     
     update_location_method = @"";
+    
+    self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
+    self.ibTableView.backgroundView = self.ibEmptyStateView;
     
     [self initSelfView];
 
@@ -1465,10 +1472,11 @@ static NSCache* heightCache = nil;
 //            [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
+            self.ibTableView.backgroundView = nil;
         } errorBlock:^(id object) {
             [self.ibTableView.pullToRefreshView stopAnimating];
             isMiddleOfLoadingServer = NO;
-
+            self.ibTableView.backgroundView = nil;
         }];
 
     }
@@ -1534,6 +1542,7 @@ static NSCache* heightCache = nil;
         }
         
         [self.ibTableView reloadData];
+        self.ibTableView.backgroundView = nil;
        // [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 
         //[self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
@@ -1542,7 +1551,7 @@ static NSCache* heightCache = nil;
   
     } errorBlock:^(id object) {
         [self.ibTableView.pullToRefreshView stopAnimating];
-
+        self.ibTableView.backgroundView = nil;
     }];
 }
 

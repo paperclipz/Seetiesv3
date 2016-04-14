@@ -11,6 +11,7 @@
                 <outlet property="FilterView" destination="g0j-dm-JRQ" id="fWM-Bd-gIu"/>
                 <outlet property="constFilterHeight" destination="2HV-WH-eer" id="aeD-4m-lXj"/>
                 <outlet property="ibEmptyStateView" destination="TAe-aU-BDf" id="DXO-Z5-hHX"/>
+                <outlet property="ibFilterBtn" destination="lR2-oq-jFW" id="9OT-fn-BzD"/>
                 <outlet property="ibTableView" destination="GY0-TL-oDx" id="emc-wd-SUO"/>
                 <outlet property="lblCount" destination="btj-2p-NSh" id="aHw-N9-mNt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -37,6 +38,17 @@
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lR2-oq-jFW" userLabel="filter btn">
+                                <rect key="frame" x="534" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="pwk-Wn-GUq"/>
+                                </constraints>
+                                <color key="tintColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="FilterIcon.png"/>
+                                <connections>
+                                    <action selector="btnFilterClicked:" destination="-1" eventType="touchUpInside" id="MFm-6M-u9o"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -45,7 +57,10 @@
                             <constraint firstItem="btj-2p-NSh" firstAttribute="leading" secondItem="g0j-dm-JRQ" secondAttribute="leading" constant="16" id="7Cq-EZ-Zhm"/>
                             <constraint firstAttribute="trailing" secondItem="btj-2p-NSh" secondAttribute="trailing" constant="16" id="8Ym-T2-JIV"/>
                             <constraint firstAttribute="height" constant="50" id="gqP-xc-vII"/>
+                            <constraint firstAttribute="trailing" secondItem="lR2-oq-jFW" secondAttribute="trailing" constant="16" id="rAW-Yf-eRo"/>
                             <constraint firstItem="btj-2p-NSh" firstAttribute="centerY" secondItem="g0j-dm-JRQ" secondAttribute="centerY" id="rLf-eK-Ime"/>
+                            <constraint firstItem="lR2-oq-jFW" firstAttribute="top" secondItem="g0j-dm-JRQ" secondAttribute="top" id="sWV-M1-YPD"/>
+                            <constraint firstAttribute="bottom" secondItem="lR2-oq-jFW" secondAttribute="bottom" id="uWT-Pc-tnE"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -185,5 +200,6 @@
     </objects>
     <resources>
         <image name="EmptyStateImg.png" width="288" height="288"/>
+        <image name="FilterIcon.png" width="40" height="40"/>
     </resources>
 </document>

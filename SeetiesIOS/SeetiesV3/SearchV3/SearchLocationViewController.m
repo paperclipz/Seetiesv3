@@ -128,6 +128,7 @@
 -(void)changeLanguage{
     self.lblAutoDetect.text = LocalisedString(@"Auto-detect your location");
     self.ibHeaderTitle.text = LocalisedString(@"Select Location");
+    self.ibSearchTxtField.placeholder = LocalisedString(@"Search for a location");
 }
 
 

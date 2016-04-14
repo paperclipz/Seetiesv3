@@ -16,6 +16,7 @@ typedef void (^DealBlock)(DealModel* model);
 
 @interface SearchLTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+@property (nonatomic) BOOL showFilter;
 
 @property(nonatomic,copy)DidSelectIDBlock didSelectUserRowBlock;
 @property(nonatomic,copy)DidSelectIDBlock didSelectPostsRowBlock;
@@ -24,6 +25,7 @@ typedef void (^DealBlock)(DealModel* model);
 @property(nonatomic,copy)DidSelectCollectionBlock didSelectEditDisplayCollectionRowBlock;
 @property(nonatomic,copy)DealBlock didSelectDealBlock;
 @property(nonatomic,copy)VoidBlock viewDidFinishLoadBlock;
+@property(nonatomic,copy)VoidBlock filterBtnClickedBlock;
 
 @property(nonatomic,copy)DidSelectDraftBlock didSelectCollectionOpenViewBlock;
 @property(nonatomic,assign)SearchListingType searchListingType;
@@ -33,6 +35,7 @@ typedef void (^DealBlock)(DealModel* model);
 -(void)refreshRequestShop:(NSString*)keyword SeetieshopPlaceID:(NSString*)placeID;
 -(void)refreshRequestWithText:(NSString*)keyword;
 -(void)refreshRequestWithHomeLocation:(HomeLocationModel*)model filterDictionary:(NSDictionary*)filterDict;
+-(void)refreshRequestWithModel:(HomeLocationModel*)model Keyword:(NSString*)keyword filterDictionary:(NSDictionary*)filterDict;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constFilterHeight;
 
 @end

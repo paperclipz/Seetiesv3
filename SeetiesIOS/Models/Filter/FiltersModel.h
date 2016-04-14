@@ -17,7 +17,10 @@
 typedef enum{
     FilterViewTypeVoucher,
     FilterViewTypeShop,
-    FilterViewTypeCollection
+    FilterViewTypeCollection,
+    FilterViewTypeSearchShop,
+    FilterViewTypeSearchCollection,
+    FilterViewTypeSearchPost
 } FilterViewType;
 
 @interface FiltersModel : NSObject
