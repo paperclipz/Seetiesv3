@@ -148,7 +148,6 @@
         _followingTableViewController.didSelectNotificationBlock = ^(NotificationModel* model)
         {
             [weakself processView:model Type:1];
-            SLog(@"ww");
 
         };
         
@@ -156,8 +155,14 @@
         {
             [weakself showPostDetailView:postID];
             
-            SLog(@"gg");
         };
+        
+        _followingTableViewController.didSelectProfileBlock = ^(NotificationModel* model)
+        {
+            [weakself showProfileView:model];
+            
+        };
+
 
     }
     
@@ -179,6 +184,12 @@
         _notificationTableViewController.didSelectPostBlock = ^(NSString* postID)
         {
             [weakself showPostDetailView:postID];
+        };
+        
+        _notificationTableViewController.didSelectProfileBlock = ^(NotificationModel* model)
+        {
+            [weakself showProfileView:model];
+            
         };
 
     }

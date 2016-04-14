@@ -11,4 +11,7 @@
 @interface NotificationTableViewCell : CommonTableViewCell
 -(void)initData:(NotificationModel*)model Type:(int)type;
 @property(nonatomic,copy)RowPickedBlock didSelectPostAtIndexBlock;
+@property(nonatomic,copy)NotificationModelBlock didSelectProfileBlock;
+
+
 @end

@@ -97,7 +97,7 @@
 
     [cell initData:model Type:viewType];
     cell.didSelectPostAtIndexBlock = self.didSelectPostBlock;
-   
+    cell.didSelectProfileBlock = self.didSelectProfileBlock;
     
     
     return cell;

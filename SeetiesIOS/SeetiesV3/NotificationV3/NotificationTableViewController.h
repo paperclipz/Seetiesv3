@@ -15,5 +15,6 @@ typedef void (^NotificationBlock)(NotificationModel* model);
 @property(nonatomic,copy)NotificationBlock didSelectNotificationBlock;
 
 @property(nonatomic,copy)RowPickedBlock didSelectPostBlock;
+@property(nonatomic,copy)NotificationModelBlock didSelectProfileBlock;
 
 @end

@@ -22,6 +22,12 @@
 
 @end
 @implementation NotificationTableViewCell
+- (IBAction)btnProfileClicked:(id)sender {
+    
+    if (_didSelectProfileBlock) {
+        self.didSelectProfileBlock(self.notificationModel);
+    }
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -152,7 +158,7 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.notificationModel.notType == NotificationType_Like) {
+    if (self.notificationModel.notType == NotificationType_Like || self.notificationModel.notType == NotificationType_Collect) {
         
         
         DraftModel* draftModel = self.notificationModel.arrPosts[indexPath.row];

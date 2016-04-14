@@ -79,4 +79,23 @@ NSString * const TagKey = @"tagKey";
     return myNumber;
 }
 
+- (NSArray *)rangesInSubstring:(NSString *)substring
+{
+    NSError *error = NULL;
+    
+    NSString *regex = [NSString stringWithFormat:@"\\b%@", substring];
+    NSRegularExpression *regExpression = [NSRegularExpression regularExpressionWithPattern:regex options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    NSMutableArray *ranges = [NSMutableArray array];
+    
+    NSArray *matches = [regExpression matchesInString:self options:NSRegularExpressionSearch range:NSMakeRange(0, self.length)];
+    
+    for (NSTextCheckingResult *match in matches) {
+        [ranges addObject:[NSValue valueWithRange:match.range]];
+    }
+    
+    return ranges;
+}
+
+
 @end

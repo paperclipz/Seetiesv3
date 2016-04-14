@@ -472,14 +472,18 @@
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
                            };
     
+    [LoadingManager show];
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetLogout param:dict appendString:nil completeHandler:^(id object) {
         
+        [LoadingManager hide];
+
         [Utils setLogout];
 //        _arrData = nil;
 //        [self.ibTableView reloadData];
         
     } errorBlock:^(id object) {
-        
+        [LoadingManager hide];
+
     }];
 }
 
