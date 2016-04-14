@@ -1407,6 +1407,14 @@
 		C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoPopOutViewController.m */; };
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
+		C71B5E181CBE3BED00B4FA91 /* FriendSuggestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */; };
+		C71B5E1F1CBE458000B4FA91 /* ShareFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B5E1D1CBE458000B4FA91 /* ShareFriendTableViewCell.m */; };
+		C71B5E201CBE458000B4FA91 /* ShareFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C71B5E1E1CBE458000B4FA91 /* ShareFriendTableViewCell.xib */; };
+		C724C2D71CBD153D0074B223 /* ShareFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C724C2D61CBD153D0074B223 /* ShareFriendViewController.m */; };
+		C7CE07E41CB79E8700BCF4F0 /* ShareFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7CE07E21CB79E8700BCF4F0 /* ShareFriendViewController.xib */; };
+		C7CE07EA1CBBB6DF00BCF4F0 /* CustomItemSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CE07E91CBBB6DF00BCF4F0 /* CustomItemSource.m */; };
+		C7F9FE8F1CB63CB5000E8432 /* UIActivityViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE8E1CB63CB5000E8432 /* UIActivityViewController+Extension.m */; };
+		C7F9FE921CB664AB000E8432 /* CustomUIActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE911CB664AB000E8432 /* CustomUIActivity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3279,6 +3287,20 @@
 		C2C157131C574BB6007608FC /* PromoPopOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoPopOutViewController.h; sourceTree = "<group>"; };
 		C2C157141C574BB6007608FC /* PromoPopOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoPopOutViewController.m; sourceTree = "<group>"; };
 		C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoPopOutViewController.xib; sourceTree = "<group>"; };
+		C71B5E161CBE3BED00B4FA91 /* FriendSuggestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSuggestionModel.h; sourceTree = "<group>"; };
+		C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSuggestionModel.m; sourceTree = "<group>"; };
+		C71B5E1C1CBE458000B4FA91 /* ShareFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareFriendTableViewCell.h; sourceTree = "<group>"; };
+		C71B5E1D1CBE458000B4FA91 /* ShareFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareFriendTableViewCell.m; sourceTree = "<group>"; };
+		C71B5E1E1CBE458000B4FA91 /* ShareFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareFriendTableViewCell.xib; sourceTree = "<group>"; };
+		C724C2D51CBD153D0074B223 /* ShareFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareFriendViewController.h; sourceTree = "<group>"; };
+		C724C2D61CBD153D0074B223 /* ShareFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareFriendViewController.m; sourceTree = "<group>"; };
+		C7CE07E21CB79E8700BCF4F0 /* ShareFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareFriendViewController.xib; sourceTree = "<group>"; };
+		C7CE07E81CBBB6DF00BCF4F0 /* CustomItemSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomItemSource.h; sourceTree = "<group>"; };
+		C7CE07E91CBBB6DF00BCF4F0 /* CustomItemSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomItemSource.m; sourceTree = "<group>"; };
+		C7F9FE8D1CB63CB5000E8432 /* UIActivityViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityViewController+Extension.h"; sourceTree = "<group>"; };
+		C7F9FE8E1CB63CB5000E8432 /* UIActivityViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityViewController+Extension.m"; sourceTree = "<group>"; };
+		C7F9FE901CB664AB000E8432 /* CustomUIActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIActivity.h; sourceTree = "<group>"; };
+		C7F9FE911CB664AB000E8432 /* CustomUIActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIActivity.m; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4139,6 +4161,7 @@
 		8A317BFD1BE1C5620010CAEE /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				C7F9FE861CB636D8000E8432 /* New */,
 				8A69E0F61C0412B800224BB4 /* Extra */,
 				8A317BFE1BE1C5620010CAEE /* ShareToFrenViewController.h */,
 				8A317BFF1BE1C5620010CAEE /* ShareToFrenViewController.m */,
@@ -6393,6 +6416,7 @@
 		8AEDBF761C2031BA000BD2FF /* MODELS */ = {
 			isa = PBXGroup;
 			children = (
+				C71B5E151CBE3B9100B4FA91 /* FriendSuggestion */,
 				C294FD231C98157A00C455C8 /* Filter */,
 				8AF9996F1C3E6569000314E4 /* CoreModel.h */,
 				8AEDBF921C2031BA000BD2FF /* Model.h */,
@@ -7095,6 +7119,34 @@
 			path = VoucherRedemption;
 			sourceTree = "<group>";
 		};
+		C71B5E151CBE3B9100B4FA91 /* FriendSuggestion */ = {
+			isa = PBXGroup;
+			children = (
+				C71B5E161CBE3BED00B4FA91 /* FriendSuggestionModel.h */,
+				C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */,
+			);
+			name = FriendSuggestion;
+			sourceTree = "<group>";
+		};
+		C7F9FE861CB636D8000E8432 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				C7F9FE8D1CB63CB5000E8432 /* UIActivityViewController+Extension.h */,
+				C7F9FE8E1CB63CB5000E8432 /* UIActivityViewController+Extension.m */,
+				C7F9FE901CB664AB000E8432 /* CustomUIActivity.h */,
+				C7F9FE911CB664AB000E8432 /* CustomUIActivity.m */,
+				C724C2D51CBD153D0074B223 /* ShareFriendViewController.h */,
+				C724C2D61CBD153D0074B223 /* ShareFriendViewController.m */,
+				C7CE07E21CB79E8700BCF4F0 /* ShareFriendViewController.xib */,
+				C71B5E1C1CBE458000B4FA91 /* ShareFriendTableViewCell.h */,
+				C71B5E1D1CBE458000B4FA91 /* ShareFriendTableViewCell.m */,
+				C71B5E1E1CBE458000B4FA91 /* ShareFriendTableViewCell.xib */,
+				C7CE07E81CBBB6DF00BCF4F0 /* CustomItemSource.h */,
+				C7CE07E91CBBB6DF00BCF4F0 /* CustomItemSource.m */,
+			);
+			name = New;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7306,6 +7358,7 @@
 				8ADFF8631CB36D3900D27329 /* EditProfileSmiley@2x.png in Resources */,
 				8ADFF6F11CB36D3900D27329 /* BgWalkHome1@2x.jpg in Resources */,
 				8ADFF83F1CB36D3900D27329 /* BluePrice@2x.png in Resources */,
+				C7CE07E41CB79E8700BCF4F0 /* ShareFriendViewController.xib in Resources */,
 				8ADFF7ED1CB36D3900D27329 /* TitleBar@2x.png in Resources */,
 				8ABA7DF21C7422AA00FB41F4 /* CT3_NotificationViewController.xib in Resources */,
 				8ADFF6461CB36D3900D27329 /* AddFriendIcon@3x.png in Resources */,
@@ -7523,6 +7576,7 @@
 				8A4831AE1C85987C00CE95F2 /* ShopTableViewCell.xib in Resources */,
 				8ADFF7A01CB36D3900D27329 /* LocationIcon@3x.png in Resources */,
 				8ADFF7181CB36D3900D27329 /* EditHoursIcon@3x.png in Resources */,
+				C71B5E201CBE458000B4FA91 /* ShareFriendTableViewCell.xib in Resources */,
 				8ADFF6D81CB36D3900D27329 /* SignUpNameIcon@2x.png in Resources */,
 				C238E32C1C4649AA00570A25 /* slider-default-trackCrossedOver.png in Resources */,
 				8ADFF8401CB36D3900D27329 /* BluePrice@3x.png in Resources */,
@@ -8427,6 +8481,7 @@
 				8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */,
 				8A3409431B8AD06A009B66C3 /* UIImage+Filtering.m in Sources */,
 				8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */,
+				C7CE07EA1CBBB6DF00BCF4F0 /* CustomItemSource.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
 				8A65843D1B9850CE00BC86B9 /* DraftViewController.m in Sources */,
 				8A114C9D1BE73F5D006AE3F0 /* UIImage+KVNEmpty.m in Sources */,
@@ -8474,6 +8529,7 @@
 				8A114C831BE73F5D006AE3F0 /* BMXDataItem.m in Sources */,
 				C22703011CBF932D00F9FBF3 /* PostFilterSortCell.m in Sources */,
 				8AF2C2D21BA27EDE00B0A7F1 /* UIImage+Tint.m in Sources */,
+				C724C2D71CBD153D0074B223 /* ShareFriendViewController.m in Sources */,
 				8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */,
 				C28490F51CA0FD5C00FE4546 /* PeriodModel.m in Sources */,
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
@@ -8499,6 +8555,7 @@
 				8A0829401C1046F200AD8CBD /* UIView+draggable.m in Sources */,
 				8A114CA71BE73F5D006AE3F0 /* UIImage+PECrop.m in Sources */,
 				8A114C871BE73F5D006AE3F0 /* UITableViewCell+ConfigureCell.m in Sources */,
+				C71B5E181CBE3BED00B4FA91 /* FriendSuggestionModel.m in Sources */,
 				8AD6C0FA1B706CF30040437E /* SearchViewController.m in Sources */,
 				C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */,
 				C294FD291C9817F200C455C8 /* FilterPriceModel.m in Sources */,
@@ -8514,6 +8571,7 @@
 				8AF6FDD31C58955B005AAE5D /* UINavigationViewController+Extra.m in Sources */,
 				8AEDBFBB1C2031BA000BD2FF /* SeShopCategoryModel.m in Sources */,
 				8A6BB4301BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerAnimator.m in Sources */,
+				C7F9FE921CB664AB000E8432 /* CustomUIActivity.m in Sources */,
 				8A114CAA1BE73F5D006AE3F0 /* CRZoomScrollView.m in Sources */,
 				8A114C801BE73F5D006AE3F0 /* BKForwardingTextField.m in Sources */,
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
@@ -8577,6 +8635,7 @@
 				8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */,
 				8AD50D761C645D2100C9D952 /* AddressComponentModel.m in Sources */,
 				8AC8F7321BDA414E00DEF14A /* ProfilePagePostCollectionViewCell.m in Sources */,
+				C7F9FE8F1CB63CB5000E8432 /* UIActivityViewController+Extension.m in Sources */,
 				8A114C7E1BE73F5D006AE3F0 /* BKCardPatternInfo.m in Sources */,
 				8AC8F7361BDA414E00DEF14A /* ProfileCollectionPageTableViewCell.m in Sources */,
 				8A7B9CE01BBD387000D7F604 /* EnbleLocationViewController.m in Sources */,
@@ -8626,6 +8685,7 @@
 				8A9E06551CBF5A70000FB246 /* CLLocationManager+Block.m in Sources */,
 				0BBFE0541B9D6260004B17E9 /* NotificationSettingsViewController.m in Sources */,
 				8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */,
+				C71B5E1F1CBE458000B4FA91 /* ShareFriendTableViewCell.m in Sources */,
 				8AEDBFA91C2031BA000BD2FF /* EditHourModel.m in Sources */,
 				0BBFE08A1B9FCC00004B17E9 /* EditInterestViewController.m in Sources */,
 				8A114C781BE73F5D006AE3F0 /* SConstant.m in Sources */,

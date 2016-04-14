@@ -16,6 +16,8 @@
 #import "FeaturedTableViewCell.h"
 #import "NSMutableDictionary+Extra.h"
 #import "CustomEmptyView.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
 
 @interface SearchLTabViewController ()
 {
@@ -321,10 +323,21 @@
                 
                 cell.btnShareClicked = ^(void)
                 {
-                    _shareV2ViewController = nil;
-                    _formSheetController = nil;
-                    [self.shareV2ViewController share:@"" title:collModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
-                    [self presentViewController:self.formSheetController animated:YES completion:nil];
+//                    _shareV2ViewController = nil;
+//                    _formSheetController = nil;
+//                    [self.shareV2ViewController share:@"" title:collModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
+//                    [self presentViewController:self.formSheetController animated:YES completion:nil];
+                    
+                    //New Sharing Screen
+                    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+                    
+                    dataToPost.title = collModel.postDesc;
+                    dataToPost.shareID = collModel.collection_id;
+                    dataToPost.userID = collModel.user_info.uid;
+                    dataToPost.shareType = ShareTypeCollection;
+                    
+                    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
                 };
 
 

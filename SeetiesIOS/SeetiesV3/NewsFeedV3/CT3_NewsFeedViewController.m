@@ -55,6 +55,9 @@
 
 #import "SVPullToRefresh.h"
 
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
+
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
@@ -848,9 +851,9 @@ static NSCache* heightCache = nil;
                 cell.btnPostShareClickedBlock = ^(void)
                 {
                     
-                    _shareV2ViewController = nil;
-                    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-                    [naviVC setNavigationBarHidden:YES animated:NO];
+//                    _shareV2ViewController = nil;
+//                    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//                    [naviVC setNavigationBarHidden:YES animated:NO];
                     
                     NSString* imageURL;
                     
@@ -859,13 +862,24 @@ static NSCache* heightCache = nil;
                         imageURL = pModel.imageURL;
                     }
                     
-                    [self.shareV2ViewController share:@"" title:[feedModel getPostTitle] imagURL:imageURL shareType:ShareTypePost shareID:feedModel.post_id userID:feedModel.user_info.uid];
-                    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-                    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-                    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-                    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-                    [self presentViewController:formSheetController animated:YES completion:nil];
+//                    [self.shareV2ViewController share:@"" title:[feedModel getPostTitle] imagURL:imageURL shareType:ShareTypePost shareID:feedModel.post_id userID:feedModel.user_info.uid];
+//                    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//                    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//                    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//                    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//                    [self presentViewController:formSheetController animated:YES completion:nil];
                     
+                    //New Sharing Screen
+                    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+                    
+                    dataToPost.title = [feedModel getPostTitle];
+                    dataToPost.shareID = feedModel.post_id;
+                    dataToPost.userID = feedModel.user_info.uid;
+                    dataToPost.shareType = ShareTypePost;
+                    dataToPost.postImageURL = imageURL;
+                    
+                    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
                 };
                 
                 [cell refreshConstraint];
@@ -1021,9 +1035,9 @@ static NSCache* heightCache = nil;
                 [cell initData:collModel];
                 cell.btnShareCollectionClickedBlock = ^(void)
                 {
-                    _shareV2ViewController = nil;
-                    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-                    [naviVC setNavigationBarHidden:YES animated:NO];
+//                    _shareV2ViewController = nil;
+//                    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//                    [naviVC setNavigationBarHidden:YES animated:NO];
                     
                     NSString* imageURL;
                     if ([Utils isArrayNull:collModel.arrayFollowingCollectionPost]) {
@@ -1037,12 +1051,24 @@ static NSCache* heightCache = nil;
                         }
                     }
                     
-                    [self.shareV2ViewController share:@"" title:typeModel.followingCollectionData.name imagURL:imageURL shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
-                    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-                    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-                    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-                    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-                    [self presentViewController:formSheetController animated:YES completion:nil];
+//                    [self.shareV2ViewController share:@"" title:typeModel.followingCollectionData.name imagURL:imageURL shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
+//                    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//                    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//                    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//                    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//                    [self presentViewController:formSheetController animated:YES completion:nil];
+                    
+                    //New Sharing Screen
+                    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+                    
+                    dataToPost.title = typeModel.followingCollectionData.name;
+                    dataToPost.shareID = collModel.collection_id;
+                    dataToPost.userID = collModel.user_info.uid;
+                    dataToPost.shareType = ShareTypeCollection;
+                    dataToPost.postImageURL = imageURL;
+                    
+                    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
                     
                 };
                 

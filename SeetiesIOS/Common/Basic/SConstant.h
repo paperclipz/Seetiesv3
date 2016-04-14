@@ -134,6 +134,18 @@ typedef enum
     ServerRequestTypePostReportShop,
     ServerRequestTypePostReportDeal,
     /*Report Shop*/
+    
+    //** GetFriendSuggestion **//
+    ServerRequestTypeGetFriendSuggestion,
+    //** GetFriendSuggestion **//
+    
+    //** PostFriendSuggestion **//
+    ServerRequestTypePostFriendSuggestion,
+    ServerRequestTypePostCollectionFriendSuggestion,
+    ServerRequestTypePostSeetiesFriendSuggestion,
+    ServerRequestTypePostNonSeetiesFriendSuggestion,
+    ServerRequestTypePostDealFriendSuggestion
+    //** PostFriendSuggestion **//
 
 }ServerRequestType;
 
@@ -307,6 +319,9 @@ static BOOL IS_SIMULATOR = NO;
 #pragma mark - API KEY
 #define DEVICE_TYPE 2
 
+//Share path
+#define kProductionBasePath @"https://seeties.me/"
+#define kDevelopmentBasePath @"https://itcave2.seeties.me/"
 
 
 

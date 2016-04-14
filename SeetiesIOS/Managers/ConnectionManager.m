@@ -718,8 +718,27 @@
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
             
             break;
+        
+        case ServerRequestTypeGetFriendSuggestion:
+            str = [NSString stringWithFormat:@"%@/%@/friends", API_VERION_URL, [Utils getUserID]];
+            break;
+    
+        case ServerRequestTypePostFriendSuggestion:
+            str = [NSString stringWithFormat:@"%@/%@/post", API_VERION_URL, [Utils getUserID]];
+            break;
             
-            
+        case ServerRequestTypePostCollectionFriendSuggestion:
+            str = [NSString stringWithFormat:@"%@/%@/collections", API_VERION_URL, [Utils getUserID]];
+            break;
+
+        case ServerRequestTypePostSeetiesFriendSuggestion:
+        case ServerRequestTypePostNonSeetiesFriendSuggestion:
+            str = [NSString stringWithFormat:@"%@/seetishops", API_VERION_URL];
+            break;
+        case ServerRequestTypePostDealFriendSuggestion:
+            str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
+            break;
+        
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
@@ -1315,6 +1334,14 @@
 
         }
             break;
+            
+        case ServerRequestTypeGetFriendSuggestion:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.friendSuggestionModel = [[FriendSuggestionModel alloc] initWithDictionary:dict error:nil];
+            break;
+            
+        }
             
         default:
             

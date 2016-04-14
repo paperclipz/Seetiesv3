@@ -10,6 +10,8 @@
 #import "UILabel+Exntension.h"
 #import "PhotoViewController.h"
 #import "IDMPhotoBrowser.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
 
 @interface DealDetailsViewController (){
     float contentHeightPadding;
@@ -879,18 +881,29 @@
 
 #pragma mark - Delegate
 - (IBAction)buttonShareClicked:(id)sender {
-    self.shareViewController = nil;
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
+//    self.shareViewController = nil;
+//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareViewController];
+//    [naviVC setNavigationBarHidden:YES animated:NO];
     PhotoModel *photo = self.dealModel.photos[0];
     NSString *shareTitle = [Utils isStringNull:self.dealModel.title]? self.dealModel.cover_title : self.dealModel.title;
-    [self.shareViewController share:@"" title:shareTitle imagURL:photo.imageURL shareType:ShareTypeDeal shareID:self.dealModel.dID userID:[Utils getUserID]];
+//    [self.shareViewController share:@"" title:shareTitle imagURL:photo.imageURL shareType:ShareTypeDeal shareID:self.dealModel.dID userID:[Utils getUserID]];
+//    
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
     
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+    
+    dataToPost.title = shareTitle;
+    dataToPost.shareID = self.dealModel.dID;
+    dataToPost.userID = [Utils getUserID];
+    dataToPost.shareType = ShareTypeDeal;
+    dataToPost.postImageURL = photo.imageURL;
+    
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
 }
 
 - (IBAction)buttonTranslateClicked:(id)sender {

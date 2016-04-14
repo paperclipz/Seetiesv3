@@ -17,6 +17,8 @@
 #import "JTSImageViewController.h"
 #import "UITableView+Extension.h"
 #import "ConnectionsViewController.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
 
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 {
@@ -173,15 +175,26 @@
 
 - (IBAction)btnShareClicked:(id)sender {
     
-    _shareV2ViewController = nil;
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    [self.shareV2ViewController share:@"" title:self.userProfileModel.username imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypePostUser shareID:self.userProfileModel.username userID:@""];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+//    _shareV2ViewController = nil;
+//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//    [naviVC setNavigationBarHidden:YES animated:NO];
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//    [self.shareV2ViewController share:@"" title:self.userProfileModel.username imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypePostUser shareID:self.userProfileModel.username userID:@""];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
+    
+    //New Sharing Screen
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+    
+    dataToPost.title = self.userProfileModel.username;
+    dataToPost.shareID = self.userProfileModel.username;
+    dataToPost.shareType = ShareTypePostUser;
+    dataToPost.postImageURL = self.userProfileModel.profile_photo_images;
+    
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
 }
 
 //- (IBAction)btnSettingClicked:(id)sender {
@@ -1419,18 +1432,28 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
    // _shareViewController = nil;
    // [self.shareViewController GetCollectionID:colModel.collection_id GetCollectionTitle:colModel.name];
 
-    _shareV2ViewController = nil;
+//    _shareV2ViewController = nil;
+//    
+//    CGRect frame = [Utils getDeviceScreenSize];
+//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//    [naviVC setNavigationBarHidden:YES animated:NO];
+//    [self.shareV2ViewController share:@"" title:colModel.name imagURL:@"" shareType:ShareTypeCollection shareID:colModel.collection_id userID:colModel.user_info.uid];
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//    formSheetController.presentationController.contentViewSize = frame.size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
     
-    CGRect frame = [Utils getDeviceScreenSize];
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:colModel.name imagURL:@"" shareType:ShareTypeCollection shareID:colModel.collection_id userID:colModel.user_info.uid];
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = frame.size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+    //New Sharing Screen
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
     
+    dataToPost.title = colModel.name;
+    dataToPost.shareID = colModel.collection_id;
+    dataToPost.userID = colModel.user_info.uid;
+    dataToPost.shareType = ShareTypeCollection;
+    
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
 }
 
 #pragma mark -ChangeLanguage
