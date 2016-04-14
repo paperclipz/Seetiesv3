@@ -136,8 +136,16 @@ typedef enum
     /*Report Shop*/
     
     //** GetFriendSuggestion **//
-    ServerRequestTypeGetFriendSuggestion
+    ServerRequestTypeGetFriendSuggestion,
     //** GetFriendSuggestion **//
+    
+    //** PostFriendSuggestion **//
+    ServerRequestTypePostFriendSuggestion,
+    ServerRequestTypePostCollectionFriendSuggestion,
+    ServerRequestTypePostSeetiesFriendSuggestion,
+    ServerRequestTypePostNonSeetiesFriendSuggestion,
+    ServerRequestTypePostDealFriendSuggestion
+    //** PostFriendSuggestion **//
 
 }ServerRequestType;
 

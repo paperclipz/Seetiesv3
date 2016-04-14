@@ -26,7 +26,7 @@ pod 'ActionSheetPicker-3.0', '~> 1.7.1'
 pod 'BOString'
 #pod 'pop', '~> 1.0'
 pod 'MGSwipeTableCell'
-pod 'SVPullToRefresh'
+pod 'SVPullToRefresh', :head
 pod 'UITextView+Placeholder'
 pod 'iOSBlocks/Cocoa'
 pod 'DBCamera', '~> 2.4'

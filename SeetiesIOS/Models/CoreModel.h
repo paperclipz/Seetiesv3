@@ -27,6 +27,7 @@
 #import "ComplexTagModel.h"
 #import "InstagramKit.h"
 #import "SuggestedPlaceModel.h"
+#import "FriendSuggestionModel.h"
 
 /*Declare custom block for model type*/
 typedef void (^PostBlock)(DraftModel* postModel);

@@ -19,12 +19,14 @@
     
     NSMutableArray *customUIActivity = [[NSMutableArray alloc] init];
     
-    if ([Utils checkUserIsLogin]) {
+    if ([Utils checkUserIsLogin] && !(dataToPost.shareType == ShareTypePostUser)) {
         
         //Create custom UIActivity
         SeetiesUIActivity *customControl = [[SeetiesUIActivity alloc] initWithTitle:@"Seeties" activityImage:[UIImage imageNamed:@"SSFacebookIcon"] activityType:@"com.seeties.custom" completionBlock:^(id object){
             
             ShareFriendViewController *shareScreen = [[ShareFriendViewController alloc] initWithNibName:@"ShareFriendViewController" bundle:nil];
+            
+            shareScreen.postData = dataToPost;
             
             [weakSelf presentViewController:shareScreen animated:YES completion:nil];
         }];

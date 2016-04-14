@@ -33,8 +33,7 @@
                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
-                                <action selector="CloseButtonClicked:" destination="-1" eventType="touchUpInside" id="Bqi-z0-VxO"/>
-                                <action selector="closeButtonClicked:" destination="-1" eventType="touchUpInside" id="I4G-ik-5UV"/>
+                                <action selector="closeButtonClicked:" destination="-1" eventType="touchUpInside" id="szG-6d-ik3"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sharing with your buddies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1U9-Rl-pLW">
@@ -71,6 +70,9 @@
                             <rect key="frame" x="12" y="45" width="576" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="4by-xY-Mxs"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,9 +87,13 @@
                         <constraint firstItem="YN9-TK-HZ9" firstAttribute="leading" secondItem="L9i-N3-OzS" secondAttribute="leading" constant="12" id="zXA-AK-hhT"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Kl-Va-dGB">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Kl-Va-dGB">
                     <rect key="frame" x="0.0" y="147" width="600" height="453"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="ddO-IC-1IG"/>
+                        <outlet property="delegate" destination="-1" id="CUb-Pg-iEi"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>

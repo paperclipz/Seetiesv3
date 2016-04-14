@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomItemSource.h"
 
 @interface ShareFriendViewController : UIViewController
+
+@property (strong, nonatomic) CustomItemSource *postData;
 
 @end
