@@ -131,7 +131,6 @@
 {
     if (!_userProfile) {
         
-        
         @try {
             
             NSDictionary* dict = _user[@"user_info"][0];

@@ -314,6 +314,17 @@
 		8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CCD1C2A8113009359E2 /* MapManager.m */; };
 		8A9ABA541CA52B890067FACA /* IntroCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9ABA521CA52B890067FACA /* IntroCoverView.m */; };
 		8A9ABA551CA52B890067FACA /* IntroCoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9ABA531CA52B890067FACA /* IntroCoverView.xib */; };
+		8A9E06531CBF5A70000FB246 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8A9E06381CBF5A70000FB246 /* LICENSE */; };
+		8A9E06541CBF5A70000FB246 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E06391CBF5A70000FB246 /* README.md */; };
+		8A9E06551CBF5A70000FB246 /* CLLocationManager+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E063D1CBF5A70000FB246 /* CLLocationManager+Block.m */; };
+		8A9E06561CBF5A70000FB246 /* NSURLConnection+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E06401CBF5A70000FB246 /* NSURLConnection+Block.m */; };
+		8A9E06571CBF5A70000FB246 /* MFMailComposeViewController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E06451CBF5A70000FB246 /* MFMailComposeViewController+Block.m */; };
+		8A9E06581CBF5A70000FB246 /* MFMessageComposeViewController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E06471CBF5A70000FB246 /* MFMessageComposeViewController+Block.m */; };
+		8A9E06591CBF5A70000FB246 /* UIActionSheet+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E064A1CBF5A70000FB246 /* UIActionSheet+Block.m */; };
+		8A9E065A1CBF5A70000FB246 /* UIAlertView+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E064C1CBF5A70000FB246 /* UIAlertView+Block.m */; };
+		8A9E065B1CBF5A70000FB246 /* UINavigationController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E064E1CBF5A70000FB246 /* UINavigationController+Block.m */; };
+		8A9E065C1CBF5A70000FB246 /* UIPickerView+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E06501CBF5A70000FB246 /* UIPickerView+Block.m */; };
+		8A9E065D1CBF5A70000FB246 /* UIPopoverController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E06521CBF5A70000FB246 /* UIPopoverController+Block.m */; };
 		8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */; };
 		8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */; };
 		8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25CC1B8ED8BC00BB13BA /* EditHoursViewController.m */; };
@@ -1912,6 +1923,7 @@
 		8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealCollectionModel.m; sourceTree = "<group>"; };
 		8A84C8D71C8036FD006A0D76 /* SeShopGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopGroupModel.h; sourceTree = "<group>"; };
 		8A84C8D81C8036FD006A0D76 /* SeShopGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopGroupModel.m; sourceTree = "<group>"; };
+		8A9026B81CBF915600B69415 /* CustomBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomBlock.h; sourceTree = "<group>"; };
 		8A94B0ED1CA38D1400ED568B /* CT3_LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_LoadingViewController.h; sourceTree = "<group>"; };
 		8A94B0EE1CA38D1400ED568B /* CT3_LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_LoadingViewController.m; sourceTree = "<group>"; };
 		8A94B0EF1CA38D1400ED568B /* CT3_LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_LoadingViewController.xib; sourceTree = "<group>"; };
@@ -1925,6 +1937,28 @@
 		8A9ABA511CA52B890067FACA /* IntroCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroCoverView.h; sourceTree = "<group>"; };
 		8A9ABA521CA52B890067FACA /* IntroCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroCoverView.m; sourceTree = "<group>"; };
 		8A9ABA531CA52B890067FACA /* IntroCoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroCoverView.xib; sourceTree = "<group>"; };
+		8A9E06381CBF5A70000FB246 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		8A9E06391CBF5A70000FB246 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8A9E063C1CBF5A70000FB246 /* CLLocationManager+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocationManager+Block.h"; sourceTree = "<group>"; };
+		8A9E063D1CBF5A70000FB246 /* CLLocationManager+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+Block.m"; sourceTree = "<group>"; };
+		8A9E063F1CBF5A70000FB246 /* NSURLConnection+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+Block.h"; sourceTree = "<group>"; };
+		8A9E06401CBF5A70000FB246 /* NSURLConnection+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+Block.m"; sourceTree = "<group>"; };
+		8A9E06411CBF5A70000FB246 /* iOSBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSBlocks.h; sourceTree = "<group>"; };
+		8A9E06421CBF5A70000FB246 /* iOSBlocksProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSBlocksProtocol.h; sourceTree = "<group>"; };
+		8A9E06441CBF5A70000FB246 /* MFMailComposeViewController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFMailComposeViewController+Block.h"; sourceTree = "<group>"; };
+		8A9E06451CBF5A70000FB246 /* MFMailComposeViewController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MFMailComposeViewController+Block.m"; sourceTree = "<group>"; };
+		8A9E06461CBF5A70000FB246 /* MFMessageComposeViewController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MFMessageComposeViewController+Block.h"; sourceTree = "<group>"; };
+		8A9E06471CBF5A70000FB246 /* MFMessageComposeViewController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MFMessageComposeViewController+Block.m"; sourceTree = "<group>"; };
+		8A9E06491CBF5A70000FB246 /* UIActionSheet+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Block.h"; sourceTree = "<group>"; };
+		8A9E064A1CBF5A70000FB246 /* UIActionSheet+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Block.m"; sourceTree = "<group>"; };
+		8A9E064B1CBF5A70000FB246 /* UIAlertView+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Block.h"; sourceTree = "<group>"; };
+		8A9E064C1CBF5A70000FB246 /* UIAlertView+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Block.m"; sourceTree = "<group>"; };
+		8A9E064D1CBF5A70000FB246 /* UINavigationController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Block.h"; sourceTree = "<group>"; };
+		8A9E064E1CBF5A70000FB246 /* UINavigationController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Block.m"; sourceTree = "<group>"; };
+		8A9E064F1CBF5A70000FB246 /* UIPickerView+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPickerView+Block.h"; sourceTree = "<group>"; };
+		8A9E06501CBF5A70000FB246 /* UIPickerView+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPickerView+Block.m"; sourceTree = "<group>"; };
+		8A9E06511CBF5A70000FB246 /* UIPopoverController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPopoverController+Block.h"; sourceTree = "<group>"; };
+		8A9E06521CBF5A70000FB246 /* UIPopoverController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPopoverController+Block.m"; sourceTree = "<group>"; };
 		8A9F25871B8D69E100BB13BA /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewController.xib; sourceTree = "<group>"; };
@@ -3544,6 +3578,8 @@
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
+				8A9026B61CBF906800B69415 /* CustomBlock */,
+				8A9E06371CBF5A70000FB246 /* iOSBlocks */,
 				8A0159CC1CB6740700ED6D0F /* CustomEmptyView */,
 				8A94B0EC1CA38CFD00ED568B /* CT3_LoadingView */,
 				8AFF288C1C9FF9C7008B66D8 /* AutoCoding */,
@@ -4493,6 +4529,14 @@
 			path = CollectionModel;
 			sourceTree = "<group>";
 		};
+		8A9026B61CBF906800B69415 /* CustomBlock */ = {
+			isa = PBXGroup;
+			children = (
+				8A9026B81CBF915600B69415 /* CustomBlock.h */,
+			);
+			path = CustomBlock;
+			sourceTree = "<group>";
+		};
 		8A94B0EC1CA38CFD00ED568B /* CT3_LoadingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -4529,6 +4573,75 @@
 				8A9ABA531CA52B890067FACA /* IntroCoverView.xib */,
 			);
 			path = IntroV3;
+			sourceTree = "<group>";
+		};
+		8A9E06371CBF5A70000FB246 /* iOSBlocks */ = {
+			isa = PBXGroup;
+			children = (
+				8A9E06381CBF5A70000FB246 /* LICENSE */,
+				8A9E06391CBF5A70000FB246 /* README.md */,
+				8A9E063A1CBF5A70000FB246 /* Source */,
+			);
+			path = iOSBlocks;
+			sourceTree = "<group>";
+		};
+		8A9E063A1CBF5A70000FB246 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8A9E063B1CBF5A70000FB246 /* CoreLocation */,
+				8A9E063E1CBF5A70000FB246 /* Foundation */,
+				8A9E06411CBF5A70000FB246 /* iOSBlocks.h */,
+				8A9E06421CBF5A70000FB246 /* iOSBlocksProtocol.h */,
+				8A9E06431CBF5A70000FB246 /* MessageUI */,
+				8A9E06481CBF5A70000FB246 /* UIKit */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		8A9E063B1CBF5A70000FB246 /* CoreLocation */ = {
+			isa = PBXGroup;
+			children = (
+				8A9E063C1CBF5A70000FB246 /* CLLocationManager+Block.h */,
+				8A9E063D1CBF5A70000FB246 /* CLLocationManager+Block.m */,
+			);
+			path = CoreLocation;
+			sourceTree = "<group>";
+		};
+		8A9E063E1CBF5A70000FB246 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				8A9E063F1CBF5A70000FB246 /* NSURLConnection+Block.h */,
+				8A9E06401CBF5A70000FB246 /* NSURLConnection+Block.m */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		8A9E06431CBF5A70000FB246 /* MessageUI */ = {
+			isa = PBXGroup;
+			children = (
+				8A9E06441CBF5A70000FB246 /* MFMailComposeViewController+Block.h */,
+				8A9E06451CBF5A70000FB246 /* MFMailComposeViewController+Block.m */,
+				8A9E06461CBF5A70000FB246 /* MFMessageComposeViewController+Block.h */,
+				8A9E06471CBF5A70000FB246 /* MFMessageComposeViewController+Block.m */,
+			);
+			path = MessageUI;
+			sourceTree = "<group>";
+		};
+		8A9E06481CBF5A70000FB246 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				8A9E06491CBF5A70000FB246 /* UIActionSheet+Block.h */,
+				8A9E064A1CBF5A70000FB246 /* UIActionSheet+Block.m */,
+				8A9E064B1CBF5A70000FB246 /* UIAlertView+Block.h */,
+				8A9E064C1CBF5A70000FB246 /* UIAlertView+Block.m */,
+				8A9E064D1CBF5A70000FB246 /* UINavigationController+Block.h */,
+				8A9E064E1CBF5A70000FB246 /* UINavigationController+Block.m */,
+				8A9E064F1CBF5A70000FB246 /* UIPickerView+Block.h */,
+				8A9E06501CBF5A70000FB246 /* UIPickerView+Block.m */,
+				8A9E06511CBF5A70000FB246 /* UIPopoverController+Block.h */,
+				8A9E06521CBF5A70000FB246 /* UIPopoverController+Block.m */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		8A9F25CA1B8ED89300BB13BA /* EditHours */ = {
@@ -7266,6 +7379,7 @@
 				8ADFF6BB1CB36D3900D27329 /* PopUpDropDownBlue@2x.png in Resources */,
 				8ADFF7871CB36D3900D27329 /* CategoriesCheck@2x.png in Resources */,
 				8ADFF80D1CB36D3900D27329 /* InviteFacebookIcon@2x.png in Resources */,
+				8A9E06531CBF5A70000FB246 /* LICENSE in Resources */,
 				8ADFF7261CB36D3900D27329 /* Icon-Small-40.png in Resources */,
 				8A45123D1BDE2C97008DE870 /* LikeListingCollectionViewCell.xib in Resources */,
 				8ADFF8951CB36D3900D27329 /* SearchLocationIcon@2x.png in Resources */,
@@ -8109,6 +8223,7 @@
 				8A6CCA391C17D14300BCD54E /* SeShopMoreInfoTableViewCell.m in Sources */,
 				8A114C7C1BE73F5D006AE3F0 /* BKCardNumberFormatter.m in Sources */,
 				8A9F25DD1B90002B00BB13BA /* CustomPickerViewController.m in Sources */,
+				8A9E06561CBF5A70000FB246 /* NSURLConnection+Block.m in Sources */,
 				8A2E2CE21B81CFE40010895E /* STSearchViewController.m in Sources */,
 				8AC8F7461BDA414E00DEF14A /* EditCollectionDetailViewController.m in Sources */,
 				8A3757C61B8583ED009DB7D4 /* UIFont+SystemFontOverride.m in Sources */,
@@ -8138,6 +8253,7 @@
 				8AFF08531C90379000918582 /* SearchSimpleTableViewCell.m in Sources */,
 				0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */,
 				8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */,
+				8A9E06571CBF5A70000FB246 /* MFMailComposeViewController+Block.m in Sources */,
 				8AD6C0F81B706CF30040437E /* SearchResultV2ViewController.m in Sources */,
 				8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */,
 				8A114CAB1BE73F5D006AE3F0 /* UIScrollView+CRScrollIndicator.m in Sources */,
@@ -8157,6 +8273,7 @@
 				C23FB6A31C99481400021D1F /* FilterCurrencyModel.m in Sources */,
 				8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */,
 				8A114C7F1BE73F5D006AE3F0 /* BKCurrencyTextField.m in Sources */,
+				8A9E065C1CBF5A70000FB246 /* UIPickerView+Block.m in Sources */,
 				C23042E11C61F331001008CB /* DealsModel.m in Sources */,
 				8A114CA21BE73F5D006AE3F0 /* PECropRectView.m in Sources */,
 				8AF33A431C3F6F5C000A2021 /* PhotoModel.m in Sources */,
@@ -8198,6 +8315,7 @@
 				8AFA51ED1C47B4AB00E7920E /* FeedType_CollectionSuggestedTblCell.m in Sources */,
 				8A114CDB1BE73FBF006AE3F0 /* UIScrollView+IBFloatingHeader.m in Sources */,
 				0BC8A0E91C0D4AD500EB8548 /* SeCollectionView.m in Sources */,
+				8A9E06581CBF5A70000FB246 /* MFMessageComposeViewController+Block.m in Sources */,
 				8AFF085F1C90379000918582 /* SearchQuickBrowseListingController.m in Sources */,
 				8AD6BE5B1B706CF30040437E /* DoPhotoCell.m in Sources */,
 				8AFF288F1C9FF9C7008B66D8 /* AutoCoding.m in Sources */,
@@ -8218,6 +8336,7 @@
 				8AD6BE231B706CF30040437E /* NSMutableArray+MoveArray.m in Sources */,
 				8A6BB42E1BF0C338005AA1B3 /* MZFormSheetPresentationController.m in Sources */,
 				C26676211C6485400021B6B0 /* RedemptionHistoryCell.m in Sources */,
+				8A9E065A1CBF5A70000FB246 /* UIAlertView+Block.m in Sources */,
 				8AC8F73A1BDA414E00DEF14A /* ProfileViewController.m in Sources */,
 				8AF2C2791B9EA3B800B0A7F1 /* NSDictionary+STHelper.m in Sources */,
 				8AEDBFBE1C2031BA000BD2FF /* TagModel.m in Sources */,
@@ -8290,6 +8409,7 @@
 				8A3F35681BF5E89D002B704C /* SuggestedCollectionPostTableViewCell.m in Sources */,
 				8AFA51CD1C47B4AB00E7920E /* FilterHeaderCollectionReusableView.m in Sources */,
 				8ADD47031C4CFD6D00AEAE2B /* AnnouncementModel.m in Sources */,
+				8A9E06591CBF5A70000FB246 /* UIActionSheet+Block.m in Sources */,
 				8AD6C1151B706CF30040437E /* FSOperation.m in Sources */,
 				8AFA51E71C47B4AB00E7920E /* SuggestionFeatureCVCell.m in Sources */,
 				8A114CCA1BE73F5D006AE3F0 /* NMBottomTabBar.m in Sources */,
@@ -8325,6 +8445,7 @@
 				C294FD261C9815B500C455C8 /* FilterCategoryModel.m in Sources */,
 				8A3409CE1B8B0DCB009B66C3 /* UIImage+Alpha.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
+				8A9E06541CBF5A70000FB246 /* README.md in Sources */,
 				8AF33A3D1C3F67F5000A2021 /* CTFeedModel.m in Sources */,
 				8A6BB42B1BF0C338005AA1B3 /* MZBlurEffectAdapter.m in Sources */,
 				8A114C861BE73F5D006AE3F0 /* BMXSwipableCellGestureDelegate.m in Sources */,
@@ -8380,6 +8501,7 @@
 				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
 				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,
 				8A114CD31BE73F5D006AE3F0 /* BaseViewController.m in Sources */,
+				8A9E065D1CBF5A70000FB246 /* UIPopoverController+Block.m in Sources */,
 				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,
 				8A0035411C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m in Sources */,
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,
@@ -8403,6 +8525,7 @@
 				C2AB4A5A1C6D8C900053FCA8 /* FilterAvailabilityCell.m in Sources */,
 				8AEDBFB71C2031BA000BD2FF /* PriceModel.m in Sources */,
 				8AF2C27A1B9EA3B800B0A7F1 /* NSMutableDictionary+STHelper.m in Sources */,
+				8A9E065B1CBF5A70000FB246 /* UINavigationController+Block.m in Sources */,
 				8AF6FE041C5F3EB7005AAE5D /* CountryModel.m in Sources */,
 				8AEDBFB81C2031BA000BD2FF /* ProfileModel.m in Sources */,
 				8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */,
@@ -8462,6 +8585,7 @@
 				8A114C941BE73F5D006AE3F0 /* FXImageView.m in Sources */,
 				C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */,
 				8AFA51E51C47B4AB00E7920E /* CollectionsCollectionViewCell.m in Sources */,
+				8A9E06551CBF5A70000FB246 /* CLLocationManager+Block.m in Sources */,
 				0BBFE0541B9D6260004B17E9 /* NotificationSettingsViewController.m in Sources */,
 				8A4509921BAFF7C000A868CD /* UIColor+Extension.m in Sources */,
 				8AEDBFA91C2031BA000BD2FF /* EditHourModel.m in Sources */,
@@ -8632,8 +8756,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8658,7 +8782,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
+				PROVISIONING_PROFILE = "81d72b46-e804-40e2-a73c-789201f10a10";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8672,8 +8796,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8698,7 +8822,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
+				PROVISIONING_PROFILE = "81d72b46-e804-40e2-a73c-789201f10a10";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;

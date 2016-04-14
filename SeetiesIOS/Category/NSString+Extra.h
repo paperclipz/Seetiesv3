@@ -14,5 +14,6 @@
 
 @property (nonatomic, copy) NSArray* tags;
 -(NSArray*)getTagWithFormat;
+- (NSArray *)rangesInSubstring:(NSString *)substring;
 
 @end

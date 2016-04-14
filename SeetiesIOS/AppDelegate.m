@@ -168,7 +168,6 @@
     [self registrationForApi];
     [self configureNotificaiton:application];
     [self configureSetup];
- //   [self requestForApiVersion];
     [self checkCurrentAppLanguage];
     [self showWindow];
    

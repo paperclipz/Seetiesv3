@@ -90,6 +90,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/APParallaxHeader.framework"
   install_framework "Pods/ActionSheetPicker_3_0.framework"
   install_framework "Pods/BOString.framework"
+  install_framework "Pods/CCHLinkTextView.framework"
   install_framework "Pods/CLLocationManager_blocks.framework"
   install_framework "Pods/DACircularProgress.framework"
   install_framework "Pods/DBCamera.framework"
@@ -116,7 +117,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/ViewMonitor.framework"
   install_framework "Pods/YLGIFImage.framework"
-  install_framework "Pods/iOSBlocks.framework"
   install_framework "Pods/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -126,6 +126,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/APParallaxHeader.framework"
   install_framework "Pods/ActionSheetPicker_3_0.framework"
   install_framework "Pods/BOString.framework"
+  install_framework "Pods/CCHLinkTextView.framework"
   install_framework "Pods/CLLocationManager_blocks.framework"
   install_framework "Pods/DACircularProgress.framework"
   install_framework "Pods/DBCamera.framework"
@@ -152,6 +153,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/ViewMonitor.framework"
   install_framework "Pods/YLGIFImage.framework"
-  install_framework "Pods/iOSBlocks.framework"
   install_framework "Pods/pop.framework"
 fi

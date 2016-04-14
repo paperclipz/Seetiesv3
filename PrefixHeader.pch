@@ -74,6 +74,7 @@
 #import <Crashlytics/Crashlytics.h>
 
 #import "AutoCoding.h"
+#import "CustomBlock.h"
 
 #endif
 

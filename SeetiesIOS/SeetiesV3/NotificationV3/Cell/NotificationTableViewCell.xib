@@ -17,6 +17,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="dGP-Ml-hgQ">
                         <rect key="frame" x="18" y="16" width="50" height="50"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="CYc-PS-uol"/>
                             <constraint firstAttribute="height" constant="50" id="Onv-Yc-OW7"/>
@@ -60,19 +61,29 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An6-7y-gMY">
+                        <rect key="frame" x="18" y="16" width="50" height="50"/>
+                        <connections>
+                            <action selector="btnProfileClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="d4f-Nb-Usb"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="dGP-Ml-hgQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="1E6-tT-VpG"/>
+                    <constraint firstItem="An6-7y-gMY" firstAttribute="top" secondItem="dGP-Ml-hgQ" secondAttribute="top" id="6VR-nw-Rdo"/>
+                    <constraint firstItem="An6-7y-gMY" firstAttribute="trailing" secondItem="dGP-Ml-hgQ" secondAttribute="trailing" id="Ilf-Ag-cRT"/>
                     <constraint firstItem="Wym-xv-zw3" firstAttribute="leading" secondItem="HEx-Em-Itn" secondAttribute="trailing" constant="8" id="IqU-Bn-K8J"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Wym-xv-zw3" secondAttribute="trailing" constant="10" id="TbD-h4-eUP"/>
                     <constraint firstItem="HEx-Em-Itn" firstAttribute="leading" secondItem="VoP-03-iyi" secondAttribute="leading" id="UyN-NV-McU"/>
                     <constraint firstItem="HEx-Em-Itn" firstAttribute="top" secondItem="VoP-03-iyi" secondAttribute="bottom" constant="5" id="b6N-ai-oFB"/>
+                    <constraint firstItem="An6-7y-gMY" firstAttribute="leading" secondItem="dGP-Ml-hgQ" secondAttribute="leading" id="bhc-Bb-cPe"/>
                     <constraint firstItem="dGP-Ml-hgQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="fSx-6c-cfZ"/>
                     <constraint firstItem="ddE-gz-XVG" firstAttribute="top" secondItem="HEx-Em-Itn" secondAttribute="bottom" constant="2" id="hZl-Am-ufe"/>
                     <constraint firstItem="VoP-03-iyi" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="kD1-y4-RvC"/>
                     <constraint firstItem="ddE-gz-XVG" firstAttribute="leading" secondItem="HEx-Em-Itn" secondAttribute="leading" id="l36-VS-TDg"/>
                     <constraint firstItem="Wym-xv-zw3" firstAttribute="centerY" secondItem="HEx-Em-Itn" secondAttribute="centerY" id="mUE-jh-bD2"/>
                     <constraint firstItem="VoP-03-iyi" firstAttribute="leading" secondItem="dGP-Ml-hgQ" secondAttribute="trailing" constant="8" id="qSB-gY-uS3"/>
+                    <constraint firstItem="An6-7y-gMY" firstAttribute="bottom" secondItem="dGP-Ml-hgQ" secondAttribute="bottom" id="sxO-PJ-Rrt"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ddE-gz-XVG" secondAttribute="trailing" id="xUE-16-C8Y"/>
                     <constraint firstItem="VoP-03-iyi" firstAttribute="top" secondItem="dGP-Ml-hgQ" secondAttribute="top" id="z7S-Pz-Beq"/>
                 </constraints>

@@ -488,6 +488,8 @@
     NSDictionary* dict = @{@"language_code":ENGLISH_CODE};
     
     isMiddleOfRequestingCountry = YES;
+    
+    [LoadingManager show];
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeCountry param:dict appendString:nil completeHandler:^(id object) {
         isMiddleOfRequestingCountry = NO;
 
@@ -533,6 +535,8 @@
             }
             
             if ([Utils isArrayNull:currentCountryFromList.arrArea]) {
+                [LoadingManager show];
+
                 [self requestServerForCountryPlaces:currentCountryFromList];
             }
             else{

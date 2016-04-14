@@ -25,6 +25,7 @@ PODS:
     - AFNetworking/NSURLSession
   - APParallaxHeader (0.1.6)
   - BOString (0.10.0)
+  - CCHLinkTextView (1.2.0)
   - CLLocationManager-blocks (1.3.3)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
@@ -45,15 +46,6 @@ PODS:
     - InstagramKit/Exclude-UICKeyChainStore (= 3.7)
   - InstagramKit/Exclude-UICKeyChainStore (3.7):
     - AFNetworking (~> 2.0)
-  - iOSBlocks/Cocoa (1.2):
-    - iOSBlocks/CoreLocation
-    - iOSBlocks/Foundation
-    - iOSBlocks/MessageUI
-    - iOSBlocks/UIKit
-  - iOSBlocks/CoreLocation (1.2)
-  - iOSBlocks/Foundation (1.2)
-  - iOSBlocks/MessageUI (1.2)
-  - iOSBlocks/UIKit (1.2)
   - IQKeyboardManager (4.0.0)
   - JSONModel (1.2.0)
   - LPGoogleFunctions (1.2.3):
@@ -84,6 +76,7 @@ DEPENDENCIES:
   - ADTransitionController
   - APParallaxHeader
   - BOString
+  - CCHLinkTextView
   - CLLocationManager-blocks
   - Crashlytics
   - DBCamera (~> 2.4)
@@ -92,7 +85,6 @@ DEPENDENCIES:
   - HMSegmentedControl
   - IDMPhotoBrowser
   - InstagramKit (~> 3.0)
-  - iOSBlocks/Cocoa
   - IQKeyboardManager
   - JSONModel
   - LPGoogleFunctions
@@ -128,6 +120,7 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   BOString: b4c4df4f8a7f046c42a51c32629772dc2701fc47
+  CCHLinkTextView: bfe688e0b7d34088375a466524158765832f7657
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
@@ -139,7 +132,6 @@ SPEC CHECKSUMS:
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   IDMPhotoBrowser: 52ac15203a73da002a7501ac7c6651a4cd761b4e
   InstagramKit: bbbd15baeac2d32b2915d2d89319ad90bacd5912
-  iOSBlocks: a52cab17a30314e91b2c85ea4c65f84d19826676
   IQKeyboardManager: b91928f7927ba55a5829b4dcf4b7a6736ac9fc22
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
