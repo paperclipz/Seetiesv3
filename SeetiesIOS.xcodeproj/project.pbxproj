@@ -339,6 +339,7 @@
 		8ABA7DED1C7421FC00FB41F4 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA7DEB1C7421FC00FB41F4 /* NotificationTableViewCell.xib */; };
 		8ABA7DF11C7422AA00FB41F4 /* CT3_NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA7DEF1C7422AA00FB41F4 /* CT3_NotificationViewController.m */; };
 		8ABA7DF21C7422AA00FB41F4 /* CT3_NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA7DF01C7422AA00FB41F4 /* CT3_NotificationViewController.xib */; };
+		8ABE84F91CBE55750014CCDE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ABE84F81CBE55750014CCDE /* StoreKit.framework */; };
 		8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */; };
 		8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */; };
 		8AC8F7231BDA414E00DEF14A /* CollectionListingTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D91BDA414E00DEF14A /* CollectionListingTabViewController.xib */; };
@@ -477,7 +478,6 @@
 		8AD6C2C01B707A470040437E /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BC1B707A470040437E /* ParseFacebookUtils.framework */; };
 		8AD6C2C11B707A470040437E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BD1B707A470040437E /* ParseUI.framework */; };
 		8AD6C2C31B707A5A0040437E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C21B707A5A0040437E /* libsqlite3.0.dylib */; };
-		8AD6C2C51B707A600040437E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C41B707A600040437E /* StoreKit.framework */; };
 		8AD6C2C71B707A8C0040437E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C61B707A8C0040437E /* OpenGLES.framework */; };
 		8AD6C2C91B707AAF0040437E /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C81B707AAF0040437E /* libstdc++.dylib */; };
 		8AD6C2CB1B707ABE0040437E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2CA1B707ABE0040437E /* MessageUI.framework */; };
@@ -1964,6 +1964,7 @@
 		8ABA7DEE1C7422AA00FB41F4 /* CT3_NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_NotificationViewController.h; sourceTree = "<group>"; };
 		8ABA7DEF1C7422AA00FB41F4 /* CT3_NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_NotificationViewController.m; sourceTree = "<group>"; };
 		8ABA7DF01C7422AA00FB41F4 /* CT3_NotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_NotificationViewController.xib; sourceTree = "<group>"; };
+		8ABE84F81CBE55750014CCDE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		8AC8F6D71BDA414E00DEF14A /* CollectionListingTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionListingTabViewController.h; sourceTree = "<group>"; };
 		8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionListingTabViewController.m; sourceTree = "<group>"; };
@@ -2184,7 +2185,6 @@
 		8AD6C2BC1B707A470040437E /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = SeetiesIOS/framework/ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		8AD6C2BD1B707A470040437E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = SeetiesIOS/framework/ParseUI.framework; sourceTree = "<group>"; };
 		8AD6C2C21B707A5A0040437E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		8AD6C2C41B707A600040437E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8AD6C2C61B707A8C0040437E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		8AD6C2C81B707AAF0040437E /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		8AD6C2CA1B707ABE0040437E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -3238,7 +3238,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AD6C2C51B707A600040437E /* StoreKit.framework in Frameworks */,
 				0BC789A61BF4A31C00D126A3 /* AdSupport.framework in Frameworks */,
 				8A3409D31B8B0DE6009B66C3 /* ImageIO.framework in Frameworks */,
 				8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */,
@@ -3266,6 +3265,7 @@
 				8AD6C2BE1B707A470040437E /* Parse.framework in Frameworks */,
 				8AD6C12C1B706DFF0040437E /* libGoogleAnalyticsServices.a in Frameworks */,
 				8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */,
+				8ABE84F91CBE55750014CCDE /* StoreKit.framework in Frameworks */,
 				8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */,
 				C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */,
 			);
@@ -3284,6 +3284,7 @@
 		01FC4E65D0A113898CC6495A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8ABE84F81CBE55750014CCDE /* StoreKit.framework */,
 				0BC789A51BF4A31C00D126A3 /* AdSupport.framework */,
 				8A3409D21B8B0DE6009B66C3 /* ImageIO.framework */,
 				8AD6C87D1B74AAE90040437E /* QuartzCore.framework */,
@@ -3296,7 +3297,6 @@
 				8AD6C2CA1B707ABE0040437E /* MessageUI.framework */,
 				8AD6C2C81B707AAF0040437E /* libstdc++.dylib */,
 				8AD6C2C61B707A8C0040437E /* OpenGLES.framework */,
-				8AD6C2C41B707A600040437E /* StoreKit.framework */,
 				8AD6C2C21B707A5A0040437E /* libsqlite3.0.dylib */,
 				8AD6C2BA1B707A470040437E /* Parse.framework */,
 				8AD6C2BB1B707A470040437E /* ParseCrashReporting.framework */,
@@ -7005,6 +7005,14 @@
 					8AD6BA591B705DF20040437E = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 22DQJTA32H;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					8AD6BA721B705DF30040437E = {
 						CreatedOnToolsVersion = 6.4;
@@ -8623,8 +8631,9 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8649,7 +8658,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d7c0af58-a427-483f-b109-303af7d7524f";
+				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8662,8 +8671,9 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8688,7 +8698,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d7c0af58-a427-483f-b109-303af7d7524f";
+				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;

@@ -385,6 +385,8 @@
        
         [view.btnDeals.titleLabel setFont:[UIFont fontWithName:CustomFontName size:17]];
         
+        [view.btnDeals setTitleColor:ONE_ZERO_TWO_COLOR forState:UIControlStateNormal];
+
         view.btnSeeMore.hidden = YES;
 
         [view.btnDeals setTitle:[NSString stringWithFormat:@"%@ (%lu)",LocalisedString(@"Deals"),(unsigned long)self.dealsModel.total_count] forState:UIControlStateNormal];
