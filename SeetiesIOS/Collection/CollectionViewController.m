@@ -807,7 +807,7 @@
         for (int i= 0; i < [ArrHashTag count]; i++) {
             UILabel *ShowHashTagText = [[UILabel alloc]init];
             ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
-            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:11];
             ShowHashTagText.textAlignment = NSTextAlignmentCenter;
             ShowHashTagText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowHashTagText.layer.cornerRadius = 5;
@@ -818,7 +818,7 @@
             NSString *Text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i] UTF8String] encoding:NSUTF8StringEncoding];
             CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
                                           options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
+                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:11]}
                                           context:nil];
             
             //NSLog(@"r ==== %f",r.size.width);
@@ -861,13 +861,13 @@
         if ([GetFollowing isEqualToString:@"0"]) {
 //            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateNormal];
 //            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateSelected];
-            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
-            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowIcon.png")] forState:UIControlStateNormal];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowingIcon.png")] forState:UIControlStateSelected];
         }else{
 //            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateNormal];
 //            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateSelected];
-            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateNormal];
-            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateSelected];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowingIcon.png")] forState:UIControlStateNormal];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowIcon.png")] forState:UIControlStateSelected];
         }
 
         
@@ -1105,10 +1105,9 @@
         for (NSInteger i = DataCount; i < DataTotal; i++) {
             int CountHeight = TempHeight;
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-            ShowImage.frame = CGRectMake(10, TempHeight, screenWidth - 20, 180);
+            ShowImage.frame = CGRectMake(0, TempHeight, screenWidth, 180);
             ShowImage.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage.layer.masksToBounds = YES;
-            ShowImage.layer.cornerRadius = 5;
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
             NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[Content_arrImage objectAtIndex:i]];
@@ -1124,14 +1123,13 @@
             
             UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
             ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
-            ShowOverlayImg.frame = CGRectMake(10, TempHeight, screenWidth - 20, 180);
+            ShowOverlayImg.frame = CGRectMake(0, TempHeight, screenWidth, 180);
             ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
             ShowOverlayImg.layer.masksToBounds = YES;
-            ShowOverlayImg.layer.cornerRadius = 5;
             [ListView addSubview:ShowOverlayImg];
             
             UIButton *ClickToDetailButton = [[UIButton alloc]init];
-            ClickToDetailButton.frame = CGRectMake(10, TempHeight, screenWidth - 20, 180);
+            ClickToDetailButton.frame = CGRectMake(0, TempHeight, screenWidth, 180);
             [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
             ClickToDetailButton.backgroundColor = [UIColor clearColor];
             ClickToDetailButton.tag = i;
