@@ -493,7 +493,6 @@
 		8AD6C2CF1B707B1E0040437E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2CE1B707B1E0040437E /* libz.1.2.5.dylib */; };
 		8AD6C2D11B707B270040437E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2D01B707B270040437E /* libicucore.dylib */; };
 		8AD6C80A1B7096BA0040437E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C80C1B7096BA0040437E /* Localizable.strings */; };
-		8AD6C81D1B73382E0040437E /* Localisator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C81C1B73382E0040437E /* Localisator.m */; };
 		8AD6C8291B736C000040437E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8281B736C000040437E /* DataManager.m */; };
 		8AD6C82E1B737A830040437E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C82D1B737A830040437E /* CoreData.framework */; };
 		8AD6C8301B737AAB0040437E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C82F1B737AAB0040437E /* SystemConfiguration.framework */; };
@@ -2241,8 +2240,6 @@
 		8AD6C8121B70973F0040437E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		8AD6C8131B7097450040437E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		8AD6C8141B7097620040437E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
-		8AD6C81B1B73382E0040437E /* Localisator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localisator.h; sourceTree = "<group>"; };
-		8AD6C81C1B73382E0040437E /* Localisator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localisator.m; sourceTree = "<group>"; };
 		8AD6C8271B736C000040437E /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		8AD6C8281B736C000040437E /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		8AD6C82D1B737A830040437E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -5093,8 +5090,6 @@
 		8AD6BD711B706CF30040437E /* MANAGER */ = {
 			isa = PBXGroup;
 			children = (
-				8AD6C81B1B73382E0040437E /* Localisator.h */,
-				8AD6C81C1B73382E0040437E /* Localisator.m */,
 				8AD6BD721B706CF30040437E /* ConnectionManager.h */,
 				8AD6BD731B706CF30040437E /* ConnectionManager.m */,
 				8AD6C8271B736C000040437E /* DataManager.h */,
@@ -8318,7 +8313,6 @@
 				8AD6BE571B706CF30040437E /* DoAlbumCell.m in Sources */,
 				8A0F50D41C0EAD9A002B1E22 /* SeDealsTableViewCell.m in Sources */,
 				C240EEED1C9FB2D1002B4283 /* SearchLocationCountryCell.m in Sources */,
-				8AD6C81D1B73382E0040437E /* Localisator.m in Sources */,
 				0B40B3FB1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
 				8ABA7DF11C7422AA00FB41F4 /* CT3_NotificationViewController.m in Sources */,

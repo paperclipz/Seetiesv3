@@ -61,7 +61,7 @@
     [super initSelfView];
     self.ibPhotoPin.image = [self.ibPhotoPin.image imageTintedWithColor:UIColorFromRGB(153.0, 153.0, 153.0, 0.4)];
 
-    self.txtDescription.placeholder = LOCALIZATION(@"Add a note");
+    self.txtDescription.placeholder = LocalisedString(@"Add a note");
     self.txtDescription.delegate = self;
 }
  -(void)saveData
