@@ -654,18 +654,24 @@
     NSDictionary* dict = @{@"page":self.userProfilePostModel.recommendations.page?@(self.userProfilePostModel.recommendations.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
-                           @"keyword":[self convertStringToEmptyIfItsNull:self.keyword],
-                           @"sort":@"3",
-                           @"lat":[self convertStringToEmptyIfItsNull:self.homeLocationModel.latitude],
-                           @"lng":[self convertStringToEmptyIfItsNull:self.homeLocationModel.longtitude],
-                           @"current_lat":[self convertStringToEmptyIfItsNull:self.currentLatitude],
-                           @"current_lng":[self convertStringToEmptyIfItsNull:self.currentLongtitude]
+                           @"keyword":[self convertStringToEmptyIfItsNull:self.keyword]
                            };
+    
+    NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+    
+    [finalDict appendDictionarywithKey:@"lat" withValue:self.homeLocationModel.latitude];
+    [finalDict appendDictionarywithKey:@"lng" withValue:self.homeLocationModel.longtitude];
+    [finalDict appendDictionarywithKey:@"place_id" withValue:self.homeLocationModel.place_id];
+    
+    if (self.filterDict) {
+        [finalDict addEntriesFromDictionary:self.filterDict];
+    }
+    
     isMiddleOfCallingServer = YES;
     [self.ibTableView startFooterLoadingView];
 
     [self.ibEmptyStateView showLoading];
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchPosts param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchPosts param:finalDict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
         [self.arrList addObjectsFromArray:self.userProfilePostModel.recommendations.posts];
         [self.ibTableView reloadData];

@@ -65,12 +65,13 @@
 
 @property(nonatomic) GeneralFilterViewController *shopFilterViewController;
 @property(nonatomic) GeneralFilterViewController *collectionFilterViewController;
-@property(nonatomic) Filter2ViewController *postFilterViewController;
+@property(nonatomic) PostFilterViewController *postFilterViewController;
 
 @property(nonatomic)NSArray* arrSimpleTagList;
 @property(nonatomic)NSArray* arrComplexTagList;
 @property(nonatomic)FiltersModel *shopFilterModel;
 @property(nonatomic)FiltersModel *collectionFilterModel;
+@property(nonatomic)FiltersModel *postFilterModel;
 @end
 
 @implementation CT3_SearchListingViewController
@@ -119,6 +120,7 @@
     
     [self formatShopFilter];
     [self formatCollectionFilter];
+    [self formatPostFilter];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -430,8 +432,205 @@
              @"category_group": catString};
 }
 
+-(void)formatPostFilter{
+    self.postFilterModel = [[FiltersModel alloc] init];
+    self.postFilterModel.filterCategories = [[NSMutableArray<FilterCategoryModel> alloc] init];
+    self.postFilterModel.filterViewType = FilterViewTypeSearchShop;
+    
+    //Sort
+    FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
+    sortCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    sortCategory.categoryName = LocalisedString(@"Sort by");
+    sortCategory.filterCategoryType = FilterTypeSort;
+    
+    FilterModel *popular = [[FilterModel alloc] init];
+    popular.name = LocalisedString(@"Popular");
+    popular.isSelected = YES;
+    
+    FilterModel *distance = [[FilterModel alloc] init];
+    distance.name = LocalisedString(@"Distance");
+    distance.isSelected = NO;
+    distance.sortType = SortTypeNearest;
+    
+    [sortCategory.filtersArray addObject:popular];
+    [sortCategory.filtersArray addObject:distance];
+    
+    //Category
+    FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
+    catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
+    catCategory.categoryName = LocalisedString(@"Filter by");
+    catCategory.filterCategoryType = FilterTypeCat;
+    
+    AppInfoModel *appInfoModel = [[DataManager Instance] appInfoModel];
+    for (CategoryModel *categoryModel in appInfoModel.categories) {
+        FilterModel *filter = [[FilterModel alloc] init];
+        NSString *languageCode = [Utils getDeviceAppLanguageCode];
+        NSString *name = categoryModel.single_line[languageCode];
+        filter.name = name? name : @"";
+        filter.filterId = [NSString stringWithFormat:@"%d", categoryModel.category_id];
+        filter.isSelected = NO;
+        filter.imageUrl = categoryModel.selectedImageUrl;
+        filter.bgColorHexValue = categoryModel.background_color;
+        [catCategory.filtersArray addObject:filter];
+    }
+    
+    [self.postFilterModel.filterCategories addObject:sortCategory];
+    [self.postFilterModel.filterCategories addObject:catCategory];
+}
+
+-(NSDictionary*)getPostFilter{
+    int sort = 1;
+    NSMutableString *catString = [[NSMutableString alloc] init];
+    for (FilterCategoryModel *filterCategory in self.postFilterModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        sort = (int)filter.sortType;
+                    }
+                }
+            }
+                break;
+                
+            case FilterTypeCat:
+            {
+                BOOL isFirst = YES;
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        if (isFirst) {
+                            isFirst = NO;
+                        }
+                        else{
+                            [catString appendString:@","];
+                        }
+                        
+                        [catString appendString:filter.filterId];
+                    }
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    return @{@"sort": @(sort),
+             @"categories": catString};
+}
+
 -(void)applyFilterClicked:(FiltersModel*)filtersModel{
     [self refreshSearch];
+}
+
+-(void)postApplyFilterClicked:(FiltersModel*)filtersModel{
+//    self.postFilterModel = filtersModel;
+    [self refreshSearch];
+}
+
+-(void)resetAllFilters{
+    //reset post filter
+    for (FilterCategoryModel *filterCategory in self.postFilterModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                int count = 0;
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (count == 0) {
+                        filter.isSelected = YES;
+                    }
+                    else{
+                        filter.isSelected = NO;
+                    }
+                    count++;
+                }
+            }
+                break;
+                
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    filter.isSelected = NO;
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    self.postFilterViewController = nil;
+    
+    //reset shop filter
+    for (FilterCategoryModel *filterCategory in self.shopFilterModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                int count = 0;
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (count == 0) {
+                        filter.isSelected = YES;
+                    }
+                    else{
+                        filter.isSelected = NO;
+                    }
+                    count++;
+                }
+            }
+                break;
+                
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    filter.isSelected = NO;
+                }
+            }
+                break;
+                
+            case FilterTypeIsOpen:
+            {
+                FilterModel *filter = filterCategory.filtersArray[0];
+                filter.isSelected = NO;
+            }
+                
+            default:
+                break;
+        }
+    }
+    self.shopFilterViewController = nil;
+    
+    //reset collection filter
+    for (FilterCategoryModel *filterCategory in self.collectionFilterModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                int count = 0;
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (count == 0) {
+                        filter.isSelected = YES;
+                    }
+                    else{
+                        filter.isSelected = NO;
+                    }
+                    count++;
+                }
+            }
+                break;
+                
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    filter.isSelected = NO;
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    self.collectionFilterViewController = nil;
 }
 
 #pragma mark - TextField Search
@@ -498,6 +697,7 @@
 
        
         if (![Utils isStringNull:self.ibSearchText.text]) {
+            [self resetAllFilters];
             [self refreshSearch];
             
         }
@@ -1025,7 +1225,7 @@
         _PostsListingTableViewController = [SearchLTabViewController new];
         _PostsListingTableViewController.searchListingType = SearchsListingTypePosts;
         _PostsListingTableViewController.title = LocalisedString(@"Posts");
-//        _PostsListingTableViewController.showFilter = YES;
+        _PostsListingTableViewController.showFilter = YES;
 
         // [_PostsListingTableViewController refreshRequest:self.ibSearchText.text Latitude:self.Getlat Longtitude:self.Getlong CurrentLatitude:self.GetCurrentlat CurrentLongtitude:self.GetCurrentLong];
         
@@ -1139,10 +1339,11 @@
     return _collectionFilterViewController;
 }
 
--(Filter2ViewController *)postFilterViewController{
+-(PostFilterViewController *)postFilterViewController{
     if (!_postFilterViewController) {
-        _postFilterViewController = [Filter2ViewController new];
-        [_postFilterViewController GetWhatViewComeHere:@"Search"];
+        _postFilterViewController = [PostFilterViewController new];
+        [_postFilterViewController initWithFilter:self.postFilterModel];
+        _postFilterViewController.delegate = self;
     }
     return _postFilterViewController;
 }
@@ -1155,7 +1356,7 @@
     [self.SeetizensListingTableViewController refreshRequestWithText:self.ibSearchText.text];
     [self.shopListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text filterDictionary:[self getShopFilter]];
     [self.collectionListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text filterDictionary:[self getCollectionFilter]];
-    [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text];
+    [self.PostsListingTableViewController refreshRequestWithModel:self.homeLocationModel Keyword:self.ibSearchText.text filterDictionary:[self getPostFilter]];
     
    
 }

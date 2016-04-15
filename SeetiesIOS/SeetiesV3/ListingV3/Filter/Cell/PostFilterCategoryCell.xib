@@ -10,43 +10,62 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="PostFilterCategoryCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ju-7a-Hdu">
-                        <rect key="frame" x="64" y="12" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="66" y="16" width="38" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sF7-xF-7f4" userLabel="cat icon">
-                        <rect key="frame" x="16" y="2" width="40" height="40"/>
-                        <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sF7-xF-7f4" userLabel="cat icon">
+                        <rect key="frame" x="16" y="4" width="42" height="42"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="sF7-xF-7f4" secondAttribute="height" multiplier="1:1" id="CE3-wy-Hy1"/>
+                            <constraint firstAttribute="height" constant="42" id="RIf-aS-Awv"/>
+                            <constraint firstAttribute="width" constant="42" id="S1g-NS-OhA"/>
                             <constraint firstAttribute="width" secondItem="sF7-xF-7f4" secondAttribute="height" multiplier="1:1" id="XrD-hj-iAc"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="RIf-aS-Awv"/>
+                                <exclude reference="S1g-NS-OhA"/>
+                                <exclude reference="XrD-hj-iAc"/>
+                            </mask>
+                        </variation>
                     </imageView>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueTick.png" translatesAutoresizingMaskIntoConstraints="NO" id="gNZ-q9-P5O" userLabel="check icon">
-                        <rect key="frame" x="264" y="2" width="40" height="40"/>
+                        <rect key="frame" x="258" y="2" width="46" height="46"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="gNZ-q9-P5O" secondAttribute="height" multiplier="1:1" id="kbL-fq-ged"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="sF7-xF-7f4" secondAttribute="bottom" constant="-6" id="2rX-IM-nLS"/>
-                    <constraint firstItem="sF7-xF-7f4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-6" id="9Th-cU-OZL"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="sF7-xF-7f4" secondAttribute="bottom" constant="-4" id="2rX-IM-nLS"/>
+                    <constraint firstItem="sF7-xF-7f4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-4" id="9Th-cU-OZL"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="sF7-xF-7f4" secondAttribute="bottom" constant="-4.5" id="C1b-TE-yUY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="gNZ-q9-P5O" secondAttribute="trailing" constant="8" id="HbA-wg-uw8"/>
                     <constraint firstAttribute="bottomMargin" secondItem="gNZ-q9-P5O" secondAttribute="bottom" constant="-6" id="Khf-ee-wFF"/>
                     <constraint firstItem="gNZ-q9-P5O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-6" id="hAP-Je-dJS"/>
+                    <constraint firstItem="sF7-xF-7f4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mxl-h9-wB1"/>
+                    <constraint firstItem="sF7-xF-7f4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-4" id="nop-cW-UU9"/>
                     <constraint firstItem="gNZ-q9-P5O" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1ju-7a-Hdu" secondAttribute="trailing" constant="10" id="pu4-ST-NVu"/>
                     <constraint firstItem="1ju-7a-Hdu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pyj-dW-onN"/>
                     <constraint firstItem="1ju-7a-Hdu" firstAttribute="leading" secondItem="sF7-xF-7f4" secondAttribute="trailing" constant="8" id="u5M-zf-EZN"/>
                     <constraint firstItem="sF7-xF-7f4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="yQb-wx-1Gw"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="2rX-IM-nLS"/>
+                        <exclude reference="9Th-cU-OZL"/>
+                        <exclude reference="mxl-h9-wB1"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="ibCategoryIcon" destination="sF7-xF-7f4" id="tCv-Pe-QWi"/>

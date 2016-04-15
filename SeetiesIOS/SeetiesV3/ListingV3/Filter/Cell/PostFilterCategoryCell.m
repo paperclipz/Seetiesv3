@@ -34,11 +34,14 @@
     
     self.ibTitle.text = self.filterModel.name;
     self.ibCheckIcon.hidden = !self.filterModel.isSelected;
+    self.ibCategoryIcon.backgroundColor = [UIColor colorWithHexValue:self.filterModel.bgColorHexValue];
     
     if (![Utils isStringNull:self.filterModel.imageUrl]) {
-        [self.ibCategoryIcon sd_setImageCroppedWithURL:[NSURL URLWithString:self.filterModel.imageUrl] completed:^(UIImage *image) {
+        [self.ibCategoryIcon sd_setImageWithURL:[NSURL URLWithString:self.filterModel.imageUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            self.ibCategoryIcon.image = image;
         }];
     }
+    [Utils setRoundBorder:self.ibCategoryIcon color:[UIColor clearColor] borderRadius:self.ibCategoryIcon.frame.size.height/2];
     
 }
 

@@ -22,4 +22,5 @@ typedef enum{
 @property(nonatomic) FilterPriceModel *filterPrice;
 @property(nonatomic) SortType sortType;
 @property(nonatomic) NSString *imageUrl;
+@property(nonatomic) NSString *bgColorHexValue;
 @end

@@ -23,8 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.ibFilterTable registerNib:[UINib nibWithNibName:@"PostFilterSortCell.h" bundle:nil] forCellReuseIdentifier:@"PostFilterSortCell"];
-    [self.ibFilterTable registerNib:[UINib nibWithNibName:@"PostFilterCategoryCell.h" bundle:nil] forCellReuseIdentifier:@"PostFilterCategoryCell"];
+    [self.ibFilterTable registerNib:[UINib nibWithNibName:@"PostFilterSortCell" bundle:nil] forCellReuseIdentifier:@"PostFilterSortCell"];
+    [self.ibFilterTable registerNib:[UINib nibWithNibName:@"PostFilterCategoryCell" bundle:nil] forCellReuseIdentifier:@"PostFilterCategoryCell"];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -37,55 +38,71 @@
     [self.ibResetBtn setTitle:LocalisedString(@"Reset") forState:UIControlStateNormal];
 }
 
--(void)initFilterData{
-    self.filtersModel = [[FiltersModel alloc] init];
-    self.filtersModel.filterCategories = [[NSMutableArray<FilterCategoryModel> alloc] init];
-    self.filtersModel.filterViewType = FilterViewTypeSearchShop;
+-(void)initWithFilter:(FiltersModel*)filtersModel{
+    _filtersModel = filtersModel;
     
-    //Sort
-    FilterCategoryModel *sortCategory = [[FilterCategoryModel alloc] init];
-    sortCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    sortCategory.categoryName = LocalisedString(@"Sort by");
-    sortCategory.filterCategoryType = FilterTypeSort;
-    
-    FilterModel *latest = [[FilterModel alloc] init];
-    latest.name = LocalisedString(@"Popular");
-    latest.isSelected = YES;
-    latest.sortType = SortTypeMostPopular;
-    
-    FilterModel *distance = [[FilterModel alloc] init];
-    distance.name = LocalisedString(@"Distance");
-    distance.isSelected = NO;
-    distance.sortType = SortTypeNearest;
-    
-    [sortCategory.filtersArray addObject:latest];
-    [sortCategory.filtersArray addObject:distance];
-    
-    //Category
-    FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
-    catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    catCategory.categoryName = LocalisedString(@"Filter by");
-    catCategory.filterCategoryType = FilterTypeCat;
-    
-    AppInfoModel *appInfoModel = [[DataManager Instance] appInfoModel];
-    for (CategoryModel *categoryModel in appInfoModel.categories) {
-        FilterModel *filter = [[FilterModel alloc] init];
-        NSString *languageCode = [Utils getDeviceAppLanguageCode];
-        NSString *name = categoryModel.single_line[languageCode];
-        filter.name = name? name : @"";
-        filter.filterId = [NSString stringWithFormat:@"%d", categoryModel.category_id];
-        filter.isSelected = NO;
-        filter.imageUrl = categoryModel.defaultImageUrl;
-        [catCategory.filtersArray addObject:filter];
+    for (FilterCategoryModel *filterCategory in self.filtersModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.isSelected) {
+                        self.initialSort = filter.sortType;
+                        break;
+                    }
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
-    
-    [self.filtersModel.filterCategories addObject:sortCategory];
-    [self.filtersModel.filterCategories addObject:catCategory];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)resetBtnClicked:(id)sender {
+    for (FilterCategoryModel *filterCategory in self.filtersModel.filterCategories) {
+        switch (filterCategory.filterCategoryType) {
+            case FilterTypeSort:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    if (filter.sortType == self.initialSort) {
+                        filter.isSelected = YES;
+                    }
+                    else{
+                        filter.isSelected = NO;
+                    }
+                }
+            }
+                break;
+                
+            case FilterTypeCat:
+            {
+                for (FilterModel *filter in filterCategory.filtersArray) {
+                    filter.isSelected = NO;
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    [self.ibFilterTable reloadData];
+}
+
+- (IBAction)ibApplyBtnClicked:(id)sender {
+    if (self.delegate) {
+        [self.delegate postApplyFilterClicked:self.filtersModel];
+    }
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 /*
@@ -115,17 +132,19 @@
     if (filterCategoryModel.filterCategoryType == FilterTypeSort) {
         PostFilterSortCell *sortCell = [tableView dequeueReusableCellWithIdentifier:@"PostFilterSortCell"];
         [sortCell initFilter:filterModel];
+        return sortCell;
     }
     else if (filterCategoryModel.filterCategoryType == FilterTypeCat){
         PostFilterCategoryCell *catCell = [tableView dequeueReusableCellWithIdentifier:@"PostFilterCategoryCell"];
         [catCell initFilter:filterModel];
+        return catCell;
     }
     
     return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -144,5 +163,30 @@
     
     [header addSubview:text];
     return header;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger row = [indexPath row];
+    NSInteger section = [indexPath section];
+    FilterCategoryModel *filterCategory = self.filtersModel.filterCategories[section];
+    
+    if (filterCategory.filterCategoryType == FilterTypeCat) {
+        FilterModel *filter = filterCategory.filtersArray[row];
+        filter.isSelected = !filter.isSelected;
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        
+    }
+    else if (filterCategory.filterCategoryType == FilterTypeSort){
+        for (int i=0; i<filterCategory.filtersArray.count; i++) {
+            FilterModel *filter = filterCategory.filtersArray[i];
+            if (i == row) {
+                filter.isSelected = YES;
+            }
+            else{
+                filter.isSelected = NO;
+            }
+        }
+        [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 @end

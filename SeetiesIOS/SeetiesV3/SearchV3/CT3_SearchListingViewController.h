@@ -12,11 +12,11 @@
 #import "CollectionViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "GeneralFilterViewController.h"
-#import "Filter2ViewController.h"
+#import "PostFilterViewController.h"
 @class CollectionViewController;
 @class SearchLTabViewController;
 
-@interface CT3_SearchListingViewController : CommonViewController<FilterViewControllerDelegate>
+@interface CT3_SearchListingViewController : CommonViewController<FilterViewControllerDelegate, PostFilterViewDelegate>
 
 /*any search also need location as default*/
 @property(nonatomic,strong)NSString* keyword;
