@@ -1410,6 +1410,8 @@
 		C71B5E181CBE3BED00B4FA91 /* FriendSuggestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */; };
 		C71B5E1F1CBE458000B4FA91 /* ShareFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B5E1D1CBE458000B4FA91 /* ShareFriendTableViewCell.m */; };
 		C71B5E201CBE458000B4FA91 /* ShareFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C71B5E1E1CBE458000B4FA91 /* ShareFriendTableViewCell.xib */; };
+		C71B5E231CC08E1500B4FA91 /* ShareToBuddiesIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C71B5E211CC08E1500B4FA91 /* ShareToBuddiesIcon@2x.png */; };
+		C71B5E241CC08E1500B4FA91 /* ShareToBuddiesIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C71B5E221CC08E1500B4FA91 /* ShareToBuddiesIcon@3x.png */; };
 		C724C2D71CBD153D0074B223 /* ShareFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C724C2D61CBD153D0074B223 /* ShareFriendViewController.m */; };
 		C7CE07E41CB79E8700BCF4F0 /* ShareFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7CE07E21CB79E8700BCF4F0 /* ShareFriendViewController.xib */; };
 		C7CE07EA1CBBB6DF00BCF4F0 /* CustomItemSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CE07E91CBBB6DF00BCF4F0 /* CustomItemSource.m */; };
@@ -3292,6 +3294,8 @@
 		C71B5E1C1CBE458000B4FA91 /* ShareFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareFriendTableViewCell.h; sourceTree = "<group>"; };
 		C71B5E1D1CBE458000B4FA91 /* ShareFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareFriendTableViewCell.m; sourceTree = "<group>"; };
 		C71B5E1E1CBE458000B4FA91 /* ShareFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareFriendTableViewCell.xib; sourceTree = "<group>"; };
+		C71B5E211CC08E1500B4FA91 /* ShareToBuddiesIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareToBuddiesIcon@2x.png"; sourceTree = "<group>"; };
+		C71B5E221CC08E1500B4FA91 /* ShareToBuddiesIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareToBuddiesIcon@3x.png"; sourceTree = "<group>"; };
 		C724C2D51CBD153D0074B223 /* ShareFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareFriendViewController.h; sourceTree = "<group>"; };
 		C724C2D61CBD153D0074B223 /* ShareFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareFriendViewController.m; sourceTree = "<group>"; };
 		C7CE07E21CB79E8700BCF4F0 /* ShareFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareFriendViewController.xib; sourceTree = "<group>"; };
@@ -5547,6 +5551,8 @@
 				8ADFF3761CB36D3700D27329 /* LocationPinGrey@3x.png */,
 				8ADFF3771CB36D3700D27329 /* ReportIcon@2x.png */,
 				8ADFF3781CB36D3700D27329 /* ReportIcon@3x.png */,
+				C71B5E211CC08E1500B4FA91 /* ShareToBuddiesIcon@2x.png */,
+				C71B5E221CC08E1500B4FA91 /* ShareToBuddiesIcon@3x.png */,
 				8ADFF3791CB36D3700D27329 /* VerifiedIconBlue@2x.png */,
 				8ADFF37A1CB36D3700D27329 /* VerifiedIconBlue@3x.png */,
 			);
@@ -7275,6 +7281,7 @@
 				8ADFF8281CB36D3900D27329 /* SeetiesLogo@3x.png in Resources */,
 				8AD50D6A1C63146A00C9D952 /* PhotoCVCell.xib in Resources */,
 				8ADFF6E51CB36D3900D27329 /* TabBarHomeIcon@2x.png in Resources */,
+				C71B5E241CC08E1500B4FA91 /* ShareToBuddiesIcon@3x.png in Resources */,
 				8AC8F7491BDA414E00DEF14A /* EditCollectionViewController.xib in Resources */,
 				8ADFF6FD1CB36D3900D27329 /* BgWalkWallet1@2x.jpg in Resources */,
 				8A114C931BE73F5D006AE3F0 /* FloatingIndicatorView.xib in Resources */,
@@ -7732,6 +7739,7 @@
 				8ADFF6B21CB36D3900D27329 /* CannotRedeemAtThisMomentImg.png in Resources */,
 				8ADFF7821CB36D3900D27329 /* RearrangeIcon@3x.png in Resources */,
 				8ADFF68E1CB36D3900D27329 /* MoreDraftsIcon@2x.png in Resources */,
+				C71B5E231CC08E1500B4FA91 /* ShareToBuddiesIcon@2x.png in Resources */,
 				8ADFF7AB1CB36D3900D27329 /* CollectionNoPost@2x.png in Resources */,
 				8ADFF8CB1CB36D3900D27329 /* ShareLineIcon@3x.png in Resources */,
 				8A84C5D11C7FF448006A0D76 /* 2.png in Resources */,
@@ -8880,7 +8888,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "81d72b46-e804-40e2-a73c-789201f10a10";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8920,7 +8928,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "81d72b46-e804-40e2-a73c-789201f10a10";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;
