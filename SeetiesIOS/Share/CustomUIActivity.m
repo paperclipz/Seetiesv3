@@ -119,7 +119,10 @@
     
     // which row our activity is shown in
     // top row is UIActivityCategoryShare, bottom row is UIActivityCategoryAction
-    return UIActivityCategoryAction;
+//    return UIActivityCategoryAction;
+    
+    //temp
+    return UIActivityCategoryShare;
 }
 
 @end

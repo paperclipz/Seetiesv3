@@ -120,6 +120,10 @@
     if (!_price) {
         _price = _expense[@"value"];
     }
+    else
+    {
+        _price = @"";
+    }
     return _price;
 }
 

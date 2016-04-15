@@ -7,6 +7,7 @@
 //
 
 #import "CustomEmptyView.h"
+#import "YLGIFImage.h"
 
 @implementation CustomEmptyView
 
@@ -18,11 +19,21 @@
 }
 */
 
+-(void)setupEmptyState
+{
+    self.backgroundView = self.selfView;
+}
+
 -(void)showLoading
 {
     @try {
+        
         self.loadingView.hidden = NO;
         self.emptyStateView.hidden = YES;
+        if (self.ibLoadingImg) {
+            self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
+        }
+
     } @catch (NSException *exception) {
         
     }

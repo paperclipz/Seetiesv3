@@ -30,6 +30,7 @@
 //for following notification
 @property(nonatomic,strong)NSDictionary* followCollectionInfo;
 @property(nonatomic,strong)NSArray<ProfileModel>* arrFollowingUsers;
+@property(nonatomic,strong)DealModel* deal;
 
 
 //for collection Notification

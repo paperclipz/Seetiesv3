@@ -15,7 +15,7 @@
 {
     BOOL isMiddleOfCallingServer;
 }
-@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+@property (weak, nonatomic) IBOutlet CustomEmptyView *ibTableView;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)NSMutableArray* arrCollections;
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
@@ -81,6 +81,8 @@
 
 -(void)initSelfView
 {
+    
+    [self.ibTableView setupEmptyState];
     [self initTableViewWithDelegate:self];
 }
 
@@ -204,6 +206,7 @@
                            @"uid":self.userID
                            };
     
+    [self.ibTableView showLoading];
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
         
         isMiddleOfCallingServer = false;
@@ -213,8 +216,14 @@
         
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        
+        
+        [self.ibTableView showEmptyState];
+
+
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
+        [self.ibTableView hideAll];
 
     }];
 }
@@ -233,7 +242,8 @@
                            @"token":[Utils getAppToken],
                            @"uid":self.userID
                            };
-    
+    [self.ibTableView showLoading];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserFollowingCollections param:dict appendString:appendString completeHandler:^(id object) {
         
         isMiddleOfCallingServer = false;
@@ -242,9 +252,13 @@
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        
+        [self.ibTableView showEmptyState];
+
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
-        
+        [self.ibTableView hideAll];
+
     }];
 }
 
@@ -262,6 +276,8 @@
                            @"token":[Utils getAppToken],
                            };
     
+    [self.ibTableView showLoading];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserSuggestedCollections param:dict appendString:appendString completeHandler:^(id object) {
         
         isMiddleOfCallingServer = false;
@@ -270,9 +286,13 @@
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        
+        [self.ibTableView showEmptyState];
+
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
-        
+        [self.ibTableView hideAll];
+
     }];
 }
 
@@ -289,6 +309,8 @@
                            @"token":[Utils getAppToken],
                            };
     
+    [self.ibTableView showLoading];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserSuggestedCollections param:dict appendString:appendString completeHandler:^(id object) {
         
         isMiddleOfCallingServer = false;
@@ -297,9 +319,12 @@
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        [self.ibTableView showEmptyState];
+
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
-        
+        [self.ibTableView hideAll];
+
     }];
 }
 
@@ -444,14 +469,21 @@
                            @"token":[Utils getAppToken],
                            };
     
+    [self.ibTableView showLoading];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopCollection param:dict appendString:appendString completeHandler:^(id object) {
         isMiddleOfCallingServer = false;
         self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        
+        [self.ibTableView showEmptyState];
+
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
+        [self.ibTableView hideAll];
+
     }];
 }
 

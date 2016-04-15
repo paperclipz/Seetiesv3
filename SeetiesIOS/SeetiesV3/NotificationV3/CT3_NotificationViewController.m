@@ -15,6 +15,7 @@
 #import "SeetiesShopViewController.h"
 #import "CollectionViewController.h"
 #import "CollectionListingSinglePageViewController.h"
+#import "DealDetailsViewController.h"
 
 @interface CT3_NotificationViewController () 
 @property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
@@ -32,6 +33,8 @@
 @property (nonatomic, strong) SeetiesShopViewController *seetiesShopViewController;
 @property (nonatomic, strong) CollectionViewController *collectionViewController;
 @property(nonatomic)CollectionListingSinglePageViewController* collectionListingVC;
+@property(nonatomic)DealDetailsViewController* dealDetailsViewController;
+
 @end
 
 @implementation CT3_NotificationViewController
@@ -68,6 +71,15 @@
 }
 
 #pragma mark - Declaration
+
+-(DealDetailsViewController*)dealDetailsViewController
+{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    
+    return _dealDetailsViewController;
+}
 
 -(CollectionListingSinglePageViewController*)collectionListingVC
 {
@@ -280,7 +292,14 @@
 
             }
         }
-            
+            break;
+
+        case NotificationType_DealShared:
+        {
+            if (model.deal) {
+                [self showDealDetailView:model.deal];
+            }
+        }
             break;
 
         default:
@@ -390,14 +409,15 @@
     [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)showDealDetailView:(DealModel*)model
+{
+    _dealDetailsViewController = nil;
+    
+    [self.dealDetailsViewController setDealModel:model];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        
+        [self.dealDetailsViewController setupView];
+    }];
 }
-*/
 
 @end

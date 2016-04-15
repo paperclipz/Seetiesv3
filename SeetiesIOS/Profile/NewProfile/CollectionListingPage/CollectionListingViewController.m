@@ -16,7 +16,6 @@
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property(nonatomic,assign)ProfileViewType profileType;
 @property(nonatomic,assign)CollectionListingType collectionListingType;
 @property(nonatomic,strong)ProfileModel* profileModel;

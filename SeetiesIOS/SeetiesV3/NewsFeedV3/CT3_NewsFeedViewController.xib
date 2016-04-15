@@ -378,8 +378,8 @@
                             <color key="textColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loading.gif" translatesAutoresizingMaskIntoConstraints="NO" id="OQ8-Yb-hQM" userLabel="loading gif" customClass="YLImageView">
-                            <rect key="frame" x="125" y="229" width="70" height="70"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Loading.gif" translatesAutoresizingMaskIntoConstraints="NO" id="OQ8-Yb-hQM" userLabel="loading gif" customClass="YLImageView">
+                            <rect key="frame" x="125" y="231" width="70" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="OQ8-Yb-hQM" secondAttribute="height" multiplier="1:1" id="213-xf-V1r"/>
                                 <constraint firstAttribute="width" constant="70" id="CbN-c6-EgI"/>

@@ -50,6 +50,11 @@
     self.lblCollectionName.text = self.collectionModel.name;
     self.lblNoOfRecommendations.text = [NSString stringWithFormat:@"%d %@",self.collectionModel.collection_posts_count,LocalisedString(@"Recommendations")];
     
+    if(numberOfPhoto>= 4)
+    {
+        numberOfPhoto = 4;
+    }
+        
     switch (numberOfPhoto) {
         case 4:
         {

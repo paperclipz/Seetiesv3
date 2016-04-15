@@ -19,7 +19,7 @@
 @property(nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+@property (weak, nonatomic) IBOutlet CustomEmptyView *ibTableView;
 @property (strong, nonatomic)SeShopsModel *seetiShopsModel;
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
@@ -34,6 +34,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.ibTableView setupEmptyState];
     isServerMiddleOfLoading= NO;
     // Do any additional setup after loading the view from its nib.
     [self initTableViewDelegate];
@@ -94,7 +96,6 @@
     self.placeID = placeID;
     self.postID = postID;
     
-    [LoadingManager show];
     [self requestServerForSeetiShopNearbyShop];
 }
 
@@ -146,6 +147,10 @@
     }
     
     isServerMiddleOfLoading = YES;
+    
+    [self.ibTableView showLoading];
+    
+    
         [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
             
             
@@ -153,11 +158,13 @@
             [self.arrShopList addObjectsFromArray:self.seetiShopsModel.shops];
             [self.ibTableView reloadData];
             isServerMiddleOfLoading = NO;
+            [self.ibTableView hideAll];
 
 
         } errorBlock:^(id object) {
             
             isServerMiddleOfLoading = NO;
+            [self.ibTableView hideAll];
 
         }];
         

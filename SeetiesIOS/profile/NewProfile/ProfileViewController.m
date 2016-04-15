@@ -372,6 +372,8 @@
         
     }
     
+    
+    
     [self requestServerForUserCollection];
     [self requestServerForUserPost];
     
@@ -1197,6 +1199,9 @@
                            @"list_size":@(LIKES_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };
+    
+    [LoadingManager show];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserLikes param:dict appendString:appendString completeHandler:^(id object) {
         
         self.userProfileLikeModel = [[ConnectionManager dataManager]userProfileLikeModel];
@@ -1214,6 +1219,9 @@
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };
+    
+    [LoadingManager show];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserPosts param:dict appendString:appendString completeHandler:^(id object) {
         
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
@@ -1235,6 +1243,9 @@
                            @"token":[Utils getAppToken],
                            @"uid":self.userID
                            };
+    
+    [LoadingManager show];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
         
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
@@ -1252,7 +1263,8 @@
     NSDictionary* dict = @{@"uid":self.userID,
                            @"token":[Utils getAppToken]
                            };
-    
+    [LoadingManager show];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
         
         self.userProfileModel = [[ConnectionManager dataManager]userProfileModel];

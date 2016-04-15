@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblFrom;
 @property (weak, nonatomic) IBOutlet UILabel *lblTo;
 @property (weak, nonatomic) IBOutlet UILabel *lblTime;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 @end
 

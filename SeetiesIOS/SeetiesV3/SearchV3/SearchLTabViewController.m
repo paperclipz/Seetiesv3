@@ -26,6 +26,8 @@
 
 
 }
+@property (weak, nonatomic) IBOutlet CustomEmptyView *ibTableView;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblEmytyStateTitle;
 
 @property(nonatomic,strong)NSString* keyword;
@@ -53,7 +55,6 @@
 //@property(nonatomic,strong)NSMutableArray* arrUsers;
 //@property(nonatomic,strong)NSMutableArray* arrCollections;
 @property(nonatomic,strong)NSMutableArray* arrList;
-@property (strong, nonatomic) IBOutlet CustomEmptyView *ibEmptyStateView;
 
 @end
 
@@ -76,7 +77,6 @@
     self.lblCount.text = @"";
     
 
-    self.ibTableView.backgroundView = self.ibEmptyStateView;
     self.currentLatitude = @"";
     self.currentLongtitude = @"";
     
@@ -90,6 +90,7 @@
 -(void)initSelfView
 {
     
+    [self.ibTableView setupEmptyState];
     [self.ibTableView setupFooterView];
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
@@ -595,7 +596,7 @@
     
     isMiddleOfCallingServer = YES;
     
-    [self.ibEmptyStateView showLoading];
+    [self.ibTableView showLoading];
     
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeSearchShops param:finalDict appendString:nil completeHandler:^(id object) {
         
@@ -610,10 +611,10 @@
         [self.ibTableView reloadData];
         
         if ([Utils isArrayNull:self.arrList]) {
-            [self.ibEmptyStateView showEmptyState];
+            [self.ibTableView showEmptyState];
         }
         else{
-            [self.ibEmptyStateView hideAll];
+            [self.ibTableView hideAll];
             
         }
        
@@ -621,10 +622,10 @@
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
         if ([Utils isArrayNull:self.arrList]) {
-            [self.ibEmptyStateView showEmptyState];
+            [self.ibTableView showEmptyState];
         }
         else{
-            [self.ibEmptyStateView hideAll];
+            [self.ibTableView hideAll];
             
         }
     }];
@@ -669,8 +670,8 @@
     
     isMiddleOfCallingServer = YES;
     [self.ibTableView startFooterLoadingView];
+    [self.ibTableView showLoading];
 
-    [self.ibEmptyStateView showLoading];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchPosts param:finalDict appendString:appendString completeHandler:^(id object) {
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
         [self.arrList addObjectsFromArray:self.userProfilePostModel.recommendations.posts];
@@ -679,10 +680,10 @@
 
         isMiddleOfCallingServer = NO;
         if ([Utils isArrayNull:self.arrList]) {
-            [self.ibEmptyStateView showEmptyState];
+            [self.ibTableView showEmptyState];
         }
         else{
-            [self.ibEmptyStateView hideAll];
+            [self.ibTableView hideAll];
             
         }
            [self.ibTableView stopFooterLoadingView];
@@ -693,10 +694,10 @@
         [self.ibTableView stopFooterLoadingView];
         
         if ([Utils isArrayNull:self.arrList]) {
-            [self.ibEmptyStateView showEmptyState];
+            [self.ibTableView showEmptyState];
         }
         else{
-            [self.ibEmptyStateView hideAll];
+            [self.ibTableView hideAll];
             
         }
 
@@ -714,7 +715,7 @@
   //  NSDictionary* dict;
   //  NSString* appendString = [[NSString alloc]initWithFormat:@"user?token=%@&keyword=%@",[Utils getAppToken],self.getSearchText];
 
-    [self.ibEmptyStateView showLoading];
+    [self.ibTableView showLoading];
 
     NSDictionary* dict = @{@"page":self.usersModel.page?@(self.usersModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
@@ -733,10 +734,10 @@
         
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.usersModel.total_count,LocalisedString(@"Users")];
         if ([Utils isArrayNull:self.arrList]) {
-            [self.ibEmptyStateView showEmptyState];
+            [self.ibTableView showEmptyState];
         }
         else{
-            [self.ibEmptyStateView hideAll];
+            [self.ibTableView hideAll];
             
         }
     } errorBlock:^(id object) {
@@ -744,10 +745,10 @@
         isMiddleOfCallingServer = NO;
         [self.ibTableView stopFooterLoadingView];
         if ([Utils isArrayNull:self.arrList]) {
-            [self.ibEmptyStateView showEmptyState];
+            [self.ibTableView showEmptyState];
         }
         else{
-            [self.ibEmptyStateView hideAll];
+            [self.ibTableView hideAll];
             
         }    }];
 }
@@ -781,7 +782,7 @@
     
     [self.ibTableView startFooterLoadingView];
 
-    [self.ibEmptyStateView showLoading];
+    [self.ibTableView showLoading];
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchCollections param:finalDict appendString:nil completeHandler:^(id object) {
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
@@ -793,10 +794,10 @@
 
         [self.ibTableView stopFooterLoadingView];
         if ([Utils isArrayNull:self.arrList]) {
-            [self.ibEmptyStateView showEmptyState];
+            [self.ibTableView showEmptyState];
         }
         else{
-            [self.ibEmptyStateView hideAll];
+            [self.ibTableView hideAll];
             
         }
     } errorBlock:^(id object) {
@@ -804,10 +805,10 @@
 
         [self.ibTableView stopFooterLoadingView];
         if ([Utils isArrayNull:self.arrList]) {
-            [self.ibEmptyStateView showEmptyState];
+            [self.ibTableView showEmptyState];
         }
         else{
-            [self.ibEmptyStateView hideAll];
+            [self.ibTableView hideAll];
             
         }
     }];

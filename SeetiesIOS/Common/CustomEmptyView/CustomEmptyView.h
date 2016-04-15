@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CustomEmptyView : UIView
+#import "YLImageView.h"
+@interface CustomEmptyView : UITableView
 
 @property(nonatomic,weak)IBOutlet UIView* loadingView;
 @property(nonatomic,weak)IBOutlet UIView* emptyStateView;
+@property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
+@property (weak, nonatomic) IBOutlet UIView *selfView;
+
 -(void)showLoading;
 -(void)showEmptyState;
 -(void)hideAll;
+-(void)setupEmptyState;
 
 
 @end

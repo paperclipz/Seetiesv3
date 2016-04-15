@@ -197,12 +197,18 @@
 
 -(void)loadData
 {
-    self.addNewPlaceSubView.txtPlaceName.text = self.postModel.location.name;
-    self.addNewPlaceSubView.txtAddress.text = self.postModel.location.formatted_address;
-    self.addNewPlaceSubView.txtURL.text = self.postModel.location.link;
-    self.addNewPlaceSubView.txtPhoneNo.text = self.postModel.location.contact_no;
-    [self.addNewPlaceSubView.btnCurrency setTitle:self.postModel.location.currency?self.postModel.location.currency:USD forState:UIControlStateNormal];
-    self.addNewPlaceSubView.txtPerPax.text = self.postModel.location.price;
+    
+    @try {
+        self.addNewPlaceSubView.txtPlaceName.text = self.postModel.location.name;
+        self.addNewPlaceSubView.txtAddress.text = self.postModel.location.formatted_address;
+        self.addNewPlaceSubView.txtURL.text = self.postModel.location.link;
+        self.addNewPlaceSubView.txtPhoneNo.text = self.postModel.location.contact_no;
+        [self.addNewPlaceSubView.btnCurrency setTitle:self.postModel.location.currency?self.postModel.location.currency:USD forState:UIControlStateNormal];
+        self.addNewPlaceSubView.txtPerPax.text = self.postModel.location.price;
+    } @catch (NSException *exception) {
+        
+    }
+    
 }
 
 -(void)reloadData
@@ -375,6 +381,6 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 -(void)changeLanguage
 {
     self.lblTitle.text = LocalisedString(@"Add a new place");
-    self.lblIndicator.text = LOCALIZATION(@"Tap the map to drop a pin");
+    self.lblIndicator.text = LocalisedString(@"Tap the map to drop a pin");
 }
 @end
