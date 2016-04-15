@@ -96,8 +96,6 @@ static NSCache* heightCache = nil;
 @property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
 @property (weak, nonatomic) IBOutlet UILabel *ibLoadingTxt;
 @property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
-
-@property(nonatomic,strong)NSMutableArray* arrCacheHeight;
 @property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 
 /* Model */
@@ -313,13 +311,6 @@ static NSCache* heightCache = nil;
     return _searchViewV2Controller;
 }
 
--(NSMutableArray*)arrCacheHeight
-{
-    if (!_arrCacheHeight) {
-        _arrCacheHeight = [NSMutableArray new];
-    }
-    return _arrCacheHeight;
-}
 -(CTWebViewController*)ctWebViewController
 {
     if (!_ctWebViewController) {
