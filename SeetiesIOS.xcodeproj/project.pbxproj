@@ -175,8 +175,6 @@
 		8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */; };
 		8A317C041BE1C5620010CAEE /* ShareToFrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A317BFF1BE1C5620010CAEE /* ShareToFrenViewController.m */; };
 		8A317C051BE1C5620010CAEE /* ShareToFrenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A317C001BE1C5620010CAEE /* ShareToFrenViewController.xib */; };
-		8A317C061BE1C5620010CAEE /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A317C021BE1C5620010CAEE /* ShareViewController.m */; };
-		8A317C071BE1C5620010CAEE /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A317C031BE1C5620010CAEE /* ShareViewController.xib */; };
 		8A31CA771C9BA60B00CC5FB9 /* SuggestedPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */; };
 		8A3408ED1B86EA4B009B66C3 /* UITableView+LongPressReorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3408EC1B86EA4B009B66C3 /* UITableView+LongPressReorder.m */; };
 		8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A34090D1B872B31009B66C3 /* EditPostViewController.m */; };
@@ -1713,9 +1711,6 @@
 		8A317BFE1BE1C5620010CAEE /* ShareToFrenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareToFrenViewController.h; sourceTree = "<group>"; };
 		8A317BFF1BE1C5620010CAEE /* ShareToFrenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareToFrenViewController.m; sourceTree = "<group>"; };
 		8A317C001BE1C5620010CAEE /* ShareToFrenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareToFrenViewController.xib; sourceTree = "<group>"; };
-		8A317C011BE1C5620010CAEE /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
-		8A317C021BE1C5620010CAEE /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
-		8A317C031BE1C5620010CAEE /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
 		8A31CA751C9BA60B00CC5FB9 /* SuggestedPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestedPlaceModel.h; path = SeetiesIOS/MODELS/Location/SuggestedPlaceModel.h; sourceTree = SOURCE_ROOT; };
 		8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuggestedPlaceModel.m; path = SeetiesIOS/MODELS/Location/SuggestedPlaceModel.m; sourceTree = SOURCE_ROOT; };
 		8A3408EB1B86EA4B009B66C3 /* UITableView+LongPressReorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+LongPressReorder.h"; sourceTree = "<group>"; };
@@ -4095,9 +4090,6 @@
 				8A317BFE1BE1C5620010CAEE /* ShareToFrenViewController.h */,
 				8A317BFF1BE1C5620010CAEE /* ShareToFrenViewController.m */,
 				8A317C001BE1C5620010CAEE /* ShareToFrenViewController.xib */,
-				8A317C011BE1C5620010CAEE /* ShareViewController.h */,
-				8A317C021BE1C5620010CAEE /* ShareViewController.m */,
-				8A317C031BE1C5620010CAEE /* ShareViewController.xib */,
 				8A69E0F21C04066100224BB4 /* ShareV2ViewController.swift */,
 				8A69E0F31C04066100224BB4 /* ShareV2ViewController.xib */,
 			);
@@ -7745,7 +7737,6 @@
 				8ADFF8571CB36D3900D27329 /* PreviewPhotoBlackOverlay@2x.png in Resources */,
 				8ADFF6F81CB36D3900D27329 /* BgWalkHome4@3x.jpg in Resources */,
 				8ADFF6D91CB36D3900D27329 /* SignUpNameIcon@3x.png in Resources */,
-				8A317C071BE1C5620010CAEE /* ShareViewController.xib in Resources */,
 				8ADFF8B81CB36D3900D27329 /* BackToTop@2x.png in Resources */,
 				8ADFF6221CB36D3900D27329 /* DealsRedeemedIcon@3x.png in Resources */,
 				8ADFF6AF1CB36D3900D27329 /* NaviShareIcon@3x.png in Resources */,
@@ -8587,7 +8578,6 @@
 				8AF39CDC1BC66536009C7F26 /* UITableView+NXEmptyView.m in Sources */,
 				8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */,
 				8AFA51EF1C47B4AB00E7920E /* FeedType_CountryPromotionTblCell.m in Sources */,
-				8A317C061BE1C5620010CAEE /* ShareViewController.m in Sources */,
 				8A0035461C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m in Sources */,
 				8A3409CF1B8B0DCB009B66C3 /* UIImage+Resize.m in Sources */,
 				8A993CC41C290CE4009359E2 /* UITextView+Extension.swift in Sources */,

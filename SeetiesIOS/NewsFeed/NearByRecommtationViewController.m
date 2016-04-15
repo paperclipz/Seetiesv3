@@ -13,7 +13,6 @@
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "CommentViewController.h"
-#import "ShareViewController.h"
 #import "AddCollectionDataViewController.h"
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"

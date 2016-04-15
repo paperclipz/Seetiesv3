@@ -8,7 +8,6 @@
 
 #import "CollectionViewController.h"
 #import "FeedV2DetailViewController.h"
-#import "ShareViewController.h"
 #import "SearchDetailViewController.h"
 #import "AddCollectionDataViewController.h"
 #import "CT3_SearchListingViewController.h"
