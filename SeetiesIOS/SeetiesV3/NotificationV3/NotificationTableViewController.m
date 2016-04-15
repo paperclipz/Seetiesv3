@@ -8,6 +8,8 @@
 
 #import "NotificationTableViewController.h"
 #import "NotificationTableViewCell.h"
+#import "YLImageView.h"
+#import "YLGIFImage.h"
 
 @interface NotificationTableViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -17,6 +19,8 @@
 @property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 @property(nonatomic)NSMutableArray* arrNotifications;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicator;
+@property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
+@property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
 
 @property(nonatomic)NotificationModels* notificationModels;
 
@@ -33,6 +37,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
+    self.tableView.backgroundView = self.ibEmptyStateView;
+
+    
     [self initFooterView];
 
     isMiddleOfRequestServer = false;
@@ -150,6 +159,7 @@
                                @"type" : @"all"
                                };
         
+        
         [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotifications param:dict appendString:nil completeHandler:^(id object) {
             
             NotificationModels* model = [[ConnectionManager dataManager]notificationModels];
@@ -159,7 +169,7 @@
             isMiddleOfRequestServer = NO;
             
             [self.tableView reloadData];
-
+            self.ibLoadingImg.hidden = YES;
             //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             //            @autoreleasepool {
             //
@@ -172,11 +182,11 @@
             //
         } errorBlock:^(id object) {
             isMiddleOfRequestServer = NO;
+            self.ibLoadingImg.hidden = YES;
 
         }];
     }
 }
-
 
 #pragma mark - Server Request
 
@@ -197,10 +207,12 @@
             isMiddleOfRequestServer = NO;
             //[(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
             [self.tableView reloadData];
+            self.ibLoadingImg.hidden = YES;
 
         } errorBlock:^(id object) {
             isMiddleOfRequestServer = NO;
            // [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
+            self.ibLoadingImg.hidden = YES;
 
         }];
     }
