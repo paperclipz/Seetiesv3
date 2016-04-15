@@ -22,7 +22,8 @@
                                                        @"redemption_periods.periods_in_hours.period_text": @"redemption_period_in_hour_text",
                                                        @"redemption_periods.periods_in_hours.period": @"period",
                                                        @"redemption_periods.periods_in_date": @"periods_in_date",
-                                                       @"type": @"voucher_type"
+                                                       @"type": @"voucher_type",
+                                                       @"collection_periods.periods_in_date": @"collection_periods_in_date"
                                                        }];
 }
 

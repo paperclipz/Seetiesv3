@@ -66,6 +66,7 @@
 @property(nonatomic, strong) NSArray *terms;
 @property(nonatomic, strong) NSArray *period;
 @property(nonatomic, strong) NSArray *periods_in_date;
+@property(nonatomic, strong) NSArray *collection_periods_in_date;
 
 -(NSMutableArray<DailyPeriodModel>*)getFormattedAvailablePeriods;
 -(NSString*)getNextAvailableRedemptionDateString;
