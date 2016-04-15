@@ -218,6 +218,7 @@ typedef enum
     NotificationType_Post = 11,
     NotificationType_None = 12,
     NotificationType_User = 13,
+    NotificationType_DealShared = 14,
     
 }NotificationType;
 

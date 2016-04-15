@@ -1480,7 +1480,6 @@ static NSCache* heightCache = nil;
                                    @"lat" : latitude,
                                    @"lng" : longtitude,
                                    };
-
         }
         @catch (NSException *exception) {
             

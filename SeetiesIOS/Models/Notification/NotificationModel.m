@@ -98,6 +98,13 @@
             
         }
         
+        CASE (@"deal_shared"){
+            _notType = NotificationType_DealShared;
+            break;
+            
+        }
+
+        
         DEFAULT
         {
             _notType = NotificationType_Follow;
