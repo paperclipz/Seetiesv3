@@ -414,13 +414,8 @@
 		8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD641B706CF30040437E /* InviteFrenViewController.m */; };
 		8AD6C0AC1B706CF30040437E /* InviteFrenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD651B706CF30040437E /* InviteFrenViewController.xib */; };
 		8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD731B706CF30040437E /* ConnectionManager.m */; };
-		8AD6C0B51B706CF30040437E /* InstagramLoginWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD781B706CF30040437E /* InstagramLoginWebViewController.m */; };
-		8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD791B706CF30040437E /* InstagramLoginWebViewController.xib */; };
-		8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD7B1B706CF30040437E /* OpenWebViewController.m */; };
-		8AD6C0B81B706CF30040437E /* OpenWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD7C1B706CF30040437E /* OpenWebViewController.xib */; };
 		8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD7E1B706CF30040437E /* ShowFollowerAndFollowingViewController.m */; };
 		8AD6C0BA1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD7F1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib */; };
-		8AD6C0BB1B706CF30040437E /* WhyWeUseFBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD811B706CF30040437E /* WhyWeUseFBViewController.m */; };
 		8AD6C0BC1B706CF30040437E /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD851B706CF30040437E /* CommentViewController.m */; };
 		8AD6C0BD1B706CF30040437E /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BD861B706CF30040437E /* CommentViewController.xib */; };
 		8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6BD881B706CF30040437E /* FeedV2DetailViewController.m */; };
@@ -2115,17 +2110,9 @@
 		8AD6BD651B706CF30040437E /* InviteFrenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteFrenViewController.xib; sourceTree = "<group>"; };
 		8AD6BD721B706CF30040437E /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
 		8AD6BD731B706CF30040437E /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
-		8AD6BD771B706CF30040437E /* InstagramLoginWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramLoginWebViewController.h; sourceTree = "<group>"; };
-		8AD6BD781B706CF30040437E /* InstagramLoginWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramLoginWebViewController.m; sourceTree = "<group>"; };
-		8AD6BD791B706CF30040437E /* InstagramLoginWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstagramLoginWebViewController.xib; sourceTree = "<group>"; };
-		8AD6BD7A1B706CF30040437E /* OpenWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenWebViewController.h; sourceTree = "<group>"; };
-		8AD6BD7B1B706CF30040437E /* OpenWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWebViewController.m; sourceTree = "<group>"; };
-		8AD6BD7C1B706CF30040437E /* OpenWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenWebViewController.xib; sourceTree = "<group>"; };
 		8AD6BD7D1B706CF30040437E /* ShowFollowerAndFollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFollowerAndFollowingViewController.h; sourceTree = "<group>"; };
 		8AD6BD7E1B706CF30040437E /* ShowFollowerAndFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFollowerAndFollowingViewController.m; sourceTree = "<group>"; };
 		8AD6BD7F1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowFollowerAndFollowingViewController.xib; sourceTree = "<group>"; };
-		8AD6BD801B706CF30040437E /* WhyWeUseFBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhyWeUseFBViewController.h; sourceTree = "<group>"; };
-		8AD6BD811B706CF30040437E /* WhyWeUseFBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhyWeUseFBViewController.m; sourceTree = "<group>"; };
 		8AD6BD841B706CF30040437E /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
 		8AD6BD851B706CF30040437E /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		8AD6BD861B706CF30040437E /* CommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
@@ -5114,17 +5101,9 @@
 		8AD6BD761B706CF30040437E /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				8AD6BD771B706CF30040437E /* InstagramLoginWebViewController.h */,
-				8AD6BD781B706CF30040437E /* InstagramLoginWebViewController.m */,
-				8AD6BD791B706CF30040437E /* InstagramLoginWebViewController.xib */,
-				8AD6BD7A1B706CF30040437E /* OpenWebViewController.h */,
-				8AD6BD7B1B706CF30040437E /* OpenWebViewController.m */,
-				8AD6BD7C1B706CF30040437E /* OpenWebViewController.xib */,
 				8AD6BD7D1B706CF30040437E /* ShowFollowerAndFollowingViewController.h */,
 				8AD6BD7E1B706CF30040437E /* ShowFollowerAndFollowingViewController.m */,
 				8AD6BD7F1B706CF30040437E /* ShowFollowerAndFollowingViewController.xib */,
-				8AD6BD801B706CF30040437E /* WhyWeUseFBViewController.h */,
-				8AD6BD811B706CF30040437E /* WhyWeUseFBViewController.m */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -7231,7 +7210,6 @@
 				8ADFF8661CB36D3900D27329 /* FollowBtn@3x.png in Resources */,
 				8ADFF7F11CB36D3900D27329 /* YellowCollections@2x.png in Resources */,
 				8A6584431B9851D300BC86B9 /* DraftTableViewCell.xib in Resources */,
-				8AD6C0B81B706CF30040437E /* OpenWebViewController.xib in Resources */,
 				0BC8A0EB1C0D4CB000EB8548 /* SeCollectionView.xib in Resources */,
 				8ADFF7B91CB36D3900D27329 /* CollectedBtn@2x.png in Resources */,
 				8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */,
@@ -7964,7 +7942,6 @@
 				8AFA51FC1C47B4AB00E7920E /* FeedSquareCollectionViewCell.xib in Resources */,
 				8ADFF76D1CB36D3900D27329 /* ShareBase@2x.png in Resources */,
 				8ADFF7C51CB36D3900D27329 /* CommentIcon@2x.png in Resources */,
-				8AD6C0B61B706CF30040437E /* InstagramLoginWebViewController.xib in Resources */,
 				8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */,
 				8ADFF82E1CB36D3900D27329 /* NotificationBySeeties@3x.png in Resources */,
 				C238E3341C4649AA00570A25 /* slider-default7-trackBackground@2x.png in Resources */,
@@ -8268,7 +8245,6 @@
 				8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */,
 				8AD6BE591B706CF30040437E /* DoImagePickerController.m in Sources */,
 				8A114C9A1BE73F5D006AE3F0 /* JTSSimpleImageDownloader.m in Sources */,
-				8AD6C0BB1B706CF30040437E /* WhyWeUseFBViewController.m in Sources */,
 				8A993CCB1C2960D5009359E2 /* NSArray+Extension.m in Sources */,
 				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
 				8AC8F7561BDDD44800DEF14A /* UIImageView+Extension.m in Sources */,
@@ -8532,7 +8508,6 @@
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
 				8A509D6A1C9911CD004C74C7 /* FeedType_headerTblCell.m in Sources */,
 				8A6BB42D1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationControllerAnimator.m in Sources */,
-				8AD6C0B71B706CF30040437E /* OpenWebViewController.m in Sources */,
 				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,
 				8A114CD31BE73F5D006AE3F0 /* BaseViewController.m in Sources */,
 				8A9E065D1CBF5A70000FB246 /* UIPopoverController+Block.m in Sources */,
@@ -8590,7 +8565,6 @@
 				8AD6C2291B706FA10040437E /* NSString+ChangeAsciiString.m in Sources */,
 				8AC8F7301BDA414E00DEF14A /* ProfilePageCollectionTableViewCell.m in Sources */,
 				0BC8A0F51C0D934600EB8548 /* SeRecommendations.m in Sources */,
-				8AD6C0B51B706CF30040437E /* InstagramLoginWebViewController.m in Sources */,
 				C23FB6A01C99023900021D1F /* FilterModel.m in Sources */,
 				8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */,
 				8AFA51FD1C47B4AB00E7920E /* FeedTableViewCell.m in Sources */,
