@@ -98,8 +98,6 @@
 		8A114C871BE73F5D006AE3F0 /* UITableViewCell+ConfigureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BB01BE73F5C006AE3F0 /* UITableViewCell+ConfigureCell.m */; };
 		8A114C881BE73F5D006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BB21BE73F5C006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m */; };
 		8A114C891BE73F5D006AE3F0 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BB41BE73F5C006AE3F0 /* CAPSPageMenu.m */; };
-		8A114C921BE73F5D006AE3F0 /* FloatingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BC91BE73F5C006AE3F0 /* FloatingIndicatorView.m */; };
-		8A114C931BE73F5D006AE3F0 /* FloatingIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114BCA1BE73F5C006AE3F0 /* FloatingIndicatorView.xib */; };
 		8A114C941BE73F5D006AE3F0 /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BCD1BE73F5C006AE3F0 /* FXImageView.m */; };
 		8A114C951BE73F5D006AE3F0 /* UIImage+FX.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BCF1BE73F5C006AE3F0 /* UIImage+FX.m */; };
 		8A114C961BE73F5D006AE3F0 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114BD31BE73F5C006AE3F0 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -337,7 +335,6 @@
 		8A9F25E31B90414800BB13BA /* EditPostDetailVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25E21B90414800BB13BA /* EditPostDetailVIew.xib */; };
 		8AB76D201BB8FBAF007DB972 /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB76D1E1BB8FBAF007DB972 /* ArticleViewController.m */; };
 		8AB76D211BB8FBAF007DB972 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D1F1BB8FBAF007DB972 /* ArticleViewController.xib */; };
-		8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB813C21BC23ECE002F5F06 /* UploadManager.m */; };
 		8AB83A7C1BD49CED00715B69 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB83A7B1BD49CED00715B69 /* UIView+Extension.m */; };
 		8ABA51F01C0F042000A3DC15 /* UINavigationController+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51EF1C0F042000A3DC15 /* UINavigationController+Transition.m */; };
 		8ABA51F41C0FE7F000A3DC15 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51F21C0FE7F000A3DC15 /* PhotoListViewController.m */; };
@@ -1576,9 +1573,6 @@
 		8A114BB21BE73F5C006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+BMXSwipableCellSupport.m"; sourceTree = "<group>"; };
 		8A114BB31BE73F5C006AE3F0 /* CAPSPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSPageMenu.h; sourceTree = "<group>"; };
 		8A114BB41BE73F5C006AE3F0 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
-		8A114BC81BE73F5C006AE3F0 /* FloatingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingIndicatorView.h; sourceTree = "<group>"; };
-		8A114BC91BE73F5C006AE3F0 /* FloatingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingIndicatorView.m; sourceTree = "<group>"; };
-		8A114BCA1BE73F5C006AE3F0 /* FloatingIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatingIndicatorView.xib; sourceTree = "<group>"; };
 		8A114BCC1BE73F5C006AE3F0 /* FXImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXImageView.h; sourceTree = "<group>"; };
 		8A114BCD1BE73F5C006AE3F0 /* FXImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXImageView.m; sourceTree = "<group>"; };
 		8A114BCE1BE73F5C006AE3F0 /* UIImage+FX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FX.h"; sourceTree = "<group>"; };
@@ -1993,8 +1987,6 @@
 		8AB76D1D1BB8FBAF007DB972 /* ArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleViewController.h; sourceTree = "<group>"; };
 		8AB76D1E1BB8FBAF007DB972 /* ArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleViewController.m; sourceTree = "<group>"; };
 		8AB76D1F1BB8FBAF007DB972 /* ArticleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
-		8AB813C11BC23ECE002F5F06 /* UploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadManager.h; sourceTree = "<group>"; };
-		8AB813C21BC23ECE002F5F06 /* UploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadManager.m; sourceTree = "<group>"; };
 		8AB83A7A1BD49CED00715B69 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		8AB83A7B1BD49CED00715B69 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		8ABA51EE1C0F042000A3DC15 /* UINavigationController+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Transition.h"; sourceTree = "<group>"; };
@@ -3637,10 +3629,6 @@
 				8A114BA61BE73F5C006AE3F0 /* BMXSwipableCell */,
 				8A114BB31BE73F5C006AE3F0 /* CAPSPageMenu.h */,
 				8A114BB41BE73F5C006AE3F0 /* CAPSPageMenu.m */,
-				8A114BBF1BE73F5C006AE3F0 /* CustomizableCamera */,
-				8A114BC81BE73F5C006AE3F0 /* FloatingIndicatorView.h */,
-				8A114BC91BE73F5C006AE3F0 /* FloatingIndicatorView.m */,
-				8A114BCA1BE73F5C006AE3F0 /* FloatingIndicatorView.xib */,
 				8A114BCB1BE73F5C006AE3F0 /* FXImageView */,
 				8A114BD01BE73F5C006AE3F0 /* IBScrollViewFloatingHeader */,
 				8A114BD11BE73F5C006AE3F0 /* JsonKit */,
@@ -3745,53 +3733,6 @@
 				8A114BB21BE73F5C006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m */,
 			);
 			path = BMXSwipableCell;
-			sourceTree = "<group>";
-		};
-		8A114BBF1BE73F5C006AE3F0 /* CustomizableCamera */ = {
-			isa = PBXGroup;
-			children = (
-				8A114BC01BE73F5C006AE3F0 /* Camera View */,
-				8A114BC11BE73F5C006AE3F0 /* Graphical Assets */,
-				8A114BC41BE73F5C006AE3F0 /* Model Classes */,
-			);
-			path = CustomizableCamera;
-			sourceTree = "<group>";
-		};
-		8A114BC01BE73F5C006AE3F0 /* Camera View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Camera View";
-			sourceTree = "<group>";
-		};
-		8A114BC11BE73F5C006AE3F0 /* Graphical Assets */ = {
-			isa = PBXGroup;
-			children = (
-				8A114BC21BE73F5C006AE3F0 /* CameraViewComponents */,
-				8A114BC31BE73F5C006AE3F0 /* UI Assets */,
-			);
-			path = "Graphical Assets";
-			sourceTree = "<group>";
-		};
-		8A114BC21BE73F5C006AE3F0 /* CameraViewComponents */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CameraViewComponents;
-			sourceTree = "<group>";
-		};
-		8A114BC31BE73F5C006AE3F0 /* UI Assets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "UI Assets";
-			sourceTree = "<group>";
-		};
-		8A114BC41BE73F5C006AE3F0 /* Model Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Model Classes";
 			sourceTree = "<group>";
 		};
 		8A114BCB1BE73F5C006AE3F0 /* FXImageView */ = {
@@ -5162,8 +5103,6 @@
 				8A7420EB1B82F7D5005DA654 /* LoadingManager.m */,
 				8A3757AE1B842F74009DB7D4 /* SearchManager.h */,
 				8A3757AF1B842F74009DB7D4 /* SearchManager.m */,
-				8AB813C11BC23ECE002F5F06 /* UploadManager.h */,
-				8AB813C21BC23ECE002F5F06 /* UploadManager.m */,
 				8A69E0FB1C046DF900224BB4 /* ShareManager.h */,
 				8A69E0FC1C046DF900224BB4 /* ShareManager.m */,
 				8A993CCC1C2A8113009359E2 /* MapManager.h */,
@@ -7284,7 +7223,6 @@
 				C71B5E241CC08E1500B4FA91 /* ShareToBuddiesIcon@3x.png in Resources */,
 				8AC8F7491BDA414E00DEF14A /* EditCollectionViewController.xib in Resources */,
 				8ADFF6FD1CB36D3900D27329 /* BgWalkWallet1@2x.jpg in Resources */,
-				8A114C931BE73F5D006AE3F0 /* FloatingIndicatorView.xib in Resources */,
 				8ADFF8A21CB36D3900D27329 /* SSBlueDirectionIcon@3x.png in Resources */,
 				8A84C5E71C7FF448006A0D76 /* warning-flat-icon.png in Resources */,
 				8ADFF6441CB36D3900D27329 /* AddedFriendIcon@3x.png in Resources */,
@@ -8464,7 +8402,6 @@
 				8AD50D691C63146A00C9D952 /* PhotoCVCell.m in Sources */,
 				8AEDBFAF1C2031BA000BD2FF /* EditPhotoModel.m in Sources */,
 				8ABA7DEC1C7421FC00FB41F4 /* NotificationTableViewCell.m in Sources */,
-				8A114C921BE73F5D006AE3F0 /* FloatingIndicatorView.m in Sources */,
 				8A84C8D61C800A0C006A0D76 /* DealCollectionModel.m in Sources */,
 				8AFA51DD1C47B4AB00E7920E /* WalletListingViewController.m in Sources */,
 				8A5CFE171C7C6D42004E2CBA /* CollectionListingSinglePageViewController.m in Sources */,
@@ -8640,7 +8577,6 @@
 				8A3F35661BF5E89D002B704C /* SuggestedCollectionPostsViewController.m in Sources */,
 				8AD6C1141B706CF30040437E /* FSOAuthNoAppStore.m in Sources */,
 				8AD6C8331B7454290040437E /* UIAlertView+Blocks.m in Sources */,
-				8AB813C31BC23ECE002F5F06 /* UploadManager.m in Sources */,
 				8AD50D761C645D2100C9D952 /* AddressComponentModel.m in Sources */,
 				8AC8F7321BDA414E00DEF14A /* ProfilePagePostCollectionViewCell.m in Sources */,
 				C7F9FE8F1CB63CB5000E8432 /* UIActivityViewController+Extension.m in Sources */,
@@ -8862,8 +8798,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8886,7 +8822,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "81d72b46-e804-40e2-a73c-789201f10a10";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
@@ -8902,8 +8838,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8926,7 +8862,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "81d72b46-e804-40e2-a73c-789201f10a10";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
