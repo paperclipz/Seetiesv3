@@ -8,21 +8,19 @@
 
 #import "NotificationTableViewController.h"
 #import "NotificationTableViewCell.h"
-#import "YLImageView.h"
-#import "YLGIFImage.h"
 
 @interface NotificationTableViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     int viewType;//1 or 2
     BOOL isMiddleOfRequestServer;
 }
-@property (strong, nonatomic) IBOutlet UIView *ibFooterView;
-@property(nonatomic)NSMutableArray* arrNotifications;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicator;
-@property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
-@property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
 
+@property(nonatomic)NSMutableArray* arrNotifications;
 @property(nonatomic)NotificationModels* notificationModels;
+
+@property (strong, nonatomic) IBOutlet UIView *ibFooterView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicator;
+@property (strong, nonatomic) IBOutlet CustomEmptyView *ibTableView;
 
 @end
 
@@ -38,9 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
-    self.tableView.backgroundView = self.ibEmptyStateView;
-
+    
+    [self.ibTableView setupEmptyState];
     
     [self initFooterView];
 
@@ -48,11 +45,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -169,7 +162,8 @@
             isMiddleOfRequestServer = NO;
             
             [self.tableView reloadData];
-            self.ibLoadingImg.hidden = YES;
+
+            [self.ibTableView showLoading];
             //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             //            @autoreleasepool {
             //
@@ -182,7 +176,7 @@
             //
         } errorBlock:^(id object) {
             isMiddleOfRequestServer = NO;
-            self.ibLoadingImg.hidden = YES;
+            [self.ibTableView hideAll];
 
         }];
     }
@@ -207,12 +201,12 @@
             isMiddleOfRequestServer = NO;
             //[(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
             [self.tableView reloadData];
-            self.ibLoadingImg.hidden = YES;
+            [self.ibTableView hideAll];
 
         } errorBlock:^(id object) {
             isMiddleOfRequestServer = NO;
            // [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
-            self.ibLoadingImg.hidden = YES;
+            [self.ibTableView hideAll];
 
         }];
     }

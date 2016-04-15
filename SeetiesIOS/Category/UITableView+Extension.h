@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YLImageView.h"
 
 @interface UITableView(Extra)
+
+@property (nonatomic, strong) IBOutlet UIView *customEmptyStateView;
+
+
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *ibCustomActivityIndicator;
 @property (nonatomic, strong) IBOutlet UIView *ibCustomFooterView;
 

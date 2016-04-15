@@ -94,6 +94,12 @@
     self.dealID = dealID;
 
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [IQKeyboardManager sharedManager].enable = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
@@ -244,6 +250,8 @@
         [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostReportDeal param:dict appendString:appendString completeHandler:^(id object) {
             [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
 
+            [self.navigationController popViewControllerAnimated:YES onCompletion:nil];
+            
         } errorBlock:^(id object) {
             
         }];

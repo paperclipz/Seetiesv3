@@ -15,6 +15,8 @@
 @interface STSearchViewController ()
 {
     CGRect searchViewFrame;
+    
+    BOOL isMiddleLoadingServer;
 
 }
 
@@ -57,6 +59,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    
+    isMiddleLoadingServer = NO;
     self.sManager = [SearchManager Instance];
 
     self.location = [self.sManager getAppLocation];
@@ -509,21 +513,25 @@
 
 -(void)requestSeetiesSuggestedPlaces
 {
-
+    
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
                            @"keyword" : self.txtSearch.text,
                            @"limit" : @(30),
                            };
     
+  //  isMiddleLoadingServer = YES;
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetPlacesSuggestion param:dict appendString:@"" completeHandler:^(id object) {
         
         SuggestedPlaceModel* model = [[ConnectionManager dataManager]suggestedPlaceModel];
         self.suggestedPlaceModel = model;
+        self.arrSeetiesList = nil;
         [self.arrSeetiesList addObjectsFromArray:model.result];
         [self refreshSeetiesSearch];
-        
+     //   isMiddleLoadingServer = NO;
+
     } errorBlock:^(id object) {
-        
+     //   isMiddleLoadingServer = NO;
+
     }];
 }
 #pragma server request

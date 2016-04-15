@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeDeleteNoteView;
 @property (weak, nonatomic) IBOutlet UILabel *lblSwipeToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoDraftYet;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet CustomEmptyView *tableView;
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -58,6 +58,7 @@
 
 -(void)initSelfView
 {
+    [self.tableView setupEmptyState];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [Utils setRoundBorder:self.ibSwipeDeleteNoteView color:TWO_ZERO_FOUR_COLOR borderRadius:0 borderWidth:0.5f];
@@ -177,6 +178,18 @@
                            
                            };
   
+    [self.tableView reloadData];
+    
+    if ([Utils isArrayNull:self.arrDraftList]) {
+        [self.tableView showLoading];
+
+    }
+    else
+    {
+        [self.tableView hideAll];
+
+    }
+    
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict appendString:nil completeHandler:^(id object) {
         
         self.draftsModel = [[ConnectionManager dataManager]draftsModel];
@@ -188,11 +201,13 @@
         [self.loadingImageView stopAnimating];
         isMiddleOfCallingServer = NO;
 
+        [self.tableView showEmptyState];
 
     } errorBlock:^(id object) {
         [self.tableView.pullToRefreshView stopAnimating];
         [self.loadingImageView stopAnimating];
         isMiddleOfCallingServer = NO;
+        [self.tableView hideAll];
 
     }];
  

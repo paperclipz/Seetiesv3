@@ -105,8 +105,8 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsD-HW-7h2">
-                            <rect key="frame" x="50" y="18" width="94" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsD-HW-7h2">
+                            <rect key="frame" x="50" y="18" width="0.0" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Jyb-rt-4AR"/>
                             </constraints>
@@ -177,8 +177,8 @@
                         </mask>
                     </variation>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="beE-KO-pTe">
-                    <rect key="frame" x="144" y="14" width="30" height="30"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="beE-KO-pTe">
+                    <rect key="frame" x="50" y="14" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="GPG-TJ-oix"/>
                         <constraint firstAttribute="width" constant="30" id="mSU-lZ-RDg"/>
@@ -195,6 +195,7 @@
                 <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="bEo-RN-euA" secondAttribute="bottom" constant="-1" id="Pob-fk-xRP"/>
                 <constraint firstItem="beE-KO-pTe" firstAttribute="leading" secondItem="dsD-HW-7h2" secondAttribute="trailing" id="aYQ-LG-Jm4"/>
                 <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="tx2-5y-CkB" secondAttribute="bottom" constant="-64" id="aic-a4-v4B"/>
+                <constraint firstItem="JRS-YQ-XgZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="beE-KO-pTe" secondAttribute="trailing" constant="10" id="dFh-WS-Z4y"/>
                 <constraint firstItem="beE-KO-pTe" firstAttribute="centerY" secondItem="dsD-HW-7h2" secondAttribute="centerY" id="jsU-ZD-k3P"/>
                 <constraint firstAttribute="trailing" secondItem="PfW-mD-EzJ" secondAttribute="trailing" id="mN5-Vd-i6g"/>
                 <constraint firstItem="PfW-mD-EzJ" firstAttribute="top" secondItem="scf-vQ-TpH" secondAttribute="bottom" constant="-1" id="nKm-cb-Kr7"/>

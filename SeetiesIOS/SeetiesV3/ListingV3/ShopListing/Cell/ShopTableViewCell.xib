@@ -56,7 +56,7 @@
                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="253" horizontalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="9cI-4T-6i2">
                         <rect key="frame" x="0.0" y="0.0" width="407" height="125"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SsDefaultDisplayPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Uh-7C-qCc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SsDefaultDisplayPhoto.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Uh-7C-qCc">
                                 <rect key="frame" x="16" y="10" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="YeW-4W-qpH"/>

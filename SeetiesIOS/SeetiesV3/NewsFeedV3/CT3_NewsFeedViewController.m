@@ -1476,7 +1476,7 @@ static NSCache* heightCache = nil;
             
             dict = @{@"token" : [Utils getAppToken],
                                    @"offset":@(self.newsFeedModels.offset + self.newsFeedModels.limit),
-                                   @"limit" : @(5),
+                                   @"limit" : @(30),
                                    @"lat" : latitude,
                                    @"lng" : longtitude,
                                    };
@@ -1688,9 +1688,13 @@ static NSCache* heightCache = nil;
             
         case 3://none
         {
-            [self reloadNewsFeed];
-            [self requestServerForHome:self.currentHomeLocationModel];
-        }
+            
+            if (updateData) {
+                [self reloadNewsFeed];
+                [self requestServerForHome:self.currentHomeLocationModel];
+            }
+
+                  }
             break;
 
             

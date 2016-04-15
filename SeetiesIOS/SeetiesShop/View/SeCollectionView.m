@@ -344,6 +344,22 @@
     }
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
+    
+    if ([Utils isGuestMode]) {
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == 1) {
+                [Utils showLogin];
+                
+            }
+        }];
+        
+        
+        return;
+    }
+
+    
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     CollectionModel* collModel = self.arrCollections[getbuttonIDN];
     
