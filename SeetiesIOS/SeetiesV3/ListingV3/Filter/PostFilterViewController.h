@@ -11,6 +11,14 @@
 #import "PostFilterCategoryCell.h"
 #import "FiltersModel.h"
 
-@interface PostFilterViewController : CommonViewController<UITableViewDataSource, UITableViewDelegate>
+@protocol PostFilterViewDelegate <NSObject>
 
+-(void)postApplyFilterClicked:(FiltersModel*)filtersModel;
+
+@end
+
+@interface PostFilterViewController : CommonViewController<UITableViewDataSource, UITableViewDelegate>
+@property id<PostFilterViewDelegate> delegate;
+
+-(void)initWithFilter:(FiltersModel*)filtersModel;
 @end

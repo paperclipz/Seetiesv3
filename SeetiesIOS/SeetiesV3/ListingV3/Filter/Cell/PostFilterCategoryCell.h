@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FilterModel.h"
 
-@interface PostFilterCategoryCell : UITableViewCell
+@interface PostFilterCategoryCell : CommonTableViewCell
 -(void)initFilter:(FilterModel*)filterModel;
 @end

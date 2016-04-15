@@ -61,6 +61,9 @@
                                     <exclude reference="fN7-G8-l5Z"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="resetBtnClicked:" destination="-1" eventType="touchUpInside" id="bce-M2-QQm"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,9 +84,9 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="yJf-Wp-7Eb"/>
-                            <exclude reference="nCB-8O-h9x"/>
                             <exclude reference="BI7-hq-3KD"/>
+                            <exclude reference="nCB-8O-h9x"/>
+                            <exclude reference="yJf-Wp-7Eb"/>
                         </mask>
                     </variation>
                 </view>
@@ -105,6 +108,9 @@
                     <state key="normal" title="Apply Filter">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="ibApplyBtnClicked:" destination="-1" eventType="touchUpInside" id="eOR-5i-fCc"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
