@@ -976,6 +976,8 @@
     [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:finalDict completeHandler:^(id object) {
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         model.voucher_info = dealModel.voucher_info;
+        model.total_available_vouchers = dealModel.total_available_vouchers;
+        
         [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
         [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
         [self RequestServerForVouchersCount];

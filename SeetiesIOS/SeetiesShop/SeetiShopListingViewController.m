@@ -102,6 +102,7 @@
 -(void)initWithArray:(NSMutableArray*)shopArray{
     self.arrShopList = shopArray;
     [self.ibTableView reloadData];
+    [self.ibTableView hideAll];
 }
 
 #pragma mark - Declaration

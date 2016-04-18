@@ -283,11 +283,11 @@
     //IsOpen
     FilterCategoryModel *isOpenCategory = [[FilterCategoryModel alloc] init];
     isOpenCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    isOpenCategory.categoryName = LocalisedString(@"Open now");
+    isOpenCategory.categoryName = LocalisedString(@"Now open");
     isOpenCategory.filterCategoryType = FilterTypeIsOpen;
     
     FilterModel *isOpenFilter = [[FilterModel alloc] init];
-    isOpenFilter.name = LocalisedString(@"Open now");
+    isOpenFilter.name = LocalisedString(@"Now open");
     isOpenFilter.isSelected = NO;
     [isOpenCategory.filtersArray addObject:isOpenFilter];
     

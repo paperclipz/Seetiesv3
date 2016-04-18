@@ -152,7 +152,7 @@
                                @"type" : @"all"
                                };
         
-        
+        [self.ibTableView showLoading];
         [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotifications param:dict appendString:nil completeHandler:^(id object) {
             
             NotificationModels* model = [[ConnectionManager dataManager]notificationModels];
@@ -163,7 +163,7 @@
             
             [self.tableView reloadData];
 
-            [self.ibTableView showLoading];
+            [self.ibTableView hideAll];
             //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             //            @autoreleasepool {
             //
