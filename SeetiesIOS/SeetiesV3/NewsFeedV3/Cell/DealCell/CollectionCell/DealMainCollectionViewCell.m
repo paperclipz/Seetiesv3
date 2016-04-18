@@ -29,9 +29,17 @@
         self.lblTitle.text = dictContent[@"title"];
         
         PhotoModel* pModel = model.photos[0];
-        [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] withPlaceHolder:nil completed:^(UIImage *image) {
-            
-        }];
+        
+        if (![Utils isStringNull:pModel.imageURL]) {
+            [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] withPlaceHolder:nil completed:^(UIImage *image) {
+                
+            }];
+        }
+        else
+        {
+            self.ibImageView.image = [Utils getPlaceHolderImage];
+        }
+        
 
     }
     @catch (NSException *exception) {

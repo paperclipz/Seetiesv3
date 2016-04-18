@@ -16,7 +16,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l4C-2w-uIz">
                         <rect key="frame" x="8" y="8" width="334" height="174"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="EmptyCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="I8m-7V-8gI" userLabel="CollectionOverlayB.png">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="I8m-7V-8gI" userLabel="ImageViewB">
                                 <rect key="frame" x="167" y="0.0" width="167" height="110"/>
                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -41,7 +41,7 @@
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="EmptyCollection.png" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-Ra-Ghe" userLabel="CollectionOverlayA.png">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="9iK-Ra-Ghe" userLabel="ImageViewA">
                                 <rect key="frame" x="0.0" y="0.0" width="167" height="110"/>
                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -84,6 +84,12 @@
                                     <constraint firstAttribute="width" constant="20" id="if3-I0-nGQ"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollectionInFeedOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="7UX-sU-qbD" userLabel="CollectionInFeedOverlayB.png">
+                                <rect key="frame" x="167" y="0.0" width="167" height="110"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CollectionInFeedOverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="sNb-8p-LEB" userLabel="CollectionInFeedOverlayA.png">
+                                <rect key="frame" x="0.0" y="0.0" width="167" height="110"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -93,15 +99,20 @@
                             <constraint firstItem="9iK-Ra-Ghe" firstAttribute="top" secondItem="l4C-2w-uIz" secondAttribute="top" id="5vZ-BG-puk"/>
                             <constraint firstItem="mhG-9q-tNj" firstAttribute="top" secondItem="e7X-58-wkk" secondAttribute="top" constant="7" id="6Df-Sk-znd"/>
                             <constraint firstItem="aTh-gj-GhX" firstAttribute="leading" secondItem="iHG-6M-6T6" secondAttribute="trailing" id="BNd-QP-wpi"/>
+                            <constraint firstItem="sNb-8p-LEB" firstAttribute="height" secondItem="9iK-Ra-Ghe" secondAttribute="height" id="CRg-q8-Bpc"/>
                             <constraint firstItem="I8m-7V-8gI" firstAttribute="width" secondItem="9iK-Ra-Ghe" secondAttribute="width" id="FXR-A6-aKZ"/>
                             <constraint firstItem="aTh-gj-GhX" firstAttribute="centerY" secondItem="iHG-6M-6T6" secondAttribute="centerY" id="HYb-hZ-Dh8"/>
                             <constraint firstItem="KzQ-cg-qKU" firstAttribute="top" secondItem="e7X-58-wkk" secondAttribute="top" id="HoE-hB-laq"/>
+                            <constraint firstItem="7UX-sU-qbD" firstAttribute="leading" secondItem="I8m-7V-8gI" secondAttribute="leading" id="JIR-jo-Nzz"/>
                             <constraint firstItem="Kjh-6O-bqi" firstAttribute="centerY" secondItem="Txd-2a-F4A" secondAttribute="centerY" id="JIb-sb-z3k"/>
                             <constraint firstItem="Txd-2a-F4A" firstAttribute="top" secondItem="KzQ-cg-qKU" secondAttribute="bottom" constant="3" id="JsY-cf-U6z"/>
                             <constraint firstItem="KzQ-cg-qKU" firstAttribute="top" secondItem="9iK-Ra-Ghe" secondAttribute="bottom" constant="10" id="ReN-Ua-T3v"/>
                             <constraint firstAttribute="trailing" secondItem="I8m-7V-8gI" secondAttribute="trailing" id="Xde-ev-KMb"/>
                             <constraint firstItem="KzQ-cg-qKU" firstAttribute="leading" secondItem="l4C-2w-uIz" secondAttribute="leading" constant="16" id="YKp-zl-he3"/>
+                            <constraint firstItem="sNb-8p-LEB" firstAttribute="width" secondItem="9iK-Ra-Ghe" secondAttribute="width" id="YmP-a9-A2i"/>
                             <constraint firstItem="Txd-2a-F4A" firstAttribute="leading" secondItem="l4C-2w-uIz" secondAttribute="leading" constant="16" id="bot-bf-BHm"/>
+                            <constraint firstItem="7UX-sU-qbD" firstAttribute="top" secondItem="I8m-7V-8gI" secondAttribute="top" id="cHO-8L-oSe"/>
+                            <constraint firstItem="sNb-8p-LEB" firstAttribute="top" secondItem="9iK-Ra-Ghe" secondAttribute="top" id="d4Y-w2-BKG"/>
                             <constraint firstAttribute="trailing" secondItem="mhG-9q-tNj" secondAttribute="trailing" constant="16" id="d9s-fA-9n1"/>
                             <constraint firstItem="e7X-58-wkk" firstAttribute="leading" secondItem="l4C-2w-uIz" secondAttribute="leading" constant="48" id="eEW-eE-YJo"/>
                             <constraint firstItem="iHG-6M-6T6" firstAttribute="centerY" secondItem="Kjh-6O-bqi" secondAttribute="centerY" id="hgm-nk-lK5"/>
@@ -109,8 +120,11 @@
                             <constraint firstItem="iHG-6M-6T6" firstAttribute="leading" secondItem="Kjh-6O-bqi" secondAttribute="trailing" constant="16" id="inT-Ex-jE3"/>
                             <constraint firstItem="e7X-58-wkk" firstAttribute="centerY" secondItem="KzQ-cg-qKU" secondAttribute="centerY" id="lji-a8-ceE"/>
                             <constraint firstItem="Kjh-6O-bqi" firstAttribute="leading" secondItem="Txd-2a-F4A" secondAttribute="trailing" id="muj-Ud-C5i"/>
+                            <constraint firstItem="sNb-8p-LEB" firstAttribute="leading" secondItem="9iK-Ra-Ghe" secondAttribute="leading" id="myi-gk-e6A"/>
                             <constraint firstItem="I8m-7V-8gI" firstAttribute="leading" secondItem="9iK-Ra-Ghe" secondAttribute="trailing" id="nKb-k3-vhr"/>
                             <constraint firstItem="I8m-7V-8gI" firstAttribute="top" secondItem="l4C-2w-uIz" secondAttribute="top" id="q3m-dw-T2H"/>
+                            <constraint firstItem="7UX-sU-qbD" firstAttribute="width" secondItem="I8m-7V-8gI" secondAttribute="width" id="qmh-8R-lWM"/>
+                            <constraint firstItem="7UX-sU-qbD" firstAttribute="height" secondItem="I8m-7V-8gI" secondAttribute="height" id="sbV-T6-kbb"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -140,8 +154,8 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="CollectionInFeedOverlay.png" width="300" height="126"/>
         <image name="CollectionPostIcon.png" width="18" height="18"/>
-        <image name="EmptyCollection.png" width="21" height="30"/>
         <image name="FollowerNumber.png" width="25" height="25"/>
         <image name="FollowingCollectionIcon.png" width="115" height="38"/>
         <image name="PrivateCollectionIcon.png" width="17" height="20"/>

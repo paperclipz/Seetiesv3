@@ -1285,14 +1285,6 @@
 		8AFA51F61C47B4AB00E7920E /* FeedType_InviteFriendTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51A21C47B4AB00E7920E /* FeedType_InviteFriendTblCell.xib */; };
 		8AFA51F71C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51A41C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.m */; };
 		8AFA51F81C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51A51C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib */; };
-		8AFA51F91C47B4AB00E7920E /* FeedType_Two_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51A71C47B4AB00E7920E /* FeedType_Two_TableViewCell.m */; };
-		8AFA51FA1C47B4AB00E7920E /* FeedType_Two_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51A81C47B4AB00E7920E /* FeedType_Two_TableViewCell.xib */; };
-		8AFA51FB1C47B4AB00E7920E /* FeedSquareCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51AA1C47B4AB00E7920E /* FeedSquareCollectionViewCell.m */; };
-		8AFA51FC1C47B4AB00E7920E /* FeedSquareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51AB1C47B4AB00E7920E /* FeedSquareCollectionViewCell.xib */; };
-		8AFA51FD1C47B4AB00E7920E /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51AD1C47B4AB00E7920E /* FeedTableViewCell.m */; };
-		8AFA51FE1C47B4AB00E7920E /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51AE1C47B4AB00E7920E /* FeedTableViewCell.xib */; };
-		8AFA51FF1C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51B01C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.m */; };
-		8AFA52001C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B11C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.xib */; };
 		8AFA52011C47B4AB00E7920E /* CT3_NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51B31C47B4AB00E7920E /* CT3_NewsFeedViewController.m */; };
 		8AFA52021C47B4AB00E7920E /* CT3_NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51B41C47B4AB00E7920E /* CT3_NewsFeedViewController.xib */; };
 		8AFA52031C47B4AB00E7920E /* CT3_MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51B71C47B4AB00E7920E /* CT3_MeViewController.m */; };
@@ -3100,18 +3092,6 @@
 		8AFA51A31C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedType_SuggestionFetureTblCell.h; sourceTree = "<group>"; };
 		8AFA51A41C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedType_SuggestionFetureTblCell.m; sourceTree = "<group>"; };
 		8AFA51A51C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_SuggestionFetureTblCell.xib; sourceTree = "<group>"; };
-		8AFA51A61C47B4AB00E7920E /* FeedType_Two_TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedType_Two_TableViewCell.h; sourceTree = "<group>"; };
-		8AFA51A71C47B4AB00E7920E /* FeedType_Two_TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedType_Two_TableViewCell.m; sourceTree = "<group>"; };
-		8AFA51A81C47B4AB00E7920E /* FeedType_Two_TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedType_Two_TableViewCell.xib; sourceTree = "<group>"; };
-		8AFA51A91C47B4AB00E7920E /* FeedSquareCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedSquareCollectionViewCell.h; sourceTree = "<group>"; };
-		8AFA51AA1C47B4AB00E7920E /* FeedSquareCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedSquareCollectionViewCell.m; sourceTree = "<group>"; };
-		8AFA51AB1C47B4AB00E7920E /* FeedSquareCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedSquareCollectionViewCell.xib; sourceTree = "<group>"; };
-		8AFA51AC1C47B4AB00E7920E /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
-		8AFA51AD1C47B4AB00E7920E /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
-		8AFA51AE1C47B4AB00E7920E /* FeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
-		8AFA51AF1C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickBrowserCollectionTableViewCell.h; sourceTree = "<group>"; };
-		8AFA51B01C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickBrowserCollectionTableViewCell.m; sourceTree = "<group>"; };
-		8AFA51B11C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickBrowserCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		8AFA51B21C47B4AB00E7920E /* CT3_NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_NewsFeedViewController.h; sourceTree = "<group>"; };
 		8AFA51B31C47B4AB00E7920E /* CT3_NewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_NewsFeedViewController.m; sourceTree = "<group>"; };
 		8AFA51B41C47B4AB00E7920E /* CT3_NewsFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_NewsFeedViewController.xib; sourceTree = "<group>"; };
@@ -6732,15 +6712,6 @@
 			children = (
 				8A0035281C4F2D81002BD9A3 /* DealCell */,
 				8AFA51831C47B4AB00E7920E /* FeedCell */,
-				8AFA51A91C47B4AB00E7920E /* FeedSquareCollectionViewCell.h */,
-				8AFA51AA1C47B4AB00E7920E /* FeedSquareCollectionViewCell.m */,
-				8AFA51AB1C47B4AB00E7920E /* FeedSquareCollectionViewCell.xib */,
-				8AFA51AC1C47B4AB00E7920E /* FeedTableViewCell.h */,
-				8AFA51AD1C47B4AB00E7920E /* FeedTableViewCell.m */,
-				8AFA51AE1C47B4AB00E7920E /* FeedTableViewCell.xib */,
-				8AFA51AF1C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.h */,
-				8AFA51B01C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.m */,
-				8AFA51B11C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -6776,9 +6747,6 @@
 				8AFA51A31C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.h */,
 				8AFA51A41C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.m */,
 				8AFA51A51C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib */,
-				8AFA51A61C47B4AB00E7920E /* FeedType_Two_TableViewCell.h */,
-				8AFA51A71C47B4AB00E7920E /* FeedType_Two_TableViewCell.m */,
-				8AFA51A81C47B4AB00E7920E /* FeedType_Two_TableViewCell.xib */,
 			);
 			path = FeedCell;
 			sourceTree = "<group>";
@@ -7417,7 +7385,6 @@
 				8ADFF85C1CB36D3900D27329 /* AddPostBtn@3x.png in Resources */,
 				8ADFF8651CB36D3900D27329 /* FollowBtn@2x.png in Resources */,
 				8A65843E1B9850CE00BC86B9 /* DraftViewController.xib in Resources */,
-				8AFA51FE1C47B4AB00E7920E /* FeedTableViewCell.xib in Resources */,
 				8ADFF8B41CB36D3900D27329 /* SSWhiteTranslateIcon@2x.png in Resources */,
 				8ADFF7051CB36D3900D27329 /* WalkHome3.png in Resources */,
 				8ADFF79E1CB36D3900D27329 /* GenderIcon@3x.png in Resources */,
@@ -7589,7 +7556,6 @@
 				8ADFF7701CB36D3900D27329 /* TranslateIcon@3x.png in Resources */,
 				8AFF085E1C90379000918582 /* SearchLTabViewController.xib in Resources */,
 				8ADFF7651CB36D3900D27329 /* MapBtn@2x.png in Resources */,
-				8AFA52001C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.xib in Resources */,
 				8ADFF8701CB36D3900D27329 /* NewLikesIcon@3x.png in Resources */,
 				8ADFF8AE1CB36D3900D27329 /* SSFeaturesIcon@2x.png in Resources */,
 				8ADFF7E41CB36D3900D27329 /* SearchIcon@3x.png in Resources */,
@@ -7725,7 +7691,6 @@
 				8AD6C0F91B706CF30040437E /* SearchResultV2ViewController.xib in Resources */,
 				8ADFF69F1CB36D3900D27329 /* MoreVerifyPhoneNumberIcon@3x.png in Resources */,
 				8ADFF6921CB36D3900D27329 /* MoreLogoutIcon@2x.png in Resources */,
-				8AFA51FA1C47B4AB00E7920E /* FeedType_Two_TableViewCell.xib in Resources */,
 				8A114CCE1BE73F5D006AE3F0 /* error@2x.png in Resources */,
 				8ADFF7F41CB36D3900D27329 /* AnnounceLogo@3x.png in Resources */,
 				8ADFF86A1CB36D3900D27329 /* FollowingBtn@3x.png in Resources */,
@@ -7930,7 +7895,6 @@
 				8ADFF82C1CB36D3900D27329 /* WrongFill@3x.png in Resources */,
 				8ADFF8051CB36D3900D27329 /* InstagramBtnActive@2x.png in Resources */,
 				8ADFF7441CB36D3900D27329 /* CollectionPostIcon@3x.png in Resources */,
-				8AFA51FC1C47B4AB00E7920E /* FeedSquareCollectionViewCell.xib in Resources */,
 				8ADFF76D1CB36D3900D27329 /* ShareBase@2x.png in Resources */,
 				8ADFF7C51CB36D3900D27329 /* CommentIcon@2x.png in Resources */,
 				8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */,
@@ -8256,7 +8220,6 @@
 				8A3F35641BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */,
 				8A4205281C89501100DB0D20 /* AccountSettingTableViewCell.m in Sources */,
 				8A114C981BE73F5D006AE3F0 /* JTSImageInfo.m in Sources */,
-				8AFA51F91C47B4AB00E7920E /* FeedType_Two_TableViewCell.m in Sources */,
 				8A3409411B8AD06A009B66C3 /* UIImage+Blurring.m in Sources */,
 				8AF292521C32448E00EF48EB /* UIImage+Extension.m in Sources */,
 				8AEDBFBF1C2031BA000BD2FF /* UserDefaultModel.m in Sources */,
@@ -8398,7 +8361,6 @@
 				8A3409491B8AD06A009B66C3 /* UIScrollView+Screenshot.m in Sources */,
 				8A114C791BE73F5D006AE3F0 /* Utils.m in Sources */,
 				8AC8F7341BDA414E00DEF14A /* ProfilePagePostTableViewCell.m in Sources */,
-				8AFA51FF1C47B4AB00E7920E /* QuickBrowserCollectionTableViewCell.m in Sources */,
 				8A3409471B8AD06A009B66C3 /* UIImage+Rotating.m in Sources */,
 				8AD6C1021B706CF30040437E /* ChangePasswordViewController.m in Sources */,
 				8A114C881BE73F5D006AE3F0 /* UITableViewController+BMXSwipableCellSupport.m in Sources */,
@@ -8425,7 +8387,6 @@
 				8A114C9C1BE73F5D006AE3F0 /* UIImage+JTSImageEffects.m in Sources */,
 				8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */,
 				8A4512341BDE2BEC008DE870 /* LikesListingViewController.m in Sources */,
-				8AFA51FB1C47B4AB00E7920E /* FeedSquareCollectionViewCell.m in Sources */,
 				8A114CCC1BE73F5D006AE3F0 /* ParallaxHeaderView.m in Sources */,
 				8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */,
 				8A7EDA7E1C747EF000A9E76E /* NotificationModels.m in Sources */,
@@ -8558,7 +8519,6 @@
 				0BC8A0F51C0D934600EB8548 /* SeRecommendations.m in Sources */,
 				C23FB6A01C99023900021D1F /* FilterModel.m in Sources */,
 				8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */,
-				8AFA51FD1C47B4AB00E7920E /* FeedTableViewCell.m in Sources */,
 				8AF6FDCF1C587958005AAE5D /* RegisterObject.m in Sources */,
 				8A69E0EC1BFF26A000224BB4 /* NSString+Extension.m in Sources */,
 				8A114CE81BE75CA0006AE3F0 /* CollectionViewController.m in Sources */,

@@ -7,12 +7,8 @@
 //
 
 #import "CT3_NewsFeedViewController.h"
-#import "FeedTableViewCell.h"
-#import "FeedSquareCollectionViewCell.h"
-#import "QuickBrowserCollectionTableViewCell.h"
 
 #import "FeedType_FollowingPostTblCell.h"
-#import "FeedType_Two_TableViewCell.h"
 #import "FeedType_CountryPromotionTblCell.h"
 #import "FeedType_InviteFriendTblCell.h"
 #import "FeedType_AnnouncementWelcomeTblCell.h"
@@ -88,10 +84,6 @@ static NSCache* heightCache = nil;
 @property (weak, nonatomic) IBOutlet UIButton *btnLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
-@property (weak, nonatomic) IBOutlet UICollectionView *ibIntroCollectionView;
-@property (weak, nonatomic) IBOutlet UIView *lastView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constantQuickBrowseHeight;
-@property (weak, nonatomic) IBOutlet UICollectionView *ibQuickBrowseCollectionView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
 @property (weak, nonatomic) IBOutlet UILabel *ibLoadingTxt;
@@ -491,7 +483,6 @@ static NSCache* heightCache = nil;
 
     ibHeaderBackgroundView.alpha = 0;
     [self initTableViewDelegate];
-    [self initCollectionViewDelegate];
     
     isMiddleOfLoadingServer = NO;
     
@@ -508,18 +499,6 @@ static NSCache* heightCache = nil;
 
 }
 
--(void)initCollectionViewDelegate
-{
-
-    self.ibIntroCollectionView.delegate = self;
-    self.ibIntroCollectionView.dataSource = self;
-    [self.ibIntroCollectionView registerClass:[FeedSquareCollectionViewCell class] forCellWithReuseIdentifier:@"FeedSquareCollectionViewCell"];
-    
-    [self.ibQuickBrowseCollectionView registerClass:[QuickBrowserCollectionTableViewCell class] forCellWithReuseIdentifier:@"QuickBrowserCollectionTableViewCell"];
-    self.ibQuickBrowseCollectionView.delegate = self;
-    self.ibQuickBrowseCollectionView.dataSource = self;
-    self.ibQuickBrowseCollectionView.backgroundColor = [UIColor clearColor];
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -670,8 +649,8 @@ static NSCache* heightCache = nil;
             case FeedType_Invite_Friend:
                 return [FeedType_InviteFriendTblCell getHeight];
                 break;
-            case FeedType_Deal:
-                return 0;
+ //           case FeedType_Deal:
+ //               return 0;
             default:
                 return UITableViewAutomaticDimension;
                 break;
@@ -881,19 +860,8 @@ static NSCache* heightCache = nil;
                 
             }
                 break;
-            case FeedType_Deal:
-            {
-                /*Following Post*/
-                static NSString *CellIdentifier = @"FeedType_Two_TableViewCell";
-                FeedType_Two_TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-                if (cell == nil) {
-                    cell = [[FeedType_Two_TableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-                }
-                //Configure cell
-                return cell;
+        
                 
-            }
-                break;
             default:
             case FeedType_Country_Promotion:
             {
@@ -1259,39 +1227,6 @@ static NSCache* heightCache = nil;
         CGSize size = cell.frame.size;
         [heightCache setObject: [NSNumber numberWithFloat: size.height] forKey: key];
     }
-}
-
-
-#pragma mark - CollectionView Delegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    
-    if (collectionView == self.ibIntroCollectionView) {
-        return 1;
-
-    }
-    else{
-        return 6;
-    
-    }
-    
-}
-
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if (collectionView == self.ibIntroCollectionView) {
-        FeedSquareCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FeedSquareCollectionViewCell" forIndexPath:indexPath];
-        return cell;
-
-    }
-    else{
-    
-        QuickBrowserCollectionTableViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"QuickBrowserCollectionTableViewCell" forIndexPath:indexPath];
-        return cell;
-    }
-    
 }
 
 

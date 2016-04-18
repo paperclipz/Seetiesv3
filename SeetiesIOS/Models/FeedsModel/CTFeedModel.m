@@ -164,10 +164,10 @@
             break;
         }
         
-        CASE (@"deal"){
-            _feedType = FeedType_Deal;
-            break;
-        }
+//        CASE (@"deal"){
+//            _feedType = FeedType_Deal;
+//            break;
+//        }
         
         CASE (@"invite_friend"){
             _feedType = FeedType_Invite_Friend;

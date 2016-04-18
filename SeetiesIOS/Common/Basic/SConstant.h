@@ -168,7 +168,7 @@ typedef enum
     FeedType_Announcement_Campaign = 6,
     FeedType_Suggestion_Featured = 7,
     FeedType_Suggestion_Friend = 8,
-    FeedType_Deal = 9,
+ //   FeedType_Deal = 9,
     FeedType_Invite_Friend = 10,
     FeedType_Country_Promotion = 11,
     FeedType_Collect_Suggestion = 12,
