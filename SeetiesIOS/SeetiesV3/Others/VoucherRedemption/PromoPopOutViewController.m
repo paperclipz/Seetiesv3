@@ -775,7 +775,7 @@
 }
 
 -(void)requestServerToGetHomeCountry{
-    ProfileModel *profile = [[DataManager Instance] userProfileModel];
+    ProfileModel *profile = [[DataManager Instance] currentUserProfileModel];
     NSString *langCode = profile.system_language.language_code;
     NSDictionary *dict = @{@"language_code": langCode
                            };

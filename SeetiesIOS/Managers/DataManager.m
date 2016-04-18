@@ -241,5 +241,15 @@
 }
 
 
+-(void)setCurrentUserProfileModel:(ProfileModel*)model
+{
+    _currentUserProfileModel = model;
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"updatePhoneVerification"
+     object:self];
+    
+}
+
 
 @end

@@ -1081,8 +1081,8 @@
         case ServerRequestTypeGetUserInfo:
         {
             NSDictionary* dict = obj[@"data"];
-            self.dataManager.userProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
-            
+            self.dataManager.currentUserProfileModel = [[ProfileModel alloc]initWithDictionary:dict error:nil];
+       
         }
             break;
             
@@ -1331,7 +1331,6 @@
         {
             NSDictionary *dict = obj[@"data"];
             self.dataManager.currentUserProfileModel = [[ProfileModel alloc] initWithDictionary:dict error:nil];
-
         }
             break;
             

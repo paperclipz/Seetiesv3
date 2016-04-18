@@ -35,9 +35,16 @@
 
 @implementation NewLandingViewController
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self reloadBadgeView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
     [self.view addSubview:self.tabBarController.view];
     [NSTimer scheduledTimerWithTimeInterval:30.0
                                      target:self
@@ -47,7 +54,7 @@
     
     
     [self requestServerForLanguageList];
- //   [self registerNotification];
+    [self registerNotification];
     if (![Utils checkUserIsLogin]) {
         [Utils showLogin];
     }
@@ -396,7 +403,7 @@
         [Utils reloadProfileView];
         
         DataManager* manager = [ConnectionManager dataManager];
-        manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
+       // manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
         
         [[LanguageManager sharedLanguageManager]setLanguageCode:manager.currentUserProfileModel.system_language.language_code];
         
@@ -430,14 +437,19 @@
 
 -(void)registerNotification
 {
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(updateNotificationCount:)
+//                                                 name:@"UpdateNotification"
+//                                               object:nil];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateNotificationCount:)
-                                                 name:@"UpdateNotification"
+                                             selector:@selector(updateNotification:)
+                                                 name:@"updatePhoneVerification"
                                                object:nil];
 
 }
 
-- (void) updateNotificationCount:(NSNotification *) notification
+- (void) updateNotification:(NSNotification *) notification
 {
     // [notification name] should always be @"TestNotification"
     // unless you use this method for observation of other notifications
@@ -459,9 +471,13 @@
 
         }
         else {
-            self.ct3_MoreViewController.tabBarItem.badgeValue = nil;
+            self.ct3MeViewController.tabBarItem.badgeValue = nil;
 
         }
+    }
+    else if([[notification name] isEqualToString:@"updatePhoneVerification"])
+    {
+        [self reloadBadgeView];
     }
 }
 -(void)requestServerForNotificationCount
@@ -532,6 +548,31 @@
     };
     
     
+}
+
+-(void)reloadBadgeView
+{
+    
+    if ([Utils isGuestMode]) {
+        
+        self.ct3_MoreViewController.tabBarItem.badgeValue = nil;
+
+    }
+    else{
+        
+        ProfileModel* userProfile = [[ConnectionManager dataManager]currentUserProfileModel];
+        
+        if ([Utils isStringNull:userProfile.contact_no]) {
+            self.ct3_MoreViewController.tabBarItem.badgeValue = @"!";
+
+        }
+        else{
+            self.ct3_MoreViewController.tabBarItem.badgeValue = nil;
+
+        }
+
+    }
+
 }
 
 @end
