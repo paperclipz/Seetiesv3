@@ -216,6 +216,7 @@
     _usersModel = nil;
     _seShopsModel = nil;
     [self.ibTableView reloadData];
+    [self.ibTableView stopFooterLoadingView];
 
     switch (self.searchListingType) {
         default:
@@ -592,7 +593,6 @@
         [finalDict addEntriesFromDictionary:self.filterDict];
     }
     
-    [self.ibTableView startFooterLoadingView];
     
     isMiddleOfCallingServer = YES;
     
@@ -607,7 +607,8 @@
         [self.arrList addObjectsFromArray:model.shops];
         
         isMiddleOfCallingServer = NO;
-        [self.ibTableView stopFooterLoadingView];
+        
+        
         [self.ibTableView reloadData];
         
         if ([Utils isArrayNull:self.arrList]) {
@@ -620,7 +621,6 @@
        
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
-        [self.ibTableView stopFooterLoadingView];
         if ([Utils isArrayNull:self.arrList]) {
             [self.ibTableView showEmptyState];
         }
@@ -669,7 +669,6 @@
     }
     
     isMiddleOfCallingServer = YES;
-    [self.ibTableView startFooterLoadingView];
     [self.ibTableView showLoading];
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchPosts param:finalDict appendString:appendString completeHandler:^(id object) {
@@ -686,12 +685,10 @@
             [self.ibTableView hideAll];
             
         }
-           [self.ibTableView stopFooterLoadingView];
 
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
         
-        [self.ibTableView stopFooterLoadingView];
         
         if ([Utils isArrayNull:self.arrList]) {
             [self.ibTableView showEmptyState];
@@ -712,8 +709,6 @@
         return;
     }
     isMiddleOfCallingServer = YES;
-  //  NSDictionary* dict;
-  //  NSString* appendString = [[NSString alloc]initWithFormat:@"user?token=%@&keyword=%@",[Utils getAppToken],self.getSearchText];
 
     [self.ibTableView showLoading];
 
@@ -722,7 +717,6 @@
                            @"token":[Utils getAppToken],
                            @"keyword":self.keyword
                            };
-    [self.ibTableView startFooterLoadingView];
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeSearchUsers param:dict appendString:nil completeHandler:^(id object) {
         self.usersModel = [[ConnectionManager dataManager]usersModel];
@@ -730,7 +724,6 @@
 
         [self.ibTableView reloadData];
         isMiddleOfCallingServer = NO;
-        [self.ibTableView stopFooterLoadingView];
         
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.usersModel.total_count,LocalisedString(@"Users")];
         if ([Utils isArrayNull:self.arrList]) {
@@ -743,7 +736,6 @@
     } errorBlock:^(id object) {
         
         isMiddleOfCallingServer = NO;
-        [self.ibTableView stopFooterLoadingView];
         if ([Utils isArrayNull:self.arrList]) {
             [self.ibTableView showEmptyState];
         }
@@ -780,7 +772,6 @@
         [finalDict addEntriesFromDictionary:self.filterDict];
     }
     
-    [self.ibTableView startFooterLoadingView];
 
     [self.ibTableView showLoading];
 
@@ -792,7 +783,6 @@
         isMiddleOfCallingServer = NO;
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_count,LocalisedString(@"Collections")];
 
-        [self.ibTableView stopFooterLoadingView];
         if ([Utils isArrayNull:self.arrList]) {
             [self.ibTableView showEmptyState];
         }
@@ -803,7 +793,6 @@
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = NO;
 
-        [self.ibTableView stopFooterLoadingView];
         if ([Utils isArrayNull:self.arrList]) {
             [self.ibTableView showEmptyState];
         }
@@ -1031,8 +1020,15 @@
                 
                 if (!isMiddleOfCallingServer) {
                     if (self.userCollectionsModel.next) {
-                        
+
+                        [self.ibTableView startFooterLoadingView];
+
                         [self requestServerForSearchCollection];
+                    }
+                    
+                    else{
+                        [self.ibTableView stopFooterLoadingView];
+
                     }
                 }
                
@@ -1043,6 +1039,12 @@
                     if (self.usersModel.total_page > self.usersModel.page) {
                         
                         [self requestServerForSearchUser];
+                        [self.ibTableView startFooterLoadingView];
+
+                    }
+                    else{
+                        [self.ibTableView stopFooterLoadingView];
+
                     }
                 }
                 
@@ -1056,6 +1058,12 @@
                         SLog(@"total page %d",self.userProfilePostModel.recommendations.page);
                         
                         [self requestServerForSearchPosts];
+                        [self.ibTableView startFooterLoadingView];
+
+                    }
+                    else{
+                        [self.ibTableView stopFooterLoadingView];
+
                     }
                 }
 
@@ -1068,6 +1076,12 @@
                     if (self.seShopsModel.paging.next) {
                         
                         [self requestServerForSearchShop];
+                        [self.ibTableView startFooterLoadingView];
+
+                    }
+                    else{
+                        [self.ibTableView stopFooterLoadingView];
+
                     }
                 }
                 

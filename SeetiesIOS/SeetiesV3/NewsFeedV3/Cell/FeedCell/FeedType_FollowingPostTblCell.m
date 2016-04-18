@@ -151,8 +151,6 @@
 
     }
     
-    //self.lblLocation.text = [NSString stringWithFormat:@"%@ • %@",feedModel.location.locality,feedModel.location.country];
- 
     [self.lblDescription setStandardText:[feedModel getPostDescription]];
 
     

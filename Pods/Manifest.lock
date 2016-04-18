@@ -25,7 +25,6 @@ PODS:
     - AFNetworking/NSURLSession
   - APParallaxHeader (0.1.6)
   - BOString (0.10.0)
-  - CCHLinkTextView (1.2.0)
   - CLLocationManager-blocks (1.3.3)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
@@ -61,8 +60,9 @@ PODS:
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - SKSplashView (0.1.2)
   - STPopup (1.6.1)
-  - SVPullToRefresh (0.4.1)
+  - SVPullToRefresh (HEAD based on 0.4.1)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
   - TTTAttributedLabel (1.13.4)
@@ -76,7 +76,6 @@ DEPENDENCIES:
   - ADTransitionController
   - APParallaxHeader
   - BOString
-  - CCHLinkTextView
   - CLLocationManager-blocks
   - Crashlytics
   - DBCamera (~> 2.4)
@@ -96,8 +95,9 @@ DEPENDENCIES:
   - NSDate-Time-Ago
   - PureLayout
   - SDWebImage
+  - SKSplashView
   - STPopup
-  - SVPullToRefresh
+  - SVPullToRefresh (HEAD)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - TTTAttributedLabel
   - UITextView+Placeholder
@@ -120,7 +120,6 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   BOString: b4c4df4f8a7f046c42a51c32629772dc2701fc47
-  CCHLinkTextView: bfe688e0b7d34088375a466524158765832f7657
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
@@ -144,6 +143,7 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SKSplashView: c65333b6707be6f237d09e7c8977941114b0a70d
   STPopup: f32dc6a944b57311b6d2d6e3afd789f83a0c4cbc
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c

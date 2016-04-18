@@ -46,7 +46,8 @@ pod 'IDMPhotoBrowser'
 pod 'YLGIFImage'
 
 pod 'Masonry'
-pod 'CCHLinkTextView'
+pod 'SKSplashView'
+
 #pod 'iCarousel'
 #================ debugging =====================#
 #pod 'CocoaLumberjack'

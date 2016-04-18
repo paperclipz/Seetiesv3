@@ -9,6 +9,10 @@
 #import "NewLandingViewController.h"
 #import "UITabBar+Extension.h"
 #import "IntroCoverView.h"
+#import "SKSplashView.h"
+#import "SKSplashIcon.h"
+#import "Masonry.h"
+
 
 @interface NewLandingViewController()<UITabBarControllerDelegate>
 {
@@ -19,11 +23,13 @@
 @property (nonatomic)UINavigationController* thirdViewController;
 @property (nonatomic, strong)IntroCoverView* introView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *ibLogo;
 
 
 @property (nonatomic,strong)NSArray* arryViewController;
 
 @property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
+@property (strong, nonatomic) IBOutlet UIView *ibSplashView;
 
 @end
 
@@ -52,8 +58,38 @@
     }
     
     [self requestServerForCountry];
+    
    // [self showIntroView];
+    [self showAnimatedSplash];
 
+}
+
+-(void)showAnimatedSplash
+{
+    
+    UIView *superview = self.view;
+    UIView *view1 = self.ibSplashView;
+    view1.translatesAutoresizingMaskIntoConstraints = NO;
+    [superview addSubview:view1];
+    UIEdgeInsets padding = UIEdgeInsetsMake(0, 0, 0, 0);
+
+    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(superview).with.insets(padding);
+    }];
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        
+        self.ibLogo.alpha = 0;
+        
+    }completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:1.0 animations:^{
+        
+            self.ibSplashView.alpha = 0;
+        }completion:^(BOOL finished) {
+            [self.ibSplashView removeFromSuperview];
+        }];
+    }];
 }
 
 -(UITabBarController*)tabBarController
