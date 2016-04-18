@@ -328,7 +328,7 @@
 -(void)reloadImage
 {
     int photoCount = (int)self.postModel.arrPhotos.count;
-    self.lblNumberOfPhotos.text = [NSString stringWithFormat:@"%d %@",photoCount,LOCALIZATION(@"Photos")];
+    self.lblNumberOfPhotos.text = [NSString stringWithFormat:@"%d %@",photoCount,LocalisedString(@"Photos")];
         if (![Utils isArrayNull:self.postModel.arrPhotos]) {
             
             PhotoModel* edifotoModel = self.postModel.arrPhotos[0];

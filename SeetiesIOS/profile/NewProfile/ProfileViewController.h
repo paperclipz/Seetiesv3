@@ -15,7 +15,6 @@
 #import "LikesListingViewController.h"
 #import "EditProfileV2ViewController.h"
 #import "SearchViewV2Controller.h"
-#import "ShareViewController.h"
 #import "FeedV2DetailViewController.h"
 #import "CT3_SearchListingViewController.h"
 
@@ -38,7 +37,6 @@
 @property(nonatomic,strong)EditProfileV2ViewController* editProfileV2ViewController;
 @property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
 @property(nonatomic,strong)ConnectionsViewController* connectionsViewController;
-@property(nonatomic,strong)ShareViewController* shareViewController;
 @property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property(nonatomic,strong)FeedV2DetailViewController* feedV2DetailViewController;
 @property(nonatomic,strong)CT3_SearchListingViewController* searchListingViewController;

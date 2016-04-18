@@ -41,20 +41,20 @@
     
     if (self.txtPassword.text.length <7) {
         
-        [TSMessage showNotificationInViewController:self title:LOCALIZATION(@"system") subtitle:LOCALIZATION(@"Password should be more than 8 character") type:TSMessageNotificationTypeError];
+        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Password should be more than 8 character") type:TSMessageNotificationTypeError];
         
         return false;
     }
     else if(self.txtUserName.text.length<=1)
     {
-        [TSMessage showNotificationInViewController:self title:LOCALIZATION(@"system") subtitle:LOCALIZATION(@"Username should be more than 1 character") type:TSMessageNotificationTypeError];
+        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Username should be more than 1 character") type:TSMessageNotificationTypeError];
 
         return false;
         
     }
     else if(![Utils validateEmail:self.txtEmail.text])
     {
-        [TSMessage showNotificationInViewController:self title:LOCALIZATION(@"system") subtitle:LOCALIZATION(@"Not valid email address") type:TSMessageNotificationTypeError];
+        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Not valid email address") type:TSMessageNotificationTypeError];
 
     }
     

@@ -19,7 +19,6 @@
 #import "ConnectionManager.h"
 #import "DataManager.h"
 #import "UrlDataClass.h"
-#import "Localisator.h"
 #import "TSMessage.h"
 #import "BaseViewController.h"
 #import "CommonTableViewCell.h"
