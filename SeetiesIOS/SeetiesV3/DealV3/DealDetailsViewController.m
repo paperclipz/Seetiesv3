@@ -577,6 +577,10 @@
     CGFloat padding = 20.0f;
     CGFloat xOrigin = 0;
     CGFloat yOrigin = (self.ibTagContentView.frame.size.height-tagHeight)/2;
+    //Clear all subiviews before adding in new subview
+    for (UIView *subview in [self.ibTagContentView subviews]) {
+        [subview removeFromSuperview];
+    }
     if (self.dealModel.is_feature) {
         NSString *tag = [NSString stringWithFormat:@"%@", LocalisedString(@"FEATURED")];
         CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
@@ -1186,6 +1190,7 @@
         int walletCount = [self.dealManager getWalletCount];
         [self.dealManager setWalletCount:walletCount+1];
         [self updateFooterView];
+        [self updateViews];
         self.isProcessing = NO;
     } errorBlock:^(id object) {
         self.isProcessing = NO;
@@ -1206,11 +1211,10 @@
         SeShopsModel *seetieShopModel = [[ConnectionManager dataManager]seNearbyShopModel];
         [self.nearbyShopArray addObjectsFromArray:seetieShopModel.shops];
         [self updateViews];
-        
-//        [self drawBorders];
         [LoadingManager hide];
     } errorBlock:^(id object) {
-        
+        [self updateViews];
+        [LoadingManager hide];
     }];
 }
 
@@ -1226,14 +1230,13 @@
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealRelevantDeals param:dict appendString:appendString completeHandler:^(id object) {
         DealsModel *deals = [[ConnectionManager dataManager]dealsModel];
         self.dealsModel = deals;
-        [self updateViews];
         
         if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
             if (self.dealModel.shops.count == 1) {
                 [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
             }
             else{
-//                [self drawBorders];
+                [self updateViews];
                 [LoadingManager hide];
             }
         }
@@ -1247,7 +1250,7 @@
                 [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];
             }
             else{
-//                [self drawBorders];
+                [self updateViews];
                 [LoadingManager hide];
             }
         }

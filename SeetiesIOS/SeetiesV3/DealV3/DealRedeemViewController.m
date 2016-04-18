@@ -208,14 +208,15 @@
     UITouch *touch = [[event allTouches] anyObject];
     UIView *label = touch.view;
     dragging = NO;
-    
+  
     if(touch.view == self.ibSwipeView){
         if (activateDropEffect) {
             
             if ([self isNeedShowFirstTime]) {
                 [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to redeem this voucher") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
-                        [self dropBottomView];
+                        [self requestServerToRedeemVoucher];
+//                        [self dropBottomView];
                     }
                     else if (buttonIndex == 0){
                         [UIView animateWithDuration:0.5 animations:^{
@@ -227,7 +228,8 @@
             }
             else
             {
-                [self dropBottomView];
+                [self requestServerToRedeemVoucher];
+//                [self dropBottomView];
 
             }
             
@@ -268,8 +270,8 @@
         self.ibBottomView.hidden = YES;
     }];
     
-    [self requestServerToRedeemVoucher];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeZone:[NSTimeZone systemTimeZone]];
     [formatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
     self.ibRedeemDateTime.text = [formatter stringFromDate:[[NSDate alloc] init]];
 }
@@ -361,6 +363,8 @@
 
     }
     
+    [LoadingManager show];
+    
     [[ConnectionManager Instance] requestServerWithPut:ServerRequestTypePutRedeemVoucher param:finalDict appendString:nil completeHandler:^(id object) {
         //Remove voucher from deal manager if it is not reusable
         if (self.dealModel.total_available_vouchers != -1) {
@@ -370,10 +374,14 @@
             [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
         }
         
+        [self dropBottomView];
+        
         self.isRedeeming = NO;
+        [LoadingManager hide];
         
     } errorBlock:^(id object) {
         self.isRedeeming = NO;
+        [LoadingManager hide];
     }];
 }
 
