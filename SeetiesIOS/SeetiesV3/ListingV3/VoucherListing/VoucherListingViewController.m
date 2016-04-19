@@ -654,7 +654,7 @@
             [self.promoPopOutViewController setViewType:PopOutViewTypeChooseShop];
             [self.promoPopOutViewController setPopOutCondition:PopOutConditionChooseShopOnly];
             [self.promoPopOutViewController setDealModel:dealModel];
-            [self.promoPopOutViewController setShopArray:dealModel.shops];
+            [self.promoPopOutViewController setShopArray:dealModel.available_shops];
             self.promoPopOutViewController.promoPopOutDelegate = self;
             
             STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];

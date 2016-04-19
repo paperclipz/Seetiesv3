@@ -34,6 +34,7 @@
 @property(nonatomic,strong)PriceModel* price;
 @property(nonatomic,strong)NSArray* arrFeatureAvaiable;
 @property(nonatomic,strong)NSArray* arrFeatureUnavaiable;
+@property(nonatomic,assign)int total_available_vouchers;
 
 @property(nonatomic,readonly)NSArray* arrayInformation;
 @property(nonatomic,strong)SeShopCategoryModel* category;

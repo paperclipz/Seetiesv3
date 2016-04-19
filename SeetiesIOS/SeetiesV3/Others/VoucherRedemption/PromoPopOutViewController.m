@@ -20,13 +20,11 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulView;
 @property (weak, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulContentView;
-@property (weak, nonatomic) IBOutlet UILabel *ibRedemptionSuccessfulVoucherTitle;
 @property (weak, nonatomic) IBOutlet UIButton *ibRedemptionSuccessfulBtn;
-@property (weak, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulDealTitleContentView;
 @property (weak, nonatomic) IBOutlet UILabel *ibRedemptionSuccessfulTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibRedemptionSuccessfulDesc;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibDealTitleScrollViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibDealTitleContentHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *ibRedemptionSuccessfulVoucherContent;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibVoucherContentHeightConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibChooseShopView;
 @property (weak, nonatomic) IBOutlet UIView *ibChooseShopContentView;
@@ -226,6 +224,7 @@
             self.ibPromoCodeText.placeholder = LocalisedString(@"Enter here");
             [self.ibEnterPromoSubmitBtn setTitle:LocalisedString(@"Submit") forState:UIControlStateNormal];
             
+            self.ibPromoCodeText.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             [self.view refreshConstraint];
             [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder: self.ibPromoCodeText color:[UIColor clearColor] borderRadius:self.ibPromoCodeText.frame.size.height/2];
@@ -272,42 +271,56 @@
             self.ibRedemptionSuccessfulDesc.text = LocalisedString(@"is now in your wallet!");
             [self.ibRedemptionSuccessfulBtn setTitle:LocalisedString(@"View voucher details") forState:UIControlStateNormal];
             
-            [self.ibRedemptionSuccessfulContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
-            
             if (self.dealsModel) {
-                NSMutableString *dealTitles = [[NSMutableString alloc] init];
-                BOOL isFirst = YES;
-                for (DealModel *deal in self.dealsModel.arrDeals) {
-                    if (isFirst) {
-                        isFirst = NO;
-                    }
-                    else{
-                        [dealTitles appendFormat:@"\n"];
-                    }
-                    [dealTitles appendFormat:@"\u2022 %@", deal.title];
-                }
-                
+                int numberOfLines = 0;
                 float fontSize = 15.0f;
-                float padding = 10.0f;
+                float heightPerLine = 15.0f;
                 NSDictionary *attr = @{NSFontAttributeName: [UIFont systemFontOfSize:fontSize]};
-                CGRect dealTitlesRect = [dealTitles boundingRectWithSize:CGSizeMake(self.ibRedemptionSuccessfulDealTitleContentView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
-                self.ibRedemptionSuccessfulVoucherTitle.text = dealTitles;
+                switch (self.dealsModel.arrDeals.count) {
+                    case 1:
+                        numberOfLines = 0;
+                        break;
+                    case 2:
+                        numberOfLines = 3;
+                        break;
+                    case 3:
+                        numberOfLines = 2;
+                        break;
+                    default:
+                        numberOfLines = 1;
+                        break;
+                }
+                float maxHeight = numberOfLines == 0? CGFLOAT_MAX : heightPerLine*numberOfLines;
                 
-                if (dealTitlesRect.size.height > 55) {
-                    self.ibDealTitleScrollViewHeightConstraint.constant = 55;
-                    self.ibDealTitleContentHeightConstraint.constant = dealTitlesRect.size.height;
+                CGFloat yOrigin = 0;
+                CGFloat padding = 5;
+                for (DealModel *deal in self.dealsModel.arrDeals) {
+                    NSString *displayString = [NSString stringWithFormat:@"\u2022 %@", deal.title];
+                    CGRect voucherRect = [displayString boundingRectWithSize:CGSizeMake(self.ibRedemptionSuccessfulVoucherContent.frame.size.width, maxHeight) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
+                    
+                    UILabel *voucherLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, yOrigin, voucherRect.size.width, voucherRect.size.height)];
+                    voucherLbl.font = [UIFont systemFontOfSize:fontSize];
+                    voucherLbl.textColor = DEVICE_COLOR;
+                    voucherLbl.numberOfLines = numberOfLines;
+                    voucherLbl.textAlignment = NSTextAlignmentCenter;
+                    voucherLbl.text = displayString;
+                    
+                    [self.ibRedemptionSuccessfulVoucherContent addSubview:voucherLbl];
+                    yOrigin += voucherRect.size.height + padding;
                 }
-                else{
-                    self.ibDealTitleScrollViewHeightConstraint.constant = dealTitlesRect.size.height;
-                    self.ibDealTitleContentHeightConstraint.constant = dealTitlesRect.size.height;
-                }
+                
+                self.ibVoucherContentHeightConstraint.constant = yOrigin;
+                [self.view layoutIfNeeded];
             }
+            CGFloat heightDiff = self.ibVoucherContentHeightConstraint.constant - 15;
+            self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, 400 + heightDiff);
+            [Utils setRoundBorder:self.ibRedemptionSuccessfulContentView color:[UIColor clearColor] borderRadius:8.0f];
         }
             return self.ibRedemptionSuccessfulView;
             
         case PopOutViewTypeChangeVerifiedPhone:
         {
-            self.ibChangeVerifiedPhoneDescLbl.text = LocalisedString(@"This phone number has been verified.");
+            self.ibChangeVerifiedPhoneDescLbl.text = LocalisedString(@"Your phone number has been verified");
             [self.ibChangeVerifiedPhoneBtn setTitle:LocalisedString(@"Change Phone Number") forState:UIControlStateNormal];
             
             [self.ibChangeVerifiedPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
@@ -497,7 +510,7 @@
                     DealModel *deal = self.dealsModel.arrDeals[0];
                     if (deal.shops.count > 1) {
                         [nextVC setViewType:PopOutViewTypeChooseShop];
-                        [nextVC setShopArray:deal.shops];
+                        [nextVC setShopArray:deal.available_shops];
                     }
                     else{
                         if (self.hasRedeemed) {

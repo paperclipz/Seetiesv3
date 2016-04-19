@@ -59,6 +59,7 @@
 @property(nonatomic,strong) NSString *voucher_type;
 
 @property(nonatomic,strong) SeShopDetailModel* shop;//current usage in supedeal shop
+@property(nonatomic,strong) NSMutableArray<SeShopDetailModel> *available_shops;    //to display shops that have available vouchers
 
 @property(nonatomic, strong) SeShopGroupModel *shop_group_info;
 @property(nonatomic,assign) BOOL is_feature;

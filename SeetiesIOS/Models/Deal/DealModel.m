@@ -48,6 +48,25 @@
     return self.dID.hash;
 }
 
+-(NSMutableArray<SeShopDetailModel> *)available_shops{
+    if (!_available_shops) {
+        _available_shops = [[NSMutableArray<SeShopDetailModel> alloc] initWithArray:[self.shops mutableCopy]];
+        
+        NSMutableArray<SeShopDetailModel> *toBeDeletedArr = [[NSMutableArray<SeShopDetailModel> alloc] init];
+        for (SeShopDetailModel *shopModel in _available_shops) {
+            if (shopModel.total_available_vouchers == 0) {
+                [toBeDeletedArr addObject:shopModel];
+            }
+        }
+        
+        if (![Utils isArrayNull:toBeDeletedArr]) {
+            [_available_shops removeObjectsInArray:toBeDeletedArr];
+        }
+    }
+    
+    return _available_shops;
+}
+
 -(NSMutableArray<DailyPeriodModel>*)getFormattedAvailablePeriods{
     NSMutableArray<DailyPeriodModel> *formattedDailyPeriods = [[NSMutableArray<DailyPeriodModel> alloc] init];
     
