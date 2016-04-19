@@ -23,7 +23,6 @@
 #import "CollectionViewController.h"
 #import "InviteFrenViewController.h"
 #import "ProfileViewController.h"
-#import "AnnounceViewController.h"
 #import "CTWebViewController.h"
 
 #import "DealType_mainTblCell.h"
@@ -109,7 +108,6 @@ static NSCache* heightCache = nil;
 @property(nonatomic,strong)CollectionViewController* displayCollectionViewController;
 @property(nonatomic,strong)InviteFrenViewController* inviteFrenViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
-@property(nonatomic,strong)AnnounceViewController* announceViewController;
 @property(nonatomic,strong)CTWebViewController* ctWebViewController;
 @property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
 @property(nonatomic,strong)VoucherListingViewController* voucherListingViewController;
@@ -306,15 +304,6 @@ static NSCache* heightCache = nil;
     }
     
     return _ctWebViewController;
-}
-
--(AnnounceViewController*)announceViewController
-{
-    if (!_announceViewController) {
-        _announceViewController = [AnnounceViewController new];
-    }
-    
-    return _announceViewController;
 }
 
 -(ProfileViewController*)profileViewController
@@ -1282,15 +1271,7 @@ static NSCache* heightCache = nil;
         [self.announcementViewController initData:model];
     }];
 }
--(void)showAnnouncementView:(CTFeedTypeModel*)model
-{
-    _announceViewController = nil;
-    
-    [self.navigationController pushViewController:self.announceViewController animated:YES onCompletion:^{
-    
-        [self.announceViewController initData:model];
-    }];
-}
+
 -(void)showPostDetailView:(DraftModel*)draftModel
 {
     _feedV2DetailViewController = nil;

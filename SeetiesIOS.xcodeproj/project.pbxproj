@@ -23,8 +23,6 @@
 		0B6AEA821C48E502009B7D33 /* CT3_MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6AEA801C48E502009B7D33 /* CT3_MoreViewController.xib */; };
 		0B6AEA861C48ED6A009B7D33 /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEA841C48ED6A009B7D33 /* SettingsTableViewCell.m */; };
 		0B6AEA871C48ED6A009B7D33 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6AEA851C48ED6A009B7D33 /* SettingsTableViewCell.xib */; };
-		0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */; };
-		0B99C2011BCBA1F1006D7E63 /* AnnounceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */; };
 		0BA94DCB1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA94DC91BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m */; };
 		0BA94DCC1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA94DCA1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib */; };
 		0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE04D1B9D624C004B17E9 /* EditProfileV2ViewController.m */; };
@@ -1479,9 +1477,6 @@
 		0B6AEA831C48ED6A009B7D33 /* SettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewCell.h; sourceTree = "<group>"; };
 		0B6AEA841C48ED6A009B7D33 /* SettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewCell.m; sourceTree = "<group>"; };
 		0B6AEA851C48ED6A009B7D33 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
-		0B99C1FD1BCBA1F0006D7E63 /* AnnounceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceViewController.h; sourceTree = "<group>"; };
-		0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceViewController.m; sourceTree = "<group>"; };
-		0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnounceViewController.xib; sourceTree = "<group>"; };
 		0BA94DC81BEAFA64003AB2E4 /* SuggestedCollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionsViewController.h; sourceTree = "<group>"; };
 		0BA94DC91BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionsViewController.m; sourceTree = "<group>"; };
 		0BA94DCA1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionsViewController.xib; sourceTree = "<group>"; };
@@ -5258,9 +5253,6 @@
 				8AD6BD931B706CF30040437E /* NearByRecommtationViewController.h */,
 				8AD6BD941B706CF30040437E /* NearByRecommtationViewController.m */,
 				8AD6BD951B706CF30040437E /* NearByRecommtationViewController.xib */,
-				0B99C1FD1BCBA1F0006D7E63 /* AnnounceViewController.h */,
-				0B99C1FE1BCBA1F0006D7E63 /* AnnounceViewController.m */,
-				0B99C1FF1BCBA1F0006D7E63 /* AnnounceViewController.xib */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -8181,7 +8173,6 @@
 				8AFA52041C47B4AB00E7920E /* CT3_MeViewController.xib in Resources */,
 				C240B97F1CC62F4400B79190 /* BgWalkHome5@2x.jpg in Resources */,
 				C240BAE91CC62F4400B79190 /* EditProfileSmiley@2x.png in Resources */,
-				0B99C2011BCBA1F1006D7E63 /* AnnounceViewController.xib in Resources */,
 				C240BA0C1CC62F4400B79190 /* BrushIcon@3x.png in Resources */,
 				C240BB021CC62F4400B79190 /* ProfileExpand@3x.png in Resources */,
 				C240B98E1CC62F4400B79190 /* WalkWallet1.png in Resources */,
@@ -8715,7 +8706,6 @@
 				8AF6FDEA1C5A289B005AAE5D /* SeDealsFeaturedTblCell.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
 				8A7EDA7B1C747DE000A9E76E /* NotificationModel.m in Sources */,
-				0B99C2001BCBA1F1006D7E63 /* AnnounceViewController.m in Sources */,
 				8AFA52031C47B4AB00E7920E /* CT3_MeViewController.m in Sources */,
 				8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */,
 				8AFA51EF1C47B4AB00E7920E /* FeedType_CountryPromotionTblCell.m in Sources */,
