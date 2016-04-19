@@ -42,10 +42,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-    [self.followingTableViewController requestServer:1];
-    [self.notificationTableViewController requestServer:2];
     
     [self initSelfView];
+    
+   
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -60,7 +60,9 @@
 
 -(void)initSelfView
 {
-   
+    
+    [self.followingTableViewController requestServer:1];
+    [self.notificationTableViewController requestServer:2];
     [self.ibContentView addSubview:self.cAPSPageMenu.view];
 
 }

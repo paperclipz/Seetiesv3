@@ -90,7 +90,7 @@
 -(void)initSelfView
 {
     
-    [self.ibTableView setupEmptyState];
+    [self.ibTableView setupCustomEmptyView];
     [self.ibTableView setupFooterView];
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;

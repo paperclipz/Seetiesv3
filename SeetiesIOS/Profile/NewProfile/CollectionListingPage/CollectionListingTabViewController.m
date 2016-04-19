@@ -82,7 +82,7 @@
 -(void)initSelfView
 {
     
-    [self.ibTableView setupEmptyState];
+    [self.ibTableView setupCustomEmptyView];
     [self initTableViewWithDelegate:self];
 }
 
@@ -218,7 +218,14 @@
         [self.ibTableView reloadData];
         
         
-        [self.ibTableView showEmptyState];
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+
+        }
+        else{
+            [self.ibTableView hideAll];
+
+        }
 
 
     } errorBlock:^(id object) {
@@ -253,8 +260,14 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
         
-        [self.ibTableView showEmptyState];
-
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            [self.ibTableView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
         [self.ibTableView hideAll];
@@ -287,8 +300,14 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
         
-        [self.ibTableView showEmptyState];
-
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            [self.ibTableView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
         [self.ibTableView hideAll];
@@ -319,8 +338,14 @@
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
-        [self.ibTableView showEmptyState];
-
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            [self.ibTableView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
         [self.ibTableView hideAll];
@@ -389,52 +414,6 @@
             }
 }
 
-//
-//-(void)requestServerToFollowCollection:(CollectionModel*)colModel
-//{
-//    
-//    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",self.userID,colModel.collection_id];
-//    NSDictionary* dict = @{@"uid":self.userID,
-//                           @"token":[Utils getAppToken],
-//                           @"collection_id":colModel.collection_id
-//                           };
-//    
-//    if (!colModel.following) {
-//        
-//        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
-//            
-//            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
-//            
-//            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
-//            colModel.following = following;
-//            [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
-//
-//            [self.ibTableView reloadData];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
-//            
-//            
-//        } errorBlock:^(id object) {
-//            
-//        }];
-//    }
-//    else{
-//        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
-//            
-//            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
-//            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
-//            colModel.following = following;
-//            [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
-//
-//            [self.ibTableView reloadData];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
-//            
-//            
-//        } errorBlock:^(id object) {
-//        }];
-//    }
-//    
-//}
-
 -(void)requestServerForShareCollection:(CollectionModel*)colModel
 {
 
@@ -478,8 +457,14 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
         
-        [self.ibTableView showEmptyState];
-
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            [self.ibTableView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
         [self.ibTableView hideAll];

@@ -1,29 +1,34 @@
 //
-//  CustomEmptyView.m
+//  UITableView+emptyState.m
 //  SeetiesIOS
 //
-//  Created by Evan Beh on 07/04/2016.
+//  Created by Evan Beh on 19/04/2016.
 //  Copyright © 2016 Stylar Network. All rights reserved.
 //
 
-#import "CustomEmptyView.h"
-#import "YLGIFImage.h"
-#import "EmptyStateView.h"
+#import "UITableView+emptyState.h"
+static const NSString *MAIN_VIEW_KEY = @"mainview";
 
-@interface CustomEmptyView()
-@property (nonatomic, strong) EmptyStateView *customEmptyStateView;
+@implementation UITableView(EmptyState)
 
-@end
 
-@implementation CustomEmptyView
+@dynamic customEmptyStateView;
+- (EmptyStateView *)customEmptyStateView;
+{
+    return objc_getAssociatedObject(self, &MAIN_VIEW_KEY);
+}
+
+- (void)setCustomEmptyStateView:(EmptyStateView *)customEmptyStateView
+{
+
+    objc_setAssociatedObject(self, &MAIN_VIEW_KEY, customEmptyStateView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+}
 
 -(void)setupCustomEmptyView
 {
-    
     self.customEmptyStateView = [EmptyStateView initializeCustomView];
-    
     self.backgroundView = self.customEmptyStateView;
-
 }
 
 -(void)showLoading
@@ -35,11 +40,11 @@
         if (self.customEmptyStateView.loadingImage) {
             self.customEmptyStateView.loadingImage.image = [YLGIFImage imageNamed:@"Loading.gif"];
         }
-
+        
     } @catch (NSException *exception) {
         
     }
-   
+    
 }
 
 -(void)showEmptyState
@@ -50,7 +55,7 @@
     } @catch (NSException *exception) {
         
     }
-   
+    
 }
 
 -(void)hideAll
@@ -58,9 +63,10 @@
     @try {
         self.customEmptyStateView.loadingView.hidden = YES;
         self.customEmptyStateView.noResultView.hidden = YES;
-
+        
     } @catch (NSException *exception) {
         
     }
-  }
+}
+
 @end

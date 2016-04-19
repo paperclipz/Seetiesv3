@@ -18,7 +18,6 @@
 }
 @property(nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet CustomEmptyView *ibTableView;
 @property (strong, nonatomic)SeShopsModel *seetiShopsModel;
 @property(nonatomic,strong)NSString* seetiesID;
@@ -35,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.ibTableView setupEmptyState];
+    [self.ibTableView setupCustomEmptyView];
     isServerMiddleOfLoading= NO;
     // Do any additional setup after loading the view from its nib.
     [self initTableViewDelegate];

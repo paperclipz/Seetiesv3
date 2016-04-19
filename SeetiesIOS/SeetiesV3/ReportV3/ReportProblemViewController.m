@@ -230,6 +230,9 @@
         
         [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
         
+        [self.navigationController popViewControllerAnimated:YES];
+
+
     } errorBlock:^(id object) {
         
     }];
@@ -250,7 +253,7 @@
         [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostReportDeal param:dict appendString:appendString completeHandler:^(id object) {
             [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
 
-            [self.navigationController popViewControllerAnimated:YES onCompletion:nil];
+            [self.navigationController popViewControllerAnimated:YES];
             
         } errorBlock:^(id object) {
             

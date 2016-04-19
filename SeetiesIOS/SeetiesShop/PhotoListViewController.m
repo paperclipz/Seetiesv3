@@ -10,6 +10,8 @@
 #import "LikeListingCollectionViewCell.h"
 #import "PhotoViewController.h"
 #import "IDMPhotoBrowser.h"
+#import "EmptyStateView.h"
+#import "UICollectionView+emptyState.h"
 
 @interface PhotoListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,IDMPhotoBrowserDelegate>
 {
@@ -17,6 +19,7 @@
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property(nonatomic,strong)PhotoViewController* photoVC;
+//@property(nonatomic,strong)EmptyStateView* emptyStateView;
 
 // -------------------- MODEL -----------------------------//
 @property(nonatomic,strong)NSMutableArray* arrImagesList;
@@ -39,6 +42,9 @@
     
     [super viewDidLoad];
     [self initSelfView];
+    
+
+    [self.ibCollectionView setupCustomEmptyView];
     [self requestServerForSeetiShopPhotos];
 
 }
@@ -205,6 +211,9 @@
 
     }
     
+    if ([Utils isArrayNull:self.arrImagesList]) {
+        [self.ibCollectionView showLoading];
+    }
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
@@ -216,9 +225,17 @@
             [self.photoVC.ibCollectionView reloadData];
         }
         isMiddleOfCallingServer = NO;
+        
+        if ([Utils isArrayNull:self.arrImagesList]) {
+            [self.ibCollectionView showEmptyState];
+        }
+        else{
+            [self.ibCollectionView hideAll];
+        }
     } errorBlock:^(id object) {
         
         isMiddleOfCallingServer = NO;
+        [self.ibCollectionView hideAll];
 
     }];
     
