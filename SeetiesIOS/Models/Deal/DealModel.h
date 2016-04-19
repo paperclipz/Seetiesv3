@@ -8,8 +8,6 @@
 
 #import <JSONModel/JSONModel.h>
 #import "VoucherInfoModel.h"
-#import "DailyPeriodModel.h"
-#import "PeriodModel.h"
 
 #define DEAL_TYPE_DISCOUNT @"discount"
 #define DEAL_TYPE_FREE @"free"
@@ -60,6 +58,8 @@
 
 @property(nonatomic,strong) SeShopDetailModel* shop;//current usage in supedeal shop
 @property(nonatomic,strong) NSMutableArray<SeShopDetailModel> *available_shops;    //to display shops that have available vouchers
+@property(nonatomic,assign) NSInteger collectionDaysLeft;     //calculate number of days left from collection_periods_in_date //0 = no expiry
+@property(nonatomic,assign) NSInteger redemptionDaysLeft;     //calculate number of days left from expired_at //0 = no expiry
 
 @property(nonatomic, strong) SeShopGroupModel *shop_group_info;
 @property(nonatomic,assign) BOOL is_feature;
@@ -69,6 +69,5 @@
 @property(nonatomic, strong) NSArray *periods_in_date;
 @property(nonatomic, strong) NSArray *collection_periods_in_date;
 
--(NSMutableArray<DailyPeriodModel>*)getFormattedAvailablePeriods;
 -(NSString*)getNextAvailableRedemptionDateString;
 @end

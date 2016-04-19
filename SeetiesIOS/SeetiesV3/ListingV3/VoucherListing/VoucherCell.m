@@ -170,22 +170,7 @@
 }
 
 -(void)setDaysLeft{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSInteger numberOfDaysLeft = 0;
-    NSString *collectionEndDate = @"";
-    
-    if (![Utils isArrayNull:self.dealModel.collection_periods_in_date]) {
-        NSDictionary *dict = self.dealModel.collection_periods_in_date[0];
-        collectionEndDate = dict[@"to"];
-    }
-    
-    if ([Utils isValidDateString:collectionEndDate]) {
-        NSDate *expiryDate = [dateFormatter dateFromString:collectionEndDate];
-        
-        numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
-    }
+    NSInteger numberOfDaysLeft = self.dealModel.collectionDaysLeft;
     
     if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
         self.ibDaysLeftLbl.hidden = NO;

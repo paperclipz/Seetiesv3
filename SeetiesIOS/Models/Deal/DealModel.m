@@ -67,30 +67,40 @@
     return _available_shops;
 }
 
--(NSMutableArray<DailyPeriodModel>*)getFormattedAvailablePeriods{
-    NSMutableArray<DailyPeriodModel> *formattedDailyPeriods = [[NSMutableArray<DailyPeriodModel> alloc] init];
+-(NSInteger)collectionDaysLeft{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSInteger numberOfDaysLeft = 0;
+    NSString *collectionEndDate = @"";
     
-    for (int dayNumber = 0; dayNumber < self.period.count; dayNumber++) {
-        NSArray *dayPeriod = self.period[dayNumber];
-        if ([Utils isArrayNull:dayPeriod]) {
-            continue;
-        }
-        
-        DailyPeriodModel *dailyPeriodModel = [[DailyPeriodModel alloc] init];
-        dailyPeriodModel.periods = [[NSMutableArray<PeriodModel> alloc] init];
-        dailyPeriodModel.dayNumber = dayNumber;
-        
-        for (NSDictionary *period in dayPeriod) {
-            PeriodModel *periodModel = [[PeriodModel alloc] init];
-            periodModel.open = period[@"open"];
-            periodModel.close = period[@"close"];
-            [dailyPeriodModel.periods addObject:periodModel];
-        }
-        
-        [formattedDailyPeriods addObject:dailyPeriodModel];
+    if (![Utils isArrayNull:self.collection_periods_in_date]) {
+        NSDictionary *dict = self.collection_periods_in_date[0];
+        collectionEndDate = dict[@"to"];
     }
     
-    return formattedDailyPeriods;
+    if ([Utils isValidDateString:collectionEndDate]) {
+        NSDate *expiryDate = [dateFormatter dateFromString:collectionEndDate];
+        
+        numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
+    }
+    
+    return numberOfDaysLeft;
+}
+
+-(NSInteger)redemptionDaysLeft{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSInteger numberOfDaysLeft = 0;
+    
+    if ([Utils isValidDateString:self.expired_at]) {
+        NSDate *expiryDate = [dateFormatter dateFromString:self.expired_at];
+        
+        numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
+    }
+    
+    return numberOfDaysLeft;
 }
 
 -(NSString*)getNextAvailableRedemptionDateString{

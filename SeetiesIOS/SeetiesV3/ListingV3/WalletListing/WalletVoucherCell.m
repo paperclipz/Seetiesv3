@@ -94,20 +94,14 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *expiryString = self.dealModel.expired_at;
-    NSInteger numberOfDaysLeft = 0;
-    
-    if ([Utils isValidDateString:expiryString]) {
-        NSDate *expiryDate = [dateFormatter dateFromString:expiryString];
-        numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
-    }
+    NSInteger numberOfDaysLeft = self.dealModel.redemptionDaysLeft;
     
     if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
         self.ibVoucherExpiryLbl.text = [LanguageManager stringForKey:@"Expires in {!number} day(s)" withPlaceHolder:@{@"{!number}": @(numberOfDaysLeft)}];
         self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:244/255.0f green:64/255.0f blue:64/255.0f alpha:1];
     }
     else if(numberOfDaysLeft > 8){
-        NSDate *expiryDate = [dateFormatter dateFromString:expiryString];
+        NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.expired_at];
         [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
         [dateFormatter setDateFormat:@"dd MMM yyyy"];
         self.ibVoucherExpiryLbl.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]}];
