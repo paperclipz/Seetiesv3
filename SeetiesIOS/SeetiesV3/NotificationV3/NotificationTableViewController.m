@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     
-    [self.ibTableView setupEmptyState];
+    [self.ibTableView setupCustomEmptyView];
     
     [self initFooterView];
 
@@ -46,6 +46,14 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
   
+    if (viewType == 1) {
+        [self requestServerForFollowingNotifications];
+        
+    }
+    else{
+        [self requestServerForNotifications];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,14 +64,7 @@
 -(void)requestServer:(int)type
 {
     viewType = type;
-    if (viewType == 1) {
-        [self requestServerForFollowingNotifications];
-
-    }
-    else{
-        [self requestServerForNotifications];
-
-    }
+    
 }
 
 
@@ -138,6 +139,7 @@
     }
 }
 
+#pragma mark - Server Request
 
 -(void)requestServerForNotifications
 {
@@ -163,7 +165,15 @@
             
             [self.tableView reloadData];
 
-            [self.ibTableView hideAll];
+            
+            if ([Utils isArrayNull:self.arrNotifications]) {
+                [self.ibTableView showEmptyState];
+
+            }
+            else{
+                [self.ibTableView hideAll];
+
+            }
             //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             //            @autoreleasepool {
             //
@@ -182,8 +192,6 @@
     }
 }
 
-#pragma mark - Server Request
-
 -(void)requestServerForFollowingNotifications
 {
     
@@ -193,6 +201,9 @@
                                @"latest_timestamp" :self.notificationModels.latest_timestamp?self.notificationModels.latest_timestamp:@""};
         
         isMiddleOfRequestServer = YES;
+        
+        [self.ibTableView showLoading];
+
         [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetFollowingNotifictions param:dict appendString:nil completeHandler:^(id object) {
             
             NotificationModels * model = [[ConnectionManager dataManager]followingNotificationModels];
@@ -201,8 +212,16 @@
             isMiddleOfRequestServer = NO;
             //[(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
             [self.tableView reloadData];
-            [self.ibTableView hideAll];
 
+            if ([Utils isArrayNull:self.arrNotifications]) {
+                [self.ibTableView showEmptyState];
+                
+            }
+            else{
+                [self.ibTableView hideAll];
+                
+            }
+            
         } errorBlock:^(id object) {
             isMiddleOfRequestServer = NO;
            // [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];

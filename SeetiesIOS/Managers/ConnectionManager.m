@@ -61,7 +61,8 @@
 
 -(NSString*)serverPath
 {
-    
+    //return SERVER_PATH_LIVE;
+
     if ([Utils isAppProductionBuild]) {
         BOOL isDev = [Utils getIsDevelopment];
         return isDev?SERVER_PATH_DEV:SERVER_PATH_LIVE;
@@ -82,40 +83,13 @@
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
         _manager.securityPolicy.allowInvalidCertificates = YES;
         _manager.securityPolicy.validatesDomainName = NO;
-        //  _manager.responseSerializer =[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
+          _manager.responseSerializer =[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
         
     }
     
     return _manager;
     
 }
-
-//-(void)requestServer:(ServerRequestType)type completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error GetMethodAttachString:(NSString*)str
-//{
-//
-//    NSString* fullPath =[NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],str];
-//    NSLog(@"Request Server [%@]",fullPath);
-//
-//    [self.manager POST:fullPath parameters:nil
-//               success:^(AFHTTPRequestOperation *operation, id responseObject)
-//     {
-//
-//
-//         [self storeServerData:responseObject requestType:type];
-//
-//         if (completeBlock) {
-//             completeBlock(responseObject);
-//             [self processApiversion];
-//         }
-//     }
-//               failure:
-//     ^(AFHTTPRequestOperation *operation, NSError *error) {
-//         NSLog(@"Error: %@", error);
-//     }];
-//
-//
-//}
-
 
 -(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
 {

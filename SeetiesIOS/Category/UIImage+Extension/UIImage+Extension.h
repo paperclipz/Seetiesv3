@@ -14,4 +14,6 @@
 //- (UIImage*)imageWithColorOverlay:(UIColor*)colorOverlay;
 -(UIImage*)getPlaceHolderImage;
 
+- (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
+- (UIImage *)imageByCroppingImage:(UIImage *)image toSize:(CGSize)size;
 @end

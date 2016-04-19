@@ -49,10 +49,10 @@
 #import "SearchQuickBrowseListingController.h"
 #import "CT3_SearchListingViewController.h"
 
-#import "SVPullToRefresh.h"
-
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
+
+#import "UITableView+emptyState.h"
 
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
@@ -62,7 +62,7 @@ static NSCache* heightCache = nil;
 #define LOCATION_PROMPT @"prompt"
 #define LOCATION_NONE @"update"
 
-@interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BOOL isMiddleOfLoadingServer;
     __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
@@ -72,7 +72,6 @@ static NSCache* heightCache = nil;
     
     NSString* lastUpdatedLocation;
     NSString* lastUpdatedDateTime;
-    BOOL updateLocation;
     BOOL updateData;
     NSString* update_location_method;
 
@@ -85,9 +84,6 @@ static NSCache* heightCache = nil;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 
-@property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
-@property (weak, nonatomic) IBOutlet UILabel *ibLoadingTxt;
-@property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
 @property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 
 /* Model */
@@ -441,10 +437,10 @@ static NSCache* heightCache = nil;
     
     update_location_method = @"";
     
-    self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
-    self.ibTableView.backgroundView = self.ibEmptyStateView;
     
     [self initSelfView];
+
+    [self.ibTableView setupCustomEmptyView];
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -452,6 +448,8 @@ static NSCache* heightCache = nil;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self.ibTableView showLoading];
     
     if (self.needShowIntroView) {
         
@@ -1411,10 +1409,11 @@ static NSCache* heightCache = nil;
             
         }
         
+        [self.ibTableView showLoading];
+
         isMiddleOfLoadingServer = YES;
         [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:nil completeHandler:^(id object) {
             isMiddleOfLoadingServer = NO;
-            [self.ibTableView.pullToRefreshView stopAnimating];
             isFirstLoad = NO;
             NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
             self.newsFeedModels = model;
@@ -1423,11 +1422,11 @@ static NSCache* heightCache = nil;
 //            [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
-            self.ibTableView.backgroundView = nil;
+            [self.ibTableView hideAll];
         } errorBlock:^(id object) {
             [self.ibTableView.pullToRefreshView stopAnimating];
             isMiddleOfLoadingServer = NO;
-            self.ibTableView.backgroundView = nil;
+            [self.ibTableView hideAll];
         }];
 
     }
@@ -1445,7 +1444,8 @@ static NSCache* heightCache = nil;
                            @"token" : [Utils getAppToken],
                            @"address_components" : model.dictAddressComponent?[Utils convertToJsonString:model.dictAddressComponent]:@"",
                            };
-    
+    [self.ibTableView showLoading];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.homeModel = [[ConnectionManager dataManager]homeModel];
@@ -1493,8 +1493,9 @@ static NSCache* heightCache = nil;
         }
         
         [self.ibTableView reloadData];
-        self.ibTableView.backgroundView = nil;
-       // [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+
+        [self.ibTableView hideAll];
+        // [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 
         //[self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
         
@@ -1502,7 +1503,8 @@ static NSCache* heightCache = nil;
   
     } errorBlock:^(id object) {
         [self.ibTableView.pullToRefreshView stopAnimating];
-        self.ibTableView.backgroundView = nil;
+        [self.ibTableView showEmptyState];
+
     }];
 }
 
@@ -1532,7 +1534,6 @@ static NSCache* heightCache = nil;
         
         update_location_method = returnDict[@"update_location_method"];
         
-        updateLocation = [returnDict[@"update_location"] boolValue];
         updateData = [returnDict[@"update_data"] boolValue];
         
         int type = 3;

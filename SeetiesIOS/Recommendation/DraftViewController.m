@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet CustomEmptyView *tableView;
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (nonatomic,strong)UIImageView* loadingImageView;
 @property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
 @property (strong, nonatomic) DraftsModel* draftsModel;
@@ -58,7 +57,7 @@
 
 -(void)initSelfView
 {
-    [self.tableView setupEmptyState];
+    [self.tableView setupCustomEmptyView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [Utils setRoundBorder:self.ibSwipeDeleteNoteView color:TWO_ZERO_FOUR_COLOR borderRadius:0 borderWidth:0.5f];
@@ -201,7 +200,14 @@
         [self.loadingImageView stopAnimating];
         isMiddleOfCallingServer = NO;
 
-        [self.tableView showEmptyState];
+        
+        if ([Utils isArrayNull:self.arrDraftList]) {
+            [self.tableView showEmptyState];
+
+        }
+        else{
+            [self.tableView hideAll];
+        }
 
     } errorBlock:^(id object) {
         [self.tableView.pullToRefreshView stopAnimating];

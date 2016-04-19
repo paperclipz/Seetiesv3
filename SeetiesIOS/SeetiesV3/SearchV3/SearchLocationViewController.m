@@ -55,6 +55,8 @@
             
             [self stopBlinkGPS];
 
+            [LoadingManager show];
+            
             [self getGoogleGeoCode];
 
         }
@@ -70,6 +72,8 @@
 
                 self.userLocation = location;
                
+                [LoadingManager show];
+
                 [self getGoogleGeoCode];
                 
                 [LoadingManager hide];
@@ -704,6 +708,8 @@
 -(void)stopBlinkGPS
 {
     [self.timer invalidate];
+    self.ibImgLocation.alpha = 1;
+
 }
 
 @end

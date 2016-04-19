@@ -83,8 +83,7 @@
         NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
 
        
-        //NSString* currentlangCode = model.content_languages[0];
-        if (![self.model.arrCustomPost isNull]) {
+        if (![Utils isArrayNull:self.model.arrCustomPost]) {
             
             Post* postModel;
             for (int i = 0 ; i< self.model.arrCustomPost.count; i++) {
@@ -143,7 +142,7 @@
     //        [self requestServerForUserLikes];
     //
     //    }
-    if (![self.model.user_info.profile_photo_images isNull]) {
+    if (![Utils isStringNull:self.model.user_info.profile_photo_images]) {
         [self.ibImageUser sd_setImageWithURL:[NSURL URLWithString:self.model.user_info.profile_photo_images] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
             self.ibImageUser.image = [image imageCroppedAndScaledToSize:self.ibImageUser.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
@@ -151,7 +150,7 @@
         }];
     }
     
-    if (![self.model.arrPhotos isNull]) {
+    if (![Utils isArrayNull:self.model.arrPhotos]) {
         
         
         PhotoModel* photoModel = self.model.arrPhotos[0];
