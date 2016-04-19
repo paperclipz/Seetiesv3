@@ -43,7 +43,6 @@
                 <outlet property="ibHeaderNormalExpiryLbl" destination="Wq8-Pl-Jwh" id="P3F-mv-LqV"/>
                 <outlet property="ibHeaderNormalExpiryView" destination="DT1-p7-EbS" id="YXz-Q7-Kdg"/>
                 <outlet property="ibHeaderRedeemExpiryDescLbl" destination="I1c-5K-w1i" id="ihZ-KT-kXP"/>
-                <outlet property="ibHeaderRedeemExpiryLbl" destination="UA6-3L-5iT" id="Rju-kK-ezd"/>
                 <outlet property="ibHeaderRedeemExpiryTitleLbl" destination="eYW-J5-JYb" id="tiS-lL-Tbz"/>
                 <outlet property="ibHeaderRedeemExpiryView" destination="VOn-Lw-SIK" id="LuC-Gp-M90"/>
                 <outlet property="ibHeaderScrollviewHeightConstraint" destination="ZbI-l9-if7" id="ykc-sd-SfG"/>
@@ -373,20 +372,14 @@
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOn-Lw-SIK" userLabel="redeem expiry">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal have been redeemed on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYW-J5-JYb" userLabel="lbl 1">
-                                            <rect key="frame" x="206" y="20" width="189" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal have been redeemed on" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYW-J5-JYb" userLabel="lbl 1">
+                                            <rect key="frame" x="16" y="15" width="568" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Jan 2016, 09:06am" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA6-3L-5iT" userLabel="date time">
-                                            <rect key="frame" x="227" y="37" width="147" height="17"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <color key="textColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flash this screen to the shop's worker or owner to redeem the deal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1c-5K-w1i" userLabel="lbl 2">
-                                            <rect key="frame" x="85" y="59" width="431" height="17"/>
+                                            <rect key="frame" x="16" y="47" width="568" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -394,22 +387,20 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="UA6-3L-5iT" firstAttribute="top" secondItem="eYW-J5-JYb" secondAttribute="bottom" id="6DI-xB-9lv"/>
+                                        <constraint firstItem="I1c-5K-w1i" firstAttribute="top" secondItem="eYW-J5-JYb" secondAttribute="bottom" constant="15" id="4go-dK-hjz"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="I1c-5K-w1i" secondAttribute="bottom" constant="10" id="AE9-rA-aVN"/>
                                         <constraint firstItem="I1c-5K-w1i" firstAttribute="centerX" secondItem="VOn-Lw-SIK" secondAttribute="centerX" id="Aoo-ZI-R7T"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I1c-5K-w1i" secondAttribute="trailing" constant="16" id="BhT-08-rfr"/>
-                                        <constraint firstItem="I1c-5K-w1i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VOn-Lw-SIK" secondAttribute="leading" constant="16" id="PRZ-ar-xNK"/>
-                                        <constraint firstItem="eYW-J5-JYb" firstAttribute="top" secondItem="VOn-Lw-SIK" secondAttribute="top" constant="20" symbolic="YES" id="ZK1-5Z-HOl"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UA6-3L-5iT" secondAttribute="trailing" constant="16" id="epU-hH-I0s"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eYW-J5-JYb" secondAttribute="trailing" constant="16" id="fwq-oL-1dg"/>
+                                        <constraint firstAttribute="trailing" secondItem="I1c-5K-w1i" secondAttribute="trailing" constant="16" id="BhT-08-rfr"/>
+                                        <constraint firstItem="I1c-5K-w1i" firstAttribute="leading" secondItem="VOn-Lw-SIK" secondAttribute="leading" constant="16" id="PRZ-ar-xNK"/>
+                                        <constraint firstItem="eYW-J5-JYb" firstAttribute="top" secondItem="VOn-Lw-SIK" secondAttribute="top" constant="15" id="ZK1-5Z-HOl"/>
+                                        <constraint firstAttribute="trailing" secondItem="eYW-J5-JYb" secondAttribute="trailing" constant="16" id="fwq-oL-1dg"/>
                                         <constraint firstItem="eYW-J5-JYb" firstAttribute="centerX" secondItem="VOn-Lw-SIK" secondAttribute="centerX" id="h82-z1-gvj"/>
-                                        <constraint firstItem="UA6-3L-5iT" firstAttribute="top" secondItem="eYW-J5-JYb" secondAttribute="bottom" id="pKg-8s-e2c"/>
-                                        <constraint firstItem="UA6-3L-5iT" firstAttribute="centerX" secondItem="VOn-Lw-SIK" secondAttribute="centerX" id="us1-ly-B4V"/>
-                                        <constraint firstItem="I1c-5K-w1i" firstAttribute="top" secondItem="UA6-3L-5iT" secondAttribute="bottom" constant="5" id="xUG-8i-JeJ"/>
+                                        <constraint firstItem="eYW-J5-JYb" firstAttribute="leading" secondItem="VOn-Lw-SIK" secondAttribute="leading" constant="16" id="wYk-fO-qMO"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="pKg-8s-e2c"/>
+                                            <exclude reference="h82-z1-gvj"/>
+                                            <exclude reference="AE9-rA-aVN"/>
                                         </mask>
                                     </variation>
                                 </view>

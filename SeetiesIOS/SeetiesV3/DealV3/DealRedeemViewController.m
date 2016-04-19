@@ -49,7 +49,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibBottomDesc;
 @property (weak, nonatomic) IBOutlet UILabel *ibSwipeToRedeem;
 @property (weak, nonatomic) IBOutlet UIButton *ibHowToRedeem;
-@property (weak, nonatomic) IBOutlet UILabel *ibDescBorderTitle;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHowToRedeemTopConstraint;
 
@@ -162,10 +161,9 @@
 -(void)changeLanguage{
     self.ibHeaderTitle.text = LocalisedString(@"Redeem Voucher");
     self.ibSwipeToRedeem.text = LocalisedString(@"Swipe to redeem");
-    NSString *formattedStr = LocalisedString(@"You must redeem in front of \n a shop personnel.");
+    NSString *formattedStr = LocalisedString(@"Voucher redemptions must be made in front of shop staff");
     self.ibBottomDesc.text = [NSString stringWithFormat:@"%@", formattedStr];
     [self.ibHowToRedeem setTitle:LocalisedString(@"How to Redeem") forState:UIControlStateNormal];
-    self.ibDescBorderTitle.text = LocalisedString(@"This deal has been redeemed on ");
     
     self.ibHowToRedeemTitle.text = LocalisedString(@"Redeem in 3 simple steps");
     self.ibFirstInstruction.text = LocalisedString(@"Approach a shop staff to place your order");
@@ -272,8 +270,22 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setTimeZone:[NSTimeZone systemTimeZone]];
-    [formatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
-    self.ibRedeemDateTime.text = [formatter stringFromDate:[[NSDate alloc] init]];
+    [formatter setDateFormat:@"dd MMM yyyy"];
+    NSString *date = [formatter stringFromDate:[[NSDate alloc] init]];
+    [formatter setDateFormat:@"hh:mmaa"];
+    NSString *time = [formatter stringFromDate:[[NSDate alloc] init]];
+    
+    NSString *displayString = [LanguageManager stringForKey:@"Redeemed on {!date}, {!time}" withPlaceHolder:@{@"{!date}":date, @"{!time}":time}];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:displayString];
+    NSRange dateRange = [displayString rangeOfString:date];
+    NSRange timeRange = [displayString rangeOfString:time];
+    
+    [attrString beginEditing];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15.0f] range:dateRange];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15.0f] range:timeRange];
+    [attrString endEditing];
+    
+    self.ibRedeemDateTime.attributedText = attrString;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {

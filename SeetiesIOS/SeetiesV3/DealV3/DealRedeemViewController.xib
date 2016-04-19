@@ -11,7 +11,6 @@
                 <outlet property="ibBottomDesc" destination="LSE-Hl-Y7Q" id="Mie-2Y-Ujw"/>
                 <outlet property="ibBottomView" destination="FRX-IV-Orm" id="ahs-Qx-1Fi"/>
                 <outlet property="ibDealTitle" destination="NSW-gB-Hig" id="oSU-AR-CNO"/>
-                <outlet property="ibDescBorderTitle" destination="9Fm-vt-8fD" id="ggw-cm-sp2"/>
                 <outlet property="ibDescBorderView" destination="TGy-Uf-mib" id="fcu-Ya-lNF"/>
                 <outlet property="ibFirstImage" destination="CSs-d2-WPy" id="spu-Ay-1SU"/>
                 <outlet property="ibFirstInstruction" destination="SEp-Ox-QE7" id="Tfb-6O-ZDB"/>
@@ -52,30 +51,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGy-Uf-mib">
                     <rect key="frame" x="43" y="401" width="289" height="77"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deal has been redeemed on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fm-vt-8fD">
-                            <rect key="frame" x="20" y="8" width="249" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="6fW-ok-ddb"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Jan 2016, 09:06am" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKC-ir-Fsh">
-                            <rect key="frame" x="20" y="38" width="249" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKC-ir-Fsh">
+                            <rect key="frame" x="20" y="38" width="249" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="fKC-ir-Fsh" firstAttribute="centerX" secondItem="9Fm-vt-8fD" secondAttribute="centerX" id="8FF-Sz-jMc"/>
-                        <constraint firstItem="9Fm-vt-8fD" firstAttribute="top" secondItem="TGy-Uf-mib" secondAttribute="top" constant="8" id="EA9-Gb-lzD"/>
-                        <constraint firstItem="fKC-ir-Fsh" firstAttribute="top" secondItem="9Fm-vt-8fD" secondAttribute="bottom" id="HFl-vJ-GWq"/>
-                        <constraint firstItem="9Fm-vt-8fD" firstAttribute="leading" secondItem="TGy-Uf-mib" secondAttribute="leading" constant="20" id="J2J-JL-yLD"/>
-                        <constraint firstAttribute="trailing" secondItem="9Fm-vt-8fD" secondAttribute="trailing" constant="20" id="Khx-Yi-bLZ"/>
                         <constraint firstAttribute="trailing" secondItem="fKC-ir-Fsh" secondAttribute="trailing" constant="20" id="P6A-BI-jQI"/>
+                        <constraint firstItem="fKC-ir-Fsh" firstAttribute="centerY" secondItem="TGy-Uf-mib" secondAttribute="centerY" id="VqF-1d-6qa"/>
                         <constraint firstItem="fKC-ir-Fsh" firstAttribute="leading" secondItem="TGy-Uf-mib" secondAttribute="leading" constant="20" id="zqb-8D-HGI"/>
                     </constraints>
                 </view>
@@ -93,7 +79,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEs-Kq-g8x">
-                            <rect key="frame" x="-28" y="-85" width="42" height="21"/>
+                            <rect key="frame" x="-28" y="-75" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -181,10 +167,10 @@
                     <rect key="frame" x="28" y="386" width="319" height="107"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealRedeemCardDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="bwF-Qu-mY0">
-                            <rect key="frame" x="0.0" y="0.0" width="319" height="106"/>
+                            <rect key="frame" x="0.0" y="0.0" width="319" height="107"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsS-C4-sNW" userLabel="swipe bg">
-                            <rect key="frame" x="20" y="25" width="279" height="55"/>
+                            <rect key="frame" x="20" y="26" width="279" height="55"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeToRedeemSwipeIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="LR4-8K-3va">
                                     <rect key="frame" x="69" y="15" width="25" height="25"/>
@@ -283,7 +269,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must redeem in front of a shop personnel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSE-Hl-Y7Q">
-                    <rect key="frame" x="28" y="501" width="319" height="36"/>
+                    <rect key="frame" x="43" y="501" width="289" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -293,14 +279,14 @@
             <constraints>
                 <constraint firstItem="ORX-Vq-Sxe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0Xx-Ud-SAN"/>
                 <constraint firstItem="TGy-Uf-mib" firstAttribute="centerY" secondItem="FRX-IV-Orm" secondAttribute="centerY" id="2NC-Ri-Atv"/>
-                <constraint firstItem="LSE-Hl-Y7Q" firstAttribute="trailing" secondItem="FRX-IV-Orm" secondAttribute="trailing" id="7EA-q5-LhM"/>
+                <constraint firstItem="LSE-Hl-Y7Q" firstAttribute="trailing" secondItem="FRX-IV-Orm" secondAttribute="trailing" constant="-15" id="7EA-q5-LhM"/>
                 <constraint firstItem="FRX-IV-Orm" firstAttribute="top" secondItem="6yp-Fc-qax" secondAttribute="bottom" constant="-8" id="84y-nb-fjx"/>
                 <constraint firstItem="eID-2a-vwh" firstAttribute="leading" secondItem="WeQ-96-aWT" secondAttribute="leading" id="8la-MN-fei"/>
                 <constraint firstItem="TGy-Uf-mib" firstAttribute="centerX" secondItem="FRX-IV-Orm" secondAttribute="centerX" id="9gN-h0-of5"/>
                 <constraint firstItem="gSA-o2-hwg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pDY-W6-TMS" secondAttribute="trailing" constant="8" id="DDC-jW-4V1"/>
                 <constraint firstItem="gSA-o2-hwg" firstAttribute="centerX" secondItem="6yp-Fc-qax" secondAttribute="centerX" id="GFx-4W-pfU"/>
                 <constraint firstItem="TGy-Uf-mib" firstAttribute="centerX" secondItem="ORX-Vq-Sxe" secondAttribute="centerX" id="L75-Pt-4c3"/>
-                <constraint firstItem="LSE-Hl-Y7Q" firstAttribute="leading" secondItem="FRX-IV-Orm" secondAttribute="leading" id="Pf8-nA-cl6"/>
+                <constraint firstItem="LSE-Hl-Y7Q" firstAttribute="leading" secondItem="FRX-IV-Orm" secondAttribute="leading" constant="15" id="Pf8-nA-cl6"/>
                 <constraint firstItem="eID-2a-vwh" firstAttribute="trailing" secondItem="WeQ-96-aWT" secondAttribute="trailing" id="SvG-ZC-4sE"/>
                 <constraint firstItem="eID-2a-vwh" firstAttribute="bottom" secondItem="WeQ-96-aWT" secondAttribute="bottom" id="T5H-1P-TWx"/>
                 <constraint firstItem="FRX-IV-Orm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="TAl-Gl-IJ3"/>

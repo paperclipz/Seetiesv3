@@ -74,22 +74,24 @@
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *historyDate = [dateFormatter dateFromString:self.voucher.voucher_info.status_history_datetime];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     [dateFormatter setDateFormat:@"dd MMM yyyy"];
     
     NSString *status = self.voucher.voucher_info.status;
     if ([status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
-        self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@ %@", LocalisedString(@"REDEEMED ON"), [dateFormatter stringFromDate:historyDate]] uppercaseString];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"REDEEMED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
     }
     else if ([status isEqualToString:VOUCHER_STATUS_EXPIRED]){
-        self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@ %@", LocalisedString(@"EXPIRED ON"), [dateFormatter stringFromDate:historyDate]] uppercaseString];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"EXPIRED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
     }
     else if ([status isEqualToString:VOUCHER_STATUS_DELETED]){
-        self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@ %@", LocalisedString(@"DELETED ON"), [dateFormatter stringFromDate:historyDate]] uppercaseString];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"DELETED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
     }
     else if ([status isEqualToString:VOUCHER_STATUS_CANCELLED]){
-        self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@ %@", LocalisedString(@"CANCELLED ON"), [dateFormatter stringFromDate:historyDate]] uppercaseString];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"CANCELLED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
     }
     else{
         self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:historyDate]] uppercaseString];

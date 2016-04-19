@@ -38,7 +38,6 @@
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderExpiryView;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderNormalExpiryLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderRedeemExpiryTitleLbl;
-@property (weak, nonatomic) IBOutlet UILabel *ibHeaderRedeemExpiryLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderRedeemExpiryDescLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHeaderImageContentWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHeaderExpiryHeightConstraint;
@@ -516,13 +515,28 @@
         self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Redeemed");
         [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsRedeemedIcon.png"]];
         
-        self.ibHeaderRedeemExpiryTitleLbl.text = LocalisedString(@"This deal has been redeemed on ");
-        self.ibHeaderRedeemExpiryDescLbl.text = LocalisedString(@"Flash this screen to a staff and swipe to redeem this deal.");
+        self.ibHeaderRedeemExpiryDescLbl.text = LocalisedString(@"Voucher redemptions must be made in front of shop staff");
         
         NSDate *redeemDate = [dateFormatter dateFromString:self.dealModel.voucher_info.redeemed_at];
         [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-        [dateFormatter setDateFormat:@"dd MMM yyyy, hh:mmaa"];
-        self.ibHeaderRedeemExpiryLbl.text = [dateFormatter stringFromDate:redeemDate];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
+        NSString *date = [dateFormatter stringFromDate:redeemDate];
+        [dateFormatter setDateFormat:@"hh:mmaa"];
+        NSString *time = [dateFormatter stringFromDate:redeemDate];
+        
+        NSString *displayString = [LanguageManager stringForKey:@"Redeemed on {!date}, {!time}" withPlaceHolder:@{@"{!date}":date, @"{!time}":time}];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:displayString];
+        NSRange dateRange = [displayString rangeOfString:date];
+        NSRange timeRange = [displayString rangeOfString:time];
+        
+        [attrString beginEditing];
+        [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14.0f] range:dateRange];
+        [attrString addAttribute:NSForegroundColorAttributeName value:DEVICE_COLOR range:dateRange];
+        [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14.0f] range:timeRange];
+        [attrString addAttribute:NSForegroundColorAttributeName value:DEVICE_COLOR range:timeRange];
+        [attrString endEditing];
+        
+        self.ibHeaderRedeemExpiryTitleLbl.attributedText = attrString;
     }
     else if ([status isEqualToString:VOUCHER_STATUS_EXPIRED]){
         self.ibHeaderRedeemExpiryView.hidden = YES;
