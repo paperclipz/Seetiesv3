@@ -63,6 +63,7 @@ static const NSString *MAIN_VIEW_KEY = @"mainview";
     @try {
         self.customEmptyStateView.loadingView.hidden = YES;
         self.customEmptyStateView.noResultView.hidden = YES;
+        self.backgroundView = nil;
         
     } @catch (NSException *exception) {
         

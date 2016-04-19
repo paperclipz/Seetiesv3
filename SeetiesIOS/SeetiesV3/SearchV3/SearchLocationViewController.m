@@ -9,7 +9,7 @@
 #import "SearchLocationViewController.h"
 #import "CT3_EnableLocationViewController.h"
 
-@interface SearchLocationViewController ()
+@interface SearchLocationViewController ()<CLLocationManagerDelegate>
 {
 
     int selectedIndex;
@@ -41,9 +41,17 @@
 
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderContentView;
 @property (nonatomic, strong) NSTimer *timer;
+
+@property(nonatomic,strong)CLLocationManager* manager;
+
 @end
 
 @implementation SearchLocationViewController
+
+-(void)startSearchGPSLocation
+{
+    [self.manager startUpdatingLocation];
+}
 
 #pragma mark - IBACTION
 - (IBAction)btnutoDetectClicked:(id)sender {
@@ -62,34 +70,18 @@
         }
         else{
             
-            [LoadingManager show];
-            
-            [self startBlinkGPS];
-
-            [self.searchManager startSearchGPSLocation:^(CLLocation *location) {
+            [self.manager startUpdatingLocation];
                 
-                [self stopBlinkGPS];
-
-                self.userLocation = location;
-               
-                [LoadingManager show];
-
-                [self getGoogleGeoCode];
-                
-                [LoadingManager hide];
-                
-            }];
-
+            [UIAlertView showWithTitle:LocalisedString(@"Couldn't get your location now") message:LocalisedString(@"try again later") cancelButtonTitle:LocalisedString(@"OK") otherButtonTitles:nil tapBlock:nil];
         }
         
-
     }
     else{
-        
+    
         [self presentViewController:self.enableLocationViewController animated:YES completion:nil];
-       // [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please Enable Location Service") Type:TSMessageNotificationTypeError];
     }
 }
+
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -97,23 +89,15 @@
     
     if ([SearchManager isDeviceGPSTurnedOn]) {
         
-        if (!self.userLocation) {
-            [self.searchManager startSearchGPSLocation:^(CLLocation *location) {
-                self.userLocation = location;
-                [self stopBlinkGPS];
-
-            }];
-        }
+        [self startSearchGPSLocation];
         
         self.lblAutoDetect.textColor = ONE_ZERO_TWO_COLOR;
 
         self.ibImgLocation.image = [UIImage imageNamed:@"SelectLocationAutoDetectIcon.png"];
-        [self startBlinkGPS];
 
     }
     else{
         self.lblAutoDetect.textColor = TWO_ZERO_FOUR_COLOR;
-
         self.ibImgLocation.image = [UIImage imageNamed:@"SelectLocationAutoDetectIconDeactivated.png"];
         [self stopBlinkGPS];
     }
@@ -121,7 +105,6 @@
     
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.userLocation = [[SearchManager Instance] getAppLocation];
     [self initSelfView];
     
     [self requestServerForCountry];
@@ -398,6 +381,7 @@
 
 #pragma mark Action
 
+
 - (IBAction)searchDidBegin:(id)sender {
     self.ibSearchTable.hidden = NO;
     self.ibHeaderTitle.text = LocalisedString(@"Search for a location");
@@ -414,6 +398,16 @@
 }
 
 #pragma mark - Declaration
+
+-(CLLocationManager*)manager
+{
+    if (!_manager) {
+        _manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
+        _manager.delegate = self;
+        [_manager requestWhenInUseAuthorization];
+    }
+    return _manager;
+}
 
 -(CT3_EnableLocationViewController*)enableLocationViewController
 {
@@ -438,7 +432,6 @@
     
     [self.searchManager getGoogleGeoCode:self.userLocation completionBlock:^(id object) {
        
-        SLog(@"record : %@",object);
         NSDictionary* temp = [[NSDictionary alloc]initWithDictionary:object];
         NSArray* arrayLocations = [temp valueForKey:@"results"];
         
@@ -456,7 +449,7 @@
             hModel.place_id = @"";
             hModel.locationName = [model locationNameWithCustomKey:self.countriesModel.current_country.place_display_fields];
 
-            [UIAlertView showWithTitle:LocalisedString(@"system") message:[NSString stringWithFormat:@"%@%@ ?",LocalisedString(@"Change Location To "),hModel.locationName] style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[LocalisedString(@"OK")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            [UIAlertView showWithTitle:[NSString stringWithFormat:@"%@%@ ?",LocalisedString(@"Are you in "),hModel.locationName] message:LocalisedString(@"Would you like to set this as your current location") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[LocalisedString(@"OK")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                 
                 if (buttonIndex == 1) {
                     if (self.homeLocationRefreshBlock) {
@@ -710,6 +703,57 @@
     [self.timer invalidate];
     self.ibImgLocation.alpha = 1;
 
+}
+
+
+#pragma mark - Location Delegate
+
+#pragma mark - CLLocation Delegate
+- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined: {
+            NSLog(@"User still thinking granting location access!");
+            [self.manager startUpdatingLocation];
+            
+            // this will access location automatically if user granted access manually. and will not show apple's request alert twice. (Tested)
+        } break;
+        case kCLAuthorizationStatusDenied: {
+            NSLog(@"User denied location access request!!");
+            NSLog(@"To re-enable, please go to Settings and turn on Location Service for this app.");
+            
+            self.lblAutoDetect.textColor = TWO_ZERO_FOUR_COLOR;
+            self.ibImgLocation.image = [UIImage imageNamed:@"SelectLocationAutoDetectIconDeactivated.png"];
+            [self stopBlinkGPS];
+
+            [self.manager stopUpdatingLocation];
+        } break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        case kCLAuthorizationStatusAuthorizedAlways: {
+            // clear text
+            NSLog(@"Got Location");
+            [self startBlinkGPS];
+            self.lblAutoDetect.textColor = ONE_ZERO_TWO_COLOR;
+            self.ibImgLocation.image = [UIImage imageNamed:@"SelectLocationAutoDetectIcon.png"];
+            [self.manager startUpdatingLocation]; //Will update location immediately
+            
+
+            if (_enableLocationViewController) {
+                [self.enableLocationViewController dismissViewControllerAnimated:YES completion:nil];
+                _enableLocationViewController = nil;
+            }
+        } break;
+            
+        default:
+            break;
+    }
+}
+
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    
+    self.userLocation = locations[0];
+    self.searchManager.GPSLocation = self.userLocation;
+    [self stopBlinkGPS];
 }
 
 @end
