@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderRedeemExpiryView;
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderExpiryView;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderNormalExpiryLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *ibHeaderNormalExpiryIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderRedeemExpiryTitleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderRedeemExpiryDescLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHeaderImageContentWidthConstraint;
@@ -551,6 +552,40 @@
         [dateFormatter setDateFormat:@"dd MMM yyyy"];
         self.ibHeaderNormalExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), [dateFormatter stringFromDate:expiredDate]];
     }
+    else if([status isEqualToString:VOUCHER_STATUS_COLLECTED]){
+        if(self.dealModel.total_available_vouchers == 0){
+            self.ibHeaderBlackShadeView.hidden = NO;
+            self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Sold Out");
+            [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsListingSoldOutIcon.png"]];
+        }
+        else{
+            self.ibHeaderBlackShadeView.hidden = YES;
+        }
+        
+        self.ibHeaderRedeemExpiryView.hidden = YES;
+        self.ibHeaderNormalExpiryView.hidden = NO;
+        self.ibHeaderExpiryHeightConstraint.constant = 50;
+        [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsVoucherExpireIcon.png"]];
+        self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+        self.ibHeaderNormalExpiryLbl.font = [UIFont systemFontOfSize:14.0f];
+        
+        NSInteger numberOfDaysLeft = self.dealModel.redemptionDaysLeft;
+        if (numberOfDaysLeft == 0) {
+            self.ibHeaderNormalExpiryLbl.text = LocalisedString(@"This deal has no expiry");
+        }
+        else if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0){
+            [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsVoucherExpireIconRed.png"]];
+            self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expires in {!day} day(s)" withPlaceHolder:@{@"{!day}": @(numberOfDaysLeft)}];
+            self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.0f alpha:1];
+            self.ibHeaderNormalExpiryLbl.font = [UIFont boldSystemFontOfSize:14.0f];
+        }
+        else{
+            NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
+            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+            [dateFormatter setDateFormat:@"dd MMM yyyy"];
+            self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expiry date: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]}];
+        }
+    }
     else{
         if(self.dealModel.total_available_vouchers == 0){
             self.ibHeaderBlackShadeView.hidden = NO;
@@ -564,16 +599,34 @@
         self.ibHeaderRedeemExpiryView.hidden = YES;
         self.ibHeaderNormalExpiryView.hidden = NO;
         self.ibHeaderExpiryHeightConstraint.constant = 50;
-        if ([Utils isValidDateString:self.dealModel.expired_at]) {
-            NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
-            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-            [dateFormatter setDateFormat:@"dd MMM yyyy"];
-            self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]}];
-        }
-        else{
+        [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsDealEndIcon.png"]];
+        self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+        self.ibHeaderNormalExpiryLbl.font = [UIFont systemFontOfSize:14.0f];
+        
+        NSInteger numberOfDaysLeft = self.dealModel.collectionDaysLeft;
+        if (numberOfDaysLeft == 0) {
             self.ibHeaderNormalExpiryLbl.text = LocalisedString(@"This deal has no expiry");
         }
-        
+        else if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0){
+            [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsDealEndIconRed.png"]];
+            self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deal ends in {!day} day(s)" withPlaceHolder:@{@"{!day}": @(numberOfDaysLeft)}];
+            self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.0f alpha:1];
+            self.ibHeaderNormalExpiryLbl.font = [UIFont boldSystemFontOfSize:14.0f];
+        }
+        else{
+            NSString *collectionEndDate = @"";
+            if (![Utils isArrayNull:self.dealModel.collection_periods_in_date]) {
+                NSDictionary *dict = self.dealModel.collection_periods_in_date[0];
+                collectionEndDate = dict[@"to"];
+            }
+            
+            if ([Utils isValidDateString:collectionEndDate]) {
+                NSDate *expiryDate = [dateFormatter dateFromString:collectionEndDate];
+                [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+                [dateFormatter setDateFormat:@"dd MMM yyyy"];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deal ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]}];
+            }
+        }
     }
     
     CGFloat contentHeight = self.ibHeaderExpiryHeightConstraint.constant + self.ibHeaderImageScrollView.frame.size.height + contentHeightPadding;

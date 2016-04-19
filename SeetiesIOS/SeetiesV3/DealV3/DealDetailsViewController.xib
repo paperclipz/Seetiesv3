@@ -40,6 +40,7 @@
                 <outlet property="ibHeaderImageContentWidthConstraint" destination="Xm6-aH-pdG" id="KHQ-nd-ohw"/>
                 <outlet property="ibHeaderImageCountLbl" destination="cjv-x5-GSR" id="xVq-Pa-NCZ"/>
                 <outlet property="ibHeaderImageScrollView" destination="C8i-NX-nwa" id="gRH-mn-lSN"/>
+                <outlet property="ibHeaderNormalExpiryIcon" destination="sh3-EW-i7g" id="b6c-AY-lmn"/>
                 <outlet property="ibHeaderNormalExpiryLbl" destination="Wq8-Pl-Jwh" id="P3F-mv-LqV"/>
                 <outlet property="ibHeaderNormalExpiryView" destination="DT1-p7-EbS" id="YXz-Q7-Kdg"/>
                 <outlet property="ibHeaderRedeemExpiryDescLbl" destination="I1c-5K-w1i" id="ihZ-KT-kXP"/>
