@@ -198,7 +198,8 @@ typedef enum
     DealType_SuperDeal = 3,
     DealType_Greeting = 4,
     DealType_QuickBrowse = 5,
-    DealType_Wallet = 6
+    DealType_Wallet = 6,
+    DealType_ReferFriends = 7,
     
 }DealType;
 

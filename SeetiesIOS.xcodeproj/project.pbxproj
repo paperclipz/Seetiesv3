@@ -161,6 +161,10 @@
 		8A114CEA1BE75CA0006AE3F0 /* NewCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114CE41BE75CA0006AE3F0 /* NewCollectionViewController.m */; };
 		8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */; };
 		8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11513D1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m */; };
+		8A11D3681CC74F070023A7ED /* DealType_ReferFriendTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D3661CC74F070023A7ED /* DealType_ReferFriendTblCell.m */; };
+		8A11D3691CC74F070023A7ED /* DealType_ReferFriendTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A11D3671CC74F070023A7ED /* DealType_ReferFriendTblCell.xib */; };
+		8A11D36D1CC7561F0023A7ED /* CT3_ReferalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D36B1CC7561F0023A7ED /* CT3_ReferalViewController.m */; };
+		8A11D36E1CC7561F0023A7ED /* CT3_ReferalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A11D36C1CC7561F0023A7ED /* CT3_ReferalViewController.xib */; };
 		8A26D1091C51FFB800A50944 /* DraftAndRecommendationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A26D1081C51FFB800A50944 /* DraftAndRecommendationDelegate.m */; };
 		8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C121B79E7A30010895E /* RecommendationViewController.m */; };
 		8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */; };
@@ -1720,6 +1724,12 @@
 		8A114CE51BE75CA0006AE3F0 /* NewCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewCollectionViewController.xib; sourceTree = "<group>"; };
 		8A11513C1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+VGParallaxHeader.h"; sourceTree = "<group>"; };
 		8A11513D1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+VGParallaxHeader.m"; sourceTree = "<group>"; };
+		8A11D3651CC74F070023A7ED /* DealType_ReferFriendTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealType_ReferFriendTblCell.h; sourceTree = "<group>"; };
+		8A11D3661CC74F070023A7ED /* DealType_ReferFriendTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealType_ReferFriendTblCell.m; sourceTree = "<group>"; };
+		8A11D3671CC74F070023A7ED /* DealType_ReferFriendTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealType_ReferFriendTblCell.xib; sourceTree = "<group>"; };
+		8A11D36A1CC7561F0023A7ED /* CT3_ReferalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_ReferalViewController.h; sourceTree = "<group>"; };
+		8A11D36B1CC7561F0023A7ED /* CT3_ReferalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_ReferalViewController.m; sourceTree = "<group>"; };
+		8A11D36C1CC7561F0023A7ED /* CT3_ReferalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_ReferalViewController.xib; sourceTree = "<group>"; };
 		8A26D1071C51FFB800A50944 /* DraftAndRecommendationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftAndRecommendationDelegate.h; sourceTree = "<group>"; };
 		8A26D1081C51FFB800A50944 /* DraftAndRecommendationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftAndRecommendationDelegate.m; sourceTree = "<group>"; };
 		8A2E2C111B79E7A30010895E /* RecommendationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationViewController.h; sourceTree = "<group>"; };
@@ -3556,6 +3566,9 @@
 				8A0035431C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.h */,
 				8A0035441C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m */,
 				8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */,
+				8A11D3651CC74F070023A7ED /* DealType_ReferFriendTblCell.h */,
+				8A11D3661CC74F070023A7ED /* DealType_ReferFriendTblCell.m */,
+				8A11D3671CC74F070023A7ED /* DealType_ReferFriendTblCell.xib */,
 			);
 			path = DealCell;
 			sourceTree = "<group>";
@@ -4100,6 +4113,16 @@
 				8A11513D1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m */,
 			);
 			path = VGParallaxHeader;
+			sourceTree = "<group>";
+		};
+		8A11D3641CC749250023A7ED /* InviteFriendV3 */ = {
+			isa = PBXGroup;
+			children = (
+				8A11D36A1CC7561F0023A7ED /* CT3_ReferalViewController.h */,
+				8A11D36B1CC7561F0023A7ED /* CT3_ReferalViewController.m */,
+				8A11D36C1CC7561F0023A7ED /* CT3_ReferalViewController.xib */,
+			);
+			path = InviteFriendV3;
 			sourceTree = "<group>";
 		};
 		8A12540F1BC4F30E00AA4120 /* NEW_newsFeed */ = {
@@ -5618,6 +5641,7 @@
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				8A11D3641CC749250023A7ED /* InviteFriendV3 */,
 				8A9ABA501CA52B890067FACA /* IntroV3 */,
 				8AFB06861CA140BE00DAEE22 /* ReportV3 */,
 				8A42051F1C894F0F00DB0D20 /* AccountSettingV3 */,
@@ -7433,6 +7457,7 @@
 				C240BA7E1CC62F4400B79190 /* EventLogo@3x.png in Resources */,
 				C240BAC61CC62F4400B79190 /* BluePrice@3x.png in Resources */,
 				8A6584331B981B4E00BC86B9 /* CategorySelectionViewController.xib in Resources */,
+				8A11D3691CC74F070023A7ED /* DealType_ReferFriendTblCell.xib in Resources */,
 				C240B9491CC62F4400B79190 /* SplashSeetiesLogo.png in Resources */,
 				C240B98F1CC62F4400B79190 /* WalkWallet2.png in Resources */,
 				C240B8B21CC62F4400B79190 /* BlueTick@3x.png in Resources */,
@@ -8039,6 +8064,7 @@
 				C240BAA91CC62F4400B79190 /* LoginFacebookIcon@2x.png in Resources */,
 				C22702F41CBF89EF00F9FBF3 /* FilterBudgetCell.xib in Resources */,
 				C240BABB1CC62F4400B79190 /* NotificationLike@2x.png in Resources */,
+				8A11D36E1CC7561F0023A7ED /* CT3_ReferalViewController.xib in Resources */,
 				C240BA401CC62F4400B79190 /* CollectedBtn@3x.png in Resources */,
 				C240B9231CC62F4400B79190 /* SuccessfulRedeemImg.png in Resources */,
 				8AC8F7231BDA414E00DEF14A /* CollectionListingTabViewController.xib in Resources */,
@@ -8354,6 +8380,7 @@
 				8AB276D91CC61FC700BD5EC8 /* UIImage+Resize.m in Sources */,
 				8AB276D41CC61FC700BD5EC8 /* UIButton+Extra.m in Sources */,
 				0BA94DCB1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m in Sources */,
+				8A11D3681CC74F070023A7ED /* DealType_ReferFriendTblCell.m in Sources */,
 				8A114CA91BE73F5D006AE3F0 /* CRMotionView.m in Sources */,
 				8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */,
 				8AD6BE591B706CF30040437E /* DoImagePickerController.m in Sources */,
@@ -8624,6 +8651,7 @@
 				8A9E065D1CBF5A70000FB246 /* UIPopoverController+Block.m in Sources */,
 				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,
 				8A0035411C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m in Sources */,
+				8A11D36D1CC7561F0023A7ED /* CT3_ReferalViewController.m in Sources */,
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,
 				8A114C7B1BE73F5D006AE3F0 /* BKCardNumberField.m in Sources */,
 				8A0159CF1CB6741E00ED6D0F /* CustomEmptyView.m in Sources */,

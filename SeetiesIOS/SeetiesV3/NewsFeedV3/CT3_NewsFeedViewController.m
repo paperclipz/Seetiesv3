@@ -16,6 +16,7 @@
 #import "FeedType_AbroadQualityPostTblCell.h"
 #import "FeedType_SuggestionFetureTblCell.h"
 #import "FeedType_FollowingCollectionTblCell.h"
+#import "DealType_ReferFriendTblCell.h"
 
 #import "AddCollectionDataViewController.h"
 #import "FeedV2DetailViewController.h"
@@ -561,6 +562,12 @@ static NSCache* heightCache = nil;
             }
                 break;
 
+            case DealType_ReferFriends:
+            {
+                return [DealType_ReferFriendTblCell getHeight];
+            }
+                break;
+
             default:
                 return 100;
                 break;
@@ -744,6 +751,21 @@ static NSCache* heightCache = nil;
                 
             }
 
+                break;
+                
+            case DealType_ReferFriends:
+            {
+                static NSString *CellIdentifier = @"DealType_ReferFriendTblCell";
+                DealType_ReferFriendTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[DealType_ReferFriendTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                
+                
+                return cell;
+                
+            }
+                
                 break;
         }
     }
@@ -1468,6 +1490,11 @@ static NSCache* heightCache = nil;
         if (![Utils isArrayNull:self.homeModel.announcements]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_Announcement]];
 
+        }
+        
+        if (YES) {
+            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_ReferFriends]];
+            
         }
         
         [self.ibTableView reloadData];

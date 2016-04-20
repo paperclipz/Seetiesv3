@@ -454,10 +454,10 @@
             }
         };
     
-        _seShopDetailView.didSelectInformationAtRectBlock=^(UIView* fromView, CGRect rect)
-        {
-       
-        };
+//        _seShopDetailView.didSelectInformationAtRectBlock=^(UIView* fromView, CGRect rect)
+//        {
+//       
+//        };
         
         _seShopDetailView.didSelectMorePhotosBlock = ^(SeShopPhotoModel* model)
         {

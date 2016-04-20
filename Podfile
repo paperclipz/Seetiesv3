@@ -46,7 +46,7 @@ pod 'IDMPhotoBrowser'
 pod 'YLGIFImage'
 
 pod 'Masonry'
-pod 'SKSplashView'
+#pod 'SKSplashView'
 
 #pod 'iCarousel'
 #================ debugging =====================#
