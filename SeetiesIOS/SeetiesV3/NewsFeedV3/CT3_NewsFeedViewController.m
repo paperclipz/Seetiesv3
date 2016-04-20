@@ -136,9 +136,6 @@ static NSCache* heightCache = nil;
 
 - (IBAction)btnSearchClicked:(id)sender {
     
- //   _searchViewV2Controller = nil;
- //   [self.navigationController pushViewController:self.searchViewV2Controller animated:YES];
-    
     _ct3_SearchListingViewController = nil;
     [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
