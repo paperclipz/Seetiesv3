@@ -380,16 +380,19 @@
     if ([uID isEqualToString:[Utils getUserID]]) {
         [self requestServerForUserLikes];
         
-        DataManager* dataManager = [ConnectionManager dataManager];
-        if (dataManager.currentUserProfileModel) {
-            self.userProfileModel = dataManager.currentUserProfileModel;
-            [self assignData];
-            
-        }else
-        {
-            [self requestServerForUserInfo];
+        
+        [self requestServerForMe];
 
-        }
+//        DataManager* dataManager = [ConnectionManager dataManager];
+//        if (dataManager.currentUserProfileModel) {
+//            self.userProfileModel = dataManager.currentUserProfileModel;
+//            [self assignData];
+//            
+//        }else
+//        {
+//            [self requestServerForUserInfo];
+//
+//        }
     }
     else{
         [self requestServerForUserInfo];
@@ -1259,7 +1262,33 @@
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
         
         self.userProfileModel = [[ConnectionManager dataManager]userProfileModel];
+    
         [self assignData];
+        
+    } errorBlock:^(id object) {
+        
+    }];
+}
+
+-(void)requestServerForMe
+{
+    NSString* appendString = [NSString stringWithFormat:@"%@",@"me"];
+    
+    NSDictionary* dict = @{@"uid":@"me",
+                           @"token":[Utils getAppToken]
+                           };
+    
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
+        
+        
+        DataManager* manager = [ConnectionManager dataManager];
+        
+        self.userProfileModel = [[ConnectionManager dataManager]userProfileModel];
+
+        manager.currentUserProfileModel = self.userProfileModel;
+        
+        [self assignData];
+
         
     } errorBlock:^(id object) {
         

@@ -384,7 +384,7 @@
             }
             else{// TO UNFOLLOW
                 
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:[NSString stringWithFormat:@"%@ %@",LocalisedString(@"Are You Sure You Want To Unfollow"),colModel.name] message:nil style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == [alertView cancelButtonIndex]) {
                         NSLog(@"Cancelled");

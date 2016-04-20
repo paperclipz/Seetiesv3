@@ -142,11 +142,16 @@
     
     [[ConnectionManager Instance] requestServerWithPost:requestType param:dict appendString:[NSString stringWithFormat:@"%@/share", self.postData.shareID] completeHandler:^(id object) {
         
+        [MessageManager showMessage:LocalisedString(@"Successfully share to friend") SubTitle:nil Type:TSMessageNotificationTypeSuccess];
+        
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
         
     } errorBlock:^(id object) {
     
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        
+        [MessageManager showMessage:LocalisedString(@"Fail to share to friend") SubTitle:nil Type:TSMessageNotificationTypeError];
+
     }];
     
 }
