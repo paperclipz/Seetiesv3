@@ -9,6 +9,9 @@
 #import "SeetiShopListingViewController.h"
 #import "PromoOutletCell.h"
 #import "SeetiesShopViewController.h"
+#import "UITableView+Extension.h"
+#import "UITableView+emptyState.h"
+
 @class SeetiesShopViewController;
 
 
@@ -18,7 +21,7 @@
 }
 @property(nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
 
-@property (weak, nonatomic) IBOutlet CustomEmptyView *ibTableView;
+@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (strong, nonatomic)SeShopsModel *seetiShopsModel;
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
@@ -35,6 +38,7 @@
     [super viewDidLoad];
     
     [self.ibTableView setupCustomEmptyView];
+    [self.ibTableView setupFooterView];
     isServerMiddleOfLoading= NO;
     // Do any additional setup after loading the view from its nib.
     [self initTableViewDelegate];
@@ -148,8 +152,9 @@
     
     isServerMiddleOfLoading = YES;
     
-    [self.ibTableView showLoading];
-    
+    if ([Utils isArrayNull:self.arrShopList]) {
+        [self.ibTableView showLoading];
+    }
     
         [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
             
@@ -189,7 +194,11 @@
         
         if(![Utils isStringNull:self.seetiShopsModel.paging.next])
         {
+            [self.ibTableView startFooterLoadingView];
             [self requestServerForSeetiShopNearbyShop];
+        }
+        else{
+            [self.ibTableView stopFooterLoadingView];
         }
     }
 }
