@@ -50,6 +50,8 @@
 
 -(void)startSearchGPSLocation
 {
+    [self startBlinkGPS];
+
     [self.manager startUpdatingLocation];
 }
 
@@ -70,7 +72,7 @@
         }
         else{
             
-            [self.manager startUpdatingLocation];
+            [self startSearchGPSLocation];
                 
             [UIAlertView showWithTitle:LocalisedString(@"Couldn't get your location now") message:LocalisedString(@"try again later") cancelButtonTitle:LocalisedString(@"OK") otherButtonTitles:nil tapBlock:nil];
         }
@@ -97,9 +99,12 @@
 
     }
     else{
-        self.lblAutoDetect.textColor = TWO_ZERO_FOUR_COLOR;
-        self.ibImgLocation.image = [UIImage imageNamed:@"SelectLocationAutoDetectIconDeactivated.png"];
+        
         [self stopBlinkGPS];
+
+        self.lblAutoDetect.textColor = TWO_ZERO_FOUR_COLOR;
+        
+        self.ibImgLocation.image = [UIImage imageNamed:@"SelectLocationAutoDetectIconDeactivated.png"];
     }
 }
     
@@ -108,11 +113,11 @@
     [self initSelfView];
     
     [self requestServerForCountry];
-    // Do any additional setup after loading the view from its nib.
     
 }
 
 -(void)changeLanguage{
+    
     self.lblAutoDetect.text = LocalisedString(@"Auto-detect your location");
     self.ibHeaderTitle.text = LocalisedString(@"Select Location");
     self.ibSearchTxtField.placeholder = LocalisedString(@"Search for a location");
@@ -694,6 +699,8 @@
 
 -(void)startBlinkGPS
 {
+    [self.timer invalidate];
+    
     self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(onTimerEvent:) userInfo:nil repeats:YES];
 
 }
@@ -713,7 +720,7 @@
     switch (status) {
         case kCLAuthorizationStatusNotDetermined: {
             NSLog(@"User still thinking granting location access!");
-            [self.manager startUpdatingLocation];
+            [self startSearchGPSLocation];
             
             // this will access location automatically if user granted access manually. and will not show apple's request alert twice. (Tested)
         } break;
@@ -731,7 +738,7 @@
         case kCLAuthorizationStatusAuthorizedAlways: {
             // clear text
             NSLog(@"Got Location");
-            [self startBlinkGPS];
+            [self stopBlinkGPS];
             self.lblAutoDetect.textColor = ONE_ZERO_TWO_COLOR;
             self.ibImgLocation.image = [UIImage imageNamed:@"SelectLocationAutoDetectIcon.png"];
             [self.manager startUpdatingLocation]; //Will update location immediately
@@ -747,7 +754,6 @@
             break;
     }
 }
-
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     
