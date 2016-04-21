@@ -158,12 +158,12 @@
     [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
 }
 
-- (IBAction)btnSearchClicked:(id)sender {
-    
-    _searchViewV2Controller = nil;
-    [self.navigationController pushViewController:self.searchViewV2Controller animated:NO];
-    
-}
+//- (IBAction)btnSearchClicked:(id)sender {
+//    
+//    _searchViewV2Controller = nil;
+//    [self.navigationController pushViewController:self.searchViewV2Controller animated:NO];
+//    
+//}
 
 - (IBAction)btnEditProfileClicked:(id)sender {
     
@@ -981,14 +981,14 @@
     return _connectionsViewController;
 }
 
--(SearchViewV2Controller*)searchViewV2Controller
-{
-    if (!_searchViewV2Controller) {
-        _searchViewV2Controller = [SearchViewV2Controller new];
-    }
-    
-    return _searchViewV2Controller;
-}
+//-(SearchViewV2Controller*)searchViewV2Controller
+//{
+//    if (!_searchViewV2Controller) {
+//        _searchViewV2Controller = [SearchViewV2Controller new];
+//    }
+//    
+//    return _searchViewV2Controller;
+//}
 -(EditProfileV2ViewController*)editProfileV2ViewController
 {
     if (!_editProfileV2ViewController) {

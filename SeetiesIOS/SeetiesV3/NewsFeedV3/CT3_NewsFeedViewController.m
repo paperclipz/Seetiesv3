@@ -30,7 +30,6 @@
 #import "DealType_QuickBrowseTblCell.h"
 #import "DealType_DealOTDTblCell.h"
 #import "DealType_YourWalletTblCell.h"
-#import "SearchViewV2Controller.h"
 #import "FeedType_headerTblCell.h"
 
 #import "AppDelegate.h"
@@ -110,7 +109,6 @@ static NSCache* heightCache = nil;
 @property(nonatomic,strong)InviteFrenViewController* inviteFrenViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic,strong)CTWebViewController* ctWebViewController;
-@property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
 @property(nonatomic,strong)VoucherListingViewController* voucherListingViewController;
 
 @property(nonatomic)DealRedeemViewController* dealRedeemViewController;
@@ -284,15 +282,6 @@ static NSCache* heightCache = nil;
     }
     
     return _voucherListingViewController;
-}
--
-(SearchViewV2Controller*)searchViewV2Controller
-{
-    if (!_searchViewV2Controller) {
-        _searchViewV2Controller = [SearchViewV2Controller new];
-    }
-    
-    return _searchViewV2Controller;
 }
 
 -(CTWebViewController*)ctWebViewController

@@ -19,7 +19,6 @@
 #import "AddCollectionDataViewController.h"
 #import "LeveyTabBarController.h"
 #import "ReportViewController.h"
-#import "SearchDetailViewController.h"
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
 
@@ -4836,9 +4835,15 @@
     NSString *GetTagsString = [[NSString alloc]initWithFormat:@"#%@",[ArrHashTag objectAtIndex:getbuttonIDN]];
     NSLog(@"ArrHashTag is %@",GetTagsString);
     
-    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
+    
+    self.searchListingViewController = [CT3_SearchListingViewController new];
+    self.searchListingViewController.keyword = GetTagsString;
+    
+    [self.navigationController pushViewController:self.searchListingViewController animated:YES];
+    
+//    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//    [self.navigationController pushViewController:SearchDetailView animated:YES];
+//    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
 }
 -(IBAction)BlogLinkButtonOnClick:(id)sender{
     if ([GetLink hasPrefix:@"http://"] || [GetLink hasPrefix:@"https://"]) {

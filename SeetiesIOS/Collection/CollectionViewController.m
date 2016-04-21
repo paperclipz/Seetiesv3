@@ -8,10 +8,8 @@
 
 #import "CollectionViewController.h"
 #import "FeedV2DetailViewController.h"
-#import "SearchDetailViewController.h"
 #import "AddCollectionDataViewController.h"
 #import "CT3_SearchListingViewController.h"
-
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
 

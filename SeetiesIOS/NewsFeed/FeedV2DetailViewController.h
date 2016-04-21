@@ -19,12 +19,15 @@
 @class ProfileViewController;
 @class EditPostViewController;
 @class CollectionListingViewController;
+@class CT3_SearchListingViewController;
+
 @interface FeedV2DetailViewController : CommonViewController<UIScrollViewDelegate,UIActionSheetDelegate>
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property(nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;
+@property(nonatomic,strong)CT3_SearchListingViewController* searchListingViewController;
 
 -(void)GetPostID:(NSString *)PostID;
 @end
