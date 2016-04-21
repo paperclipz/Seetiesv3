@@ -15,6 +15,7 @@
 #import "ProfileViewController.h"
 #import "CollectionListingViewController.h"
 #import "SeetiesShopViewController.h"
+#import "ReportProblemViewController.h"
 
 @class ProfileViewController;
 @class EditPostViewController;

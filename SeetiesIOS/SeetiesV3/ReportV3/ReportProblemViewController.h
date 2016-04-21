@@ -11,5 +11,5 @@
 @interface ReportProblemViewController : CommonViewController
 -(void)initDataReportShop:(SeShopDetailModel*)model;
 -(void)initDataReportDeal:(NSString*)dealID;
-
+-(void)initDataReportPost:(NSString*)postID;
 @end
