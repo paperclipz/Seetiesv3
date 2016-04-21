@@ -1,7 +1,6 @@
 PODS:
   - A3ParallaxScrollView (1.0.2)
   - ActionSheetPicker-3.0 (1.7.2)
-  - ADTransitionController (1.1.1)
   - AFNetworking (2.6.3):
     - AFNetworking/NSURLConnection (= 2.6.3)
     - AFNetworking/NSURLSession (= 2.6.3)
@@ -32,7 +31,6 @@ PODS:
   - DBCamera (2.4.1):
     - GPUImage (~> 0.1)
   - Fabric (1.6.7)
-  - GoogleMaps (1.12.3)
   - GPUImage (0.1.7)
   - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
@@ -49,7 +47,6 @@ PODS:
   - JSONModel (1.2.0)
   - LPGoogleFunctions (1.2.3):
     - AFNetworking (~> 2.0)
-  - Masonry (1.0.0)
   - MGInstagram (0.1.0)
   - MGSwipeTableCell (1.5.3)
   - MMPickerView (0.0.1)
@@ -57,9 +54,6 @@ PODS:
   - NSDate-Time-Ago (1.0.1)
   - pop (1.0.9)
   - PureLayout (3.0.1)
-  - Realm (0.98.8):
-    - Realm/Headers (= 0.98.8)
-  - Realm/Headers (0.98.8)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -69,41 +63,35 @@ PODS:
     - HexColors (~> 2.3.0)
   - TTTAttributedLabel (1.13.4)
   - UITextView+Placeholder (1.1.1)
-  - ViewMonitor (1.0.9)
   - YLGIFImage (0.11)
 
 DEPENDENCIES:
   - A3ParallaxScrollView (~> 1.0)
   - ActionSheetPicker-3.0 (~> 1.7.1)
-  - ADTransitionController
   - APParallaxHeader
   - BOString
   - CLLocationManager-blocks
   - Crashlytics
   - DBCamera (~> 2.4)
   - Fabric
-  - GoogleMaps
   - HMSegmentedControl
   - IDMPhotoBrowser
   - InstagramKit (~> 3.0)
   - IQKeyboardManager
   - JSONModel
   - LPGoogleFunctions
-  - Masonry
   - MGInstagram
   - MGSwipeTableCell
   - MMPickerView (~> 0.0.1)
   - MZAppearance
   - NSDate-Time-Ago
   - PureLayout
-  - Realm
   - SDWebImage
   - STPopup
   - SVPullToRefresh (HEAD)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - TTTAttributedLabel
   - UITextView+Placeholder
-  - ViewMonitor
   - YLGIFImage
 
 EXTERNAL SOURCES:
@@ -118,7 +106,6 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   A3ParallaxScrollView: 1d16dc1881721642d5f25e320cabe7adcc997035
   ActionSheetPicker-3.0: c5bdca19fd8b3d798f0c79892cbab6f11a8523ae
-  ADTransitionController: 72299d31488bcbe59fb87c483a89a637ebc819f8
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   BOString: b4c4df4f8a7f046c42a51c32629772dc2701fc47
@@ -127,7 +114,6 @@ SPEC CHECKSUMS:
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  GoogleMaps: a4ac67918d0b5ba5f6b9893ac80487e357779e6c
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
@@ -136,7 +122,6 @@ SPEC CHECKSUMS:
   IQKeyboardManager: b91928f7927ba55a5829b4dcf4b7a6736ac9fc22
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
-  Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
   MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
   MMPickerView: 6ba6bd5d0ef1fd60372d3f5e4fa80ad4237a86a0
@@ -144,14 +129,12 @@ SPEC CHECKSUMS:
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
-  Realm: 0e293bb62999730599efc3048896bbd4f2e43bcd
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   STPopup: f32dc6a944b57311b6d2d6e3afd789f83a0c4cbc
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   UITextView+Placeholder: a6fc3e0378f3870036ec562a7537cbf6dbae4bf6
-  ViewMonitor: 3bf94bdead583c7ed08fdab9212fe08661173477
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
 COCOAPODS: 0.39.0

@@ -16,7 +16,6 @@
 #import "AFNetworkActivityLogger.h"
 
 #define FABRIC_API_KEY @"506d5ee5657719d0cbaa94569d3352125456f169"
-@import ViewMonitor;
 @interface AppDelegate ()
 
 @end
@@ -40,7 +39,6 @@
   
 
     if (!IS_SIMULATOR) {
-        [GMSServices provideAPIKey:GOOGLE_API_KEY];
         //Optional: automatically send uncaught exceptions to Google Analytics.
         [GAI sharedInstance].trackUncaughtExceptions = YES;
         // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
@@ -54,8 +52,6 @@
    
     [[SearchManager Instance]startSearchGPSLocation];
     [[SearchManager Instance]startGetWifiLocation];
-
-    // [ViewMonitor start];
 
 
 }

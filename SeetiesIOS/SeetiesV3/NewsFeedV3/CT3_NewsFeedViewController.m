@@ -540,7 +540,7 @@ static NSCache* heightCache = nil;
                 break;
             case DealType_Announcement:
             {
-                return [FeedType_CountryPromotionTblCell getHeight];
+                return UITableViewAutomaticDimension;
             }
                 break;
 

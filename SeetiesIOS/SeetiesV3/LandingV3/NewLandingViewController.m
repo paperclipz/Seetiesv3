@@ -9,7 +9,6 @@
 #import "NewLandingViewController.h"
 #import "UITabBar+Extension.h"
 #import "IntroCoverView.h"
-#import "Masonry.h"
 
 
 @interface NewLandingViewController()<UITabBarControllerDelegate>
@@ -71,16 +70,8 @@
 
 -(void)showAnimatedSplash
 {
+    self.ibSplashView.frame = self.view.frame;
     
-    UIView *superview = self.view;
-    UIView *view1 = self.ibSplashView;
-    view1.translatesAutoresizingMaskIntoConstraints = NO;
-    [superview addSubview:view1];
-    UIEdgeInsets padding = UIEdgeInsetsMake(0, 0, 0, 0);
-
-    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(superview).with.insets(padding);
-    }];
     
     [UIView animateWithDuration:1.0 animations:^{
         

@@ -24,6 +24,17 @@ typedef void(^NullBlock) (void);
 
 typedef enum
 {
+    ShareTypePost,
+    ShareTypeCollection,
+    ShareTypePostUser,
+    ShareTypeSeetiesShop,
+    ShareTypeNonSeetiesShop,
+    ShareTypeDeal
+} ShareType;
+
+
+typedef enum
+{
     ENGLISH = 0,
     MALAY = 1,
     CHINESE = 2

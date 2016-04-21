@@ -24,7 +24,7 @@
 #import "CommonTableViewCell.h"
 #import "CommonViewController.h"
 #import "CommonView.h"
-#import <GoogleMaps/GoogleMaps.h>
+//#import <GoogleMaps/GoogleMaps.h>
 #import "TPKeyboardAvoidingScrollView.h"
 #import "ActionSheetPicker.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -67,7 +67,6 @@
 #import "LoadingManager.h"
 #import "SearchManager.h"
 #import "IQKeyboardManager.h"
-#import "ShareManager.h"
 
 #import "CoreModel.h"
 #import "MessageManager.h"
@@ -78,6 +77,10 @@
 #import "CustomBlock.h"
 
 #endif
+//===============Social media=================
+
+#import <FacebookSDK/FacebookSDK.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
 
 //check whether it uses simulator 

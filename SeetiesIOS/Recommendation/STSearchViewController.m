@@ -31,7 +31,6 @@
 @property(nonatomic,strong)NSArray* nearbyVenues;
 @property(nonatomic,strong)SearchModel* searchModel;
 @property (weak, nonatomic) IBOutlet UITextField *txtSearch;
-@property (nonatomic,strong)GMSPlacesClient* placesClient;
 @property (nonatomic,strong)CLLocation* location;
 @property (nonatomic,assign)SearchType type;
 @property (nonatomic,strong)SearchManager* sManager;

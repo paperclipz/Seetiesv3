@@ -16,7 +16,6 @@
 #import "DealDetailsViewController.h"
 #import "CAPSPageMenu.h"
 #import "HMSegmentedControl.h"
-#import "Masonry.h"
 
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
