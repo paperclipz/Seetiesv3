@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonCollectionViewCell.h"
+
 
 @interface SuggestionFeatureCVCell : CommonCollectionViewCell
 -(void)initData:(ProfileModel*)model;

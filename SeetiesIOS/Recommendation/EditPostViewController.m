@@ -7,7 +7,6 @@
 //
 
 #import "EditPostViewController.h"
-#import "UIImageViewModeScaleAspect.h"
 #import "UIImageView+WebCache.h"
 #import "UIImage+FX.h"
 #import "EditPhotoViewController.h"

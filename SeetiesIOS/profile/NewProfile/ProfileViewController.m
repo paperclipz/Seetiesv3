@@ -175,16 +175,6 @@
 
 - (IBAction)btnShareClicked:(id)sender {
     
-//    _shareV2ViewController = nil;
-//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//    [naviVC setNavigationBarHidden:YES animated:NO];
-//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//    [self.shareV2ViewController share:@"" title:self.userProfileModel.username imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypePostUser shareID:self.userProfileModel.username userID:@""];
-//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//    [self presentViewController:formSheetController animated:YES completion:nil];
-    
     //New Sharing Screen
     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
     
@@ -928,15 +918,6 @@
     }
     
     return _feedV2DetailViewController;
-}
-
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
-    }
-    
-    return _shareV2ViewController;
 }
 
 -(UIImageView*)loadingImageView

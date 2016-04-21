@@ -45,15 +45,9 @@
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)SeShopsModel* seShopsModel;
 
-@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
-@property(nonatomic,strong)MZFormSheetPresentationViewController* formSheetController;
-
 @property(nonatomic,strong)HomeLocationModel* homeLocationModel;
 @property(nonatomic,strong)NSDictionary *filterDict;
 
-//@property(nonatomic,strong)NSMutableArray* arrPosts;
-//@property(nonatomic,strong)NSMutableArray* arrUsers;
-//@property(nonatomic,strong)NSMutableArray* arrCollections;
 @property(nonatomic,strong)NSMutableArray* arrList;
 
 @end
@@ -325,11 +319,7 @@
                 
                 cell.btnShareClicked = ^(void)
                 {
-//                    _shareV2ViewController = nil;
-//                    _formSheetController = nil;
-//                    [self.shareV2ViewController share:@"" title:collModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
-//                    [self presentViewController:self.formSheetController animated:YES completion:nil];
-                    
+
                     //New Sharing Screen
                     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
                     
@@ -481,31 +471,6 @@
     }
     
     return _homeLocationModel;
-}
-
-
--(MZFormSheetPresentationViewController*)formSheetController
-{
-    
-    if (!_formSheetController) {
-        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-        [naviVC setNavigationBarHidden:YES animated:NO];
-        _formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-        _formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-        _formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-        _formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-        
-    }
-    return _formSheetController;
-    
-}
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [ShareV2ViewController new];
-    }
-    
-    return _shareV2ViewController;
 }
 
 -(NSMutableArray*)arrList

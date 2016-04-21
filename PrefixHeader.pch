@@ -33,6 +33,7 @@
 //for currency Usage
 #import "BKCurrencyTextField.h"
 #import "CustomEmptyView.h"
+#import "CommonCollectionViewCell.h"
 
 //===============Category Helper=================
 #import "NSString+Extra.h"
@@ -59,8 +60,6 @@
 
 #import "RecommendationModel.h"
 #import "Locale.h"
-#import "SeetiesIOS-Swift.h"
-
 
 //===============Manager=================
 #import "MapManager.h"
@@ -68,6 +67,7 @@
 #import "LoadingManager.h"
 #import "SearchManager.h"
 #import "IQKeyboardManager.h"
+#import "ShareManager.h"
 
 #import "CoreModel.h"
 #import "MessageManager.h"

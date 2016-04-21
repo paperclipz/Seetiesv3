@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "AsyncImageView.h"
+
 typedef void (^BtnSeetiShopBlock)(NSString * idn);
 
 @interface SeNearbySeetishop : CommonView

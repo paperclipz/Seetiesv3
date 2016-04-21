@@ -118,7 +118,6 @@
 @property(nonatomic) TermsViewController *termsViewController;
 @property(nonatomic) ReportProblemViewController *reportProblemViewController;
 @property(nonatomic) PhotoViewController *photoViewController;
-@property(nonatomic) ShareV2ViewController *shareViewController;
 @property(nonatomic) RedemptionHistoryViewController *redemptionHistoryViewController;
 
 @end
@@ -424,13 +423,6 @@
         _reportProblemViewController = [ReportProblemViewController new];
     }
     return _reportProblemViewController;
-}
-
--(ShareV2ViewController *)shareViewController{
-    if (!_shareViewController) {
-        _shareViewController = [ShareV2ViewController new];
-    }
-    return _shareViewController;
 }
 
 -(RedemptionHistoryViewController *)redemptionHistoryViewController{
@@ -952,19 +944,11 @@
 
 #pragma mark - Delegate
 - (IBAction)buttonShareClicked:(id)sender {
-//    self.shareViewController = nil;
-//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareViewController];
-//    [naviVC setNavigationBarHidden:YES animated:NO];
+
+    
     PhotoModel *photo = self.dealModel.photos[0];
     NSString *shareTitle = [Utils isStringNull:self.dealModel.title]? self.dealModel.cover_title : self.dealModel.title;
-//    [self.shareViewController share:@"" title:shareTitle imagURL:photo.imageURL shareType:ShareTypeDeal shareID:self.dealModel.dID userID:[Utils getUserID]];
-//    
-//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//    [self presentViewController:formSheetController animated:YES completion:nil];
-    
+
     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
     
     dataToPost.title = shareTitle;

@@ -35,7 +35,6 @@
 @property(nonatomic,strong)LikesListingViewController* likesListingViewController;
 @property(nonatomic,strong)EditProfileV2ViewController* editProfileV2ViewController;
 @property(nonatomic,strong)ConnectionsViewController* connectionsViewController;
-@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property(nonatomic,strong)FeedV2DetailViewController* feedV2DetailViewController;
 @property(nonatomic,strong)CT3_SearchListingViewController* searchListingViewController;
 

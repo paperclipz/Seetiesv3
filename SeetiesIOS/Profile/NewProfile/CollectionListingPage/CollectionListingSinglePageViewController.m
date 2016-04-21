@@ -16,7 +16,6 @@
 @interface CollectionListingSinglePageViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property(nonatomic)NSMutableArray* arrCollections;
-@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
 
@@ -87,17 +86,7 @@
     
     cell.btnShareClicked = ^(void)
     {
-//        _shareV2ViewController = nil;
-//        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//        [naviVC setNavigationBarHidden:YES animated:NO];
-//        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:weakModel.collection_id userID:weakModel.user_info.uid];
-//        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//        [self presentViewController:formSheetController animated:YES completion:nil];
-        
-        //New Sharing Screen
+
         CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
         
         dataToPost.title = weakModel.postDesc;
@@ -125,15 +114,6 @@
         _collectionViewController  = [CollectionViewController new];
     }
     return _collectionViewController;
-}
-
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [ShareV2ViewController new];
-    }
-    
-    return _shareV2ViewController;
 }
 
 -(EditCollectionViewController*)editCollectionViewController

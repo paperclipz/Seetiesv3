@@ -4316,15 +4316,6 @@
 
 #pragma mark - declaration
 
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
-    }
-    
-    return _shareV2ViewController;
-}
-
 -(ProfileViewController*)profileViewController
 {
     if(!_profileViewController)

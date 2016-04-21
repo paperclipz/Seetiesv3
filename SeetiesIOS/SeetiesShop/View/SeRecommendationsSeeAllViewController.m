@@ -45,7 +45,6 @@
 
 @property (nonatomic,strong)FeedV2DetailViewController* PostDetailViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
-@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @end
 
 @implementation SeRecommendationsSeeAllViewController
@@ -571,16 +570,6 @@
     }
     PhotoModel* photoModel = model.arrPhotos[0];
     
-//    _shareV2ViewController = nil;
-//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//    [naviVC setNavigationBarHidden:YES animated:NO];
-//    [self.shareV2ViewController share:@"" title:TestTitle imagURL:photoModel.imageURL shareType:ShareTypePost shareID:model.post_id userID:@""];
-//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//    [self presentViewController:formSheetController animated:YES completion:nil];
-    
     //New Sharing Screen
     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
     
@@ -639,14 +628,7 @@
     
     return _profileViewController;
 }
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
-    }
-    
-    return _shareV2ViewController;
-}
+
 -(void)GetUnLikeData{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
