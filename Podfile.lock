@@ -57,10 +57,12 @@ PODS:
   - NSDate-Time-Ago (1.0.1)
   - pop (1.0.9)
   - PureLayout (3.0.1)
+  - Realm (0.98.8):
+    - Realm/Headers (= 0.98.8)
+  - Realm/Headers (0.98.8)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - SKSplashView (0.1.2)
   - STPopup (1.6.1)
   - SVPullToRefresh (HEAD based on 0.4.1)
   - TSMessages (0.9.13):
@@ -94,8 +96,8 @@ DEPENDENCIES:
   - MZAppearance
   - NSDate-Time-Ago
   - PureLayout
+  - Realm
   - SDWebImage
-  - SKSplashView
   - STPopup
   - SVPullToRefresh (HEAD)
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
@@ -142,8 +144,8 @@ SPEC CHECKSUMS:
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  Realm: 0e293bb62999730599efc3048896bbd4f2e43bcd
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  SKSplashView: c65333b6707be6f237d09e7c8977941114b0a70d
   STPopup: f32dc6a944b57311b6d2d6e3afd789f83a0c4cbc
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c

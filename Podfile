@@ -46,6 +46,7 @@ pod 'IDMPhotoBrowser'
 pod 'YLGIFImage'
 
 pod 'Masonry'
+pod 'Realm'
 #pod 'SKSplashView'
 
 #pod 'iCarousel'

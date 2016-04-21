@@ -32,9 +32,6 @@
 
 @property(nonatomic,strong)DraftModel* postModel;
 @property(nonatomic,strong)DraftModel* storedModel;
-
-//@property(nonatomic,strong)DraftModel* postModelDuplicate;
-
 @property (weak, nonatomic) IBOutlet UILabel *lblNumberOfPhotos;
 
 @property(nonatomic,strong)CategoriesModel* categoriesModel;
@@ -48,11 +45,9 @@
 @property(nonatomic,strong)UINavigationController* navAddNewPlaceViewController;
 @property(nonatomic,strong)CategorySelectionViewController* categorySelectionViewController;
 @property(nonatomic,strong)HMSegmentedControl* segmentedControl;
-@property(nonatomic,strong)IBOutlet UISegmentedControl* postSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
-@property (weak, nonatomic) IBOutlet UIView *ibDescContentView;
 @property(nonatomic,weak)EditPostDetailVIew* editPostView;
-@property(nonatomic,weak)EditPostDetailVIew* editPostViewSecond;
+@property (weak, nonatomic) IBOutlet UIScrollView *ibContentScrollView;
 
 @property(nonatomic,strong)UIAlertView* urlAlertView;
 @end
@@ -67,8 +62,6 @@
     
     
     _editPhotoViewController = nil;
-
- //   self.postModelDuplicate = self.postModel;
     
     UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:self.editPhotoViewController];;
     
@@ -127,27 +120,6 @@
     [self.categorySelectionViewController show];
 
 }
-
-- (IBAction)segmentedControlClicked:(id)sender {
-    
-    UISegmentedControl* temp = (UISegmentedControl*)sender;
-    BOOL isFirstView = temp.selectedSegmentIndex==1;
-    [UIView transitionWithView:self.ibDescContentView
-                      duration:1.0
-                       options:isFirstView?UIViewAnimationOptionTransitionCrossDissolve :UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-
-                        self.editPostViewSecond.hidden = !isFirstView;
-                        self.editPostView.hidden = isFirstView;
-
-                    } completion:^(BOOL finished) {
-                        self.editPostView.hidden = isFirstView;
-                        self.editPostViewSecond.hidden = !isFirstView;
-
-                    }
-     ];
- }
-
 
 -(void)dismissView
 {
@@ -273,7 +245,7 @@
 
 -(void)setViewWithNumberOfLanguage
 {
-    [self setHasDualLanguage:NO];
+ //   [self setHasDualLanguage:NO];
 //    switch (self.editPostType) {
 //        case EditPostTypeDraft:
 //        {
@@ -321,8 +293,8 @@
     self.editPostView.txtTitle.text = @"";
     self.editPostView.txtDescription.text = @"";
     
-    self.editPostViewSecond.txtTitle.text = @"";
-    self.editPostViewSecond.txtDescription.text = @"";
+   // self.editPostViewSecond.txtTitle.text = @"";
+   // self.editPostViewSecond.txtDescription.text = @"";
 }
 
 -(void)reloadImage
@@ -401,12 +373,11 @@
 
 -(void)initSelfView
 {
-    
     self.segmentedControl.selectedSegmentIndex = -1;
 
-    self.editPostView.frame = CGRectMake(0, 0, self.ibDescContentView.frame.size.width, self.ibDescContentView.frame.size.width);
-    self.editPostViewSecond.frame = CGRectMake(0, 0, self.ibDescContentView.frame.size.width, self.ibDescContentView.frame.size.width);
+    [self.editPostView setWidth:self.ibContentScrollView.frame.size.width];
 
+    self.ibContentScrollView.contentSize = CGSizeMake(self.editPostView.frame.size.width, self.editPostView.frame.size.height);
     [self.view addSubview:self.segmentedControl];
 
 }
@@ -593,24 +564,24 @@
     if(!_editPostView)
     {
         _editPostView = [EditPostDetailVIew initializeCustomView];
-        [self.ibDescContentView addSubview:_editPostView];
+        [self.ibContentScrollView addSubview:_editPostView];
 
     }
     return _editPostView;
 }
 
--(EditPostDetailVIew*)editPostViewSecond
-{
-    
-    if(!_editPostViewSecond)
-    {
-        _editPostViewSecond = [EditPostDetailVIew initializeCustomView];
-        [self.ibDescContentView addSubview:_editPostViewSecond];
-        _editPostViewSecond.hidden = YES;
-
-    }
-    return _editPostViewSecond;
-}
+//-(EditPostDetailVIew*)editPostViewSecond
+//{
+//    
+//    if(!_editPostViewSecond)
+//    {
+//        _editPostViewSecond = [EditPostDetailVIew initializeCustomView];
+//        [self.ibDescContentView addSubview:_editPostViewSecond];
+//        _editPostViewSecond.hidden = YES;
+//
+//    }
+//    return _editPostViewSecond;
+//}
 
 
 -(ArticleViewController*)articleViewController

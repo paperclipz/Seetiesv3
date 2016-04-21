@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="ProximaNovaSoft-Regular.ttf">
@@ -13,12 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditPostViewController">
             <connections>
                 <outlet property="btnPublish" destination="FMf-XD-Lbr" id="nQo-ZN-o4E"/>
-                <outlet property="descViewTopLayoutConstraint" destination="Zsp-fO-UAo" id="axF-Of-uGy"/>
-                <outlet property="ibDescContentView" destination="7B1-FL-CrC" id="avd-mV-z3z"/>
+                <outlet property="ibContentScrollView" destination="RN5-f9-tTS" id="Mn4-JF-iHW"/>
                 <outlet property="ibImageView" destination="F2F-vU-lbQ" id="Dam-Up-llY"/>
                 <outlet property="lblNumberOfPhotos" destination="i2s-Zf-tKK" id="rov-j0-g4q"/>
                 <outlet property="lblTitle" destination="8c4-cB-zlq" id="s8R-dw-pmL"/>
-                <outlet property="postSegmentedControl" destination="n69-ir-G3A" id="P3p-cW-sNe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -94,17 +92,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4b-DH-19H">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                             <subviews>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="n69-ir-G3A">
-                                    <rect key="frame" x="10" y="140" width="300" height="29"/>
-                                    <segments>
-                                        <segment title="Language 1"/>
-                                        <segment title="Language 2"/>
-                                    </segments>
-                                    <color key="tintColor" red="0.20000000000000001" green="0.70980392160000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="segmentedControlClicked:" destination="-1" eventType="valueChanged" id="X2s-4L-cgn"/>
-                                    </connections>
-                                </segmentedControl>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F2F-vU-lbQ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                                     <constraints>
@@ -122,10 +109,6 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7B1-FL-CrC">
-                                    <rect key="frame" x="0.0" y="173" width="320" height="243"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4DU-U1-4kw">
                                     <rect key="frame" x="232" y="76" width="80" height="45"/>
                                     <constraints>
@@ -139,26 +122,26 @@
                                         <action selector="btnEditPhotoClicked:" destination="-1" eventType="touchUpInside" id="ZIa-1c-zNf"/>
                                     </connections>
                                 </button>
+                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RN5-f9-tTS">
+                                    <rect key="frame" x="0.0" y="129" width="320" height="227"/>
+                                </scrollView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="RN5-f9-tTS" firstAttribute="leading" secondItem="j4b-DH-19H" secondAttribute="leading" id="0XM-wx-p80"/>
+                                <constraint firstAttribute="trailing" secondItem="RN5-f9-tTS" secondAttribute="trailing" id="1wd-1s-fc0"/>
                                 <constraint firstItem="i2s-Zf-tKK" firstAttribute="leading" secondItem="j4b-DH-19H" secondAttribute="leading" constant="15" id="3YB-rr-bSS"/>
-                                <constraint firstAttribute="bottom" secondItem="7B1-FL-CrC" secondAttribute="bottom" id="6EE-UJ-ZWM"/>
+                                <constraint firstAttribute="bottom" secondItem="RN5-f9-tTS" secondAttribute="bottom" constant="60" id="3cY-hw-r6l"/>
                                 <constraint firstAttribute="trailing" secondItem="4DU-U1-4kw" secondAttribute="trailing" constant="8" id="6UE-mW-2pv"/>
-                                <constraint firstItem="7B1-FL-CrC" firstAttribute="leading" secondItem="j4b-DH-19H" secondAttribute="leading" id="7Ej-0S-6vb"/>
                                 <constraint firstItem="F2F-vU-lbQ" firstAttribute="top" secondItem="j4b-DH-19H" secondAttribute="top" id="8Ah-FI-WbF"/>
-                                <constraint firstItem="n69-ir-G3A" firstAttribute="top" secondItem="F2F-vU-lbQ" secondAttribute="bottom" constant="10" id="9hQ-vl-wff"/>
                                 <constraint firstItem="F2F-vU-lbQ" firstAttribute="leading" secondItem="j4b-DH-19H" secondAttribute="leading" id="Cfr-3n-Lgd"/>
                                 <constraint firstAttribute="trailing" secondItem="F2F-vU-lbQ" secondAttribute="trailing" id="E2A-om-TNk"/>
-                                <constraint firstItem="n69-ir-G3A" firstAttribute="leading" secondItem="j4b-DH-19H" secondAttribute="leading" constant="10" id="JJ7-ig-Cnj"/>
                                 <constraint firstItem="F2F-vU-lbQ" firstAttribute="top" secondItem="j4b-DH-19H" secondAttribute="top" id="NNs-sX-DYm"/>
                                 <constraint firstItem="F2F-vU-lbQ" firstAttribute="leading" secondItem="j4b-DH-19H" secondAttribute="leading" id="Qlp-fg-Zl0"/>
                                 <constraint firstItem="i2s-Zf-tKK" firstAttribute="bottom" secondItem="4DU-U1-4kw" secondAttribute="bottom" constant="-12" id="REc-U3-bvW"/>
-                                <constraint firstItem="7B1-FL-CrC" firstAttribute="top" secondItem="F2F-vU-lbQ" secondAttribute="bottom" constant="43" id="Zsp-fO-UAo"/>
-                                <constraint firstAttribute="trailing" secondItem="n69-ir-G3A" secondAttribute="trailing" constant="10" id="bnW-A7-bdz"/>
-                                <constraint firstAttribute="trailing" secondItem="7B1-FL-CrC" secondAttribute="trailing" id="ceS-ZM-hvl"/>
                                 <constraint firstItem="4DU-U1-4kw" firstAttribute="bottom" secondItem="F2F-vU-lbQ" secondAttribute="bottom" constant="-9" id="iTU-3X-5Z9"/>
                                 <constraint firstAttribute="trailing" secondItem="F2F-vU-lbQ" secondAttribute="trailing" id="rvw-kG-vHh"/>
+                                <constraint firstItem="RN5-f9-tTS" firstAttribute="top" secondItem="F2F-vU-lbQ" secondAttribute="bottom" constant="-1" id="sZC-ZH-196"/>
                             </constraints>
                         </view>
                     </subviews>

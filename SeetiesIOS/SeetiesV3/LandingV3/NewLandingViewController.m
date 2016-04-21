@@ -9,8 +9,6 @@
 #import "NewLandingViewController.h"
 #import "UITabBar+Extension.h"
 #import "IntroCoverView.h"
-#import "SKSplashView.h"
-#import "SKSplashIcon.h"
 #import "Masonry.h"
 
 
