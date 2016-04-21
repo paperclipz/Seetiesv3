@@ -70,11 +70,11 @@
     }
     
     if (type == 1) {
-        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.userProfile.url] placeholderImage:[UIImage imageNamed:@"NoImage.png"]];
+        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.userProfile.url] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
 
     }
     else{
-        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.userProfileImage] placeholderImage:[UIImage imageNamed:@"NoImage.png"]];
+        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.userProfileImage] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
 
     }
     

@@ -55,7 +55,7 @@
 }
 
 -(void)changeLanguage{
-    self.ibHeaderTitle.text = LocalisedString(@"Activity");
+    self.ibHeaderTitle.text = LocalisedString(@"Notification");
 }
 
 -(void)initSelfView
@@ -156,7 +156,7 @@
 {
     if (!_followingTableViewController) {
         _followingTableViewController = [NotificationTableViewController new];
-        _followingTableViewController.title = LocalisedString(@"Following");
+        _followingTableViewController.title = LocalisedString(@"Activity");
         
         __weak typeof (self)weakself = self;
         _followingTableViewController.didSelectNotificationBlock = ^(NotificationModel* model)
