@@ -358,7 +358,6 @@
 		8ABA7DED1C7421FC00FB41F4 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA7DEB1C7421FC00FB41F4 /* NotificationTableViewCell.xib */; };
 		8ABA7DF11C7422AA00FB41F4 /* CT3_NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA7DEF1C7422AA00FB41F4 /* CT3_NotificationViewController.m */; };
 		8ABA7DF21C7422AA00FB41F4 /* CT3_NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA7DF01C7422AA00FB41F4 /* CT3_NotificationViewController.xib */; };
-		8ABE84F91CBE55750014CCDE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ABE84F81CBE55750014CCDE /* StoreKit.framework */; };
 		8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */; };
 		8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */; };
 		8AC8F7231BDA414E00DEF14A /* CollectionListingTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D91BDA414E00DEF14A /* CollectionListingTabViewController.xib */; };
@@ -3369,7 +3368,6 @@
 				8AD6C2BE1B707A470040437E /* Parse.framework in Frameworks */,
 				8AD6C12C1B706DFF0040437E /* libGoogleAnalyticsServices.a in Frameworks */,
 				8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */,
-				8ABE84F91CBE55750014CCDE /* StoreKit.framework in Frameworks */,
 				8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */,
 				C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */,
 			);

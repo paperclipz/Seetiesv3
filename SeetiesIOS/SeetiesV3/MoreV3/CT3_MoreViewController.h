@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <StoreKit/StoreKit.h>
 
-@interface CT3_MoreViewController : BaseViewController <SKStoreProductViewControllerDelegate>
+@interface CT3_MoreViewController : BaseViewController
 
 @end
