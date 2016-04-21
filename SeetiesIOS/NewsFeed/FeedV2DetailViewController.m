@@ -13,11 +13,9 @@
 #import "CommentViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "LocationFeedDetailViewController.h"
 #import "NearByRecommtationViewController.h"
 #import "NSString+ChangeAsciiString.h"
 #import "AddCollectionDataViewController.h"
-#import "LeveyTabBarController.h"
 #import "ReportViewController.h"
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
@@ -395,7 +393,6 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -407,7 +404,6 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_HIDE" object:nil];
     
     
@@ -474,7 +470,6 @@
                          //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
                          // ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
                          ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
-                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
                      }
                      completion:^(BOOL finished) {
                      }];
@@ -4351,16 +4346,7 @@
 -(IBAction)OpenAddressButton:(id)sender{
     
     NSLog(@"Open address click");
-    //    LocationFeedDetailViewController *LocationFeedDetailView = [[LocationFeedDetailViewController alloc]init];
-    //    CATransition *transition = [CATransition animation];
-    //    transition.duration = 0.2;
-    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    //    transition.type = kCATransitionPush;
-    //    transition.subtype = kCATransitionFromRight;
-    //    [self.view.window.layer addAnimation:transition forKey:nil];
-    //    [self presentViewController:LocationFeedDetailView animated:NO completion:nil];
-    //    [LocationFeedDetailView GetLat:GetLat GetLong:GetLng GetFirstImage:[UrlArray objectAtIndex:0] GetTitle:GetPlaceName GetLocation:GetPlaceFormattedAddress ];
-    //    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpenNow GetPrice:GetExpense GetPeriods:GetPeriods];
+   
     NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
     NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
     self.seetiesShopViewController = nil;

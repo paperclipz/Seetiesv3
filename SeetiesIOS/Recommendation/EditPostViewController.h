@@ -7,7 +7,6 @@
 //
 
 #import "CommentViewController.h"
-#import "NMBottomTabBarController.h"
 #import "CustomPickerViewController.h"
 #import "RecommendationModel.h"
 #import "ArticleViewController.h"
@@ -27,7 +26,6 @@ typedef enum
 -(void)loadData;
 -(void)initDataPostEdit:(DraftModel*)model;
 
-@property(nonatomic,strong)NMBottomTabBarController* nmBottomTabBarController;
 @property(nonatomic,strong)CustomPickerViewController* customPickerViewController;
 @property(nonatomic,strong)ArticleViewController* articleViewController;
 

@@ -226,33 +226,6 @@
 
 }
 
--(LeveyTabBarController*)leveyTabBarController
-{
-    
-    if(!_leveyTabBarController)
-    {
-        
-        _firstViewController = [[UINavigationController alloc]initWithRootViewController:self.newsFeedViewController];
-        _firstViewController.navigationBar.hidden = YES;
-        _secondViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3MeViewController];
-        _secondViewController.navigationBar.hidden = YES;
-        _thirdViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3_MoreViewController];
-        _thirdViewController.navigationBar.hidden = YES;
-
-
-        NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.firstViewController,
-                                        self.secondViewController,self.thirdViewController, nil];
-        
-        _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
-        [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-        [_leveyTabBarController setTabBarTransparent:YES];
-        _leveyTabBarController.delegate = self;
-        
-    }
-    
-    return _leveyTabBarController;
-}
-
 -(ProfileViewController*)profileViewController
 {
     if (!_profileViewController) {
@@ -337,18 +310,6 @@
     
     return imgArr;
 }
-
-- (BOOL)tabBarController:(LeveyTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController atIndex:(NSInteger)index
-{
-    
-//    if (index == 1)
-//    {
-//        [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
-//    }
-    
-    return YES;
-}
-
 
 #pragma mark - Show View
 
