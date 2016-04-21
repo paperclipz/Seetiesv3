@@ -292,18 +292,41 @@
     }
 }
 
+- (nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
+    DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
+    
+    if ([voucher.voucher_type isEqualToString:VOUCHER_TYPE_PUBLIC]) {
+        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:LocalisedString(@"Delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            [UIAlertView showWithTitle:LocalisedString(@"Delete Voucher") message:LocalisedString(@"Are you sure you want to delete this voucher?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
+                    DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
+                    [self requestServerToDeleteVoucher:voucher withIndexPath:indexPath];
+                }
+                
+            }];
+        }];
+        deleteAction.backgroundColor = [UIColor colorWithHexValue:@"#ef5e41"];
+        return @[deleteAction];
+    }
+    else{
+        return nil;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [UIAlertView showWithTitle:LocalisedString(@"Delete Voucher") message:LocalisedString(@"Are you sure you want to delete this voucher?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
-                DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
-                [self requestServerToDeleteVoucher:voucher withIndexPath:indexPath];
-            }
-            
-        }];
-    }
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [UIAlertView showWithTitle:LocalisedString(@"Delete Voucher") message:LocalisedString(@"Are you sure you want to delete this voucher?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+//            if (buttonIndex == 1) {
+//                DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
+//                DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
+//                [self requestServerToDeleteVoucher:voucher withIndexPath:indexPath];
+//            }
+//            
+//        }];
+//    }
 }
 
 #pragma mark - IBAction

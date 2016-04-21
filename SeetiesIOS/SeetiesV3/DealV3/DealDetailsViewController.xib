@@ -354,10 +354,10 @@
                                             </variation>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimeIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="sh3-EW-i7g" userLabel="time icon">
-                                            <rect key="frame" x="221" y="40" width="20" height="20"/>
+                                            <rect key="frame" x="216" y="38" width="25" height="25"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="6Cm-BP-uaL"/>
-                                                <constraint firstAttribute="height" constant="20" id="Qql-xC-gHL"/>
+                                                <constraint firstAttribute="width" constant="25" id="6Cm-BP-uaL"/>
+                                                <constraint firstAttribute="height" constant="25" id="Qql-xC-gHL"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>

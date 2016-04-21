@@ -713,7 +713,7 @@
             redemptionTypeView.ibRedemptionTypeLbl.text = LocalisedString(@"Dine in");
         }
         else if ([type isEqualToString:REDEMPTION_TYPE_TAKE_AWAY]){
-            redemptionTypeView.ibRedemptionTypeLbl.text = LocalisedString(@"Take away");
+            redemptionTypeView.ibRedemptionTypeLbl.text = LocalisedString(@"Takeaway");
         }
         else{
             redemptionTypeView.ibRedemptionTypeLbl.text = type;

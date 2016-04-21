@@ -61,9 +61,13 @@
                         <constraint firstItem="6No-dD-mU4" firstAttribute="leading" secondItem="KZL-JK-KEd" secondAttribute="leading" constant="-5" id="zQy-nI-T2s"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="knz-tK-wWw" customClass="CustomEmptyView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="knz-tK-wWw">
                     <rect key="frame" x="0.0" y="63" width="320" height="505"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="ibCustomActivityIndicator" destination="HaZ-C9-6Sq" id="Hez-ST-4Sk"/>
+                        <outlet property="ibCustomFooterView" destination="HfY-tK-vfL" id="Gih-O3-Ahp"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -77,6 +81,23 @@
                 <constraint firstAttribute="bottom" secondItem="knz-tK-wWw" secondAttribute="bottom" id="yWG-Xu-rvK"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+        <view contentMode="scaleToFill" id="HfY-tK-vfL">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HaZ-C9-6Sq">
+                    <rect key="frame" x="150" y="19" width="20" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="HaZ-C9-6Sq" firstAttribute="centerX" secondItem="HfY-tK-vfL" secondAttribute="centerX" id="7Qy-Cd-vGM"/>
+                <constraint firstItem="HaZ-C9-6Sq" firstAttribute="centerY" secondItem="HfY-tK-vfL" secondAttribute="centerY" id="DyB-o8-B3z"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="865" y="80.5"/>
         </view>
     </objects>
     <resources>
