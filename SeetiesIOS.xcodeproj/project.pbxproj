@@ -248,7 +248,6 @@
 		8A84C5D41C7FF448006A0D76 /* Caret@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2A91C7FF447006A0D76 /* Caret@2x.png */; };
 		8A84C5D51C7FF448006A0D76 /* Caret@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AA1C7FF447006A0D76 /* Caret@3x.png */; };
 		8A84C5DA1C7FF448006A0D76 /* LoginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2AF1C7FF447006A0D76 /* LoginBackground.png */; };
-		8A84C5DB1C7FF448006A0D76 /* LongSearchBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B01C7FF447006A0D76 /* LongSearchBar@2x.png */; };
 		8A84C5DC1C7FF448006A0D76 /* LowerCard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B11C7FF447006A0D76 /* LowerCard.png */; };
 		8A84C5DD1C7FF448006A0D76 /* NearbyBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B21C7FF447006A0D76 /* NearbyBackground.png */; };
 		8A84C5DF1C7FF448006A0D76 /* NoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A84C2B41C7FF447006A0D76 /* NoImage.png */; };
@@ -1815,7 +1814,6 @@
 		8A84C2A91C7FF447006A0D76 /* Caret@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Caret@2x.png"; sourceTree = "<group>"; };
 		8A84C2AA1C7FF447006A0D76 /* Caret@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Caret@3x.png"; sourceTree = "<group>"; };
 		8A84C2AF1C7FF447006A0D76 /* LoginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBackground.png; sourceTree = "<group>"; };
-		8A84C2B01C7FF447006A0D76 /* LongSearchBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LongSearchBar@2x.png"; sourceTree = "<group>"; };
 		8A84C2B11C7FF447006A0D76 /* LowerCard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LowerCard.png; sourceTree = "<group>"; };
 		8A84C2B21C7FF447006A0D76 /* NearbyBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NearbyBackground.png; sourceTree = "<group>"; };
 		8A84C2B41C7FF447006A0D76 /* NoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoImage.png; sourceTree = "<group>"; };
@@ -4202,7 +4200,6 @@
 				8A84C2A91C7FF447006A0D76 /* Caret@2x.png */,
 				8A84C2AA1C7FF447006A0D76 /* Caret@3x.png */,
 				8A84C2AF1C7FF447006A0D76 /* LoginBackground.png */,
-				8A84C2B01C7FF447006A0D76 /* LongSearchBar@2x.png */,
 				8A84C2B11C7FF447006A0D76 /* LowerCard.png */,
 				8A84C2B21C7FF447006A0D76 /* NearbyBackground.png */,
 				8A84C2B41C7FF447006A0D76 /* NoImage.png */,
@@ -6904,6 +6901,9 @@
 		8AD6BA521B705DF20040437E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Stylar Network";
@@ -7234,7 +7234,6 @@
 				C240B9E41CC62F4400B79190 /* GridViewActive@3x.png in Resources */,
 				C240B9F01CC62F4400B79190 /* NoPhotoInCollection@3x.png in Resources */,
 				8A6CCEEA1C1982D500BCD54E /* SeetiShopListingViewController.xib in Resources */,
-				8A84C5DB1C7FF448006A0D76 /* LongSearchBar@2x.png in Resources */,
 				8A114CA01BE73F5D006AE3F0 /* KVNProgressView.xib in Resources */,
 				C240B9AC1CC62F4400B79190 /* Icon-Small-40.png in Resources */,
 				C240B9C81CC62F4400B79190 /* CollectionOverlay@3x.png in Resources */,
