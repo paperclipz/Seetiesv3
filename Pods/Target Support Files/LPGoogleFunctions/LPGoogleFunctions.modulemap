@@ -1,6 +1,0 @@
-framework module LPGoogleFunctions {
-  umbrella header "LPGoogleFunctions-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -39,7 +39,6 @@
 // IBOUTLET
 @property (weak, nonatomic) IBOutlet UIView *ibSearchContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibContentSearchView;
-@property (nonatomic, strong) LPGoogleFunctions *googleFunctions;
 @property (nonatomic, strong) SuggestedPlaceModel *suggestedPlaceModel;
 // IBOUTLET
 

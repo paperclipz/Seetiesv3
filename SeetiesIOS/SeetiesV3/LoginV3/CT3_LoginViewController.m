@@ -100,14 +100,13 @@
         SLog(@"assign validateBeforeLogin fail");
     }
    
-   
 }
 
 -(void)initSelfView
 {
     
 
-    imageArray = @[[UIImage imageNamed:@"Splash1.jpg"],[UIImage imageNamed:@"Splash2.jpg"],[UIImage imageNamed:@"Splash3.jpg"],[UIImage imageNamed:@"Splash4.jpg"],[UIImage imageNamed:@"Splash5.jpg"]];
+    imageArray = @[[UIImage imageNamed:@"Splash1.jpg"]];
 
     //self.ibImageView.image = [imageArray objectAtIndex:0];
 

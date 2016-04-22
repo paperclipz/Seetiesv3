@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImageView+AFNetworking.h"
-#import "LPGoogleFunctions.h"
 #import "SearchTableViewController.h"
 #import "CAPSPageMenu.h"
 
 typedef void(^SearchResultBlock) (Location* model);
 
-@interface STSearchViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,LPGoogleFunctionsDelegate>
+@interface STSearchViewController : CommonViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 -(void)initWithLocation:(CLLocation*)location;
 
 @property(nonatomic,strong)SearchTableViewController* googleSearchTableViewController;

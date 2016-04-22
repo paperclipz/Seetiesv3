@@ -28,10 +28,7 @@ PODS:
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - DACircularProgress (2.3.1)
-  - DBCamera (2.4.1):
-    - GPUImage (~> 0.1)
   - Fabric (1.6.7)
-  - GPUImage (0.1.7)
   - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
   - IDMPhotoBrowser (1.8.2):
@@ -45,8 +42,6 @@ PODS:
     - AFNetworking (~> 2.0)
   - IQKeyboardManager (4.0.0)
   - JSONModel (1.2.0)
-  - LPGoogleFunctions (1.2.3):
-    - AFNetworking (~> 2.0)
   - MGInstagram (0.1.0)
   - MGSwipeTableCell (1.5.3)
   - MMPickerView (0.0.1)
@@ -58,7 +53,7 @@ PODS:
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
   - STPopup (1.6.1)
-  - SVPullToRefresh (HEAD based on 0.4.1)
+  - SVPullToRefresh (0.4.1)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
   - TTTAttributedLabel (1.13.4)
@@ -72,14 +67,12 @@ DEPENDENCIES:
   - BOString
   - CLLocationManager-blocks
   - Crashlytics
-  - DBCamera (~> 2.4)
   - Fabric
   - HMSegmentedControl
   - IDMPhotoBrowser
   - InstagramKit (~> 3.0)
   - IQKeyboardManager
   - JSONModel
-  - LPGoogleFunctions
   - MGInstagram
   - MGSwipeTableCell
   - MMPickerView (~> 0.0.1)
@@ -88,7 +81,7 @@ DEPENDENCIES:
   - PureLayout
   - SDWebImage
   - STPopup
-  - SVPullToRefresh (HEAD)
+  - SVPullToRefresh
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
   - TTTAttributedLabel
   - UITextView+Placeholder
@@ -112,16 +105,13 @@ SPEC CHECKSUMS:
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   IDMPhotoBrowser: 52ac15203a73da002a7501ac7c6651a4cd761b4e
   InstagramKit: bbbd15baeac2d32b2915d2d89319ad90bacd5912
   IQKeyboardManager: b91928f7927ba55a5829b4dcf4b7a6736ac9fc22
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
-  LPGoogleFunctions: c78171de55b164e8e5dbf6b4bba477980771211a
   MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
   MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
   MMPickerView: 6ba6bd5d0ef1fd60372d3f5e4fa80ad4237a86a0
