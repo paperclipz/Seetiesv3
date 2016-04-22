@@ -692,6 +692,12 @@
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
             
             break;
+            
+        case ServerRequestTypePostReportPost:
+            
+            str = [NSString stringWithFormat:@"%@/post", API_VERION_URL];
+            
+            break;
         
         case ServerRequestTypeGetFriendSuggestion:
             str = [NSString stringWithFormat:@"%@/%@/friends", API_VERION_URL, [Utils getUserID]];

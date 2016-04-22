@@ -133,6 +133,7 @@ typedef enum
     /*Report Shop*/
     ServerRequestTypePostReportShop,
     ServerRequestTypePostReportDeal,
+    ServerRequestTypePostReportPost,
     /*Report Shop*/
     
     //** GetFriendSuggestion **//

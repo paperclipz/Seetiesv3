@@ -83,15 +83,14 @@
         [TempButton addTarget:self action:@selector(OpenSeetiShopButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview: TempButton];
         
-        AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+        UIImageView *ShowUserProfileImage = [[UIImageView alloc]init];
         ShowUserProfileImage.frame = CGRectMake(25 + i * (GetWidth + 25), 20, GetWidth, GetWidth);
-        ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowUserProfileImage.contentMode = UIViewContentModeCenter;
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowUserProfileImage.layer.cornerRadius = GetWidth / 2;
         ShowUserProfileImage.layer.masksToBounds = YES;
         ShowUserProfileImage.layer.borderWidth = 1.0f;
         ShowUserProfileImage.layer.borderColor = OUTLINE_COLOR.CGColor;
-        ShowUserProfileImage.contentMode = UIViewContentModeCenter;
         
 //        if (![shopModel.arrPhotos isNull])
 //        {
@@ -115,7 +114,7 @@
                 ShowUserProfileImage.image = [Utils getShopPlaceHolderImage];
             }else{
                 NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
-                ShowUserProfileImage.imageURL = url_NearbySmall;
+                [ShowUserProfileImage sd_setImageCroppedWithURL:url_NearbySmall completed:nil];
             }
         }else{
            ShowUserProfileImage.image = [Utils getShopPlaceHolderImage];

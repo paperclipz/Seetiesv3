@@ -164,7 +164,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
+    self.profileModel = [[DataManager Instance] currentUserProfileModel];
     self.ibProfileName.text = self.profileModel.username;
 
 }
@@ -233,8 +233,12 @@
         else{
             self.ibProfileName.text = self.profileModel.name;
         }
+        
         if (![Utils isStringNull:self.profileModel.profile_photo_images]) {
             [self.ibProfileImg sd_setImageCroppedWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images] completed:nil];
+        }
+        else{
+            [self.ibProfileImg setImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
         }
         
         [self setNotificationCount:notification_Count];
@@ -322,9 +326,7 @@
 
 -(void)reloadData
 {
-    
-    DataManager* dataManager = [ConnectionManager dataManager];
-    ProfileModel* model = dataManager.currentUserProfileModel;
+    ProfileModel* model = [[DataManager Instance] currentUserProfileModel];
     self.profileModel = model;
 }
 

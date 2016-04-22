@@ -37,7 +37,8 @@
 {
     self.ibTitle.text = LocalisedString(@"Voucher Wallet");
     self.ibDesc.text = LocalisedString(@"Check out your collected deals");
-    self.lblCount.text = [NSString stringWithFormat:@"%d",walletCount];
+    NSString *countString = walletCount < 100? [NSString stringWithFormat:@"%d", walletCount] : @"99+";
+    self.lblCount.text = countString;
     
 }
 

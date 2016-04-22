@@ -4287,10 +4287,9 @@
 }
 
 -(void)OpenReport{
-    ReportViewController *ReportView = [[ReportViewController alloc]init];
-    [self presentViewController:ReportView animated:YES completion:nil];
-    //[self.view.window.rootViewController presentViewController:ReportView animated:YES completion:nil];
-    [ReportView GetPostID:GetPostID];
+    ReportProblemViewController *reportViewController = [[ReportProblemViewController alloc] init];
+    [reportViewController initDataReportPost:GetPostID];
+    [self.navigationController pushViewController:reportViewController animated:YES];
 }
 
 -(void)OpenEdit{

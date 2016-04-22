@@ -52,20 +52,20 @@
             
         default:
         case 0:
-            self.ibImage.image = [UIImage imageNamed:@"NoCollectionIcon.png"];
+            self.ibImage.image = [UIImage imageNamed:@"EmptyStateImg.png"];
             self.lblDesc.text = LocalisedString(@"No Collections");
 
 
             break;
             
         case 1:
-            self.ibImage.image = [UIImage imageNamed:@"NoPostIcon.png"];
+            self.ibImage.image = [UIImage imageNamed:@"EmptyStateImg.png"];
             self.lblDesc.text = LocalisedString(@"Would you like to start a post?(:");
 
             break;
             
         case 2:
-            self.ibImage.image = [UIImage imageNamed:@"NoLike-Icon.png"];
+            self.ibImage.image = [UIImage imageNamed:@"EmptyStateImg.png"];
             self.lblDesc.text = LocalisedString(@"Check back soon!");
 
 

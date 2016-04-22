@@ -995,7 +995,8 @@
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
-        self.ibWalletCountLbl.text = [NSString stringWithFormat:@"%d", count];
+        NSString *countString = count < 100? [NSString stringWithFormat:@"%d", count] : @"99+";
+        self.ibWalletCountLbl.text = countString;
         [self.dealManager setWalletCount:count];
     } errorBlock:^(id object) {
         

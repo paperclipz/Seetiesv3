@@ -16,14 +16,16 @@
 @property (weak, nonatomic) IBOutlet UITextView *txtTwoDesc;
 @property (weak, nonatomic) IBOutlet UILabel *lblOneTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblTwoTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibOthersLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgOneTick;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgTwoTick;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgThreeTick;
 @property (assign, nonatomic) int type;
-@property (assign, nonatomic) int reportType;//1 == shop 2 == deal
+@property (assign, nonatomic) int reportType;//1 == shop 2 == deal 3 == post
 @property (nonatomic) NSString*  dealID;
 @property (nonatomic) SeShopDetailModel*  shopModel;
+@property (nonatomic) NSString* postId;
 
 @end
 
@@ -50,6 +52,10 @@
     else if(self.reportType == 2)
     {
         [self requestServerForFlagDeal];
+    }
+    else if(self.reportType == 3)
+    {
+        [self requestServerForFlagPost];
     }
 }
 
@@ -95,6 +101,13 @@
 
 }
 
+-(void)initDataReportPost:(NSString*)postID
+{
+    self.reportType = 3;
+    self.postId = postID;
+    
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [IQKeyboardManager sharedManager].enable = YES;
@@ -112,35 +125,55 @@
     
     [Utils setRoundBorder:self.ibTxtView color:LINE_COLOR borderRadius:5.0f borderWidth:1.0f];
     
+    self.ibOthersLbl.text = LocalisedString(@"Others");
+    self.ibTxtView.placeholder = LocalisedString(@"Please specify");
+    
     [self changeViewType:1];
     switch (self.reportType) {
+        //Report shop
         case 1:
             
             [Utils setRoundBorder:self.txtTwoDesc color:LINE_COLOR borderRadius:5.0f borderWidth:1.0f];
 
-            self.ibHeaderTitle.text = LocalisedString(@"Report Shop");
+            self.ibHeaderTitle.text = LocalisedString(@"Report this");
 
             self.lblOneTitle.text = LocalisedString(@"Shop could not be found");
             self.lblOneDesc.text = LocalisedString(@"The shop could not be found in the area specified");
 
             self.lblTwoTitle.text = LocalisedString(@"Inaccurate information");
-            
             self.txtTwoDesc.placeholder = LocalisedString(@"Shop information provided is inaccurate (eg.Business hours, address etc.)");
 
             break;
+            
+        //Report deal
         case 2:
             
-            self.ibHeaderTitle.text = LocalisedString(@"Report Deal");
+            self.ibHeaderTitle.text = LocalisedString(@"Report this");
             self.lblOneTitle.text = LocalisedString(@"Deal is not available");
             self.lblOneDesc.text = LocalisedString(@"The deal is not available in the shop promoted.");
             
             self.lblTwoTitle.text = LocalisedString(@"Deal is different value");
-            
             self.txtTwoDesc.text = LocalisedString(@"The deal does not reflect the promoted value");
-
 
             self.txtTwoDesc.editable = false;
             self.txtTwoDesc.userInteractionEnabled = NO;
+            
+            break;
+            
+        //Report post
+        case 3:
+            
+            self.ibHeaderTitle.text = LocalisedString(@"Report this");
+            self.lblOneTitle.text = LocalisedString(@"Inappropriate content");
+            self.lblOneDesc.text = LocalisedString(@"This post has content that violates terms & conditions in Seeties.");
+            
+            self.lblTwoTitle.text = LocalisedString(@"Copywriting infringement");
+            self.txtTwoDesc.text = LocalisedString(@"This post uses copyrighted works without permission.");
+            
+            self.txtTwoDesc.editable = false;
+            self.txtTwoDesc.userInteractionEnabled = NO;
+            
+            break;
 
         default:
             break;
@@ -264,4 +297,31 @@
     }
     
   }
+
+-(void)requestServerForFlagPost
+{
+    NSString* reportMessage = [self getReportMessage];
+    
+    @try {
+        NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                               @"message" : reportMessage?reportMessage:@"",
+                               @"post_id" : self.postId
+                               };
+        
+        NSString* appendString = [NSString stringWithFormat:@"%@/flag", self.postId];
+        
+        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostReportPost param:dict appendString:appendString completeHandler:^(id object) {
+            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } errorBlock:^(id object) {
+            
+        }];
+    }
+    @catch (NSException *exception) {
+        
+    }
+    
+}
 @end

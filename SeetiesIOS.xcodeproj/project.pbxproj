@@ -335,7 +335,6 @@
 		8ABA7DED1C7421FC00FB41F4 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA7DEB1C7421FC00FB41F4 /* NotificationTableViewCell.xib */; };
 		8ABA7DF11C7422AA00FB41F4 /* CT3_NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA7DEF1C7422AA00FB41F4 /* CT3_NotificationViewController.m */; };
 		8ABA7DF21C7422AA00FB41F4 /* CT3_NotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA7DF01C7422AA00FB41F4 /* CT3_NotificationViewController.xib */; };
-		8ABE84F91CBE55750014CCDE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ABE84F81CBE55750014CCDE /* StoreKit.framework */; };
 		8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */; };
 		8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D81BDA414E00DEF14A /* CollectionListingTabViewController.m */; };
 		8AC8F7231BDA414E00DEF14A /* CollectionListingTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8F6D91BDA414E00DEF14A /* CollectionListingTabViewController.xib */; };
@@ -597,6 +596,10 @@
 		C22703021CBF932D00F9FBF3 /* PostFilterSortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703001CBF932D00F9FBF3 /* PostFilterSortCell.xib */; };
 		C22703061CBF949D00F9FBF3 /* PostFilterCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */; };
 		C22703071CBF949D00F9FBF3 /* PostFilterCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */; };
+		C22CAA571CCA1E470038B246 /* SeetishopFeatureNo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22CAA531CCA1E470038B246 /* SeetishopFeatureNo@2x.png */; };
+		C22CAA581CCA1E470038B246 /* SeetishopFeatureNo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22CAA541CCA1E470038B246 /* SeetishopFeatureNo@3x.png */; };
+		C22CAA591CCA1E470038B246 /* SeetishopFeatureYes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22CAA551CCA1E470038B246 /* SeetishopFeatureYes@2x.png */; };
+		C22CAA5A1CCA1E470038B246 /* SeetishopFeatureYes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22CAA561CCA1E470038B246 /* SeetishopFeatureYes@3x.png */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
 		C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */; };
 		C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */; };
@@ -2393,6 +2396,10 @@
 		C22703031CBF949D00F9FBF3 /* PostFilterCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostFilterCategoryCell.h; sourceTree = "<group>"; };
 		C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostFilterCategoryCell.m; sourceTree = "<group>"; };
 		C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFilterCategoryCell.xib; sourceTree = "<group>"; };
+		C22CAA531CCA1E470038B246 /* SeetishopFeatureNo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeetishopFeatureNo@2x.png"; sourceTree = "<group>"; };
+		C22CAA541CCA1E470038B246 /* SeetishopFeatureNo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeetishopFeatureNo@3x.png"; sourceTree = "<group>"; };
+		C22CAA551CCA1E470038B246 /* SeetishopFeatureYes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeetishopFeatureYes@2x.png"; sourceTree = "<group>"; };
+		C22CAA561CCA1E470038B246 /* SeetishopFeatureYes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SeetishopFeatureYes@3x.png"; sourceTree = "<group>"; };
 		C23042DF1C61F331001008CB /* DealsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsModel.h; sourceTree = "<group>"; };
 		C23042E01C61F331001008CB /* DealsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealsModel.m; sourceTree = "<group>"; };
 		C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
@@ -3232,7 +3239,6 @@
 				8AD6C2BE1B707A470040437E /* Parse.framework in Frameworks */,
 				8AD6C12C1B706DFF0040437E /* libGoogleAnalyticsServices.a in Frameworks */,
 				8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */,
-				8ABE84F91CBE55750014CCDE /* StoreKit.framework in Frameworks */,
 				8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */,
 				C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */,
 			);
@@ -5990,6 +5996,10 @@
 		C240B62B1CC62F4300B79190 /* Seetishop */ = {
 			isa = PBXGroup;
 			children = (
+				C22CAA531CCA1E470038B246 /* SeetishopFeatureNo@2x.png */,
+				C22CAA541CCA1E470038B246 /* SeetishopFeatureNo@3x.png */,
+				C22CAA551CCA1E470038B246 /* SeetishopFeatureYes@2x.png */,
+				C22CAA561CCA1E470038B246 /* SeetishopFeatureYes@3x.png */,
 				C240B62C1CC62F4300B79190 /* SeetishopArtAndEntertainmentsIcon@2x.png */,
 				C240B62D1CC62F4300B79190 /* SeetishopArtAndEntertainmentsIcon@3x.png */,
 				C240B62E1CC62F4300B79190 /* SeetishopFoodIcon@2x.png */,
@@ -7114,6 +7124,7 @@
 				C240B8881CC62F4400B79190 /* DealsRedeemedIcon@3x.png in Resources */,
 				C240BA291CC62F4400B79190 /* TagsIcon@2x.png in Resources */,
 				C240BA8E1CC62F4400B79190 /* InstagramBtnInactive@3x.png in Resources */,
+				C22CAA591CCA1E470038B246 /* SeetishopFeatureYes@2x.png in Resources */,
 				C240B9FE1CC62F4400B79190 /* CommentBox@3x.png in Resources */,
 				C240B9601CC62F4400B79190 /* TabBarMeIconChi@3x.png in Resources */,
 				C240BB2B1CC62F4400B79190 /* SSCoverPhotoOverlay@2x.png in Resources */,
@@ -7183,6 +7194,11 @@
 				C240BB051CC62F4400B79190 /* ProfileFollowingIcon@2x.png in Resources */,
 				C240BB511CC62F4400B79190 /* ShareLineIcon@3x.png in Resources */,
 				C240BAC11CC62F4400B79190 /* BluePhone@2x.png in Resources */,
+<<<<<<< HEAD
+=======
+				8A69E0FA1C0412F000224BB4 /* ShareV2CollectionViewCell.xib in Resources */,
+				C22CAA581CCA1E470038B246 /* SeetishopFeatureNo@3x.png in Resources */,
+>>>>>>> DEV_CT_3.0
 				C240BAB11CC62F4400B79190 /* WrongFill@2x.png in Resources */,
 				C240BAF11CC62F4400B79190 /* LikeIcon@2x.png in Resources */,
 				C240BA601CC62F4400B79190 /* LikedIcon@3x.png in Resources */,
@@ -7498,6 +7514,7 @@
 				C240B8F91CC62F4400B79190 /* MoreLogoutIcon@3x.png in Resources */,
 				C240B8F01CC62F4400B79190 /* MoreAccountSettingsIcon@2x.png in Resources */,
 				C240B9841CC62F4400B79190 /* BgWalkWallet1@3x.jpg in Resources */,
+				C22CAA571CCA1E470038B246 /* SeetishopFeatureNo@2x.png in Resources */,
 				C240B8DE1CC62F4400B79190 /* CollectionFollowIcon@2x.png in Resources */,
 				C240BAE61CC62F4400B79190 /* CollectionPhotosOverlay@3x.png in Resources */,
 				C240EEEE1C9FB2D1002B4283 /* SearchLocationCountryCell.xib in Resources */,
@@ -7750,6 +7767,7 @@
 				C240BA111CC62F4400B79190 /* EditPostOverlay@2x.png in Resources */,
 				8A69E6BF1CC600D70013412F /* EmptyStateView.xib in Resources */,
 				C240B91B1CC62F4400B79190 /* EnterPromoCodeImg.png in Resources */,
+				C22CAA5A1CCA1E470038B246 /* SeetishopFeatureYes@3x.png in Resources */,
 				C240BB321CC62F4400B79190 /* SSFacebookIcon@2x.png in Resources */,
 				C240B8B91CC62F4400B79190 /* LaunchScreenIcon@2x.png in Resources */,
 				C238E33A1C4649AA00570A25 /* slider-metal-handle@2x.png in Resources */,
