@@ -565,7 +565,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ctX-06-t1e">
-                    <rect key="frame" x="0.0" y="23" width="320" height="1"/>
+                    <rect key="frame" x="0.0" y="22" width="320" height="1"/>
                     <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="8Ai-9z-LV9"/>
@@ -577,11 +577,11 @@
                         </mask>
                     </variation>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="featureYes.png" translatesAutoresizingMaskIntoConstraints="NO" id="J8q-Bj-hyX">
-                    <rect key="frame" x="50" y="12" width="50" height="20"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeetishopFeatureYes.png" translatesAutoresizingMaskIntoConstraints="NO" id="J8q-Bj-hyX">
+                    <rect key="frame" x="65" y="12" width="20" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="BAi-lI-WAg"/>
+                        <constraint firstAttribute="width" constant="20" id="BAi-lI-WAg"/>
                         <constraint firstAttribute="height" constant="20" id="Neb-2M-zI7"/>
                     </constraints>
                 </imageView>
@@ -593,14 +593,16 @@
                 <constraint firstItem="ctX-06-t1e" firstAttribute="centerX" secondItem="PPD-ze-gX7" secondAttribute="centerX" id="O7n-Qv-oS9"/>
                 <constraint firstItem="J8q-Bj-hyX" firstAttribute="centerY" secondItem="PPD-ze-gX7" secondAttribute="centerY" id="bUV-ab-Fp3"/>
                 <constraint firstItem="ctX-06-t1e" firstAttribute="top" secondItem="PPD-ze-gX7" secondAttribute="top" constant="23" id="jgQ-3v-pGo"/>
+                <constraint firstItem="ctX-06-t1e" firstAttribute="centerY" secondItem="PPD-ze-gX7" secondAttribute="centerY" id="mRZ-KH-jWe"/>
                 <constraint firstItem="ctX-06-t1e" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" id="pEK-By-yqd"/>
-                <constraint firstItem="J8q-Bj-hyX" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" constant="50" id="pj5-bh-ySb"/>
+                <constraint firstItem="J8q-Bj-hyX" firstAttribute="leading" secondItem="PPD-ze-gX7" secondAttribute="leading" constant="65" id="pj5-bh-ySb"/>
                 <constraint firstItem="ctX-06-t1e" firstAttribute="centerX" secondItem="PPD-ze-gX7" secondAttribute="centerX" id="vcZ-En-fKx"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="jgQ-3v-pGo"/>
                     <exclude reference="pEK-By-yqd"/>
                     <exclude reference="vcZ-En-fKx"/>
                 </mask>
@@ -612,7 +614,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mpG-fc-l3p">
-                    <rect key="frame" x="0.0" y="23" width="320" height="1"/>
+                    <rect key="frame" x="0.0" y="22" width="320" height="1"/>
                     <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="ldm-OR-lB3"/>
@@ -624,25 +626,26 @@
                         </mask>
                     </variation>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="featureNo.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jM-o8-jI1">
-                    <rect key="frame" x="50" y="12" width="50" height="20"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeetishopFeatureNo.png" translatesAutoresizingMaskIntoConstraints="NO" id="3jM-o8-jI1">
+                    <rect key="frame" x="65" y="12" width="20" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="7HY-tu-Bh3"/>
-                        <constraint firstAttribute="width" constant="50" id="HUw-6h-Rja"/>
+                        <constraint firstAttribute="width" constant="20" id="HUw-6h-Rja"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="3jM-o8-jI1" firstAttribute="centerY" secondItem="kLR-rC-bbo" secondAttribute="centerY" id="8WI-s0-74P"/>
-                <constraint firstItem="3jM-o8-jI1" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" constant="50" id="LuL-F5-Mqh"/>
+                <constraint firstItem="3jM-o8-jI1" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" constant="65" id="LuL-F5-Mqh"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="centerX" secondItem="kLR-rC-bbo" secondAttribute="centerX" id="VHQ-iX-jxv"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="centerX" secondItem="kLR-rC-bbo" secondAttribute="centerX" id="aLz-kx-CXT"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" id="ffF-K3-nko"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="top" secondItem="kLR-rC-bbo" secondAttribute="top" constant="23" id="kqy-oK-NGb"/>
                 <constraint firstAttribute="trailing" secondItem="mpG-fc-l3p" secondAttribute="trailing" id="ltG-YB-050"/>
                 <constraint firstItem="mpG-fc-l3p" firstAttribute="leading" secondItem="kLR-rC-bbo" secondAttribute="leading" id="paf-8U-qoU"/>
+                <constraint firstItem="mpG-fc-l3p" firstAttribute="centerY" secondItem="kLR-rC-bbo" secondAttribute="centerY" id="wTL-Fl-S3Z"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -650,6 +653,7 @@
                 <mask key="constraints">
                     <exclude reference="aLz-kx-CXT"/>
                     <exclude reference="ffF-K3-nko"/>
+                    <exclude reference="kqy-oK-NGb"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="800" y="1369"/>
@@ -754,7 +758,7 @@
         <image name="SSFeaturesIcon.png" width="20" height="20"/>
         <image name="SSWhiteTranslateIcon.png" width="25" height="26"/>
         <image name="SearchLocationIcon.png" width="30" height="30"/>
-        <image name="featureNo.png" width="20" height="20"/>
-        <image name="featureYes.png" width="20" height="20"/>
+        <image name="SeetishopFeatureNo.png" width="20" height="20"/>
+        <image name="SeetishopFeatureYes.png" width="20" height="20"/>
     </resources>
 </document>

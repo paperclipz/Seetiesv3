@@ -56,7 +56,7 @@
         self.lblLocation.text = displayStr;
         
         
-        self.lblStatus.text = self.ssModel.location.opening_hours.open_now?LocalisedString(@"Open"):LocalisedString(@"Closed");
+        self.lblStatus.text = self.ssModel.location.opening_hours.open_now?LocalisedString(@"OPEN"):LocalisedString(@"CLOSED");
         self.lblStatus.backgroundColor = self.ssModel.location.opening_hours.open_now?GREEN_STATUS : TWO_ZERO_FOUR_COLOR;
         
         
