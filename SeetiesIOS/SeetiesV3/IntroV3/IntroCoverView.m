@@ -78,48 +78,26 @@
 -(void)initDataAll
 {
     
-    NSSet *tagsSet = [NSSet setWithObjects:walkthrough_key, nil];
+    self.arrBackgroundHome = @[@"BgWalkLanding.jpg",@"BgWalkHome1.jpg",@"BgWalkHome2.jpg",@"BgWalkHome3.jpg",@"BgWalkHome4.jpg",@"BgWalkHome5.jpg"];
+    self.arrBackgroundWallet = @[@"BgWalkWallet1.jpg",@"BgWalkWallet2.jpg",@"BgWalkWallet3.jpg"];
     
     
-    [LoadingManager show];
-    request = [[NSBundleResourceRequest alloc] initWithTags:tagsSet];
+    [LoadingManager hide];
     
+    [self setupView];
+    self.arrBackGroundImages = nil;
+    self.arrCoverViews = nil;
+    NSMutableArray* arraybackground = [[NSMutableArray alloc]initWithArray:self.arrBackgroundHome];
+    [arraybackground addObjectsFromArray:self.arrBackgroundWallet];
+    self.arrBackGroundImages = arraybackground;
     
-    [request beginAccessingResourcesWithCompletionHandler:^(NSError * __nullable error) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // Loaded On Demand Resource
-            // Modify UI here as needed
-            self.arrBackgroundHome = @[@"BgWalkLanding.jpg",@"BgWalkHome1.jpg",@"BgWalkHome2.jpg",@"BgWalkHome3.jpg",@"BgWalkHome4.jpg",@"BgWalkHome5.jpg"];
-            self.arrBackgroundWallet = @[@"BgWalkWallet1.jpg",@"BgWalkWallet2.jpg",@"BgWalkWallet3.jpg"];
-            
-            
-            [LoadingManager hide];
-            
-            [self setupView];
-            self.arrBackGroundImages = nil;
-            self.arrCoverViews = nil;
-            NSMutableArray* arraybackground = [[NSMutableArray alloc]initWithArray:self.arrBackgroundHome];
-            [arraybackground addObjectsFromArray:self.arrBackgroundWallet];
-            self.arrBackGroundImages = arraybackground;
-            
-            NSMutableArray* arrCoverVIew = [[NSMutableArray alloc]initWithArray:self.arrCoverHome];
-            [arrCoverVIew addObjectsFromArray:self.arrCoverWallet];
-            self.arrCoverViews = arrCoverVIew;
-            [self loadCoverViews];
-            [self addBackgroundViews];
-            
-    
-            
-        
-        });
-    }];
-    
-
-    
+    NSMutableArray* arrCoverVIew = [[NSMutableArray alloc]initWithArray:self.arrCoverHome];
+    [arrCoverVIew addObjectsFromArray:self.arrCoverWallet];
+    self.arrCoverViews = arrCoverVIew;
+    [self loadCoverViews];
+    [self addBackgroundViews];
 
 }
-
 
 
 -(void)setupView
