@@ -49,8 +49,6 @@
 		8A0035421C4F6E72002BD9A3 /* DealType_DealOTDTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035401C4F6E72002BD9A3 /* DealType_DealOTDTblCell.xib */; };
 		8A0035461C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035441C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m */; };
 		8A0035471C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */; };
-		8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */; };
-		8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */; };
 		8A0159CF1CB6741E00ED6D0F /* CustomEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0159CE1CB6741E00ED6D0F /* CustomEmptyView.m */; };
 		8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */; };
 		8A03487A1C154F9C0015E606 /* SeetiesMoreInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */; };
@@ -156,25 +154,10 @@
 		8A11D3911CC886950023A7ED /* UIActivityViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D38A1CC886950023A7ED /* UIActivityViewController+Extension.m */; };
 		8A11D3951CC88DC80023A7ED /* AutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D3941CC88DC80023A7ED /* AutoCoding.m */; };
 		8A11D3981CC88EDD0023A7ED /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D3971CC88EDD0023A7ED /* UIImage+PECrop.m */; };
-		8A26D1091C51FFB800A50944 /* DraftAndRecommendationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A26D1081C51FFB800A50944 /* DraftAndRecommendationDelegate.m */; };
-		8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2C121B79E7A30010895E /* RecommendationViewController.m */; };
-		8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */; };
-		8A2E2CE21B81CFE40010895E /* STSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE01B81CFE40010895E /* STSearchViewController.m */; };
-		8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE11B81CFE40010895E /* STSearchViewController.xib */; };
-		8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E2CE91B81E15B0010895E /* STTableViewCell.m */; };
-		8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */; };
 		8A31CA771C9BA60B00CC5FB9 /* SuggestedPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */; };
-		8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A34090D1B872B31009B66C3 /* EditPostViewController.m */; };
-		8A3409101B872B31009B66C3 /* EditPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A34090E1B872B31009B66C3 /* EditPostViewController.xib */; };
 		8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A34094D1B8AD267009B66C3 /* NYXImagesHelper.m */; };
 		8A3409D31B8B0DE6009B66C3 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3409D21B8B0DE6009B66C3 /* ImageIO.framework */; };
 		8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757AF1B842F74009DB7D4 /* SearchManager.m */; };
-		8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757B51B847C7A009DB7D4 /* AddNewPlaceViewController.m */; };
-		8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757B61B847C7A009DB7D4 /* AddNewPlaceViewController.xib */; };
-		8A3757DB1B85B606009DB7D4 /* AddNewPlaceSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757DA1B85B606009DB7D4 /* AddNewPlaceSubView.m */; };
-		8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */; };
-		8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */; };
-		8A3757E51B85D635009DB7D4 /* EditPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */; };
 		8A3F35641BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F355D1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m */; };
 		8A3F35651BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3F355E1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.xib */; };
 		8A3F35661BF5E89D002B704C /* SuggestedCollectionPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F355F1BF5E89D002B704C /* SuggestedCollectionPostsViewController.m */; };
@@ -185,8 +168,6 @@
 		8A4205241C894F2300DB0D20 /* CT3_AcctSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4205221C894F2300DB0D20 /* CT3_AcctSettingViewController.xib */; };
 		8A4205281C89501100DB0D20 /* AccountSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4205261C89501100DB0D20 /* AccountSettingTableViewCell.m */; };
 		8A4205291C89501100DB0D20 /* AccountSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4205271C89501100DB0D20 /* AccountSettingTableViewCell.xib */; };
-		8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */; };
-		8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */; };
 		8A4512341BDE2BEC008DE870 /* LikesListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4512321BDE2BEC008DE870 /* LikesListingViewController.m */; };
 		8A4512351BDE2BEC008DE870 /* LikesListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4512331BDE2BEC008DE870 /* LikesListingViewController.xib */; };
 		8A45123C1BDE2C97008DE870 /* LikeListingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45123A1BDE2C97008DE870 /* LikeListingCollectionViewCell.m */; };
@@ -207,14 +188,6 @@
 		8A5CFE181C7C6D42004E2CBA /* CollectionListingSinglePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5CFE161C7C6D42004E2CBA /* CollectionListingSinglePageViewController.xib */; };
 		8A5CFE1E1C7D8E53004E2CBA /* SelectCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CFE1C1C7D8E53004E2CBA /* SelectCategoryViewController.m */; };
 		8A5CFE1F1C7D8E53004E2CBA /* SelectCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5CFE1D1C7D8E53004E2CBA /* SelectCategoryViewController.xib */; };
-		8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584301B981B4E00BC86B9 /* CategorySelectionViewController.m */; };
-		8A6584331B981B4E00BC86B9 /* CategorySelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6584311B981B4E00BC86B9 /* CategorySelectionViewController.xib */; };
-		8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584351B981C0E00BC86B9 /* CategoryCollectionViewCell.m */; };
-		8A6584381B981C0E00BC86B9 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6584361B981C0E00BC86B9 /* CategoryCollectionViewCell.xib */; };
-		8A65843D1B9850CE00BC86B9 /* DraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A65843B1B9850CE00BC86B9 /* DraftViewController.m */; };
-		8A65843E1B9850CE00BC86B9 /* DraftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A65843C1B9850CE00BC86B9 /* DraftViewController.xib */; };
-		8A6584411B9851C200BC86B9 /* DraftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6584401B9851C200BC86B9 /* DraftTableViewCell.m */; };
-		8A6584431B9851D300BC86B9 /* DraftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6584421B9851D300BC86B9 /* DraftTableViewCell.xib */; };
 		8A69E6BE1CC600D70013412F /* EmptyStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A69E6BC1CC600D70013412F /* EmptyStateView.m */; };
 		8A69E6BF1CC600D70013412F /* EmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A69E6BD1CC600D70013412F /* EmptyStateView.xib */; };
 		8A6BB42B1BF0C338005AA1B3 /* MZBlurEffectAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BB4121BF0C338005AA1B3 /* MZBlurEffectAdapter.m */; };
@@ -266,16 +239,6 @@
 		8A9E065B1CBF5A70000FB246 /* UINavigationController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E064E1CBF5A70000FB246 /* UINavigationController+Block.m */; };
 		8A9E065C1CBF5A70000FB246 /* UIPickerView+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E06501CBF5A70000FB246 /* UIPickerView+Block.m */; };
 		8A9E065D1CBF5A70000FB246 /* UIPopoverController+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E06521CBF5A70000FB246 /* UIPopoverController+Block.m */; };
-		8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */; };
-		8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */; };
-		8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25CC1B8ED8BC00BB13BA /* EditHoursViewController.m */; };
-		8A9F25CF1B8ED8BC00BB13BA /* EditHoursViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25CD1B8ED8BC00BB13BA /* EditHoursViewController.xib */; };
-		8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25D21B8EF60C00BB13BA /* EditHourTableViewCell.m */; };
-		8A9F25D51B8EF61900BB13BA /* EditHourTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25D41B8EF61900BB13BA /* EditHourTableViewCell.xib */; };
-		8A9F25DD1B90002B00BB13BA /* CustomPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */; };
-		8A9F25DE1B90002B00BB13BA /* CustomPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */; };
-		8A9F25E11B90413700BB13BA /* EditPostDetailVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F25E01B90413700BB13BA /* EditPostDetailVIew.m */; };
-		8A9F25E31B90414800BB13BA /* EditPostDetailVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9F25E21B90414800BB13BA /* EditPostDetailVIew.xib */; };
 		8AB276BD1CC61FC700BD5EC8 /* UIImage+Blurring.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB276461CC61FC700BD5EC8 /* UIImage+Blurring.m */; };
 		8AB276BE1CC61FC700BD5EC8 /* UIImage+Enhancing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB276481CC61FC700BD5EC8 /* UIImage+Enhancing.m */; };
 		8AB276BF1CC61FC700BD5EC8 /* UIImage+Filtering.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB2764A1CC61FC700BD5EC8 /* UIImage+Filtering.m */; };
@@ -323,8 +286,6 @@
 		8AB276EA1CC61FC700BD5EC8 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB276B51CC61FC700BD5EC8 /* UIView+Extension.m */; };
 		8AB276EC1CC61FC700BD5EC8 /* UIView+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB276B91CC61FC700BD5EC8 /* UIView+RoundedCorners.m */; };
 		8AB276ED1CC61FC700BD5EC8 /* UIWindow+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB276BC1CC61FC700BD5EC8 /* UIWindow+Extra.m */; };
-		8AB76D201BB8FBAF007DB972 /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AB76D1E1BB8FBAF007DB972 /* ArticleViewController.m */; };
-		8AB76D211BB8FBAF007DB972 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB76D1F1BB8FBAF007DB972 /* ArticleViewController.xib */; };
 		8ABA51F41C0FE7F000A3DC15 /* PhotoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51F21C0FE7F000A3DC15 /* PhotoListViewController.m */; };
 		8ABA51F51C0FE7F000A3DC15 /* PhotoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA51F31C0FE7F000A3DC15 /* PhotoListViewController.xib */; };
 		8ABA51F91C10329600A3DC15 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA51F71C10329600A3DC15 /* PhotoViewController.m */; };
@@ -1460,9 +1421,6 @@
 		8A0035431C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealType_YourWalletTblCell.h; sourceTree = "<group>"; };
 		8A0035441C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealType_YourWalletTblCell.m; sourceTree = "<group>"; };
 		8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealType_YourWalletTblCell.xib; sourceTree = "<group>"; };
-		8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEditPhotoTableViewCell.h; sourceTree = "<group>"; };
-		8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEditPhotoTableViewCell.m; sourceTree = "<group>"; };
-		8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEditPhotoTableViewCell.xib; sourceTree = "<group>"; };
 		8A0159CD1CB6741E00ED6D0F /* CustomEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEmptyView.h; sourceTree = "<group>"; };
 		8A0159CE1CB6741E00ED6D0F /* CustomEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEmptyView.m; sourceTree = "<group>"; };
 		8A0348761C154F9C0015E606 /* SeetiesMoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesMoreInfoViewController.h; sourceTree = "<group>"; };
@@ -1658,37 +1616,14 @@
 		8A11D3941CC88DC80023A7ED /* AutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCoding.m; sourceTree = "<group>"; };
 		8A11D3961CC88EDD0023A7ED /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
 		8A11D3971CC88EDD0023A7ED /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
-		8A26D1071C51FFB800A50944 /* DraftAndRecommendationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftAndRecommendationDelegate.h; sourceTree = "<group>"; };
-		8A26D1081C51FFB800A50944 /* DraftAndRecommendationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftAndRecommendationDelegate.m; sourceTree = "<group>"; };
-		8A2E2C111B79E7A30010895E /* RecommendationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationViewController.h; sourceTree = "<group>"; };
-		8A2E2C121B79E7A30010895E /* RecommendationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationViewController.m; sourceTree = "<group>"; };
-		8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendationViewController.xib; sourceTree = "<group>"; };
-		8A2E2CDF1B81CFE40010895E /* STSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSearchViewController.h; sourceTree = "<group>"; };
-		8A2E2CE01B81CFE40010895E /* STSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSearchViewController.m; sourceTree = "<group>"; };
-		8A2E2CE11B81CFE40010895E /* STSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STSearchViewController.xib; sourceTree = "<group>"; };
-		8A2E2CE81B81E15B0010895E /* STTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTableViewCell.h; sourceTree = "<group>"; };
-		8A2E2CE91B81E15B0010895E /* STTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTableViewCell.m; sourceTree = "<group>"; };
-		8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STTableViewCell.xib; sourceTree = "<group>"; };
 		8A31CA751C9BA60B00CC5FB9 /* SuggestedPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestedPlaceModel.h; path = SeetiesIOS/MODELS/Location/SuggestedPlaceModel.h; sourceTree = SOURCE_ROOT; };
 		8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuggestedPlaceModel.m; path = SeetiesIOS/MODELS/Location/SuggestedPlaceModel.m; sourceTree = SOURCE_ROOT; };
-		8A34090C1B872B31009B66C3 /* EditPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPostViewController.h; sourceTree = "<group>"; };
-		8A34090D1B872B31009B66C3 /* EditPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPostViewController.m; sourceTree = "<group>"; };
-		8A34090E1B872B31009B66C3 /* EditPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPostViewController.xib; sourceTree = "<group>"; };
 		8A34094C1B8AD267009B66C3 /* NYXImagesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesHelper.h; sourceTree = "<group>"; };
 		8A34094D1B8AD267009B66C3 /* NYXImagesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYXImagesHelper.m; sourceTree = "<group>"; };
 		8A34094E1B8AD267009B66C3 /* NYXImagesKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesKit.h; sourceTree = "<group>"; };
 		8A3409D21B8B0DE6009B66C3 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		8A3757AE1B842F74009DB7D4 /* SearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchManager.h; sourceTree = "<group>"; };
 		8A3757AF1B842F74009DB7D4 /* SearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchManager.m; sourceTree = "<group>"; };
-		8A3757B41B847C7A009DB7D4 /* AddNewPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewPlaceViewController.h; sourceTree = "<group>"; };
-		8A3757B51B847C7A009DB7D4 /* AddNewPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewPlaceViewController.m; sourceTree = "<group>"; };
-		8A3757B61B847C7A009DB7D4 /* AddNewPlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewPlaceViewController.xib; sourceTree = "<group>"; };
-		8A3757D91B85B606009DB7D4 /* AddNewPlaceSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewPlaceSubView.h; sourceTree = "<group>"; };
-		8A3757DA1B85B606009DB7D4 /* AddNewPlaceSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewPlaceSubView.m; sourceTree = "<group>"; };
-		8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewPlaceSubView.xib; sourceTree = "<group>"; };
-		8A3757E11B85D635009DB7D4 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
-		8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
-		8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPhotoViewController.xib; sourceTree = "<group>"; };
 		8A3F355C1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCollectionCollectionsViewController.h; sourceTree = "<group>"; };
 		8A3F355D1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCollectionCollectionsViewController.m; sourceTree = "<group>"; };
 		8A3F355E1BF5E89D002B704C /* SuggestedCollectionCollectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedCollectionCollectionsViewController.xib; sourceTree = "<group>"; };
@@ -1704,9 +1639,6 @@
 		8A4205251C89501100DB0D20 /* AccountSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingTableViewCell.h; sourceTree = "<group>"; };
 		8A4205261C89501100DB0D20 /* AccountSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingTableViewCell.m; sourceTree = "<group>"; };
 		8A4205271C89501100DB0D20 /* AccountSettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountSettingTableViewCell.xib; sourceTree = "<group>"; };
-		8A45096D1BA801D400A868CD /* STAddNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAddNewTableViewCell.h; sourceTree = "<group>"; };
-		8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAddNewTableViewCell.m; sourceTree = "<group>"; };
-		8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAddNewTableViewCell.xib; sourceTree = "<group>"; };
 		8A4512311BDE2BEC008DE870 /* LikesListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikesListingViewController.h; sourceTree = "<group>"; };
 		8A4512321BDE2BEC008DE870 /* LikesListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikesListingViewController.m; sourceTree = "<group>"; };
 		8A4512331BDE2BEC008DE870 /* LikesListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LikesListingViewController.xib; sourceTree = "<group>"; };
@@ -1738,18 +1670,6 @@
 		8A5CFE1B1C7D8E53004E2CBA /* SelectCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCategoryViewController.h; sourceTree = "<group>"; };
 		8A5CFE1C1C7D8E53004E2CBA /* SelectCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCategoryViewController.m; sourceTree = "<group>"; };
 		8A5CFE1D1C7D8E53004E2CBA /* SelectCategoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCategoryViewController.xib; sourceTree = "<group>"; };
-		8A65842F1B981B4E00BC86B9 /* CategorySelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorySelectionViewController.h; sourceTree = "<group>"; };
-		8A6584301B981B4E00BC86B9 /* CategorySelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategorySelectionViewController.m; sourceTree = "<group>"; };
-		8A6584311B981B4E00BC86B9 /* CategorySelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategorySelectionViewController.xib; sourceTree = "<group>"; };
-		8A6584341B981C0E00BC86B9 /* CategoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCollectionViewCell.h; sourceTree = "<group>"; };
-		8A6584351B981C0E00BC86B9 /* CategoryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCollectionViewCell.m; sourceTree = "<group>"; };
-		8A6584361B981C0E00BC86B9 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
-		8A65843A1B9850CE00BC86B9 /* DraftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftViewController.h; sourceTree = "<group>"; };
-		8A65843B1B9850CE00BC86B9 /* DraftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftViewController.m; sourceTree = "<group>"; };
-		8A65843C1B9850CE00BC86B9 /* DraftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftViewController.xib; sourceTree = "<group>"; };
-		8A65843F1B9851C200BC86B9 /* DraftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraftTableViewCell.h; sourceTree = "<group>"; };
-		8A6584401B9851C200BC86B9 /* DraftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraftTableViewCell.m; sourceTree = "<group>"; };
-		8A6584421B9851D300BC86B9 /* DraftTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftTableViewCell.xib; sourceTree = "<group>"; };
 		8A69E6BB1CC600D70013412F /* EmptyStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyStateView.h; sourceTree = "<group>"; };
 		8A69E6BC1CC600D70013412F /* EmptyStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyStateView.m; sourceTree = "<group>"; };
 		8A69E6BD1CC600D70013412F /* EmptyStateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyStateView.xib; sourceTree = "<group>"; };
@@ -1841,21 +1761,6 @@
 		8A9E06501CBF5A70000FB246 /* UIPickerView+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPickerView+Block.m"; sourceTree = "<group>"; };
 		8A9E06511CBF5A70000FB246 /* UIPopoverController+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPopoverController+Block.h"; sourceTree = "<group>"; };
 		8A9E06521CBF5A70000FB246 /* UIPopoverController+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPopoverController+Block.m"; sourceTree = "<group>"; };
-		8A9F25871B8D69E100BB13BA /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
-		8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
-		8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewController.xib; sourceTree = "<group>"; };
-		8A9F25CB1B8ED8BC00BB13BA /* EditHoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditHoursViewController.h; sourceTree = "<group>"; };
-		8A9F25CC1B8ED8BC00BB13BA /* EditHoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditHoursViewController.m; sourceTree = "<group>"; };
-		8A9F25CD1B8ED8BC00BB13BA /* EditHoursViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditHoursViewController.xib; sourceTree = "<group>"; };
-		8A9F25D11B8EF60C00BB13BA /* EditHourTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditHourTableViewCell.h; sourceTree = "<group>"; };
-		8A9F25D21B8EF60C00BB13BA /* EditHourTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditHourTableViewCell.m; sourceTree = "<group>"; };
-		8A9F25D41B8EF61900BB13BA /* EditHourTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditHourTableViewCell.xib; sourceTree = "<group>"; };
-		8A9F25DA1B90002B00BB13BA /* CustomPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPickerViewController.h; path = ../Common/CustomPickerViewController.h; sourceTree = "<group>"; };
-		8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomPickerViewController.m; path = ../Common/CustomPickerViewController.m; sourceTree = "<group>"; };
-		8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomPickerViewController.xib; path = ../Common/CustomPickerViewController.xib; sourceTree = "<group>"; };
-		8A9F25DF1B90413700BB13BA /* EditPostDetailVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPostDetailVIew.h; sourceTree = "<group>"; };
-		8A9F25E01B90413700BB13BA /* EditPostDetailVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPostDetailVIew.m; sourceTree = "<group>"; };
-		8A9F25E21B90414800BB13BA /* EditPostDetailVIew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPostDetailVIew.xib; sourceTree = "<group>"; };
 		8AB276451CC61FC700BD5EC8 /* UIImage+Blurring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blurring.h"; sourceTree = "<group>"; };
 		8AB276461CC61FC700BD5EC8 /* UIImage+Blurring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blurring.m"; sourceTree = "<group>"; };
 		8AB276471CC61FC700BD5EC8 /* UIImage+Enhancing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Enhancing.h"; sourceTree = "<group>"; };
@@ -1952,9 +1857,6 @@
 		8AB276B91CC61FC700BD5EC8 /* UIView+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RoundedCorners.m"; sourceTree = "<group>"; };
 		8AB276BB1CC61FC700BD5EC8 /* UIWindow+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extra.h"; sourceTree = "<group>"; };
 		8AB276BC1CC61FC700BD5EC8 /* UIWindow+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extra.m"; sourceTree = "<group>"; };
-		8AB76D1D1BB8FBAF007DB972 /* ArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleViewController.h; sourceTree = "<group>"; };
-		8AB76D1E1BB8FBAF007DB972 /* ArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleViewController.m; sourceTree = "<group>"; };
-		8AB76D1F1BB8FBAF007DB972 /* ArticleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
 		8ABA51F11C0FE7F000A3DC15 /* PhotoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoListViewController.h; sourceTree = "<group>"; };
 		8ABA51F21C0FE7F000A3DC15 /* PhotoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoListViewController.m; sourceTree = "<group>"; };
 		8ABA51F31C0FE7F000A3DC15 /* PhotoListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoListViewController.xib; sourceTree = "<group>"; };
@@ -3321,8 +3223,6 @@
 				0B6AEA831C48ED6A009B7D33 /* SettingsTableViewCell.h */,
 				0B6AEA841C48ED6A009B7D33 /* SettingsTableViewCell.m */,
 				0B6AEA851C48ED6A009B7D33 /* SettingsTableViewCell.xib */,
-				8A26D1071C51FFB800A50944 /* DraftAndRecommendationDelegate.h */,
-				8A26D1081C51FFB800A50944 /* DraftAndRecommendationDelegate.m */,
 			);
 			path = MoreV3;
 			sourceTree = "<group>";
@@ -3925,35 +3825,6 @@
 			path = NEW_newsFeed;
 			sourceTree = "<group>";
 		};
-		8A2E2CE71B81E1360010895E /* Extra */ = {
-			isa = PBXGroup;
-			children = (
-				8A2E2CE81B81E15B0010895E /* STTableViewCell.h */,
-				8A2E2CE91B81E15B0010895E /* STTableViewCell.m */,
-				8A2E2CEA1B81E15B0010895E /* STTableViewCell.xib */,
-				8A3757D91B85B606009DB7D4 /* AddNewPlaceSubView.h */,
-				8A3757DA1B85B606009DB7D4 /* AddNewPlaceSubView.m */,
-				8A3757DC1B85B610009DB7D4 /* AddNewPlaceSubView.xib */,
-				8A45096D1BA801D400A868CD /* STAddNewTableViewCell.h */,
-				8A45096E1BA801D400A868CD /* STAddNewTableViewCell.m */,
-				8A4509701BA801E100A868CD /* STAddNewTableViewCell.xib */,
-			);
-			name = Extra;
-			sourceTree = "<group>";
-		};
-		8A34090B1B872B11009B66C3 /* EditPost */ = {
-			isa = PBXGroup;
-			children = (
-				8A34090C1B872B31009B66C3 /* EditPostViewController.h */,
-				8A34090D1B872B31009B66C3 /* EditPostViewController.m */,
-				8A34090E1B872B31009B66C3 /* EditPostViewController.xib */,
-				8A9F25DF1B90413700BB13BA /* EditPostDetailVIew.h */,
-				8A9F25E01B90413700BB13BA /* EditPostDetailVIew.m */,
-				8A9F25E21B90414800BB13BA /* EditPostDetailVIew.xib */,
-			);
-			name = EditPost;
-			sourceTree = "<group>";
-		};
 		8A34094B1B8AD258009B66C3 /* NYXImagesHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -3962,19 +3833,6 @@
 				8A34094E1B8AD267009B66C3 /* NYXImagesKit.h */,
 			);
 			name = NYXImagesHelper;
-			sourceTree = "<group>";
-		};
-		8A3757ED1B85DA46009DB7D4 /* EditPhoto */ = {
-			isa = PBXGroup;
-			children = (
-				8A3757E11B85D635009DB7D4 /* EditPhotoViewController.h */,
-				8A3757E21B85D635009DB7D4 /* EditPhotoViewController.m */,
-				8A3757E31B85D635009DB7D4 /* EditPhotoViewController.xib */,
-				8A0097991B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.h */,
-				8A00979A1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m */,
-				8A00979C1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib */,
-			);
-			name = EditPhoto;
 			sourceTree = "<group>";
 		};
 		8A3F355B1BF5E89D002B704C /* NewsFeed_SuggestedCollection */ = {
@@ -4063,32 +3921,6 @@
 				8AF8679E1C7DAC1100B0195D /* SelectCategoryCollectionViewCell.xib */,
 			);
 			path = ProvisioningV3;
-			sourceTree = "<group>";
-		};
-		8A65842E1B981B1E00BC86B9 /* CategorySelection */ = {
-			isa = PBXGroup;
-			children = (
-				8A65842F1B981B4E00BC86B9 /* CategorySelectionViewController.h */,
-				8A6584301B981B4E00BC86B9 /* CategorySelectionViewController.m */,
-				8A6584311B981B4E00BC86B9 /* CategorySelectionViewController.xib */,
-				8A6584341B981C0E00BC86B9 /* CategoryCollectionViewCell.h */,
-				8A6584351B981C0E00BC86B9 /* CategoryCollectionViewCell.m */,
-				8A6584361B981C0E00BC86B9 /* CategoryCollectionViewCell.xib */,
-			);
-			name = CategorySelection;
-			sourceTree = "<group>";
-		};
-		8A6584391B98509100BC86B9 /* RecommendationDraft */ = {
-			isa = PBXGroup;
-			children = (
-				8A65843A1B9850CE00BC86B9 /* DraftViewController.h */,
-				8A65843B1B9850CE00BC86B9 /* DraftViewController.m */,
-				8A65843C1B9850CE00BC86B9 /* DraftViewController.xib */,
-				8A65843F1B9851C200BC86B9 /* DraftTableViewCell.h */,
-				8A6584401B9851C200BC86B9 /* DraftTableViewCell.m */,
-				8A6584421B9851D300BC86B9 /* DraftTableViewCell.xib */,
-			);
-			name = RecommendationDraft;
 			sourceTree = "<group>";
 		};
 		8A6BB4101BF0C338005AA1B3 /* MZFormSheetPresentationController */ = {
@@ -4293,27 +4125,6 @@
 				8A9E06521CBF5A70000FB246 /* UIPopoverController+Block.m */,
 			);
 			path = UIKit;
-			sourceTree = "<group>";
-		};
-		8A9F25CA1B8ED89300BB13BA /* EditHours */ = {
-			isa = PBXGroup;
-			children = (
-				8A9F25D01B8EF5EA00BB13BA /* Extra */,
-				8A9F25CB1B8ED8BC00BB13BA /* EditHoursViewController.h */,
-				8A9F25CC1B8ED8BC00BB13BA /* EditHoursViewController.m */,
-				8A9F25CD1B8ED8BC00BB13BA /* EditHoursViewController.xib */,
-			);
-			name = EditHours;
-			sourceTree = "<group>";
-		};
-		8A9F25D01B8EF5EA00BB13BA /* Extra */ = {
-			isa = PBXGroup;
-			children = (
-				8A9F25D11B8EF60C00BB13BA /* EditHourTableViewCell.h */,
-				8A9F25D21B8EF60C00BB13BA /* EditHourTableViewCell.m */,
-				8A9F25D41B8EF61900BB13BA /* EditHourTableViewCell.xib */,
-			);
-			name = Extra;
 			sourceTree = "<group>";
 		};
 		8AB276431CC61FC700BD5EC8 /* CATEGORY */ = {
@@ -4594,16 +4405,6 @@
 				8AB276BC1CC61FC700BD5EC8 /* UIWindow+Extra.m */,
 			);
 			path = "UIWindow+Extension";
-			sourceTree = "<group>";
-		};
-		8AB76D1C1BB8FB8E007DB972 /* RecommendationQRView */ = {
-			isa = PBXGroup;
-			children = (
-				8AB76D1D1BB8FBAF007DB972 /* ArticleViewController.h */,
-				8AB76D1E1BB8FBAF007DB972 /* ArticleViewController.m */,
-				8AB76D1F1BB8FBAF007DB972 /* ArticleViewController.xib */,
-			);
-			name = RecommendationQRView;
 			sourceTree = "<group>";
 		};
 		8ABA7DDD1C741FC500FB41F4 /* NotificationV3 */ = {
@@ -5105,28 +4906,6 @@
 		8AD6C8771B74A7CD0040437E /* Recommendation */ = {
 			isa = PBXGroup;
 			children = (
-				8A9F25DA1B90002B00BB13BA /* CustomPickerViewController.h */,
-				8A9F25DB1B90002B00BB13BA /* CustomPickerViewController.m */,
-				8A9F25DC1B90002B00BB13BA /* CustomPickerViewController.xib */,
-				8AB76D1C1BB8FB8E007DB972 /* RecommendationQRView */,
-				8A6584391B98509100BC86B9 /* RecommendationDraft */,
-				8A65842E1B981B1E00BC86B9 /* CategorySelection */,
-				8A9F25CA1B8ED89300BB13BA /* EditHours */,
-				8A34090B1B872B11009B66C3 /* EditPost */,
-				8A3757ED1B85DA46009DB7D4 /* EditPhoto */,
-				8A2E2CE71B81E1360010895E /* Extra */,
-				8A2E2C111B79E7A30010895E /* RecommendationViewController.h */,
-				8A2E2C121B79E7A30010895E /* RecommendationViewController.m */,
-				8A2E2C131B79E7A30010895E /* RecommendationViewController.xib */,
-				8A2E2CDF1B81CFE40010895E /* STSearchViewController.h */,
-				8A2E2CE01B81CFE40010895E /* STSearchViewController.m */,
-				8A2E2CE11B81CFE40010895E /* STSearchViewController.xib */,
-				8A9F25871B8D69E100BB13BA /* SearchTableViewController.h */,
-				8A9F25881B8D69E100BB13BA /* SearchTableViewController.m */,
-				8A9F25891B8D69E100BB13BA /* SearchTableViewController.xib */,
-				8A3757B41B847C7A009DB7D4 /* AddNewPlaceViewController.h */,
-				8A3757B51B847C7A009DB7D4 /* AddNewPlaceViewController.m */,
-				8A3757B61B847C7A009DB7D4 /* AddNewPlaceViewController.xib */,
 				8A54300D1B8C1646009EFFF4 /* MapViewController.h */,
 				8A54300E1B8C1646009EFFF4 /* MapViewController.m */,
 				8A54300F1B8C1646009EFFF4 /* MapViewController.xib */,
@@ -6985,7 +6764,6 @@
 				C240BB001CC62F4400B79190 /* ProfileCollectionAddIcon@3x.png in Resources */,
 				C240B93B1CC62F4400B79190 /* SelectLocationDealsIcon@3x.png in Resources */,
 				C240BB341CC62F4400B79190 /* SSFeaturesIcon@2x.png in Resources */,
-				8A6584431B9851D300BC86B9 /* DraftTableViewCell.xib in Resources */,
 				C240B9901CC62F4400B79190 /* WalkWallet3.png in Resources */,
 				C240B88D1CC62F4400B79190 /* DealsVoucherExpireIcon@2x.png in Resources */,
 				C240B87B1CC62F4400B79190 /* DealRedeemCardDown.png in Resources */,
@@ -6993,7 +6771,6 @@
 				0BC8A0EB1C0D4CB000EB8548 /* SeCollectionView.xib in Resources */,
 				C240BA1A1CC62F4400B79190 /* AboutIcon@3x.png in Resources */,
 				C240B8981CC62F4400B79190 /* SwipeToRedeemRedeemIcon@3x.png in Resources */,
-				8A3757B81B847C7A009DB7D4 /* AddNewPlaceViewController.xib in Resources */,
 				C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */,
 				8A114CEB1BE75CA0006AE3F0 /* NewCollectionViewController.xib in Resources */,
 				C240B93A1CC62F4400B79190 /* SelectLocationDealsIcon@2x.png in Resources */,
@@ -7108,12 +6885,10 @@
 				C240B9D81CC62F4400B79190 /* FollowCollectionTradChiIcon@3x.png in Resources */,
 				C240B9741CC62F4400B79190 /* TabBarMoreIconThai@3x.png in Resources */,
 				C240B8FA1CC62F4400B79190 /* MoreRateUsIcon@2x.png in Resources */,
-				8A2E2CE31B81CFE40010895E /* STSearchViewController.xib in Resources */,
 				0B6AEA6D1C47B7CF009B7D33 /* ConnectionsViewController.xib in Resources */,
 				C240B87E1CC62F4400B79190 /* DealsCollectIcon@3x.png in Resources */,
 				C240BA7E1CC62F4400B79190 /* EventLogo@3x.png in Resources */,
 				C240BAC61CC62F4400B79190 /* BluePrice@3x.png in Resources */,
-				8A6584331B981B4E00BC86B9 /* CategorySelectionViewController.xib in Resources */,
 				8A11D3691CC74F070023A7ED /* DealType_ReferFriendTblCell.xib in Resources */,
 				C240B9491CC62F4400B79190 /* SplashSeetiesLogo.png in Resources */,
 				C240B98F1CC62F4400B79190 /* WalkWallet2.png in Resources */,
@@ -7194,7 +6969,6 @@
 				C240BB051CC62F4400B79190 /* ProfileFollowingIcon@2x.png in Resources */,
 				C240BB511CC62F4400B79190 /* ShareLineIcon@3x.png in Resources */,
 				C240BAC11CC62F4400B79190 /* BluePhone@2x.png in Resources */,
-				8A69E0FA1C0412F000224BB4 /* ShareV2CollectionViewCell.xib in Resources */,
 				C22CAA581CCA1E470038B246 /* SeetishopFeatureNo@3x.png in Resources */,
 				C240BAB11CC62F4400B79190 /* WrongFill@2x.png in Resources */,
 				C240BAF11CC62F4400B79190 /* LikeIcon@2x.png in Resources */,
@@ -7239,10 +7013,8 @@
 				C240BAA51CC62F4400B79190 /* EyesCheck@2x.png in Resources */,
 				C240BAF61CC62F4400B79190 /* NewLikesIcon@3x.png in Resources */,
 				C240BA841CC62F4400B79190 /* ConnectWithFacebook@3x.png in Resources */,
-				8A65843E1B9850CE00BC86B9 /* DraftViewController.xib in Resources */,
 				C240BA831CC62F4400B79190 /* ConnectWithFacebook@2x.png in Resources */,
 				C240BAEE1CC62F4400B79190 /* FollowerNumber@3x.png in Resources */,
-				8A9F25E31B90414800BB13BA /* EditPostDetailVIew.xib in Resources */,
 				C240BA071CC62F4400B79190 /* RearrangeIcon@2x.png in Resources */,
 				C240B8811CC62F4400B79190 /* DealsDealEndIconRed@2x.png in Resources */,
 				C240BAEB1CC62F4400B79190 /* FollowBtn@2x.png in Resources */,
@@ -7274,7 +7046,6 @@
 				C240BA471CC62F4400B79190 /* CollectThaiBtn@2x.png in Resources */,
 				C240BB531CC62F4400B79190 /* ShareMessangerIcon@3x.png in Resources */,
 				C240BB3C1CC62F4400B79190 /* SSWhiteVerifiedIcon@2x.png in Resources */,
-				8A9F25D51B8EF61900BB13BA /* EditHourTableViewCell.xib in Resources */,
 				C240B9021CC62F4400B79190 /* MoreVerifiedPhoneNumberIcon@2x.png in Resources */,
 				C240BA931CC62F4400B79190 /* InviteFacebookIcon@2x.png in Resources */,
 				C240B9EC1CC62F4400B79190 /* MapBtn@3x.png in Resources */,
@@ -7317,7 +7088,6 @@
 				8AD6C0DB1B706CF30040437E /* PTnCViewController.xib in Resources */,
 				C240BA3E1CC62F4400B79190 /* CollectBtn@3x.png in Resources */,
 				C240BB3F1CC62F4400B79190 /* BackToTop@3x.png in Resources */,
-				8A9F25CF1B8ED8BC00BB13BA /* EditHoursViewController.xib in Resources */,
 				C240B9A71CC62F4400B79190 /* Icon-60@3x.png in Resources */,
 				C240BB4D1CC62F4400B79190 /* ShareFBIcon@3x.png in Resources */,
 				8AFA52021C47B4AB00E7920E /* CT3_NewsFeedViewController.xib in Resources */,
@@ -7333,7 +7103,6 @@
 				C240B8EB1CC62F4400B79190 /* MeVoucherWalletIcon@2x.png in Resources */,
 				C240BAD41CC62F4400B79190 /* PostCommentIcon@3x.png in Resources */,
 				8AC8F74B1BDA414E00DEF14A /* EditCollectionTableViewCell.xib in Resources */,
-				8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */,
 				8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */,
 				C240B89E1CC62F4400B79190 /* DealsListingGoIcon@3x.png in Resources */,
 				8AF867A91C7ECD2700B0195D /* CT3_EnableLocationViewController.xib in Resources */,
@@ -7437,7 +7206,6 @@
 				C240BB371CC62F4400B79190 /* SSGreyBackIcon@3x.png in Resources */,
 				C240BAF91CC62F4400B79190 /* PostIcon@2x.png in Resources */,
 				C240B9061CC62F4400B79190 /* MoreWriteARecommendationIcon@2x.png in Resources */,
-				8A2E2CEC1B81E15B0010895E /* STTableViewCell.xib in Resources */,
 				8AD6BE5C1B706CF30040437E /* DoPhotoCell.xib in Resources */,
 				C240B9F91CC62F4400B79190 /* WhiteCollect@2x.png in Resources */,
 				C240B9991CC62F4400B79190 /* BackIcon@2x.png in Resources */,
@@ -7648,11 +7416,9 @@
 				C240B9FD1CC62F4400B79190 /* CommentBox@2x.png in Resources */,
 				C240BA801CC62F4400B79190 /* OtherLogo@3x.png in Resources */,
 				C238E3321C4649AA00570A25 /* slider-default7-track@2x.png in Resources */,
-				8A3757E51B85D635009DB7D4 /* EditPhotoViewController.xib in Resources */,
 				C240B8F81CC62F4400B79190 /* MoreLogoutIcon@2x.png in Resources */,
 				C240B8B71CC62F4400B79190 /* GoIcon@2x.png in Resources */,
 				C240BA261CC62F4400B79190 /* LocationIcon@3x.png in Resources */,
-				8A6584381B981C0E00BC86B9 /* CategoryCollectionViewCell.xib in Resources */,
 				0BC8A0F11C0D588C00EB8548 /* SeNearbySeetishop.xib in Resources */,
 				C240B8E01CC62F4400B79190 /* CollectionFollowingIcon@2x.png in Resources */,
 				8AF6FDDF1C5A16B0005AAE5D /* SeetiesProfileView.xib in Resources */,
@@ -7737,7 +7503,6 @@
 				C240B9521CC62F4400B79190 /* TabBarHomeIconIndoActive@3x.png in Resources */,
 				C240B8F21CC62F4400B79190 /* MoreDeafaultIcon@2x.png in Resources */,
 				C240BA9C1CC62F4400B79190 /* InviteMessengarIcon@3x.png in Resources */,
-				8A9F258B1B8D69E100BB13BA /* SearchTableViewController.xib in Resources */,
 				C240B9761CC62F4400B79190 /* TabBarMoreIconThaiActive@3x.png in Resources */,
 				C240BA021CC62F4400B79190 /* AddIcon@3x.png in Resources */,
 				C240BADB1CC62F4400B79190 /* PostViewIcon@2x.png in Resources */,
@@ -7753,7 +7518,6 @@
 				C240BA531CC62F4400B79190 /* FeedOverlay@2x.png in Resources */,
 				C240BAA11CC62F4400B79190 /* MoveIcon@2x.png in Resources */,
 				C240B9C01CC62F4400B79190 /* CollectionCrossBtn@3x.png in Resources */,
-				8A4509711BA801E100A868CD /* STAddNewTableViewCell.xib in Resources */,
 				C238E3341C4649AA00570A25 /* slider-default7-trackBackground@2x.png in Resources */,
 				C240B9301CC62F4400B79190 /* SeetishopPhotoIcon@2x.png in Resources */,
 				C240BA711CC62F4400B79190 /* SuggestedCollectionsOverlay@2x.png in Resources */,
@@ -7794,7 +7558,6 @@
 				C240BB041CC62F4400B79190 /* ProfileFollowIcon@3x.png in Resources */,
 				C240BB4A1CC62F4400B79190 /* ShareEmailIcon@2x.png in Resources */,
 				8AFF085C1C90379000918582 /* SearchLocationViewController.xib in Resources */,
-				8A00979D1B86E5E600F6A4D7 /* CustomEditPhotoTableViewCell.xib in Resources */,
 				C240BA121CC62F4400B79190 /* EditPostOverlay@3x.png in Resources */,
 				8AFA51EE1C47B4AB00E7920E /* FeedType_CollectionSuggestedTblCell.xib in Resources */,
 				8AFA51C81C47B4AB00E7920E /* NewLandingViewController.xib in Resources */,
@@ -7826,8 +7589,6 @@
 				C240BA171CC62F4400B79190 /* StarRecommendationBtn@2x.png in Resources */,
 				C240B8D41CC62F4400B79190 /* HomePinIcon@2x.png in Resources */,
 				C240BA7A1CC62F4400B79190 /* AnnounceLogo@3x.png in Resources */,
-				8AB76D211BB8FBAF007DB972 /* ArticleViewController.xib in Resources */,
-				8A2E2C151B79E7A30010895E /* RecommendationViewController.xib in Resources */,
 				8AFA52041C47B4AB00E7920E /* CT3_MeViewController.xib in Resources */,
 				C240B97F1CC62F4400B79190 /* BgWalkHome5@2x.jpg in Resources */,
 				C240BAE91CC62F4400B79190 /* EditProfileSmiley@2x.png in Resources */,
@@ -7842,11 +7603,9 @@
 				8AC8F74D1BDA414E00DEF14A /* EditTagCollectionViewCell.xib in Resources */,
 				C240B9CE1CC62F4400B79190 /* DeleteCollection@3x.png in Resources */,
 				C22702FD1CBF8A9900F9FBF3 /* PostFilterViewController.xib in Resources */,
-				8A9F25DE1B90002B00BB13BA /* CustomPickerViewController.xib in Resources */,
 				C240BA041CC62F4400B79190 /* BigAddIcon@3x.png in Resources */,
 				C240B9F51CC62F4400B79190 /* TranslateIcon@2x.png in Resources */,
 				C240B9AD1CC62F4400B79190 /* Icon-Small-40@2x.png in Resources */,
-				8A3409101B872B31009B66C3 /* EditPostViewController.xib in Resources */,
 				C240BB391CC62F4400B79190 /* SSGreyTranslateIcon@3x.png in Resources */,
 				C240BB3A1CC62F4400B79190 /* SSWhiteTranslateIcon@2x.png in Resources */,
 				0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */,
@@ -8005,9 +7764,7 @@
 				8AC8F72A1BDA414E00DEF14A /* ProfileNoItemTableViewCell.m in Sources */,
 				8A6CCA391C17D14300BCD54E /* SeShopMoreInfoTableViewCell.m in Sources */,
 				8A114C7C1BE73F5D006AE3F0 /* BKCardNumberFormatter.m in Sources */,
-				8A9F25DD1B90002B00BB13BA /* CustomPickerViewController.m in Sources */,
 				8A9E06561CBF5A70000FB246 /* NSURLConnection+Block.m in Sources */,
-				8A2E2CE21B81CFE40010895E /* STSearchViewController.m in Sources */,
 				8AC8F7461BDA414E00DEF14A /* EditCollectionDetailViewController.m in Sources */,
 				8A114C891BE73F5D006AE3F0 /* CAPSPageMenu.m in Sources */,
 				C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */,
@@ -8019,11 +7776,8 @@
 				0BA94DCB1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.m in Sources */,
 				8A11D3681CC74F070023A7ED /* DealType_ReferFriendTblCell.m in Sources */,
 				8A114CA91BE73F5D006AE3F0 /* CRMotionView.m in Sources */,
-				8A9F25CE1B8ED8BC00BB13BA /* EditHoursViewController.m in Sources */,
 				8AD6BE591B706CF30040437E /* DoImagePickerController.m in Sources */,
 				8A114C9A1BE73F5D006AE3F0 /* JTSSimpleImageDownloader.m in Sources */,
-				8A3757B71B847C7A009DB7D4 /* AddNewPlaceViewController.m in Sources */,
-				8A34090F1B872B31009B66C3 /* EditPostViewController.m in Sources */,
 				8A6BB4321BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerSegue.m in Sources */,
 				C2490A4A1C8450E800A43B3F /* SeShopsModel.m in Sources */,
 				8AF6FDDD1C5A16A0005AAE5D /* SeetiesProfileView.m in Sources */,
@@ -8031,7 +7785,6 @@
 				8A0F50C11C0C3F08002B1E22 /* SeShopDetailTableViewCell.m in Sources */,
 				8AFF08531C90379000918582 /* SearchSimpleTableViewCell.m in Sources */,
 				0BBFE04F1B9D624C004B17E9 /* EditProfileV2ViewController.m in Sources */,
-				8A9F25D31B8EF60C00BB13BA /* EditHourTableViewCell.m in Sources */,
 				8AB276C31CC61FC700BD5EC8 /* UIImage+Rotating.m in Sources */,
 				8A9E06571CBF5A70000FB246 /* MFMailComposeViewController+Block.m in Sources */,
 				8A4AC4B71C0C369B00968781 /* SeetiesShopViewController.m in Sources */,
@@ -8047,7 +7800,6 @@
 				0BC8A0EF1C0D585F00EB8548 /* SeNearbySeetishop.m in Sources */,
 				8A7360FE1C080C7100A64824 /* UITableviewPaging.m in Sources */,
 				C23FB6A31C99481400021D1F /* FilterCurrencyModel.m in Sources */,
-				8A9F258A1B8D69E100BB13BA /* SearchTableViewController.m in Sources */,
 				8A114C7F1BE73F5D006AE3F0 /* BKCurrencyTextField.m in Sources */,
 				8A9E065C1CBF5A70000FB246 /* UIPickerView+Block.m in Sources */,
 				C23042E11C61F331001008CB /* DealsModel.m in Sources */,
@@ -8063,7 +7815,6 @@
 				0B40B3FB1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
 				8ABA7DF11C7422AA00FB41F4 /* CT3_NotificationViewController.m in Sources */,
-				8A6584371B981C0E00BC86B9 /* CategoryCollectionViewCell.m in Sources */,
 				0B6AEA811C48E502009B7D33 /* CT3_MoreViewController.m in Sources */,
 				8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */,
 				8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */,
@@ -8098,7 +7849,6 @@
 				8A00353C1C4F5EB4002BD9A3 /* QuickBrowseCVCell.m in Sources */,
 				8A114C761BE73F5D006AE3F0 /* AFNetworkActivityLogger.m in Sources */,
 				C22702F51CBF89EF00F9FBF3 /* FilterCategoryCollectionCell.m in Sources */,
-				8A00979B1B86E5DC00F6A4D7 /* CustomEditPhotoTableViewCell.m in Sources */,
 				8A0035261C4E2F51002BD9A3 /* CTWebViewController.m in Sources */,
 				8A114C961BE73F5D006AE3F0 /* JSONKit.m in Sources */,
 				8AEDBFAA1C2031BA000BD2FF /* OpeningPeriodModel.m in Sources */,
@@ -8160,12 +7910,10 @@
 				8A7420EC1B82F7D5005DA654 /* LoadingManager.m in Sources */,
 				8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */,
 				8AD6C0B31B706CF30040437E /* ConnectionManager.m in Sources */,
-				8A65843D1B9850CE00BC86B9 /* DraftViewController.m in Sources */,
 				8A114C9D1BE73F5D006AE3F0 /* UIImage+KVNEmpty.m in Sources */,
 				8A114C991BE73F5D006AE3F0 /* JTSImageViewController.m in Sources */,
 				8A114C851BE73F5D006AE3F0 /* BMXSwipableCell.m in Sources */,
 				8A11D3911CC886950023A7ED /* UIActivityViewController+Extension.m in Sources */,
-				8A9F25E11B90413700BB13BA /* EditPostDetailVIew.m in Sources */,
 				8A11D38F1CC886950023A7ED /* ShareFriendViewController.m in Sources */,
 				8AD6C0D41B706CF30040437E /* PSearchLocationViewController.m in Sources */,
 				8A114C791BE73F5D006AE3F0 /* Utils.m in Sources */,
@@ -8194,7 +7942,6 @@
 				8A114C9B1BE73F5D006AE3F0 /* UIApplication+JTSImageViewController.m in Sources */,
 				8A114C9C1BE73F5D006AE3F0 /* UIImage+JTSImageEffects.m in Sources */,
 				8AB276D81CC61FC700BD5EC8 /* UIImage+Alpha.m in Sources */,
-				8A6584321B981B4E00BC86B9 /* CategorySelectionViewController.m in Sources */,
 				8A4512341BDE2BEC008DE870 /* LikesListingViewController.m in Sources */,
 				8A114CCC1BE73F5D006AE3F0 /* ParallaxHeaderView.m in Sources */,
 				8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */,
@@ -8250,12 +7997,9 @@
 				8A6CCEEE1C19837100BCD54E /* SeetiShopListTableViewCell.m in Sources */,
 				0B6AEA6A1C47B7CF009B7D33 /* ConnectionsTabViewController.m in Sources */,
 				8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */,
-				8A2E2C141B79E7A30010895E /* RecommendationViewController.m in Sources */,
 				8AEDBFB61C2031BA000BD2FF /* PostModel.m in Sources */,
-				8AB76D201BB8FBAF007DB972 /* ArticleViewController.m in Sources */,
 				8AF6FDEF1C5B08A3005AAE5D /* DealRedeemViewController.m in Sources */,
 				8AB276CD1CC61FC700BD5EC8 /* NSDictionary+STHelper.m in Sources */,
-				8A26D1091C51FFB800A50944 /* DraftAndRecommendationDelegate.m in Sources */,
 				8AEDBFAB1C2031BA000BD2FF /* RecommendationModel.m in Sources */,
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
 				8AB276C01CC61FC700BD5EC8 /* UIImage+Masking.m in Sources */,
@@ -8264,14 +8008,12 @@
 				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,
 				8A114CD31BE73F5D006AE3F0 /* BaseViewController.m in Sources */,
 				8A9E065D1CBF5A70000FB246 /* UIPopoverController+Block.m in Sources */,
-				8A3757E41B85D635009DB7D4 /* EditPhotoViewController.m in Sources */,
 				8A0035411C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m in Sources */,
 				8A11D36D1CC7561F0023A7ED /* CT3_ReferalViewController.m in Sources */,
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,
 				8A114C7B1BE73F5D006AE3F0 /* BKCardNumberField.m in Sources */,
 				8A0159CF1CB6741E00ED6D0F /* CustomEmptyView.m in Sources */,
 				8AEDBFBD1C2031BA000BD2FF /* SeShopPhotoModel.m in Sources */,
-				8A2E2CEB1B81E15B0010895E /* STTableViewCell.m in Sources */,
 				C22703061CBF949D00F9FBF3 /* PostFilterCategoryCell.m in Sources */,
 				C28469B91C5F6FCD00B38885 /* NearbyShopsCell.m in Sources */,
 				8AD50D731C645CC600C9D952 /* HomeLocationModel.m in Sources */,
@@ -8293,7 +8035,6 @@
 				8AEDBFB81C2031BA000BD2FF /* ProfileModel.m in Sources */,
 				8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */,
 				8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */,
-				8A6584411B9851C200BC86B9 /* DraftTableViewCell.m in Sources */,
 				8AF6FDD61C589C64005AAE5D /* MessageManager.m in Sources */,
 				8A3F35661BF5E89D002B704C /* SuggestedCollectionPostsViewController.m in Sources */,
 				8AB276CC1CC61FC700BD5EC8 /* NSMutableDictionary+Extra.m in Sources */,
@@ -8305,7 +8046,6 @@
 				8AB276E21CC61FC700BD5EC8 /* UITableView+emptyState.m in Sources */,
 				8AC8F7361BDA414E00DEF14A /* ProfileCollectionPageTableViewCell.m in Sources */,
 				8AB276C91CC61FC700BD5EC8 /* NSArray+JSON.m in Sources */,
-				8A3757DB1B85B606009DB7D4 /* AddNewPlaceSubView.m in Sources */,
 				8AD6BA601B705DF20040437E /* main.m in Sources */,
 				0B497B041C509579004989DF /* UsersModel.m in Sources */,
 				C22702F31CBF89EF00F9FBF3 /* FilterBudgetCell.m in Sources */,
@@ -8356,7 +8096,6 @@
 				8AC8F7381BDA414E00DEF14A /* ProfileCollectionViewController.m in Sources */,
 				C266761C1C6483030021B6B0 /* RedemptionHistoryViewController.m in Sources */,
 				8A0F50CD1C0D52AE002B1E22 /* PhotoCollectionViewCell.m in Sources */,
-				8A45096F1BA801D400A868CD /* STAddNewTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

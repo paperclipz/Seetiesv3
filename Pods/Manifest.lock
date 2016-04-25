@@ -43,7 +43,6 @@ PODS:
   - IQKeyboardManager (4.0.0)
   - JSONModel (1.2.0)
   - MGInstagram (0.1.0)
-  - MGSwipeTableCell (1.5.3)
   - MMPickerView (0.0.1)
   - MZAppearance (1.1.6)
   - NSDate-Time-Ago (1.0.1)
@@ -74,7 +73,6 @@ DEPENDENCIES:
   - IQKeyboardManager
   - JSONModel
   - MGInstagram
-  - MGSwipeTableCell
   - MMPickerView (~> 0.0.1)
   - MZAppearance
   - NSDate-Time-Ago
@@ -113,7 +111,6 @@ SPEC CHECKSUMS:
   IQKeyboardManager: b91928f7927ba55a5829b4dcf4b7a6736ac9fc22
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
-  MGSwipeTableCell: 5ae3b9a15efda26b201adc8676b24040febe6ff6
   MMPickerView: 6ba6bd5d0ef1fd60372d3f5e4fa80ad4237a86a0
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41

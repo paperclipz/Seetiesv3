@@ -4043,11 +4043,18 @@
     
     if ([GetUserUid isEqualToString:[Utils getUserID]]) {
         //self
+//        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+//                                                                 delegate:self
+//                                                        cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+//                                                   destructiveButtonTitle:nil
+//                                                        otherButtonTitles:CustomLocalisedString(@"Edit", nil),CustomLocalisedString(@"Delete", nil), nil];
+        
+        
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:CustomLocalisedString(@"Edit", nil),CustomLocalisedString(@"Delete", nil), nil];
+                                                        otherButtonTitles:CustomLocalisedString(@"Delete", nil), nil];
         
         [actionSheet showInView:self.view];
         
@@ -4160,7 +4167,7 @@
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"Edit", nil)]) {
             NSLog(@"Edit Click");
             [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
-            [self OpenEdit];
+           // [self OpenEdit];
         }
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"Delete", nil)]) {
             NSLog(@"Delete Click");
@@ -4292,21 +4299,21 @@
     [self.navigationController pushViewController:reportViewController animated:YES];
 }
 
--(void)OpenEdit{
-    
-    _editPostViewController = nil;
-    [self.editPostViewController requestServerForPostInfo:GetPostID completionBLock:^{
-        
-        DraftModel* editPost = [[ConnectionManager dataManager] editPostModel];
-        
-        [self.editPostViewController initDataPostEdit:editPost];
-        
-        [self presentViewController:self.editPostViewController animated:YES completion:nil];
-        
-    }];
-    
-    
-}
+//-(void)OpenEdit{
+//    
+//    _editPostViewController = nil;
+//    [self.editPostViewController requestServerForPostInfo:GetPostID completionBLock:^{
+//        
+//        DraftModel* editPost = [[ConnectionManager dataManager] editPostModel];
+//        
+//        [self.editPostViewController initDataPostEdit:editPost];
+//        
+//        [self presentViewController:self.editPostViewController animated:YES completion:nil];
+//        
+//    }];
+//    
+//    
+//}
 
 #pragma mark - declaration
 
@@ -4317,18 +4324,18 @@
     
     return _profileViewController;
 }
--(EditPostViewController*)editPostViewController
-{
-    if (!_editPostViewController) {
-        _editPostViewController = [EditPostViewController new];
-        _editPostViewController.editPostDoneBlock = ^(id object)
-        {
-            //FIXME: To Do write a refresh page for new feed details
-        };
-    }
-    
-    return _editPostViewController;
-}
+//-(EditPostViewController*)editPostViewController
+//{
+//    if (!_editPostViewController) {
+//        _editPostViewController = [EditPostViewController new];
+//        _editPostViewController.editPostDoneBlock = ^(id object)
+//        {
+//            //FIXME: To Do write a refresh page for new feed details
+//        };
+//    }
+//    
+//    return _editPostViewController;
+//}
 
 - (NSString *)documentsPathForFileName:(NSString *)name {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

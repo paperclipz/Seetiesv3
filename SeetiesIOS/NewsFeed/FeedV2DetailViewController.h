@@ -11,7 +11,7 @@
 #import "UrlDataClass.h"
 #import "GAITrackedViewController.h"
 #import "LLARingSpinnerView.h"
-#import "EditPostViewController.h"
+//#import "EditPostViewController.h"
 #import "ProfileViewController.h"
 #import "CollectionListingViewController.h"
 #import "SeetiesShopViewController.h"
@@ -23,7 +23,7 @@
 @class CT3_SearchListingViewController;
 
 @interface FeedV2DetailViewController : CommonViewController<UIScrollViewDelegate,UIActionSheetDelegate>
-@property(nonatomic,strong)EditPostViewController* editPostViewController;
+//@property(nonatomic,strong)EditPostViewController* editPostViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property(nonatomic,strong)SeetiesShopViewController* seetiesShopViewController;

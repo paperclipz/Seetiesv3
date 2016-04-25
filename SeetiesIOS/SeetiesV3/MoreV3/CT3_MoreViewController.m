@@ -8,15 +8,15 @@
 
 #import "CT3_MoreViewController.h"
 #import "SettingsTableViewCell.h"
-#import "RecommendationViewController.h"
-#import "DoImagePickerController.h"
-#import "DraftAndRecommendationDelegate.h"
 #import "FeedbackViewController.h"
 #import "CTWebViewController.h"
 #import "CT3_AcctSettingViewController.h"
 #import "PromoPopOutViewController.h"
 #import "IntroCoverView.h"
 #import "AppDelegate.h"
+//#import "DraftAndRecommendationDelegate.h"
+//#import "DoImagePickerController.h"
+//#import "RecommendationViewController.h"
 
 @interface CT3_MoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -27,9 +27,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblVersion;
 
 
-@property (nonatomic,strong)RecommendationViewController* recommendationViewController;
-@property (nonatomic,strong)DoImagePickerController* imagePickerViewController;
-@property(nonatomic)DraftAndRecommendationDelegate* recommendDelegate;
+//@property (nonatomic,strong)RecommendationViewController* recommendationViewController;
+//@property (nonatomic,strong)DoImagePickerController* imagePickerViewController;
+//@property(nonatomic)DraftAndRecommendationDelegate* recommendDelegate;
 @property(nonatomic)FeedbackViewController* feedbackViewController;
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
@@ -80,7 +80,7 @@
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[SettingsTableViewCell class] forCellReuseIdentifier:@"SettingsTableViewCell"];
     
-    self.recommendDelegate = [DraftAndRecommendationDelegate new];
+    //self.recommendDelegate = [DraftAndRecommendationDelegate new];
    
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -106,7 +106,7 @@
         }
         else
         {
-            title.text = LocalisedString(@"Shortcut");
+            title.text = LocalisedString(@"");
         }
     }
     if(section == 1)
@@ -120,7 +120,20 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 44;
+
+    if ([Utils isGuestMode]) {
+        return 44;
+
+    }
+    else{
+        if (section == 0) {
+            return 0;
+        }
+        else{
+            return 44;
+
+        }
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -189,22 +202,22 @@
                 
                 [Utils showLogin];
             }
-            else
-            {
-                switch (indexPath.row) {
-                
-                    case 0://recommend
-                        [self gotoRecommendationPage];
-                        break;
-                    case 1://draft
-                        [self gotoDraftPage];
-                        break;
-                        
-                    default:
-                        break;
-                }
-
-            }
+//            else
+//            {
+//                switch (indexPath.row) {
+//                
+//                    case 0://recommend
+//                        [self gotoRecommendationPage];
+//                        break;
+//                    case 1://draft
+//                        [self gotoDraftPage];
+//                        break;
+//                        
+//                    default:
+//                        break;
+//                }
+//
+//            }
             
             
             break;
@@ -358,8 +371,9 @@
     if (!_arrData) {
         
         if (![Utils isGuestMode]) {
-            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
-           
+           // NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects: nil];//@"Notification Settings"
+
             NSArray *secondItemsArray;
             if ([ [ UIScreen mainScreen ] bounds ].size.height > 480) {
                 secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify your phone number",@"Account Settings",@"Tour Seeties App", @"Rate Us",@"About Us",@"Speak to Us", nil];
@@ -397,18 +411,18 @@
     return _arrData;
 }
 
--(RecommendationViewController*)recommendationViewController
-{
-    if (!_recommendationViewController) {
-        _recommendationViewController = [RecommendationViewController new];
-    }
-    
-    return _recommendationViewController;
-}
+//-(RecommendationViewController*)recommendationViewController
+//{
+//    if (!_recommendationViewController) {
+//        _recommendationViewController = [RecommendationViewController new];
+//    }
+//    
+//    return _recommendationViewController;
+//}
 
 -(void)gotoDraftPage
 {
-    [self.recommendDelegate showDraftView:self];
+   // [self.recommendDelegate showDraftView:self];
     // go to draft
 }
 
@@ -419,7 +433,7 @@
 //    [self presentViewController:nav animated:YES completion:nil];
 //    [self.recommendationViewController initData:2 sender:nav];
     
-    [self.recommendDelegate showRecommendationView:self];
+   // [self.recommendDelegate showRecommendationView:self];
 
 }
 

@@ -9,7 +9,7 @@
 #import "PostListingViewController.h"
 #import "PostListingTableViewCell.h"
 #import "ListingHeaderView.h"
-#import "DraftAndRecommendationDelegate.h"
+//#import "DraftAndRecommendationDelegate.h"
 
 @interface PostListingViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -25,13 +25,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
 
-@property(nonatomic,strong)DraftAndRecommendationDelegate* recommendDelegate;
+//@property(nonatomic,strong)DraftAndRecommendationDelegate* recommendDelegate;
 @end
 
 @implementation PostListingViewController
 - (IBAction)btnAddMoreClicked:(id)sender {
 
-    [self.recommendDelegate showRecommendationView:self];
+//    [self.recommendDelegate showRecommendationView:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -80,15 +80,15 @@
 
 #pragma mark - Declaration
 
--(DraftAndRecommendationDelegate*)recommendDelegate
-{
-    
-    if (!_recommendDelegate) {
-        _recommendDelegate = [DraftAndRecommendationDelegate new];
-    }
-    
-    return _recommendDelegate;
-}
+//-(DraftAndRecommendationDelegate*)recommendDelegate
+//{
+//    
+//    if (!_recommendDelegate) {
+//        _recommendDelegate = [DraftAndRecommendationDelegate new];
+//    }
+//    
+//    return _recommendDelegate;
+//}
 
 -(FeedV2DetailViewController*)feedV2DetailViewController
 {
