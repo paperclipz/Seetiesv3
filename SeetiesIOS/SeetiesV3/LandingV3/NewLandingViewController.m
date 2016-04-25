@@ -329,12 +329,11 @@
 {
     NSDictionary* dict = @{@"language_code":ENGLISH_CODE};
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeCountry param:dict appendString:nil completeHandler:^(id object) {
-        
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHomeCountry parameter:dict appendString:nil success:^(id object) {
         
         SLog(@"[COUNTRY CODE RETRIEVED]");
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -348,7 +347,7 @@
                            @"token":[Utils getAppToken]
                            };
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserInfo parameter:dict appendString:nil success:^(id object) {
         
         [Utils reloadProfileView];
         
@@ -357,7 +356,7 @@
         
         [[LanguageManager sharedLanguageManager]setLanguageCode:manager.currentUserProfileModel.system_language.language_code];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -365,9 +364,10 @@
 -(void)requestServerForLanguageList{
     
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetAllAppInfo param:nil appendString:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetAllAppInfo parameter:nil appendString:nil success:^(id object) {
+
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
     
@@ -436,8 +436,8 @@
     
     if (![Utils isStringNull:token]) {
         
-        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotificationCount param:dict appendString:nil completeHandler:^(id object) {
-            
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetNotificationCount parameter:dict appendString:nil success:^(id object)
+        {
             NSDictionary* returnDict = object[@"data"];
             
             @try {
@@ -452,7 +452,7 @@
                 SLog(@"server count not found");
             }
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
     }

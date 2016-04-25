@@ -165,7 +165,7 @@
                            @"lng" : @(self.shopLgn),                           
                            };
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetoShopNearbyShop parameter:dict appendString:appendString success:^(id object) {
         
         self.seetiShopsModel = [[ConnectionManager dataManager]seNearbyShopModel];
         [self.arrShop addObjectsFromArray:self.seetiShopsModel.shops];
@@ -175,7 +175,7 @@
         if (self.viewDidFinishLoadBlock) {
             self.viewDidFinishLoadBlock();
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];

@@ -535,7 +535,8 @@
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers", [Utils getUserID]];
     
     self.isLoading = YES;
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersList param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserVouchersList parameter:dict appendString:appendString success:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
         [self.dealManager setAllCollectedDeals:self.dealsModel];
@@ -559,7 +560,7 @@
         else{
             [self toggleEmptyView:NO];
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isLoading = NO;
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.ibTableView.tableFooterView = nil;
@@ -580,7 +581,9 @@
     
     [LoadingManager show];
     self.isLoading = YES;
-    [[ConnectionManager Instance] requestServerWithDelete:ServerRequestTypeDeleteVoucher param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypeDeleteVoucher parameter:dict appendString:appendString success:^(id object) {
+
         [self.ibTableView beginUpdates];
         DealExpiryDateModel *expiryModel = self.voucherArray[indexPath.section];
         BOOL deleteRow = expiryModel.dealModelArray.count > 1? YES : NO;
@@ -598,7 +601,7 @@
         if ([Utils isArrayNull:self.voucherArray]) {
             [self toggleEmptyView:YES];
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
         self.isLoading = NO;
     }];

@@ -43,11 +43,12 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
 }
 -(void)startGetWifiLocation
 {
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil appendString:nil completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetGeoIP parameter:nil appendString:nil success:^(id object) {
        
         self.wifiLocation = [self convertToCLLocation:object[@"latitude"] longt:object[@"longitude"]];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
     
     }];
 }
@@ -283,14 +284,15 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
     if (!country) {
         country = @"";
     }
-    NSDictionary* param = @{@"input":textInput?textInput:@"",
+    NSDictionary* dict = @{@"input":textInput?textInput:@"",
                             @"radius":@"10000",
                             @"key":GOOGLE_API_KEY,
                             @"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude],
                             @"components" : [NSString stringWithFormat:@"country:%@",country],
                             };
     
-    [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGoogleSearch parameter:dict appendString:nil success:^(id object) {
+
         if(completionBlock)
         {
             completionBlock(object);
@@ -298,7 +300,7 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
         
         [LoadingManager hide];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
         
     } ];
@@ -312,9 +314,9 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
     //SLog(@"%@",FullString);
     
    // [LoadingManager showWithTitle:@"GOOGLE"];
-    NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"10000",@"key":GOOGLE_API_KEY,@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
+    NSDictionary* dict = @{@"input":textInput?textInput:@"",@"radius":@"10000",@"key":GOOGLE_API_KEY,@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
 
-    [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGoogleSearch parameter:dict appendString:nil success:^(id object) {
         if(completionBlock)
         {
             completionBlock(object);
@@ -322,7 +324,7 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
         
         [LoadingManager hide];
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
 
     } ];
@@ -334,7 +336,8 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
     NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%.4f,%.4f&key=%@&components=country:%@",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude,GOOGLE_API_KEY,country];
    
     
-    [[ConnectionManager Instance]requestServerWithPost:YES customURL:googleAPI requestType:ServerRequestTypeGoogleSearch param:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_CUSTOM serverRequestType:ServerRequestTypeGoogleSearch parameter:nil appendString:googleAPI success:^(id object) {
+
         if(completionBlock)
         {
             completionBlock(object);
@@ -342,7 +345,7 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
         
         [LoadingManager hide];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
         
     } ];
@@ -358,7 +361,8 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
  //   NSDictionary* dict = @{@"latlng" :@"40.714,-73.9614",
   //                         @"key" : GOOGLE_API_KEY};
     
-    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeGoogleSearch parameter:dict appendString:googleAPI success:^(id object) {
+
     [[ConnectionManager Instance]requestServerWithPost:YES customURL:googleAPI requestType:ServerRequestTypeGoogleSearch param:nil completeHandler:^(id object) {
         if(completionBlock)
         {
@@ -367,7 +371,7 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
         
         [LoadingManager hide];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
         
     } ];

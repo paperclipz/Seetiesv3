@@ -144,9 +144,8 @@
                 
             } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
                 
-                
-                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
-                    
+                [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
+
                     NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
                     BOOL following = [[returnDict objectForKey:@"following"] boolValue];
                     //dont delete the collection instead change the status only
@@ -156,7 +155,7 @@
                     [self.ibCollectionView reloadData];
                     
                     
-                } errorBlock:^(id object) {
+                } failure:^(id object) {
                 }];
                 
                 

@@ -258,7 +258,7 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@/flag",shopID];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostReportShop param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostReportShop parameter:dict appendString:appendString success:^(id object) {
         
         
         [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
@@ -266,7 +266,8 @@
         [self.navigationController popViewControllerAnimated:YES];
 
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
+        
         
     }];
 }
@@ -283,12 +284,14 @@
         
         NSString* appendString = [NSString stringWithFormat:@"%@/flag", self.dealID];
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostReportDeal param:dict appendString:appendString completeHandler:^(id object) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostReportDeal parameter:dict appendString:appendString success:^(id object) {
+
             [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
 
             [self.navigationController popViewControllerAnimated:YES];
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
     }
@@ -310,12 +313,13 @@
         
         NSString* appendString = [NSString stringWithFormat:@"%@/flag", self.postId];
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostReportPost param:dict appendString:appendString completeHandler:^(id object) {
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostReportPost parameter:dict appendString:appendString success:^(id object) {
+
             [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
             
             [self.navigationController popViewControllerAnimated:YES];
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
     }

@@ -124,7 +124,8 @@
     }
     else{
         
-        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowUser param:dict appendString:appendString completeHandler:^(id object) {
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
+
             isRequestingServer = NO;
 
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
@@ -132,7 +133,7 @@
             model.following = following;
             [self.ibCollectionView reloadData];
 
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             isRequestingServer = NO;
 
         }];

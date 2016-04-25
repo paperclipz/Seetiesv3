@@ -755,7 +755,8 @@
         [finalDict addEntriesFromDictionary:[self getFilterDict]];
     }
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSuperDeals param:finalDict appendString:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSuperDeals parameter:finalDict appendString:nil success:^(id object) {
+
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
         [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
@@ -778,7 +779,7 @@
             [self toggleEmptyView:NO];
         }
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isLoading = NO;
         self.ibVoucherTable.tableFooterView = nil;
         [self toggleEmptyView:YES];
@@ -822,7 +823,8 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.dealCollectionModel.deal_collection_id];
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealCollectionDeals param:finalDict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetDealCollectionDeals parameter:finalDict appendString:appendString success:^(id object) {
+
         
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
@@ -845,7 +847,7 @@
         else{
             [self toggleEmptyView:NO];
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isLoading = NO;
         self.ibVoucherTable.tableFooterView = nil;
         [self toggleEmptyView:YES];
@@ -877,8 +879,9 @@
 
     
     NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.shopID];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopDeal param:dict appendString:appendString completeHandler:^(id object) {
     
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopDeal parameter:dict appendString:appendString success:^(id object) {
+
         
         DealsModel* model = [[ConnectionManager dataManager]dealsModel];
         self.dealsModel = model;
@@ -901,7 +904,7 @@
         else{
             [self toggleEmptyView:NO];
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isLoading = NO;
         self.ibVoucherTable.tableFooterView = nil;
         [self toggleEmptyView:YES];
@@ -924,7 +927,9 @@
                            @"token" : [Utils getAppToken]
                            };
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealRelevantDeals param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetDealRelevantDeals parameter:dict appendString:appendString success:^(id object) {
+
         DealsModel *deals = [[ConnectionManager dataManager]dealsModel];
         self.dealsModel = deals;
         [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
@@ -946,7 +951,7 @@
         else{
             [self toggleEmptyView:NO];
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isLoading = NO;
         self.ibVoucherTable.tableFooterView = nil;
         [self toggleEmptyView:YES];
@@ -973,7 +978,9 @@
     [finalDict addEntriesFromDictionary:locationDict];
     
     self.isCollecting = YES;
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:finalDict completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostCollectDeals parameter:finalDict appendString:nil success:^(id object) {
+
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         model.voucher_info = dealModel.voucher_info;
         model.total_available_vouchers = dealModel.total_available_vouchers;
@@ -983,7 +990,7 @@
         [self RequestServerForVouchersCount];
         [self.ibVoucherTable reloadData];
         self.isCollecting = NO;
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isCollecting = NO;
     }];
 }
@@ -992,13 +999,15 @@
     NSDictionary *dict = @{@"token": [Utils getAppToken]};
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserVouchersCount parameter:dict appendString:appendString success:^(id object) {
+
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
         NSString *countString = count < 100? [NSString stringWithFormat:@"%d", count] : @"99+";
         self.ibWalletCountLbl.text = countString;
         [self.dealManager setWalletCount:count];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }

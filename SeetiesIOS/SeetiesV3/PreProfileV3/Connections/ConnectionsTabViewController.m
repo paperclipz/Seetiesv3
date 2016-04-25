@@ -130,7 +130,7 @@
     showEmptyState = NO;
     isMiddleOfCallingServer = true;
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeUserFollower param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeUserFollower parameter:dict appendString:appendString success:^(id object) {
         
         showEmptyState = YES;
         isMiddleOfCallingServer = false;
@@ -140,7 +140,7 @@
         [self.arrUsers addObjectsFromArray:self.usersModel.follower];
         SLog(@"UID == %@",[self.arrUsers[0] userUID]);
         [self.ibTableView reloadData];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
        isMiddleOfCallingServer = false;
         showEmptyState = YES;
         [self.ibTableView reloadData];
@@ -162,7 +162,7 @@
     showEmptyState = NO;
     isMiddleOfCallingServer = true;
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeUserFollower param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeUserFollowing parameter:dict appendString:appendString success:^(id object) {
 
         showEmptyState = YES;
         isMiddleOfCallingServer = true;
@@ -171,7 +171,7 @@
         
         [self.arrUsers addObjectsFromArray:self.usersModel.following];
         [self.ibTableView reloadData];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         isMiddleOfCallingServer = false;
         showEmptyState = YES;
@@ -198,8 +198,9 @@
     if (![DataManager isUserFollowed:colModel.userUID isFollowing:colModel.following]) {
         
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
-            
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
+
+    
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             colModel.following = following;
@@ -208,7 +209,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
 
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
         
@@ -223,7 +224,7 @@
             } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
                 
                 
-                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowUser param:dict appendString:appendString completeHandler:^(id object) {
+                [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
                     
                     NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
                     BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -234,7 +235,7 @@
                     [self.ibTableView reloadData];
                     
                     
-                } errorBlock:^(id object) {
+                } failure:^(id object) {
                 }];
                 
                 

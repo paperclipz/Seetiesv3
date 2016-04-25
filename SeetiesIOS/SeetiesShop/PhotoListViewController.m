@@ -214,8 +214,8 @@
     if ([Utils isArrayNull:self.arrImagesList]) {
         [self.ibCollectionView showLoading];
     }
-
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopPhoto parameter:dict appendString:appendString success:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
         
         [self.arrImagesList addObjectsFromArray:self.seShopPhotoModel.photos];
@@ -232,7 +232,7 @@
         else{
             [self.ibCollectionView hideAll];
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         isMiddleOfCallingServer = NO;
         [self.ibCollectionView hideAll];

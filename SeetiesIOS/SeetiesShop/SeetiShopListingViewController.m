@@ -156,8 +156,8 @@
         [self.ibTableView showLoading];
     }
     
-        [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
-            
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetoShopNearbyShop parameter:dict appendString:appendString success:^(id object) {
+        
             
             self.seetiShopsModel = [[ConnectionManager dataManager]seNearbyShopModel];
             [self.arrShopList addObjectsFromArray:self.seetiShopsModel.shops];
@@ -166,8 +166,8 @@
             [self.ibTableView hideAll];
 
 
-        } errorBlock:^(id object) {
-            
+    } failure:^(id object) {
+        
             isServerMiddleOfLoading = NO;
             [self.ibTableView hideAll];
 

@@ -81,7 +81,8 @@
 
 - (void)prepareData {
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetFriendSuggestion param:self.paramDict appendString:@"" completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetFriendSuggestion parameter:self.paramDict appendString:nil success:^(id object) {
+
         
         self.friendModel = [[ConnectionManager dataManager] friendSuggestionModel];
         
@@ -98,7 +99,7 @@
         
         [self.friendTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 
@@ -140,13 +141,15 @@
 
     __weak ShareFriendViewController *weakSelf = self;
     
-    [[ConnectionManager Instance] requestServerWithPost:requestType param:dict appendString:[NSString stringWithFormat:@"%@/share", self.postData.shareID] completeHandler:^(id object) {
+    NSString* appendString = [NSString stringWithFormat:@"%@/share", self.postData.shareID];
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:requestType parameter:dict appendString:appendString success:^(id object) {
         
         [MessageManager showMessage:LocalisedString(@"Successfully share to friend") SubTitle:nil Type:TSMessageNotificationTypeSuccess];
         
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
     
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
         

@@ -354,7 +354,7 @@
     
     NSDictionary* dict = @{@"placeid":placeID,@"key":GOOGLE_API_KEY};
     
-    [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGoogleSearchWithDetail parameter:dict appendString:nil success:^(id object) {
         
         SearchLocationDetailModel* googleSearchDetailModel = [[DataManager Instance] googleSearchDetailModel];
         
@@ -379,7 +379,7 @@
             self.homeLocationRefreshBlock(hModel, nil);
         }
         
-    } errorBlock:nil];
+    } failure:nil];
     
 }
 
@@ -493,7 +493,8 @@
     isMiddleOfRequestingCountry = YES;
     
     [LoadingManager show];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeCountry param:dict appendString:nil completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHomeCountry parameter:dict appendString:nil success:^(id object) {
         isMiddleOfRequestingCountry = NO;
 
         self.countriesModel = [[ConnectionManager dataManager]countriesModel];
@@ -552,7 +553,7 @@
         }
         
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         isMiddleOfRequestingCountry = NO;
 
     }];
@@ -623,7 +624,7 @@
     
     isMiddleOfRequesting = YES;
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeCountryPlace param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHomeCountryPlace parameter:dict appendString:appendString success:^(id object) {
         
         isMiddleOfRequesting = NO;
         NSDictionary* dict = object[@"data"];
@@ -641,7 +642,7 @@
         [self.ibAreaTable reloadData];
         [self.ibAreaTable setUserInteractionEnabled:YES];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }

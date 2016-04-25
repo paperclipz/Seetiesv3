@@ -377,7 +377,8 @@
     
     [LoadingManager show];
     
-    [[ConnectionManager Instance] requestServerWithPut:ServerRequestTypePutRedeemVoucher param:finalDict appendString:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutRedeemVoucher parameter:dict appendString:nil success:^(id object) {
+
         //Remove voucher from deal manager if it is not reusable
         if (self.dealModel.total_available_vouchers != -1) {
             [self.dealManager removeCollectedDeal:self.dealModel.dID];
@@ -391,7 +392,7 @@
         self.isRedeeming = NO;
         [LoadingManager hide];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isRedeeming = NO;
         [LoadingManager hide];
     }];

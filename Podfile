@@ -4,7 +4,7 @@ pod 'TTTAttributedLabel'
 use_frameworks!
 pod 'JSONModel'
 pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
-pod 'IQKeyboardManager'
+pod 'IQKeyboardManager', '~> 4.0.0'
 pod 'SDWebImage'
 pod 'CLLocationManager-blocks'
 pod 'HMSegmentedControl'
@@ -25,6 +25,7 @@ pod 'NSDate-Time-Ago'
 pod 'MMPickerView', '~> 0.0.1'
 pod 'IDMPhotoBrowser'
 pod 'YLGIFImage'
+pod 'AFNetworking', '~> 3.0'
 
 #================ Possible can be deleted =====================#
 

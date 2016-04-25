@@ -1183,7 +1183,8 @@
     NSDictionary *dict = @{@"token":[Utils getAppToken],
                            @"deal_id": self.dealModel.dID};
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealInfo param:dict appendString:self.dealModel.dID completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetDealInfo parameter:dict appendString:nil success:^(id object) {
+
         DealModel *model = [[ConnectionManager dataManager] dealModel];
         self.dealModel = model;
         [self updateViews];
@@ -1191,7 +1192,7 @@
         
         [self requestServerForDealRelevantDeals];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1200,7 +1201,8 @@
     NSDictionary *dict = @{@"token":[Utils getAppToken],
                            @"voucher_id": self.dealModel.voucher_info.voucher_id};
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetVoucherInfo param:dict appendString:self.dealModel.voucher_info.voucher_id completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetVoucherInfo parameter:dict appendString:nil success:^(id object) {
+
         DealModel *model = [[ConnectionManager dataManager] dealModel];
         self.dealModel = model;
         [self updateViews];
@@ -1208,7 +1210,7 @@
         
         [self requestServerForDealRelevantDeals];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1233,7 +1235,9 @@
     [finalDict addEntriesFromDictionary:locationDict];
     
     self.isProcessing = YES;
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostCollectDeals param:finalDict completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostCollectDeals parameter:finalDict appendString:nil success:^(id object) {
+
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         self.dealModel = dealModel;
         [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
@@ -1243,7 +1247,7 @@
         [self updateFooterView];
         [self updateViews];
         self.isProcessing = NO;
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isProcessing = NO;
     }];
 }
@@ -1258,12 +1262,13 @@
                            @"lng" : shopModel.location.lng
                            };
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetoShopNearbyShop parameter:dict appendString:appendString success:^(id object) {
+
         SeShopsModel *seetieShopModel = [[ConnectionManager dataManager]seNearbyShopModel];
         [self.nearbyShopArray addObjectsFromArray:seetieShopModel.shops];
         [self updateViews];
         [LoadingManager hide];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [self updateViews];
         [LoadingManager hide];
     }];
@@ -1277,8 +1282,7 @@
                            @"deal_id" : self.dealModel.dID,
                            @"token" : [Utils getAppToken]
                            };
-    
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetDealRelevantDeals param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetDealRelevantDeals parameter:dict appendString:appendString success:^(id object) {
         DealsModel *deals = [[ConnectionManager dataManager]dealsModel];
         self.dealsModel = deals;
         
@@ -1295,7 +1299,7 @@
             [self requestServerForSeetiShopNearbyShop:self.dealModel.voucher_info.shop_info];
         }
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
             if (self.dealModel.shops.count == 1) {
                 [self requestServerForSeetiShopNearbyShop:self.dealModel.shops[0]];

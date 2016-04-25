@@ -696,12 +696,10 @@
     }
   
     
-    
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:dict appendString:appendString completeHandler:^(id object) {
-
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopDetail parameter:dict appendString:appendString success:^(id object) {
         self.seShopModel = [[ConnectionManager dataManager] seShopDetailModel];
         self.arrayList = self.seShopModel.arrayInformation;
-       
+        
         
         [self setupViewWithData];
         [self.ibTableView reloadData];
@@ -709,9 +707,8 @@
         if (self.viewDidFinishLoadBlock) {
             self.viewDidFinishLoadBlock(self.seShopModel);
         }
-       //[self requestServerForShopDeal];
-    } errorBlock:^(id object) {
-        
+
+    } failure:^(id object) {
         
     }];
 }
@@ -734,7 +731,9 @@
     }
    
     NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.seetiesID];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopDeal param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopDeal parameter:dict appendString:appendString success:^(id object) {
+
         
         DealsModel* model = [[ConnectionManager dataManager]dealsModel];
 
@@ -744,9 +743,10 @@
 
 
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
+     
 
 }
 
@@ -774,7 +774,8 @@
 
     }
 
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopPhoto parameter:dict appendString:appendString success:^(id object) {
+
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
         
 //        [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -792,7 +793,7 @@
         
         [self.ibCollectionView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];
@@ -811,7 +812,7 @@
     appendString = [NSString stringWithFormat:@"%@/translate",self.seetiesID];
     SLog(@"%@",appendString);
 
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopTranslation param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetoShopTranslation parameter:dict appendString:appendString success:^(id object) {
     
         NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
         NSArray* allKeys = [returnDict allKeys];
@@ -835,7 +836,7 @@
         isTranslated = YES;
         [self switchBwtweenLanguageTranslated];
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];

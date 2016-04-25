@@ -463,7 +463,8 @@
                            };
     
     [LoadingManager show];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetLogout param:dict appendString:nil completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetLogout parameter:dict appendString:nil success:^(id object) {
         
         [LoadingManager hide];
 
@@ -471,7 +472,7 @@
 //        _arrData = nil;
 //        [self.ibTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
 
     }];

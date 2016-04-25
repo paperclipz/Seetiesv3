@@ -406,12 +406,13 @@ typedef enum{
     
     NSString* tagStr = tag;
     //[LoadingManager show];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetTagsSuggestion  param:nil appendString:tagStr completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetTagsSuggestion parameter:nil appendString:nil success:^(id object) {
         
         self.tagList =[[NSMutableArray alloc]initWithArray:[[[ConnectionManager dataManager] tagModel] arrayTag] ];
         [self.ibCollectionTagView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }

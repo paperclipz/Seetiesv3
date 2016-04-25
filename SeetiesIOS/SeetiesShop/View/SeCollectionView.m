@@ -285,7 +285,7 @@
         
     }
 
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopCollection param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopCollection parameter:dict appendString:appendString success:^(id object) {
 
         self.SeetiShopCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
         
@@ -304,7 +304,7 @@
             self.viewDidFinishLoadBlock(isDeleteView);
         }
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];

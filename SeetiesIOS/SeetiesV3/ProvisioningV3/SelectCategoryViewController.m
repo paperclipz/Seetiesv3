@@ -170,13 +170,13 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@/provisioning",[Utils getUserID]];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostProvisioning param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostProvisioning parameter:dict appendString:appendString success:^(id object) {
        
         if (self.didFinishProvisioningBlock) {
             self.didFinishProvisioningBlock();
         }
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
     

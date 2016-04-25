@@ -155,7 +155,8 @@
                                };
         
         [self.ibTableView showLoading];
-        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotifications param:dict appendString:nil completeHandler:^(id object) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetNotifications parameter:dict appendString:nil success:^(id object) {
             
             NotificationModels* model = [[ConnectionManager dataManager]notificationModels];
             
@@ -184,7 +185,7 @@
             //            }
             //        });
             //
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             isMiddleOfRequestServer = NO;
             [self.ibTableView hideAll];
 
@@ -204,7 +205,7 @@
         
         [self.ibTableView showLoading];
 
-        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetFollowingNotifictions param:dict appendString:nil completeHandler:^(id object) {
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetFollowingNotifictions parameter:dict appendString:nil success:^(id object) {
             
             NotificationModels * model = [[ConnectionManager dataManager]followingNotificationModels];
             self.notificationModels = model;
@@ -222,7 +223,7 @@
                 
             }
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             isMiddleOfRequestServer = NO;
            // [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
             [self.ibTableView hideAll];

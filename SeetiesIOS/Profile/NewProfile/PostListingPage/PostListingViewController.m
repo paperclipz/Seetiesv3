@@ -211,8 +211,10 @@
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserPosts param:dict appendString:appendString completeHandler:^(id object) {
-        
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserPosts parameter:dict appendString:appendString success:^(id object) {
+
+
         isMiddleOfCallingServer = false;
         
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
@@ -222,7 +224,7 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
         [self.ibTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         isMiddleOfCallingServer = false;
 
     }];

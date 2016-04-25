@@ -1107,7 +1107,7 @@
             } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
                 
                 
-                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+                [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
                     
                     NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
                     BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -1119,7 +1119,7 @@
                     @catch (NSException *exception) {
                         SLog(@"error");
                     }                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
-                } errorBlock:^(id object) {
+                } failure:^(id object) {
                 }];
                 
             }
@@ -1154,14 +1154,15 @@
     }
     else{
         
-        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowUser param:dict appendString:appendString completeHandler:^(id object) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
             BOOL following = [[returnDict objectForKey:@"data.following"] boolValue];
             self.userProfileModel.following = following;
             [self setFollowButtonSelected:following button:self.btnFollow];
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
         }];
     }
     
@@ -1177,12 +1178,12 @@
     
     [LoadingManager show];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserLikes param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserLikes parameter:dict appendString:appendString success:^(id object) {
         
         self.userProfileLikeModel = [[ConnectionManager dataManager]userProfileLikeModel];
         [self assignLikesData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1197,13 +1198,13 @@
     
     [LoadingManager show];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserPosts param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserPosts parameter:dict appendString:appendString success:^(id object) {
         
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
 
         [self assignPostData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1221,12 +1222,12 @@
     
     [LoadingManager show];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserCollections parameter:dict appendString:appendString success:^(id object) {
         
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
         [self assignCollectionData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1240,13 +1241,13 @@
                            };
     [LoadingManager show];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserInfo parameter:dict appendString:appendString success:^(id object) {
         
         self.userProfileModel = [[ConnectionManager dataManager]userProfileModel];
     
         [self assignData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1259,7 +1260,7 @@
                            @"token":[Utils getAppToken]
                            };
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserInfo parameter:dict appendString:appendString success:^(id object) {
         
         
         DataManager* manager = [ConnectionManager dataManager];
@@ -1271,7 +1272,7 @@
         [self assignData];
 
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
