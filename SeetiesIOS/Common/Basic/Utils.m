@@ -715,7 +715,7 @@
             
         }
         else{
-            strDistance = [NSString stringWithFormat:@"%.f KM",distance/100];
+            strDistance = [NSString stringWithFormat:@"%.f KM",distance/1000];
             
         }
     }
@@ -729,7 +729,7 @@
                 
             }
             else{
-                strDistance = [NSString stringWithFormat:@"%.f KM",distance/100];
+                strDistance = [NSString stringWithFormat:@"%.f KM",distance/1000];
                 
             }
             
