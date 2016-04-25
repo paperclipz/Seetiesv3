@@ -7217,7 +7217,7 @@
 						DevelopmentTeam = 22DQJTA32H;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 0;
