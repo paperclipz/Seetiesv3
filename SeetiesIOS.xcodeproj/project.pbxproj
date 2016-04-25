@@ -1430,6 +1430,8 @@
 		C2A910151CCDFF31005D517B /* SearchLocationCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A9100C1CCDFF31005D517B /* SearchLocationCountryCell.xib */; };
 		C2A910161CCDFF31005D517B /* SeetizensTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A9100E1CCDFF31005D517B /* SeetizensTableViewCell.m */; };
 		C2A910171CCDFF31005D517B /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A9100F1CCDFF31005D517B /* SeetizensTableViewCell.xib */; };
+		C2A9101B1CCE0035005D517B /* SearchLocationResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A910191CCE0035005D517B /* SearchLocationResultCell.m */; };
+		C2A9101C1CCE0035005D517B /* SearchLocationResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A9101A1CCE0035005D517B /* SearchLocationResultCell.xib */; };
 		C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoPopOutViewController.m */; };
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
@@ -3324,6 +3326,9 @@
 		C2A9100D1CCDFF31005D517B /* SeetizensTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetizensTableViewCell.h; sourceTree = "<group>"; };
 		C2A9100E1CCDFF31005D517B /* SeetizensTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetizensTableViewCell.m; sourceTree = "<group>"; };
 		C2A9100F1CCDFF31005D517B /* SeetizensTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetizensTableViewCell.xib; sourceTree = "<group>"; };
+		C2A910181CCE0035005D517B /* SearchLocationResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationResultCell.h; sourceTree = "<group>"; };
+		C2A910191CCE0035005D517B /* SearchLocationResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationResultCell.m; sourceTree = "<group>"; };
+		C2A9101A1CCE0035005D517B /* SearchLocationResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationResultCell.xib; sourceTree = "<group>"; };
 		C2C157131C574BB6007608FC /* PromoPopOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoPopOutViewController.h; sourceTree = "<group>"; };
 		C2C157141C574BB6007608FC /* PromoPopOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoPopOutViewController.m; sourceTree = "<group>"; };
 		C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoPopOutViewController.xib; sourceTree = "<group>"; };
@@ -5898,6 +5903,9 @@
 				8AFF08391C90379000918582 /* SearchSimpleTableViewCell.h */,
 				8AFF083A1C90379000918582 /* SearchSimpleTableViewCell.m */,
 				8AFF083B1C90379000918582 /* SearchSimpleTableViewCell.xib */,
+				C2A910181CCE0035005D517B /* SearchLocationResultCell.h */,
+				C2A910191CCE0035005D517B /* SearchLocationResultCell.m */,
+				C2A9101A1CCE0035005D517B /* SearchLocationResultCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -7667,6 +7675,7 @@
 				C240B8EB1CC62F4400B79190 /* MeVoucherWalletIcon@2x.png in Resources */,
 				C240BAD41CC62F4400B79190 /* PostCommentIcon@3x.png in Resources */,
 				8AC8F74B1BDA414E00DEF14A /* EditCollectionTableViewCell.xib in Resources */,
+				C2A9101C1CCE0035005D517B /* SearchLocationResultCell.xib in Resources */,
 				8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */,
 				8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */,
 				C240B89E1CC62F4400B79190 /* DealsListingGoIcon@3x.png in Resources */,
@@ -8482,6 +8491,7 @@
 				8AB276E01CC61FC700BD5EC8 /* UITabBar+Extension.m in Sources */,
 				8A114CAD1BE73F5D006AE3F0 /* FSVenue.m in Sources */,
 				C2A910161CCDFF31005D517B /* SeetizensTableViewCell.m in Sources */,
+				C2A9101B1CCE0035005D517B /* SearchLocationResultCell.m in Sources */,
 				8AB276CA1CC61FC700BD5EC8 /* NSMutableArray+MoveArray.m in Sources */,
 				8AB276C51CC61FC700BD5EC8 /* UIImage+Tint.m in Sources */,
 				8AF33A401C3F6DAF000A2021 /* Location.m in Sources */,

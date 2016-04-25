@@ -2815,12 +2815,14 @@
         [MainScroll addSubview:Line02];
         
         UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-        ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 18, 25, 25);
-        ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
+        ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 18, 50, 50);
+        [Utils setRoundBorder:ShowLocationIcon color:OUTLINE_COLOR borderRadius:ShowLocationIcon.frame.size.width/2];
+        ShowLocationIcon.contentMode = UIViewContentModeCenter;
+        ShowLocationIcon.image = [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
         [MainScroll addSubview:ShowLocationIcon];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(50, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
+        ShowPlaceName.frame = CGRectMake(80, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
         ShowPlaceName.text = GetPlaceName;
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2838,7 +2840,7 @@
         ShowPlaceFormattedAddress.text = GetPlaceFormattedAddress;
         ShowPlaceFormattedAddress.numberOfLines = 0;
         ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
-        ShowPlaceFormattedAddress.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
+        ShowPlaceFormattedAddress.frame = CGRectMake(80, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
         [MainScroll addSubview:ShowPlaceFormattedAddress];
         
         UIButton *OpenAllInformationButton = [[UIButton alloc]init];
@@ -3005,7 +3007,7 @@
         
         //Shop Icon, Name and Address
         
-        AsyncImageView *ShowShopImage = [[AsyncImageView alloc]init];
+        UIImageView *ShowShopImage = [[UIImageView alloc]init];
         ShowShopImage.frame = CGRectMake(20, GetMessageHeight + 20, 50, 50);
         ShowShopImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowShopImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -3013,13 +3015,12 @@
         ShowShopImage.layer.borderWidth=1;
         ShowShopImage.layer.masksToBounds = YES;
         ShowShopImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowShopImage];
+//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowShopImage];
         NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetSeetishopImage];
         if ([FullImagesURL1 length] == 0) {
-            ShowShopImage.image = [UIImage imageNamed:@"NoImage.png"];
+            ShowShopImage.image = [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
         }else{
-            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-            ShowShopImage.imageURL = url_UserImage;
+            [ShowShopImage sd_setImageCroppedWithURL:[NSURL URLWithString:FullImagesURL1] completed:nil];
         }
         [MainScroll addSubview:ShowShopImage];
         
