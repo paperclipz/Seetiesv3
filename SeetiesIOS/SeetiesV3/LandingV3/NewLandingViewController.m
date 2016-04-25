@@ -403,7 +403,7 @@
         [Utils reloadProfileView];
         
         DataManager* manager = [ConnectionManager dataManager];
-       // manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
+        manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
         
         [[LanguageManager sharedLanguageManager]setLanguageCode:manager.currentUserProfileModel.system_language.language_code];
         

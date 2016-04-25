@@ -88,7 +88,7 @@ DEPENDENCIES:
   - JSONModel
   - LPGoogleFunctions
   - Masonry
-  - MGInstagram
+  - MGInstagram (~> 0.1.0)
   - MGSwipeTableCell
   - MMPickerView (~> 0.0.1)
   - MZAppearance
