@@ -253,7 +253,8 @@
     
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersHistoryList param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserVouchersHistoryList parameter:dict appendString:appendString success:^(id object) {
+
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
         [self rearrangeVoucherList];
@@ -272,7 +273,7 @@
         else{
             [self toggleEmptyView:NO];
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isLoading = NO;
         self.ibHistoryTable.tableFooterView = nil;
         [self toggleEmptyView:YES];

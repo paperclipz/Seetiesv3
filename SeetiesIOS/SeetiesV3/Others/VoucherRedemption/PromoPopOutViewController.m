@@ -743,7 +743,8 @@
     [LoadingManager show];
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostTOTP param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostTOTP parameter:dict appendString:nil success:^(id object) {
+
         self.hasRequestedTotp = YES;
         [LoadingManager hide];
         self.isLoading = NO;
@@ -751,7 +752,7 @@
             [self buttonSubmitClicked:self.ibEnterPhoneConfirmBtn];
         }
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.hasRequestedTotp = NO;
         self.isLoading = NO;
         [LoadingManager hide];
@@ -769,13 +770,14 @@
     [LoadingManager show];
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostVerifyTOTP param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostVerifyTOTP parameter:dict appendString:nil success:^(id object) {
+
         self.isVerified = YES;
         [LoadingManager hide];
         self.isLoading = NO;
         [self buttonSubmitClicked:self.ibConfirmPhoneBtn];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
         self.ibEnterVerificationTxtField.backgroundColor = [UIColor whiteColor];
         self.ibEnterVerificationTxtField.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
@@ -790,16 +792,19 @@
 -(void)requestServerToGetHomeCountry{
     ProfileModel *profile = [[DataManager Instance] currentUserProfileModel];
     NSString *langCode = profile.system_language.language_code;
+   
     NSDictionary *dict = @{@"language_code": langCode
                            };
     [LoadingManager show];
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetHomeCountry param:dict appendString:nil completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHomeCountry parameter:dict appendString:nil success:^(id object) {
+
         CountriesModel *countriesModel = [[ConnectionManager dataManager] countriesModel];
         self.countryArray = countriesModel.countries;
         [self.countryCodeArray removeAllObjects];
         [self formatCountryCodeArray];
         [LoadingManager hide];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
     }];
 }
@@ -816,14 +821,14 @@
     [LoadingManager show];
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetPromoCode param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetPromoCode parameter:dict appendString:appendString success:^(id object) {
         self.dealsModel = [[ConnectionManager dataManager] dealsModel];
         self.hasRequestedPromo = YES;
         [LoadingManager hide];
         self.isLoading = NO;
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
@@ -848,7 +853,8 @@
     [LoadingManager show];
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostRedeemPromoCode param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostRedeemPromoCode parameter:dict appendString:appendString success:^(id object) {
+
         self.dealsModel = [[ConnectionManager dataManager] dealsModel];
         self.hasRedeemed = YES;
         [LoadingManager hide];
@@ -859,7 +865,7 @@
             [self.promoPopOutDelegate promoHasBeenRedeemed:self.dealsModel];
         }
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];

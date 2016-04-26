@@ -1314,14 +1314,15 @@ static NSCache* heightCache = nil;
     NSDictionary *dict = @{@"token": [Utils getAppToken]};
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserVouchersCount parameter:dict appendString:appendString success:^(id object) {
+
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
         [self.dealManager setWalletCount:count];
         
         [self.ibTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1340,13 +1341,13 @@ static NSCache* heightCache = nil;
                            @"posts" : array,
                            };
     
-    [[ConnectionManager Instance]requestServerWithPut:ServerRequestTypePutCollectPost param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutCollectPost parameter:dict appendString:appendString success:^(id object) {
 
         model.collect = @"1";
         [TSMessage showNotificationInViewController:self title:LocalisedString(@"System") subtitle:LocalisedString(@"Successfully collected to default Collection") type:TSMessageNotificationTypeSuccess];
         [self.ibTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1374,7 +1375,8 @@ static NSCache* heightCache = nil;
         [self.ibTableView showLoading];
 
         isMiddleOfLoadingServer = YES;
-        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:nil completeHandler:^(id object) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetNewsFeed parameter:dict appendString:nil success:^(id object) {
             isMiddleOfLoadingServer = NO;
             isFirstLoad = NO;
             NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
@@ -1385,7 +1387,7 @@ static NSCache* heightCache = nil;
 
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
             [self.ibTableView hideAll];
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             [self.ibTableView.pullToRefreshView stopAnimating];
             isMiddleOfLoadingServer = NO;
             [self.ibTableView hideAll];
@@ -1408,7 +1410,8 @@ static NSCache* heightCache = nil;
                            };
     [self.ibTableView showLoading];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHome parameter:dict appendString:nil success:^(id object) {
+
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.homeModel = [[ConnectionManager dataManager]homeModel];
         
@@ -1468,7 +1471,7 @@ static NSCache* heightCache = nil;
         
        // [self.ibTableView reloadData];
   
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [self.ibTableView.pullToRefreshView stopAnimating];
         [self.ibTableView showEmptyState];
 
@@ -1492,7 +1495,8 @@ static NSCache* heightCache = nil;
                            
                            };
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeUpdater param:dict appendString:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHomeUpdater parameter:dict appendString:nil success:^(id object) {
+
         
         NSDictionary* returnDict = object[@"data"];
         
@@ -1520,7 +1524,7 @@ static NSCache* heightCache = nil;
         [self processUpdater:type];
 
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }

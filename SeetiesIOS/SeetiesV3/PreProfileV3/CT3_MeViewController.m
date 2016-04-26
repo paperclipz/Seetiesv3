@@ -347,11 +347,12 @@
     NSDictionary *dict = @{@"token": [Utils getAppToken]};
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserVouchersCount parameter:dict appendString:appendString success:^(id object) {
+
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
         self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @(count)}];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -372,12 +373,13 @@
     @catch (NSException *exception) {
     }
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserCollections parameter:dict appendString:appendString success:^(id object) {
+
         NSDictionary *dict = object[@"data"];
         NSInteger collectionCount = [dict[@"total_result"] integerValue];
         self.ibCollectionCountLbl.text = [LanguageManager stringForKey:@"{!number} Collection(s)" withPlaceHolder:@{@"{!number}" : @(collectionCount)}];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }

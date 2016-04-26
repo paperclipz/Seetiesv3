@@ -1,20 +1,20 @@
 PODS:
   - A3ParallaxScrollView (1.0.2)
   - ActionSheetPicker-3.0 (1.7.2)
-  - AFNetworking (3.0.4):
-    - AFNetworking/NSURLSession (= 3.0.4)
-    - AFNetworking/Reachability (= 3.0.4)
-    - AFNetworking/Security (= 3.0.4)
-    - AFNetworking/Serialization (= 3.0.4)
-    - AFNetworking/UIKit (= 3.0.4)
-  - AFNetworking/NSURLSession (3.0.4):
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.4)
-  - AFNetworking/Security (3.0.4)
-  - AFNetworking/Serialization (3.0.4)
-  - AFNetworking/UIKit (3.0.4):
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - APParallaxHeader (0.1.6)
   - BOString (0.10.0)
@@ -56,7 +56,7 @@ PODS:
 DEPENDENCIES:
   - A3ParallaxScrollView (~> 1.0)
   - ActionSheetPicker-3.0 (~> 1.7.1)
-  - AFNetworking
+  - AFNetworking (~> 3.0)
   - APParallaxHeader
   - BOString
   - CLLocationManager-blocks
@@ -92,7 +92,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   A3ParallaxScrollView: 1d16dc1881721642d5f25e320cabe7adcc997035
   ActionSheetPicker-3.0: c5bdca19fd8b3d798f0c79892cbab6f11a8523ae
-  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   BOString: b4c4df4f8a7f046c42a51c32629772dc2701fc47
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b

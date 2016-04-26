@@ -295,7 +295,8 @@
                            @"password" : password,
                            @"device_type" : @"2"};
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLogin param:dict completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeLogin parameter:dict appendString:nil success:^(id object) {
         
         
         if (onComplete) {
@@ -303,7 +304,7 @@
         }
         
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 
@@ -320,7 +321,7 @@
                            @"role" : @"user",
                            @"device_type" : @(DEVICE_TYPE)};
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLoginFacebook param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeLoginFacebook parameter:dict appendString:nil success:^(id object) {
         
 
         if (self.didFinishLoginBlock) {
@@ -328,7 +329,7 @@
         }
         [self dismissViewControllerAnimated:YES completion:nil];
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
     
@@ -345,7 +346,7 @@
                            
                            };
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeRegister param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeRegister parameter:dict appendString:nil success:^(id object) {
         
         NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:object];
         if ([dict[@"status"] isEqualToString:@"ok"]) {
@@ -362,7 +363,7 @@
             
         }
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
     
@@ -378,7 +379,7 @@
                            @"device_type" : @(DEVICE_TYPE),
                            };
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypeLoginInstagram param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeLoginInstagram parameter:dict appendString:nil success:^(id object) {
         
         if (self.didFinishLoginBlock) {
             self.didFinishLoginBlock();
@@ -386,7 +387,7 @@
         
         [self dismissViewControllerAnimated:YES completion:nil];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }

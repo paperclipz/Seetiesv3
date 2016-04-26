@@ -482,11 +482,12 @@
     
     appendString = [NSString stringWithFormat:@"%@/translate",self.seetiesID];
     
-    
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopTranslation param:dict appendString:appendString completeHandler:^(id object) {
-        
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetoShopTranslation parameter:dict appendString:appendString success:^(id object)
+    {
+
+
         [self triggerLanguageChanged:[[NSDictionary alloc]initWithDictionary:object[@"data"]]];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];

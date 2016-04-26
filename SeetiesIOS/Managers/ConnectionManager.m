@@ -114,7 +114,7 @@
             case AFNETWORK_GET:
             {
                 strNetworkType = @"GET";
-                [self.manager GET:fullURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+                [self.manager GET:fullURL parameters:parameter progress:nil success:^(NSURLSessionTask *task, id responseObject) {
                     NSLog(@"JSON: %@", responseObject);
                     
                   
@@ -138,6 +138,27 @@
             case AFNETWORK_POST:
             {
                 strNetworkType = @"POST";
+                [self.manager POST:fullURL parameters:parameter constructingBodyWithBlock:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+                    
+                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    
+                    NSLog(@"JSON: %@", responseObject);
+                    
+                    [self storeServerData:responseObject requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+                    
+                    [LoadingManager hide];
+
+                    
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                   
+                    NSLog(@"Error: %@", error);
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                    
+                    [LoadingManager hide];
+                }];
 
             }
                 break;
@@ -145,7 +166,24 @@
             case AFNETWORK_DELETE:
             {
                 strNetworkType = @"DELETE";
-                
+                [self.manager DELETE:fullURL parameters:parameter success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    
+                    NSLog(@"JSON: %@", responseObject);
+                    
+                    [self storeServerData:responseObject requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+                    
+                    [LoadingManager hide];
+
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    
+                    NSLog(@"Error: %@", error);
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                    
+                    [LoadingManager hide];
+                }];
             }
                 break;
                 
@@ -180,7 +218,7 @@
                     [LoadingManager hide];
                 }];
 
-                strNetworkType = @"CUSTOM";
+                strNetworkType = @"CUSTOM_GET";
                 
             }
                 break;
@@ -209,7 +247,7 @@
                     [LoadingManager hide];
                 }];
 
-                strNetworkType = @"CUSTOM";
+                strNetworkType = @"CUSTOM_POST";
                 
             }
                 break;

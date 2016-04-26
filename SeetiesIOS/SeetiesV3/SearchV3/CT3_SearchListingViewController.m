@@ -969,7 +969,8 @@
     NSString *tagStr = [tag stringByReplacingOccurrencesOfString:@" " withString:@""];
 
     //[LoadingManager show];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetTagsSuggestion  param:dict appendString:tagStr completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetTagsSuggestion parameter:dict appendString:nil success:^(id object) {
         
         self.arrSimpleTagList =[[NSMutableArray alloc]initWithArray:[[[ConnectionManager dataManager] tagModel] arrayTag] ];
         
@@ -977,7 +978,7 @@
 
         [self.ibSearchTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1018,7 +1019,8 @@
     
     NSDictionary* dict = @{@"placeid":placeID,@"key":GOOGLE_API_KEY};
     
-    [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopDeal parameter:dict appendString:nil success:^(id object) {
         
         SearchLocationDetailModel* googleSearchDetailModel = [[ConnectionManager dataManager] googleSearchDetailModel];
         
@@ -1046,8 +1048,9 @@
 //            self.didSelectOnLocationBlock(recommendationVenueModel);
 //        }
         
-    } errorBlock:nil];
+    } failure:^(id object) {
     
+    }];
 }
 
 #pragma mark - Show View

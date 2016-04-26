@@ -477,11 +477,12 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUpdateUser parameter:dict appendString:appendString success:^(id object) {
         
         self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         self.isConnectedFacebook = NO;
         [self.ibTableView reloadData];
@@ -510,12 +511,14 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUpdateUser parameter:dict appendString:appendString success:^(id object) {
+
         
         self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
         
        
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isConnectedInstagram = NO;
         [self.ibTableView reloadData];
 
@@ -542,13 +545,13 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUpdateUser parameter:dict appendString:appendString success:^(id object) {
         
         [self.ibTableView reloadData];
         
         [Utils reloadAppView:NO];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
     
