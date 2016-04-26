@@ -162,7 +162,7 @@
                     if (failure) {
                         failure(error);
                     }
-                    [self showErrorHandling:operation Error:error];
+                    [self showErrorHandling:task Error:error];
 
                     [LoadingManager hide];
                 }];
@@ -188,7 +188,7 @@
                     if (failure) {
                         failure(error);
                     }
-                    [self showErrorHandling:operation Error:error];
+                    [self showErrorHandling:task Error:error];
 
                     [LoadingManager hide];
                 }];
@@ -214,7 +214,7 @@
                     if (failure) {
                         failure(error);
                     }
-                    [self showErrorHandling:operation Error:error];
+                    [self showErrorHandling:task Error:error];
 
                     [LoadingManager hide];
 
