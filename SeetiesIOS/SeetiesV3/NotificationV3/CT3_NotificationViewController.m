@@ -481,7 +481,10 @@
 {
     if (![Utils isStringNull:url]) {
         
-        [self.navigationController pushViewController:self.ctWebViewController animated:YES];
+        _ctWebViewController = nil;
+        [self.navigationController pushViewController:self.ctWebViewController animated:YES onCompletion:^{
+            [self.ctWebViewController initDataWithURL:url andTitle:@""];
+        }];
     }
     
 }
