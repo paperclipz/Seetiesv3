@@ -14,6 +14,8 @@
 @property(nonatomic,weak) IBOutlet UIView* loadingView;
 @property(nonatomic,weak) IBOutlet UIView* noResultView;
 @property (nonatomic, weak)IBOutlet YLImageView *loadingImage;
+@property (weak, nonatomic) IBOutlet UILabel *emptyStateDesc;
+@property (weak, nonatomic) IBOutlet UILabel *emptyStateTitle;
 
 -(void)showLoading;
 -(void)showEmptyState;

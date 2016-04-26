@@ -502,18 +502,12 @@
 		8AFF08541C90379000918582 /* SearchSimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF083B1C90379000918582 /* SearchSimpleTableViewCell.xib */; };
 		8AFF08551C90379000918582 /* CT3_SearchListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF083D1C90379000918582 /* CT3_SearchListingViewController.m */; };
 		8AFF08561C90379000918582 /* CT3_SearchListingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF083E1C90379000918582 /* CT3_SearchListingViewController.xib */; };
-		8AFF08571C90379000918582 /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08401C90379000918582 /* PostsTableViewCell.m */; };
-		8AFF08581C90379000918582 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08411C90379000918582 /* PostsTableViewCell.xib */; };
-		8AFF08591C90379000918582 /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08431C90379000918582 /* SearchLocationAreaCell.m */; };
-		8AFF085A1C90379000918582 /* SearchLocationAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08441C90379000918582 /* SearchLocationAreaCell.xib */; };
 		8AFF085B1C90379000918582 /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08461C90379000918582 /* SearchLocationViewController.m */; };
 		8AFF085C1C90379000918582 /* SearchLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08471C90379000918582 /* SearchLocationViewController.xib */; };
 		8AFF085D1C90379000918582 /* SearchLTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF08491C90379000918582 /* SearchLTabViewController.m */; };
 		8AFF085E1C90379000918582 /* SearchLTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF084A1C90379000918582 /* SearchLTabViewController.xib */; };
 		8AFF085F1C90379000918582 /* SearchQuickBrowseListingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF084C1C90379000918582 /* SearchQuickBrowseListingController.m */; };
 		8AFF08601C90379000918582 /* SearchQuickBrowseListingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF084D1C90379000918582 /* SearchQuickBrowseListingController.xib */; };
-		8AFF08611C90379000918582 /* SeetizensTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */; };
-		8AFF08621C90379000918582 /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */; };
 		8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF09101C9038C400918582 /* ComplexTagModel.m */; };
 		8AFF09361C92802400918582 /* olivier_demo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF09351C927DD500918582 /* olivier_demo.ttf */; };
 		C206B7A91C90319C00786128 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206B7A71C90319C00786128 /* TermsViewController.m */; };
@@ -1298,8 +1292,6 @@
 		C240BB541CC62F4400B79190 /* ShareWhatsappIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C240B8751CC62F4400B79190 /* ShareWhatsappIcon@2x.png */; };
 		C240BB551CC62F4400B79190 /* ShareWhatsappIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C240B8761CC62F4400B79190 /* ShareWhatsappIcon@3x.png */; };
 		C240BB571CC631AF00B79190 /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = C240BB561CC631AF00B79190 /* Loading.gif */; };
-		C240EEED1C9FB2D1002B4283 /* SearchLocationCountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C240EEEB1C9FB2D1002B4283 /* SearchLocationCountryCell.m */; };
-		C240EEEE1C9FB2D1002B4283 /* SearchLocationCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C240EEEC1C9FB2D1002B4283 /* SearchLocationCountryCell.xib */; };
 		C24383F41C5B5BF100ACEBF8 /* DealDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24383F21C5B5BF100ACEBF8 /* DealDetailsViewController.m */; };
 		C24383F51C5B5BF100ACEBF8 /* DealDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */; };
 		C243840F1C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24384071C5B781500ACEBF8 /* DealDetailsAvailabilityCell.m */; };
@@ -1319,6 +1311,16 @@
 		C294FD291C9817F200C455C8 /* FilterPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD281C9817F200C455C8 /* FilterPriceModel.m */; };
 		C294FD2C1C9819B500C455C8 /* FiltersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD2B1C9819B500C455C8 /* FiltersModel.m */; };
 		C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C295DCDA1C72C54300A1DED3 /* DealManager.m */; };
+		C2A910101CCDFF31005D517B /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A910051CCDFF31005D517B /* PostsTableViewCell.m */; };
+		C2A910111CCDFF31005D517B /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A910061CCDFF31005D517B /* PostsTableViewCell.xib */; };
+		C2A910121CCDFF31005D517B /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A910081CCDFF31005D517B /* SearchLocationAreaCell.m */; };
+		C2A910131CCDFF31005D517B /* SearchLocationAreaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A910091CCDFF31005D517B /* SearchLocationAreaCell.xib */; };
+		C2A910141CCDFF31005D517B /* SearchLocationCountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A9100B1CCDFF31005D517B /* SearchLocationCountryCell.m */; };
+		C2A910151CCDFF31005D517B /* SearchLocationCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A9100C1CCDFF31005D517B /* SearchLocationCountryCell.xib */; };
+		C2A910161CCDFF31005D517B /* SeetizensTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A9100E1CCDFF31005D517B /* SeetizensTableViewCell.m */; };
+		C2A910171CCDFF31005D517B /* SeetizensTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A9100F1CCDFF31005D517B /* SeetizensTableViewCell.xib */; };
+		C2A9101B1CCE0035005D517B /* SearchLocationResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A910191CCE0035005D517B /* SearchLocationResultCell.m */; };
+		C2A9101C1CCE0035005D517B /* SearchLocationResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A9101A1CCE0035005D517B /* SearchLocationResultCell.xib */; };
 		C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoPopOutViewController.m */; };
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
@@ -2183,12 +2185,6 @@
 		8AFF083C1C90379000918582 /* CT3_SearchListingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_SearchListingViewController.h; sourceTree = "<group>"; };
 		8AFF083D1C90379000918582 /* CT3_SearchListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_SearchListingViewController.m; sourceTree = "<group>"; };
 		8AFF083E1C90379000918582 /* CT3_SearchListingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_SearchListingViewController.xib; sourceTree = "<group>"; };
-		8AFF083F1C90379000918582 /* PostsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsTableViewCell.h; sourceTree = "<group>"; };
-		8AFF08401C90379000918582 /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsTableViewCell.m; sourceTree = "<group>"; };
-		8AFF08411C90379000918582 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
-		8AFF08421C90379000918582 /* SearchLocationAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationAreaCell.h; sourceTree = "<group>"; };
-		8AFF08431C90379000918582 /* SearchLocationAreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationAreaCell.m; sourceTree = "<group>"; };
-		8AFF08441C90379000918582 /* SearchLocationAreaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationAreaCell.xib; sourceTree = "<group>"; };
 		8AFF08451C90379000918582 /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
 		8AFF08461C90379000918582 /* SearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationViewController.m; sourceTree = "<group>"; };
 		8AFF08471C90379000918582 /* SearchLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationViewController.xib; sourceTree = "<group>"; };
@@ -2198,9 +2194,6 @@
 		8AFF084B1C90379000918582 /* SearchQuickBrowseListingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchQuickBrowseListingController.h; sourceTree = "<group>"; };
 		8AFF084C1C90379000918582 /* SearchQuickBrowseListingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchQuickBrowseListingController.m; sourceTree = "<group>"; };
 		8AFF084D1C90379000918582 /* SearchQuickBrowseListingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchQuickBrowseListingController.xib; sourceTree = "<group>"; };
-		8AFF084E1C90379000918582 /* SeetizensTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetizensTableViewCell.h; sourceTree = "<group>"; };
-		8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetizensTableViewCell.m; sourceTree = "<group>"; };
-		8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetizensTableViewCell.xib; sourceTree = "<group>"; };
 		8AFF090F1C9038C400918582 /* ComplexTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComplexTagModel.h; path = SeetiesIOS/MODELS/ComplexTagModel.h; sourceTree = SOURCE_ROOT; };
 		8AFF09101C9038C400918582 /* ComplexTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComplexTagModel.m; path = SeetiesIOS/MODELS/ComplexTagModel.m; sourceTree = SOURCE_ROOT; };
 		8AFF09351C927DD500918582 /* olivier_demo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = olivier_demo.ttf; sourceTree = "<group>"; };
@@ -3000,9 +2993,6 @@
 		C240B8751CC62F4400B79190 /* ShareWhatsappIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareWhatsappIcon@2x.png"; sourceTree = "<group>"; };
 		C240B8761CC62F4400B79190 /* ShareWhatsappIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareWhatsappIcon@3x.png"; sourceTree = "<group>"; };
 		C240BB561CC631AF00B79190 /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loading.gif; sourceTree = "<group>"; };
-		C240EEEA1C9FB2D1002B4283 /* SearchLocationCountryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationCountryCell.h; sourceTree = "<group>"; };
-		C240EEEB1C9FB2D1002B4283 /* SearchLocationCountryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationCountryCell.m; sourceTree = "<group>"; };
-		C240EEEC1C9FB2D1002B4283 /* SearchLocationCountryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationCountryCell.xib; sourceTree = "<group>"; };
 		C24383F11C5B5BF100ACEBF8 /* DealDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealDetailsViewController.h; sourceTree = "<group>"; };
 		C24383F21C5B5BF100ACEBF8 /* DealDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealDetailsViewController.m; sourceTree = "<group>"; };
 		C24383F31C5B5BF100ACEBF8 /* DealDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailsViewController.xib; sourceTree = "<group>"; };
@@ -3035,6 +3025,21 @@
 		C294FD2B1C9819B500C455C8 /* FiltersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiltersModel.m; path = Filter/FiltersModel.m; sourceTree = "<group>"; };
 		C295DCD91C72C54300A1DED3 /* DealManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealManager.h; sourceTree = "<group>"; };
 		C295DCDA1C72C54300A1DED3 /* DealManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealManager.m; sourceTree = "<group>"; };
+		C2A910041CCDFF31005D517B /* PostsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsTableViewCell.h; sourceTree = "<group>"; };
+		C2A910051CCDFF31005D517B /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsTableViewCell.m; sourceTree = "<group>"; };
+		C2A910061CCDFF31005D517B /* PostsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
+		C2A910071CCDFF31005D517B /* SearchLocationAreaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationAreaCell.h; sourceTree = "<group>"; };
+		C2A910081CCDFF31005D517B /* SearchLocationAreaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationAreaCell.m; sourceTree = "<group>"; };
+		C2A910091CCDFF31005D517B /* SearchLocationAreaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationAreaCell.xib; sourceTree = "<group>"; };
+		C2A9100A1CCDFF31005D517B /* SearchLocationCountryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationCountryCell.h; sourceTree = "<group>"; };
+		C2A9100B1CCDFF31005D517B /* SearchLocationCountryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationCountryCell.m; sourceTree = "<group>"; };
+		C2A9100C1CCDFF31005D517B /* SearchLocationCountryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationCountryCell.xib; sourceTree = "<group>"; };
+		C2A9100D1CCDFF31005D517B /* SeetizensTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetizensTableViewCell.h; sourceTree = "<group>"; };
+		C2A9100E1CCDFF31005D517B /* SeetizensTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetizensTableViewCell.m; sourceTree = "<group>"; };
+		C2A9100F1CCDFF31005D517B /* SeetizensTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetizensTableViewCell.xib; sourceTree = "<group>"; };
+		C2A910181CCE0035005D517B /* SearchLocationResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationResultCell.h; sourceTree = "<group>"; };
+		C2A910191CCE0035005D517B /* SearchLocationResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationResultCell.m; sourceTree = "<group>"; };
+		C2A9101A1CCE0035005D517B /* SearchLocationResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocationResultCell.xib; sourceTree = "<group>"; };
 		C2C157131C574BB6007608FC /* PromoPopOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoPopOutViewController.h; sourceTree = "<group>"; };
 		C2C157141C574BB6007608FC /* PromoPopOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoPopOutViewController.m; sourceTree = "<group>"; };
 		C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoPopOutViewController.xib; sourceTree = "<group>"; };
@@ -5220,12 +5225,6 @@
 				8AFF083C1C90379000918582 /* CT3_SearchListingViewController.h */,
 				8AFF083D1C90379000918582 /* CT3_SearchListingViewController.m */,
 				8AFF083E1C90379000918582 /* CT3_SearchListingViewController.xib */,
-				8AFF083F1C90379000918582 /* PostsTableViewCell.h */,
-				8AFF08401C90379000918582 /* PostsTableViewCell.m */,
-				8AFF08411C90379000918582 /* PostsTableViewCell.xib */,
-				8AFF08421C90379000918582 /* SearchLocationAreaCell.h */,
-				8AFF08431C90379000918582 /* SearchLocationAreaCell.m */,
-				8AFF08441C90379000918582 /* SearchLocationAreaCell.xib */,
 				8AFF08451C90379000918582 /* SearchLocationViewController.h */,
 				8AFF08461C90379000918582 /* SearchLocationViewController.m */,
 				8AFF08471C90379000918582 /* SearchLocationViewController.xib */,
@@ -5235,12 +5234,6 @@
 				8AFF084B1C90379000918582 /* SearchQuickBrowseListingController.h */,
 				8AFF084C1C90379000918582 /* SearchQuickBrowseListingController.m */,
 				8AFF084D1C90379000918582 /* SearchQuickBrowseListingController.xib */,
-				8AFF084E1C90379000918582 /* SeetizensTableViewCell.h */,
-				8AFF084F1C90379000918582 /* SeetizensTableViewCell.m */,
-				8AFF08501C90379000918582 /* SeetizensTableViewCell.xib */,
-				C240EEEA1C9FB2D1002B4283 /* SearchLocationCountryCell.h */,
-				C240EEEB1C9FB2D1002B4283 /* SearchLocationCountryCell.m */,
-				C240EEEC1C9FB2D1002B4283 /* SearchLocationCountryCell.xib */,
 			);
 			path = SearchV3;
 			sourceTree = "<group>";
@@ -5248,12 +5241,27 @@
 		8AFF08351C90379000918582 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				C2A910041CCDFF31005D517B /* PostsTableViewCell.h */,
+				C2A910051CCDFF31005D517B /* PostsTableViewCell.m */,
+				C2A910061CCDFF31005D517B /* PostsTableViewCell.xib */,
+				C2A910071CCDFF31005D517B /* SearchLocationAreaCell.h */,
+				C2A910081CCDFF31005D517B /* SearchLocationAreaCell.m */,
+				C2A910091CCDFF31005D517B /* SearchLocationAreaCell.xib */,
+				C2A9100A1CCDFF31005D517B /* SearchLocationCountryCell.h */,
+				C2A9100B1CCDFF31005D517B /* SearchLocationCountryCell.m */,
+				C2A9100C1CCDFF31005D517B /* SearchLocationCountryCell.xib */,
+				C2A9100D1CCDFF31005D517B /* SeetizensTableViewCell.h */,
+				C2A9100E1CCDFF31005D517B /* SeetizensTableViewCell.m */,
+				C2A9100F1CCDFF31005D517B /* SeetizensTableViewCell.xib */,
 				8AFF08361C90379000918582 /* SearchComplexTableViewCell.h */,
 				8AFF08371C90379000918582 /* SearchComplexTableViewCell.m */,
 				8AFF08381C90379000918582 /* SearchComplexTableViewCell.xib */,
 				8AFF08391C90379000918582 /* SearchSimpleTableViewCell.h */,
 				8AFF083A1C90379000918582 /* SearchSimpleTableViewCell.m */,
 				8AFF083B1C90379000918582 /* SearchSimpleTableViewCell.xib */,
+				C2A910181CCE0035005D517B /* SearchLocationResultCell.h */,
+				C2A910191CCE0035005D517B /* SearchLocationResultCell.m */,
+				C2A9101A1CCE0035005D517B /* SearchLocationResultCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -6533,7 +6541,7 @@
 						DevelopmentTeam = 22DQJTA32H;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 0;
@@ -6731,6 +6739,7 @@
 				C240B9E01CC62F4400B79190 /* FollowingCollectionThaiIcon@3x.png in Resources */,
 				C240B95C1CC62F4400B79190 /* TabBarMeIcon@3x.png in Resources */,
 				C240BA4E1CC62F4400B79190 /* DealsAndRecommendationOverlay@3x.png in Resources */,
+				C2A910131CCDFF31005D517B /* SearchLocationAreaCell.xib in Resources */,
 				C240B8E11CC62F4400B79190 /* CollectionFollowingIcon@3x.png in Resources */,
 				C240BA3F1CC62F4400B79190 /* CollectedBtn@2x.png in Resources */,
 				C240B95D1CC62F4400B79190 /* TabBarMeIconActive@2x.png in Resources */,
@@ -6799,7 +6808,6 @@
 				C240B9ED1CC62F4400B79190 /* MoreBtn@2x.png in Resources */,
 				C240B8D31CC62F4400B79190 /* HomeHeaderOverlay@3x.png in Resources */,
 				C240B9B31CC62F4400B79190 /* Icon-Small@3x.png in Resources */,
-				8AFF085A1C90379000918582 /* SearchLocationAreaCell.xib in Resources */,
 				C240B9FF1CC62F4400B79190 /* SendCommentBtn@2x.png in Resources */,
 				C240B8931CC62F4400B79190 /* HowToRedeem3.gif in Resources */,
 				C240BA441CC62F4400B79190 /* CollectionInFeedOverlay@3x.png in Resources */,
@@ -6816,6 +6824,7 @@
 				C240BA151CC62F4400B79190 /* SaveDraftBtn@2x.png in Resources */,
 				C240B8AB1CC62F4400B79190 /* FilterSliderGrey@2x.png in Resources */,
 				C240BA5E1CC62F4400B79190 /* GreyShareIcon@3x.png in Resources */,
+				C2A910151CCDFF31005D517B /* SearchLocationCountryCell.xib in Resources */,
 				C240B8AA1CC62F4400B79190 /* FilterSliderBtn@3x.png in Resources */,
 				8A03487A1C154F9C0015E606 /* SeetiesMoreInfoViewController.xib in Resources */,
 				C240BB461CC62F4400B79190 /* BlackBack@2x.png in Resources */,
@@ -6869,6 +6878,7 @@
 				C240BB171CC62F4400B79190 /* SearchBarIcon@2x.png in Resources */,
 				C240BA2E1CC62F4400B79190 /* WebsiteLinkIcon@3x.png in Resources */,
 				C240BB181CC62F4400B79190 /* SearchBarIcon@3x.png in Resources */,
+				C2A910111CCDFF31005D517B /* PostsTableViewCell.xib in Resources */,
 				C240B88E1CC62F4400B79190 /* DealsVoucherExpireIcon@3x.png in Resources */,
 				C240BA561CC62F4400B79190 /* FeedSuggestionFollow@3x.png in Resources */,
 				C240BAEA1CC62F4400B79190 /* EditProfileSmiley@3x.png in Resources */,
@@ -6969,6 +6979,8 @@
 				C240B8EB1CC62F4400B79190 /* MeVoucherWalletIcon@2x.png in Resources */,
 				C240BAD41CC62F4400B79190 /* PostCommentIcon@3x.png in Resources */,
 				8AC8F74B1BDA414E00DEF14A /* EditCollectionTableViewCell.xib in Resources */,
+				C2A9101C1CCE0035005D517B /* SearchLocationResultCell.xib in Resources */,
+				8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */,
 				8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */,
 				C240B89E1CC62F4400B79190 /* DealsListingGoIcon@3x.png in Resources */,
 				8AF867A91C7ECD2700B0195D /* CT3_EnableLocationViewController.xib in Resources */,
@@ -7137,6 +7149,7 @@
 				8AD6C11A1B706CF30040437E /* poweredByFoursquare_gray.png in Resources */,
 				C240B9631CC62F4400B79190 /* TabBarMeIconThai-1@2x.png in Resources */,
 				8AFF08581C90379000918582 /* PostsTableViewCell.xib in Resources */,
+				8A84C5CF1C7FF448006A0D76 /* launch.png in Resources */,
 				C240B9341CC62F4400B79190 /* SeetishopVerifiedIcon@2x.png in Resources */,
 				C240BAE11CC62F4400B79190 /* AddPostBtn@2x.png in Resources */,
 				C240BABC1CC62F4400B79190 /* NotificationLike@3x.png in Resources */,
@@ -7148,6 +7161,7 @@
 				C240B8DE1CC62F4400B79190 /* CollectionFollowIcon@2x.png in Resources */,
 				C240BAE61CC62F4400B79190 /* CollectionPhotosOverlay@3x.png in Resources */,
 				C240EEEE1C9FB2D1002B4283 /* SearchLocationCountryCell.xib in Resources */,
+				0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */,
 				8A0F50CF1C0D52BB002B1E22 /* PhotoCollectionViewCell.xib in Resources */,
 				C240BAE51CC62F4400B79190 /* CollectionPhotosOverlay@2x.png in Resources */,
 				C240B94B1CC62F4400B79190 /* TabBarHomeIcon@2x.png in Resources */,
@@ -7268,7 +7282,6 @@
 				8AC8F72D1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.xib in Resources */,
 				C240B9B51CC62F4400B79190 /* Icon@2x.png in Resources */,
 				C240B97E1CC62F4400B79190 /* BgWalkHome4@3x.jpg in Resources */,
-				8AFF08621C90379000918582 /* SeetizensTableViewCell.xib in Resources */,
 				8AD6C0D91B706CF30040437E /* PTellUsYourCityViewController.xib in Resources */,
 				C240BAC81CC62F4400B79190 /* BlueTime@3x.png in Resources */,
 				8ABA7DED1C7421FC00FB41F4 /* NotificationTableViewCell.xib in Resources */,
@@ -7355,6 +7368,7 @@
 				8AF6FDEB1C5A289B005AAE5D /* SeDealsFeaturedTblCell.xib in Resources */,
 				C240BA4D1CC62F4400B79190 /* DealsAndRecommendationOverlay@2x.png in Resources */,
 				8A114CBD1BE73F5D006AE3F0 /* toolbarbg.png in Resources */,
+				C2A910171CCDFF31005D517B /* SeetizensTableViewCell.xib in Resources */,
 				C240BA461CC62F4400B79190 /* CollectSimplifiedChineseBtn@3x.png in Resources */,
 				C240BAF31CC62F4400B79190 /* NewCollectionsIcon@2x.png in Resources */,
 				C240B8901CC62F4400B79190 /* DealsVoucherExpireIconRed@3x.png in Resources */,
@@ -7620,9 +7634,9 @@
 				8A114CA31BE73F5D006AE3F0 /* PECropView.m in Sources */,
 				8A6CCEE91C1982D500BCD54E /* SeetiShopListingViewController.m in Sources */,
 				8AF030CB1C6063AB00817E2F /* AreaModel.m in Sources */,
-				8AFF08571C90379000918582 /* PostsTableViewCell.m in Sources */,
 				8AFA51C71C47B4AB00E7920E /* NewLandingViewController.m in Sources */,
 				8A4831AD1C85987C00CE95F2 /* ShopTableViewCell.m in Sources */,
+				C2A910141CCDFF31005D517B /* SearchLocationCountryCell.m in Sources */,
 				8A114CB61BE73F5D006AE3F0 /* BHExpandingTextView.m in Sources */,
 				8AC8F72A1BDA414E00DEF14A /* ProfileNoItemTableViewCell.m in Sources */,
 				8A6CCA391C17D14300BCD54E /* SeShopMoreInfoTableViewCell.m in Sources */,
@@ -7669,7 +7683,6 @@
 				C22702F11CBF89EE00F9FBF3 /* FilterAvailabilityCell.m in Sources */,
 				8A6BB4331BF0C338005AA1B3 /* MZMethodSwizzler.m in Sources */,
 				8A0F50D41C0EAD9A002B1E22 /* SeDealsTableViewCell.m in Sources */,
-				C240EEED1C9FB2D1002B4283 /* SearchLocationCountryCell.m in Sources */,
 				0B40B3FB1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.m in Sources */,
 				8AC8F72C1BDA414E00DEF14A /* ProfilePageCollectionFooterTableViewCell.m in Sources */,
 				8ABA7DF11C7422AA00FB41F4 /* CT3_NotificationViewController.m in Sources */,
@@ -7728,6 +7741,8 @@
 				8AD6C1111B706CF30040437E /* CHANGELOG.md in Sources */,
 				8AB276E01CC61FC700BD5EC8 /* UITabBar+Extension.m in Sources */,
 				8A114CAD1BE73F5D006AE3F0 /* FSVenue.m in Sources */,
+				C2A910161CCDFF31005D517B /* SeetizensTableViewCell.m in Sources */,
+				C2A9101B1CCE0035005D517B /* SearchLocationResultCell.m in Sources */,
 				8AB276CA1CC61FC700BD5EC8 /* NSMutableArray+MoveArray.m in Sources */,
 				8AB276C51CC61FC700BD5EC8 /* UIImage+Tint.m in Sources */,
 				8AF33A401C3F6DAF000A2021 /* Location.m in Sources */,
@@ -7807,6 +7822,7 @@
 				C22702F71CBF89EF00F9FBF3 /* FilterHeaderCollectionReusableView.m in Sources */,
 				C22703011CBF932D00F9FBF3 /* PostFilterSortCell.m in Sources */,
 				8AC8F7221BDA414E00DEF14A /* CollectionListingTabViewController.m in Sources */,
+				C2A910121CCDFF31005D517B /* SearchLocationAreaCell.m in Sources */,
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
 				8AEDBFAC1C2031BA000BD2FF /* RecommendationVenueModel.m in Sources */,
 				8ABA51F41C0FE7F000A3DC15 /* PhotoListViewController.m in Sources */,
@@ -7845,6 +7861,7 @@
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,
 				8A6CCEEE1C19837100BCD54E /* SeetiShopListTableViewCell.m in Sources */,
 				0B6AEA6A1C47B7CF009B7D33 /* ConnectionsTabViewController.m in Sources */,
+				C2A910101CCDFF31005D517B /* PostsTableViewCell.m in Sources */,
 				8A11513E1BE777FD006AE3F0 /* UIScrollView+VGParallaxHeader.m in Sources */,
 				8AEDBFB61C2031BA000BD2FF /* PostModel.m in Sources */,
 				8AF6FDEF1C5B08A3005AAE5D /* DealRedeemViewController.m in Sources */,
@@ -7871,7 +7888,6 @@
 				8AB276D51CC61FC700BD5EC8 /* UICollectionView+emptyState.m in Sources */,
 				8AD6BA631B705DF20040437E /* AppDelegate.m in Sources */,
 				8A0035371C4F5E7D002BD9A3 /* DealType_QuickBrowseTblCell.m in Sources */,
-				8AFF08611C90379000918582 /* SeetizensTableViewCell.m in Sources */,
 				8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */,
 				8AF030C51C5F6CE400817E2F /* PlaceModel.m in Sources */,
 				8AEDBFB71C2031BA000BD2FF /* PriceModel.m in Sources */,
@@ -7912,7 +7928,6 @@
 				8AFF08551C90379000918582 /* CT3_SearchListingViewController.m in Sources */,
 				8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */,
 				C294FD2C1C9819B500C455C8 /* FiltersModel.m in Sources */,
-				8AFF08591C90379000918582 /* SearchLocationAreaCell.m in Sources */,
 				8A114CD21BE73F5D006AE3F0 /* UrlDataClass.m in Sources */,
 				8AF6FDEA1C5A289B005AAE5D /* SeDealsFeaturedTblCell.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
@@ -8310,8 +8325,8 @@
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8337,9 +8352,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
 				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
-				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+
+};
 			name = Debug;
 		};
 		8AD6BA7F1B705DF30040437E /* Release */ = {
@@ -8378,8 +8394,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
+				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
-				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = Release;
 		};

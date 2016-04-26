@@ -8,10 +8,10 @@
 //
 
 /* Helper for casting weak objects to be used inside blocks or for assigning as delegates. */
-static id weakObject(id object) {
-    __block typeof(object) weakSelf = object;
-    return weakSelf;
-}
+//static id weakObject(id object) {
+//    __block typeof(object) weakSelf = object;
+//    return weakSelf;
+//}
 
 /*
  * Generic block constants for free usage over different classes.

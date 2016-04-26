@@ -649,7 +649,7 @@
         tagLbl.text = tag;
         [tagLbl setTextColor:[UIColor whiteColor]];
         [tagLbl setBackgroundColor:[UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.f alpha:1]];
-        [tagLbl setSideCurveBorder];
+        [Utils setRoundBorder:tagLbl color:[UIColor clearColor] borderRadius:tagLbl.frame.size.height/2];
         [self.ibTagContentView addSubview:tagLbl];
         xOrigin += tagLbl.frame.size.width + spacing;
     }
@@ -662,7 +662,7 @@
         tagLbl.text = tag;
         [tagLbl setTextColor:[UIColor whiteColor]];
         [tagLbl setBackgroundColor:[UIColor colorWithRed:253/255.0f green:175/255.0f blue:23/255.0f alpha:1]];
-        [tagLbl setSideCurveBorder];
+        [Utils setRoundBorder:tagLbl color:[UIColor clearColor] borderRadius:tagLbl.frame.size.height/2];
         [self.ibTagContentView addSubview:tagLbl];
         xOrigin += tagLbl.frame.size.width + spacing;
     }
@@ -675,7 +675,7 @@
         tagLbl.text = tag;
         [tagLbl setTextColor:[UIColor whiteColor]];
         [tagLbl setBackgroundColor:DEVICE_COLOR];
-        [tagLbl setSideCurveBorder];
+        [Utils setRoundBorder:tagLbl color:[UIColor clearColor] borderRadius:tagLbl.frame.size.height/2];
         [self.ibTagContentView addSubview:tagLbl];
         xOrigin += tagLbl.frame.size.width + spacing;
     }
@@ -688,7 +688,7 @@
         tagLbl.text = tag;
         [tagLbl setTextColor:[UIColor whiteColor]];
         [tagLbl setBackgroundColor:[UIColor colorWithRed:191/255.0f green:214/255.0f blue:48/255.0f alpha:1]];
-        [tagLbl setSideCurveBorder];
+        [Utils setRoundBorder:tagLbl color:[UIColor clearColor] borderRadius:tagLbl.frame.size.height/2];
         [self.ibTagContentView addSubview:tagLbl];
         xOrigin += tagLbl.frame.size.width + spacing;
     }

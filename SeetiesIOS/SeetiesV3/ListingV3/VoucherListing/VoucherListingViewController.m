@@ -174,7 +174,7 @@
 -(void)changeLanguage{
     self.ibWalletLbl.text = LocalisedString(@"Voucher Wallet");
     self.ibEmptyTitle.text = LocalisedString(@"Oops...");
-    self.ibEmptyDesc.text = LocalisedString(@"This feature is temporarily unavailable in your country.");
+    self.ibEmptyDesc.text = LocalisedString(@"There's nothing 'ere, yet.");
     self.ibLoadingTxt.text = [NSString stringWithFormat:@"%@\n%@", LocalisedString(@"Collect Now"), LocalisedString(@"Pay Later")];
 }
 

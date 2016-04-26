@@ -28,6 +28,8 @@ static const NSString *MAIN_VIEW_KEY = @"mainview";
 -(void)setupCustomEmptyView
 {
     self.customEmptyStateView = [EmptyStateView initializeCustomView];
+    self.customEmptyStateView.emptyStateDesc.text = LocalisedString(@"There's nothing 'ere, yet.");
+    self.customEmptyStateView.emptyStateTitle.text = LocalisedString(@"Oops...");
     self.backgroundView = self.customEmptyStateView;
 }
 

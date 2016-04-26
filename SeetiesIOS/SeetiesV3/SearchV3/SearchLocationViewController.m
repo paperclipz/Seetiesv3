@@ -138,6 +138,10 @@
     
     [self.ibAreaTable registerNib:[UINib nibWithNibName:@"SearchLocationAreaCell" bundle:nil] forCellReuseIdentifier:@"SearchLocationAreaCell"];
     [self.ibCountryTable registerNib:[UINib nibWithNibName:@"SearchLocationCountryCell" bundle:nil] forCellReuseIdentifier:@"SearchLocationCountryCell"];
+    [self.ibSearchTable registerNib:[UINib nibWithNibName:@"SearchLocationResultCell" bundle:nil] forCellReuseIdentifier:@"SearchLocationResultCell"];
+    
+    self.ibSearchTable.estimatedRowHeight = [SearchLocationResultCell getHeight];
+    self.ibSearchTable.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -260,16 +264,12 @@
         return areaCell;
     }
     else if (tableView == self.ibSearchTable){
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"SearchCell"];
-        }
+        SearchLocationResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchLocationResultCell"];
+        
         SearchLocationModel *slModel = [self.searchModel.predictions objectAtIndex:indexPath.row];
         NSDictionary *term = [slModel.terms objectAtIndex:0];
-        cell.textLabel.text = [term objectForKey:@"value"];
-        cell.textLabel.textColor = TEXT_GRAY_COLOR;
-        cell.detailTextLabel.text = [slModel longDescription];
-        cell.detailTextLabel.textColor = ONE_ZERO_TWO_COLOR;
+        cell.ibPlaceLbl.text = [term objectForKey:@"value"];
+        cell.ibAddressLbl.text = [slModel longDescription];
         return cell;
     }
     
@@ -336,7 +336,12 @@
     }
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == self.ibSearchTable) {
+        return UITableViewAutomaticDimension;
+    }
+    return 44;
+}
 
 -(void)processDataForGoogleLocation:(NSIndexPath*)indexPath
 {

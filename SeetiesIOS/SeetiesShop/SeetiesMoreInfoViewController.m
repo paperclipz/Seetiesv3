@@ -81,7 +81,7 @@
 // ----------------     MODEL   ----------------------//
 @property(nonatomic,strong)SeShopDetailModel* seShopModel;
 
-@property(nonatomic,strong)NSArray* arrayHourList;
+@property(nonatomic,strong)NSMutableArray* arrayHourList;
 @property(nonatomic,strong)NSArray* arrayFeatureAvailableList;
 @property(nonatomic,strong)NSArray* arrayFeatureUnavailableList;
 
@@ -178,7 +178,7 @@
     
     if ([self.seShopModel.location.opening_hours.period_text allKeys].count >0) {
         [self.arrViews addObject:self.ibHourTableView];
-        self.arrayHourList = [self.seShopModel.location.opening_hours.period_text allKeys];
+        [self formatOpeningHours];
         [self.ibHourTableView setHeight:((int)self.arrayHourList.count*[SeShopMoreInfoTableViewCell getHeight]) + 44 + 5];
         [self.ibHourTableView reloadData];
     }
@@ -234,7 +234,7 @@
     [self.ibMapView setRegion:self.region animated:YES];
       
     
-    self.lblNearbyDesc.text = self.seShopModel.nearby_public_transport;
+    self.lblNearbyDesc.text = [Utils isStringNull:self.seShopModel.nearby_public_transport]? @"-" : self.seShopModel.nearby_public_transport;
     [self updateConstraintForLabel:self.lblAddressDesc labelHeightConst:constlblAddressDesc_Height superView:self.ibAddressView lasSubView:self.lblNearbyDesc];
 }
 
@@ -300,6 +300,55 @@
         return view;
     }
     
+}
+
+-(void)formatOpeningHours{
+    if (self.seShopModel.location.opening_hours.period_text) {
+        self.arrayHourList = [[NSMutableArray alloc] init];
+        for (int i=0 ; i<7; i++) {
+            NSString *day;
+            switch (i) {
+                case 0:
+                    day = @"Sunday";
+                    break;
+                    
+                case 1:
+                    day = @"Monday";
+                    break;
+                    
+                case 2:
+                    day = @"Tuesday";
+                    break;
+                    
+                case 3:
+                    day = @"Wednesday";
+                    break;
+                    
+                case 4:
+                    day = @"Thursday";
+                    break;
+                    
+                case 5:
+                    day = @"Friday";
+                    break;
+                    
+                case 6:
+                    day = @"Saturday";
+                    break;
+                    
+                default:
+                    day = @"";
+                    break;
+            }
+            
+            NSString *time = [self.seShopModel.location.opening_hours.period_text objectForKey:day];
+            if (time) {
+                NSDictionary *period = @{@"day" : LocalisedString(day),
+                                         @"time" : time};
+                [self.arrayHourList addObject:period];
+            }
+        }
+    }
 }
 
 #pragma mark - Declaration
@@ -415,9 +464,9 @@
     if (tableView == self.ibHourTableView) {
         SeShopMoreInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeShopMoreInfoTableViewCell"];
         
-        NSString* day = self.arrayHourList[indexPath.row];
-        cell.lblDay.text = LocalisedString(day);
-        cell.lblOpening.text = [self.seShopModel.location.opening_hours.period_text objectForKey:day];
+        NSDictionary* period = self.arrayHourList[indexPath.row];
+        cell.lblDay.text = LocalisedString(period[@"day"]);
+        cell.lblOpening.text = LocalisedString(period[@"time"]);
         
         return cell;
 
@@ -456,13 +505,13 @@
             [self getTranslation];
         }else{
             self.lblBestKnown.text = self.strTranslationBestKnown;
-            self.lblNearbyDesc.text = self.strTranslationNearbyDesc;
+            self.lblNearbyDesc.text = [Utils isStringNull:self.strTranslationNearbyDesc]? @"-" : self.strTranslationNearbyDesc;
         }
       //  [self getTranslation];
         BTranslation = YES;
     }else{
         self.lblBestKnown.text = self.seShopModel.recommended_information;
-        self.lblNearbyDesc.text = self.seShopModel.nearby_public_transport;
+        self.lblNearbyDesc.text = [Utils isStringNull:self.seShopModel.nearby_public_transport]? @"-" : self.seShopModel.nearby_public_transport;;
         BTranslation = NO;
     }
     
