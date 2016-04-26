@@ -69,7 +69,15 @@
         NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
         NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
         
-        self.lblVersion.text = [NSString stringWithFormat:@"app Version : %@ app Build : %@",version,build];
+
+        if ([Utils isAppProductionBuild]) {
+            self.lblVersion.text = [NSString stringWithFormat:@"app Version : %@ app Build : %@",version,build];
+
+        }
+        else{
+            self.lblVersion.text = [NSString stringWithFormat:@"app Version : %@ app Build : %@ DEV",version,build];
+
+        }
 
     }
     @catch (NSException *exception) {

@@ -251,7 +251,8 @@
                            @"post_id" : self.newsFeedTypeModel.newsFeedData.post_id,
                            };
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostLikeAPost param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostLikeAPost parameter:dict appendString:appendString success:^(id object) {
       
         NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
         
@@ -260,7 +261,7 @@
         [DataManager setPostLikes:self.newsFeedTypeModel.newsFeedData.post_id isLiked:isLiked];
         [self refreshData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }

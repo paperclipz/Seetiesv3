@@ -1078,8 +1078,8 @@
     
     if (!colModel.following) {
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
-            
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
+
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -1093,7 +1093,7 @@
                 SLog(@"error");
             }
             [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
     }
@@ -1139,7 +1139,8 @@
     [LoadingManager show];
     if (!isFollowing) {
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             
@@ -1147,7 +1148,7 @@
             self.userProfileModel.following = following;
             [self setFollowButtonSelected:following button:self.btnFollow];
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
         

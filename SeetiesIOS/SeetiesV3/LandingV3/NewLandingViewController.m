@@ -347,7 +347,7 @@
                            @"token":[Utils getAppToken]
                            };
     
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserInfo parameter:dict appendString:nil success:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserInfo parameter:dict appendString:appendString success:^(id object) {
         
         [Utils reloadProfileView];
         

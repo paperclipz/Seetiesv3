@@ -1180,10 +1180,13 @@
 
 #pragma mark - RequestServer
 -(void)requestServerForDealInfo{
+    
     NSDictionary *dict = @{@"token":[Utils getAppToken],
                            @"deal_id": self.dealModel.dID};
     
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetDealInfo parameter:dict appendString:nil success:^(id object) {
+    NSString* appendString = self.dealModel.dID;
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetDealInfo parameter:dict appendString:appendString success:^(id object) {
 
         DealModel *model = [[ConnectionManager dataManager] dealModel];
         self.dealModel = model;
@@ -1201,7 +1204,9 @@
     NSDictionary *dict = @{@"token":[Utils getAppToken],
                            @"voucher_id": self.dealModel.voucher_info.voucher_id};
     
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetVoucherInfo parameter:dict appendString:nil success:^(id object) {
+    NSString* appendString = self.dealModel.voucher_info.voucher_id;
+
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetVoucherInfo parameter:dict appendString:appendString success:^(id object) {
 
         DealModel *model = [[ConnectionManager dataManager] dealModel];
         self.dealModel = model;

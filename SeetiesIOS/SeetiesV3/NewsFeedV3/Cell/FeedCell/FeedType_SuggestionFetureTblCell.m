@@ -108,7 +108,7 @@
     isRequestingServer = YES;
     if (!model.following) {
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             
@@ -117,7 +117,7 @@
             isRequestingServer = NO;
             [self.ibCollectionView reloadData];
 
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             isRequestingServer = NO;
 
         }];

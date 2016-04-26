@@ -535,7 +535,6 @@
     @try {
       
         
-        
         dict = @{@"keyword" : self.keyword,
                                @"token" : [Utils getAppToken],
                                @"offset" : @(self.seShopsModel.offset + self.seShopsModel.limit),
@@ -563,7 +562,7 @@
     
     [self.ibTableView showLoading];
     
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeSearchShops parameter:dict appendString:nil success:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeSearchShops parameter:finalDict appendString:nil success:^(id object) {
 
 
         SeShopsModel* model = [[ConnectionManager dataManager]seShopListingModel];
@@ -636,7 +635,7 @@
     isMiddleOfCallingServer = YES;
     [self.ibTableView showLoading];
 
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeSearchPosts parameter:dict appendString:appendString success:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeSearchPosts parameter:finalDict appendString:appendString success:^(id object) {
 
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
         [self.arrList addObjectsFromArray:self.userProfilePostModel.recommendations.posts];
@@ -743,7 +742,7 @@
 
     [self.ibTableView showLoading];
 
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeSearchCollections parameter:dict appendString:nil success:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeSearchCollections parameter:finalDict appendString:nil success:^(id object) {
 
         
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
@@ -783,8 +782,8 @@
     if (![DataManager isUserFollowed:colModel.userUID isFollowing:colModel.following]) {
         
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
-            
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
+
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
             colModel.following = following;
@@ -793,7 +792,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
             
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
         
@@ -840,7 +839,7 @@
     if (![DataManager isUserFollowed:colModel.user_info.uid isFollowing:colModel.user_info.following]) {
         
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -850,7 +849,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
             
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
         
@@ -922,7 +921,7 @@
     if (![DataManager isCollectionFollowed:colModel.collection_id isFollowing:colModel.following]) {
         
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -933,7 +932,7 @@
             
             [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
         

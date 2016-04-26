@@ -8,13 +8,11 @@
 
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
-#import <StoreKit/StoreKit.h>
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 
-@interface ConnectionManager()<SKStoreProductViewControllerDelegate>
+@interface ConnectionManager()
 @property (strong, nonatomic) DataManager *dataManager;
-@property(nonatomic)SKStoreProductViewController* skStoreProductViewController;
 @property(strong,nonatomic)AFHTTPSessionManager* manager;
 
 @end
@@ -81,6 +79,13 @@
  
     if (!_manager) {
         _manager = [AFHTTPSessionManager manager];
+    
+        _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        _manager.securityPolicy.allowInvalidCertificates = YES;
+        _manager.securityPolicy.validatesDomainName = NO;
+        _manager.responseSerializer =[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
+        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
+
     }
     
     return _manager;
@@ -130,6 +135,7 @@
                         failure(error);
                     }
      
+                    [self showErrorHandling:operation Error:error];
                     [LoadingManager hide];
                 }];
             }
@@ -156,7 +162,8 @@
                     if (failure) {
                         failure(error);
                     }
-                    
+                    [self showErrorHandling:operation Error:error];
+
                     [LoadingManager hide];
                 }];
 
@@ -181,7 +188,8 @@
                     if (failure) {
                         failure(error);
                     }
-                    
+                    [self showErrorHandling:operation Error:error];
+
                     [LoadingManager hide];
                 }];
             }
@@ -191,6 +199,26 @@
             {
                 strNetworkType = @"PUT";
                 
+                [self.manager PUT:fullURL parameters:parameter success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    
+                    NSLog(@"JSON: %@", responseObject);
+                    
+                    [self storeServerData:responseObject requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+                    
+                    [LoadingManager hide];
+
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                   
+                    NSLog(@"Error: %@", error);
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                    [self showErrorHandling:operation Error:error];
+
+                    [LoadingManager hide];
+
+                }];
             }
                 break;
                 
@@ -214,8 +242,10 @@
                     if (failure) {
                         failure(error);
                     }
-                    
+                    [self showErrorHandling:operation Error:error];
+
                     [LoadingManager hide];
+                    
                 }];
 
                 strNetworkType = @"CUSTOM_GET";
@@ -244,6 +274,8 @@
                         failure(error);
                     }
                     
+                    [self showErrorHandling:operation Error:error];
+
                     [LoadingManager hide];
                 }];
 
@@ -1306,72 +1338,54 @@
 
 #pragma mark  - ERROR handling
 
-//-(void)showErrorHandling:(AFHTTPRequestOperation*)operation Error:(NSError*)error
-//{
-//    
-//    if([operation.response statusCode] == 503)
-//    {
-//        // Use the appropriate key to get the error data
-//        NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-//        
-//        // Serialize the data into JSON
-//        NSDictionary *serializedData = [NSJSONSerialization JSONObjectWithData: errorData options:kNilOptions error:nil];
-//        
-//        // Print out the error JSON body
-//        NSLog(@"AFNetworking error response body: %@", serializedData);
-//        
-//        NSString* code = serializedData[@"error"];
-//        NSString* message = serializedData[@"message"];
-//
-//        if ([code isEqualToString:@"seeties.api.under_maintenance"]) {
-//            
-//            [Utils showLogin];
-//
-//            [UIAlertView showWithTitle:LocalisedString(@"system") message:message cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-//                
-//                
-//            }];
-//        }
-//        else if ([code isEqualToString:@"seeties.apiversion.message"]) {
-//         
-//            
-//            [Utils showLogin];
-//            [UIAlertView showWithTitle:LocalisedString(@"system") message:message cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-//                
-//                if (buttonIndex == 0) {//cancel
-//                    
-//                }else if(buttonIndex == 1)//route to app store
-//                {
-//                    _skStoreProductViewController = nil;
-//                    
-//                    
-//                    [Utils presentView:self.skStoreProductViewController Completion:^{
-//                        
-//                    }];
-//                    
-//                   // }];
-//                    
-//                }
-//                
-//            }];
-//        }
-//    }
-//    
-//}
+-(void)showErrorHandling:(NSURLSessionTask*)task Error:(NSError*)error
+{
+    NSHTTPURLResponse* response = (NSHTTPURLResponse*)task.response;
+    
+    if ([response statusCode] == 503)
+    {
+        // Use the appropriate key to get the error data
+        NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+        
+        // Serialize the data into JSON
+        NSDictionary *serializedData = [NSJSONSerialization JSONObjectWithData: errorData options:kNilOptions error:nil];
+        
+        // Print out the error JSON body
+        NSLog(@"AFNetworking error response body: %@", serializedData);
+        
+        NSString* code = serializedData[@"error"];
+        NSString* message = serializedData[@"message"];
 
--(SKStoreProductViewController *)skStoreProductViewController{
-    if (!_skStoreProductViewController) {
-        _skStoreProductViewController = [SKStoreProductViewController new];
-        _skStoreProductViewController.delegate = self;
-        NSDictionary *parameters = @{ SKStoreProductParameterITunesItemIdentifier:[NSNumber numberWithInteger:ITUNES_ITEM_IDENTIFIER] };
-        [_skStoreProductViewController loadProductWithParameters:parameters completionBlock:nil];
+        if ([code isEqualToString:@"seeties.api.under_maintenance"]) {
+            
+            [Utils showLogin];
+
+            [UIAlertView showWithTitle:LocalisedString(@"system") message:message cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                
+                
+            }];
+        }
+        else if ([code isEqualToString:@"seeties.apiversion.message"]) {
+         
+            
+            [Utils showLogin];
+            [UIAlertView showWithTitle:LocalisedString(@"system") message:message cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                
+                if (buttonIndex == 0) {//cancel
+                    
+                }else if(buttonIndex == 1)//route to app store
+                {
+                    
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/my/app/seeties-explore-best-places/id956400552?mt=8"]];
+                    
+                   // }];
+                    
+                }
+                
+            }];
+        }
     }
-    return _skStoreProductViewController;
-}
-
-- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
-    [viewController dismissViewControllerAnimated:YES completion:nil];
-    [LoadingManager hide];
+    
 }
 
 @end

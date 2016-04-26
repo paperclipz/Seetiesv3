@@ -147,6 +147,7 @@
 		8A11D3911CC886950023A7ED /* UIActivityViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D38A1CC886950023A7ED /* UIActivityViewController+Extension.m */; };
 		8A11D3951CC88DC80023A7ED /* AutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D3941CC88DC80023A7ED /* AutoCoding.m */; };
 		8A11D3981CC88EDD0023A7ED /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D3971CC88EDD0023A7ED /* UIImage+PECrop.m */; };
+		8A2E23431CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E23421CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		8A31CA771C9BA60B00CC5FB9 /* SuggestedPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */; };
 		8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A34094D1B8AD267009B66C3 /* NYXImagesHelper.m */; };
 		8A3409D31B8B0DE6009B66C3 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3409D21B8B0DE6009B66C3 /* ImageIO.framework */; };
@@ -1578,6 +1579,8 @@
 		8A11D3941CC88DC80023A7ED /* AutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCoding.m; sourceTree = "<group>"; };
 		8A11D3961CC88EDD0023A7ED /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
 		8A11D3971CC88EDD0023A7ED /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
+		8A2E23411CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		8A2E23421CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		8A31CA751C9BA60B00CC5FB9 /* SuggestedPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestedPlaceModel.h; path = SeetiesIOS/MODELS/Location/SuggestedPlaceModel.h; sourceTree = SOURCE_ROOT; };
 		8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuggestedPlaceModel.m; path = SeetiesIOS/MODELS/Location/SuggestedPlaceModel.m; sourceTree = SOURCE_ROOT; };
 		8A34094C1B8AD267009B66C3 /* NYXImagesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYXImagesHelper.h; sourceTree = "<group>"; };
@@ -3524,6 +3527,8 @@
 				8A114C1F1BE73F5C006AE3F0 /* NSAttributedString+DVSTracking.m */,
 				8A114C221BE73F5C006AE3F0 /* TPKeyboardAvoidingScrollView.h */,
 				8A114C231BE73F5C006AE3F0 /* TPKeyboardAvoidingScrollView.m */,
+				8A2E23411CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				8A2E23421CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
 				8A114C241BE73F5C006AE3F0 /* UIInputToolbar */,
 			);
 			path = Library;
@@ -7764,6 +7769,7 @@
 				8A114C991BE73F5D006AE3F0 /* JTSImageViewController.m in Sources */,
 				8A11D3911CC886950023A7ED /* UIActivityViewController+Extension.m in Sources */,
 				8A11D38F1CC886950023A7ED /* ShareFriendViewController.m in Sources */,
+				8A2E23431CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				8AD6C0D41B706CF30040437E /* PSearchLocationViewController.m in Sources */,
 				8A114C791BE73F5D006AE3F0 /* Utils.m in Sources */,
 				8AC8F7341BDA414E00DEF14A /* ProfilePagePostTableViewCell.m in Sources */,

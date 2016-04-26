@@ -141,7 +141,7 @@
     if (![DataManager isCollectionFollowed:colModel.collection_id isFollowing:colModel.following]) {
         
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -152,7 +152,7 @@
             
             [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
         
