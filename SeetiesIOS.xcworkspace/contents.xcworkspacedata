@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SeetiesIOS.xcodeproj">
+      location = "group:/Users/paperclipz/Documents/iOSDev/Seeties_NEW/Seeties.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
