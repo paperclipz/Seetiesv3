@@ -448,7 +448,6 @@
 		8AF999151C3A2ADD000314E4 /* PagingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999141C3A2ADD000314E4 /* PagingModel.m */; };
 		8AF999191C3A2C76000314E4 /* PaginationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999181C3A2C76000314E4 /* PaginationModel.m */; };
 		8AF999531C3CC5E6000314E4 /* FacebookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF999521C3CC5E6000314E4 /* FacebookModel.m */; };
-		8AFA51C61C47B4AB00E7920E /* feed.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA514D1C47B4AB00E7920E /* feed.json */; };
 		8AFA51C71C47B4AB00E7920E /* NewLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA51501C47B4AB00E7920E /* NewLandingViewController.m */; };
 		8AFA51C81C47B4AB00E7920E /* NewLandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFA51511C47B4AB00E7920E /* NewLandingViewController.xib */; };
 		8AFA51CF1C47B4AB00E7920E /* GeneralFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFA515E1C47B4AB00E7920E /* GeneralFilterViewController.m */; };
@@ -1889,7 +1888,7 @@
 		8AD50D721C645CC600C9D952 /* HomeLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLocationModel.m; sourceTree = "<group>"; };
 		8AD50D741C645D2100C9D952 /* AddressComponentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressComponentModel.h; sourceTree = "<group>"; };
 		8AD50D751C645D2100C9D952 /* AddressComponentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressComponentModel.m; sourceTree = "<group>"; };
-		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeetiesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = SeetiesIOS.app; path = Seeties.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8AD6BA611B705DF20040437E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2104,7 +2103,6 @@
 		8AF999511C3CC5E6000314E4 /* FacebookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookModel.h; sourceTree = "<group>"; };
 		8AF999521C3CC5E6000314E4 /* FacebookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookModel.m; sourceTree = "<group>"; };
 		8AF9996F1C3E6569000314E4 /* CoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreModel.h; sourceTree = "<group>"; };
-		8AFA514D1C47B4AB00E7920E /* feed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = feed.json; sourceTree = "<group>"; };
 		8AFA514F1C47B4AB00E7920E /* NewLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewLandingViewController.h; sourceTree = "<group>"; };
 		8AFA51501C47B4AB00E7920E /* NewLandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewLandingViewController.m; sourceTree = "<group>"; };
 		8AFA51511C47B4AB00E7920E /* NewLandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewLandingViewController.xib; sourceTree = "<group>"; };
@@ -4995,7 +4993,6 @@
 				8AF6FDE01C5A276E005AAE5D /* DealV3 */,
 				C2C157111C574B5E007608FC /* Others */,
 				0B6AEA7D1C48E4EB009B7D33 /* MoreV3 */,
-				8AFA514C1C47B4AB00E7920E /* Json */,
 				8AFA514E1C47B4AB00E7920E /* LandingV3 */,
 				8AFA51521C47B4AB00E7920E /* ListingV3 */,
 				8AFA517D1C47B4AB00E7920E /* LoginV3 */,
@@ -5004,14 +5001,6 @@
 				8AFA51B51C47B4AB00E7920E /* PreProfileV3 */,
 			);
 			path = SeetiesV3;
-			sourceTree = "<group>";
-		};
-		8AFA514C1C47B4AB00E7920E /* Json */ = {
-			isa = PBXGroup;
-			children = (
-				8AFA514D1C47B4AB00E7920E /* feed.json */,
-			);
-			path = Json;
 			sourceTree = "<group>";
 		};
 		8AFA514E1C47B4AB00E7920E /* LandingV3 */ = {
@@ -6894,7 +6883,6 @@
 				C240BA071CC62F4400B79190 /* RearrangeIcon@2x.png in Resources */,
 				C240B8811CC62F4400B79190 /* DealsDealEndIconRed@2x.png in Resources */,
 				C240BAEB1CC62F4400B79190 /* FollowBtn@2x.png in Resources */,
-				8AFA51C61C47B4AB00E7920E /* feed.json in Resources */,
 				C240B9D01CC62F4400B79190 /* FollowCollectionBahasaIndoIcon@3x.png in Resources */,
 				8AF6FDF01C5B08A3005AAE5D /* DealRedeemViewController.xib in Resources */,
 				C240B9DC1CC62F4400B79190 /* FollowingCollectionIcon@3x.png in Resources */,
@@ -6980,7 +6968,6 @@
 				C240BAD41CC62F4400B79190 /* PostCommentIcon@3x.png in Resources */,
 				8AC8F74B1BDA414E00DEF14A /* EditCollectionTableViewCell.xib in Resources */,
 				C2A9101C1CCE0035005D517B /* SearchLocationResultCell.xib in Resources */,
-				8A3757DD1B85B610009DB7D4 /* AddNewPlaceSubView.xib in Resources */,
 				8AC8F63C1BDA309D00DEF14A /* Default-568h@2x.png in Resources */,
 				C240B89E1CC62F4400B79190 /* DealsListingGoIcon@3x.png in Resources */,
 				8AF867A91C7ECD2700B0195D /* CT3_EnableLocationViewController.xib in Resources */,
@@ -7148,8 +7135,6 @@
 				C240B8951CC62F4400B79190 /* SwipeToRedeemDirectionIconBlue@2x.png in Resources */,
 				8AD6C11A1B706CF30040437E /* poweredByFoursquare_gray.png in Resources */,
 				C240B9631CC62F4400B79190 /* TabBarMeIconThai-1@2x.png in Resources */,
-				8AFF08581C90379000918582 /* PostsTableViewCell.xib in Resources */,
-				8A84C5CF1C7FF448006A0D76 /* launch.png in Resources */,
 				C240B9341CC62F4400B79190 /* SeetishopVerifiedIcon@2x.png in Resources */,
 				C240BAE11CC62F4400B79190 /* AddPostBtn@2x.png in Resources */,
 				C240BABC1CC62F4400B79190 /* NotificationLike@3x.png in Resources */,
@@ -7160,8 +7145,6 @@
 				C22CAA571CCA1E470038B246 /* SeetishopFeatureNo@2x.png in Resources */,
 				C240B8DE1CC62F4400B79190 /* CollectionFollowIcon@2x.png in Resources */,
 				C240BAE61CC62F4400B79190 /* CollectionPhotosOverlay@3x.png in Resources */,
-				C240EEEE1C9FB2D1002B4283 /* SearchLocationCountryCell.xib in Resources */,
-				0B3FF1101BB131A20014AF2E /* NearbyViewController.xib in Resources */,
 				8A0F50CF1C0D52BB002B1E22 /* PhotoCollectionViewCell.xib in Resources */,
 				C240BAE51CC62F4400B79190 /* CollectionPhotosOverlay@2x.png in Resources */,
 				C240B94B1CC62F4400B79190 /* TabBarHomeIcon@2x.png in Resources */,
@@ -8349,13 +8332,11 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
-				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
-};
+				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+			};
 			name = Debug;
 		};
 		8AD6BA7F1B705DF30040437E /* Release */ = {
@@ -8392,9 +8373,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
-				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
 			};
 			name = Release;
