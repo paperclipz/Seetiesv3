@@ -14,7 +14,6 @@
 @property (nonatomic) DealsModel *dealsModel;
 @property (nonatomic) DealCollectionModel *dealCollectionModel;
 @property (nonatomic) HomeLocationModel *locationModel;
-@property (nonatomic) NSArray<QuickBrowseModel> *quickBrowseModels;
 @property (nonatomic) FiltersModel *filtersModel;
 
 @property (nonatomic) NSMutableArray<DealModel> *dealsArray;
@@ -102,6 +101,18 @@
                 NSDictionary *collectionDict = self.dealCollectionModel.content[0];
                 self.ibTitle.text = collectionDict[@"title"];
             }
+            if (!self.locationModel) {
+                self.ibAltTitle.hidden = YES;
+                self.ibTitle.hidden = YES;
+                self.ibUserLocationLbl.hidden = YES;
+                self.ibDropDownIcon.hidden = YES;
+                self.ibFilterBtn.hidden = YES;
+                self.ibSearchBtn.hidden = YES;
+                self.ibLocationBtn.enabled = NO;
+                self.ibSearchBtn.enabled = NO;
+                self.ibFilterBtn.enabled = NO;
+                self.ibFooterHeightConstraint.constant = 0;
+            }
             [self.dealManager removeAllCollectedDeals];
             [self requestServerForDealListing];
             break;
@@ -157,7 +168,7 @@
     if (![Utils isGuestMode]) {
         [self RequestServerForVouchersCount];
         
-        if (self.dealViewType == 5) {
+        if (self.dealViewType == 5 || (self.dealViewType == 2 && !self.locationModel)) {
             self.ibFooterHeightConstraint.constant = 0;
         }
         else{
@@ -224,7 +235,8 @@
     catCategory.categoryName = LocalisedString(@"Deals by Category");
     catCategory.filterCategoryType = FilterTypeCat;
     
-    for (QuickBrowseModel *quickBrowse in self.quickBrowseModels) {
+    HomeModel *homeModel = [[DataManager Instance] homeModel];
+    for (QuickBrowseModel *quickBrowse in homeModel.quick_browse) {
         FilterModel *filter = [[FilterModel alloc] init];
         filter.name = quickBrowse.name;
         filter.filterId = quickBrowse.category_group_id;
@@ -353,19 +365,17 @@
     self.dealViewType = 1;
 }
 
--(void)initWithLocation:(HomeLocationModel*)locationModel quickBrowseModel:(NSArray<QuickBrowseModel>*)quickBrowseModel{
+-(void)initWithLocation:(HomeLocationModel*)locationModel{
     _locationModel = locationModel;
-    _quickBrowseModels = quickBrowseModel;
     self.dealViewType = 3;
     [self formatFiltersModel];
 }
 
--(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel quickBrowseModel:(NSArray<QuickBrowseModel>*)quickBrowseModel
+-(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel
 {
     self.dealViewType = 2;
     self.dealCollectionModel = model;
     _locationModel = locationModel;
-    _quickBrowseModels = quickBrowseModel;
     [self formatFiltersModel];
 }
 

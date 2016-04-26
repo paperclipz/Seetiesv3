@@ -140,7 +140,7 @@ static NSCache* heightCache = nil;
 
 - (IBAction)btnGrabNowClicked:(id)sender {
     _voucherListingViewController = nil;
-    [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+    [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel];
     [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
     
 }
@@ -655,7 +655,7 @@ static NSCache* heightCache = nil;
                 cell.didSelectDealCollectionBlock = ^(DealCollectionModel* model)
                 {
                     _voucherListingViewController = nil;
-                    [self.voucherListingViewController initData:model withLocation:weakSelf.currentHomeLocationModel quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+                    [self.voucherListingViewController initData:model withLocation:weakSelf.currentHomeLocationModel];
                    
                     [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
                         
@@ -1044,7 +1044,7 @@ static NSCache* heightCache = nil;
             case DealType_SuperDeal:
             {
                 _voucherListingViewController = nil;
-                [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+                [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel];
                 [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
                     
                 }];

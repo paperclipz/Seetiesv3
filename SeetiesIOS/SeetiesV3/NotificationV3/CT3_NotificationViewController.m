@@ -497,7 +497,7 @@
         cModel.deal_collection_id = dealCollectionID;
         
         _voucherListingViewController = nil;
-       // self.voucherListingViewController initData:cModel withLocation:<#(HomeLocationModel *)#> quickBrowseModel:<#(QuickBrowseModel *)#>
+        [self.voucherListingViewController initData:cModel withLocation:nil];
         [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
     }
 }
