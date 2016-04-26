@@ -16,6 +16,9 @@
 #import "CollectionViewController.h"
 #import "CollectionListingSinglePageViewController.h"
 #import "DealDetailsViewController.h"
+#import "CTWebViewController.h"
+#import "VoucherListingViewController.h"
+
 
 @interface CT3_NotificationViewController () 
 @property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
@@ -34,6 +37,8 @@
 @property (nonatomic, strong) CollectionViewController *collectionViewController;
 @property(nonatomic)CollectionListingSinglePageViewController* collectionListingVC;
 @property(nonatomic)DealDetailsViewController* dealDetailsViewController;
+@property(nonatomic)CTWebViewController* ctWebViewController;
+@property(nonatomic)VoucherListingViewController* voucherListingViewController;
 
 @end
 
@@ -73,6 +78,24 @@
 }
 
 #pragma mark - Declaration
+
+-(VoucherListingViewController*)voucherListingViewController
+{
+    if (!_voucherListingViewController) {
+        _voucherListingViewController = [VoucherListingViewController new];
+    }
+    
+    return _voucherListingViewController;
+}
+
+-(CTWebViewController*)ctWebViewController
+{
+    if (!_ctWebViewController) {
+        _ctWebViewController = [CTWebViewController new];
+    }
+    
+    return _ctWebViewController;
+}
 
 -(DealDetailsViewController*)dealDetailsViewController
 {
@@ -150,7 +173,6 @@
     }
     return _cAPSPageMenu;
 }
-
 
 -(NotificationTableViewController*)followingTableViewController
 {
@@ -269,7 +291,10 @@
                
             }
             else{
+                
+                
                 [self showCollectionView:model.collectionInfo userID:model.collectionInfo.user_info.uid];
+                
 
             }
 
@@ -293,6 +318,36 @@
                 [self showPostDetailView:model.post_id];
 
             }
+            else if ([model.action isEqualToString:@"collection"]) {
+                
+                CollectionModel* cModel = [CollectionModel new];
+                cModel.collection_id = model.collection_id;
+                [self showCollectionView:cModel userID:model.uid];
+            }
+            else if ([model.action isEqualToString:@"seetishop"]) {
+                
+                SeShopDetailModel* sModel = [SeShopDetailModel new];
+                sModel.seetishop_id = model.seetishop_id;
+                [self showSeetiShopView:sModel];
+            }
+            else if ([model.action isEqualToString:@"url"]) {
+                
+                [self showWebViewWithURL:model.url];
+            }
+            
+            else if ([model.action isEqualToString:@"deal"]) {
+                
+                DealModel* dModel = [DealModel new];
+                dModel.dID = model.deal_id;
+                [self showDealDetailView:dModel];
+            }
+            else if ([model.action isEqualToString:@"deal_collection"]) {
+                
+             
+                [self showVoucherListingView:model.deal_collection_id];
+            }
+            
+            
         }
             break;
 
@@ -420,6 +475,28 @@
         
         [self.dealDetailsViewController setupView];
     }];
+}
+
+-(void)showWebViewWithURL:(NSString*)url
+{
+    if (![Utils isStringNull:url]) {
+        
+        [self.navigationController pushViewController:self.ctWebViewController animated:YES];
+    }
+    
+}
+
+-(void)showVoucherListingView:(NSString*)dealCollectionID
+{
+    if (![Utils isStringNull:dealCollectionID]) {
+        
+        DealCollectionModel* cModel = [DealCollectionModel new];
+        cModel.deal_collection_id = dealCollectionID;
+        
+        _voucherListingViewController = nil;
+       // self.voucherListingViewController initData:cModel withLocation:<#(HomeLocationModel *)#> quickBrowseModel:<#(QuickBrowseModel *)#>
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
 }
 
 @end

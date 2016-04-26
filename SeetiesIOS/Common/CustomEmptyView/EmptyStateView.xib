@@ -116,6 +116,8 @@
                 <constraint firstItem="qdf-ag-GoF" firstAttribute="leading" secondItem="D3W-fW-bwZ" secondAttribute="leading" id="p8A-ZG-ZNf"/>
             </constraints>
             <connections>
+                <outlet property="emptyStateDesc" destination="0TH-Tt-bZF" id="2Ce-tM-Fcz"/>
+                <outlet property="emptyStateTitle" destination="RAr-0a-ng6" id="nPU-8q-VYN"/>
                 <outlet property="loadingImage" destination="Y8Y-1p-yr1" id="aUI-L0-QlV"/>
                 <outlet property="loadingView" destination="wY7-Hj-gK9" id="tng-cZ-Ilx"/>
                 <outlet property="noResultView" destination="qdf-ag-GoF" id="Mqn-sg-VYU"/>

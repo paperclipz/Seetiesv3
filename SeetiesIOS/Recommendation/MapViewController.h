@@ -12,7 +12,6 @@ typedef void (^ViewDidDismissBlock)(MKCoordinateRegion object);
 @interface MapViewController : CommonViewController<MKMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *ibMapView;
-@property (strong, nonatomic) IBOutlet UILabel *lblTitle;
 @property (strong, nonatomic) CLLocation *location;
 
 @property(nonatomic,copy)ViewDidDismissBlock viewDidDismissBlock;

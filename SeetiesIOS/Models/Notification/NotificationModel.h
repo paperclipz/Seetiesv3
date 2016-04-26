@@ -36,4 +36,14 @@
 //for collection Notification
 @property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
 
+//for type seeties || action collection
+@property(nonatomic,strong)NSString* collection_id;
+//for type seeties || action seetishop
+@property(nonatomic,strong)NSString* seetishop_id;
+//for type seeties || action url
+@property(nonatomic,strong)NSString* url;
+//for type seeties || action deal ID
+@property(nonatomic,strong)NSString* deal_id;
+//for type seeties || action deal collection ID
+@property(nonatomic,strong)NSString* deal_collection_id;
 @end
