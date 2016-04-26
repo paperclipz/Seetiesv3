@@ -1888,7 +1888,7 @@
 		8AD50D721C645CC600C9D952 /* HomeLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeLocationModel.m; sourceTree = "<group>"; };
 		8AD50D741C645D2100C9D952 /* AddressComponentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressComponentModel.h; sourceTree = "<group>"; };
 		8AD50D751C645D2100C9D952 /* AddressComponentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressComponentModel.m; sourceTree = "<group>"; };
-		8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = SeetiesIOS.app; path = Seeties.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AD6BA5A1B705DF20040437E /* Seeties.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seeties.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AD6BA5E1B705DF20040437E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AD6BA5F1B705DF20040437E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8AD6BA611B705DF20040437E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -4526,7 +4526,7 @@
 		8AD6BA5B1B705DF20040437E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */,
+				8AD6BA5A1B705DF20040437E /* Seeties.app */,
 				8AD6BA731B705DF30040437E /* Seeties.xctest */,
 			);
 			name = Products;
@@ -6494,7 +6494,7 @@
 			);
 			name = Seeties;
 			productName = SeetiesIOS;
-			productReference = 8AD6BA5A1B705DF20040437E /* SeetiesIOS.app */;
+			productReference = 8AD6BA5A1B705DF20040437E /* Seeties.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8AD6BA721B705DF30040437E /* SeetiesTests */ = {
