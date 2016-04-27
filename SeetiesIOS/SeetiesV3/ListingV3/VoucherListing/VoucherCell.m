@@ -20,7 +20,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibDealTypeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibDiscountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTitleLbl;
+
+@property (weak, nonatomic) IBOutlet UIView *ibNormalShopView;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherShopLbl;
+@property (weak, nonatomic) IBOutlet UIView *ibReferralShopView;
+@property (weak, nonatomic) IBOutlet UILabel *ibVoucherReferralShopLbl;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *ibVoucherReferralCityLbl;
+
 @property (weak, nonatomic) IBOutlet UIButton *ibVoucherCollectBtn;
 @property (weak, nonatomic) IBOutlet UIView *ibVoucherBlackOverylay;
 @property (weak, nonatomic) IBOutlet UIImageView *ibOverlayIcon;
@@ -49,8 +55,6 @@
 
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
-//    [self.ibInnerContentView prefix_addLowerBorder:OUTLINE_COLOR];
-//    [self.ibInnerContentView prefix_addUpperBorder:OUTLINE_COLOR];
     
     if (![Utils isStringNull:self.dealModel.cover_title]) {
         self.ibVoucherTitleLbl.text = self.dealModel.cover_title;
@@ -72,17 +76,31 @@
     SeShopDetailModel *shopModel = self.dealModel.shops[0];
     NSString *shopName = shopModel.name;
     NSString *shopAddress = shopModel.location.display_address;
-    if ([Utils isStringNull:shopName]) {
-        self.ibVoucherShopLbl.text = shopAddress;
-    }
-    else if ([Utils isStringNull:shopAddress]){
-        self.ibVoucherShopLbl.text = shopName;
-    }
-    else if ([Utils isStringNull:shopName] && [Utils isStringNull:shopAddress]){
-        self.ibVoucherShopLbl.text = @"";
+    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
+        self.ibReferralShopView.hidden = NO;
+        self.ibNormalShopView.hidden = YES;
+        
+        self.ibVoucherReferralShopLbl.text = shopName;
+        self.ibVoucherReferralCityLbl.text = [shopAddress uppercaseString];   //To be changed to city
+        self.ibVoucherReferralCityLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+        [Utils setRoundBorder:self.ibVoucherReferralCityLbl color:[UIColor clearColor] borderRadius:self.ibVoucherReferralCityLbl.frame.size.height/2];
     }
     else{
-        self.ibVoucherShopLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
+        self.ibReferralShopView.hidden = YES;
+        self.ibNormalShopView.hidden = NO;
+        
+        if ([Utils isStringNull:shopName]) {
+            self.ibVoucherShopLbl.text = shopAddress;
+        }
+        else if ([Utils isStringNull:shopAddress]){
+            self.ibVoucherShopLbl.text = shopName;
+        }
+        else if ([Utils isStringNull:shopName] && [Utils isStringNull:shopAddress]){
+            self.ibVoucherShopLbl.text = @"";
+        }
+        else{
+            self.ibVoucherShopLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
+        }
     }
     
     [self setDealType];

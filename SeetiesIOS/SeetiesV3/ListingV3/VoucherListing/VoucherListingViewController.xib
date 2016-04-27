@@ -22,11 +22,16 @@
                 <outlet property="ibLoadingTxt" destination="NwF-0e-OOg" id="35d-UJ-Ojl"/>
                 <outlet property="ibLoadingView" destination="k55-Vo-utO" id="OGP-m8-ebQ"/>
                 <outlet property="ibLocationBtn" destination="PgP-Mz-cA7" id="kmI-ZH-o8g"/>
+                <outlet property="ibReferralCountLbl" destination="o0o-bu-oij" id="qgD-qV-kLa"/>
+                <outlet property="ibReferralFooter" destination="fcz-qT-pXK" id="jqp-00-BlX"/>
+                <outlet property="ibReferralHeightConstraint" destination="aEJ-6R-BqB" id="wo8-xi-Vh6"/>
+                <outlet property="ibReferralLbl" destination="4MA-G3-06c" id="2RI-6R-Fh2"/>
                 <outlet property="ibSearchBtn" destination="msM-T5-Qek" id="81K-Aq-B9g"/>
                 <outlet property="ibTitle" destination="Qp8-Jp-ABW" id="Ywm-Q2-kzG"/>
                 <outlet property="ibUserLocationLbl" destination="KB9-ER-GDk" id="7Jm-Qn-RFC"/>
                 <outlet property="ibVoucherTable" destination="vEe-3n-SBv" id="VUM-tK-L0O"/>
                 <outlet property="ibWalletCountLbl" destination="TL0-PQ-q1H" id="Mq3-KF-PrZ"/>
+                <outlet property="ibWalletFooter" destination="Vzi-NU-OdU" id="eOs-04-mpc"/>
                 <outlet property="ibWalletLbl" destination="EaS-vd-HRF" id="ZzG-Ce-Leb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -267,6 +272,52 @@
                         </mask>
                     </variation>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcz-qT-pXK" userLabel="referral footer">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0o-bu-oij" userLabel="referral voucher count">
+                            <rect key="frame" x="304" y="10" width="0.0" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="2dw-nJ-zuU"/>
+                                <constraint firstAttribute="height" constant="30" id="YLh-OR-LhY"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="mmo-Rc-P9L"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="2dw-nJ-zuU"/>
+                                    <exclude reference="mmo-Rc-P9L"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4MA-G3-06c" userLabel="referral footer lbl">
+                            <rect key="frame" x="16" y="15" width="0.0" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="m20-Zx-iiu"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="4MA-G3-06c" firstAttribute="leading" secondItem="fcz-qT-pXK" secondAttribute="leading" constant="16" id="LG0-kd-DAO"/>
+                        <constraint firstAttribute="trailing" secondItem="o0o-bu-oij" secondAttribute="trailing" constant="16" id="Tmf-dY-tn3"/>
+                        <constraint firstItem="o0o-bu-oij" firstAttribute="centerY" secondItem="fcz-qT-pXK" secondAttribute="centerY" id="WPf-UU-k1J"/>
+                        <constraint firstItem="4MA-G3-06c" firstAttribute="leading" secondItem="fcz-qT-pXK" secondAttribute="leading" constant="99" id="X0n-wP-bze"/>
+                        <constraint firstAttribute="height" constant="50" id="aEJ-6R-BqB"/>
+                        <constraint firstItem="o0o-bu-oij" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4MA-G3-06c" secondAttribute="trailing" constant="5" id="c7s-QX-W36"/>
+                        <constraint firstItem="4MA-G3-06c" firstAttribute="centerY" secondItem="fcz-qT-pXK" secondAttribute="centerY" id="uyT-pk-pSA"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="X0n-wP-bze"/>
+                        </mask>
+                    </variation>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="190" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vEe-3n-SBv" userLabel="voucher table">
                     <rect key="frame" x="0.0" y="64" width="320" height="454"/>
                     <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
@@ -278,7 +329,9 @@
             </subviews>
             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="fcz-qT-pXK" secondAttribute="bottom" id="0nD-tH-0UU"/>
                 <constraint firstAttribute="trailing" secondItem="I2e-bV-XI7" secondAttribute="trailing" id="7hH-vh-pib"/>
+                <constraint firstItem="fcz-qT-pXK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="G8Q-BF-WrS"/>
                 <constraint firstItem="Vzi-NU-OdU" firstAttribute="top" secondItem="vEe-3n-SBv" secondAttribute="bottom" id="KdW-hY-GQd"/>
                 <constraint firstItem="vEe-3n-SBv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PME-c0-d57"/>
                 <constraint firstAttribute="trailing" secondItem="vEe-3n-SBv" secondAttribute="trailing" id="RQh-AV-14l"/>
@@ -286,6 +339,7 @@
                 <constraint firstItem="I2e-bV-XI7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dm2-83-5kh"/>
                 <constraint firstItem="Vzi-NU-OdU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gJx-Ty-QW7"/>
                 <constraint firstAttribute="bottom" secondItem="Vzi-NU-OdU" secondAttribute="bottom" id="i4Y-HN-lZ1"/>
+                <constraint firstAttribute="trailing" secondItem="fcz-qT-pXK" secondAttribute="trailing" id="ne6-Ta-way"/>
                 <constraint firstAttribute="trailing" secondItem="Vzi-NU-OdU" secondAttribute="trailing" id="o99-QE-wjT"/>
                 <constraint firstAttribute="bottom" secondItem="vEe-3n-SBv" secondAttribute="bottom" id="ru1-JH-vur"/>
                 <constraint firstItem="I2e-bV-XI7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zqX-WU-6wZ"/>

@@ -32,9 +32,16 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibDropDownIcon;
 @property (weak, nonatomic) IBOutlet UIButton *ibLocationBtn;
 @property (weak, nonatomic) IBOutlet UITableView *ibVoucherTable;
+
+@property (weak, nonatomic) IBOutlet UIView *ibWalletFooter;
 @property (weak, nonatomic) IBOutlet UILabel *ibWalletCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibWalletLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibFooterHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *ibReferralFooter;
+@property (weak, nonatomic) IBOutlet UILabel *ibReferralLbl;
+@property (weak, nonatomic) IBOutlet UILabel *ibReferralCountLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibReferralHeightConstraint;
+
 
 @property (strong, nonatomic) IBOutlet UIView *ibEmptyStateView;
 @property (weak, nonatomic) IBOutlet UIView *ibEmptyView;;
