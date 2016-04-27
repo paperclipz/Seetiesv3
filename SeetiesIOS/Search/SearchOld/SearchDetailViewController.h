@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "UrlDataClass.h"
-#import "GAITrackedViewController.h"
+//#import "GAITrackedViewController.h"
 #import "ProfileViewController.h"
 @class ProfileViewController;
-@interface SearchDetailViewController : GAITrackedViewController<UIScrollViewDelegate,UITextFieldDelegate>
+@interface SearchDetailViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate>
 
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 -(void)GetSearchKeyword:(NSString *)Keyword Getlat:(NSString *)lat GetLong:(NSString *)Long GetLocationName:(NSString *)LocationName GetCurrentLat:(NSString *)CurrentLat GetCurrentLong:(NSString *)CurrentLong;

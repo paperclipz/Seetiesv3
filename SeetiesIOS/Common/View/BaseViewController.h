@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
+//#import "GAITrackedViewController.h"
 
 
-@interface BaseViewController : GAITrackedViewController
+@interface BaseViewController : UIViewController
 
 -(void)reloadData;
 //-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated;

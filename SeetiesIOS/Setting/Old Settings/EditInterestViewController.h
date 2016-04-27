@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
+//#import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
 #import "LLARingSpinnerView.h"
-@interface EditInterestViewController : GAITrackedViewController<UIScrollViewDelegate>{
+@interface EditInterestViewController : UIViewController<UIScrollViewDelegate>{
     
     UrlDataClass *DataUrl;
     NSMutableData *webData;

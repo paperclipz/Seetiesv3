@@ -85,7 +85,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Search Page";
+ //   self.screenName = @"IOS Search Page";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetLocation = [defaults objectForKey:@"SearchPage_Location_Name"];
     GetLat = [defaults objectForKey:@"SearchPage_Location_Lat"];

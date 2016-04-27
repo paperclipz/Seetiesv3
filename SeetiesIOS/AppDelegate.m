@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "GAI.h"
+//#import "GAI.h"
 #import "LanguageManager.h"
 #import "Locale.h"
 #import <Parse/Parse.h>
@@ -39,18 +39,18 @@
                                  callbackURL:@"testapp123://foursquare"];
   
 
-    if (!IS_SIMULATOR) {
-        [GMSServices provideAPIKey:GOOGLE_API_KEY];
-        //Optional: automatically send uncaught exceptions to Google Analytics.
-        [GAI sharedInstance].trackUncaughtExceptions = YES;
-        // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-        [GAI sharedInstance].dispatchInterval = 30;
-        // Optional: set Logger to VERBOSE for debug information.
-        [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-        // Initialize tracker. Replace with your tracking ID.
-        [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
-        
-    }
+//    if (!IS_SIMULATOR) {
+//        [GMSServices provideAPIKey:GOOGLE_API_KEY];
+//        //Optional: automatically send uncaught exceptions to Google Analytics.
+//        [GAI sharedInstance].trackUncaughtExceptions = YES;
+//        // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+//        [GAI sharedInstance].dispatchInterval = 30;
+//        // Optional: set Logger to VERBOSE for debug information.
+//        [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+//        // Initialize tracker. Replace with your tracking ID.
+//        [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+//        
+//    }
    
     [[SearchManager Instance]startSearchGPSLocation];
     [[SearchManager Instance]startGetWifiLocation];

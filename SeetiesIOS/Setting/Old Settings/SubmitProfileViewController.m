@@ -52,7 +52,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Submit Image (Image/Cover) Page";
+   // self.screenName = @"IOS Submit Image (Image/Cover) Page";
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -35,7 +35,6 @@
 		0BBFE08D1B9FCC00004B17E9 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE0861B9FCC00004B17E9 /* EditProfileViewController.xib */; };
 		0BBFE08E1B9FCC00004B17E9 /* SubmitProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFE0881B9FCC00004B17E9 /* SubmitProfileViewController.m */; };
 		0BBFE08F1B9FCC00004B17E9 /* SubmitProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBFE0891B9FCC00004B17E9 /* SubmitProfileViewController.xib */; };
-		0BC789A61BF4A31C00D126A3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC789A51BF4A31C00D126A3 /* AdSupport.framework */; };
 		0BC8A0E91C0D4AD500EB8548 /* SeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC8A0E81C0D4AD500EB8548 /* SeCollectionView.m */; };
 		0BC8A0EB1C0D4CB000EB8548 /* SeCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC8A0EA1C0D4CB000EB8548 /* SeCollectionView.xib */; };
 		0BC8A0EF1C0D585F00EB8548 /* SeNearbySeetishop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC8A0EE1C0D585F00EB8548 /* SeNearbySeetishop.m */; };
@@ -120,8 +119,6 @@
 		8A114CAB1BE73F5D006AE3F0 /* UIScrollView+CRScrollIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114C041BE73F5C006AE3F0 /* UIScrollView+CRScrollIndicator.m */; };
 		8A114CAC1BE73F5D006AE3F0 /* FSConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114C061BE73F5C006AE3F0 /* FSConverter.m */; };
 		8A114CAD1BE73F5D006AE3F0 /* FSVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114C081BE73F5C006AE3F0 /* FSVenue.m */; };
-		8A114CAE1BE73F5D006AE3F0 /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A114C141BE73F5C006AE3F0 /* libAdIdAccess.a */; };
-		8A114CAF1BE73F5D006AE3F0 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A114C151BE73F5C006AE3F0 /* libGoogleAnalyticsServices.a */; };
 		8A114CB01BE73F5D006AE3F0 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114C181BE73F5C006AE3F0 /* LeveyTabBar.m */; };
 		8A114CB11BE73F5D006AE3F0 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114C1A1BE73F5C006AE3F0 /* LeveyTabBarController.m */; };
 		8A114CB21BE73F5D006AE3F0 /* LLARingSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114C1D1BE73F5C006AE3F0 /* LLARingSpinnerView.m */; };
@@ -472,8 +469,6 @@
 		8AD6C1191B706CF30040437E /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE1C1B706CF30040437E /* pin@2x.png */; };
 		8AD6C11A1B706CF30040437E /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE1D1B706CF30040437E /* poweredByFoursquare_gray.png */; };
 		8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE1E1B706CF30040437E /* poweredByFoursquare_gray@2x.png */; };
-		8AD6C12B1B706DFF0040437E /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C1291B706DFF0040437E /* libAdIdAccess.a */; };
-		8AD6C12C1B706DFF0040437E /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C12A1B706DFF0040437E /* libGoogleAnalyticsServices.a */; };
 		8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22C1B7070A60040437E /* FacebookSDK.framework */; };
 		8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */; };
 		8AD6C2341B7070A60040437E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */; };
@@ -1645,18 +1640,6 @@
 		8A114C061BE73F5C006AE3F0 /* FSConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConverter.m; sourceTree = "<group>"; };
 		8A114C071BE73F5C006AE3F0 /* FSVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSVenue.h; sourceTree = "<group>"; };
 		8A114C081BE73F5C006AE3F0 /* FSVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSVenue.m; sourceTree = "<group>"; };
-		8A114C0A1BE73F5C006AE3F0 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		8A114C0B1BE73F5C006AE3F0 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		8A114C0C1BE73F5C006AE3F0 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
-		8A114C0D1BE73F5C006AE3F0 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
-		8A114C0E1BE73F5C006AE3F0 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
-		8A114C0F1BE73F5C006AE3F0 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
-		8A114C101BE73F5C006AE3F0 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		8A114C111BE73F5C006AE3F0 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		8A114C121BE73F5C006AE3F0 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		8A114C131BE73F5C006AE3F0 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		8A114C141BE73F5C006AE3F0 /* libAdIdAccess.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdIdAccess.a; sourceTree = "<group>"; };
-		8A114C151BE73F5C006AE3F0 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		8A114C171BE73F5C006AE3F0 /* LeveyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBar.h; sourceTree = "<group>"; };
 		8A114C181BE73F5C006AE3F0 /* LeveyTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBar.m; sourceTree = "<group>"; };
 		8A114C191BE73F5C006AE3F0 /* LeveyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBarController.h; sourceTree = "<group>"; };
@@ -2240,18 +2223,6 @@
 		8AD6BE1C1B706CF30040437E /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
 		8AD6BE1D1B706CF30040437E /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
 		8AD6BE1E1B706CF30040437E /* poweredByFoursquare_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poweredByFoursquare_gray@2x.png"; sourceTree = "<group>"; };
-		8AD6C11F1B706DFF0040437E /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		8AD6C1201B706DFF0040437E /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		8AD6C1211B706DFF0040437E /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
-		8AD6C1221B706DFF0040437E /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
-		8AD6C1231B706DFF0040437E /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
-		8AD6C1241B706DFF0040437E /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
-		8AD6C1251B706DFF0040437E /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		8AD6C1261B706DFF0040437E /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		8AD6C1271B706DFF0040437E /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		8AD6C1281B706DFF0040437E /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		8AD6C1291B706DFF0040437E /* libAdIdAccess.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdIdAccess.a; sourceTree = "<group>"; };
-		8AD6C12A1B706DFF0040437E /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		8AD6C22C1B7070A60040437E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = SeetiesIOS/framework/FacebookSDK.framework; sourceTree = "<group>"; };
 		8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = SeetiesIOS/framework/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = SeetiesIOS/framework/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -3354,7 +3325,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BC789A61BF4A31C00D126A3 /* AdSupport.framework in Frameworks */,
 				8A3409D31B8B0DE6009B66C3 /* ImageIO.framework in Frameworks */,
 				8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */,
 				8AD6C8301B737AAB0040437E /* SystemConfiguration.framework in Frameworks */,
@@ -3373,13 +3343,9 @@
 				8AD6C2B31B7079B40040437E /* Accounts.framework in Frameworks */,
 				8AD6C2B11B7079AF0040437E /* Social.framework in Frameworks */,
 				8AD6C2C11B707A470040437E /* ParseUI.framework in Frameworks */,
-				8A114CAE1BE73F5D006AE3F0 /* libAdIdAccess.a in Frameworks */,
-				8AD6C12B1B706DFF0040437E /* libAdIdAccess.a in Frameworks */,
 				8AD6C2341B7070A60040437E /* FBSDKShareKit.framework in Frameworks */,
-				8A114CAF1BE73F5D006AE3F0 /* libGoogleAnalyticsServices.a in Frameworks */,
 				8AD6C2BF1B707A470040437E /* ParseCrashReporting.framework in Frameworks */,
 				8AD6C2BE1B707A470040437E /* Parse.framework in Frameworks */,
-				8AD6C12C1B706DFF0040437E /* libGoogleAnalyticsServices.a in Frameworks */,
 				8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */,
 				8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */,
 				C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */,
@@ -3425,7 +3391,6 @@
 				8AD6C22C1B7070A60040437E /* FacebookSDK.framework */,
 				8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */,
 				8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */,
-				8AD6C11E1B706DFF0040437E /* GoogleAnalyticsServicesiOS_3.09 */,
 				0D9C815292A4ED6F2408E5E5 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -3900,7 +3865,6 @@
 				8A114C061BE73F5C006AE3F0 /* FSConverter.m */,
 				8A114C071BE73F5C006AE3F0 /* FSVenue.h */,
 				8A114C081BE73F5C006AE3F0 /* FSVenue.m */,
-				8A114C091BE73F5C006AE3F0 /* GoogleAnalyticsServicesiOS_3.09 */,
 				8A114C161BE73F5C006AE3F0 /* LeveyTabBar */,
 				8A114C1B1BE73F5C006AE3F0 /* LLARingSpinnerView */,
 				8A114C1E1BE73F5C006AE3F0 /* NSAttributedString+DVSTracking.h */,
@@ -3927,25 +3891,6 @@
 				8A114C041BE73F5C006AE3F0 /* UIScrollView+CRScrollIndicator.m */,
 			);
 			path = CRMotionView;
-			sourceTree = "<group>";
-		};
-		8A114C091BE73F5C006AE3F0 /* GoogleAnalyticsServicesiOS_3.09 */ = {
-			isa = PBXGroup;
-			children = (
-				8A114C0A1BE73F5C006AE3F0 /* GAI.h */,
-				8A114C0B1BE73F5C006AE3F0 /* GAIDictionaryBuilder.h */,
-				8A114C0C1BE73F5C006AE3F0 /* GAIEcommerceFields.h */,
-				8A114C0D1BE73F5C006AE3F0 /* GAIEcommerceProduct.h */,
-				8A114C0E1BE73F5C006AE3F0 /* GAIEcommerceProductAction.h */,
-				8A114C0F1BE73F5C006AE3F0 /* GAIEcommercePromotion.h */,
-				8A114C101BE73F5C006AE3F0 /* GAIFields.h */,
-				8A114C111BE73F5C006AE3F0 /* GAILogger.h */,
-				8A114C121BE73F5C006AE3F0 /* GAITrackedViewController.h */,
-				8A114C131BE73F5C006AE3F0 /* GAITracker.h */,
-				8A114C141BE73F5C006AE3F0 /* libAdIdAccess.a */,
-				8A114C151BE73F5C006AE3F0 /* libGoogleAnalyticsServices.a */,
-			);
-			path = GoogleAnalyticsServicesiOS_3.09;
 			sourceTree = "<group>";
 		};
 		8A114C161BE73F5C006AE3F0 /* LeveyTabBar */ = {
@@ -5377,26 +5322,6 @@
 				8AD6BE1E1B706CF30040437E /* poweredByFoursquare_gray@2x.png */,
 			);
 			path = FourSquare;
-			sourceTree = "<group>";
-		};
-		8AD6C11E1B706DFF0040437E /* GoogleAnalyticsServicesiOS_3.09 */ = {
-			isa = PBXGroup;
-			children = (
-				8AD6C11F1B706DFF0040437E /* GAI.h */,
-				8AD6C1201B706DFF0040437E /* GAIDictionaryBuilder.h */,
-				8AD6C1211B706DFF0040437E /* GAIEcommerceFields.h */,
-				8AD6C1221B706DFF0040437E /* GAIEcommerceProduct.h */,
-				8AD6C1231B706DFF0040437E /* GAIEcommerceProductAction.h */,
-				8AD6C1241B706DFF0040437E /* GAIEcommercePromotion.h */,
-				8AD6C1251B706DFF0040437E /* GAIFields.h */,
-				8AD6C1261B706DFF0040437E /* GAILogger.h */,
-				8AD6C1271B706DFF0040437E /* GAITrackedViewController.h */,
-				8AD6C1281B706DFF0040437E /* GAITracker.h */,
-				8AD6C1291B706DFF0040437E /* libAdIdAccess.a */,
-				8AD6C12A1B706DFF0040437E /* libGoogleAnalyticsServices.a */,
-			);
-			name = GoogleAnalyticsServicesiOS_3.09;
-			path = SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09;
 			sourceTree = "<group>";
 		};
 		8AD6C8771B74A7CD0040437E /* Recommendation */ = {

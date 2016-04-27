@@ -141,7 +141,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Provisioning Select Your Interest";
+   // self.screenName = @"IOS Provisioning Select Your Interest";
     ShowTitle.text = NSLocalizedString(@"Provisioning_PSelectYourInterestView_Title",nil);
     [ContiuneBtn setTitle:NSLocalizedString(@"Provisioning_PTellUsYourCityView_8",nil) forState:UIControlStateNormal];
     ContiuneBtn.enabled = NO;

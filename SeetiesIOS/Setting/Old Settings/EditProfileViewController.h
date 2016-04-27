@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
+//#import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "LLARingSpinnerView.h"
-@interface EditProfileViewController : GAITrackedViewController<UIScrollViewDelegate>{
+@interface EditProfileViewController : UIViewController<UIScrollViewDelegate>{
     IBOutlet TPKeyboardAvoidingScrollView *MainScroll;
 
     IBOutlet UITextField *ShowName;

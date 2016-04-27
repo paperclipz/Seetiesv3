@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
+//#import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
-@interface SearchViewV2 : GAITrackedViewController<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
+@interface SearchViewV2 : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
     IBOutlet UILabel *TitleLabel;

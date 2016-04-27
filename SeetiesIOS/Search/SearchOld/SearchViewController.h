@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
-@interface SearchViewController : GAITrackedViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>{
+//#import "GAITrackedViewController.h"
+@interface SearchViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>{
 
     IBOutlet UITableView *tblview;
     IBOutlet UITextField *SearchText;

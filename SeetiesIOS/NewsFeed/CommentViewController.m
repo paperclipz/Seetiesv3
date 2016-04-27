@@ -211,7 +211,7 @@
 {
     [super viewWillAppear:animated];
     /* Listen for keyboard */
-    self.screenName = @"IOS Comment Page";
+  //  self.screenName = @"IOS Comment Page";
     [IQKeyboardManager sharedManager].enableAutoToolbar = false;
 }
 

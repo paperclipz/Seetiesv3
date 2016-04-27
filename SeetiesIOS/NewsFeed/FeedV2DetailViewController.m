@@ -404,7 +404,7 @@
     //self.leveyTabBarController.tabBar.frame = CGRectMake(0, 300, 320, 100);
     
     // self.screenName = @"IOS Feed Detail Page";
-    self.screenName = @"IOS Feed Detail View V2";
+  //  self.screenName = @"IOS Feed Detail View V2";
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);

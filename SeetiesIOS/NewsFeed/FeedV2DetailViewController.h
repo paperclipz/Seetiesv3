@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AsyncImageView.h"
 #import "UrlDataClass.h"
-#import "GAITrackedViewController.h"
+//#import "GAITrackedViewController.h"
 #import "LLARingSpinnerView.h"
 #import "EditPostViewController.h"
 #import "ProfileViewController.h"
