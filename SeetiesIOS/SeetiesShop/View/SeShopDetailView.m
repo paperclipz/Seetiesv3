@@ -11,15 +11,16 @@
 #import "SeShopDetailTableViewCell.h"
 #import "PhotoCollectionViewCell.h"
 #import "NSDictionary+Extra.h"
+#import "SeDealsFeaturedTblCell.h"
+#import "DealHeaderView.h"
 
-#define Info_Footer_HEader_Height 54+54;
-#define MapMainViewHeight 210;
-#define MapMainViewHeightWithoutDescription 150;
+#define MapMainViewHeight 203;
 
 @interface SeShopDetailView()<UITableViewDataSource,UITableViewDelegate, UICollectionViewDataSource,UICollectionViewDelegate,MKMapViewDelegate>
 {
-   
-    __weak IBOutlet NSLayoutConstraint *constTitleDescriptionHeight;
+
+    __weak IBOutlet NSLayoutConstraint *constDealTableTop;
+    __weak IBOutlet NSLayoutConstraint *constDealHeight;
     __weak IBOutlet NSLayoutConstraint *constantMapMainView;
     __weak IBOutlet NSLayoutConstraint *photoHeightConstraint;
     __weak IBOutlet UILabel *lblPhotoCount;
@@ -39,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnMoreInfo;
 @property (weak, nonatomic) IBOutlet UILabel *lblNearbyPubTransport;
 @property (weak, nonatomic) IBOutlet UIButton *btnSeeAll;
+@property (weak, nonatomic) IBOutlet UILabel *lblImageCount;
 
 //================== Detail =======================//
 @property (weak, nonatomic) IBOutlet UILabel *lblShopCategory;
@@ -58,13 +60,13 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property (weak, nonatomic) IBOutlet UIButton *ibBtnInformationDetails;
 @property (weak, nonatomic) IBOutlet UIView *ibPhotoView;
-@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 //@property (weak, nonatomic) IBOutlet UILabel *lblNearbyTransport;
 @property (weak, nonatomic) IBOutlet UILabel *lblDistance;
 
 //================== MAP =======================//
 
 @property (weak, nonatomic) IBOutlet UILabel *lblNearbyPublicTransport;
+@property (weak, nonatomic) IBOutlet UITableView *ibDealTableView;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;
 @property(nonatomic,assign)MKCoordinateRegion region;
@@ -86,9 +88,23 @@
 @property(nonatomic,copy)NSArray* arrListTranslated;
 @property(nonatomic,copy)NSArray* arrListNonTranslated;
 
+@property(nonatomic)DealsModel* dealsModel;
+
 @end
 
 @implementation SeShopDetailView
+- (IBAction)btnImageClicked:(id)sender {
+    
+    if (self.didSelectMorePhotosBlock) {
+        self.didSelectMorePhotosBlock(self.seShopPhotoModel);
+    }
+}
+- (IBAction)btnDealSeeAllClicked:(id)sender {
+    
+    if (self.didSelectDealSeeAllBlock) {
+        self.didSelectDealSeeAllBlock();
+    }
+}
 
 - (IBAction)btnMapDirectionClicked:(id)sender {
     
@@ -146,8 +162,11 @@
     tgr.numberOfTapsRequired = 1;
     tgr.numberOfTouchesRequired = 1;
     [self.ibMapView addGestureRecognizer:tgr];
-   
+    [self.btnSeeAll setSquareBorder];
+    [self.btnMoreInfo setSquareBorder];
+
     [self changeLanguage];
+    
 }
 
 -(void)initTableViewDelegate
@@ -155,6 +174,10 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[SeShopDetailTableViewCell class] forCellReuseIdentifier:@"SeShopDetailTableViewCell"];
+    
+    self.ibDealTableView.delegate = self;
+    self.ibDealTableView.dataSource = self;
+    [self.ibDealTableView registerClass:[SeDealsFeaturedTblCell class] forCellReuseIdentifier:@"SeDealsFeaturedTblCell"];
 }
 
 -(void)initCollectionViewDelegate
@@ -167,11 +190,12 @@
 
 -(void)setupViewWithData
 {
- 
+    self.ibImgProfileBackground.image = [UIImage imageNamed:@"SSDefaultCoverPhoto.png"];
+
     [UIView animateWithDuration:1.0 animations:^{
         self.ibMapInfoView.alpha = 1;
     }];
-    
+
     if (self.seShopModel.wallpapers.count >0) {
         NSDictionary* wallpaperDict = self.seShopModel.wallpapers[0];
         
@@ -186,8 +210,9 @@
         }];
     }
     
-    if (self.seShopModel.profile_photo_images) {
-        [self.ibImgProfile sd_setImageCroppedWithURL:[NSURL URLWithString:self.seShopModel.profile_photo_images[@"m"]] completed:^(UIImage *image){
+    if (self.seShopModel.profile_photo) {
+        
+        [self.ibImgProfile sd_setImageCroppedWithURL:[NSURL URLWithString:self.seShopModel.profile_photo[@"picture"]] completed:^(UIImage *image){
            
             if (!image) {
                 self.ibImgProfile.image = [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
@@ -195,8 +220,9 @@
         }];
     }
     
-    float constant =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + Info_Footer_HEader_Height;
-    tableviewConstraint.constant = constant;
+    // 10 for bottom padding 54 each for top and bottom bar
+    float constantHeight =  (self.arrayList.count*[SeShopDetailTableViewCell getHeight]) + 52;
+    tableviewConstraint.constant = constantHeight;
     
     if (self.arrayList.count == 0) {
         tableviewConstraint.constant = 0;
@@ -210,31 +236,31 @@
 
     }
 
-    if ([Utils isStringNull:self.seShopModel.nearby_public_transport]) {
-        MapMainViewHeightWithoutDescription
-        constantMapMainView.constant = MapMainViewHeightWithoutDescription;
-    }
-    else{
-        constantMapMainView.constant = MapMainViewHeight;
+    if (self.dealsModel.total_count == 0) {
+        constDealHeight.constant = 0;
+        constDealTableTop.constant = 0;
 
     }
+    else{
+        constDealTableTop.constant = 10;
+
+        if (self.dealsModel.total_count > 3) {
+            constDealHeight.constant = 52.0f + 52.0f + [SeDealsFeaturedTblCell getHeight]* self.dealsModel.arrDeals.count;
+
+        }
+        else{
+            constDealHeight.constant = 52.0f + [SeDealsFeaturedTblCell getHeight]* self.dealsModel.arrDeals.count;
+
+        }
+
+    }
+    constantMapMainView.constant = MapMainViewHeight;
     [self setNeedsUpdateConstraints];
     [self layoutIfNeeded];
     [self setHeight:self.ibMapMainView.frame.size.height + self.ibMapMainView.frame.origin.y + VIEW_PADDING];
     
     self.lblShopName.text = self.seShopModel.name;
-    
-  
-    if ([Utils isStringNull:self.seShopModel.category.title]) {
-        constTitleDescriptionHeight.constant = 0;
-        
-    }
-    else {
-        self.lblShopCategory.text = self.seShopModel.category.title;
-        constTitleDescriptionHeight.constant = 21;
-
-    }
-
+    self.lblShopCategory.text = self.seShopModel.category.title;
     
     self.lblAddress.text = self.seShopModel.location.formatted_address;
     self.lblNearbyPublicTransport.text = self.seShopModel.nearby_public_transport;
@@ -243,8 +269,10 @@
        
     lblPhotoCount.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Photos"),self.seShopPhotoModel.total_photos];
 
+    self.lblImageCount.text = [NSString stringWithFormat:@"%d",self.seShopPhotoModel.total_photos];
+
     
-    self.ibImageVerified.hidden = [Utils stringIsNilOrEmpty:self.seShopModel.seetishop_id];
+    self.ibImageVerified.hidden = !self.seShopModel.is_collaborate;
     
     if (self.seShopModel.location.opening_hours.open_now) {
         self.lblOpenNow.textColor = UIColorFromRGB(156, 204, 101, 1);
@@ -256,20 +284,22 @@
 
     }
     
-    if (self.seShopModel.location.distance<1000) {
-        self.lblDistanceIndicator.text = LocalisedString(@"Walk");
+    self.lblDistanceIndicator.text = self.seShopModel.location.display_address;
 
-    }
-    else if(self.seShopModel.location.distance<30000)
-    {
-        self.lblDistanceIndicator.text = LocalisedString(@"Drive");
-
-    }
-    else{
-        self.lblDistanceIndicator.text = self.seShopModel.location.administrative_area_level_1;
-
-    }
     
+//    if (self.seShopModel.location.distance<1000) {
+//        self.lblDistanceIndicator.text = LocalisedString(@"Walk");
+//
+//    }
+//    else if(self.seShopModel.location.distance<30000)
+//    {
+//        self.lblDistanceIndicator.text = LocalisedString(@"Drive");
+//
+//    }
+//    else{
+//        self.lblDistanceIndicator.text = LocalisedString(@"Swim or Fly");
+//
+//    }
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.seShopModel.location.lat doubleValue], [self.seShopModel.location.lng doubleValue]);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 500, 500);
     
@@ -297,37 +327,150 @@
 
 #pragma mark - UITableViewDelegate
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    if (self.ibDealTableView == tableView) {
+        return 1;
+
+    }
+    else{
+        return 1;
+
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+    if (self.ibDealTableView == tableView) {
+        
+        return 52.0f;
+    }
+    
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (self.ibDealTableView == tableView) {
+        
+        if (self.dealsModel.total_count>3) {
+            return 52.0f;
+
+        }
+    }
+    return 0;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    
+    DealHeaderView* dealview = [DealHeaderView initializeCustomView];
+    [dealview setSquareBorder];
+    dealview.btnDeals.hidden = YES;
+    dealview.seeMoreBlock = self.didSelectDealSeeAllBlock;
+    
+    
+    return dealview;
+    
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (self.ibDealTableView == tableView) {
+
+        DealHeaderView* view = [DealHeaderView initializeCustomView];
+      
+        view.seeMoreBlock = self.didSelectDealSeeAllBlock;
+       
+        [view.btnDeals.titleLabel setFont:[UIFont fontWithName:CustomFontName size:17]];
+        
+        [view.btnDeals setTitleColor:ONE_ZERO_TWO_COLOR forState:UIControlStateNormal];
+
+        view.btnSeeMore.hidden = YES;
+
+        [view.btnDeals setTitle:[NSString stringWithFormat:@"%@ (%lu)",LocalisedString(@"Deals"),(unsigned long)self.dealsModel.total_count] forState:UIControlStateNormal];
+
+        [Utils setRoundBorder:view color:OUTLINE_COLOR borderRadius:0];
+
+        [view setSquareBorder];
+
+        return view;
+    }
+        return nil;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayList.count;
+    
+    if (self.ibTableView == tableView) {
+      return self.arrayList.count;
+    }
+    else if(self.ibDealTableView == tableView)
+    {
+        return self.dealsModel.arrDeals.count;
+
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SeShopDetailTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeShopDetailTableViewCell"];
     
-    
-    NSDictionary* dict = self.arrayList[indexPath.row];
-    NSArray* keys = [dict allKeys];
-    
-    NSString* key = keys[0];
+    if (self.ibTableView == tableView) {
+        SeShopDetailTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeShopDetailTableViewCell"];
+        
+        NSDictionary* dict = self.arrayList[indexPath.row];
+        
+        NSArray* keys = [dict allKeys];
+        
+        NSString* key = keys[0];
+        
+        cell.lblTitle.text = LocalisedString(key);
+        [cell setImage:key];
+        cell.lblDesc.text = [dict objectForKey:key];
+        
+        return cell;
 
-    cell.lblTitle.text = LocalisedString(key);
-    [cell setImage:key];
-    cell.lblDesc.text = [dict objectForKey:key];
+    }
 
-    return cell;
+    else if(self.ibDealTableView == tableView)
+    {
+        SeDealsFeaturedTblCell* cell = [tableView dequeueReusableCellWithIdentifier:@"SeDealsFeaturedTblCell"];
+        
+        DealModel* model = self.dealsModel.arrDeals[indexPath.row];
+        
+        [cell initData:model];
+        
+        return cell;
+
+    }
+    
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Assuming view is at zero index of XIB file.
     // this view will contain all lable and other controls
-    CGRect myRect = [tableView rectForRowAtIndexPath:indexPath];
     
-    if (self.didSelectInformationAtRectBlock) {
-        self.didSelectInformationAtRectBlock(tableView,myRect);
+    if (self.ibDealTableView == tableView) {
+        
+        DealModel* model = self.dealsModel.arrDeals[indexPath.row];
+        
+        if (self.didSelectDealBlock) {
+            self.didSelectDealBlock(model);
+        }
     }
+    else
+    {
+        CGRect myRect = [tableView rectForRowAtIndexPath:indexPath];
+        
+        if (self.didSelectInformationAtRectBlock) {
+            self.didSelectInformationAtRectBlock(tableView,myRect);
+        }
+    }
+   
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -350,6 +493,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (self.didSelectMorePhotosBlock) {
         self.didSelectMorePhotosBlock(self.seShopPhotoModel);
     }
@@ -398,8 +542,8 @@
 -(void)changeLanguage
 {
     self.lblInformation.text = LocalisedString(@"Information");
-    [self.btnMoreInfo setTitle:LocalisedString(@"Hours, Features & more") forState:UIControlStateNormal];
-    self.lblNearbyPubTransport.text = LocalisedString(@"Nearby public transport station");
+    [self.btnMoreInfo setTitle:LocalisedString(@"See more") forState:UIControlStateNormal];
+  //  self.lblNearbyPubTransport.text = LocalisedString(@"Nearby public transport station");
     [self.btnSeeAll setTitle:LocalisedString(@"See all") forState:UIControlStateNormal];
 }
 
@@ -443,72 +587,118 @@
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
-    self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
-    self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
-
+    self.shoplat = [[SearchManager Instance]getAppLocation].coordinate.latitude;
+    self.shopLgn = [[SearchManager Instance]getAppLocation].coordinate.longitude;
     
     [Utils setRoundBorder:self.ibMapInfoView color:OUTLINE_COLOR borderRadius:5.0f];
     
-    [[SearchManager Instance]getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        _region.center.longitude = currentLocation.coordinate.longitude;
-        _region.center.latitude = currentLocation.coordinate.latitude;
-        
-        
-        [self.annotation setCoordinate:self.region.center];
-        
-        [self.ibMapView setRegion:self.region animated:YES];
-        
-    } errorBlock:^(NSString *status) {
-        
-    }];
+    
+    CLLocation* location = [[SearchManager Instance]getAppLocation];
+   
+    _region.center.longitude = location.coordinate.longitude;
+    _region.center.latitude = location.coordinate.latitude;
+    
+    
+    [self.annotation setCoordinate:self.region.center];
+    
+    [self.ibMapView setRegion:self.region animated:YES];
+
 
     [self requestServerForSeetiShopDetail];
 
+    [self requestServerForShopDeal];
+    
     [self requestServerForSeetiShopPhotos];
+    
 }
 
 -(void)requestServerForSeetiShopDetail
 {
     NSDictionary* dict;
     NSString* appendString;
-    if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-        
-        dict = @{@"token":[Utils getAppToken],
-                               @"seetishop_id":self.seetiesID,
-                               @"lat" : @(self.shoplat),
-                               @"lng" : @(self.shopLgn),
-                               };
-        appendString = self.seetiesID;
+    
+    @try {
+        if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
+            
+            dict = @{@"token":[Utils getAppToken],
+                     @"seetishop_id":self.seetiesID,
+                     @"lat" : @(self.shoplat),
+                     @"lng" : @(self.shopLgn),
+                     };
+            appendString = self.seetiesID;
+            
+        }
+        else{
+            
+            dict = @{@"token":[Utils getAppToken],
+                     @"place_id":self.placeID,
+                     @"post_id" : self.postID,
+                     @"lat" : @(self.shoplat),
+                     @"lng" : @(self.shopLgn),
+                     };
+            
+            appendString = self.placeID;
+            
+        }
 
     }
-    else{
-       
-        dict = @{@"token":[Utils getAppToken],
-                                @"place_id":self.placeID,
-                                @"post_id" : self.postID,
-                                @"lat" : @(self.shoplat),
-                                @"lng" : @(self.shopLgn),
-                 };
+    @catch (NSException *exception) {
         
-        appendString = self.placeID;
-
     }
+  
     
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:dict appendString:appendString completeHandler:^(id object) {
 
         self.seShopModel = [[ConnectionManager dataManager] seShopDetailModel];
         self.arrayList = self.seShopModel.arrayInformation;
-        [self.ibTableView reloadData];
+       
+        
         [self setupViewWithData];
-
+        [self.ibTableView reloadData];
+        
         if (self.viewDidFinishLoadBlock) {
             self.viewDidFinishLoadBlock(self.seShopModel);
         }
+       //[self requestServerForShopDeal];
     } errorBlock:^(id object) {
         
         
     }];
+}
+
+-(void)requestServerForShopDeal
+{
+    NSDictionary* dict;
+    @try {
+       
+        dict = @{@"seetishop_id" : self.seetiesID,
+                               @"token" : [Utils getAppToken],
+                               @"offset" : @"0",
+                               @"limit" : @"3"
+                               };
+        
+    }
+    
+    @catch (NSException *exception) {
+        
+    }
+   
+    NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.seetiesID];
+    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopDeal param:dict appendString:appendString completeHandler:^(id object) {
+        
+        DealsModel* model = [[ConnectionManager dataManager]dealsModel];
+
+        self.dealsModel = model;
+        [self.ibDealTableView reloadData];
+        [self setupViewWithData];
+
+
+        
+    } errorBlock:^(id object) {
+        
+    }];
+
 }
 
 -(void)requestServerForSeetiShopPhotos
@@ -538,9 +728,19 @@
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
         
-        [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-            [self setupViewWithData];
-        } completion:nil];
+//        [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+//
+//
+//        } completion:nil];
+        
+        [self setupViewWithData];
+
+        
+//        if (self.viewDidFinishLoadBlock) {
+//            self.viewDidFinishLoadBlock(self.seShopModel);
+//        }
+//
+        
         [self.ibCollectionView reloadData];
         
     } errorBlock:^(id object) {
@@ -640,5 +840,6 @@
 
     }
 }
+
 
 @end

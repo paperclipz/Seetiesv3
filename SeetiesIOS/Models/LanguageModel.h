@@ -15,14 +15,14 @@
 
 @property (nonatomic,strong)NSString* language_code;
 @property (nonatomic,strong)NSString* caption;
-@property (nonatomic,assign)int id;
+@property (nonatomic,strong)NSString* langID;
+@property (nonatomic,strong)NSString* origin_caption;
 
 @end
 
 @interface LanguageModels : Model
 
 @property (nonatomic,strong)NSArray<LanguageModel>* languages;
-
 
 @end
 

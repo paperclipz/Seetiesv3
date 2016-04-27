@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_NewsFeedViewController">
+            <connections>
+                <outlet property="btnLocation" destination="sKt-5r-f72" id="j5u-7D-Oo1"/>
+                <outlet property="constTabbarHeight" destination="6ml-ll-N3l" id="wsg-EK-TbM"/>
+                <outlet property="constTopScrollView" destination="0HG-Hu-44k" id="jOS-Ob-PYL"/>
+                <outlet property="ibActivityIndicator" destination="c5e-Bg-xKS" id="fsU-ra-Tky"/>
+                <outlet property="ibFooterView" destination="24v-x0-pDA" id="vt9-Ub-r05"/>
+                <outlet property="ibHeaderBackgroundView" destination="nU2-U1-NiY" id="FWQ-ir-CFa"/>
+                <outlet property="ibTableView" destination="Wbq-uL-miH" id="bTu-SL-FeT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wbq-uL-miH">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXj-z2-K1x">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nU2-U1-NiY">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                            <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VN6-nt-Anc">
+                            <rect key="frame" x="270" y="17" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="C9D-cg-Jf4"/>
+                                <constraint firstAttribute="height" constant="40" id="UcL-Bk-2Lv"/>
+                            </constraints>
+                            <state key="normal" image="SearchIcon.png"/>
+                            <connections>
+                                <action selector="btnSearchClicked:" destination="-1" eventType="touchUpInside" id="knu-xc-YWe"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="yku-iQ-LJM">
+                            <rect key="frame" x="106" y="34" width="8" height="6"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomePinIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="QU9-SW-ZDw">
+                            <rect key="frame" x="10" y="27" width="20" height="20"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="JBF-ub-iwo"/>
+                                <constraint firstAttribute="height" constant="20" id="TYR-XS-UXu"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKt-5r-f72">
+                            <rect key="frame" x="38" y="22" width="63" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="fFr-Dm-V0T"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Location">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnSearchLocationClicked:" destination="-1" eventType="touchUpInside" id="woF-IO-Vyk"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcC-t1-QWP">
+                            <rect key="frame" x="38" y="0.0" width="232" height="64"/>
+                            <connections>
+                                <action selector="btnSearchLocationClicked:" destination="-1" eventType="touchUpInside" id="ecT-b3-keo"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="RcC-t1-QWP" secondAttribute="bottom" id="0gm-Qa-jQF"/>
+                        <constraint firstItem="sKt-5r-f72" firstAttribute="leading" secondItem="QU9-SW-ZDw" secondAttribute="trailing" constant="8" id="3xY-4t-wz7"/>
+                        <constraint firstAttribute="trailing" secondItem="nU2-U1-NiY" secondAttribute="trailing" id="4rY-44-mi6"/>
+                        <constraint firstItem="sKt-5r-f72" firstAttribute="centerY" secondItem="QU9-SW-ZDw" secondAttribute="centerY" id="5fL-Ap-Ip4"/>
+                        <constraint firstItem="VN6-nt-Anc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yku-iQ-LJM" secondAttribute="trailing" constant="10" id="71G-Eb-Ln1"/>
+                        <constraint firstItem="VN6-nt-Anc" firstAttribute="leading" secondItem="RcC-t1-QWP" secondAttribute="trailing" id="Cjq-V2-sdM"/>
+                        <constraint firstAttribute="bottom" secondItem="nU2-U1-NiY" secondAttribute="bottom" id="HaH-pc-7zC"/>
+                        <constraint firstItem="VN6-nt-Anc" firstAttribute="centerY" secondItem="sKt-5r-f72" secondAttribute="centerY" id="MCj-0n-tNC"/>
+                        <constraint firstItem="nU2-U1-NiY" firstAttribute="leading" secondItem="WXj-z2-K1x" secondAttribute="leading" id="TCA-aS-OHE"/>
+                        <constraint firstItem="yku-iQ-LJM" firstAttribute="centerY" secondItem="sKt-5r-f72" secondAttribute="centerY" id="bol-4f-nzx"/>
+                        <constraint firstItem="RcC-t1-QWP" firstAttribute="top" secondItem="WXj-z2-K1x" secondAttribute="top" id="cRh-Cd-yd4"/>
+                        <constraint firstItem="yku-iQ-LJM" firstAttribute="leading" secondItem="sKt-5r-f72" secondAttribute="trailing" constant="5" id="dVA-VE-E7e"/>
+                        <constraint firstItem="QU9-SW-ZDw" firstAttribute="centerY" secondItem="nU2-U1-NiY" secondAttribute="centerY" constant="5" id="hRR-Fk-wli"/>
+                        <constraint firstAttribute="height" constant="64" id="iXP-61-e4X"/>
+                        <constraint firstItem="nU2-U1-NiY" firstAttribute="leading" secondItem="QU9-SW-ZDw" secondAttribute="trailing" constant="-30" id="nsa-Fx-cO7"/>
+                        <constraint firstItem="nU2-U1-NiY" firstAttribute="top" secondItem="WXj-z2-K1x" secondAttribute="top" id="ohK-VM-Czs"/>
+                        <constraint firstItem="RcC-t1-QWP" firstAttribute="leading" secondItem="QU9-SW-ZDw" secondAttribute="trailing" constant="8" id="qg3-Zi-nag"/>
+                        <constraint firstAttribute="trailing" secondItem="VN6-nt-Anc" secondAttribute="trailing" constant="10" id="zvz-43-EjS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Wbq-uL-miH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0HG-Hu-44k"/>
+                <constraint firstAttribute="bottom" secondItem="Wbq-uL-miH" secondAttribute="bottom" id="6ml-ll-N3l"/>
+                <constraint firstItem="Wbq-uL-miH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="83M-hP-bqh"/>
+                <constraint firstAttribute="trailing" secondItem="WXj-z2-K1x" secondAttribute="trailing" id="LiD-TC-Y85"/>
+                <constraint firstItem="WXj-z2-K1x" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="QN0-g5-AYb"/>
+                <constraint firstItem="WXj-z2-K1x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="c4X-hq-RUJ"/>
+                <constraint firstAttribute="trailing" secondItem="Wbq-uL-miH" secondAttribute="trailing" id="r8f-rS-9Cc"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="618" y="233"/>
+        </view>
+        <view contentMode="scaleToFill" id="24v-x0-pDA">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="c5e-Bg-xKS">
+                    <rect key="frame" x="150" y="17" width="20" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="c5e-Bg-xKS" firstAttribute="centerX" secondItem="24v-x0-pDA" secondAttribute="centerX" id="01R-Jz-HBU"/>
+                <constraint firstItem="c5e-Bg-xKS" firstAttribute="centerY" secondItem="24v-x0-pDA" secondAttribute="centerY" id="O4T-2O-M3D"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="1365" y="-42"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="HomePinIcon.png" width="10" height="13"/>
+        <image name="NaviDropDownIcon.png" width="8" height="6"/>
+        <image name="SearchIcon.png" width="40" height="40"/>
+    </resources>
+</document>

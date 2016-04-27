@@ -52,7 +52,7 @@
     GetUserID = userID;
     GetType = type;
     GetPostID = postID;
-
+    
     NSLog(@"GetShareID is %@ and GetUserID is %@ GetType is %li",GetShareID,GetUserID,(long)GetType);
 }
 //-(void)GetPostsID:(NSString *)PostID GetCollectionID:(NSString *)CollectionID GetUserID:(NSString *)userID GetType:(NSString *)type{
@@ -255,16 +255,14 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
-
-            [UIAlertView showWithTitle:@"System" message:LocalisedString(@"Success Send to Friends") cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                if (self.navigationController) {
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-                else{
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                }
-            }];
-           
+            [TSMessage showNotificationWithTitle:@"System" subtitle:LocalisedString(@"Success Send to Friends") type:TSMessageNotificationTypeSuccess];
+            
+            if (self.navigationController) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
         }else{
             
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
@@ -473,9 +471,11 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
     
-    //Server Address URL
     NSString *urlString = [[NSString alloc]initWithFormat:@"%@seetishops/%@/share",DataUrl.UserWallpaper_Url,GetShareID];
 
+    
+    //Server Address URL
+    
     NSLog(@"urlString is %@",urlString);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -516,7 +516,6 @@
     }else{
         
     }
-
     
     //close form
     [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];

@@ -22,12 +22,10 @@
 @property(nonatomic,strong)NSString* postSeconLanguage;
 @property(nonatomic,strong)NSArray* selectedCategories;
 
-
 @property(nonatomic,strong)NSMutableArray* arrDeletedImages;
 
 @property(nonatomic,strong)NSMutableArray* arrPostImagesList;//photoModel
 @property(nonatomic,strong)RecommendationVenueModel* reccomendVenueModel;
-
 
 -(id)initWithDraftModel:(DraftModel*)model;
 -(id) copyWithZone: (NSZone *) zone;

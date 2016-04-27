@@ -22,7 +22,7 @@ typedef enum
 
 
 @interface EditPostViewController : CommonViewController
--(void)initData:(RecommendationModel*)model;
+//-(void)initData:(RecommendationModel*)model;
 -(void)initDataDraft:(DraftModel*)model;
 -(void)loadData;
 -(void)initDataPostEdit:(DraftModel*)model;

@@ -20,5 +20,7 @@
 - (void)setLanguageWithLocale:(Locale *)locale;
 - (Locale *)getSelectedLocale;
 - (NSString *)getTranslationForKey:(NSString *)key;
+- (void)setLanguageCode:(NSString*)code;
++(NSString*)stringForKey:(NSString*)key withPlaceHolder:(NSDictionary*)dict;
 
 @end

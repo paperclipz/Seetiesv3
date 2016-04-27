@@ -7,53 +7,18 @@
 //
 
 #import "AppDelegate.h"
-#import "LandingV2ViewController.h"
-#import "GAI.h"
-#import "Foursquare2.h"
-#import "PTnCViewController.h"
-#import "PTellUsYourCityViewController.h"
-#import "PFollowTheExpertsViewController.h"
-#import "PSelectYourInterestViewController.h"
-#import "SearchViewController.h"
-#import "AccountSettingViewController.h"
-#import "CommentViewController.h"
-#import "PublishViewController.h"
-#import "PublishMainViewController.h"
-#import "AddLocationViewController.h"
-
+//#import "GAI.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "SearchViewV2.h"
-#import "WhereIsThisViewController.h"
-#import "AddPriceViewController.h"
-#import "PSearchLocationViewController.h"
-#import "SettingsViewController.h"
-#import "Filter2ViewController.h"
-#import "NotificationViewController.h"
-
 #import <Parse/Parse.h>
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
-
-#import "SelectImageViewController.h"
-#import "FeedV2ViewController.h"
-#import "ExploreViewController.h"
-#import "Explore2ViewController.h"
-#import "ProfileV2ViewController.h"
-#import "TellaStoryViewController.h"
-
-#import "PInterestV2ViewController.h"
-
-#import "DoImagePickerController.h"
-#import "FeedViewController.h"
-
+#import <sys/utsname.h>
+#import "NewLandingViewController.h"
 #import "AFNetworkActivityLogger.h"
 
-#import <sys/utsname.h>
+#define FABRIC_API_KEY @"506d5ee5657719d0cbaa94569d3352125456f169"
 @import ViewMonitor;
 @interface AppDelegate ()
 
-@property(nonatomic,strong)LandingV2ViewController* landingV2ViewController;
 @end
 
 
@@ -66,60 +31,70 @@
     // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];
     // ****************************************************************************
     
-    [Fabric with:@[CrashlyticsKit]];
+
+
     [Parse setApplicationId:@"MMpGchSOutbiRC4KpHW47VLBFFQgv2jj5DIM4Qdi" clientKey:@"4kkfBL3btDWxoQN89WRBXVWYEUDZKD38XuzCakK7"];
     [Foursquare2 setupFoursquareWithClientId:@"V0RPRPAUHB1ZCFSKOXKNM0JA3Q1RN1QUBK14RZFOUYY15I4R"
                                       secret:@"T5XT0AVNHLLO1NMXRNFCDBYGA453E12CTVN0WOSIHREEZTWA"
                                  callbackURL:@"testapp123://foursquare"];
-    [GMSServices provideAPIKey:GOOGLE_API_KEY];
-   // [ViewMonitor start];
+  
+
+//    if (!IS_SIMULATOR) {
+//        [GMSServices provideAPIKey:GOOGLE_API_KEY];
+//        //Optional: automatically send uncaught exceptions to Google Analytics.
+//        [GAI sharedInstance].trackUncaughtExceptions = YES;
+//        // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+//        [GAI sharedInstance].dispatchInterval = 30;
+//        // Optional: set Logger to VERBOSE for debug information.
+//        [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+//        // Initialize tracker. Replace with your tracking ID.
+//        [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+//        
+//    }
+   
+    [[SearchManager Instance]startSearchGPSLocation];
+    [[SearchManager Instance]startGetWifiLocation];
+
+    // [ViewMonitor start];
 
 
+}
+
+-(void)configureSetup
+{
+    [[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarByPosition];
+    [[IQKeyboardManager sharedManager] disableToolbarInViewControllerClass:[CT3_SearchListingViewController class]];
+
+
+//        #ifdef DEBUG
+//            [[AFNetworkActivityLogger sharedLogger] startLogging];
+//            [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+//        #endif
 }
 
 -(void)configureNotificaiton:(UIApplication*)application
 {
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    } else {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    }
-
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    NSSetUncaughtExceptionHandler(&myExceptionHandler);
-    
-   // [[AFNetworkActivityLogger sharedLogger] startLogging];
-   // [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
-    
-    [[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarByPosition];
-
-    [self registrationForApi];
-    
-//    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-//    SETLANGUAGE(@"zh-Hans");
-//    SLog(@"language supported : == %@",LOCALIZATION(@"ExpertLogin_Username"));
-    
-    [self configureNotificaiton:application];
-    [self requestForApiVersion];
-
-    
+-(void)checkCurrentAppLanguage
+{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:API_VERSION forKey:@"APIVersionSet"];
-    [userDefaults synchronize];
+
     
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
     NSLog(@"===========  Language : %@  ===========", [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0]);
     NSLog(@"===========  Region: %@  =========== ", [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]);
     
-  
+    
     // Check whether the language code has already been set.
-    if (![userDefaults stringForKey:DEFAULTS_KEY_LANGUAGE_CODE]) {
+    if (![userDefaults stringForKey:KEY_SYSTEM_LANG]) {
         
         NSLog(@"No language set - trying to find the right setting for the device locale.");
         
@@ -136,7 +111,7 @@
         }
         
         // If the device locale doesn't match any of the available ones, just pick the first one.
-        if (![userDefaults stringForKey:DEFAULTS_KEY_LANGUAGE_CODE]) {
+        if (![userDefaults stringForKey:KEY_SYSTEM_LANG]) {
             //  NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
             NSString *language = [[NSString alloc]initWithFormat:@"%@",[[NSLocale preferredLanguages] objectAtIndex:0]];
             NSLog(@"Get System language is %@",language);
@@ -175,19 +150,30 @@
         }
     }
     else {
-        NSLog(@"DEFAULTS_KEY_LANGUAGE_CODE = %@",DEFAULTS_KEY_LANGUAGE_CODE);
+        NSLog(@"DEFAULTS_KEY_LANGUAGE_CODE = %@",KEY_SYSTEM_LANG);
         NSLog(@"The language has already been set :)");
     }
+
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+   
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
+
+    NSSetUncaughtExceptionHandler(&myExceptionHandler);
     
+ 
     
-    // Optional: automatically send uncaught exceptions to Google Analytics.
-//    [GAI sharedInstance].trackUncaughtExceptions = YES;
-//    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-//    [GAI sharedInstance].dispatchInterval = 30;
-//    // Optional: set Logger to VERBOSE for debug information.
-//    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-//    // Initialize tracker. Replace with your tracking ID.
-//    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
+    [self registrationForApi];
+    [self configureNotificaiton:application];
+    [self configureSetup];
+    [self checkCurrentAppLanguage];
+    [self showWindow];
+   
+    [Crashlytics startWithAPIKey:FABRIC_API_KEY];
+
+    [Fabric with:@[CrashlyticsKit]];
     
     if (![Utils isLogin]) {
       
@@ -358,50 +344,16 @@
     // Call the 'activateApp' method to log an app event for use in analytics and advertising reporting.
     [FBAppEvents activateApp];
 }
+
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    //    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    //    [currentInstallation setDeviceTokenFromData:deviceToken];
-    //    currentInstallation.channels = @[@"global"];
-    //    [currentInstallation saveInBackground];
-    NSLog(@"deviceToken = %@",deviceToken);
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:deviceToken forKey:@"DeviceTokenPush"];
-    [defaults synchronize];
+
     
+    [Utils setParseToken:deviceToken];
     
-    //    NSData *GetDeviceToken = [defaults objectForKey:@"DeviceTokenPush"];
-    //    NSString *GetUserUID = [defaults objectForKey:@"Useruid"];
-    //    NSLog(@"GetDeviceToken is %@",GetDeviceToken);
-    //    NSLog(@"GetUserUID is %@",GetUserUID);
-    //    if ([GetDeviceToken length] == 0 || GetDeviceToken == (id)[NSNull null] || GetDeviceToken.length == 0) {
-    //
-    //    }else{
-    //        NSString *Check = [defaults objectForKey:@"CheckGetPushToken"];
-    //        if ([Check isEqualToString:@"Done"]) {
-    //
-    //        }else{
-    //            if ([GetUserUID length] == 0 || GetUserUID == (id)[NSNull null] || GetUserUID.length == 0) {
-    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
-    //                currentInstallation.channels = @[@"IOS_FirstLogin"];
-    //                [currentInstallation saveInBackground];
-    //            }else{
-    //                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    //                [currentInstallation setDeviceTokenFromData:GetDeviceToken];
-    //                NSString *tempTokenString = [[NSString alloc]initWithFormat:@"seeties_%@",GetUserUID];
-    //                currentInstallation.channels = @[tempTokenString,@"all"];
-    //                [currentInstallation saveInBackground];
-    //            //    NSLog(@"work here?");
-    //                NSString *TempString = @"Done";
-    //                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //                [defaults setObject:TempString forKey:@"CheckGetPushToken"];
-    //                [defaults synchronize];
-    //            }
-    //
-    //        }
-    //
-    //    }
+  
 }
+
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {
@@ -415,50 +367,34 @@
     [PFPush handlePush:userInfo];
     
     
-    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    
-}
-
--(void)requestForApiVersion{
-    
-//    self.window.rootViewController = self.landingV2ViewController;
+//    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
-//
-//    return;
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil  appendString:nil completeHandler:^(id object) {
-        [self processAPIVersion];
-
-    } errorBlock:^(id object) {
-    }];
-  
-}
-#pragma mark - Declaration
--(LandingV2ViewController*)landingV2ViewController
-{
-    if(!_landingV2ViewController)
-    {
-        _landingV2ViewController = [LandingV2ViewController new];
-    }
     
-    return _landingV2ViewController;
 }
+
+//-(void)requestForApiVersion{
+//    
+//    
+//    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil  appendString:nil completeHandler:^(id object) {
+//        [self processAPIVersion];
+//
+//    } errorBlock:^(id object) {
+//    }];
+//  
+//}
 
 #pragma mark -  connection processing
 -(void)processAPIVersion
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
     ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
-    [defaults setObject:model.production?@"1":@"0" forKey:@"CheckAPI"];
-    [defaults synchronize];
+    
+    [Utils setIsDevelopment:!model.production];
+
     
     //Check version if same then proceed, if not same then promp error and also proceed to landing
     if (![model.version isEqualToString:API_VERSION]) {
       
-        
         [UIAlertView showWithTitle:model.title
                            message:model.message
                  cancelButtonTitle:@"OK"
@@ -471,15 +407,18 @@
                           }];        
     }
    
-    
-    //PFollowTheExpertsViewController *SeeView = [[PFollowTheExpertsViewController alloc]init];
-    
-    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+  
 
 }
 
+-(void)showWindow
+{
+    UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:self.landingViewController];
+    navigationController.navigationBar.hidden = YES;
+    self.window.rootViewController = navigationController;//self.landingV2ViewController
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
@@ -504,5 +443,14 @@ NSString* deviceName()
 }
 
 
+#pragma mark - Declaration
 
+-(NewLandingViewController*)landingViewController
+{
+    if (!_landingViewController) {
+        _landingViewController = [NewLandingViewController new];
+    }
+    
+    return _landingViewController;
+}
 @end

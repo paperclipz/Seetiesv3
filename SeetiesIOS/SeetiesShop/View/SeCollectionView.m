@@ -107,7 +107,7 @@
     AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
     ShowImage.contentMode = UIViewContentModeScaleAspectFill;
     ShowImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
-    ShowImage.layer.cornerRadius= 10;
+   // ShowImage.layer.cornerRadius= 10;
     ShowImage.layer.masksToBounds = YES;
     //ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
     [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
@@ -120,7 +120,7 @@
     ShowOverlayImg.image = [UIImage imageNamed:@"DealsAndRecommendationOverlay.png"];
     ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
     ShowOverlayImg.layer.masksToBounds = YES;
-    ShowOverlayImg.layer.cornerRadius = 10;
+   // ShowOverlayImg.layer.cornerRadius = 10;
     return ShowOverlayImg;
 }
 -(UILabel *)SetupLabel{
@@ -344,6 +344,22 @@
     }
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
+    
+    if ([Utils isGuestMode]) {
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == 1) {
+                [Utils showLogin];
+                
+            }
+        }];
+        
+        
+        return;
+    }
+
+    
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     CollectionModel* collModel = self.arrCollections[getbuttonIDN];
     

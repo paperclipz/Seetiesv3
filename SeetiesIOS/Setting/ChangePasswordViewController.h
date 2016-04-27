@@ -9,33 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TPKeyboardAvoidingScrollView.h"
 #import "UrlDataClass.h"
-#import "GAITrackedViewController.h"
-@interface ChangePasswordViewController : GAITrackedViewController<UITextFieldDelegate,UIScrollViewDelegate>{
+//#import "GAITrackedViewController.h"
+@interface ChangePasswordViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate>
 
-    IBOutlet TPKeyboardAvoidingScrollView *Scrollview;
-    IBOutlet UITextField *OldPasswordText;
-    IBOutlet UITextField *NewPasswordText;
-    IBOutlet UITextField *KeyinAgainText;
-    IBOutlet UILabel *TitleLabel;
-    IBOutlet UIButton *SubmitButton;
-    IBOutlet UIImageView *BarImage;
-    
-    NSString *GetOldPassword;
-    NSString *GetNewPassword;
-    NSString *GetNewPasswordAgain;
-    
-    UrlDataClass *DataUrl;
-    NSMutableData *webData;
-    
-    NSString *CheckFB;
-    
-    IBOutlet UIImageView *BackgroundImage001;
-    IBOutlet UIImageView *BackgroundImage002;
-    
-    IBOutlet UIImageView *RedIcon1;
-    IBOutlet UIImageView *RedIcon2;
-    IBOutlet UIImageView *RedIcon3;
-}
--(IBAction)BackButton:(id)sender;
--(IBAction)SubmitButton:(id)sender;
 @end

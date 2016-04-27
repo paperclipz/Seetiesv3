@@ -9,14 +9,17 @@
 #import "PhotoListViewController.h"
 #import "LikeListingCollectionViewCell.h"
 #import "PhotoViewController.h"
+#import "IDMPhotoBrowser.h"
+#import "EmptyStateView.h"
+#import "UICollectionView+emptyState.h"
 
-@interface PhotoListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface PhotoListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,IDMPhotoBrowserDelegate>
 {
     BOOL isMiddleOfCallingServer;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property(nonatomic,strong)PhotoViewController* photoVC;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+//@property(nonatomic,strong)EmptyStateView* emptyStateView;
 
 // -------------------- MODEL -----------------------------//
 @property(nonatomic,strong)NSMutableArray* arrImagesList;
@@ -39,6 +42,9 @@
     
     [super viewDidLoad];
     [self initSelfView];
+    
+
+    [self.ibCollectionView setupCustomEmptyView];
     [self requestServerForSeetiShopPhotos];
 
 }
@@ -91,23 +97,24 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-   // LikeListingCollectionViewCell* cell = (LikeListingCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    _photoVC = nil;
-    SLog(@"index row : %@",indexPath);
-    [self.photoVC initData:self.arrImagesList scrollToIndexPath:indexPath];
-    
-    CATransition* transition = [CATransition animation];
-    
-    transition.duration = 0.3;
-    transition.type = kCATransitionFade;
-    
-    [[self navigationController].view.layer addAnimation:transition forKey:kCATransition];
+    LikeListingCollectionViewCell* cell = (LikeListingCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+//    _photoVC = nil;
+//    SLog(@"index row : %@",indexPath);
+//    [self.photoVC initData:self.arrImagesList scrollToIndexPath:indexPath];
+//    
+//    CATransition* transition = [CATransition animation];
+//    
+//    transition.duration = 0.3;
+//    transition.type = kCATransitionFade;
+//    
+//    [[self navigationController].view.layer addAnimation:transition forKey:kCATransition];
+//
+//    [self.navigationController pushViewController:self.photoVC animated:NO onCompletion:^{
+//        [self.photoVC collectionViewSrollToIndexPath];
+//
+//    }];
 
-    [self.navigationController pushViewController:self.photoVC animated:NO onCompletion:^{
-        [self.photoVC collectionViewSrollToIndexPath];
-
-    }];
-
+    [self showPhotoViewer:cell Index:(int)indexPath.row];
 }
 
 
@@ -204,6 +211,9 @@
 
     }
     
+    if ([Utils isArrayNull:self.arrImagesList]) {
+        [self.ibCollectionView showLoading];
+    }
 
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
@@ -215,12 +225,40 @@
             [self.photoVC.ibCollectionView reloadData];
         }
         isMiddleOfCallingServer = NO;
+        
+        if ([Utils isArrayNull:self.arrImagesList]) {
+            [self.ibCollectionView showEmptyState];
+        }
+        else{
+            [self.ibCollectionView hideAll];
+        }
     } errorBlock:^(id object) {
         
         isMiddleOfCallingServer = NO;
+        [self.ibCollectionView hideAll];
 
     }];
     
+}
+
+#pragma mark - Show View
+
+-(void)showPhotoViewer:(UICollectionViewCell*)cell Index:(int)index
+{
+   
+    NSMutableArray *photos = [NSMutableArray new];
+    
+    for (SePhotoModel* photo in self.arrImagesList) {
+
+        NSURL *url  = [NSURL URLWithString:photo.imageURL];
+        IDMPhoto *photo = [IDMPhoto photoWithURL:url];
+        [photos addObject:photo];
+    }
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos animatedFromView:cell];
+    [self presentViewController:browser animated:YES completion:nil];
+    [browser setInitialPageIndex:index];
+    
+    // Or use this constructor to receive an NSArray of IDMPhoto objects from your NSURL objects
 }
 
 

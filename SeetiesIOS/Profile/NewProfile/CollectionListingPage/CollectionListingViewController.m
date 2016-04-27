@@ -16,12 +16,12 @@
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property(nonatomic,assign)ProfileViewType profileType;
 @property(nonatomic,assign)CollectionListingType collectionListingType;
 @property(nonatomic,strong)ProfileModel* profileModel;
 @property(nonatomic,assign)int viewPage;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
+@property (strong, nonatomic)EditCollectionDetailViewController *collectionDetailController;
 
 @end
 
@@ -30,10 +30,14 @@
 
 - (IBAction)btnAddMoreClicked:(id)sender {
     
-    _newCollectionViewController = nil;
+//    _newCollectionViewController = nil;
 
     //[self.navigationController pushViewController:self.newCollectionViewController animated:YES];
-    [self presentViewController:self.newCollectionViewController animated:YES completion:nil];
+//    [self presentViewController:self.newCollectionViewController animated:YES completion:nil];
+    
+    _collectionDetailController = nil;
+    [self.collectionDetailController initDataWithUserID:[Utils getUserID]];
+    [self.navigationController presentViewController:self.collectionDetailController animated:YES completion:nil];
 }
 
 - (IBAction)btnSegmentedClicked:(id)sender {
@@ -81,6 +85,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [self.myCollectionListingViewController reloadView];
     [self.followingCollectionListingViewController reloadView];
 }
@@ -167,6 +172,22 @@
  }
  */
 #pragma mark - Declaration
+
+-(EditCollectionDetailViewController*)collectionDetailController
+{
+    if (!_collectionDetailController) {
+        _collectionDetailController = [EditCollectionDetailViewController new];
+        
+        __weak typeof (self)weakself = self;
+        _collectionDetailController.btnDoneBlock = ^(id object)
+        {
+            [weakself.myCollectionListingViewController refreshRequest];
+
+        };
+    }
+    return _collectionDetailController;
+}
+
 -(NewCollectionViewController*)newCollectionViewController
 {
     if (!_newCollectionViewController) {
@@ -193,7 +214,7 @@
         
         _myCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showCollectionDisplayViewWithCollectionID:model ProfileType:weakSelf.profileType];
+            [weakSelf showCollectionDisplayViewWithCollectionID:model];
         };
         
     }
@@ -218,7 +239,7 @@
         
         _followingCollectionListingViewController.didSelectDisplayCollectionRowBlock = ^(CollectionModel* model)
         {
-            [weakSelf showCollectionDisplayViewWithCollectionID:model.collection_id ProfileType:ProfileViewTypeOthers];
+            [weakSelf showCollectionDisplayViewWithCollectionID:model];
         };
     }
     
@@ -229,6 +250,11 @@
 {
     if (!_editCollectionViewController) {
         _editCollectionViewController = [EditCollectionViewController new];
+        __weak typeof (self)weakSelf = self;
+        _editCollectionViewController.refreshBlock = ^(void)
+        {
+            [weakSelf.myCollectionListingViewController refreshRequest];
+        };
     }
     
     return _editCollectionViewController;
@@ -260,15 +286,15 @@
 -(void)showEditCollectionViewWithCollectionID:(NSString*)collID
 {
     _editCollectionViewController = nil;
-    [self.editCollectionViewController initData:collID ProfileType:self.profileType];
+    [self.editCollectionViewController initData:collID];
     // [LoadingManager show];
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 
--(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel ProfileType:(ProfileViewType)profileType
+-(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel
 {
     _collectionViewController = nil;
-    if (self.profileType == ProfileViewTypeOwn) {
+    if ([colModel.user_info.uid isEqualToString:[Utils getUserID]]) {
         [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:colModel.user_info.uid];
 
     }

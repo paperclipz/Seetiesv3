@@ -34,7 +34,7 @@ static UrlDataClass *sharedMyManager = nil;
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *CheckAPI = [defaults objectForKey:@"CheckAPI"];
-        if ([CheckAPI isEqualToString:@"0"]) {
+        if ([Utils getIsDevelopment]) {
           //  NSLog(@"CheckAPI is 0");
 
             ExpertLogin_Url = [NSString stringWithFormat:@"https://itcave-api.seeties.me/v%@/login",API_VERSION];

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionListingSinglePageViewController">
+            <connections>
+                <outlet property="ibTableView" destination="uC2-C9-WQm" id="4RX-I9-q2X"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaH-wv-Zq3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="wDD-d6-Tuo">
+                            <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="mLt-5V-VQo"/>
+                                <constraint firstAttribute="height" constant="40" id="qlu-yD-o1l"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM0-Ye-ctU">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="TXg-ca-2MW"/>
+                                <constraint firstAttribute="width" constant="44" id="c6y-26-ldk"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="r3C-Jd-WyA"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collections" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63B-G1-sot">
+                            <rect key="frame" x="40" y="28" width="240" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="0WQ-qv-eAH"/>
+                        <constraint firstItem="wDD-d6-Tuo" firstAttribute="top" secondItem="sM0-Ye-ctU" secondAttribute="bottom" constant="-44" id="CwT-oV-gk3"/>
+                        <constraint firstItem="63B-G1-sot" firstAttribute="leading" secondItem="OaH-wv-Zq3" secondAttribute="leading" constant="40" id="DPd-oQ-Ho8"/>
+                        <constraint firstItem="wDD-d6-Tuo" firstAttribute="leading" secondItem="OaH-wv-Zq3" secondAttribute="leading" id="Rqn-VV-5C7"/>
+                        <constraint firstAttribute="trailing" secondItem="63B-G1-sot" secondAttribute="trailing" constant="40" id="Zpa-18-NMv"/>
+                        <constraint firstItem="sM0-Ye-ctU" firstAttribute="top" secondItem="OaH-wv-Zq3" secondAttribute="top" id="m8B-Fm-KEt"/>
+                        <constraint firstAttribute="height" constant="64" id="njt-Tx-xl2"/>
+                        <constraint firstAttribute="bottom" secondItem="wDD-d6-Tuo" secondAttribute="bottom" constant="4" id="qgq-Nd-2JT"/>
+                        <constraint firstItem="63B-G1-sot" firstAttribute="centerY" secondItem="OaH-wv-Zq3" secondAttribute="centerY" constant="7.5" id="rEK-wj-Gt8"/>
+                        <constraint firstItem="sM0-Ye-ctU" firstAttribute="leading" secondItem="OaH-wv-Zq3" secondAttribute="leading" id="sOz-Gi-1Ar"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uC2-C9-WQm">
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="OaH-wv-Zq3" secondAttribute="trailing" id="5ka-6Y-Ttd"/>
+                <constraint firstAttribute="trailing" secondItem="uC2-C9-WQm" secondAttribute="trailing" id="EiB-hf-bvN"/>
+                <constraint firstAttribute="bottom" secondItem="uC2-C9-WQm" secondAttribute="bottom" id="FG5-hq-dp8"/>
+                <constraint firstItem="OaH-wv-Zq3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Nfg-Kg-Yg3"/>
+                <constraint firstItem="OaH-wv-Zq3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Xa6-vO-tPC"/>
+                <constraint firstItem="uC2-C9-WQm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dSb-js-0oC"/>
+                <constraint firstItem="uC2-C9-WQm" firstAttribute="top" secondItem="OaH-wv-Zq3" secondAttribute="bottom" id="jJk-Ri-oyH"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BackIcon.png" width="40" height="40"/>
+    </resources>
+</document>

@@ -8,9 +8,11 @@
 
 #import "Model.h"
 #import "DraftModel.h"
-#import "SeNearbyShopModel.h"
+#import "SeShopsModel.h"
+#import "PaginationModel.h"
 
-@interface ProfileModel : Model
+@class DraftModel;
+@interface ProfileModel : Model<NSCopying>
 
 @property(nonatomic,assign)int following_count;
 @property(nonatomic,strong)NSString* location;
@@ -28,15 +30,32 @@
 @property(nonatomic,strong)NSString* gender;
 @property(nonatomic,assign)BOOL following;
 @property(nonatomic,strong)NSString* uid;
+@property(nonatomic,strong)NSString* url;//use for notification user profile
+@property(nonatomic,assign)BOOL phone_verified;
+
+@property (nonatomic,strong)NSArray* categories;
+@property (nonatomic,strong)NSString* crawler;
+
+@property (nonatomic,strong)NSString* email;
+@property (nonatomic,strong)NSString* token;
+@property (nonatomic,strong)NSString* role;
+@property (nonatomic,strong)LanguageModel* system_language;
+@property (nonatomic,strong)NSString* provisioning;
+@property (nonatomic,strong)NSString* fb_id;
+@property (nonatomic,strong)NSString* insta_id;
+@property (nonatomic,strong)NSString* contact_no;
+
+@property (nonatomic,strong)NSArray<DraftModel>* posts;
+
+@property(nonatomic,strong)NSArray<LanguageModel>* languages;
+
 
 @end
 
 @interface ProfilePostModel : Model
 
 @property(nonatomic,strong)DraftsModel* userPostData;
-@end
-
-@interface SeetiShopsModel : Model
-@property(nonatomic,strong)ShopsModel* userPostData;
+@property(nonatomic,strong)DraftsModel* recommendations;
 
 @end
+

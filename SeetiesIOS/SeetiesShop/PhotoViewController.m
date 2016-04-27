@@ -46,6 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
+    [self changeLanguage];
     [self someMethod];
     [self initColletionViewDelegate];
     [self.ibCollectionView setNeedsUpdateConstraints];
@@ -157,7 +158,10 @@
     [cell layoutIfNeeded];
 
     SePhotoModel* model = self.arrImageList[indexPath.row];
-    [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.imageURL] completed:nil];
+ //   [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL] completed:nil];
+    [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        cell.ibImageView.image = image;
+    }];
 
     return cell;
 }
@@ -182,6 +186,11 @@
             self.triggerLoadMoreBlock();
         }
     }
+}
+
+-(void)changeLanguage
+{
+    self.lblTitle.text = LocalisedString(@"Swipe Up or Down to Close");
 }
 /*
 #pragma mark - Navigation

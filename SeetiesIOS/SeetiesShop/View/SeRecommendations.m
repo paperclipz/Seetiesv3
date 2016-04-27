@@ -24,6 +24,8 @@
 
 @property(nonatomic,assign)float shoplat;
 @property(nonatomic,assign)float shopLgn;
+
+@property(nonatomic) UILabel *ShowRecommendationsText;
 @end
 @implementation SeRecommendations
 
@@ -48,9 +50,9 @@
     ShowbackLine.backgroundColor = [UIColor whiteColor];
     [Utils setRoundBorder:ShowbackLine color:[UIColor colorWithRed:238.0f/255.0f green:238.0f/255.0f blue:238.0f/255.0f alpha:1.0f] borderRadius:0.0f borderWidth:1.0f];
     
-    ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
-    ShowRecommendationsText.text = LocalisedString(@"Recommendations");
-    ShowRecommendationsText.backgroundColor = [UIColor clearColor];
+    self.ShowRecommendationsText.frame = CGRectMake(20, 0, screenWidth - 40, 50);
+    self.ShowRecommendationsText.text = [NSString stringWithFormat:@"%@ (%d)", LocalisedString(@"Recommendations"), self.userProfilePostModel.userPostData.total_posts];
+    self.ShowRecommendationsText.backgroundColor = [UIColor clearColor];
     
     Getheight = 50;
     
@@ -273,8 +275,8 @@
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
-    self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
-    self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
+    self.shoplat = [[SearchManager Instance]getAppLocation].coordinate.latitude;
+    self.shopLgn = [[SearchManager Instance]getAppLocation].coordinate.longitude;
     [self requestServerForSeetiShopRecommendations];
     
 
@@ -327,6 +329,8 @@
         if (self.viewDidFinishLoadBlock) {
             self.viewDidFinishLoadBlock(isDeleteView);
         }
+        
+        self.ShowRecommendationsText.text = [NSString stringWithFormat:@"%@ (%d)", LocalisedString(@"Recommendations"), self.userProfilePostModel.userPostData.total_posts];
     } errorBlock:^(id object) {
         
         

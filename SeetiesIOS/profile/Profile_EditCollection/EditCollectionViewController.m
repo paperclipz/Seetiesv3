@@ -30,7 +30,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnDeleteCollection;
 @property (strong, nonatomic)CollectionModel* collectionModel;
 @property (strong, nonatomic)NSString* collectionID;
-@property (assign, nonatomic)ProfileViewType profileType;
 
 @end
 
@@ -99,15 +98,21 @@
         self.lblNumberOfRecommendation.text = [NSString stringWithFormat:@"%d %@",collectionDetailTotal_posts,LocalisedString(@"Recommendations")];
         
         self.btnDone.hidden = NO;
-        self.btnDeleteCollection.hidden = ![[Utils getUserID]isEqualToString:self.collectionModel.user_info.uid];
+
+        if (self.collectionModel.is_default) {
+            self.btnDeleteCollection.hidden = YES;
+        }
+        else{
+            self.btnDeleteCollection.hidden = ![[Utils getUserID]isEqualToString:self.collectionModel.user_info.uid];
+
+        }
         
     } completion:nil];
 }
 
--(void)initData:(NSString*)collectionID ProfileType:(ProfileViewType)type
+-(void)initData:(NSString*)collectionID
 {
     self.collectionID = collectionID;
-    self.profileType = type;
 }
 
 -(void)initSelfView
@@ -370,7 +375,7 @@
                            @"token":[Utils getAppToken]
                            };
     
-    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
+    NSString* appendString = [NSString stringWithFormat:@"collections/%@",collectionID];
     
     //[LoadingManager show];
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
@@ -421,7 +426,9 @@
     if (_refreshBlock) {
         self.refreshBlock();
     }
-    [self btnBackClicked:nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:self];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
 

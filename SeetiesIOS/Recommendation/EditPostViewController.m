@@ -26,14 +26,16 @@
     BOOL isSaved;
 
 }
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UIButton *btnPublish;
 
 // =============== model ===============//
-@property (weak, nonatomic) IBOutlet UILabel *lblNumberOfPhotos;
 
-@property(nonatomic,strong)RecommendationModel* recommendationModel;//pass in model
-@property(nonatomic,strong)RecommendationModel* tempSavedRecommendationModel;//backup model
+@property(nonatomic,strong)DraftModel* postModel;
+@property(nonatomic,strong)DraftModel* storedModel;
+
+//@property(nonatomic,strong)DraftModel* postModelDuplicate;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblNumberOfPhotos;
 
 @property(nonatomic,strong)CategoriesModel* categoriesModel;
 
@@ -58,24 +60,32 @@
 @implementation EditPostViewController
 
 #pragma mark - IBACTION
+
 - (IBAction)btnEditPhotoClicked:(id)sender {
     
     [self saveData];
     
     
     _editPhotoViewController = nil;
+
+ //   self.postModelDuplicate = self.postModel;
     
-    [self.editPhotoViewController initData:self.recommendationModel];
+    UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:self.editPhotoViewController];;
     
-    [self presentViewController:self.editPhotoViewController animated:YES completion:nil];
+    [navigationController setNavigationBarHidden:YES animated:NO];
+
+    [self.editPhotoViewController initData:self.postModel];
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
+    
     __weak typeof (self)weakSelf = self;
     self.editPhotoViewController.doneBlock = ^(NSArray* arrayImages,NSArray* arrDeleteImages)
     {
         
-        weakSelf.recommendationModel.arrPostImagesList = nil;
-        weakSelf.recommendationModel.arrPostImagesList = [[NSMutableArray alloc]initWithArray:arrayImages];
+        weakSelf.postModel.arrPhotos = nil;
+        weakSelf.postModel.arrPhotos = [[NSMutableArray<PhotoModel> alloc]initWithArray:arrayImages];
         
-        [weakSelf.recommendationModel.arrDeletedImages addObjectsFromArray:arrDeleteImages];
+        [weakSelf.postModel.arrDeletePosts addObjectsFromArray:arrDeleteImages];
         
     };
 
@@ -105,8 +115,8 @@
     self.categorySelectionViewController.arrCategories = [self.categoriesModel.categories mutableCopy];
     
     //check for selected category for existing post. draft and new post no need to check for it
-    if (self.recommendationModel.selectedCategories && self.editPostType == EditPostTypePostEdit) {
-        [self.categorySelectionViewController setPreSelectedCategories:self.recommendationModel.selectedCategories];
+    if (![Utils isArrayNull:self.postModel.category] && self.editPostType == EditPostTypePostEdit) {
+        [self.categorySelectionViewController setPreSelectedCategories:self.postModel.category];
     }
     
     if(![self.categorySelectionViewController.view isDescendantOfView:self.view])
@@ -158,12 +168,16 @@
 - (IBAction)btnBackClicked:(id)sender {
     
     
+    [self saveData];
     if (self.editPostType == EditPostTypePostEdit) {
         
         [self dismissView];
+
     
     }
     else{
+        
+
         [UIAlertView showWithTitle:LocalisedString(@"New Recommendation")
                        message:LocalisedString(@"You are quiting the editor. Save changes?")
              cancelButtonTitle:LocalisedString(@"Cancel")
@@ -196,29 +210,37 @@
 }
 
 #pragma mark - INITIALIZATION
--(void)initData:(RecommendationModel*)model
-{
-    
-    self.editPostType = EditPostTypeDraftNew;
-    self.recommendationModel = model;
-
-}
+//-(void)initData:(RecommendationModel*)model
+//{
+//    
+//    self.editPostType = EditPostTypeDraftNew;
+//    self.recommendationModel = model;
+//    self.tempSavedRecommendationModel = self.recommendationModel;
+//
+//}
 
 -(void)initDataDraft:(DraftModel*)model
 {
-    
-    self.editPostType = EditPostTypeDraft;
-    self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
-    
-   
-}
+    self.postModel = model;
+    self.storedModel = [model copy];
+ //   self.postModelDuplicate = model;
 
+    self.editPostType = EditPostTypeDraft;
+   // self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
+  //  self.tempSavedRecommendationModel = self.recommendationModel;
+
+}
 
 -(void)initDataPostEdit:(DraftModel*)model
 {
 
     self.editPostType = EditPostTypePostEdit;
-    self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
+    
+    self.postModel = model;
+    self.storedModel = [model copy];
+   // self.recommendationModel = [[RecommendationModel alloc]initWithDraftModel:model];
+  //  self.tempSavedRecommendationModel = self.recommendationModel;
+
 }
 
 - (void)viewDidLoad {
@@ -242,8 +264,7 @@
 {
     [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         
-        [self.editPostView initData:self.recommendationModel viewNo:1];
-        [self.editPostViewSecond initData:self.recommendationModel viewNo:2];
+        [self.editPostView initData:self.postModel];
         [self reloadImage];
 
     } completion:nil];
@@ -252,45 +273,47 @@
 
 -(void)setViewWithNumberOfLanguage
 {
-    switch (self.editPostType) {
-        case EditPostTypeDraft:
-        {
-            [self.postSegmentedControl setTitle:[Utils getLanguageName:self.recommendationModel.postMainLanguage] forSegmentAtIndex:0];
-            
-            if (!self.recommendationModel.postSecondTitle) {
-                [self setHasDualLanguage:NO];
-                
-            }
-            else{
-                [self.postSegmentedControl setTitle:[Utils getLanguageName:self.recommendationModel.postSeconLanguage] forSegmentAtIndex:1];
-                [self setHasDualLanguage:YES];
-
-            }
-        }
-            break;
-            
-        default:
-        {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSString* langOne = [defaults objectForKey:@"UserData_Language1"];
-            NSString* langTwo = [defaults objectForKey:@"UserData_Language2"];
-            
-            self.recommendationModel.postMainLanguage = [Utils getLanguageCode:langOne];
-            [self.postSegmentedControl setTitle:langOne forSegmentAtIndex:0];
-            
-            if (!langTwo || [langTwo isEqualToString:@""]) {
-                [self setHasDualLanguage:NO];
-            }
-            else{
-                [self.postSegmentedControl setTitle:langTwo forSegmentAtIndex:1];
-                self.recommendationModel.postSeconLanguage = [Utils getLanguageCode:langTwo];
-                [self setHasDualLanguage:YES];
-
-            }
-            
-        }
-            break;
-    }
+    [self setHasDualLanguage:NO];
+//    switch (self.editPostType) {
+//        case EditPostTypeDraft:
+//        {
+//            [self.postSegmentedControl setTitle:[Utils getLanguageName:self.recommendationModel.postMainLanguage] forSegmentAtIndex:0];
+//            
+//            if (!self.recommendationModel.postSecondTitle) {
+//                [self setHasDualLanguage:NO];
+//                
+//            }
+//            else{
+//                [self.postSegmentedControl setTitle:[Utils getLanguageName:self.recommendationModel.postSeconLanguage] forSegmentAtIndex:1];
+//                [self setHasDualLanguage:YES];
+//
+//            }
+//        }
+//            break;
+//            
+//        default:
+//        {
+//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//            NSString* langOne = [defaults objectForKey:KEY_LANGUAGE_ONE];
+//            NSString* langTwo = [defaults objectForKey:KEY_LANGUAGE_TWO];
+//            
+//            self.recommendationModel.postMainLanguage = langOne;
+//            [self.postSegmentedControl setTitle:[Utils getLanguageName:langOne] forSegmentAtIndex:0];
+//            
+//            if ([Utils isStringNull:langTwo]) {
+//                [self setHasDualLanguage:NO];
+//            }
+//            
+//            else{
+//                [self.postSegmentedControl setTitle:[Utils getLanguageName:langTwo] forSegmentAtIndex:1];
+//                self.recommendationModel.postSeconLanguage = langTwo;
+//                [self setHasDualLanguage:YES];
+//
+//            }
+//            
+//        }
+//            break;
+//    }
 }
 
 -(void)resetData
@@ -304,11 +327,11 @@
 
 -(void)reloadImage
 {
-    int photoCount = (int)self.recommendationModel.arrPostImagesList.count;
-    self.lblNumberOfPhotos.text = [NSString stringWithFormat:@"%d %@",photoCount,LOCALIZATION(@"Photos")];
-        if (self.recommendationModel.arrPostImagesList && photoCount>0) {
+    int photoCount = (int)self.postModel.arrPhotos.count;
+    self.lblNumberOfPhotos.text = [NSString stringWithFormat:@"%d %@",photoCount,LocalisedString(@"Photos")];
+        if (![Utils isArrayNull:self.postModel.arrPhotos]) {
             
-            PhotoModel* edifotoModel = self.recommendationModel.arrPostImagesList[0];
+            PhotoModel* edifotoModel = self.postModel.arrPhotos[0];
             
             if (edifotoModel.image) {
                 
@@ -325,23 +348,6 @@
                 }];
 
             }
-
-//            switch (self.editPostType) {
-//                default:
-//                case EditPostTypeDraftNew:
-//                    self.ibImageView.image = [edifotoModel.image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
-//
-//                    break;
-//                    
-//                    case EditPostTypeDraft:
-//                    
-//                    [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:edifotoModel.imageURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//                        self.ibImageView.image = [image imageCroppedAndScaledToSize:self.ibImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
-//
-//                    }];
-//
-//                    break;
-//            }
             
             
     }
@@ -370,20 +376,11 @@
 
         }
             break;
+            
         case 1:
         {
-         
-            [self showQrRecommendationView];
-         
-        }
-
-            break;
             
-        case 2:
-        {
-            
-            
-            [self.addNewPlaceViewController initData:self.recommendationModel.reccomendVenueModel];
+            [self.addNewPlaceViewController initData:self.postModel];
 
             [self presentViewController:self.navAddNewPlaceViewController animated:YES completion:^{
                 
@@ -393,7 +390,7 @@
             
         }
             break;
-        case 3:
+        case 2:
             
             [self requestToSaveDraftOrPublish:YES];
             break;
@@ -438,7 +435,7 @@
         _urlAlertView.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex == alertView.firstOtherButtonIndex) {
                 
-                weakSelf.recommendationModel.postURL = [[alertView textFieldAtIndex:0] text];
+                weakSelf.postModel.link = [[alertView textFieldAtIndex:0] text];
 
             } else if (buttonIndex == alertView.cancelButtonIndex) {
                 NSLog(@"Cancelled.");
@@ -449,8 +446,8 @@
     
     _urlAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     UITextField *textField = [_urlAlertView textFieldAtIndex:0];
-    if (self.recommendationModel.postURL) {
-        textField.text = self.recommendationModel.postURL;
+    if (self.postModel.link) {
+        textField.text = self.postModel.link;
     }
     
     return _urlAlertView;
@@ -500,11 +497,11 @@
 -(NSArray*)arrTabImages
 {
     if ( self.editPostType == EditPostTypePostEdit) {
-        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"StarRecommendationBtn.png"],[UIImage imageNamed:@"LocationBtn.png"]];
+        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"LocationBtn.png"]];
 
     }
     else{
-        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"StarRecommendationBtn.png"],[UIImage imageNamed:@"LocationBtn.png"],[UIImage imageNamed:@"SaveDraftBtn.png"]];
+        return @[[UIImage imageNamed:@"AddLanguageBtn.png"],[UIImage imageNamed:@"LocationBtn.png"],[UIImage imageNamed:@"SaveDraftBtn.png"]];
 
     }
 }
@@ -518,7 +515,7 @@
         __weak typeof (self)weakSelf = self;
         _editPhotoViewController.editPhotoBackClickedBlock = ^(id block)
         {
-          //  weakSelf.recommendationModel = weakSelf.tempSavedRecommendationModel;
+    //        weakSelf.postModel = weakSelf.postModelDuplicate;
             
         };
     }
@@ -561,11 +558,11 @@
         };
         
         
-        _addNewPlaceViewController.btnPressDoneBlock = ^(id object)
+        _addNewPlaceViewController.btnPressDoneBlock = ^(DraftModel* model)
         {
-            RecommendationVenueModel* temp = (RecommendationVenueModel*)object;
             
-            weakSelf.recommendationModel.reccomendVenueModel = temp;
+            weakSelf.postModel = model;
+
             [weakSelf.addNewPlaceViewController dismissViewControllerAnimated:YES completion:^{
                 [weakSelf reloadImage];
             }];
@@ -633,29 +630,33 @@
 
 }
 
--(RecommendationModel*)recommendationModel
-{
-    if(!_recommendationModel)
-    {
-        _recommendationModel  = [RecommendationModel new];
-        _recommendationModel.postMainDescription = @"main title Desc";
-        _recommendationModel.postMainTitle = @"main title";
-        _recommendationModel.postSecondDescription = @"second title Desc";
-        _recommendationModel.postSecondTitle = @"second title";
-
-    }
-    return _recommendationModel;
-}
+//-(RecommendationModel*)recommendationModel
+//{
+//    if(!_recommendationModel)
+//    {
+//        _recommendationModel  = [RecommendationModel new];
+//        _recommendationModel.postMainDescription = @"main title Desc";
+//        _recommendationModel.postMainTitle = @"main title";
+//        _recommendationModel.postSecondDescription = @"second title Desc";
+//        _recommendationModel.postSecondTitle = @"second title";
+//
+//    }
+//    return _recommendationModel;
+//}
 
 //button done
 -(void)buttonDoneAction
 {
+        if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
-    SLog(@"buttonDoneAction");
     [self dismissViewControllerAnimated:YES completion:nil];
     
     if (_editPostDoneBlock) {
-        self.editPostDoneBlock(nil);
+        self.editPostDoneBlock(self);
+        
+        [Utils reloadHomeView:1];
     }
 }
 
@@ -664,11 +665,8 @@
 -(void)saveData
 {
     
-    self.recommendationModel.postMainTitle = self.editPostView.txtTitle.text;
-    self.recommendationModel.postMainDescription = self.editPostView.txtDescription.text;
-    self.recommendationModel.postSecondTitle = self.editPostViewSecond.txtTitle.text;
-    self.recommendationModel.postSecondDescription = self.editPostViewSecond.txtDescription.text;
-    
+    self.postModel.post.title = self.editPostView.txtTitle.text;
+    self.postModel.post.message = self.editPostView.txtDescription.text;
 }
 
 #pragma mark - Server Request
@@ -676,6 +674,26 @@
 static id ObjectOrNull(id object)
 {
     return object ?: [NSNull null];
+}
+
+-(NSString*)stringOrBlank:(NSString*)str
+{
+    if (!str) {
+        return @"";
+    }
+    else{
+        return str;
+    }
+}
+
+-(id)dictOrBlank:(NSDictionary*)dict
+{
+    if (!dict) {
+        return @"";
+    }
+    else{
+        return dict;
+    }
 }
 
 
@@ -686,68 +704,66 @@ static id ObjectOrNull(id object)
 -(void)requestToSaveDraftOrPublish:(BOOL)isDraft
 {
     [self saveData];
+    
     NSMutableArray* arrMeta = [NSMutableArray new];
 
-    RecommendationModel* tempModel = self.recommendationModel;
-    RecommendationVenueModel* tempVenueModel = tempModel.reccomendVenueModel;
-
-    for (int i =0; i<self.recommendationModel.arrPostImagesList.count; i++) {
+    
+    for (int i =0; i<self.postModel.arrPhotos.count; i++) {
         
-        PhotoModel* model = self.recommendationModel.arrPostImagesList[i];
+        PhotoModel* model = self.postModel.arrPhotos[i];
         [arrMeta addObject:model];
     }
     
-    NSDictionary* addressDict = @{@"route":ObjectOrNull(tempVenueModel.route),
-                                  @"locality":ObjectOrNull(tempVenueModel.city),
-                                  @"administrative_area_level_1":ObjectOrNull(tempVenueModel.state),
-                                  @"postalCode":ObjectOrNull(tempVenueModel.postalCode),
-                                  @"country":ObjectOrNull(tempVenueModel.country),
-                                  @"political":@""};
+    NSDictionary* addressDict = @{@"route":ObjectOrNull(self.postModel.location.route),
+                                  @"locality":ObjectOrNull(self.postModel.location.locality),
+                                  @"administrative_area_level_1":ObjectOrNull(self.postModel.location.administrative_area_level_1),
+                                  @"postalCode":ObjectOrNull(self.postModel.location.postal_code),
+                                  @"country":ObjectOrNull(self.postModel.location.country),
+                                  @"political":@"",
+                                  };
     
     NSMutableArray* dictPeriods = [NSMutableArray new];
 
-    for (int i = 0; i<tempVenueModel.arrOperatingHours.count; i++) {
+    for (int i = 0; i<self.postModel.location.opening_hours.periods.count; i++) {
         
-        OperatingHoursModel* hourModel = tempVenueModel.arrOperatingHours[i];
+        OperatingHoursModel* hourModel = self.postModel.location.opening_hours.periods[i];
         if (hourModel.isOpen)
             [dictPeriods addObject:[hourModel toDictionary]];
     }
-
-//    NSArray* dictPeriods = @[@{@"close":@{@"day":@0,@"time":@"1111"},@"open":@{@"day":@0,@"time":@"1030"}},
-//                             @{@"close":@{@"day":@1,@"time":@"1222"},@"open":@{@"day":@1,@"time":@"1030"}},
-//                             @{@"close":@{@"day":@2,@"time":@"1333"},@"open":@{@"day":@2,@"time":@"1030"}},
-//                             @{@"close":@{@"day":@3,@"time":@"1444"},@"open":@{@"day":@3,@"time":@"1030"}}];
-//  
-//    SLog(@"compiled dict 2222 : %@",dictPeriods);
-
     
-    //  NSString* tempString = [string stringByReplacingOccurrencesOfString:@"open" withString:@"GG"];
     NSDictionary* openingHourDict = @{@"open_now":@"false",
-                                      @"periods":ObjectOrNull(dictPeriods)};
+                                      @"periods":[Utils isArrayNull:dictPeriods]?@"":dictPeriods
+                                      };
    
-    
-    
     NSDictionary* expensesDict;
-    if (tempVenueModel.price) {
+    
+    if (self.postModel.location.price) {
         
-        expensesDict = @{@"code":tempVenueModel.currency,
-                         @"value":tempVenueModel.price};
+        expensesDict = @{@"code":[self stringOrBlank:self.postModel.location.currency],
+                         @"value":[self stringOrBlank:self.postModel.location.price]};
     }
 
     // ========================   location =============================
-    NSDictionary* locationDict  = @{@"address_components":addressDict,
-                                    @"name":ObjectOrNull(tempVenueModel.name),
-                                    @"formatted_address":ObjectOrNull(tempVenueModel.formattedAddress),
-                                    @"type":@2,
-                                    @"rating":@"",
-                                    @"reference":ObjectOrNull(tempVenueModel.reference),
-                                    @"contact_no":ObjectOrNull(tempVenueModel.formattedPhone),
-                                    @"source":@"",
-                                    @"opening_hours":openingHourDict,
-                                    @"link":ObjectOrNull(tempVenueModel.url),
-                                    @"lat":ObjectOrNull(tempVenueModel.lat),
-                                    @"expense":ObjectOrNull(expensesDict),
-                                    @"lng":ObjectOrNull(tempVenueModel.lng)};
+    NSDictionary* locationDict;
+   
+    locationDict  = @{@"address_components":ObjectOrNull(addressDict),
+                      @"name":[self stringOrBlank:self.postModel.location.name],
+                      @"formatted_address":[self stringOrBlank:self.postModel.location.formatted_address],
+                      @"type":@(self.postModel.location.type),
+                      @"rating":@"",
+                      @"reference":[self stringOrBlank:self.postModel.location.reference],
+                      @"contact_no":[self stringOrBlank:self.postModel.location.contact_no],
+                      @"source":@"",
+                      @"opening_hours":ObjectOrNull(openingHourDict),
+                      @"link":[self stringOrBlank:self.postModel.location.link],
+                      @"lat":[self stringOrBlank:self.postModel.location.lat],
+                      @"expense":[self dictOrBlank:expensesDict],
+                      @"lng":[self stringOrBlank:self.postModel.location.lng],
+                      @"location_id" : ObjectOrNull(self.postModel.location.location_id),
+                      @"place_id" : ObjectOrNull(self.postModel.location.place_id),
+                      @"reference" : ObjectOrNull(self.postModel.location.reference),
+
+                      };
     
 //    NSMutableDictionary* finalLocationDict = [[NSMutableDictionary alloc]initWithDictionary:locationDict];
 //       [finalLocationDict addEntriesFromDictionary:expensesDict];
@@ -760,53 +776,63 @@ static id ObjectOrNull(id object)
     
         CategoryModel* model = self.categoriesModel.categories[i];
         if (model.isSelected) {
-            [categoriesSelected addObject:@(model.id)];
+            [categoriesSelected addObject:@(model.category_id)];
 
         }
     }
     
+    NSString* languageCode = [Utils getDeviceAppLanguageCode];
+    
+    if ([Utils isStringNull:languageCode]) {
+        languageCode = [Utils getDeviceDefaultLanguageCode];
+    }
     NSDictionary* dict = @{@"token":[Utils getAppToken],
                            @"status":isDraft?POST_DRAFT:POST_PUBLISH,
-                           [NSString stringWithFormat:@"title[%@]",self.recommendationModel.postMainLanguage]:ObjectOrNull(tempModel.postMainTitle),
-                           [NSString stringWithFormat:@"message[%@]",self.recommendationModel.postMainLanguage]:ObjectOrNull(tempModel.postMainDescription),
+                           [NSString stringWithFormat:@"title[%@]",languageCode]:[self stringOrBlank:self.postModel.post.title],
+                           [NSString stringWithFormat:@"message[%@]",languageCode]:[self stringOrBlank:self.postModel.post.message],
                            @"category":categoriesSelected.count==0?@[@0]:categoriesSelected,
                            @"device_type":@2,
                            @"location":[Utils convertToJsonString:locationDict],
-                           @"link":ObjectOrNull(tempModel.postURL)};
+                           @"link":[self stringOrBlank:self.postModel.location.link]};
     
 
-    NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",self.recommendationModel.postSeconLanguage]:ObjectOrNull(tempModel.postSecondTitle),
-                                 [NSString stringWithFormat:@"message[%@]",self.recommendationModel.postSeconLanguage]:ObjectOrNull(tempModel.postSecondDescription)};
-    
+
+//    NSDictionary* dictSecondDesc = @{[NSString stringWithFormat:@"title[%@]",self.recommendationModel.postSeconLanguage]:ObjectOrNull(tempModel.postSecondTitle),
+//                                 [NSString stringWithFormat:@"message[%@]",self.recommendationModel.postSeconLanguage]:ObjectOrNull(tempModel.postSecondDescription)};
+//    
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
     
-    if (isDualLanguge) {
-        [finalDict addEntriesFromDictionary:dictSecondDesc];
-    }
+//    if (isDualLanguge) {
+//        [finalDict addEntriesFromDictionary:dictSecondDesc];
+//    }
     
-    for (int i = 0; i<tempModel.arrDeletedImages.count; i++) {
+    for (int i = 0; i<self.postModel.arrDeletePosts.count; i++) {
         
-        NSDictionary* tempDict = @{[NSString stringWithFormat:@"delete_photos[%d]",i]:tempModel.arrDeletedImages[i]};
+        NSDictionary* tempDict = @{[NSString stringWithFormat:@"delete_photos[%d]",i]:self.postModel.arrDeletePosts[i]};
         [finalDict addEntriesFromDictionary:tempDict];
 
     }
     
-    [LoadingManager showWithTitle:LocalisedString(@"Posting...")];
+    [LoadingManager show];
 
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostSaveDraft param:finalDict appendString:tempModel.post_id meta:arrMeta  completeHandler:^(id object) {
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostSaveDraft param:finalDict appendString:self.postModel.post_id meta:arrMeta  completeHandler:^(id object) {
         
-        self.tempSavedRecommendationModel = self.recommendationModel;
-        if (!isDraft) {
+        if (!isDraft) {//post recommendation
             
+            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Posted Successfully") Type:TSMessageNotificationTypeSuccess];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_POST object:nil];
+
             [self performSelector:@selector(buttonDoneAction) withObject:nil afterDelay:2.0f];
         }
         else{ // This is draft
             [TSMessage showNotificationInViewController:self title:@"system" subtitle:LocalisedString(@"Data Successfully Saved to Draft") type:TSMessageNotificationTypeSuccess duration:2.0 canBeDismissedByUser:YES];
             
-            RecommendationModel* model = [[RecommendationModel alloc]initWithDraftModel:[ConnectionManager dataManager].savedDraftModel];
-            self.recommendationModel = model;
-            
+         //   RecommendationModel* model = [[RecommendationModel alloc]initWithDraftModel:[ConnectionManager dataManager].savedDraftModel];
+            self.postModel = [[ConnectionManager dataManager]savedDraftModel];
+           // self.postModelDuplicate = [[ConnectionManager dataManager]savedDraftModel];
+            self.storedModel = [self.postModel copy];
+
             if (isSaved) {
                 [self performSelector:@selector(dismissView) withObject:nil afterDelay:2.0f];
             }
@@ -814,7 +840,6 @@ static id ObjectOrNull(id object)
     
     } errorBlock:^(id object) {
 
-        
         [TSMessage showNotificationInViewController:self title:@"system" subtitle:object?object:LocalisedString(@"Uh-oh. Something went wrong. Tap to retry.") type:TSMessageNotificationTypeError duration:2.0 canBeDismissedByUser:YES];
 
     }];

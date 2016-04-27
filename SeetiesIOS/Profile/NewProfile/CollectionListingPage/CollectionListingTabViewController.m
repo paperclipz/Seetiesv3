@@ -8,12 +8,14 @@
 
 #import "CollectionListingTabViewController.h"
 #import "ProfilePageCollectionTableViewCell.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
 
 @interface CollectionListingTabViewController ()
 {
     BOOL isMiddleOfCallingServer;
 }
-@property (weak, nonatomic) IBOutlet UITableView *ibTableView;
+@property (weak, nonatomic) IBOutlet CustomEmptyView *ibTableView;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)NSMutableArray* arrCollections;
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
@@ -37,6 +39,14 @@
     [super viewDidLoad];
     [self initSelfView];
     
+    [self refreshRequest];
+}
+
+-(void)refreshRequest
+{
+    [self.arrCollections removeAllObjects];
+    [self.ibTableView reloadData];
+    _userCollectionsModel = nil;
     
     switch (self.collectionListingType) {
         default:
@@ -61,6 +71,7 @@
             [self requestServerForSeetiesCollection];
             break;
     }
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,6 +81,8 @@
 
 -(void)initSelfView
 {
+    
+    [self.ibTableView setupCustomEmptyView];
     [self initTableViewWithDelegate:self];
 }
 
@@ -126,18 +139,8 @@
     
     CollectionModel* collModel = self.arrCollections[indexPath.row];
     
-    NSString* userID = [Utils getUserID];
-    
-    if ([collModel.user_info.uid isEqualToString:userID]) {
-        
-        [cell initData:collModel profileType:ProfileViewTypeOwn];
-    }
-    
-    else{
-        [cell initData:collModel profileType:ProfileViewTypeOthers];
+    [cell initData:collModel];
 
-    }
-    
     __weak CollectionModel* weakModel =collModel;
     
     cell.btnEditClickedBlock = ^(void)
@@ -154,16 +157,26 @@
     
     cell.btnShareClicked = ^(void)
     {
-        _shareV2ViewController = nil;
-        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-        [naviVC setNavigationBarHidden:YES animated:NO];
-        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:weakModel.collection_id userID:weakModel.user_info.uid];
-        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-        [self presentViewController:formSheetController animated:YES completion:nil];
+//        _shareV2ViewController = nil;
+//        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//        [naviVC setNavigationBarHidden:YES animated:NO];
+//        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:weakModel.collection_id userID:weakModel.user_info.uid];
+//        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//        [self presentViewController:formSheetController animated:YES completion:nil];
         
+        //New Sharing Screen
+        CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+        
+        dataToPost.title = weakModel.postDesc;
+        dataToPost.shareID = weakModel.collection_id;
+        dataToPost.userID = weakModel.user_info.uid;
+        dataToPost.shareType = ShareTypeCollection;
+        
+        [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
     };
     
     return cell;
@@ -193,6 +206,7 @@
                            @"uid":self.userID
                            };
     
+    [self.ibTableView showLoading];
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
         
         isMiddleOfCallingServer = false;
@@ -202,8 +216,21 @@
         
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        
+        
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+
+        }
+        else{
+            [self.ibTableView hideAll];
+
+        }
+
+
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
+        [self.ibTableView hideAll];
 
     }];
 }
@@ -222,7 +249,8 @@
                            @"token":[Utils getAppToken],
                            @"uid":self.userID
                            };
-    
+    [self.ibTableView showLoading];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserFollowingCollections param:dict appendString:appendString completeHandler:^(id object) {
         
         isMiddleOfCallingServer = false;
@@ -231,9 +259,19 @@
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrCollections];
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            [self.ibTableView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
-        
+        [self.ibTableView hideAll];
+
     }];
 }
 
@@ -251,6 +289,8 @@
                            @"token":[Utils getAppToken],
                            };
     
+    [self.ibTableView showLoading];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserSuggestedCollections param:dict appendString:appendString completeHandler:^(id object) {
         
         isMiddleOfCallingServer = false;
@@ -259,9 +299,19 @@
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            [self.ibTableView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
-        
+        [self.ibTableView hideAll];
+
     }];
 }
 
@@ -278,6 +328,8 @@
                            @"token":[Utils getAppToken],
                            };
     
+    [self.ibTableView showLoading];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserSuggestedCollections param:dict appendString:appendString completeHandler:^(id object) {
         
         isMiddleOfCallingServer = false;
@@ -286,9 +338,18 @@
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            [self.ibTableView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
-        
+        [self.ibTableView hideAll];
+
     }];
 }
 
@@ -353,52 +414,6 @@
             }
 }
 
-//
-//-(void)requestServerToFollowCollection:(CollectionModel*)colModel
-//{
-//    
-//    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@/follow",self.userID,colModel.collection_id];
-//    NSDictionary* dict = @{@"uid":self.userID,
-//                           @"token":[Utils getAppToken],
-//                           @"collection_id":colModel.collection_id
-//                           };
-//    
-//    if (!colModel.following) {
-//        
-//        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
-//            
-//            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
-//            
-//            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
-//            colModel.following = following;
-//            [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
-//
-//            [self.ibTableView reloadData];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
-//            
-//            
-//        } errorBlock:^(id object) {
-//            
-//        }];
-//    }
-//    else{
-//        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
-//            
-//            NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
-//            BOOL following = [[returnDict objectForKey:@"following"] boolValue];
-//            colModel.following = following;
-//            [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
-//
-//            [self.ibTableView reloadData];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
-//            
-//            
-//        } errorBlock:^(id object) {
-//        }];
-//    }
-//    
-//}
-
 -(void)requestServerForShareCollection:(CollectionModel*)colModel
 {
 
@@ -433,14 +448,27 @@
                            @"token":[Utils getAppToken],
                            };
     
+    [self.ibTableView showLoading];
+
     [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopCollection param:dict appendString:appendString completeHandler:^(id object) {
         isMiddleOfCallingServer = false;
         self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
+        
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            [self.ibTableView hideAll];
+            
+        }
     } errorBlock:^(id object) {
         isMiddleOfCallingServer = false;
+        [self.ibTableView hideAll];
+
     }];
 }
 

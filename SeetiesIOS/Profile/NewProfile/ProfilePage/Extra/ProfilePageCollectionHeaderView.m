@@ -35,35 +35,34 @@
     return 71.0f;
 }
 
--(void)adjustRoundedEdge:(CGRect)frame
-{
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, frame.size.width, self.frame.size.height);
-
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    [self.ibBackgroundView setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:10.0f];
-    
-}
+//-(void)adjustRoundedEdge:(CGRect)frame
+//{
+//    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, frame.size.width, self.frame.size.height);
+//
+//    [self setNeedsLayout];
+//    [self layoutIfNeeded];
+//    [self.ibBackgroundView setRoundedCorners:UIRectCornerTopLeft|UIRectCornerTopRight radius:10.0f];
+//    
+//}
 //type 1 collection type 2 post type 3 likes
 -(void)setHeaderViewWithCount:(int)count type:(int)type
 {
     switch (type) {
         case 1:
-            self.lblTitle.text = LocalisedString(@"Collections");
-            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"collections")];
+            self.lblTitle.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Collections"),count];
             self.ibImageIcon.image = [UIImage imageNamed:@"NewCollectionsIcon.png"];
             break;
         case 2:
-            self.lblTitle.text = LocalisedString(@"Posts");
 
-            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"posts")];
+            self.lblTitle.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Posts"),count];
+
             self.ibImageIcon.image = [UIImage imageNamed:@"NewPostsIcon.png"];
 
             break;
             
         case 3:
-            self.lblTitle.text = LocalisedString(@"Likes");
-            self.lblNumberOfCollection.text = [NSString stringWithFormat:@"%d %@",count,LocalisedString(@"likes")];
+            self.lblTitle.text = [NSString stringWithFormat:@"%@ (%d)",LocalisedString(@"Likes"),count];
+
             self.ibImageIcon.image = [UIImage imageNamed:@"NewLikesIcon.png"];
 
             break;

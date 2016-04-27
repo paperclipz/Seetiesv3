@@ -17,7 +17,7 @@
 
 }
 @property(nonatomic,strong)NSMutableArray* arrShop;
-@property (strong, nonatomic) SeetiShopsModel* seetiShopsModel;
+@property (strong, nonatomic) SeShopsModel* seetiShopsModel;
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
 @property(nonatomic,strong)NSString* postID;
@@ -73,7 +73,7 @@
     NSLog(@"GetWidth is %d",GetWidth);
     
     for (int i = 0 ; i < [self.arrShop count]; i++) {
-        ShopModel* shopModel = self.arrShop[i];
+        SeShopDetailModel* shopModel = self.arrShop[i];
         
         UIButton *TempButton = [[UIButton alloc]init];
         TempButton.frame = CGRectMake(25 + i * (GetWidth + 25), 0 , GetWidth ,200);
@@ -83,9 +83,9 @@
         [TempButton addTarget:self action:@selector(OpenSeetiShopButtonOnClick:) forControlEvents:UIControlEventTouchUpInside];
         [MainScroll addSubview: TempButton];
         
-        AsyncImageView *ShowUserProfileImage = [[AsyncImageView alloc]init];
+        UIImageView *ShowUserProfileImage = [[UIImageView alloc]init];
         ShowUserProfileImage.frame = CGRectMake(25 + i * (GetWidth + 25), 20, GetWidth, GetWidth);
-        ShowUserProfileImage.contentMode = UIViewContentModeScaleAspectFill;
+        ShowUserProfileImage.contentMode = UIViewContentModeCenter;
         ShowUserProfileImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
         ShowUserProfileImage.layer.cornerRadius = GetWidth / 2;
         ShowUserProfileImage.layer.masksToBounds = YES;
@@ -109,15 +109,15 @@
         
         if (![shopModel.profile_photo isNull]) {
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
-            NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",shopModel.profile_photo];
+            NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",shopModel.profile_photo[@"picture"]];
             if ([ImageData1 length] == 0) {
-                ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultLogo.png"];
+                ShowUserProfileImage.image = [Utils getShopPlaceHolderImage];
             }else{
                 NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
-                ShowUserProfileImage.imageURL = url_NearbySmall;
+                [ShowUserProfileImage sd_setImageCroppedWithURL:url_NearbySmall completed:nil];
             }
         }else{
-           ShowUserProfileImage.image = [UIImage imageNamed:@"SSDefaultLogo.png"];
+           ShowUserProfileImage.image = [Utils getShopPlaceHolderImage];
         }
 
 
@@ -148,8 +148,8 @@
     self.seetiesID = seetiesID;
     self.placeID = placeID;
     self.postID = postID;
-    self.shoplat = [[SearchManager Instance]getLocation].coordinate.latitude;
-    self.shopLgn = [[SearchManager Instance]getLocation].coordinate.longitude;
+    self.shoplat = [[SearchManager Instance]getAppLocation].coordinate.latitude;
+    self.shopLgn = [[SearchManager Instance]getAppLocation].coordinate.longitude;
     [self requestServerForSeetiShopNearbyShop];
 
 }
@@ -168,7 +168,7 @@
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopNearbyShop param:dict appendString:appendString completeHandler:^(id object) {
         
         self.seetiShopsModel = [[ConnectionManager dataManager]seNearbyShopModel];
-        [self.arrShop addObjectsFromArray:self.seetiShopsModel.userPostData.shops];
+        [self.arrShop addObjectsFromArray:self.seetiShopsModel.shops];
         [self.arrShop shuffledArray];
         [self InitNearByViewData];
         
@@ -193,7 +193,7 @@
     NSLog(@"SeetiShop OpenSeetiShopButtonOnClick");
     
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
-    ShopModel* model = self.arrShop[getbuttonIDN];
+    SeShopDetailModel* model = self.arrShop[getbuttonIDN];
     
     if (self.btnSeetiShopClickedBlock) {
         self.btnSeetiShopClickedBlock(model.seetishop_id);

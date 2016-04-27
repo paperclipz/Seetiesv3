@@ -14,9 +14,10 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *lblIndicator;
-@property (strong, nonatomic)SearchLocationDetailModel* gooModel;// google
-@property (strong, nonatomic)VenueModel* fsModel;// 4square
-@property (strong, nonatomic)RecommendationVenueModel* rModel;
+//@property (strong, nonatomic)SearchLocationDetailModel* gooModel;// google
+//@property (strong, nonatomic)VenueModel* fsModel;// 4square
+@property (strong, nonatomic)DraftModel* postModel;
+@property (strong, nonatomic)DraftModel* storedPostModel;
 
 
 @property (weak, nonatomic) IBOutlet MKMapView *ibMapView;
@@ -25,7 +26,6 @@
 
 @property(strong,nonatomic)MKPointAnnotation* annotation;
 @property(nonatomic,assign)MKCoordinateRegion region;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 
 @property(strong,nonatomic)STSearchViewController* stSearchViewController;
@@ -33,6 +33,26 @@
 @end
 
 @implementation AddNewPlaceViewController
+
+
+-(BOOL)validateAsCustomLocation
+{
+    if (self.postModel.location.lat != self.storedPostModel.location.lat || self.postModel.location.lng != self.storedPostModel.location.lng) {
+        return YES;
+    }
+    else if (![self.postModel.location.name isEqualToString:self.storedPostModel.location.name])
+    {
+        return YES;
+        
+    }
+    else if (![self.postModel.location.formatted_address isEqualToString:self.storedPostModel.location.formatted_address])
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (IBAction)btnEditLocationClicked:(id)sender {
     
     
@@ -50,7 +70,11 @@
         {
             [self saveData];
             
-            self.btnPressDoneBlock(self.rModel);
+            
+            if ([self validateAsCustomLocation]) {
+                self.postModel.location.type = SearchTypeDefault;
+            }
+            self.btnPressDoneBlock(self.postModel);
         }
     }
 }
@@ -130,7 +154,7 @@
             
             [weakSelf saveData];
             _editHoursViewController = nil;
-            [weakSelf.editHoursViewController initData:weakSelf.rModel.arrOperatingHours];
+            [weakSelf.editHoursViewController initData:weakSelf.postModel.location.opening_hours.periods];
             [weakSelf presentViewController:weakSelf.editHoursViewController animated:YES completion:^{
             }];
         };
@@ -164,27 +188,33 @@
     [self.annotation setCoordinate:self.region.center];
 
 }
-
--(void)initData:(RecommendationVenueModel*)model
+-(void)initData:(DraftModel*)model
 {
-    self.rModel = model;
-
+    self.postModel = [model copy];
+    self.storedPostModel = [model copy];
 }
+
 
 -(void)loadData
 {
-    self.addNewPlaceSubView.txtPlaceName.text = self.rModel.name;
-    self.addNewPlaceSubView.txtAddress.text = self.rModel.formattedAddress;
-    self.addNewPlaceSubView.txtURL.text = self.rModel.url;
-    self.addNewPlaceSubView.txtPhoneNo.text = self.rModel.formattedPhone;
-    [self.addNewPlaceSubView.btnCurrency setTitle:self.rModel.currency?self.rModel.currency:USD forState:UIControlStateNormal];
-    self.addNewPlaceSubView.txtPerPax.text = self.rModel.price;
+    
+    @try {
+        self.addNewPlaceSubView.txtPlaceName.text = self.postModel.location.name;
+        self.addNewPlaceSubView.txtAddress.text = self.postModel.location.formatted_address;
+        self.addNewPlaceSubView.txtURL.text = self.postModel.location.link;
+        self.addNewPlaceSubView.txtPhoneNo.text = self.postModel.location.contact_no;
+        [self.addNewPlaceSubView.btnCurrency setTitle:self.postModel.location.currency?self.postModel.location.currency:USD forState:UIControlStateNormal];
+        self.addNewPlaceSubView.txtPerPax.text = self.postModel.location.price;
+    } @catch (NSException *exception) {
+        
+    }
+    
 }
 
 -(void)reloadData
 {
    
-    [self refreshMapViewWithLatitude:[self.rModel.lat doubleValue] longtitude:[self.rModel.lng doubleValue]];
+    [self refreshMapViewWithLatitude:[self.postModel.location.lat doubleValue] longtitude:[self.postModel.location.lng doubleValue]];
 
 }
 
@@ -226,8 +256,8 @@
         _mapViewController = [MapViewController new];
         _mapViewController.viewDidDismissBlock = ^(MKCoordinateRegion region)
         {
-            weakSelf.rModel.lat = [@(region.center.latitude) stringValue];
-            weakSelf.rModel.lng = [@(region.center.longitude) stringValue];
+            weakSelf.postModel.location.lat = [@(region.center.latitude) stringValue];
+            weakSelf.postModel.location.lng = [@(region.center.longitude) stringValue];
         };
     }
     
@@ -285,12 +315,13 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 */
 
 #pragma  mark - Declaration
--(RecommendationVenueModel*)rModel
+
+-(DraftModel*)postModel
 {
-    if (!_rModel) {
-        _rModel = [RecommendationVenueModel new];
+    if (!_postModel) {
+        _postModel = [DraftModel new];
     }
-    return _rModel;
+    return _postModel;
 }
 
 -(EditHoursViewController*)editHoursViewController
@@ -301,7 +332,7 @@ didChangeDragState:(MKAnnotationViewDragState)newState
         _editHoursViewController = [EditHoursViewController new];
         _editHoursViewController.backBlock = ^(NSArray* arrayOpeningHours)
         {
-            weakSelf.rModel.arrOperatingHours = [arrayOpeningHours mutableCopy];
+            weakSelf.postModel.location.opening_hours.periods = [arrayOpeningHours mutableCopy];
         
         };
     }
@@ -314,9 +345,10 @@ didChangeDragState:(MKAnnotationViewDragState)newState
         _stSearchViewController = [STSearchViewController new];
         [_stSearchViewController setViewEdit];
         __weak typeof (self)weakSelf = self;
-        _stSearchViewController.didSelectOnLocationBlock = ^(RecommendationVenueModel* model)
+        _stSearchViewController.didSelectOnLocationBlock = ^(Location* model)
         {
-            weakSelf.rModel = model;
+            weakSelf.postModel.location = model;
+            [weakSelf loadData];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
 
         };
@@ -327,18 +359,19 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 #pragma mark - Save Data
 -(void)saveData
 {
-    self.rModel.formattedAddress =  self.addNewPlaceSubView.txtAddress.text;
-    self.rModel.formattedPhone =  self.addNewPlaceSubView.txtPhoneNo.text;
-    self.rModel.name =  self.addNewPlaceSubView.txtPlaceName.text;
-    self.rModel.url =  self.addNewPlaceSubView.txtURL.text;
-    self.rModel.price =  self.addNewPlaceSubView.txtPerPax.text;
+    
+    self.postModel.location.formatted_address =  self.addNewPlaceSubView.txtAddress.text;
+    self.postModel.location.contact_no =  self.addNewPlaceSubView.txtPhoneNo.text;
+    self.postModel.location.name =  self.addNewPlaceSubView.txtPlaceName.text;
+    self.postModel.location.link =  self.addNewPlaceSubView.txtURL.text;
+    self.postModel.location.price =  self.addNewPlaceSubView.txtPerPax.text;
     
     if ([self.addNewPlaceSubView.btnCurrency.titleLabel.text isEqualToString:@"$"]) {
-        self.rModel.currency = @"Currency";
+        self.postModel.location.currency = @"Currency";
 
     }
     else{
-        self.rModel.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;
+        self.postModel.location.currency = self.addNewPlaceSubView.btnCurrency.titleLabel.text;
 
     }
 }
@@ -348,6 +381,6 @@ didChangeDragState:(MKAnnotationViewDragState)newState
 -(void)changeLanguage
 {
     self.lblTitle.text = LocalisedString(@"Add a new place");
-    self.lblIndicator.text = LOCALIZATION(@"Tap the map to drop a pin");
+    self.lblIndicator.text = LocalisedString(@"Tap the map to drop a pin");
 }
 @end

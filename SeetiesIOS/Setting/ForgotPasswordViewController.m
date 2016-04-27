@@ -43,20 +43,20 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Forgot Password Page";
+    //self.screenName = @"IOS Forgot Password Page";
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
+ 
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        return;
+    }
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

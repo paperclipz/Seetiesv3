@@ -9,7 +9,6 @@
 #import "PTellUsYourCityViewController.h"
 
 #import "PSearchLocationViewController.h"
-#import "PFollowTheExpertsViewController.h"
 #import "PSelectYourInterestViewController.h"
 @interface PTellUsYourCityViewController ()
 
@@ -90,7 +89,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.screenName = @"IOS Provisioning Tell Us Your City";
+    //self.screenName = @"IOS Provisioning Tell Us Your City";
     
     ShowTitle_City.text = NSLocalizedString(@"Provisioning_PTellUsYourCityView_1",nil);
     ShowTitle_Lang.text = NSLocalizedString(@"Provisioning_PTellUsYourCityView_6",nil);

@@ -1,7 +1,7 @@
 //
 //  IQTitleBarButtonItem.h
 // https://github.com/hackiftekhar/IQKeyboardManager
-// Copyright (c) 2013-15 Iftekhar Qurashi.
+// Copyright (c) 2013-16 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,11 +25,6 @@
 #import "IQKeyboardManagerConstants.h"
 #import "IQBarButtonItem.h"
 
-#if !(__has_feature(objc_instancetype))
-    #define instancetype id
-#endif
-
-
 /**
  BarButtonItem with title text.
  */
@@ -43,10 +38,9 @@
 /**
  Initialize with frame and title.
  
- @param frame Initial frame of barButtonItem
  @param title Title of barButtonItem.
  */
--(nonnull instancetype)initWithFrame:(CGRect)frame title:(nullable NSString *)title NS_DESIGNATED_INITIALIZER;
+-(nonnull instancetype)initWithTitle:(nullable NSString *)title NS_DESIGNATED_INITIALIZER;
 
 /**
  Unavailable. Please use initWithFrame:title: method

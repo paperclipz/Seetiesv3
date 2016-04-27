@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
-@interface Filter2ViewController : GAITrackedViewController<UITableViewDataSource,UITableViewDelegate>{
+//#import "GAITrackedViewController.h"
+@interface Filter2ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
 
     IBOutlet UILabel *TitleLabel;
     IBOutlet UIImageView *BarImage;

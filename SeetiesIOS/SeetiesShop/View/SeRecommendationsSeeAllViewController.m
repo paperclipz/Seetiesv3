@@ -11,6 +11,9 @@
 #import "ProfileViewController.h"
 #import "AddCollectionDataViewController.h"
 #import "UrlDataClass.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
+
 @interface SeRecommendationsSeeAllViewController ()<UIScrollViewDelegate>{
 
     IBOutlet UIScrollView *MainScroll;
@@ -175,7 +178,7 @@
 
     for (int i = 0; i < [self.arrPostListing count]; i++) {
         DraftModel* model = self.arrPostListing[i];
-        [self.arrPostLike addObject:model.like];
+        [self.arrPostLike addObject:model.like?@"1":@"0"];
         [self.arrPostCollect addObject:model.collect];
         
         NSLog(@"self.arrPostLike == %@",self.arrPostLike);
@@ -192,14 +195,12 @@
         
         PhotoModel* photoModel = model.arrPhotos[0];
         
-        
         AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
         ShowImage.contentMode = UIViewContentModeScaleAspectFill;
-        NSString *GetImageWidth = [[NSString alloc]initWithFormat:@"%@",photoModel.imageWidth];
-        NSString *GetImageHeight = [[NSString alloc]initWithFormat:@"%@",photoModel.imageHeight];
-        float oldWidth = [GetImageWidth floatValue];
+
+        float oldWidth = photoModel.imageWidth;
         float scaleFactor = screenWidth / oldWidth;
-        float newHeight_ = [GetImageHeight floatValue] * scaleFactor;
+        float newHeight_ = photoModel.imageHeight * scaleFactor;
         int resultHeight = (int)newHeight_;
         ShowImage.frame = CGRectMake(10, heightcheck, screenWidth - 20, resultHeight);
         ShowImage.layer.masksToBounds = YES;
@@ -448,12 +449,10 @@
         
         UIButton *LikeButton = [[UIButton alloc]init];
         LikeButton.frame = CGRectMake(20, heightcheck + 4, 37, 37);
-        CheckLike = [[NSString alloc]initWithFormat:@"%@",model.like];
-        if ([CheckLike isEqualToString:@"0"]) {
-            [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateNormal];
+
+        if (model.like) {
             [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateSelected];
         }else{
-            [LikeButton setImage:[UIImage imageNamed:@"LikedIcon.png"] forState:UIControlStateNormal];
             [LikeButton setImage:[UIImage imageNamed:@"LikeIcon.png"] forState:UIControlStateSelected];
         }
         LikeButton.backgroundColor = [UIColor clearColor];
@@ -521,8 +520,9 @@
     DraftModel* model = self.arrPostListing[getbuttonIDN];
 
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:model.user_info.uid];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:model.user_info.uid];
+    }];
 }
 -(IBAction)LikeButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -571,15 +571,26 @@
     }
     PhotoModel* photoModel = model.arrPhotos[0];
     
-    _shareV2ViewController = nil;
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:TestTitle imagURL:photoModel.imageURL shareType:ShareTypePost shareID:model.post_id userID:@""];
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+//    _shareV2ViewController = nil;
+//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//    [naviVC setNavigationBarHidden:YES animated:NO];
+//    [self.shareV2ViewController share:@"" title:TestTitle imagURL:photoModel.imageURL shareType:ShareTypePost shareID:model.post_id userID:@""];
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
+    
+    //New Sharing Screen
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+    
+    dataToPost.title = TestTitle;
+    dataToPost.shareID = model.post_id;
+    dataToPost.shareType = ShareTypePost;
+    dataToPost.postImageURL = photoModel.imageURL;
+    
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
 }
 -(IBAction)CollectButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

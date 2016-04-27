@@ -50,7 +50,7 @@
     for (int i = 0; i<self.arrCategories.count; i++) {
         CategoryModel* model = self.arrCategories[i];
         int selected;
-        int categories = model.id;
+        int categories = model.category_id;
 
         for (int j= 0; j<selectedArray.count; j++) {
             selected = [selectedArray[j] intValue];
@@ -130,9 +130,10 @@
     CategoryCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CategoryCollectionViewCell" forIndexPath:indexPath];
     CategoryModel* model = self.arrCategories[indexPath.row];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString* langOne = [defaults objectForKey:@"UserData_SystemLanguage"];
-    cell.lblTitle.text = model.multiple_line[[Utils getLanguageCode:langOne]];
+   
+    NSString* defaultLangCode = [Utils getDeviceDefaultLanguageCode];
+
+    cell.lblTitle.text = model.single_line[defaultLangCode];
     [cell.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.selectedImageUrl] placeholderImage:nil];
     cell.ibContentView.backgroundColor = [UIColor colorWithHexValue:model.background_color];
     [cell initData:model];

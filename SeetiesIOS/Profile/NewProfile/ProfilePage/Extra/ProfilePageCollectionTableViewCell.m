@@ -8,14 +8,15 @@
 
 #import "ProfilePageCollectionTableViewCell.h"
 
-#define NO_LOCK_CONSTRSINT_CONSTANT 10.0f
-#define LOCK_CONSTRSINT_CONSTANT 33.0f
+#define NO_LOCK_CONSTRSINT_CONSTANT 16.0f
+#define LOCK_CONSTRSINT_CONSTANT 40.0f
 
 @interface ProfilePageCollectionTableViewCell()
 {
 
     __weak IBOutlet NSLayoutConstraint *ibCollectionNameLeadingConstraint;
 
+    __weak IBOutlet NSLayoutConstraint *constEditWidth;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewA;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageViewB;
@@ -25,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageLock;
 
 @property (assign, nonatomic)ProfileViewType profileType;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoOfPost;
+@property (weak, nonatomic) IBOutlet UILabel *lblNoOfFollower;
 
 @end
 @implementation ProfilePageCollectionTableViewCell
@@ -45,16 +48,14 @@
 }
 - (IBAction)btnEditClicked:(id)sender {
     
-    if (_btnEditClickedBlock) {
-        
-        if (self.profileType == ProfileViewTypeOwn) {
+    if (self.profileType == ProfileViewTypeOwn) {
+        if (_btnEditClickedBlock) {
             self.btnEditClickedBlock();
-
         }
-        else{
-            if (_btnFollowBlock) {
-                self.btnFollowBlock();
-            }
+    }
+    else{
+        if (_btnFollowBlock) {
+            self.btnFollowBlock();
         }
     }
 }
@@ -64,9 +65,11 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
 
-    [self.ibImageViewA setStandardBorder];
-    [self.ibImageViewB setStandardBorder];
-    
+    [Utils setRoundBorder:self.ibImageViewA color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
+    [Utils setRoundBorder:self.ibImageViewB color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
+
+
+  
     [self changeLanguage];
 }
 
@@ -77,20 +80,26 @@
 
 +(int)getHeight
 {
-    return 190.0f;
+    return 205.0f;
 }
 
--(void)initData:(CollectionModel*)model profileType:(ProfileViewType)type
+-(void)initData:(CollectionModel*)model
 {
 
     self.model = model;
-    self.profileType = type;
+    
+    if ([model.user_info.uid isEqualToString:[Utils getUserID]]) {
+        self.profileType = ProfileViewTypeOwn;
+
+    }
+    else{
+        self.profileType = ProfileViewTypeOthers;
+
+    }
     
     self.lblTitle.text = self.model.name;
-    self.lblNoOfCollection.text = [NSString stringWithFormat:@"%d %@",self.model.collection_posts_count,LocalisedString(@"Recommendations")];
-    
-    self.ibImageViewA.image = [UIImage imageNamed:@"EmptyCollection.png"];
-    self.ibImageViewB.image = [UIImage imageNamed:@"EmptyCollection.png"];
+    self.lblNoOfPost.text = [NSString stringWithFormat:@"%d",self.model.collection_posts_count];
+    self.lblNoOfFollower.text = [NSString stringWithFormat:@"%d",self.model.follower_count];
 
     if (![self.model.arrayPost isNull])
     {
@@ -102,7 +111,8 @@
             if (![draftModel.arrPhotos isNull]) {
                 PhotoModel* photoModel1 = draftModel.arrPhotos[0];
 
-                [self.ibImageViewA sd_setImageWithURL:[NSURL URLWithString:photoModel1.imageURL]];
+                
+                [self.ibImageViewA sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel1.imageURL] completed:nil];
                 //SLog(@"Image A: %@",photoModel1.imageURL);
 
             }
@@ -116,30 +126,34 @@
             if (![draftModelTwo.arrPhotos isNull]) {
                 PhotoModel* photoModel2 = draftModelTwo.arrPhotos[0];
                 
-                [self.ibImageViewB sd_setImageWithURL:[NSURL URLWithString:photoModel2.imageURL]];
+                [self.ibImageViewB sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel2.imageURL] completed:nil];
+
                // SLog(@"Image A: %@",photoModel2.imageURL);
 
             }
         }
     }
     
-    
     if (self.profileType == ProfileViewTypeOwn) {
+        
+        constEditWidth.constant = 88;
         [self.btnEdit setTitle:LocalisedString(@"Edit") forState:UIControlStateNormal];
-        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
-        [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2];
+        //[Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:0];
+        [Utils setRoundBorder:self.btnEdit color:LINE_COLOR borderRadius:self.btnEdit.frame.size.height/2 borderWidth:1];
         
         [self.btnEdit setImage:nil forState:UIControlStateNormal];
         [self.btnEdit setImage:nil forState:UIControlStateSelected];
 
-
     }
     else{
-        [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
+        
+        constEditWidth.constant = 59;
+
+      //  [Utils setRoundBorder:self.ibInnerContentView color:LINE_COLOR borderRadius:5.0f];
         [Utils setRoundBorder:self.btnEdit color:[UIColor clearColor] borderRadius:0];
 
-        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
-        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
+        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowIcon.png")] forState:UIControlStateNormal];
+        [self.btnEdit setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowingIcon.png")] forState:UIControlStateSelected];
         [self.btnEdit setTitle:@"" forState:UIControlStateNormal];
         [self.btnEdit setTitle:@"" forState:UIControlStateSelected];
         

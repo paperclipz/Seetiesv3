@@ -8,8 +8,34 @@
 
 #import "ProfileModel.h"
 
+
+@interface ProfileModel()
+@property(nonatomic,strong)NSString* user_id;
+
+@end
 @implementation ProfileModel
 
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    for (NSString *key in [self codableProperties])
+    {
+        [copy setValue:[self valueForKey:key] forKey:key];
+    }
+    return copy;
+    
+}
+
+-(NSString*)uid
+{
+    if (![Utils isStringNull:_uid]) {
+        return _uid;
+    }
+    else
+    {
+        return _user_id;
+    }
+}
 
 -(NSString*)getGender
 {
@@ -53,20 +79,5 @@
 
 @end
 
-@implementation SeetiShopsModel
-+(BOOL)propertyIsOptional:(NSString*)propertyName
-{
-    return YES;
-}
-
-+(JSONKeyMapper*)keyMapper
-{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"data": @"userPostData"
-                                                       
-                                                       }];
-}
-
-@end
 
 

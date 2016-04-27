@@ -68,8 +68,8 @@
 -(void)changeLanguage
 {
 
-    self.lblIndicatorOne.text = LOCALIZATION(@"Tap the map to drop a pin at the correct location");
-    self.lblIndicatorTwo.text = LOCALIZATION(@"You can zoom in to get really pricise");
+    self.lblIndicatorOne.text = LocalisedString(@"Tap the map to drop a pin at the correct location");
+    self.lblIndicatorTwo.text = LocalisedString(@"You can zoom in to get really pricise");
 }
 
 -(void)viewDidAppear:(BOOL)animated

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 //protocol ShareV2ViewController {
 //    
 //    func share(postID:String, message:String,title:String, imagURL:String, shareType:ShareType, userID:String)
@@ -17,6 +16,8 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     @IBOutlet weak var ibCollectionView: UICollectionView!
     @IBOutlet weak var ShareFrenView: UIView!
     
+    @IBOutlet weak var lblDesc: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
     var viewController = UIViewController()
 
     var shareToFrenVC = ShareToFrenViewController()
@@ -31,7 +32,6 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     var userID: String = ""
     var postID: String = ""
 
-
     var shareType:ShareType?
     var shareManager:ShareManager?
 
@@ -42,9 +42,11 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
       //  shareToFrenVC = ShareV2ViewController.init(nibName: "ShareToFrenViewController", bundle: nil)
       //  self.navigationController!.pushViewController(shareToFrenVC, animated: true)
         self.shareToFrenVC = ShareToFrenViewController(nibName: "ShareToFrenViewController", bundle: nil)
+        
         self.shareToFrenVC.GetID(self.shareID, getUserID: userID, getType: self.shareType!, getPostID: self.postID)
+        
 
-      //  self.shareToFrenVC.GetID(self.shareID, getUserID: userID, getType: self.shareType!)
+        
         self.presentViewController(self.shareToFrenVC, animated: true, completion: nil)
        // self.navigationController!.pushViewController(self.shareToFrenVC, animated: true)
 
@@ -70,6 +72,8 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     
     func initSelfView()
     {
+        self.lblTitle.text = LanguageManager.sharedLanguageManager().getTranslationForKey("Send to friends in Seeties");
+        self.lblDesc.text = LanguageManager.sharedLanguageManager().getTranslationForKey("Your friend will receive in notification.");
         
         self.view.bounds = CGRectMake(0, 0, Utils.getDeviceScreenSize().size.width, Utils.getDeviceScreenSize().size.height)
         self.view.setNeedsLayout()
@@ -102,21 +106,6 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     }
     */
     //MARK: - CollectionView Delegate
-    func share(message:String,title:String, imagURL:String, shareType:ShareType, shareID:String, userID:String, postID:String)
-    {
-        self.postMessage = message
-        self.postTitle = title
-        self.imageURL = imagURL
-        self.shareType = shareType
-        self.shareID = shareID
-        self.userID = userID;
-        self.viewController = self;
-        self.postID = postID;
-        
-    }
-    
-    
-
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return arrImages.count
@@ -139,15 +128,18 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
 
         let screenFrame:CGRect = Utils.getDeviceScreenSize()
         let cellWidth:CGFloat = ((screenFrame.size.width/3) - 15)
-        let cellSize = CGSizeMake(cellWidth,cellDefaultWidth/cellWidth*cellDefaultHeight)
+        let cellSize = CGSizeMake(cellWidth,cellWidth/cellDefaultWidth*cellDefaultHeight)
         return cellSize
     }
     
     func initShareFrenView()
     {
-        if(self.shareType == ShareTypePostUser){
-            self.ShareFrenView.hidden = true
-        }
+//        if(self.shareType == ShareTypePostUser){
+//            self.ShareFrenView.hidden = true
+//        }
+        
+        self.ShareFrenView.hidden = true
+
     }
     
     func initCollectionView()
@@ -168,6 +160,20 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
         self.viewController = self;
         
     }
+    
+    func share(message:String,title:String, imagURL:String, shareType:ShareType, shareID:String, userID:String, postID:String)
+    {
+        self.postMessage = message
+        self.postTitle = title
+        self.imageURL = imagURL
+        self.shareType = shareType
+        self.shareID = shareID
+        self.userID = userID;
+        self.viewController = self;
+        self.postID = postID;
+        
+    }
+
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
@@ -192,7 +198,6 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     {
        // shareManager?.shareFacebook(self.postTitle, message: self.postMessage, shareType: ShareTypeFacebookPost, userID: self.userID, delegate: self)
         shareManager?.shareFacebook(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID,postID:self.postID, delegate: viewController)
-
         //param.link = NSURL(string:postURL as String)
     }
     
@@ -204,32 +209,27 @@ class ShareV2ViewController: UIViewController,UICollectionViewDataSource,UIColle
     func shareLine()
     {
         shareManager?.shareOnLINE(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID,postID:self.postID, delegate: viewController)
-
     }
     
     func shareMessanger()
     {
         shareManager?.shareOnMessanger(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID:self.shareID,postID:self.postID, delegate: viewController);
-
     }
     
     func shareWhatsapp()
     {
         shareManager?.shareOnWhatsapp(self.postTitle, message: self.postMessage, imageURL: self.imageURL, shareType: self.shareType!, shareID: self.shareID,postID:self.postID, delegate: viewController)
-
     }
     
     func shareCopyLink()
     {
         shareManager?.shareWithCopyLink(self.shareType!, shareID: self.shareID,postID:self.postID, delegate: viewController)
-
     
     }
     
     func shareEmail()
     {
         shareManager?.shareOnEmail(self.shareType!, viewController: self.viewController,shareID: self.shareID,  postID:self.postID)
-
     }
 
 }

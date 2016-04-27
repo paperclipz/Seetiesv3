@@ -18,10 +18,9 @@
 @property (weak, nonatomic) IBOutlet UIView *ibSwipeDeleteNoteView;
 @property (weak, nonatomic) IBOutlet UILabel *lblSwipeToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoDraftYet;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet CustomEmptyView *tableView;
 @property (strong, nonatomic) NSMutableArray* arrDraftList;
 @property(nonatomic,strong)EditPostViewController* editPostViewController;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (nonatomic,strong)UIImageView* loadingImageView;
 @property (strong, nonatomic) IBOutlet UIView *ibHeaderView;
 @property (strong, nonatomic) DraftsModel* draftsModel;
@@ -58,6 +57,7 @@
 
 -(void)initSelfView
 {
+    [self.tableView setupCustomEmptyView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [Utils setRoundBorder:self.ibSwipeDeleteNoteView color:TWO_ZERO_FOUR_COLOR borderRadius:0 borderWidth:0.5f];
@@ -65,6 +65,10 @@
     [self.tableView registerClass:[DraftTableViewCell class] forCellReuseIdentifier:@"DraftTableViewCell"];
     [self.tableView addPullToRefreshWithActionHandler:^{
         [self.loadingImageView startAnimating];
+        
+        [self.arrDraftList removeAllObjects];
+        self.draftsModel = nil;
+       // [self.tableView reloadData];
         [self requestServerForDraft];
         [self.tableView.pullToRefreshView performSelector:@selector(stopAnimating) withObject:nil afterDelay:30];
         
@@ -142,7 +146,9 @@
     _editPostViewController = nil;
     [self.editPostViewController initDataDraft:draftModel];
 
-    [self.navigationController pushViewController:self.editPostViewController animated:YES];
+    [self.navigationController pushViewController:self.editPostViewController animated:YES onCompletion:^{
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }];
 
 }
 
@@ -170,6 +176,18 @@
                            @"offset":@(self.draftsModel.offset + self.draftsModel.limit)
                            
                            };
+  
+    [self.tableView reloadData];
+    
+    if ([Utils isArrayNull:self.arrDraftList]) {
+        [self.tableView showLoading];
+
+    }
+    else
+    {
+        [self.tableView hideAll];
+
+    }
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetRecommendationDraft param:dict appendString:nil completeHandler:^(id object) {
         
@@ -182,11 +200,20 @@
         [self.loadingImageView stopAnimating];
         isMiddleOfCallingServer = NO;
 
+        
+        if ([Utils isArrayNull:self.arrDraftList]) {
+            [self.tableView showEmptyState];
+
+        }
+        else{
+            [self.tableView hideAll];
+        }
 
     } errorBlock:^(id object) {
         [self.tableView.pullToRefreshView stopAnimating];
         [self.loadingImageView stopAnimating];
         isMiddleOfCallingServer = NO;
+        [self.tableView hideAll];
 
     }];
  
@@ -213,10 +240,22 @@
         {
             EditPostViewController* obj  = (EditPostViewController*)object;
             obj = nil;
-            _arrDraftList = nil;
             _draftsModel = nil;
+            _arrDraftList = nil;
+            [weakSelf.tableView reloadData];
             [weakSelf requestServerForDraft];
         
+        };
+        
+        _editPostViewController.editPostDoneBlock = ^(id object)
+        {
+            EditPostViewController* obj  = (EditPostViewController*)object;
+            obj = nil;
+            _draftsModel = nil;
+            _arrDraftList = nil;
+            [weakSelf.tableView reloadData];
+            [weakSelf requestServerForDraft];
+            
         };
     }
     return _editPostViewController;
@@ -225,10 +264,10 @@
 #pragma mark - UIScrollView Delegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    float bottomEdge = scrollView.contentOffset.x + scrollView.frame.size.width;
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
     
     float reload_distance = 10;
-    if (bottomEdge >= scrollView.contentSize.width -  reload_distance) {
+    if (bottomEdge >= scrollView.contentSize.height -  reload_distance) {
         
         if(![Utils isStringNull:self.draftsModel.next])
         {
@@ -239,5 +278,6 @@
 //        }
     }
 }
+
 
 @end

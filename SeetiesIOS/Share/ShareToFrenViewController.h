@@ -44,5 +44,4 @@
     NSInteger GetType;
 }
 -(void)GetID:(NSString *)ID GetUserID:(NSString *)userID GetType:(ShareType)type GetPostID:(NSString *)postID;
-
 @end

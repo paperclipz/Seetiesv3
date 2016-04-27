@@ -52,7 +52,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Edit Profile Page";
+    //self.screenName = @"IOS Edit Profile Page";
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     GetName = [defaults objectForKey:@"UserData_Name"];

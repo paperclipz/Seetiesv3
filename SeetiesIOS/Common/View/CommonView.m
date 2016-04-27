@@ -43,7 +43,12 @@
     return nil;
 }
 
-
+-(void)initSelfView
+{
+    CGRect frame = [Utils getDeviceScreenSize];
+    self.frame = frame;
+    [self refreshConstraint];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -51,5 +56,6 @@
     // Drawing code
 }
 */
+
 
 @end

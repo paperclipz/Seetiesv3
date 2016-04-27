@@ -9,7 +9,7 @@
 #import "ShareManager.h"
 #import <MessageUI/MessageUI.h>
 #import <MGInstagram/MGInstagram.h>
-
+#define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 #define SEETIES_LOGO_URL @"https://pbs.twimg.com/profile_images/499756229170716673/U1ejUl7V.png"
 @interface ShareManager()<UIDocumentInteractionControllerDelegate,MFMailComposeViewControllerDelegate>
 {
@@ -26,6 +26,7 @@
 @property(nonatomic,strong)NSString* postImageURL;
 @property(nonatomic,strong)NSString* postID;
 
+
 @property(nonatomic,strong)MGInstagram* instagram;
 
 
@@ -39,15 +40,14 @@
     self = [super init];
     
     if (self) {
-        _postTitle = @"SEEITES";
+        _postTitle = @"SEETIES";
     }
     
     return self;
 }
 -(void)shareFacebook:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
-
 {
-    NSString* caption = @"SEEITES";
+    NSString* caption = @"SEETIES";
 
     self.postTitle = title;
     self.postImageURL = imageURL;
@@ -57,19 +57,18 @@
     self.postID = postID;
     
     postImageView = [UIImageView new];
-    [postImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:self.postImageURL] andPlaceholderImage:[UIImage imageNamed:@"NoImage.png"] options:SDWebImageHighPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-      
-        SLog(@"image finish load");
+    [postImageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:self.postImageURL] placeholderImage:[UIImage imageNamed:@"NoImage.png"] options:SDWebImageHighPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+    SLog(@"image finish load");
     }];
     
     NSString* message = [self getShareMessage:type appendURL:YES];
     NSString* finalLink = [self getShareLink:type];
 
-    
+    SLog(@"link : %@",finalLink);
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
     content.contentURL = [NSURL URLWithString:finalLink];
     content.contentDescription = message;
-    content.contentTitle = caption;
+    content.contentTitle = [Utils isStringNull:self.postTitle]?caption:self.postTitle;
     content.imageURL = [NSURL URLWithString:imageURL];
     [FBSDKShareDialog showFromViewController:vc
                                  withContent:content
@@ -161,7 +160,6 @@
 }
 
 -(void)shareOnLINE:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
-
 {
     
     self.postTitle = title;
@@ -191,21 +189,21 @@
 }
 
 -(void)shareOnMessanger:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
-
 {
     
     self.postTitle = title;
     self.postImageURL = imageURL;
     self.shareID = shareID;
-    NSString* caption = @"SEETIES.ME";
+   // NSString* caption = @"SEETIES.ME";
     self.postDescription = description;
     viewController = vc;
     self.postID = postID;
+    
     NSString* message = [self getShareMessage:type appendURL:YES];
     NSString* finalLink = [self getShareLink:type];
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
     content.contentURL = [NSURL URLWithString:finalLink];
-    content.contentTitle = caption;
+    content.contentTitle = self.postTitle;
     content.contentDescription = message;
     content.imageURL = [NSURL URLWithString:SEETIES_LOGO_URL];
     [FBSDKMessageDialog showWithContent:content delegate:nil];
@@ -213,7 +211,6 @@
 }
 
 -(void)shareOnWhatsapp:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
-
 {
     
     self.postTitle = title;
@@ -222,7 +219,7 @@
     self.postDescription = description;
     viewController = vc;
     self.postID = postID;
-
+    
     NSString* message = [self getShareMessage:type appendURL:YES];
 
     NSString *ShareText = message;
@@ -240,17 +237,13 @@
     }
 
 }
-#define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
 -(void)shareWithCopyLink:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc
-
 {
     self.shareID = shareID;
     viewController = vc;
-    self.postID = postID;
-
     NSString* message = [self getShareMessage:type appendURL:YES];
-
+    self.postID = postID;
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = message;
     
@@ -268,13 +261,11 @@
 }
 
 -(void)shareOnEmail:(ShareType)type viewController:(UIViewController*)vc shareID:(NSString*)shareID PostID:(NSString*)postID
-
 {
     
     viewController = vc;
     self.shareID = shareID;
     self.postID = postID;
-
     
     if ([MFMailComposeViewController canSendMail])
     {
@@ -368,6 +359,16 @@
             
         }
             break;
+            
+        case ShareTypeDeal:
+        {
+            message = [NSString stringWithFormat:@"Check out this deal on Seeties!"];
+            message = [NSString stringWithFormat:@"%@ %@",message,isNeedAppendURL?[self getShareLink:type]:@""];
+            
+            
+        }
+            break;
+        
     }
     
     return message;
@@ -376,10 +377,10 @@
 
 -(NSString*)getShareLink:(ShareType)type
 {
-    NSString* seetiesLink = @"https://seeties.me/";
+    NSString* seetiesLink = [NSString stringWithFormat:@"https://%@/",[self getSharePath]];
+    
     NSString* subLink;
     NSString* finalLink;
-
     switch (type) {
             
         default:
@@ -403,11 +404,27 @@
             finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
 
         }
+            break;
+
         case ShareTypeSeetiesShop:
         {
             subLink = @"seetishops/";
             finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
 
+        }
+            break;
+
+        case ShareTypeNonSeetiesShop:
+        {
+            subLink = @"seetishops/";
+            finalLink = [NSString stringWithFormat:@"%@%@%@/%@",seetiesLink,subLink,self.shareID,self.postID];
+
+        }
+        case ShareTypeDeal:
+        {
+            subLink = @"deals/";
+            finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
+            
         }
 
             break;
@@ -469,4 +486,19 @@
     [viewController dismissViewControllerAnimated:YES completion:NULL];
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Path
+
+-(NSString*)getSharePath
+{
+    if ([Utils isAppProductionBuild]) {
+
+        return @"seeties.me";
+    }
+    else{
+    
+        return @"itcave2.seeties.me";
+    }
+}
+
 @end

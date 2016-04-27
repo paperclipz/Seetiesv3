@@ -7,12 +7,18 @@
 //
 
 #import "DataManager.h"
+#import "DraftModel.h"
 
 
 
 @interface DataManager()
 
 @property(nonatomic,strong)NSMutableDictionary* dictCollections;
+@property(nonatomic,strong)NSMutableDictionary* dictUser;
+@property(nonatomic,strong)NSMutableDictionary* dictLikes;
+@property(nonatomic,strong)NSMutableDictionary* dictPosts;
+@property(nonatomic,strong)NSMutableDictionary* dictVoucherCollections;
+
 @property(nonatomic,copy)BoolBlock boolBlock;
 
 
@@ -79,6 +85,82 @@
     
     return _dictCollections;
 }
+
+-(NSMutableDictionary*)dictLikes
+{
+    if (!_dictLikes) {
+        _dictLikes = [NSMutableDictionary new];
+    }
+    
+    return _dictLikes;
+}
+
+
+#pragma mark - Posts Local Storage
++(void)getPostCollected:(NSString*)postID isCollected:(BoolBlock)isCollectedBlock PostNotCollectedBlock:(CompletionVoidBlock)notCollectedBlock
+{
+    BOOL isTempPosts = NO;
+    
+    DataManager* dataManager = [DataManager Instance];
+    
+    if ([[dataManager.dictPosts allKeys]containsObject:postID]) {
+        
+        isTempPosts = [[dataManager.dictLikes objectForKey:postID]boolValue];
+        
+        if (isCollectedBlock) {
+            isCollectedBlock(isTempPosts);
+        }
+    }
+    else{
+        if (notCollectedBlock) {
+            notCollectedBlock();
+        }
+    }
+    
+}
+/*post collected to default*/
++(void)setPostsCollected:(NSString*)postID isPostCollected:(BOOL)collected
+{
+    DataManager* dataManager = [DataManager Instance];
+    
+    [dataManager.dictPosts setValue:[NSNumber numberWithBool:collected] forKey:postID];
+    
+}
+
+#pragma mark - Likes Local Storage
+
++(void)getPostLikes:(NSString*)postID isLiked:(BoolBlock)isLikedBlock NotLikeBlock:(CompletionVoidBlock)notCollectedBlock
+{
+    BOOL isTempLikes = NO;
+    
+    DataManager* dataManager = [DataManager Instance];
+    
+    if ([[dataManager.dictLikes allKeys]containsObject:postID]) {
+        
+        isTempLikes = [[dataManager.dictLikes objectForKey:postID]boolValue];
+        
+        if (isLikedBlock) {
+            isLikedBlock(isTempLikes);
+        }
+        
+    }
+    else{
+        if (notCollectedBlock) {
+            notCollectedBlock();
+        }
+    }
+    
+}
++(void)setPostLikes:(NSString*)postID isLiked:(BOOL)liked
+{
+    DataManager* dataManager = [DataManager Instance];
+    
+    [dataManager.dictLikes setValue:[NSNumber numberWithBool:liked] forKey:postID];
+    
+}
+
+
+#pragma mark - Collection Local Storage
 +(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock
 {
     BOOL isTempCollected = NO;
@@ -128,5 +210,46 @@
     [dataManager.dictCollections setValue:[NSNumber numberWithBool:following] forKey:collectionID];
 
 }
+
+
++(BOOL)isUserFollowed:(NSString*)UserID isFollowing:(BOOL)isFollowing
+{
+    
+    BOOL isCollected = isFollowing;
+    DataManager* dataManager = [DataManager Instance];
+    if ([[dataManager.dictUser allKeys]containsObject:UserID]) {
+        isCollected = [[dataManager.dictCollections objectForKey:UserID]boolValue];
+        
+    }
+    else{
+        
+        [DataManager setCollectionFollowing:UserID isFollowing:isFollowing];
+    }
+    
+    return isCollected;
+    
+    
+}
+
+
++(void)setUserFollowing:(NSString*)UserID isFollowing:(BOOL)following
+{
+    DataManager* dataManager = [DataManager Instance];
+    
+    [dataManager.dictUser setValue:[NSNumber numberWithBool:following] forKey:UserID];
+    
+}
+
+
+-(void)setCurrentUserProfileModel:(ProfileModel*)model
+{
+    _currentUserProfileModel = model;
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"updatePhoneVerification"
+     object:self];
+    
+}
+
 
 @end

@@ -13,6 +13,10 @@
 #define TITLE_MAX_COUNT 70
 #define DESC_MAX_COUNT 150
 
+typedef enum{
+    PageTypeCreateCollection,
+    PageTypeEditCollection
+} PageType;
 
 @interface EditCollectionDetailViewController ()<TLTagsControlDelegate>
 {
@@ -35,11 +39,12 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionTagView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *consTagHeight;
 @property (nonatomic, strong) IBOutlet TLTagsControl *blueEditingTagControl;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblCollectionName;
 @property (weak, nonatomic) IBOutlet UILabel *lblCollectionDesc;
 @property (strong, nonatomic)CollectionModel* collectionModel;
 @property (nonatomic, strong) NSMutableArray *tagList;
+@property (strong, nonatomic) NSString *userId;
+@property (nonatomic, assign) PageType pageType;
 
 @end
 
@@ -55,12 +60,20 @@
     if ([self.txtName.text isEqualToString:@""]) {
         [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 6 characters" type:TSMessageNotificationTypeError];
     }else{
-        
-        if (self.btnDoneBlock) {
-            [self saveData];
-            self.btnDoneBlock(self.collectionModel);
-            [self.navigationController popViewControllerAnimated:YES];
+        switch (self.pageType) {
+            case PageTypeCreateCollection:
+                [self requestServerForCreateCollection];
+                break;
+                
+            case PageTypeEditCollection:
+                if (self.btnDoneBlock) {
+                    [self saveData];
+                    self.btnDoneBlock(self.collectionModel);
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                break;
         }
+        
     }
 
 }
@@ -70,7 +83,14 @@
     if (self.btnCancelBlock) {
         self.btnCancelBlock();
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 
@@ -83,9 +103,19 @@
     self.txtName.text = self.collectionModel.name;
     self.txtDesc.text = self.collectionModel.postDesc;
     
-    privacyViewHeight.constant = self.collectionModel.isPrivate?90:0;
-    ibPrivacyView.hidden = !self.collectionModel.isPrivate;
-    btnSetPrivate.selected = !self.collectionModel.isPrivate;
+    
+    switch (self.pageType) {
+        case PageTypeCreateCollection:
+            privacyViewHeight.constant = 90;
+            ibPrivacyView.hidden = NO;
+            break;
+            
+        case PageTypeEditCollection:
+            privacyViewHeight.constant = self.collectionModel.isPrivate?90:0;
+            ibPrivacyView.hidden = !self.collectionModel.isPrivate;
+            btnSetPrivate.selected = !self.collectionModel.isPrivate;
+            break;
+    }
 
     [self getCounterText:self.lblWordCountTitle maxCount:TITLE_MAX_COUNT textInputCount:(int)self.txtName.text.length];
     [self getCounterText:self.lblWordCountDesc maxCount:DESC_MAX_COUNT textInputCount:(int)self.txtDesc.text.length];
@@ -137,7 +167,16 @@
 
 -(void)initTagView
 {
-    _blueEditingTagControl.tags = [self.collectionModel.tagList mutableCopy];
+    
+    if (self.pageType == PageTypeCreateCollection) {
+        _blueEditingTagControl.tags = [NSMutableArray new];
+
+    }
+    else{
+         _blueEditingTagControl.tags = [self.collectionModel.tagList mutableCopy];
+
+    }
+
     _blueEditingTagControl.tagPlaceholder = @"Tag";
     
     _blueEditingTagControl.delegate  = self;
@@ -171,7 +210,13 @@
 {
     self.collectionModel = [model copy];
    // self.tagList = self.collectionModel.tagList;
+    self.pageType = PageTypeEditCollection;
 
+}
+
+-(void)initDataWithUserID:(NSString*)userID{
+    self.userId = userID;
+    self.pageType = PageTypeCreateCollection;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -287,6 +332,8 @@
     [self.blueEditingTagControl addTag:self.tagList[indexPath.row]];
     
     [self.blueEditingTagControl getCurrentTextField].text = @"";
+    
+
 }
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
    
@@ -334,7 +381,16 @@
 #pragma mark - change language
 -(void)changeLanguage
 {
-    self.lblTitle.text = LocalisedString(@"Edit Collection");
+    switch (self.pageType) {
+        case PageTypeCreateCollection:
+            self.lblTitle.text = LocalisedString(@"New Collection");
+            break;
+            
+        case PageTypeEditCollection:
+            self.lblTitle.text = LocalisedString(@"Edit Collection");
+            break;
+    }
+    
     self.lblCollectionName.text = LocalisedString(@"Collection title");
     self.lblCollectionDesc.text = LocalisedString(@"Collection description");
     self.txtDesc.placeholder = LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok");
@@ -360,4 +416,39 @@
     }];
 }
 
+-(void)requestServerForCreateCollection{
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections",[Utils getUserID]];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    
+    [dict setObject:[Utils getAppToken] forKey:@"token"];
+    [dict setObject:self.txtName.text forKey:@"name"];
+    
+    int access = btnSetPrivate.isSelected? 0:1;
+    [dict setObject:[NSNumber numberWithInt:access] forKey:@"access"];
+    
+    if (![self.txtDesc.text isEqualToString:@""]) {
+        [dict setObject:self.txtDesc.text forKey:@"description"];
+    }
+    
+    if (self.blueEditingTagControl.tags && self.blueEditingTagControl.tags.count>0) {
+        [dict setObject:self.blueEditingTagControl.tags forKey:@"tags"];
+    }
+    
+    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreateCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:self];
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+            if (self.btnDoneBlock) {
+                self.btnDoneBlock(nil);
+            }
+            
+        }];
+       
+        
+    } errorBlock:^(id object) {
+        
+    }];
+
+}
 @end

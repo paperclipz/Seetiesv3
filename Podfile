@@ -24,22 +24,31 @@ pod 'CLLocationManager-blocks'
 pod 'HMSegmentedControl'
 pod 'ActionSheetPicker-3.0', '~> 1.7.1'
 pod 'BOString'
-pod 'AviarySDK'
 #pod 'pop', '~> 1.0'
 pod 'MGSwipeTableCell'
-pod 'SVPullToRefresh'
+pod 'SVPullToRefresh', :head
 pod 'UITextView+Placeholder'
-pod 'iOSBlocks/Cocoa'
 pod 'DBCamera', '~> 2.4'
 pod 'A3ParallaxScrollView', '~> 1.0'
-
+pod 'STPopup'
 pod 'APParallaxHeader'
 pod 'PureLayout'
 pod 'MZAppearance'
 pod 'ViewMonitor'
-pod 'MGInstagram'
-pod 'MHVideoPhotoGallery'
+pod 'MGInstagram' , '~> 0.1.0'
+pod 'InstagramKit', '~> 3.0'
+pod 'Fabric'
+pod 'Crashlytics'
 
+pod 'NSDate-Time-Ago'
+pod 'MMPickerView', '~> 0.0.1'
+pod 'IDMPhotoBrowser'
+pod 'YLGIFImage'
+
+pod 'Masonry'
+pod 'SKSplashView'
+
+#pod 'iCarousel'
 #================ debugging =====================#
 #pod 'CocoaLumberjack'
 

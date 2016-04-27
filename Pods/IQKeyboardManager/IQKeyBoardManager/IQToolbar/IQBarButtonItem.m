@@ -1,7 +1,7 @@
 //
 //  IQBarButtonItem.m
 // https://github.com/hackiftekhar/IQKeyboardManager
-// Copyright (c) 2013-15 Iftekhar Qurashi.
+// Copyright (c) 2013-16 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,12 @@
 
 #import "IQBarButtonItem.h"
 #import "IQToolbar.h"
+#import "IQKeyboardManagerConstantsInternal.h"
 
 @implementation IQBarButtonItem
 
-+(void)initialize
++(void)load
 {
-    [super initialize];
-
     //Tint color
     [[self appearance] setTintColor:nil];
 
@@ -49,13 +48,6 @@
     [[self appearance] setBackgroundImage:nil forState:UIControlStateSelected       barMetrics:UIBarMetricsDefault];
     [[self appearance] setBackgroundImage:nil forState:UIControlStateApplication    barMetrics:UIBarMetricsDefault];
     [[self appearance] setBackgroundImage:nil forState:UIControlStateReserved       barMetrics:UIBarMetricsDefault];
-
-    [[self appearance] setBackgroundImage:nil forState:UIControlStateNormal         style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault];
-    [[self appearance] setBackgroundImage:nil forState:UIControlStateHighlighted    style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault];
-    [[self appearance] setBackgroundImage:nil forState:UIControlStateDisabled       style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault];
-    [[self appearance] setBackgroundImage:nil forState:UIControlStateSelected       style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault];
-    [[self appearance] setBackgroundImage:nil forState:UIControlStateApplication    style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault];
-    [[self appearance] setBackgroundImage:nil forState:UIControlStateReserved       style:UIBarButtonItemStyleBordered barMetrics:UIBarMetricsDefault];
 
     [[self appearance] setBackgroundImage:nil forState:UIControlStateNormal         style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
     [[self appearance] setBackgroundImage:nil forState:UIControlStateHighlighted    style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];

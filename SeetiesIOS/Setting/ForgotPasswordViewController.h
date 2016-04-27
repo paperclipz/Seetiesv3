@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
+//#import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
-@interface ForgotPasswordViewController : GAITrackedViewController<UITextFieldDelegate>{
+@interface ForgotPasswordViewController : UIViewController<UITextFieldDelegate>{
 
     IBOutlet UITextField *InputText;
     UrlDataClass *DataUrl;

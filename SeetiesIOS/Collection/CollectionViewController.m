@@ -8,9 +8,13 @@
 
 #import "CollectionViewController.h"
 #import "FeedV2DetailViewController.h"
-#import "ShareViewController.h"
 #import "SearchDetailViewController.h"
 #import "AddCollectionDataViewController.h"
+#import "CT3_SearchListingViewController.h"
+
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
+
 @interface CollectionViewController (){
 
     int CheckButtonOnClick;
@@ -101,6 +105,7 @@
     BOOL OriginalText;
 }
 
+@property(nonatomic,strong)CT3_SearchListingViewController* searchListingViewController;
 @end
 
 @implementation CollectionViewController
@@ -160,17 +165,12 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+    //self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_HIDE" object:nil];
 
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
 }
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
@@ -191,9 +191,8 @@
         CurrentPage += 1;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
-        NSString *GetLat = [defaults objectForKey:@"UserCurrentLocation_lat"];
-        NSString *Getlng = [defaults objectForKey:@"UserCurrentLocation_lng"];
-        NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+        CLLocation* location = [[SearchManager Instance]getAppLocation];
+        
         
         if ([GetPermisionUser isEqualToString:@"Self"] || [GetPermisionUser isEqualToString:@"self"]) {
             GetMainUserID = [defaults objectForKey:@"Useruid"];
@@ -205,10 +204,27 @@
         
         
         NSString *FullString;
-        if ([GetLat length] == 0 || [GetLat isEqualToString:@""] || [GetLat isEqualToString:@"(null)"] || GetLat == nil) {
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,CurrentPage,GetExpertToken];
+        if ([SearchManager isDeviceGPSTurnedOn]) {
+            
+            if ([Utils isGuestMode]) {
+                FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li",DataUrl.UserWallpaper_Url,GetID,CurrentPage];
+
+            }
+            else{
+                FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&token=%@",DataUrl.UserWallpaper_Url,GetID,CurrentPage,[Utils getAppToken]];
+
+            }
+
         }else{
-            FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@?page=%li&lat=%@&lng=%@&token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,CurrentPage,GetLat,Getlng,GetExpertToken];
+            
+            if ([Utils isGuestMode]) {
+                FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&lat=%f&lng=%f",DataUrl.UserWallpaper_Url,GetID,CurrentPage,location.coordinate.latitude,location.coordinate.longitude];
+
+            }
+            else{
+                FullString = [[NSString alloc]initWithFormat:@"%@collections/%@?page=%li&lat=%f&lng=%f&token=%@",DataUrl.UserWallpaper_Url,GetID,CurrentPage,location.coordinate.latitude,location.coordinate.longitude,[Utils getAppToken]];
+
+            }
         }
 
         NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -793,7 +809,7 @@
         for (int i= 0; i < [ArrHashTag count]; i++) {
             UILabel *ShowHashTagText = [[UILabel alloc]init];
             ShowHashTagText.text = [ArrHashTag objectAtIndex:i];
-            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+            ShowHashTagText.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:11];
             ShowHashTagText.textAlignment = NSTextAlignmentCenter;
             ShowHashTagText.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
             ShowHashTagText.layer.cornerRadius = 5;
@@ -804,7 +820,7 @@
             NSString *Text = [NSString stringWithCString:[[ArrHashTag objectAtIndex:i] UTF8String] encoding:NSUTF8StringEncoding];
             CGRect r = [Text boundingRectWithSize:CGSizeMake(200, 0)
                                           options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:12]}
+                                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"ProximaNovaSoft-Regular" size:11]}
                                           context:nil];
             
             //NSLog(@"r ==== %f",r.size.width);
@@ -847,13 +863,13 @@
         if ([GetFollowing isEqualToString:@"0"]) {
 //            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateNormal];
 //            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateSelected];
-            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateNormal];
-            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateSelected];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowIcon.png")] forState:UIControlStateNormal];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowingIcon.png")] forState:UIControlStateSelected];
         }else{
 //            [MainEditButton setTitle:LocalisedString(@"Unfollow") forState:UIControlStateNormal];
 //            [MainEditButton setTitle:LocalisedString(@"PFollow") forState:UIControlStateSelected];
-            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowingCollectionIcon.png")] forState:UIControlStateNormal];
-            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"FollowCollectionIcon.png")] forState:UIControlStateSelected];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowingIcon.png")] forState:UIControlStateNormal];
+            [MainEditButton setImage:[UIImage imageNamed:LocalisedString(@"CollectionFollowIcon.png")] forState:UIControlStateSelected];
         }
 
         
@@ -920,7 +936,7 @@
         
         [LoadingManager show];
         
-        [self.editCollectionViewController initData:GetID ProfileType:ProfileViewTypeOwn];
+        [self.editCollectionViewController initData:GetID];
         [LoadingManager show];
         [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
     }else{
@@ -928,6 +944,17 @@
         
         NSLog(@"follow collection button on click");
         if ([GetFollowing isEqualToString:@"0"]) {
+            
+            if ([Utils isGuestMode]) {
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                    
+                    if (buttonIndex == 1) {
+                        [Utils showLogin];
+                        
+                    }
+                }];
+
+            }
             [self FollowCollection];
            // GetFollowing = @"1";
             MainEditButton.selected = !MainEditButton.selected;
@@ -955,6 +982,15 @@
 
 }
 #pragma mark - Declaration
+
+-(CT3_SearchListingViewController*)searchListingViewController
+{
+    if (!_searchListingViewController) {
+        _searchListingViewController = [CT3_SearchListingViewController new];
+    }
+    
+    return _searchListingViewController;
+}
 
 -(ShareV2ViewController*)shareV2ViewController
 {
@@ -1071,10 +1107,9 @@
         for (NSInteger i = DataCount; i < DataTotal; i++) {
             int CountHeight = TempHeight;
             AsyncImageView *ShowImage = [[AsyncImageView alloc]init];
-            ShowImage.frame = CGRectMake(10, TempHeight, screenWidth - 20, 180);
+            ShowImage.frame = CGRectMake(0, TempHeight, screenWidth, 180);
             ShowImage.contentMode = UIViewContentModeScaleAspectFill;
             ShowImage.layer.masksToBounds = YES;
-            ShowImage.layer.cornerRadius = 5;
             ShowImage.image = [UIImage imageNamed:@"NoImage.png"];
             [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowImage];
             NSString *ImageData = [[NSString alloc]initWithFormat:@"%@",[Content_arrImage objectAtIndex:i]];
@@ -1090,14 +1125,13 @@
             
             UIImageView *ShowOverlayImg = [[UIImageView alloc]init];
             ShowOverlayImg.image = [UIImage imageNamed:@"FeedOverlay.png"];
-            ShowOverlayImg.frame = CGRectMake(10, TempHeight, screenWidth - 20, 180);
+            ShowOverlayImg.frame = CGRectMake(0, TempHeight, screenWidth, 180);
             ShowOverlayImg.contentMode = UIViewContentModeScaleAspectFill;
             ShowOverlayImg.layer.masksToBounds = YES;
-            ShowOverlayImg.layer.cornerRadius = 5;
             [ListView addSubview:ShowOverlayImg];
             
             UIButton *ClickToDetailButton = [[UIButton alloc]init];
-            ClickToDetailButton.frame = CGRectMake(10, TempHeight, screenWidth - 20, 180);
+            ClickToDetailButton.frame = CGRectMake(0, TempHeight, screenWidth, 180);
             [ClickToDetailButton setTitle:@"" forState:UIControlStateNormal];
             ClickToDetailButton.backgroundColor = [UIColor clearColor];
             ClickToDetailButton.tag = i;
@@ -1403,7 +1437,7 @@
     
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
+  //  self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     
     FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
     
@@ -1490,16 +1524,32 @@
 //        [self presentViewController:ShareView animated:YES completion:nil];
 //        [ShareView GetCollectionID:GetID GetCollectionTitle:GetTitle];
         
-        _shareV2ViewController = nil;
-        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-        [naviVC setNavigationBarHidden:YES animated:NO];
-        [self.shareV2ViewController share:@"" title:GetTitle imagURL:@"" shareType:ShareTypeCollection shareID:GetID userID:GetMainUserID];
-        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-        [self presentViewController:formSheetController animated:YES completion:nil];
+//        _shareV2ViewController = nil;
+//        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//        [naviVC setNavigationBarHidden:YES animated:NO];
+//        [self.shareV2ViewController share:@"" title:GetTitle imagURL:@"" shareType:ShareTypeCollection shareID:GetID userID:GetMainUserID];
+//        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//        [self presentViewController:formSheetController animated:YES completion:nil];
 
+        
+//        NSDictionary *dataToPost = @{@"title":GetTitle,
+//                                     @"shareID":GetID,
+//                                     @"userID":GetMainUserID,
+//                                     @"shareType":@(ShareTypeCollection)};
+        
+        //New Sharing Screen
+        CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+        
+        dataToPost.title = GetTitle;
+        dataToPost.shareID = GetID;
+        dataToPost.userID = GetMainUserID;
+        dataToPost.shareType = ShareTypeCollection;
+        
+        [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+    
     }
     
 
@@ -1557,21 +1607,23 @@
 }
 
 -(IBAction)PersonalTagsButtonOnClick:(id)sender{
+    
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSString *GetTagsString = [[NSString alloc]initWithFormat:@"#%@",[ArrHashTag objectAtIndex:getbuttonIDN]];
     NSLog(@"ArrHashTag is %@",GetTagsString);
     
-    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
+    self.searchListingViewController.keyword = GetTagsString;
+    [self.navigationController pushViewController:self.searchListingViewController animated:YES onCompletion:^{
+        
+    }];
+
 }
 -(void)GetTranslateData{
     [ShowActivity startAnimating];
     //[self.spinnerView startAnimating];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/collections/%@/translate?token=%@",DataUrl.UserWallpaper_Url,GetMainUserID,GetID,GetExpertToken];
+    NSString *GetExpertToken = [Utils getAppToken];
+    NSString *FullString = [[NSString alloc]initWithFormat:@"%@collections/%@/translate?token=%@",DataUrl.UserWallpaper_Url,GetID,GetExpertToken];
     
     
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -1736,8 +1788,10 @@
 }
 -(IBAction)OpenProfileButtonOnClick:(id)sender{
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetUserID];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:GetUserID];
+    }];
 
 }
 -(ProfileViewController*)profileViewController

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="STSearchViewController">
             <connections>
                 <outlet property="ibContentSearchView" destination="qaW-Pd-Qxk" id="L3N-do-GBT"/>
+                <outlet property="ibScrollView" destination="h7o-Ci-9Hj" id="gWg-Mc-Gfr"/>
                 <outlet property="ibSearchContentView" destination="UHn-FR-qn6" id="kkC-sf-0v7"/>
                 <outlet property="lblTitle" destination="Afq-RT-Ib1" id="odR-Zr-aaR"/>
                 <outlet property="txtSearch" destination="o6z-UK-rfa" id="NTq-ta-sil"/>
@@ -130,7 +131,18 @@
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHn-FR-qn6">
                     <rect key="frame" x="0.0" y="126" width="320" height="442"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h7o-Ci-9Hj">
+                            <rect key="frame" x="0.0" y="50" width="320" height="392"/>
+                        </scrollView>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="h7o-Ci-9Hj" secondAttribute="trailing" id="A9l-85-og2"/>
+                        <constraint firstItem="h7o-Ci-9Hj" firstAttribute="leading" secondItem="UHn-FR-qn6" secondAttribute="leading" id="hvB-xI-bYE"/>
+                        <constraint firstItem="h7o-Ci-9Hj" firstAttribute="top" secondItem="UHn-FR-qn6" secondAttribute="top" constant="50" id="suy-bW-Ho8"/>
+                        <constraint firstAttribute="bottom" secondItem="h7o-Ci-9Hj" secondAttribute="bottom" id="vwO-gy-Oop"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

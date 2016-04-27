@@ -7,6 +7,7 @@
 //
 
 #import "SearchManager.h"
+typedef void (^HomeLocationBlock)(HomeLocationModel* model);
 
 @interface SearchManager()
 @property(nonatomic,strong)CLLocationManager* manager;
@@ -14,11 +15,32 @@
 @property(nonatomic,strong)ConnectionManager* connManager;
 @property(nonatomic,copy)SearchManagerFailBlock searchManagerFailBlock;
 
+@property(nonatomic,copy)LocationBlock didFinishSearchGPSLocationBlock;
 
 @end
 @implementation SearchManager
 
 
++(BOOL)isDeviceGPSTurnedOn
+{
+    if([CLLocationManager locationServicesEnabled] &&
+       [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
+
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+-(CLLocationManager*)manager
+{
+    if (!_manager) {
+        _manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
+        _manager.delegate = self;
+        [_manager requestWhenInUseAuthorization];
+    }
+    return _manager;
+}
 -(void)startGetWifiLocation
 {
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetGeoIP param:nil appendString:nil completeHandler:^(id object) {
@@ -28,26 +50,54 @@
     } errorBlock:^(id object) {
     
     }];
-
 }
 
--(void)locationManager:(CLLocationManager *)manager
-    didUpdateLocations:(NSArray *)locations {
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
    
-    self.location = locations[0];
+    self.GPSLocation = locations[0];
+    
+    if (self.didFinishSearchGPSLocationBlock) {
+        self.didFinishSearchGPSLocationBlock(self.GPSLocation);
+        self.didFinishSearchGPSLocationBlock = nil;
+    }
     [self.manager stopUpdatingLocation];
+}
+-(void)startSearchGPSLocation:(LocationBlock)CompletionBlock
+{
+    [self.manager startUpdatingLocation];
+    
+    self.didFinishSearchGPSLocationBlock = CompletionBlock;
 }
 
 -(void)startSearchGPSLocation
 {
-    self.manager = [CLLocationManager updateManagerWithAccuracy:50.0 locationAge:15.0 authorizationDesciption:CLLocationUpdateAuthorizationDescriptionAlways];
-    self.manager.delegate = self;
-    [self.manager requestWhenInUseAuthorization];
     [self.manager startUpdatingLocation];
-
 }
 
--(CLLocation*)getLocation
+#pragma mark - CLLocation Delegate
+- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined: {
+            NSLog(@"User still thinking granting location access!");
+            [self.manager startUpdatingLocation]; // this will access location automatically if user granted access manually. and will not show apple's request alert twice. (Tested)
+        } break;
+        case kCLAuthorizationStatusDenied: {
+            NSLog(@"User denied location access request!!");
+            NSLog(@"To re-enable, please go to Settings and turn on Location Service for this app.");
+            [self.manager stopUpdatingLocation];
+        } break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        case kCLAuthorizationStatusAuthorizedAlways: {
+            // clear text
+            NSLog(@"Got Location");
+            [self.manager startUpdatingLocation]; //Will update location immediately
+        } break;
+            
+        default:
+            break;
+    }
+}
+-(CLLocation*)getAppLocation
 {
     if (self.GPSLocation) {
         return self.GPSLocation;
@@ -130,13 +180,10 @@
     if (self.searchManagerFailBlock) {
         self.searchManagerFailBlock(@"No GPS FROM DEVICE");
     }
-
 }
 
 -(void)getSuggestedLocationFromFoursquare:(CLLocation*)tempCurrentLocation input:(NSString*)input completionBlock:(IDBlock)completionBlock
 {
-   // [LoadingManager showWithTitle:[NSString stringWithFormat:@"%@ foursquare",LocalisedString(@"Searching...")]];
-
     SLog(@"long : %f  || lat: %f",tempCurrentLocation.coordinate.longitude,tempCurrentLocation.coordinate.latitude);
 
     if (tempCurrentLocation) {
@@ -164,87 +211,38 @@
     }
     else{
    
-        [self getCoordinateFromGPSThenWifi:^(CLLocation *currentLocation) {
-        
-        [Foursquare2 venueExploreRecommendedNearByLatitude:@(tempCurrentLocation.coordinate.latitude) longitude:@(tempCurrentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(10000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
+        [self getCoordinateFromWifi:^(CLLocation *currentLocation) {
             
-            if(success)
-            {
-                [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
+            [Foursquare2 venueExploreRecommendedNearByLatitude:@(currentLocation.coordinate.latitude) longitude:@(currentLocation.coordinate.longitude) near:nil accuracyLL:nil altitude:nil accuracyAlt:nil query:input limit:nil offset:nil radius:@(10000) section:nil novelty:nil sortByDistance:nil openNow:nil venuePhotos:nil price:nil callback:^(BOOL success, id result){
                 
-                if (completionBlock) {
-                    completionBlock(result);
+                if(success)
+                {
+                    [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
+                    
+                    if (completionBlock) {
+                        completionBlock(result);
+                    }
+                    
                 }
+                else{
+                    
+                    SLog(@"NO Result FOUND");
+                }
+                SLog(@"fourSquare response : %@",result);
+                //       [LoadingManager hide];
+                [LoadingManager hide];
                 
-            }
-            else{
-                
-                SLog(@"NO Result FOUND");
-            }
-            SLog(@"fourSquare response : %@",result);
-            //       [LoadingManager hide];
+            }];
+
+            
+        } errorBlock:^(NSString *status) {
             [LoadingManager hide];
-
+            
+            SLog(@"ERROR");
         }];
-        
-        
-    } errorBlock:^(NSString *status) {
-        [LoadingManager hide];
-
-        SLog(@"ERROR");
-    }];
+    
     }
     
-   
- //   tempCurrentLocation.coordinate.latitude = [NSNumber numberWithDouble:3.1333] ;
- //   tempCurrentLocation.coordinate.longitude = [NSNumber numberWithFloat:101.7000];
-    
-//    [Foursquare2 venueSearchNearByLatitude:@(tempCurrentLocation.coordinate.latitude)
-//                                 longitude:@(tempCurrentLocation.coordinate.longitude)
-//                                     query:input
-//                                     limit:nil
-//                                    intent:intentCheckin
-//                                    radius:@(5000)
-//                                categoryId:nil
-//                                  callback:^(BOOL success, id result){
-//                                      if (success) {
-//                                          
-//                                          [self.connManager storeServerData:result requestType:ServerRequestType4SquareSearch];
-//
-//                                          if (completionBlock) {
-//                                              
-//                                              completionBlock(result);
-//                                              
-//                                          }
-//
-////                                          NSDictionary *dic = result;
-////                                          NSArray *venues = [dic valueForKeyPath:@"response.venues"];
-////                                          NSLog(@"venues is %@",venues);
-////                                          FSConverter *converter = [[FSConverter alloc]init];
-////                                          self.nearbyVenues = [converter convertToObjects:venues];
-////                                          [tblview reloadData];
-////                                          // [self proccessAnnotations];
-////                                          [ShowNearByActivity stopAnimating];
-////                                          GetLocationArray = nil;
-////                                          GetreferralIdArray = nil;
-////                                          AddressArray = nil;
-////                                          CityArray = nil;
-////                                          CountryArray = nil;
-////                                          latArray = nil;
-////                                          lngArray = nil;
-////                                          StateArray = nil;
-////                                          formattedAddressArray = nil;
-////                                          postalCodeArray = nil;
-////                                          GetLocationArray = [[NSMutableArray alloc] initWithCapacity:[venues count]];
-////                                          GetreferralIdArray = [[NSMutableArray alloc] initWithCapacity:[venues count]];
-////                                          //                                          NSDictionary *Alldata = [dic valueForKey:@"categories"];
-////                                          //                                          NSLog(@"Alldata is %@",Alldata);
-////                                          //                                          NSDictionary *Getlocationdata = [venues valueForKey:@"location"];
-////                                          //                                          NSLog(@"Getlocationdata is %@",Getlocationdata);
-////
-//                                      }
-//                                      
-//                                      }];
 }
 
 -(NSString*)coordinateToString:(CLLocation*)location
@@ -275,6 +273,37 @@
 //    }];
 //}
 
+/*tempCurrentLocation is an optional field*/
+
+
+/*get search location from google is a list from google in brief only. later on will need to click on the list and hit google details*/
+-(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation Country:(NSString*)country input:(NSString*)textInput completionBlock:(IDBlock)completionBlock
+{
+    
+    if (!country) {
+        country = @"";
+    }
+    NSDictionary* param = @{@"input":textInput?textInput:@"",
+                            @"radius":@"10000",
+                            @"key":GOOGLE_API_KEY,
+                            @"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude],
+                            @"components" : [NSString stringWithFormat:@"country:%@",country],
+                            };
+    
+    [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
+        if(completionBlock)
+        {
+            completionBlock(object);
+        }
+        
+        [LoadingManager hide];
+        
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
+    } ];
+}
+
 -(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation input:(NSString*)textInput completionBlock:(IDBlock)completionBlock
 {
     
@@ -283,7 +312,7 @@
     //SLog(@"%@",FullString);
     
    // [LoadingManager showWithTitle:@"GOOGLE"];
-    NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"5000",@"key":GOOGLE_API_KEY,@"type":@"address",@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
+    NSDictionary* param = @{@"input":textInput?textInput:@"",@"radius":@"10000",@"key":GOOGLE_API_KEY,@"location":[NSString stringWithFormat:@"%f,%f",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude]};
 
     [[ConnectionManager Instance]requestServerWithPost:NO customURL:GOOGLE_PLACE_AUTOCOMPLETE_API requestType:ServerRequestTypeGoogleSearch param:param completeHandler:^(id object) {
         if(completionBlock)
@@ -299,6 +328,50 @@
     } ];
 }
 
+-(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation Country:(NSString*)country completionBlock:(IDBlock)completionBlock
+{
+    
+    NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%.4f,%.4f&key=%@&components=country:%@",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude,GOOGLE_API_KEY,country];
+   
+    
+    [[ConnectionManager Instance]requestServerWithPost:YES customURL:googleAPI requestType:ServerRequestTypeGoogleSearch param:nil completeHandler:^(id object) {
+        if(completionBlock)
+        {
+            completionBlock(object);
+        }
+        
+        [LoadingManager hide];
+        
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
+    } ];
+}
+
+-(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock
+{
+
+   // NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%@,%@&key=%@",,@"101.7000",GOOGLE_API_KEY];
+    
+      NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%.4f,%.4f&key=%@",tempCurrentLocation.coordinate.latitude,tempCurrentLocation.coordinate.longitude,GOOGLE_API_KEY];
+    
+ //   NSDictionary* dict = @{@"latlng" :@"40.714,-73.9614",
+  //                         @"key" : GOOGLE_API_KEY};
+    
+    
+    [[ConnectionManager Instance]requestServerWithPost:YES customURL:googleAPI requestType:ServerRequestTypeGoogleSearch param:nil completeHandler:^(id object) {
+        if(completionBlock)
+        {
+            completionBlock(object);
+        }
+        
+        [LoadingManager hide];
+        
+    } errorBlock:^(id object) {
+        [LoadingManager hide];
+        
+    } ];
+}
 
 -(void)getCoordinateFromWifi:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock
 {

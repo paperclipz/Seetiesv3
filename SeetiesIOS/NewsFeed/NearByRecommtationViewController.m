@@ -13,8 +13,10 @@
 #import "LanguageManager.h"
 #import "Locale.h"
 #import "CommentViewController.h"
-#import "ShareViewController.h"
 #import "AddCollectionDataViewController.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
+
 @interface NearByRecommtationViewController ()
 {
     IBOutlet UILabel *TitleLabel;
@@ -468,17 +470,26 @@
 //    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
 //    [ShareView GetPostID:[PostIDArray objectAtIndex:getbuttonIDN] GetMessage:[MessageArray objectAtIndex:getbuttonIDN] GetTitle:[TitleArray objectAtIndex:getbuttonIDN] GetImageData:[LPhotoArray objectAtIndex:getbuttonIDN]];
 
-    _shareV2ViewController = nil;
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:[TitleArray objectAtIndex:getbuttonIDN] imagURL:[LPhotoArray objectAtIndex:getbuttonIDN] shareType:ShareTypePost shareID:[PostIDArray objectAtIndex:getbuttonIDN] userID:@""];
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+//    _shareV2ViewController = nil;
+//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//    [naviVC setNavigationBarHidden:YES animated:NO];
+//    [self.shareV2ViewController share:@"" title:[TitleArray objectAtIndex:getbuttonIDN] imagURL:[LPhotoArray objectAtIndex:getbuttonIDN] shareType:ShareTypePost shareID:[PostIDArray objectAtIndex:getbuttonIDN] userID:@""];
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
     
+    //New Sharing Screen
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
     
+    dataToPost.title = [TitleArray objectAtIndex:getbuttonIDN];
+    dataToPost.shareID = [PostIDArray objectAtIndex:getbuttonIDN];
+    dataToPost.shareType = ShareTypePost;
+    dataToPost.postImageURL = [LPhotoArray objectAtIndex:getbuttonIDN];
+    
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
     
 }
 -(void)GetUnLikeData{

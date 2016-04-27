@@ -160,7 +160,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Edit Interest Page";
+  //  self.screenName = @"IOS Edit Interest Page";
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

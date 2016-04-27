@@ -15,6 +15,9 @@
 //}
 //
 //@end
+@interface CollectionModel()
+
+@end
 
 @implementation CollectionModel
 +(BOOL)propertyIsOptional:(NSString*)propertyName
@@ -26,12 +29,13 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"collection_posts.posts": @"arrayPost",
+                                                       @"new_collection_posts": @"arrayFollowingCollectionPost",
                                                        @"description": @"postDesc",
                                                        @"is_private": @"isPrivate",
                                                        @"tags":@"tagList",
                                                        @"collection_posts.total_page": @"total_page",
                                                        @"collection_posts.total_posts": @"total_posts",
-                                                       @"collection_posts.page": @"page"
+                                                       @"collection_posts.page": @"page",
                                                        }];
 }
 
@@ -42,6 +46,7 @@
     }
     return _deleted_posts;
 }
+
 -(void)process
 {
     
@@ -74,6 +79,7 @@
 
 @interface CollectionsModel()
 @property(nonatomic,strong)NSDictionary* paging;
+@property(nonatomic,strong)NSDictionary* collections;
 
 @end
 @implementation CollectionsModel
@@ -82,10 +88,26 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"result": @"arrCollections",
-                                                       @"collections": @"arrSuggestedCollection",
-
+                                                       @"collections" : @"arrSuggestedCollection"
                                                        }];
 }
+
+
+//-(NSArray<CollectionModel>*)arrSuggestedCollection
+//{
+//    _arrSuggestedCollection = [CollectionModel arrayOfModelsFromDictionaries:[_collections allValues] error:nil];
+//    
+//    return _arrSearchCollections;
+//}
+//
+//-(NSArray<CollectionModel>*)arrSearchCollections
+//{
+//    
+//    _arrSearchCollections = [CollectionModel arrayOfModelsFromDictionaries:_collections[@"result"]error:nil];
+//    
+//    return _arrSearchCollections;
+//
+//}
 
 -(NSString*)next
 {

@@ -128,7 +128,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Search v2 Page";
+   // self.screenName = @"IOS Search v2 Page";
     
     
     

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConnectionsTabViewController">
+            <connections>
+                <outlet property="ibTableView" destination="waA-Hl-pDS" id="mDi-7p-FHn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="waA-Hl-pDS">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="TJc-9i-c9G"/>
+                        <outlet property="delegate" destination="-1" id="KZk-DQ-Ite"/>
+                        <outlet property="nxEV_emptyView" destination="rSd-tG-oSz" id="K8l-yZ-UH2"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="waA-Hl-pDS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="B1m-UL-bYs"/>
+                <constraint firstAttribute="bottom" secondItem="waA-Hl-pDS" secondAttribute="bottom" id="F7X-GM-VMa"/>
+                <constraint firstAttribute="trailing" secondItem="waA-Hl-pDS" secondAttribute="trailing" id="M0Q-Gk-3wD"/>
+                <constraint firstItem="waA-Hl-pDS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vgd-rL-g0H"/>
+            </constraints>
+        </view>
+        <view contentMode="scaleToFill" id="rSd-tG-oSz">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7o-8b-vQU">
+                    <rect key="frame" x="272" y="405" width="57" height="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no Users" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8E-2R-LAZ">
+                    <rect key="frame" x="60" y="430" width="480" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Mh1-l2-jqc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="EmptyStateImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="z9K-Xb-70D">
+                    <rect key="frame" x="125" y="25" width="350" height="350"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="z9K-Xb-70D" secondAttribute="height" multiplier="1:1" id="Gx8-eQ-HJE"/>
+                        <constraint firstAttribute="width" secondItem="z9K-Xb-70D" secondAttribute="height" multiplier="2:2" id="Zx7-0E-ku3"/>
+                        <constraint firstAttribute="height" constant="200" id="cbD-N6-spV"/>
+                        <constraint firstAttribute="width" constant="200" id="wr3-Br-lYA"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Zx7-0E-ku3"/>
+                            <exclude reference="cbD-N6-spV"/>
+                            <exclude reference="wr3-Br-lYA"/>
+                        </mask>
+                    </variation>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="z9K-Xb-70D" secondAttribute="trailing" constant="125" id="2qm-Cv-sPr"/>
+                <constraint firstItem="H7o-8b-vQU" firstAttribute="centerX" secondItem="z9K-Xb-70D" secondAttribute="centerX" id="4uP-Am-5d7"/>
+                <constraint firstItem="V8E-2R-LAZ" firstAttribute="top" secondItem="H7o-8b-vQU" secondAttribute="bottom" constant="5" id="DKM-8p-lkB"/>
+                <constraint firstItem="V8E-2R-LAZ" firstAttribute="centerX" secondItem="rSd-tG-oSz" secondAttribute="centerX" id="ETZ-em-mop"/>
+                <constraint firstItem="H7o-8b-vQU" firstAttribute="top" secondItem="z9K-Xb-70D" secondAttribute="bottom" constant="30" id="I0y-do-HUa"/>
+                <constraint firstItem="V8E-2R-LAZ" firstAttribute="leading" secondItem="rSd-tG-oSz" secondAttribute="leading" constant="60" id="KaS-aR-MDV"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="H7o-8b-vQU" secondAttribute="trailing" constant="10" id="NWj-bc-W7N"/>
+                <constraint firstItem="z9K-Xb-70D" firstAttribute="centerX" secondItem="rSd-tG-oSz" secondAttribute="centerX" id="RuC-65-AyF"/>
+                <constraint firstItem="z9K-Xb-70D" firstAttribute="leading" secondItem="rSd-tG-oSz" secondAttribute="leading" constant="125" id="Z1H-zy-BnH"/>
+                <constraint firstItem="H7o-8b-vQU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rSd-tG-oSz" secondAttribute="leading" constant="10" id="g2t-oc-kqR"/>
+                <constraint firstAttribute="trailing" secondItem="V8E-2R-LAZ" secondAttribute="trailing" constant="60" id="khp-Ba-HfZ"/>
+                <constraint firstItem="z9K-Xb-70D" firstAttribute="centerY" secondItem="rSd-tG-oSz" secondAttribute="centerY" constant="-100" id="rOH-93-93Q"/>
+            </constraints>
+            <point key="canvasLocation" x="1065" y="304"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="EmptyStateImg.png" width="288" height="288"/>
+    </resources>
+</document>

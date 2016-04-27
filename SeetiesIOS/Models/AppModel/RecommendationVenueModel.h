@@ -12,6 +12,8 @@
 // this model will combine four square and google search api model into one
 @interface RecommendationVenueModel : NSObject
 
+
+@property(nonatomic,assign)SearchType searchType;
 @property(nonatomic,strong)NSString* address;
 @property(nonatomic,strong)NSString<Optional>* formattedAddress;
 @property(nonatomic,strong)NSString* place_id;
@@ -40,6 +42,7 @@
 @property(nonatomic,strong)NSDictionary* expense;
 
 @property(nonatomic,strong)NSMutableArray* arrOperatingHours;//OpeningPeriodModel
+@property(nonatomic,strong)Location* location;//for seeties location
 
 -(void)processFourSquareModel:(VenueModel*)model;
 -(void)processGoogleModel:(SearchLocationDetailModel*)model;

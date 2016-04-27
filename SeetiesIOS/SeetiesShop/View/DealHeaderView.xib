@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="pGA-ug-kxU" customClass="DealHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bh-yA-FzL">
+                    <rect key="frame" x="16" y="11" width="288" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="adV-kJ-NLr"/>
+                    </constraints>
+                    <state key="normal" title="Deal">
+                        <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnSeeAllClicked:" destination="pGA-ug-kxU" eventType="touchUpInside" id="eIn-bi-sjV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rho-pY-yGe">
+                    <rect key="frame" x="10" y="11" width="302" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="U6S-5c-lcY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="see more">
+                        <color key="titleColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="btnSeeAllClicked:" destination="pGA-ug-kxU" eventType="touchUpInside" id="g3Y-8u-wqp"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="rho-pY-yGe" secondAttribute="trailing" constant="8" id="FTK-9s-Dke"/>
+                <constraint firstItem="rho-pY-yGe" firstAttribute="leading" secondItem="pGA-ug-kxU" secondAttribute="leading" constant="10" id="Z4y-Do-pox"/>
+                <constraint firstItem="rho-pY-yGe" firstAttribute="centerY" secondItem="pGA-ug-kxU" secondAttribute="centerY" id="mc0-vV-aC1"/>
+                <constraint firstItem="6bh-yA-FzL" firstAttribute="centerY" secondItem="pGA-ug-kxU" secondAttribute="centerY" id="nrN-oo-Vqu"/>
+                <constraint firstAttribute="trailing" secondItem="6bh-yA-FzL" secondAttribute="trailing" constant="16" id="qZy-t1-QZV"/>
+                <constraint firstItem="6bh-yA-FzL" firstAttribute="leading" secondItem="pGA-ug-kxU" secondAttribute="leading" constant="16" id="sak-Mt-KQU"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnDeals" destination="6bh-yA-FzL" id="aXT-xl-8Oc"/>
+                <outlet property="btnSeeMore" destination="rho-pY-yGe" id="Oh2-tW-9Yi"/>
+            </connections>
+            <point key="canvasLocation" x="-103" y="836"/>
+        </view>
+    </objects>
+</document>

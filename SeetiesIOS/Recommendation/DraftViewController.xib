@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DraftViewController">
             <connections>
                 <outlet property="ibHeaderView" destination="Re1-a0-mFK" id="35f-Sa-a76"/>
                 <outlet property="ibSwipeDeleteNoteView" destination="vD0-Xe-G0t" id="kke-x7-13z"/>
-                <outlet property="lblNoDraftYet" destination="W9r-wk-Vip" id="DPB-wB-SPq"/>
                 <outlet property="lblSwipeToDelete" destination="6AM-3I-MqV" id="0Oz-fy-5vq"/>
+                <outlet property="lblTitle" destination="u9S-bK-yhK" id="vHS-f4-P0v"/>
                 <outlet property="tableView" destination="ylX-WT-ic6" id="ok6-tV-YXZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,7 +23,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Re1-a0-mFK">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CloseIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="laB-V3-voD">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="laB-V3-voD">
                             <rect key="frame" x="0.0" y="20" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Tnh-9x-RSE"/>
@@ -63,12 +63,9 @@
                         <constraint firstItem="laB-V3-voD" firstAttribute="top" secondItem="YoW-RX-9NH" secondAttribute="bottom" constant="-44" id="qJu-Z7-eUF"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ylX-WT-ic6">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ylX-WT-ic6" customClass="CustomEmptyView">
                     <rect key="frame" x="0.0" y="64" width="320" height="464"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="nxEV_emptyView" destination="ldi-Jq-eYN" id="i0Q-ac-pl4"/>
-                    </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vD0-Xe-G0t">
                     <rect key="frame" x="0.0" y="528" width="320" height="40"/>
@@ -120,38 +117,8 @@
                 </mask>
             </variation>
         </view>
-        <view contentMode="scaleToFill" id="ldi-Jq-eYN">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="NoDraft.png" translatesAutoresizingMaskIntoConstraints="NO" id="EwM-U3-Ivf">
-                    <rect key="frame" x="115" y="85" width="90" height="90"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Draft Yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9r-wk-Vip">
-                    <rect key="frame" x="0.0" y="157" width="320" height="42"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="42" id="IyF-hB-wTu"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="W9r-wk-Vip" firstAttribute="centerX" secondItem="ldi-Jq-eYN" secondAttribute="centerX" id="14Y-UF-Gce"/>
-                <constraint firstItem="EwM-U3-Ivf" firstAttribute="centerY" secondItem="ldi-Jq-eYN" secondAttribute="centerY" constant="-154" id="7ak-NE-6t2"/>
-                <constraint firstItem="W9r-wk-Vip" firstAttribute="top" secondItem="EwM-U3-Ivf" secondAttribute="bottom" constant="-18" id="8kf-wf-5YN"/>
-                <constraint firstItem="EwM-U3-Ivf" firstAttribute="centerX" secondItem="ldi-Jq-eYN" secondAttribute="centerX" id="Tqm-yC-MmN"/>
-                <constraint firstAttribute="trailing" secondItem="W9r-wk-Vip" secondAttribute="trailing" id="gmT-UJ-vf1"/>
-                <constraint firstItem="W9r-wk-Vip" firstAttribute="leading" secondItem="ldi-Jq-eYN" secondAttribute="leading" id="t3e-GP-Rde"/>
-            </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="901" y="147"/>
-        </view>
     </objects>
     <resources>
-        <image name="CloseIcon.png" width="40" height="40"/>
-        <image name="NoDraft.png" width="90" height="90"/>
+        <image name="BackIcon.png" width="40" height="40"/>
     </resources>
 </document>

@@ -9,6 +9,10 @@
 #import "RecommendationVenueModel.h"
 
 @implementation RecommendationVenueModel
+//"formatted_address" : "Ground Floor, 25, Jalan SS 2\/64, SS 2, 47300 Petaling Jaya, Selangor, Malaysia",
+//"location_id" : "56ab441d15772b70418b45e4",
+//"name" : "Rekindle - SS2",
+//"is_verified" : true
 
 
 -(void)processFourSquareModel:(VenueModel*)model

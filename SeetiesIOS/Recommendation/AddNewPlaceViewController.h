@@ -11,13 +11,11 @@
 #import "EditHoursViewController.h"
 
 
-typedef void (^LocationBlock)(id object);
 @interface AddNewPlaceViewController : CommonViewController<MKMapViewDelegate>
 
 @property(nonatomic,strong)AddNewPlaceSubView* addNewPlaceSubView;
 @property(nonatomic,strong)EditHoursViewController* editHoursViewController;
-@property(nonatomic,copy)LocationBlock btnPressDoneBlock;
-
--(void)initData:(RecommendationVenueModel*)model;
+@property(nonatomic,copy)DraftModelBlock btnPressDoneBlock;
+-(void)initData:(DraftModel*)model;
 
 @end

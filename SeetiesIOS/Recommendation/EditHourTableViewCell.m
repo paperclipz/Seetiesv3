@@ -85,7 +85,10 @@
 {
     self.btnFromTime.enabled = isOn;
     self.btnToTime.enabled = isOn;
+    self.model.isOpen = isOn;
 }
+
+
 - (IBAction)btnToTimeClicked:(id)sender {
     
     self.toTime = [NSDate dateWithTimeIntervalSinceReferenceDate:(NSTimeInterval) [self roundTime]];

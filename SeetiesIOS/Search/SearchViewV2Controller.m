@@ -12,8 +12,41 @@
 #import "SearchDetailViewController.h"
 #import "SearchResultV2ViewController.h"
 @interface SearchViewV2Controller ()<CLLocationManagerDelegate>
+{
+    IBOutlet UISearchBar *mySearchBar;
+    IBOutlet UITableView *Tblview;
+    IBOutlet UIActivityIndicatorView *ShowActivity;
+    IBOutlet UIImageView *BarImage;
+    IBOutlet UIScrollView *SearchScroll;
+    
+    NSString *GetSearchText;
+    
+    NSMutableArray *LocalSearchTextArray;
+    
+    NSInteger CheckTblview;
+    
+    NSMutableArray *GetReturnSearchTextArray;
+    NSMutableArray *GetReturnSearchAddressArray;
+    NSMutableArray *GetReturnSearchLatArray;
+    NSMutableArray *GetReturnSearchLngArray;
+    NSMutableArray *GetReturnSearchAddressComponentArray;
+
+    NSMutableArray *GetSearchArray;
+    
+    NSURLConnection *theConnection_GetSearchString;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    int ButtonOnClickCheck;
+    
+    NSString *latPoint;
+    NSString *lonPoint;
+
+}
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
+@property(nonatomic,strong)CT3_SearchListingViewController* ct3_SearchListingViewController;
 
 @end
 
@@ -105,8 +138,16 @@
   //  SearchTblView.hidden = YES;
     //remaining Code'll go here
     
-   // [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:NO];
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
+    else
+    {
+         [self dismissViewControllerAnimated:YES completion:nil];
+
+    }
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
@@ -132,38 +173,16 @@
         NSLog(@"no searchtext no need save ");
     }else{
         NSLog(@"got search data need save.");
-       // [mySearchBar resignFirstResponder];
-       // [mySearchBar setShowsCancelButton:NO animated:YES];
-//        if (ButtonOnClickCheck == 0) {
-//            [self GetSearchText];
-//            ButtonOnClickCheck = 1;
-//        }else{
-//            if ([GetSearchText isEqualToString:searchBar.text]) {
-//                SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-//                [self.navigationController pushViewController:SearchDetailView animated:YES];
-//                [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@""];
-//                mySearchBar.text = GetSearchText;
-//                ButtonOnClickCheck = 0;
-//            }else{
-//                [self GetSearchText];
-//               // ButtonOnClickCheck = 1;
-//            }
-//
-//            
-//        }
         
-        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:SearchDetailView animated:NO completion:nil];
-        [self.navigationController pushViewController:SearchDetailView animated:YES];
-        [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:latPoint GetCurrentLong:lonPoint];
-        mySearchBar.text = GetSearchText;
+//        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//        [self.navigationController pushViewController:SearchDetailView animated:YES];
+//        [SearchDetailView GetSearchKeyword:searchBar.text Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:latPoint GetCurrentLong:lonPoint];
+//        mySearchBar.text = GetSearchText;
+        self.ct3_SearchListingViewController = nil;
+        self.ct3_SearchListingViewController.keyword = GetSearchText;
         
+        [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES onCompletion:^{
+        }];
     }
     
 }
@@ -272,18 +291,17 @@
         
     }else{
         
-        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-//        CATransition *transition = [CATransition animation];
-//        transition.duration = 0.2;
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromRight;
-//        [self.view.window.layer addAnimation:transition forKey:nil];
-//        [self presentViewController:SearchDetailView animated:NO completion:nil];
-        
-        [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:indexPath.row] Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:indexPath.row] GetCurrentLat:latPoint GetCurrentLong:lonPoint];
-        //[SearchDetailView GetTitle:GetSearchText];
-        [self.navigationController pushViewController:SearchDetailView animated:YES];
+//        SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//        [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:indexPath.row] Getlat:[GetReturnSearchLngArray objectAtIndex:indexPath.row] GetLong:[GetReturnSearchLatArray objectAtIndex:indexPath.row] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:indexPath.row] GetCurrentLat:latPoint GetCurrentLong:lonPoint];
+//        //[SearchDetailView GetTitle:GetSearchText];
+//        [self.navigationController pushViewController:SearchDetailView animated:YES];
+        self.ct3_SearchListingViewController = nil;
+        self.ct3_SearchListingViewController.keyword = [GetReturnSearchTextArray objectAtIndex:indexPath.row];
+        self.ct3_SearchListingViewController.locationLatitude = [GetReturnSearchLatArray objectAtIndex:indexPath.row];
+        self.ct3_SearchListingViewController.locationLongtitude = [GetReturnSearchLngArray objectAtIndex:indexPath.row];
+        self.ct3_SearchListingViewController.locationName = [GetReturnSearchAddressArray objectAtIndex:indexPath.row];
+        self.ct3_SearchListingViewController.addressComponent = [GetReturnSearchAddressComponentArray objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
     
     }
 }
@@ -370,9 +388,19 @@
                 GetReturnSearchAddressArray = [[NSMutableArray alloc]init];
                 GetReturnSearchLatArray = [[NSMutableArray alloc]init];
                 GetReturnSearchLngArray = [[NSMutableArray alloc]init];
+                GetReturnSearchAddressComponentArray = [[NSMutableArray alloc]init];
+
                 for (NSDictionary * dict in locationData) {
+                    
+                    NSDictionary *address_component = dict[@"address_components"];
+
+                    if (!address_component) {
+                        [GetReturnSearchAddressComponentArray addObject:[NSDictionary new]];
+                    }else{
+                        [GetReturnSearchAddressComponentArray addObject:address_component];
+                    }
+                    
                     NSString *formatted_address = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"formatted_address"]];
-                    //NSLog(@"formatted_address is %@",formatted_address);
                     if ([formatted_address isEqualToString:@"<null>"] || formatted_address == nil) {
                         [GetReturnSearchAddressArray addObject:@""];
                     }else{
@@ -380,7 +408,6 @@
                     }
                     
                     NSString *lat = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lat"]];
-                    //NSLog(@"formatted_address is %@",formatted_address);
                     if ([lat isEqualToString:@"<null>"] || lat == nil) {
                         [GetReturnSearchLatArray addObject:@""];
                     }else{
@@ -388,7 +415,6 @@
                     }
                     
                     NSString *lng = [[NSString alloc]initWithFormat:@"%@",[dict valueForKey:@"lng"]];
-                    //NSLog(@"formatted_address is %@",formatted_address);
                     if ([lng isEqualToString:@"<null>"] || lng == nil) {
                         [GetReturnSearchLngArray addObject:@""];
                     }else{
@@ -527,38 +553,49 @@
     NSLog(@"SearchWithLocationButtonOnClick button %li",(long)getbuttonIDN);
     GetSearchText = [GetReturnSearchTextArray objectAtIndex:getbuttonIDN];
     
-    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:SearchDetailView animated:NO completion:nil];
-    [self.navigationController pushViewController:SearchDetailView animated:YES];
-    //[self presentViewController:SearchDetailView animated:YES completion:nil];
-    [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:getbuttonIDN] Getlat:[GetReturnSearchLatArray objectAtIndex:getbuttonIDN] GetLong:[GetReturnSearchLngArray objectAtIndex:getbuttonIDN] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:getbuttonIDN] GetCurrentLat:latPoint GetCurrentLong:lonPoint];
-    //[SearchDetailView GetTitle:GetSearchText];
-    mySearchBar.text = GetSearchText;
+//    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//    [self.navigationController pushViewController:SearchDetailView animated:YES];
+//    //[self presentViewController:SearchDetailView animated:YES completion:nil];
+//    [SearchDetailView GetSearchKeyword:[GetReturnSearchTextArray objectAtIndex:getbuttonIDN] Getlat:[GetReturnSearchLatArray objectAtIndex:getbuttonIDN] GetLong:[GetReturnSearchLngArray objectAtIndex:getbuttonIDN] GetLocationName:[GetReturnSearchAddressArray objectAtIndex:getbuttonIDN] GetCurrentLat:latPoint GetCurrentLong:lonPoint];
+//    //[SearchDetailView GetTitle:GetSearchText];
+//    mySearchBar.text = GetSearchText;
+    self.ct3_SearchListingViewController = nil;
+    self.ct3_SearchListingViewController.keyword = GetSearchText;
+    self.ct3_SearchListingViewController.locationLatitude = [GetReturnSearchLatArray objectAtIndex:getbuttonIDN];
+    self.ct3_SearchListingViewController.locationLongtitude = [GetReturnSearchLngArray objectAtIndex:getbuttonIDN];
+    //self.ct3_SearchListingViewController.currentLatitude = latPoint;
+   // self.ct3_SearchListingViewController.currentLongtitude = lonPoint;
+    self.ct3_SearchListingViewController.locationName = [GetReturnSearchAddressArray objectAtIndex:getbuttonIDN];
+    self.ct3_SearchListingViewController.addressComponent = [GetReturnSearchAddressComponentArray objectAtIndex:getbuttonIDN];
+
+    [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
 -(IBAction)SearchTextOnlyButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"SearchTextOnlyButtonOnClick button %li",(long)getbuttonIDN);
     GetSearchText = [GetSearchArray objectAtIndex:getbuttonIDN];
     
-    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 0.2;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:transition forKey:nil];
-//    [self presentViewController:SearchDetailView animated:NO completion:nil];
-    [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:[GetSearchArray objectAtIndex:getbuttonIDN] Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:latPoint GetCurrentLong:lonPoint];
-   // [SearchDetailView GetTitle:GetSearchText];
-    mySearchBar.text = GetSearchText;
+//    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//    [self.navigationController pushViewController:SearchDetailView animated:YES];
+//    [SearchDetailView GetSearchKeyword:[GetSearchArray objectAtIndex:getbuttonIDN] Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:latPoint GetCurrentLong:lonPoint];
+//   // [SearchDetailView GetTitle:GetSearchText];
+//    mySearchBar.text = GetSearchText;
+    self.ct3_SearchListingViewController = nil;
+    self.ct3_SearchListingViewController.keyword = GetSearchText;
+    
+    @try {
+        self.ct3_SearchListingViewController.locationLatitude = [GetReturnSearchLatArray objectAtIndex:getbuttonIDN];
+        self.ct3_SearchListingViewController.locationLongtitude = [GetReturnSearchLngArray objectAtIndex:getbuttonIDN];
+        self.ct3_SearchListingViewController.addressComponent = [GetReturnSearchAddressComponentArray objectAtIndex:getbuttonIDN];
+
+    }
+    @catch (NSException *exception) {
+        
+    }
+    
+    [self.navigationController pushViewController:self.ct3_SearchListingViewController animated:YES];
 }
+
 -(IBAction)SearchGetLocationButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     NSLog(@"SearchGetLocationButtonOnClick button %li",(long)getbuttonIDN);
@@ -604,5 +641,12 @@
     }
     NSLog(@"no location get feed data");
     [manager stopUpdatingLocation];
+}
+-(CT3_SearchListingViewController*)ct3_SearchListingViewController
+{
+    if (!_ct3_SearchListingViewController) {
+        _ct3_SearchListingViewController = [CT3_SearchListingViewController new];
+    }
+    return _ct3_SearchListingViewController;
 }
 @end

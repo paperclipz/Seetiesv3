@@ -8,90 +8,75 @@
 
 #import "Model.h"
 #import "OpeningPeriodModel.h"
+#import "Location.h"
+
 @class ProfileModel;
-
-
-
+@class SeShopDetailModel;
 
 @protocol PhotoModel
 @end
-@protocol Location
-@end
+
 @protocol DraftModel
 @end
 
-@interface Post : NSObject
+
+@interface Post : NSObject<NSCopying>
 @property(nonatomic,strong)NSString* title;
 @property(nonatomic,strong)NSString* message;
 @property(nonatomic,strong)NSString* language;
 
 @end
 
-@interface Location : JSONModel
-@property(nonatomic,strong)NSString* lat;
-@property(nonatomic,strong)NSString* lng;
+@interface DraftModel : Model<NSCopying>
+
 @property(nonatomic,strong)NSString* name;
-@property(nonatomic,strong)NSString* place_id;
-@property(nonatomic,strong)OpeningPeriodModels* opening_hours;
-@property(nonatomic,strong)NSString* contact_no;
-@property(nonatomic,strong)NSString* link;
-@property(nonatomic,assign)float distance;
-@property(nonatomic,strong)NSString* reference;
-@property(nonatomic,strong)NSString* formatted_address;
-@property(nonatomic,strong)NSDictionary* expense;
-@property(nonatomic,strong)NSString* search_display_name;
+@property(nonatomic,strong)ProfileModel* user_info;
+@property(nonatomic,strong)NSString* seetishop_id;
 
-//below here is all inside address_components
-@property(nonatomic,strong)NSString* administrative_area_level_1;
-@property(nonatomic,strong)NSString* country;
-@property(nonatomic,strong)NSString* locality;
-@property(nonatomic,strong)NSString* political;
-@property(nonatomic,strong)NSString* postal_code;
-@property(nonatomic,strong)NSString* route;
-@property(nonatomic,strong)NSString* sublocality;
+@property(nonatomic,strong)NSString* post_id;
 
-@end
-
-@interface PhotoModel : JSONModel
-
-@property(nonatomic,strong)NSString* tags;
-@property(nonatomic,strong)NSString* photo_id;
-@property(nonatomic,strong)NSString* caption;
-@property(nonatomic,assign)int position;
-@property(nonatomic,strong)NSString* imageURL;
-@property(nonatomic,strong)UIImage* image;
-@property(nonatomic,strong)NSString* imageWidth;
-@property(nonatomic,strong)NSString* imageHeight;
--(id) copyWithZone: (NSZone *) zone;
-
-@end
-
-
-@interface DraftModel : Model
-@property(nonatomic,strong)NSDictionary* contents;
+@property(nonatomic,strong)NSString* postDescription;
 @property(nonatomic,strong)NSArray* arrCustomPost;//using content_languages to process
 @property(nonatomic,strong)NSArray* arrPost;//using title key to process
-@property(nonatomic,strong)NSString* place_name;
-
-@property(nonatomic,strong)NSArray<PhotoModel>* arrPhotos;
+@property(nonatomic,strong)NSDictionary* contents;
+@property(nonatomic,assign)int total_comments;
 @property(nonatomic,strong)NSString* link;
-@property(nonatomic,strong)NSString* post_id;
-@property(nonatomic,strong)Location* location;
 @property(nonatomic,strong)NSArray* category;
-
-//@property(nonatomic,strong)NSString* imageURL;//take Small size images
-@property(nonatomic,strong)NSString* name;
-@property(nonatomic,strong)NSString* distance;
-@property(nonatomic,strong)NSString* collection_note;
 @property(nonatomic,strong)NSString* view_count;
 @property(nonatomic,strong)NSArray* content_languages;
-@property(nonatomic,strong)ProfileModel* user_info;
-@property(nonatomic,strong)NSString* like;
+@property(nonatomic,assign)BOOL like;
 @property(nonatomic,strong)NSString* collect;
+@property(nonatomic,strong)NSMutableArray* arrDeletePosts;//deleted image
+@property(nonatomic,strong)NSMutableArray<Ignore>* arrImageList;//added image photomodel
+@property(nonatomic,strong)NSString* type;
+@property(nonatomic,strong)Post* post;
+/*photo*/
+@property(nonatomic,strong)NSString* image;
+@property(nonatomic,strong)NSMutableArray<PhotoModel>* arrPhotos;
+
+/*Location*/
+@property(nonatomic,strong)Location* location;
+@property(nonatomic,strong)NSString* distance;
+@property(nonatomic,strong)NSString* place_formatted_address;
+@property(nonatomic,strong)NSString* place_name;
+
+/*notification*/
+@property(nonatomic,strong)NSString* postImageURL;
+
+/*collection*/
+@property(nonatomic,assign)int collection_count;
+@property(nonatomic,strong)NSString* collection_note;
+
+/*SeetiShop*/
+@property(nonatomic,strong)SeShopDetailModel* seetishop_info;
+
+
+-(NSString*)getPostDescription;
 
 -(void)process;
 -(void)customProcess;
-
+/*use to get the first language in array's title*/
+-(NSString*)getPostTitle;
 @end
 
 @interface DraftsModel : Model
@@ -99,6 +84,8 @@
 @property(nonatomic,strong)NSArray<DraftModel>* posts;
 @property(nonatomic,assign)int list_size;
 @property(nonatomic,assign)int total_posts;
+@property(nonatomic,assign)int total_count;
+
 @property(nonatomic,assign)int total_page;
 @property(nonatomic,assign)int page;
 

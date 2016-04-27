@@ -24,12 +24,13 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewLeftConstraint;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImage;
-@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
 
 @property (weak, nonatomic) IBOutlet UIView *wrapperIconView;
 
 @property (weak, nonatomic) IBOutlet UIView *ibContentWrapperview;
 @property (weak, nonatomic) IBOutlet UILabel *lblWordCount;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
 
 @end
 
@@ -96,7 +97,7 @@
 -(void)initSelfView
 {
     
-    [Utils setRoundBorder:self.wrapperIconView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
+  //  [Utils setRoundBorder:self.wrapperIconView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
     [Utils setRoundBorder:self.txtDescription color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
     [Utils setRoundBorder:self.ibContentWrapperview color: TWO_ZERO_FOUR_COLOR borderRadius:5.0f];
     self.txtDescription.delegate = self;

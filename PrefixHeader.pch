@@ -17,23 +17,14 @@
 #import "Utils.h"
 #import "JSONKit.h"
 #import "ConnectionManager.h"
-#import "UrlDataClass.h"
-#import "LanguageManager.h"
-#import "Localisator.h"
-#import "Model.h"
-#import "UIAlertView+Blocks.h"
 #import "DataManager.h"
+#import "UrlDataClass.h"
 #import "TSMessage.h"
 #import "BaseViewController.h"
-#import "Foursquare2.h"
-#import "FourSquareModel.h"
 #import "CommonTableViewCell.h"
-#import "IQKeyboardManager.h"
 #import "CommonViewController.h"
 #import "CommonView.h"
-#import "LoadingManager.h"
 #import <GoogleMaps/GoogleMaps.h>
-#import "SearchManager.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "ActionSheetPicker.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -41,12 +32,14 @@
 #import "BOString.h"
 //for currency Usage
 #import "BKCurrencyTextField.h"
-#import <AviarySDK/AviarySDK.h>
+#import "CustomEmptyView.h"
+
 //===============Category Helper=================
 #import "NSString+Extra.h"
 #import "UIView+Extension.h"
 #import "UIImage+FX.h"
 #import "CustomFont.h"
+#import "UIAlertView+Blocks.h"
 
 #import "NSDictionary+STHelper.h"
 #import "UIColor+Extension.h"
@@ -56,12 +49,33 @@
 #import "NSObject+Extension.h"
 #import "UIImageView+Extension.h"
 #import "NSArray+Extension.h"
-#import "MapManager.h"
+#import "UILabel+Exntension.h"
+
+#import "UINavigationViewController+Extra.h"
 
 //===============Model=================
+#import "FourSquareModel.h"
+#import "Foursquare2.h"
+
 #import "RecommendationModel.h"
 #import "Locale.h"
 #import "SeetiesIOS-Swift.h"
+
+
+//===============Manager=================
+#import "MapManager.h"
+#import "LanguageManager.h"
+#import "LoadingManager.h"
+#import "SearchManager.h"
+#import "IQKeyboardManager.h"
+
+#import "CoreModel.h"
+#import "MessageManager.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
+#import "AutoCoding.h"
+#import "CustomBlock.h"
 
 #endif
 

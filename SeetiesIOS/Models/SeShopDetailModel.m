@@ -29,7 +29,6 @@
                                                        }];
 }
 
-
 #define BestKnowFor @"Best known for"
 #define Price @"Price"
 #define Hours @"Hours"
@@ -49,12 +48,12 @@
     {
         NSMutableDictionary* temp = [NSMutableDictionary new];
         
-        NSString* tempPrice = [NSString stringWithFormat:@"%@ %@",_price.code,_price.value];
-        [temp setObject:tempPrice forKey:Price];
-        
         if (![Utils isStringNull:_price.value]) {
+            NSString* tempPrice = [NSString stringWithFormat:@"%@ %@",_price.code,_price.value];
+            [temp setObject:tempPrice forKey:Price];
             [self.arrayInfo addObject:temp];
         }
+       
 
     }
     
@@ -79,12 +78,15 @@
 
     }
     
-    if(_contact_number.count>0)//check Phone Number
+    if(![Utils isArrayNull:_contact_number])//check Phone Number
     {
         NSMutableDictionary* temp = [NSMutableDictionary new];
-        [temp setObject:_contact_number[0] forKey:Phone_Number];
-        [self.arrayInfo addObject:temp];
-
+        NSString* phoneNumber = _contact_number[0];
+        
+        if (![Utils isStringNull:phoneNumber]) {
+            [temp setObject:_contact_number[0] forKey:Phone_Number];
+            [self.arrayInfo addObject:temp];
+        }
     }
     
     if(![Utils isStringNull:_urlWebsite])//check URL/Link

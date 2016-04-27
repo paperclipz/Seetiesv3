@@ -7,23 +7,36 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "ApiVersionModel.h"
 #import "LanguageModel.h"
 #import "ExploreCountryModel.h"
 #import "SearchModel.h"
 #import "EditPhotoModel.h"
 #import "FourSquareModel.h"
-#import "DraftModel.h"
+
 #import "CategoriesModel.h"
 #import "PostModel.h"
-
 #import "RecommendationModel.h"
-
 #import "TagModel.h"
 #import "ProfileModel.h"
 #import "SeShopDetailModel.h"
 #import "SeShopPhotoModel.h"
+#import "FacebookModel.h"
+#import "UsersModel.h"
+#import "DealsModel.h"
 
+@class FacebookModel;
+@class  DraftsModel;
+@class NewsFeedModels;
+@class InstagramModel;
+@class CountriesModel;
+@class HomeModel;
+@class NotificationModels;
+@class AppInfoModel;
+@class InstagramUser;
+@class SuggestedPlaceModel;
+@class FriendSuggestionModel;
 
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
@@ -32,7 +45,15 @@ typedef void(^CompletionVoidBlock) (void);
 + (id)Instance;
 +(NSArray*)getSampleObject;
 
+/*Login*/
+@property(nonatomic,strong)InstagramUser* instagramUserModel;//model from login
+
+
+@property(nonatomic,strong)ProfileModel* userLoginProfileModel;//model from login
+
 @property(nonatomic,strong)ApiVersionModel* apiVersionModel;
+@property(nonatomic,strong)FacebookModel* facebookLoginModel;
+
 @property(nonatomic,strong)LanguageModels* languageModels;
 @property(nonatomic,strong)ExploreCountryModels* exploreCountryModels;
 @property(nonatomic,strong)FourSquareModel* fourSquareVenueModel;
@@ -45,9 +66,13 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)DraftModel* editPostModel;
 @property(nonatomic,strong)DraftModel* savedDraftModel;
 
-
 @property(nonatomic,strong)TagModel* tagModel;
+
+// /  ============== model from proifle page. has additional follow and following usage: for all profiles include me and others ================= ///
 @property(nonatomic,strong)ProfileModel* userProfileModel;
+// /  ================================== model for "ME" from proifle page. has additional follow and following ===================================== ///
+@property(nonatomic,strong)ProfileModel* currentUserProfileModel;//
+
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userFollowingCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userSuggestedCollectionsModel;
@@ -55,9 +80,21 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)ProfilePostModel* userProfileLikeModel;
 @property(nonatomic,strong)SeShopPhotoModel* seShopPhotoModel;
 @property(nonatomic,strong)SeShopDetailModel* seShopDetailModel;
-@property(nonatomic,strong)SeetiShopsModel* seNearbyShopModel;
-@property(nonatomic,strong)SeetiShopsModel* seNearbyShopListingModel;
+@property(nonatomic,strong)SeShopsModel* seNearbyShopModel;
+@property(nonatomic,strong)SeShopsModel* seShopListingModel;
+@property(nonatomic,strong)UsersModel* usersModel;
+@property(nonatomic,strong)DealsModel* dealsModel;
+@property(nonatomic,strong)DealModel* dealModel;
+@property(nonatomic,strong)SuggestedPlaceModel* suggestedPlaceModel;
+@property(nonatomic,strong)FriendSuggestionModel* friendSuggestionModel;
+/* ================================ News Feed ================================ */
 
+@property(nonatomic,strong)NewsFeedModels* newsFeedModels;
+@property(nonatomic,strong)CountriesModel* countriesModel;
+@property(nonatomic,strong)HomeModel* homeModel;
+@property(nonatomic,strong)NotificationModels* notificationModels;
+@property(nonatomic,strong)NotificationModels* followingNotificationModels;
+@property(nonatomic,strong)AppInfoModel* appInfoModel;
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;
@@ -65,4 +102,13 @@ typedef void(^CompletionVoidBlock) (void);
 +(void)setCollectionFollowing:(NSString*)collectionID isFollowing:(BOOL)following;//to set collection is collected and store after request from server
 +(BOOL)isCollectionFollowed:(NSString*)collectionID isFollowing:(BOOL)isFollowing;//to check collection is collected to request from server
 
+/*likes*/
++(void)setPostLikes:(NSString*)postID isLiked:(BOOL)liked;
++(void)getPostLikes:(NSString*)postID isLiked:(BoolBlock)isLikedBlock NotLikeBlock:(CompletionVoidBlock)notCollectedBlock;
++(void)getPostCollected:(NSString*)postID isCollected:(BoolBlock)isCollectedBlock PostNotCollectedBlock:(CompletionVoidBlock)notCollectedBlock;
++(void)setPostsCollected:(NSString*)postID isPostCollected:(BOOL)collected;
+
++(BOOL)isUserFollowed:(NSString*)UserID isFollowing:(BOOL)isFollowing;
+
++(void)setUserFollowing:(NSString*)UserID isFollowing:(BOOL)following;
 @end

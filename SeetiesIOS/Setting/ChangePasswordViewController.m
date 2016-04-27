@@ -7,13 +7,36 @@
 //
 
 #import "ChangePasswordViewController.h"
-#import "LLARingSpinnerView.h"
 
 #import "LanguageManager.h"
 #import "Locale.h"
 
 @interface ChangePasswordViewController ()
-@property (nonatomic, strong) LLARingSpinnerView *spinnerView;
+{
+    IBOutlet TPKeyboardAvoidingScrollView *Scrollview;
+    IBOutlet UITextField *OldPasswordText;
+    IBOutlet UITextField *NewPasswordText;
+    IBOutlet UITextField *KeyinAgainText;
+    IBOutlet UILabel *TitleLabel;
+    IBOutlet UIButton *SubmitButton;
+    IBOutlet UIImageView *BarImage;
+    
+    NSString *GetOldPassword;
+    NSString *GetNewPassword;
+    NSString *GetNewPasswordAgain;
+    
+    UrlDataClass *DataUrl;
+    NSMutableData *webData;
+    
+    NSString *CheckFB;
+    
+    IBOutlet UIImageView *BackgroundImage001;
+    IBOutlet UIImageView *BackgroundImage002;
+    
+    IBOutlet UIImageView *RedIcon1;
+    IBOutlet UIImageView *RedIcon2;
+    IBOutlet UIImageView *RedIcon3;
+}
 @end
 
 @implementation ChangePasswordViewController
@@ -55,7 +78,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Change Password Page";
+  //  self.screenName = @"IOS Change Password Page";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CheckFB = [defaults objectForKey:@"CheckPassword"];
     NSLog(@"CheckFB is %@",CheckFB);
@@ -77,14 +100,8 @@
     return UIStatusBarStyleLightContent;
 }
 -(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
+   
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -221,18 +238,12 @@
 -(void)SendDataToServer{
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        self.spinnerView = [[LLARingSpinnerView alloc] initWithFrame:CGRectZero];
-        self.spinnerView.frame = CGRectMake((screenWidth/2) - 30, (screenHeight/2) - 30, 60, 60);
-        self.spinnerView.tintColor = [UIColor colorWithRed:51.f/255 green:181.f/255 blue:229.f/255 alpha:1];
-        //self.spinnerView.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
-        self.spinnerView.lineWidth = 1.0f;
-        [self.view addSubview:self.spinnerView];
-        [self.spinnerView startAnimating];
-
+    
+    [LoadingManager show];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    NSString *Getuid = [defaults objectForKey:@"Useruid"];
+    NSString *GetExpertToken = [Utils getAppToken];
+    NSString *Getuid = [Utils getUserID];
     
     
     //Server Address URL
@@ -317,8 +328,7 @@
 }
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [self.spinnerView stopAnimating];
-    [self.spinnerView removeFromSuperview];
+    [LoadingManager hide];
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:CustomLocalisedString(@"ErrorConnection", nil) message:CustomLocalisedString(@"NoData", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     
     [alert show];
@@ -342,19 +352,11 @@
         NSLog(@"GetToken is %@",GetToken);
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:GetToken forKey:@"ExpertToken"];
+        [defaults setObject:GetToken forKey:TOKEN];
         [defaults setObject:@"1" forKey:@"CheckPassword"];
         [defaults synchronize];
         
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromLeft;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        //[self presentViewController:ListingDetail animated:NO completion:nil];
-        [self dismissViewControllerAnimated:NO completion:nil];
-        
+        [self BackButton:self.view];
     }else{
         NSString *GetMessage = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
         NSLog(@"GetMessage is %@",GetMessage);
@@ -364,8 +366,7 @@
     }
     
     
-    [self.spinnerView stopAnimating];
-    [self.spinnerView removeFromSuperview];
+    [LoadingManager hide];
     
 
 }

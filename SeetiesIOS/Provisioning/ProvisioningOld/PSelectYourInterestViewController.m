@@ -7,7 +7,6 @@
 //
 
 #import "PSelectYourInterestViewController.h"
-#import "PFollowTheExpertsViewController.h"
 //#import "ProgressHUD.h"
 @interface PSelectYourInterestViewController ()
 
@@ -142,7 +141,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Provisioning Select Your Interest";
+   // self.screenName = @"IOS Provisioning Select Your Interest";
     ShowTitle.text = NSLocalizedString(@"Provisioning_PSelectYourInterestView_Title",nil);
     [ContiuneBtn setTitle:NSLocalizedString(@"Provisioning_PTellUsYourCityView_8",nil) forState:UIControlStateNormal];
     ContiuneBtn.enabled = NO;
@@ -242,8 +241,8 @@
     [defaults setObject:GetSelectID forKey:@"Provisioning_Interest"];
     [defaults synchronize];
     
-    PFollowTheExpertsViewController *SelectYourInterestView = [[PFollowTheExpertsViewController alloc]init];
-    [self presentViewController:SelectYourInterestView animated:YES completion:nil];
+//    PFollowTheExpertsViewController *SelectYourInterestView = [[PFollowTheExpertsViewController alloc]init];
+//    [self presentViewController:SelectYourInterestView animated:YES completion:nil];
 }
 
 @end

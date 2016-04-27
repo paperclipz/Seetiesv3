@@ -83,7 +83,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Feed Location Page";
+   // self.screenName = @"IOS Feed Location Page";
     
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {

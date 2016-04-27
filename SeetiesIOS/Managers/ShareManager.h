@@ -16,26 +16,18 @@ typedef enum
     ShareTypeCollection,
     ShareTypePostUser,
     ShareTypeSeetiesShop,
-    ShareTypeNonSeetiesShop
+    ShareTypeNonSeetiesShop,
+    ShareTypeDeal
 } ShareType;
 
 @interface ShareManager : NSObject
 //shareID (postID, collectionID,UserID)
-//-(void)shareFacebook:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
-//-(void)shareOnLINE:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
 -(void)shareFacebook:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc;
 -(void)shareOnLINE:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc;
-
 -(void)shareOnInstagram:(NSString*)imageURL delegate:(UIViewController*)vc;
-//-(void)shareOnMessanger:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
-//-(void)shareOnWhatsapp:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
-//-(void)shareWithCopyLink:(ShareType)type shareID:(NSString*)shareID delegate:(UIViewController*)vc;
-//-(void)shareOnEmail:(ShareType)type viewController:(UIViewController*)vc shareID:(NSString*)shareID;
-
 -(void)shareOnMessanger:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc;
 -(void)shareOnWhatsapp:(NSString*)title message:(NSString*)description imageURL:(NSString*)imageURL shareType:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc;
 -(void)shareWithCopyLink:(ShareType)type shareID:(NSString*)shareID PostID:(NSString*)postID delegate:(UIViewController*)vc;
 -(void)shareOnEmail:(ShareType)type viewController:(UIViewController*)vc shareID:(NSString*)shareID PostID:(NSString*)postID;
-
 
 @end

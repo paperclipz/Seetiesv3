@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
-@interface SearchChangeLocationViewController : GAITrackedViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
+//#import "GAITrackedViewController.h"
+@interface SearchChangeLocationViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
     
     IBOutlet UITextField *SearchLocationField;
     NSMutableData *webData;

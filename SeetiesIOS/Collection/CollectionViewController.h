@@ -14,7 +14,7 @@
 #import "ShowFollowerAndFollowingViewController.h"
 @class ProfileViewController;
 @class ShowFollowerAndFollowingViewController;
-@interface CollectionViewController : UIViewController<UIScrollViewDelegate>
+@interface CollectionViewController : CommonViewController<UIScrollViewDelegate>
 
 @property(nonatomic,strong)ShowFollowerAndFollowingViewController* showFollowerAndFollowingViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
@@ -23,4 +23,5 @@
 @property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 
 -(void)GetCollectionID:(NSString *)ID_ GetPermision:(NSString *)PermisionUser GetUserUid:(NSString *)UserUid;
+// getPermission Option 1: @"self" Option 2: @"Others"
 @end

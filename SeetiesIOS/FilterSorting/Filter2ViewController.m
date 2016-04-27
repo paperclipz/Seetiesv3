@@ -33,7 +33,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Filter View";
+   // self.screenName = @"IOS Filter View";
 }
 -(IBAction)BackButton:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];

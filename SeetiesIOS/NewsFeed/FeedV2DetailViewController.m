@@ -13,18 +13,16 @@
 #import "CommentViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "NewUserProfileV2ViewController.h"
 #import "LocationFeedDetailViewController.h"
 #import "NearByRecommtationViewController.h"
-
-#import "LandingV2ViewController.h"
-#import "RecommendV2ViewController.h"
 #import "NSString+ChangeAsciiString.h"
 #import "AddCollectionDataViewController.h"
 #import "LeveyTabBarController.h"
 #import "ReportViewController.h"
-#import "ShareViewController.h"
 #import "SearchDetailViewController.h"
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
+
 @interface FeedV2DetailViewController (){
     
     NSMutableArray *arrCollectionID;
@@ -259,15 +257,24 @@
     NSString *GetCollectUserID;
     
     NSString *MessageCount;
-    
+
     
 }
 @end
 
 @implementation FeedV2DetailViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    ShowTopTitle.hidden = NO;
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    ShowBarImg.frame = CGRectMake(0, 0, frame.size.width, 64);
+    
     // Do any additional setup after loading the view from its nib.
     DataUrl = [[UrlDataClass alloc]init];
     pageControlBeingUsed = NO;
@@ -397,7 +404,7 @@
     //self.leveyTabBarController.tabBar.frame = CGRectMake(0, 300, 320, 100);
     
     // self.screenName = @"IOS Feed Detail Page";
-    self.screenName = @"IOS Feed Detail View V2";
+  //  self.screenName = @"IOS Feed Detail View V2";
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
@@ -505,8 +512,7 @@
     // [spinnerView startAnimating];
     [ShowActivity startAnimating];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@post/%@?token=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken];
     
@@ -522,7 +528,6 @@
     
     theConnection_GetPostAllData = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
     [theConnection_GetPostAllData start];
-    
     
     if( theConnection_GetPostAllData ){
         webData = [NSMutableData data];
@@ -549,8 +554,7 @@
     }
 }
 -(void)GetAllCommentData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@/%@/comments?token=%@",DataUrl.GetComment_URl,GetPostID,GetExpertToken];
     
@@ -574,8 +578,7 @@
 }
 
 -(void)GetNearbyPostData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@%@/nearbyposts?token=%@",DataUrl.GetNearbyPost_Url,GetPostID,GetExpertToken];
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -593,8 +596,8 @@
 }
 
 -(void)GetCollectionSuggestionsData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
+
     
     NSString *FullString = [[NSString alloc]initWithFormat:@"%@post/%@/collect_suggestions?offset=1&limit=3&token=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken];
     NSString *postBack = [[NSString alloc] initWithFormat:@"%@",FullString];
@@ -653,17 +656,26 @@
         }else{
             NSLog(@"Server Work.");
             
-            NSString *ErrorString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"error"]];
+            NSString *ErrorString = [res objectForKey:@"error"];
             NSLog(@"ErrorString is %@",ErrorString);
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
             NSLog(@"MessageString is %@",MessageString);
             
-            if ([ErrorString isEqualToString:@"0"] || [ErrorString isEqualToString:@"401"]) {
-                UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                ShowAlert.tag = 1000;
-                [ShowAlert show];
-                // send user back login screen.
-            }else{
+            if (ErrorString) {
+                
+                if ([ErrorString isEqualToString:@"0"] || [ErrorString isEqualToString:@"401"]) {
+                    UIAlertView *ShowAlert = [[UIAlertView alloc]initWithTitle:@"" message:CustomLocalisedString(@"SomethingError", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    ShowAlert.tag = 1000;
+                    [ShowAlert show];
+                    // send user back login screen.
+                }
+                else
+                {
+                    [MessageManager showMessage:LocalisedString(@"system") SubTitle:MessageString Type:TSMessageNotificationTypeError];
+                }
+
+            }
+                        else{
                 NSDictionary *GetAllData = [res valueForKey:@"data"];
                 NSArray *PhotoData = [GetAllData valueForKey:@"photos"];
                 captionArray = [[NSMutableArray alloc]init];
@@ -710,7 +722,9 @@
                     GetSeetishopName = [[NSString alloc]initWithFormat:@"%@",[SeetishopInfo objectForKey:@"name"]];
                     NSDictionary *SeetishopLocation = [SeetishopInfo valueForKey:@"location"];
                     GetSeetishopAddress = [[NSString alloc]initWithFormat:@"%@",[SeetishopLocation objectForKey:@"formatted_address"]];
-                    GetSeetishopImage = [[NSString alloc]initWithFormat:@"%@",[SeetishopInfo objectForKey:@"profile_photo"]];
+                    GetSeetishopImage = [[NSString alloc]initWithFormat:@"%@",SeetishopInfo[@"profile_photo"][@"picture"]];
+
+                    GetPlaceName = GetSeetishopName;
                 }
                 
                 NSLog(@"GetSeetishopID is %@",GetSeetishopID);
@@ -2335,10 +2349,15 @@
     ShowUserName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     [MainScroll addSubview:ShowUserName];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetUsername = [defaults objectForKey:@"UserName"];
+    ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
+    NSString *GetUsername = profileModel.username;
     if ([GetUsername isEqualToString:GetPostName]) {
-        //follow button
+        UIButton *OpenProfileButton = [[UIButton alloc]init];
+        OpenProfileButton.frame = CGRectMake(20, GetMessageHeight + 10, 250, 50);
+        [OpenProfileButton setTitle:@"" forState:UIControlStateNormal];
+        [OpenProfileButton setBackgroundColor:[UIColor clearColor]];
+        [OpenProfileButton addTarget:self action:@selector(OpenProfileButton:) forControlEvents:UIControlEventTouchUpInside];
+        [MainScroll addSubview:OpenProfileButton];
         
     }else{
         UIButton *OpenProfileButton = [[UIButton alloc]init];
@@ -2796,12 +2815,14 @@
         [MainScroll addSubview:Line02];
         
         UIImageView *ShowLocationIcon = [[UIImageView alloc]init];
-        ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 18, 25, 25);
-        ShowLocationIcon.image = [UIImage imageNamed:@"BluePin.png"];
+        ShowLocationIcon.frame = CGRectMake(20, GetMessageHeight + 18, 50, 50);
+        [Utils setRoundBorder:ShowLocationIcon color:OUTLINE_COLOR borderRadius:ShowLocationIcon.frame.size.width/2];
+        ShowLocationIcon.contentMode = UIViewContentModeCenter;
+        ShowLocationIcon.image = [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
         [MainScroll addSubview:ShowLocationIcon];
         
         UILabel *ShowPlaceName = [[UILabel alloc]init];
-        ShowPlaceName.frame = CGRectMake(50, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
+        ShowPlaceName.frame = CGRectMake(80, GetMessageHeight + 20, screenWidth - 86 - 61 - 5, 21);
         ShowPlaceName.text = GetPlaceName;
         ShowPlaceName.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
         ShowPlaceName.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
@@ -2819,7 +2840,7 @@
         ShowPlaceFormattedAddress.text = GetPlaceFormattedAddress;
         ShowPlaceFormattedAddress.numberOfLines = 0;
         ShowPlaceFormattedAddress.backgroundColor = [UIColor clearColor];
-        ShowPlaceFormattedAddress.frame = CGRectMake(50, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
+        ShowPlaceFormattedAddress.frame = CGRectMake(80, GetMessageHeight, screenWidth - 152,[ShowPlaceFormattedAddress sizeThatFits:CGSizeMake(screenWidth - 152, CGFLOAT_MAX)].height);
         [MainScroll addSubview:ShowPlaceFormattedAddress];
         
         UIButton *OpenAllInformationButton = [[UIButton alloc]init];
@@ -2986,7 +3007,7 @@
         
         //Shop Icon, Name and Address
         
-        AsyncImageView *ShowShopImage = [[AsyncImageView alloc]init];
+        UIImageView *ShowShopImage = [[UIImageView alloc]init];
         ShowShopImage.frame = CGRectMake(20, GetMessageHeight + 20, 50, 50);
         ShowShopImage.contentMode = UIViewContentModeScaleAspectFill;
         ShowShopImage.layer.backgroundColor=[[UIColor clearColor] CGColor];
@@ -2994,13 +3015,12 @@
         ShowShopImage.layer.borderWidth=1;
         ShowShopImage.layer.masksToBounds = YES;
         ShowShopImage.layer.borderColor=[[UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0f] CGColor];
-        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowShopImage];
+//        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowShopImage];
         NSString *FullImagesURL1 = [[NSString alloc]initWithFormat:@"%@",GetSeetishopImage];
         if ([FullImagesURL1 length] == 0) {
-            ShowShopImage.image = [UIImage imageNamed:@"NoImage.png"];
+            ShowShopImage.image = [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
         }else{
-            NSURL *url_UserImage = [NSURL URLWithString:FullImagesURL1];
-            ShowShopImage.imageURL = url_UserImage;
+            [ShowShopImage sd_setImageCroppedWithURL:[NSURL URLWithString:FullImagesURL1] completed:nil];
         }
         [MainScroll addSubview:ShowShopImage];
         
@@ -3593,8 +3613,10 @@
         //        [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
         //        [NewUserProfileV2View GetUserName:GetPostName];
         _profileViewController = nil;
-        [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:GetUserUid];
-        [self.navigationController pushViewController:self.profileViewController animated:YES];
+        [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+            [self.profileViewController initDataWithUserID:GetUserUid];
+
+        }];
         
     }
     
@@ -3607,9 +3629,11 @@
     NSMutableArray *TempUser_User_Comment_uidArray = [[[User_Comment_uidArray reverseObjectEnumerator] allObjects]mutableCopy];
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[TempUser_User_Comment_uidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
-    
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:[TempUser_User_Comment_uidArray objectAtIndex:getbuttonIDN]];
+        
+    }];
 }
 -(IBAction)OpenProfileButton3:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -3620,8 +3644,12 @@
     //    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby objectAtIndex:getbuttonIDN]];
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
+        
+    }];
     
 }
 -(IBAction)OpenProfileButton4:(id)sender{
@@ -3632,8 +3660,10 @@
     //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
     //    [NewUserProfileV2View GetUserName:[UserInfo_NameArray_Nearby lastObject]];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:[UserInfo_IDArray_Nearby objectAtIndex:getbuttonIDN]];
+
+    }];
     
     
 }
@@ -3658,9 +3688,8 @@
     
 }
 -(void)SendFollowingData{
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
+
     
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetUserUid,GetExpertToken];
@@ -3759,37 +3788,38 @@
         NSString *TempCount = [[NSString alloc]initWithFormat:@"%i / %li",page + 1,(long)ImageCount];
         ShowImageCount.text = TempCount;
     }else{
+  
         
-        float HeightCheck = MainScroll.contentOffset.y;
+//        float HeightCheck = MainScroll.contentOffset.y;
         
-        if (HeightCheck > 64) {
-            [UIView animateWithDuration:0.2
-                                  delay:0
-                                options:UIViewAnimationOptionCurveEaseIn
-                             animations:^{
-                                 ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
-                             }
-                             completion:^(BOOL finished) {
-                             }];
-            
-        }else{
-            [UIView animateWithDuration:0.2
-                                  delay:0
-                                options:UIViewAnimationOptionCurveEaseIn
-                             animations:^{
-                                 ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
-                             }
-                             completion:^(BOOL finished) {
-                             }];
-            
-            
-        }
-        if (HeightCheck > GetPlaceNameHeight) {
-            ShowTopTitle.hidden = NO;
-        }else{
-            ShowTopTitle.hidden = YES;
-        }
-        
+//        if (HeightCheck > 64) {
+//            [UIView animateWithDuration:0.2
+//                                  delay:0
+//                                options:UIViewAnimationOptionCurveEaseIn
+//                             animations:^{
+//                                 ShowBarImg.frame = CGRectMake(0, 0, screenWidth, 64);
+//                             }
+//                             completion:^(BOOL finished) {
+//                             }];
+//            
+//        }else{
+//            [UIView animateWithDuration:0.2
+//                                  delay:0
+//                                options:UIViewAnimationOptionCurveEaseIn
+//                             animations:^{
+//                                 ShowBarImg.frame = CGRectMake(0, -64, screenWidth, 64);
+//                             }
+//                             completion:^(BOOL finished) {
+//                             }];
+//            
+//            
+//        }
+//        if (HeightCheck > GetPlaceNameHeight) {
+//            ShowTopTitle.hidden = NO;
+//        }else{
+//            ShowTopTitle.hidden = YES;
+//        }
+//        
         
         
         
@@ -3925,9 +3955,8 @@
 }
 
 -(void)GetUnLikeData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    
+    NSString *GetExpertToken = [Utils getAppToken];
+
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@post/%@/like?token=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken];
     NSLog(@"urlString is %@",urlString);
@@ -3945,9 +3974,8 @@
     
 }
 -(void)SendPostLike{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
-    
+    NSString *GetExpertToken = [Utils getAppToken];
+
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@post/%@/like",DataUrl.UserWallpaper_Url,GetPostID];
     NSLog(@"urlString is %@",urlString);
@@ -4005,27 +4033,22 @@
 -(IBAction)ShareButton:(id)sender{
     NSLog(@"ShareButton Click.");
     
-    //    ShareViewController *ShareView = [[ShareViewController alloc]init];
-    //    [self presentViewController:ShareView animated:YES completion:nil];
-    //    //[self.view.window.rootViewController presentViewController:ShareView animated:YES completion:nil];
-    //  [ShareView GetPostID:GetPostID GetMessage:GetMessage GetTitle:GetTitle GetImageData:[UrlArray objectAtIndex:0]];
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
     
-    _shareV2ViewController = nil;
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
-    [self.shareV2ViewController share:@"" title:GetTitle imagURL:UrlArray[0] shareType:ShareTypePost shareID:GetPostID userID:@""];
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+    dataToPost.title = GetTitle;
+    dataToPost.shareID = GetPostID;
+    dataToPost.shareType = ShareTypePost;
+    dataToPost.postImageURL = UrlArray[0];
+    
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+
 }
 
 -(IBAction)SettingButton:(id)sender{
     NSLog(@"Setting Button Click.");
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetUsername = [defaults objectForKey:@"UserName"];
-    if ([GetUsername isEqualToString:GetPostName]) {
+
+    
+    if ([GetUserUid isEqualToString:[Utils getUserID]]) {
         //self
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
@@ -4271,14 +4294,14 @@
 }
 
 -(void)OpenReport{
-    ReportViewController *ReportView = [[ReportViewController alloc]init];
-    [self presentViewController:ReportView animated:YES completion:nil];
-    //[self.view.window.rootViewController presentViewController:ReportView animated:YES completion:nil];
-    [ReportView GetPostID:GetPostID];
+    ReportProblemViewController *reportViewController = [[ReportProblemViewController alloc] init];
+    [reportViewController initDataReportPost:GetPostID];
+    [self.navigationController pushViewController:reportViewController animated:YES];
 }
 
 -(void)OpenEdit{
     
+    _editPostViewController = nil;
     [self.editPostViewController requestServerForPostInfo:GetPostID completionBLock:^{
         
         DraftModel* editPost = [[ConnectionManager dataManager] editPostModel];
@@ -4607,7 +4630,7 @@
     //[self.spinnerView startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     NSString *GetSystemLanguageCheck = [[NSString alloc]initWithFormat:@"%@",[defaults objectForKey:@"UserData_SystemLanguage"]];
     
     NSString *GetSystemLanguageCode;
@@ -4666,8 +4689,10 @@
     //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
     //    [NewUserProfileV2View GetUserName:[Like_UsernameArray objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Like_UseruidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        
+        [self.profileViewController initDataWithUserID:[Like_UseruidArray objectAtIndex:getbuttonIDN]];
+    }];
     
 }
 -(IBAction)OpenCommentProfileButton:(id)sender{
@@ -4688,16 +4713,16 @@
     //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
     //    [NewUserProfileV2View GetUserName:[User_Comment_usernameArray objectAtIndex:getbuttonIDN]];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[User_Comment_uidArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:User_Comment_uidArray[getbuttonIDN]];
+    }];
     
 }
 -(void)DeletePost{
     
     [ShowActivity startAnimating];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@post/%@?token=%@",DataUrl.UserWallpaper_Url,GetPostID,GetExpertToken];
@@ -4720,7 +4745,6 @@
             //get back
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *GetBackCheckAPI = [defaults objectForKey:@"CheckAPI"];
-            NSString *GetBackAPIVersion = [defaults objectForKey:@"APIVersionSet"];
             
             //cancel clicked ...do your action
             NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
@@ -4731,12 +4755,11 @@
             }
             //save back
             [defaults setObject:GetBackCheckAPI forKey:@"CheckAPI"];
-            [defaults setObject:GetBackAPIVersion forKey:@"APIVersionSet"];
             [defaults synchronize];
-            
-            
-            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
-            [self presentViewController:LandingView animated:YES completion:nil];
+//            
+//            
+//            LandingV2ViewController *LandingView = [[LandingV2ViewController alloc]init];
+//            [self presentViewController:LandingView animated:YES completion:nil];
         }else{
             //reset clicked
         }
@@ -4775,7 +4798,7 @@
 }
 -(void)SendQuickCollect{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     NSString *GetUseruid = [defaults objectForKey:@"Useruid"];
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/0/collect",DataUrl.UserWallpaper_Url,GetUseruid];
@@ -4842,8 +4865,10 @@
     //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
     //    [NewUserProfileV2View GetUserName:Getname];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[arrUserID objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        
+        [self.profileViewController initDataWithUserID:arrUserID[getbuttonIDN]];
+    }];
     
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
@@ -4882,8 +4907,7 @@
     }
 }
 -(void)FollowCollection{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID];
     NSLog(@"Send Follow Collection urlString is %@",urlString);
@@ -4924,8 +4948,7 @@
     }
 }
 -(void)DeleteFollowCollection{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];
+    NSString *GetExpertToken = [Utils getAppToken];
     
     //Server Address URL
     NSString *urlString = [NSString stringWithFormat:@"%@%@/collections/%@/follow?token=%@",DataUrl.UserWallpaper_Url,GetCollectUserID,GetCollectID,GetExpertToken];
@@ -4978,13 +5001,11 @@
 }
 -(IBAction)ViewSeetishopButtonOnClick:(id)sender{
     
-    // NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
-    // NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
     _seetiesShopViewController = nil;
+    
     [self.seetiesShopViewController initDataWithSeetiesID:GetSeetishopID];
-    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:self.seetiesShopViewController];
-    [nav setNavigationBarHidden:YES];
-    [self presentViewController:nav animated:YES completion:nil];
+
+    [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 }
 -(IBAction)LanguageButtonOnClick:(id)sender{
     

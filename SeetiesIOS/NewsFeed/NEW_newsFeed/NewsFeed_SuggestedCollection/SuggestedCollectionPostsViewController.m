@@ -264,7 +264,7 @@
                            @"token":[Utils getAppToken]
                            };
     
-    NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],self.collectionID];
+    NSString* appendString = [NSString stringWithFormat:@"collections/%@",self.collectionID];
     
     [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
         

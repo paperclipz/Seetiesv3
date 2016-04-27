@@ -33,6 +33,8 @@
 @interface CollectionModel : JSONModel
 // in future change to draft model
 @property(nonatomic,strong)NSArray<DraftModel>* arrayPost;
+@property(nonatomic,strong)NSArray<DraftModel>* arrayFollowingCollectionPost;
+
 @property(nonatomic,strong)NSString* name;
 @property(nonatomic,strong)NSString* postDesc;
 @property(nonatomic,assign)BOOL isPrivate;
@@ -44,8 +46,13 @@
 @property(nonatomic,assign)int total_posts;
 @property(nonatomic,strong)NSMutableArray* deleted_posts;
 @property(nonatomic,assign)int collection_posts_count;
+@property(nonatomic,assign)int new_collection_posts_count;
 @property(nonatomic,assign)BOOL following;
 @property(nonatomic,strong)ProfileModel* user_info;
+
+@property(nonatomic,strong)NSString* author_uid;
+@property(nonatomic,assign)int follower_count;
+
 
 -(void)process;
 @end
@@ -54,7 +61,9 @@
 
 @property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
 @property(nonatomic,strong)NSArray<CollectionModel>* arrSuggestedCollection;
+
 @property(nonatomic,assign)int total_page;
+@property(nonatomic,assign)int total_count;
 @property(nonatomic,assign)int total_result;
 @property(nonatomic,assign)int page;
 

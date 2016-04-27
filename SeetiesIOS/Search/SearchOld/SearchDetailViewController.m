@@ -210,7 +210,7 @@
     
     [self InitView];
     
-    [self SendSearchKeywordData];
+ //   [self SendSearchKeywordData];
     
     ShowSearchLocationView.frame = CGRectMake(0, 95, screenWidth, screenHeight - 95);
     ShowSearchLocationView.hidden = YES;
@@ -218,7 +218,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Search Detail Page";
+    //self.screenName = @"IOS Search Detail Page";
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetCategoryString = [defaults objectForKey:@"Filter_Search_Category"];
@@ -1160,12 +1160,13 @@
 -(void)InitView{
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    NSString *TempStringShop = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Shop")];
     NSString *TempStringCollection = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"PCollections")];
     NSString *TempStringPosts = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Posts")];
     NSString *TempStringPeople = [[NSString alloc]initWithFormat:@"%@",LocalisedString(@"Seetizens")];
     
     //NSArray *itemArray = [NSArray arrayWithObjects:TempStringPosts, TempStringPeople, nil];
-    NSArray *itemArray = [NSArray arrayWithObjects:TempStringCollection,TempStringPosts, TempStringPeople, nil];
+    NSArray *itemArray = [NSArray arrayWithObjects:TempStringShop,TempStringCollection,TempStringPosts, TempStringPeople, nil];
     UISegmentedControl *ProfileControl = [[UISegmentedControl alloc]initWithItems:itemArray];
     ProfileControl.frame = CGRectMake(15, 105, screenWidth - 30, 33);
     [ProfileControl addTarget:self action:@selector(segmentAction:) forControlEvents: UIControlEventValueChanged];
@@ -1220,57 +1221,61 @@
     
     switch (segment.selectedSegmentIndex) {
         case 0:
-            SegmentedControlCheck = 2;
-            NSLog(@"CollectionView Click");
-            PostsView.hidden = YES;
-            PeopleView.hidden = YES;
-            CollectionView.hidden = NO;
-            if (CheckCollectionInitView == 0) {
-                CheckCollectionInitView = 1;
-                [self GetCollectionData];
-            }else{
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = heightcheck + CollectionView.frame.size.height;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-            }
+           // SegmentedControlCheck = 2;
+            NSLog(@"Shop Click");
             break;
         case 1:
-            SegmentedControlCheck = 0;
+         //   SegmentedControlCheck = 2;
+            NSLog(@"CollectionView Click");
+//            PostsView.hidden = YES;
+//            PeopleView.hidden = YES;
+//            CollectionView.hidden = NO;
+//            if (CheckCollectionInitView == 0) {
+//                CheckCollectionInitView = 1;
+//                [self GetCollectionData];
+//            }else{
+//                CGSize contentSize = MainScroll.frame.size;
+//                contentSize.height = heightcheck + CollectionView.frame.size.height;
+//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//                MainScroll.contentSize = contentSize;
+//            }
+            break;
+        case 2:
+           // SegmentedControlCheck = 0;
             NSLog(@"PostView click");
-            PostsView.hidden = NO;
-            PeopleView.hidden = YES;
-            CollectionView.hidden = YES;
-           // [self InitPostsDataView];
-            
-            if (CheckPostsInitView == 0) {
-                [self SendSearchKeywordData];
-            }else{
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = heightcheck + PostsView.frame.size.height;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-            }
+//            PostsView.hidden = NO;
+//            PeopleView.hidden = YES;
+//            CollectionView.hidden = YES;
+//           // [self InitPostsDataView];
+//            
+//            if (CheckPostsInitView == 0) {
+//                [self SendSearchKeywordData];
+//            }else{
+//                CGSize contentSize = MainScroll.frame.size;
+//                contentSize.height = heightcheck + PostsView.frame.size.height;
+//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//                MainScroll.contentSize = contentSize;
+//            }
             
 
             
             break;
-        case 2:
-            SegmentedControlCheck = 1;
+        case 3:
+          //  SegmentedControlCheck = 1;
             NSLog(@"PeopleView click");
-            PostsView.hidden = YES;
-            PeopleView.hidden = NO;
-            CollectionView.hidden = YES;
-            if (CheckUserInitView == 0) {
-                CheckUserInitView = 1;
-                //[self initPeopleDataView];
-                [self GetAllUserData];
-            }else{
-                CGSize contentSize = MainScroll.frame.size;
-                contentSize.height = heightcheck + PeopleView.frame.size.height;
-                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                MainScroll.contentSize = contentSize;
-            }
+//            PostsView.hidden = YES;
+//            PeopleView.hidden = NO;
+//            CollectionView.hidden = YES;
+//            if (CheckUserInitView == 0) {
+//                CheckUserInitView = 1;
+//                //[self initPeopleDataView];
+//                [self GetAllUserData];
+//            }else{
+//                CGSize contentSize = MainScroll.frame.size;
+//                contentSize.height = heightcheck + PeopleView.frame.size.height;
+//                MainScroll.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//                MainScroll.contentSize = contentSize;
+//            }
             
             
             
@@ -1780,8 +1785,10 @@
 //    [ExpertsUserProfileView GetUserName:[Experts_Username_Array objectAtIndex:getbuttonIDN]];
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Experts_uid_Array objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:Experts_uid_Array[getbuttonIDN]];
+    }];
 }
 -(IBAction)ExpertsButton2:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -1799,8 +1806,10 @@
 //    [ExpertsUserProfileView GetUserName:[UserInfo_NameArray objectAtIndex:getbuttonIDN]];
     
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[UserInfo_IDArray objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:UserInfo_IDArray[getbuttonIDN]];
+    }];
 }
 -(IBAction)ProductButton:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
@@ -2196,8 +2205,10 @@
 //    [self.navigationController pushViewController:NewUserProfileV2View animated:YES];
 //    [NewUserProfileV2View GetUserName:Getname];
     _profileViewController = nil;
-    [self.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:[Collection_arrUserID objectAtIndex:getbuttonIDN]];
-    [self.navigationController pushViewController:self.profileViewController animated:YES];
+
+    [self.navigationController pushViewController:self.profileViewController animated:YES onCompletion:^{
+        [self.profileViewController initDataWithUserID:Collection_arrUserID[getbuttonIDN]];
+    }];
 }
 -(IBAction)CollectionFollowingButtonOnClick:(id)sender{
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;

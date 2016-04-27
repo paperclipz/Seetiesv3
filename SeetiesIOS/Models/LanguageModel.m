@@ -10,16 +10,26 @@
 
 @implementation LanguageModel
 
-//+(JSONKeyMapper*)keyMapper
-//{
-//    return [[JSONKeyMapper alloc] initWithDictionary:@{
-//                                                       @"order_id": @"id",
-//                                                       @"order_details.name": @"productName",
-//                                                       @"order_details.price.usd": @"price"
-//                                                       }];
-//}
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"id": @"langID",
+                                                       }];
+}
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    for (NSString *key in [self codableProperties])
+    {
+        [copy setValue:[self valueForKey:key] forKey:key];
+    }
+    return copy;
+    
+}
 
 @end
+
 
 @implementation LanguageModels
 

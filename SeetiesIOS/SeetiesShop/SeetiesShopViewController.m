@@ -26,11 +26,31 @@
 #import "SeRecommendationsSeeAllViewController.h"
 #import "ProfileViewController.h"
 
-@interface SeetiesShopViewController ()<UIScrollViewDelegate>
+#import "SeetiesProfileView.h"
+#import "BranchOutletTblCell.h"
+#import "DealDetailsViewController.h"
+#import "VoucherListingViewController.h"
+#import "ReportProblemViewController.h"
+
+#import "UIActivityViewController+Extension.h"
+#import "CustomItemSource.h"
+
+@interface SeetiesShopViewController ()<UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     
+    IBOutlet UIView *ibBranchView;
     __weak IBOutlet UIButton *btnTranslate;
+    BOOL branchIsShow;
+
+    __weak IBOutlet UIButton *btnOutlet;
+    __weak IBOutlet UILabel *lblSelectOutlet;
 }
+
+
+@property (weak, nonatomic)IBOutlet UITableView *ibTblSelectOutletView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibImgDropDownIndicator;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblBigShopName;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnTranslateWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnShareWidthConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *btnShare;
@@ -47,6 +67,10 @@
 @property (nonatomic,strong)SeRecommendationsSeeAllViewController* seRecommendationsSeeAllViewController;
 @property (nonatomic,strong)ProfileViewController* profileViewController;
 @property (nonatomic,strong)ShareV2ViewController* shareV2ViewController;
+@property (nonatomic,strong)VoucherListingViewController* voucherListingViewController;
+@property (nonatomic)ReportProblemViewController* reportProblemViewController;
+
+
 //$$============== CONTROLLERS ==================$$//
 @property (weak, nonatomic) IBOutlet UIImageView *ibTopPaddingOverlay;
 
@@ -56,12 +80,17 @@
 @property (nonatomic,strong)SeCollectionView* seCollectionView;
 @property (nonatomic,strong)SeRecommendations* seRecommendations;
 @property (nonatomic,strong)SeNearbySeetishop* seNearbySeetishop;
+@property (nonatomic,strong)SeetiesProfileView* seProfileView;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property(nonatomic,assign)SeetiesShopType seetiesType;
 @property(nonatomic, strong)NSMutableArray* arrViews;
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgViewOtherPadding;
 @property(nonatomic,assign)MKCoordinateRegion region;
+@property (weak, nonatomic) IBOutlet UILabel *lblShopGroupName;
+@property (weak, nonatomic) IBOutlet UILabel *lblShopName;
+@property (strong, nonatomic) IBOutlet UIView *ibReportShopView;
+@property (weak, nonatomic) IBOutlet UILabel *lblReportTitle;
 
 @property(nonatomic,strong)NSString* seetiesID;
 @property(nonatomic,strong)NSString* placeID;
@@ -70,9 +99,47 @@
 @property(nonatomic,assign)float shopLng;
 
 @property(nonatomic,strong)SeShopDetailModel* seShopModel;
+
+@property(nonatomic)DealDetailsViewController* dealDetailsViewController;
 @end
 
 @implementation SeetiesShopViewController
+
+#pragma mark - IBACTION
+- (IBAction)btnReportShopClicked:(id)sender {
+    
+    _reportProblemViewController = nil;
+    
+    [self.reportProblemViewController initDataReportShop:self.seShopModel];
+    [self.navigationController pushViewController:self.reportProblemViewController animated:YES];
+}
+
+
+- (IBAction)btnCloseBranchClicked:(id)sender {
+    
+    [self showBranchView:NO withAnimation:YES];
+
+}
+- (IBAction)btnBranchClicked:(id)sender {
+    
+    [self showBranchView:!branchIsShow withAnimation:YES];
+}
+
+-(void)showBranchView:(BOOL)isShow withAnimation:(BOOL)animated
+{
+    
+    [UIView animateWithDuration:animated?.5:0 animations:^{
+        branchIsShow = isShow;
+        if (isShow) {
+            
+            ibBranchView.alpha = 1;
+        }
+        else{
+            ibBranchView.alpha = 0;
+            
+        }}];
+   
+}
 - (IBAction)btnShareClicked:(id)sender {
     
     [self showShareView:self.seShopModel];
@@ -112,7 +179,7 @@
     
 }
 
-#pragma mark - IBACTION
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -125,16 +192,27 @@
 
 -(void)initSelfView
 {
+    [self changeLanguage];
     self.ibScrollView.delegate = self;
+    
+    btnOutlet.hidden = YES;
     _arrViews = [NSMutableArray new];
-    self.ibImgViewOtherPadding.alpha = 0;
+    //self.ibImgViewOtherPadding.alpha = 0;
+    [self.view addSubview:ibBranchView];
 
+    ibBranchView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
+    [self showBranchView:NO withAnimation:NO];
+   
     
     [self setupViews];
     [self addViews];
     [self rearrangeView];
     [self setupViewData];
    
+    
+    _ibTblSelectOutletView.delegate = self;
+    _ibTblSelectOutletView.dataSource = self;
+    [_ibTblSelectOutletView registerClass:[BranchOutletTblCell class] forCellReuseIdentifier:@"BranchOutletTblCell"];
 }
 -(void)setupViews
 {
@@ -143,9 +221,12 @@
     [self.arrViews addObject:self.seRecommendations];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-  //      [self.arrViews addObject:self.seNearbySeetishop];
+        [self.arrViews addObject:self.seNearbySeetishop];
 
     }
+    [self.ibReportShopView adjustToScreenWidth];
+    [self.arrViews addObject:self.ibReportShopView];
+
   
 }
 -(void)setupViewData
@@ -155,7 +236,7 @@
     [self.seRecommendations initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     
     if (![Utils stringIsNilOrEmpty:self.seetiesID]) {
-    //   [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
+       [self.seNearbySeetishop initData:self.seetiesID PlaceID:self.placeID PostID:self.postID];
     }
 }
 -(void)addViews
@@ -204,6 +285,44 @@
 
 #pragma mark - Declaration
 
+-(ReportProblemViewController*)reportProblemViewController
+{
+    if (!_reportProblemViewController) {
+        _reportProblemViewController = [ReportProblemViewController new];
+    }
+    
+    return _reportProblemViewController;
+}
+-(VoucherListingViewController*)voucherListingViewController
+{
+    if (!_voucherListingViewController) {
+        _voucherListingViewController = [VoucherListingViewController new];
+    }
+    
+    return _voucherListingViewController;
+}
+
+-(DealDetailsViewController*)dealDetailsViewController
+{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    
+    return _dealDetailsViewController;
+}
+
+-(SeetiesProfileView*)seProfileView
+{
+    if (!_seProfileView) {
+        _seProfileView = [SeetiesProfileView initializeCustomView];
+        [_seProfileView setWidth:self.view.frame.size.width];
+        [_seProfileView setNeedsUpdateConstraints];
+        [_seProfileView layoutIfNeeded];
+
+    }
+    
+    return _seProfileView;
+}
 -(ShareV2ViewController*)shareV2ViewController
 {
     if (!_shareV2ViewController) {
@@ -302,6 +421,12 @@
         
         __weak typeof (self)weakSelf = self;
 
+        _seShopDetailView.didSelectDealSeeAllBlock = ^(void)
+        {
+            
+            [weakSelf showDealListingView];
+        };
+        
         _seShopDetailView.btnMapClickedBlock = ^(SeShopDetailModel* model)
         {
             _mapViewController = nil;
@@ -347,6 +472,8 @@
             weakSelf.seShopModel = model;
             [weakSelf setHiddenVisible];
             [weakSelf rearrangeView];
+            [weakSelf refreshBranchView];
+            [weakSelf.ibTblSelectOutletView sizeToFit];
             
         };
         
@@ -357,11 +484,49 @@
             [weakSelf.navigationController pushViewController:weakSelf.seetiesMoreInfoViewController animated:YES];
 
         };
-    
+        
+        _seShopDetailView.didSelectDealBlock = ^(DealModel* model)
+        {
+            [weakSelf showDealDetailView:model];
+        };
     }
     
     return _seShopDetailView;
 }
+
+-(void)refreshBranchView
+{
+    
+    @try {
+        if (self.seShopModel.shop_group_info &&  ![Utils isArrayNull:self.seShopModel.shop_group_info.other_branches]) {
+            btnOutlet.hidden = NO;
+            self.lblShopGroupName.text = self.seShopModel.shop_group_info.name;
+            self.lblShopName.text = self.seShopModel.name;
+            self.lblBigShopName.hidden = YES;
+        }
+        else{
+            btnOutlet.hidden = YES;
+            self.lblShopGroupName.hidden = YES;
+            self.lblShopName.hidden = YES;
+            self.lblBigShopName.text = self.seShopModel.name;
+             self.ibImgDropDownIndicator.hidden = YES;
+
+        }
+        
+        
+       // SeShopDetailModel* model = self.seShopModel.shop_group_info.other_branches[0];
+        self.lblShopName.text = self.seShopModel.name;
+    }
+    
+    @catch (NSException *exception) {
+        
+    }
+    [_ibTblSelectOutletView reloadData];
+    
+
+
+}
+
 -(void)setHiddenVisible
 {
     [UIView transitionWithView:self.btnShare duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -471,8 +636,10 @@
         {
             
             _profileViewController = nil;
-            [weakSelf.profileViewController requestAllDataWithType:ProfileViewTypeOthers UserID:idn];
-            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES];
+
+            [weakSelf.navigationController pushViewController:weakSelf.profileViewController animated:YES onCompletion:^{
+                [weakSelf.profileViewController initDataWithUserID:idn];
+            }];
         };
     }
     return _seRecommendations;
@@ -486,8 +653,10 @@
         _seNearbySeetishop.btnSelectSeetiShopListBlock = ^(void)
         {
             _seetiShopListingViewController = nil;
-            [weakSelf.seetiShopListingViewController initData:weakSelf.seetiesID PlaceID:nil PostID:nil];
-            [weakSelf.navigationController pushViewController:weakSelf.seetiShopListingViewController animated:YES];
+            weakSelf.seetiShopListingViewController.title = LocalisedString(@"Shops nearby");
+            [weakSelf.navigationController pushViewController:weakSelf.seetiShopListingViewController animated:YES onCompletion:^{
+                [weakSelf.seetiShopListingViewController initData:weakSelf.seetiesID PlaceID:nil PostID:nil];
+            }];
             
         };
         
@@ -506,52 +675,159 @@
     return _seNearbySeetishop;
 }
 
-#pragma mrak - Show View
+#pragma mark - Show View
+
+-(void)showDealDetailView:(DealModel*)model
+{
+    
+    _dealDetailsViewController = nil;
+    [self.dealDetailsViewController setDealModel:model];
+    [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+        [self.dealDetailsViewController setupView];
+    }];
+
+}
+
+-(void)showDealListingView
+{
+    if (![Utils isStringNull:self.seShopModel.seetishop_id]) {
+        
+        [self.voucherListingViewController initDataWithShopID:self.seShopModel.seetishop_id];
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
+}
 -(void)showShareView:(SeShopDetailModel*)shopModel
 {
-    _shareV2ViewController = nil;
-    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-    [naviVC setNavigationBarHidden:YES animated:NO];
+//    _shareV2ViewController = nil;
+//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
+//    [naviVC setNavigationBarHidden:YES animated:NO];
+//    
+//    if (![Utils isStringNull:shopModel.seetishop_id]) {
+//        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeSeetiesShop shareID:shopModel.seetishop_id userID:@""];
+//
+//    }
+//    else{
+//        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeNonSeetiesShop shareID:self.placeID userID:@"" postID:self.postID];
+//
+//    }
+//    
+//    SLog(@"self.placeID == %@",self.placeID);
+//    SLog(@"self.postID == %@",self.postID);
+//    SLog(@"shopModel.seetishop_id == %@",shopModel.seetishop_id);
+//    
+//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
+//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
+//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
+//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
+//    [self presentViewController:formSheetController animated:YES completion:nil];
+    
+    
+    //New Sharing Screen
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+    
+    dataToPost.title = shopModel.name;
     
     if (![Utils isStringNull:shopModel.seetishop_id]) {
-        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeSeetiesShop shareID:shopModel.seetishop_id userID:@""];
-
+        dataToPost.shareID = shopModel.seetishop_id;
+        dataToPost.shareType = ShareTypeSeetiesShop;
     }
-    else{
-        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeNonSeetiesShop shareID:self.placeID userID:@"" postID:self.postID];
-
+    else {
+        dataToPost.shareID = self.placeID;
+        dataToPost.shareType = ShareTypeNonSeetiesShop;
+        dataToPost.postID = self.postID;
     }
     
-    SLog(@"self.placeID == %@",self.placeID);
-    SLog(@"self.postID == %@",self.postID);
-    SLog(@"shopModel.seetishop_id == %@",shopModel.seetishop_id);
-    
-    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-    [self presentViewController:formSheetController animated:YES completion:nil];
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
     
 }
+
+#pragma mark - Table View
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.seShopModel.shop_group_info.other_branches.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BranchOutletTblCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BranchOutletTblCell"];
+    
+    @try {
+        SeShopDetailModel* model = self.seShopModel.shop_group_info.other_branches[indexPath.row];
+        cell.lblTitle.text = model.name;
+        
+        if (![Utils isStringNull:model.location.country]) {
+            
+            
+            if (![Utils isStringNull:model.location.locality]) {
+                cell.lblDesc.text = [NSString stringWithFormat:@"%@,%@",model.location.locality,model.location.country];
+
+            }else{
+                cell.lblDesc.text = model.location.country;
+
+            }
+
+        }
+        else{
+            cell.lblDesc.text = model.location.locality;
+
+        }
+
+    }
+    @catch (NSException *exception) {
+        SLog(@"parsing seetiesshop id fail in cellForRowAtIndexPath");
+
+    }
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _seetiesShopViewController = nil;
+    @try {
+        SeShopDetailModel* model = self.seShopModel.shop_group_info.other_branches[indexPath.row];
+        [self.seetiesShopViewController initDataWithSeetiesID:model.seetishop_id];
+        [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
+
+    }
+    @catch (NSException *exception) {
+        SLog(@"parsing seetiesshop id fail in didSelectRowAtIndexPath");
+    }
+    
+}
+
+
 #pragma mark - UIScrollView
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     
-    int profileBackgroundHeight = 210;
-    if (scrollView.contentOffset.y <= profileBackgroundHeight) {
-        
-        float adjustment = (scrollView.contentOffset.y
-                            )/(profileBackgroundHeight);
-        self.ibImgViewOtherPadding.alpha = adjustment;
-        
-    }
-    else if (scrollView.contentOffset.y > profileBackgroundHeight)
-    {
-        self.ibImgViewOtherPadding.alpha = 1;
-        
-        
-        
-    }
+//    if (scrollView == self.ibScrollView) {
+//        int profileBackgroundHeight = 210;
+//        if (scrollView.contentOffset.y <= profileBackgroundHeight) {
+//            
+//            float adjustment = (scrollView.contentOffset.y
+//                                )/(profileBackgroundHeight);
+//            self.ibImgViewOtherPadding.alpha = adjustment;
+//            
+//        }
+//        else if (scrollView.contentOffset.y > profileBackgroundHeight)
+//        {
+//            self.ibImgViewOtherPadding.alpha = 1;
+//            
+//            
+//            
+//        }
+//
+//    }
+   
+}
+#pragma  mark - Change Language
+-(void)changeLanguage
+{
+    lblSelectOutlet.text = LocalisedString(@"Select Outlet");
+    self.lblReportTitle.text = LocalisedString(@"Report this shop");
 }
 /*
 #pragma mark - Navigation

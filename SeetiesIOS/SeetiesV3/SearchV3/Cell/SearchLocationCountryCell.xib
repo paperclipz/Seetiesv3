@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SearchLocationCountryCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8aH-6e-D2q" userLabel="inner content view">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIi-0R-5BE" userLabel="country lbl">
+                                <rect key="frame" x="16" y="13" width="40" height="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SelectLocationDealsIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="w88-YO-Y76" userLabel="deal icon">
+                                <rect key="frame" x="287" y="10" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Mse-Nt-lMB"/>
+                                    <constraint firstAttribute="width" constant="25" id="QXG-vN-vmI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vIi-0R-5BE" firstAttribute="leading" secondItem="8aH-6e-D2q" secondAttribute="leading" constant="16" id="01d-Vn-I1D"/>
+                            <constraint firstAttribute="trailing" secondItem="w88-YO-Y76" secondAttribute="trailing" constant="8" id="F2y-ob-wK4"/>
+                            <constraint firstItem="vIi-0R-5BE" firstAttribute="centerY" secondItem="8aH-6e-D2q" secondAttribute="centerY" id="ISv-fI-hiR"/>
+                            <constraint firstItem="w88-YO-Y76" firstAttribute="centerY" secondItem="8aH-6e-D2q" secondAttribute="centerY" id="IdJ-zq-6v1"/>
+                            <constraint firstItem="w88-YO-Y76" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vIi-0R-5BE" secondAttribute="trailing" constant="8" id="tQy-RO-Yvz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="8aH-6e-D2q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="TW6-Ph-adm"/>
+                    <constraint firstAttribute="trailing" secondItem="8aH-6e-D2q" secondAttribute="trailing" id="UzW-A4-tUE"/>
+                    <constraint firstAttribute="bottom" secondItem="8aH-6e-D2q" secondAttribute="bottom" id="u4X-Z0-8Xf"/>
+                    <constraint firstItem="8aH-6e-D2q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="y18-Ju-DTo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="ibCountryLbl" destination="vIi-0R-5BE" id="dae-XJ-bSO"/>
+                <outlet property="ibDealIconWidthConstraint" destination="QXG-vN-vmI" id="9Qb-VB-kBv"/>
+                <outlet property="ibFeaturedDealIcon" destination="w88-YO-Y76" id="xip-a9-tq0"/>
+                <outlet property="ibInnerContentView" destination="8aH-6e-D2q" id="KmV-06-XvY"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="SelectLocationDealsIcon.png" width="24" height="25"/>
+    </resources>
+</document>
