@@ -8833,18 +8833,7 @@
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8874,18 +8863,7 @@
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = "$(TARGET_NAME)";
