@@ -73,94 +73,84 @@
     
     self.isLoading = NO;
     self.isCollecting = NO;
+    [self initSelfView];
+}
+
+-(void)initSelfView{
     [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
-    
     self.ibVoucherTable.estimatedRowHeight = [VoucherCell getHeight];
     self.ibVoucherTable.rowHeight = UITableViewAutomaticDimension;
+    
     [Utils setRoundBorder:self.ibWalletCountLbl color:OUTLINE_COLOR borderRadius:self.ibWalletCountLbl.frame.size.width/2];
-  
+    
     self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
     
     if (self.locationModel) {
         self.ibUserLocationLbl.text = self.locationModel.locationName;
     }
     
+    [self hideAllHeaders];
+    [self hideAllFooters];
     switch (self.dealViewType) {
         //Shop deals listing
         case 1:
             self.ibAltTitle.text = LocalisedString(@"Shop Deals");
-            self.ibAltTitle.hidden = NO;
-            self.ibTitle.hidden = YES;
-            self.ibUserLocationLbl.hidden = YES;
-            self.ibDropDownIcon.hidden = YES;
-            self.ibFilterBtn.hidden = YES;
-            self.ibSearchBtn.hidden = YES;
-            self.ibLocationBtn.enabled = NO;
-            self.ibSearchBtn.enabled = NO;
-            self.ibFilterBtn.enabled = NO;
+            [self showFirstHeader:NO];
+            [self showFirstFooter:YES];
             [self.dealManager removeAllCollectedDeals];
             [self requestServerForShopDeal];
             break;
-        
+            
         //Collection deals listing
         case 2:
             if (self.dealCollectionModel) {
                 NSDictionary *collectionDict = self.dealCollectionModel.content[0];
                 self.ibTitle.text = collectionDict[@"title"];
             }
-            if (!self.locationModel) {
-                self.ibAltTitle.hidden = YES;
-                self.ibTitle.hidden = YES;
-                self.ibUserLocationLbl.hidden = YES;
-                self.ibDropDownIcon.hidden = YES;
-                self.ibFilterBtn.hidden = YES;
-                self.ibSearchBtn.hidden = YES;
-                self.ibLocationBtn.enabled = NO;
-                self.ibSearchBtn.enabled = NO;
-                self.ibFilterBtn.enabled = NO;
-                self.ibFooterHeightConstraint.constant = 0;
+            //Have location model  = coming from home page
+            if (self.locationModel) {
+                [self showFirstHeader:YES];
+                [self showFirstFooter:YES];
+            }
+            else{
+                [self hideAllHeaders];
+                [self hideAllFooters];
             }
             [self.dealManager removeAllCollectedDeals];
             [self requestServerForDealListing];
             break;
-        
+            
         //Featured deals listing
         case 3:
             self.ibTitle.text = LocalisedString(@"Deals of the day");
+            [self showFirstHeader:YES];
+            [self showFirstFooter:YES];
             [self.dealManager removeAllCollectedDeals];
             [self requestServerForSuperDealListing];
             break;
-          
+            
         //Relevant deals listing
         case 4:
             self.ibAltTitle.text = LocalisedString(@"Relevant Deals");
-            self.ibAltTitle.hidden = NO;
-            self.ibTitle.hidden = YES;
-            self.ibUserLocationLbl.hidden = YES;
-            self.ibDropDownIcon.hidden = YES;
-            self.ibFilterBtn.hidden = YES;
-            self.ibSearchBtn.hidden = YES;
-            self.ibLocationBtn.enabled = NO;
-            self.ibSearchBtn.enabled = NO;
-            self.ibFilterBtn.enabled = NO;
+            [self showFirstHeader:NO];
+            [self showFirstFooter:YES];
             [self.dealManager removeAllCollectedDeals];
             [self requestServerForDealRelevantDeals];
             break;
-         
+            
         //Voucher listing from promo code
         case 5:
             self.ibAltTitle.text = LocalisedString(@"Vouchers");
-            self.ibAltTitle.hidden = NO;
-            self.ibTitle.hidden = YES;
-            self.ibUserLocationLbl.hidden = YES;
-            self.ibDropDownIcon.hidden = YES;
-            self.ibFilterBtn.hidden = YES;
-            self.ibSearchBtn.hidden = YES;
-            self.ibLocationBtn.enabled = NO;
-            self.ibSearchBtn.enabled = NO;
-            self.ibFilterBtn.enabled = NO;
-            self.ibFooterHeightConstraint.constant = 0;
+            [self showFirstHeader:NO];
+            [self hideAllFooters];
             [self.ibVoucherTable reloadData];
+            break;
+            
+        //Deal listing from referral code
+        case 6:
+            self.ibAltTitle.text = LocalisedString(@"Referral Rewards");
+            [self showFirstHeader:NO];
+            [self showFirstFooter:NO];
             break;
             
         default:
@@ -168,22 +158,68 @@
     }
 }
 
+//YES to show First Header //NO to show Alt Header
+-(void)showFirstHeader:(BOOL)hidden{
+    self.ibAltTitle.hidden = hidden;
+    self.ibTitle.hidden = !hidden;
+    self.ibUserLocationLbl.hidden = !hidden;
+    self.ibDropDownIcon.hidden = !hidden;
+    self.ibFilterBtn.hidden = !hidden;
+    self.ibSearchBtn.hidden = !hidden;
+    
+    self.ibLocationBtn.enabled = !self.ibUserLocationLbl.hidden;
+    self.ibSearchBtn.enabled = !self.ibSearchBtn.hidden;
+    self.ibFilterBtn.enabled = !self.ibFilterBtn.hidden;
+}
+
+-(void)hideAllHeaders{
+    self.ibAltTitle.hidden = YES;
+    self.ibTitle.hidden = YES;
+    self.ibUserLocationLbl.hidden = YES;
+    self.ibDropDownIcon.hidden = YES;
+    self.ibFilterBtn.hidden = YES;
+    self.ibSearchBtn.hidden = YES;
+    
+    self.ibLocationBtn.enabled = !self.ibUserLocationLbl.hidden;
+    self.ibSearchBtn.enabled = !self.ibSearchBtn.hidden;
+    self.ibFilterBtn.enabled = !self.ibFilterBtn.hidden;
+}
+
+//YES to show wallet footer //NO to show referral footer
+-(void)showFirstFooter:(BOOL)hidden{
+    self.ibFooterView.hidden = !hidden;
+    self.ibReferralFooter.hidden = hidden;
+    
+    self.ibFooterHeightConstraint.constant = self.ibFooterView.hidden? 0 : 50;
+    self.ibReferralHeightConstraint.constant = self.ibReferralFooter.hidden? 0 : 50;
+}
+
+-(void)hideAllFooters{
+    self.ibFooterView.hidden = YES;
+    self.ibReferralFooter.hidden = YES;
+    
+    self.ibFooterHeightConstraint.constant = self.ibFooterView.hidden? 0 : 50;
+    self.ibReferralHeightConstraint.constant = self.ibReferralFooter.hidden? 0 : 50;
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [self changeLanguage];
-    
     
     if (![Utils isGuestMode]) {
         [self RequestServerForVouchersCount];
         
         if (self.dealViewType == 5 || (self.dealViewType == 2 && !self.locationModel)) {
-            self.ibFooterHeightConstraint.constant = 0;
+            [self hideAllFooters];
+        }
+        else if(self.dealViewType == 6){
+            [self showFirstFooter:NO];
         }
         else{
-            self.ibFooterHeightConstraint.constant = 50;
+            [self showFirstFooter:YES];
         }
     }
     else{
-        self.ibFooterHeightConstraint.constant = 0;
+        [self hideAllFooters];
     }
     
     [self.ibVoucherTable reloadData];
@@ -359,9 +395,9 @@
     return nil;
 }
 
--(void)toggleEmptyView:(BOOL)shouldShow{
-    self.ibEmptyView.hidden = !shouldShow;
-    self.ibLoadingView.hidden = shouldShow;
+-(void)toggleEmptyView:(BOOL)hidden{
+    self.ibEmptyView.hidden = !hidden;
+    self.ibLoadingView.hidden = hidden;
 }
 
 #pragma mark - Initialization
@@ -396,6 +432,11 @@
     [self.dealsArray removeAllObjects];
     [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
     self.dealViewType = 5;
+}
+
+-(void)initWithReferralID:(NSString*)referralID{
+    self.dealViewType = 6;
+    
 }
 
 /*

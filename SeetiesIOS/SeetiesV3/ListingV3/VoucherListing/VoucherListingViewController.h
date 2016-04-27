@@ -25,9 +25,21 @@ typedef void (^HomeModelBlock)(HomeLocationModel* model);
 @interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate, FilterViewControllerDelegate, DealRedeemDelegate>
 @property(nonatomic,copy)HomeModelBlock didSelectHomeLocationBlock;
 
+//Init for Featured Deals
 -(void)initWithLocation:(HomeLocationModel*)locationModel;
+
+//Init for Relevant Deals
 -(void)initWithDealId:(NSString*)dealId;
+
+//Init for Deal Collection or Deal Collection from Notification (without HomeLocationModel)
 -(void)initData:(DealCollectionModel*)model withLocation:(HomeLocationModel*)locationModel;
+
+//Init for Shop Deals
 -(void)initDataWithShopID:(NSString*)shopID;
+
+//Init for Promo code Deals
 -(void)initWithDealsModel:(DealsModel*)dealsModel;
+
+//Init for Referral code Deals (To be changed)
+-(void)initWithReferralID:(NSString*)referralID;
 @end
