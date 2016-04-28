@@ -48,6 +48,9 @@
 @property(nonatomic)InviteFrenViewController *inviteFriendViewController;
 @property(nonatomic)PromoPopOutViewController *promoCodeViewController;
 @property(nonatomic)VoucherListingViewController * voucherListingViewController;
+@property(nonatomic)CT3_InviteFriendViewController *ct3InviteFriendViewController;
+@property(nonatomic)CT3_ReferalViewController *ct3referalViewController;
+
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibGuestView;
@@ -107,7 +110,12 @@
 }
 
 - (IBAction)btnInviteClicked:(id)sender {
-    [self.navigationController pushViewController:self.inviteFriendViewController animated:YES];
+//    [self.navigationController pushViewController:self.inviteFriendViewController animated:YES];
+    [self.navigationController pushViewController:self.ct3InviteFriendViewController animated:YES];
+}
+
+- (IBAction)btnTestReferralClicked:(id)sender {
+    [self.navigationController pushViewController:self.ct3referalViewController animated:YES];
 }
 
 - (IBAction)btnPromoClicked:(id)sender {
@@ -322,6 +330,20 @@
         _voucherListingViewController = [VoucherListingViewController new];
     }
     return _voucherListingViewController;
+}
+
+-(CT3_InviteFriendViewController *)ct3InviteFriendViewController{
+    if (!_ct3InviteFriendViewController) {
+        _ct3InviteFriendViewController = [CT3_InviteFriendViewController new];
+    }
+    return _ct3InviteFriendViewController;
+}
+
+-(CT3_ReferalViewController *)ct3referalViewController{
+    if (!_ct3referalViewController) {
+        _ct3referalViewController = [CT3_ReferalViewController new];
+    }
+    return _ct3referalViewController;
 }
 
 -(void)reloadData

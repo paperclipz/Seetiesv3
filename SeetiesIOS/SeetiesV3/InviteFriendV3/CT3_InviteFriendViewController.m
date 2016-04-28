@@ -9,6 +9,10 @@
 #import "CT3_InviteFriendViewController.h"
 
 @interface CT3_InviteFriendViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibMainTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibMainDesc;
+@property (weak, nonatomic) IBOutlet UIButton *ibInviteBtn;
 
 @end
 
@@ -17,6 +21,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [Utils setRoundBorder:self.ibInviteBtn color:[UIColor clearColor] borderRadius:self.ibInviteBtn.frame.size.height/2];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self changeLanguage];
+}
+
+-(void)changeLanguage{
+    self.ibHeaderTitle.text = LocalisedString(@"Invite Your Buddies");
+    self.ibMainTitle.text = LocalisedString(@"The More, The Merrier");
+    self.ibMainDesc.text = LocalisedString(@"Invite your buddies to join Seeties to enjoy exciting deals!");
+    [self.ibInviteBtn setTitle:LocalisedString(@"Invite Friends") forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +50,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)btnInviteClicked:(id)sender {
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+    dataToPost.shareType = ShareTypeInvite;
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+}
 
 @end

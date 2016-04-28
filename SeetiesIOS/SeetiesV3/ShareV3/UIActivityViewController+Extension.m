@@ -19,7 +19,7 @@
     
     NSMutableArray *customUIActivity = [[NSMutableArray alloc] init];
     
-    if ([Utils checkUserIsLogin] && !(dataToPost.shareType == ShareTypePostUser)) {
+    if ([Utils checkUserIsLogin] && !(dataToPost.shareType == ShareTypePostUser) && (dataToPost.shareType != ShareTypeInvite) && (dataToPost.shareType != ShareTypeReferralInvite)) {
         
         //Create custom UIActivity
         SeetiesUIActivity *customControl = [[SeetiesUIActivity alloc] initWithTitle:@"Seeties" activityImage:[UIImage imageNamed:@"ShareToBuddiesIcon"] activityType:@"com.seeties.custom" completionBlock:^(id object){

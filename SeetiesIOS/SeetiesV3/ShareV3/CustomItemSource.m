@@ -87,6 +87,10 @@
         case ShareTypePostUser:
             messageSubject = @"Seeties User";
             break;
+        case ShareTypeReferralInvite:
+        case ShareTypeInvite:
+            messageSubject = LocalisedString(@"Invite Friends");
+            break;
     }
     
     return messageSubject;
@@ -147,6 +151,13 @@
             
         }
             break;
+        
+        case ShareTypeReferralInvite:
+        case ShareTypeInvite:
+        {
+            message = [LanguageManager stringForKey:@"Seeties is all about deals and places - discover and collect awesome deals from your favourite shops to eat, play and hangout.\n{Seeties URL}" withPlaceHolder:@{@"{Seeties URL}":[self getShareLink:self.shareType]}];
+        }
+            break;
             
     }
     
@@ -201,13 +212,28 @@
             finalLink = [NSString stringWithFormat:@"%@%@%@/%@",seetiesLink,subLink,self.shareID,self.postID];
             
         }
+            break;
+            
         case ShareTypeDeal:
         {
             subLink = @"deals/";
             finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink,subLink,self.shareID];
             
         }
+            break;
             
+        case ShareTypeInvite:
+        {
+            finalLink = @"http://seeties.me";
+        }
+            break;
+            
+        case ShareTypeReferralInvite:
+        {
+            //To be changed
+            subLink = @"referral/";
+            finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink, subLink, self.shareID];
+        }
             break;
     }
     

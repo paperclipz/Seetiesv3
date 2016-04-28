@@ -29,7 +29,9 @@ typedef enum
     ShareTypePostUser,
     ShareTypeSeetiesShop,
     ShareTypeNonSeetiesShop,
-    ShareTypeDeal
+    ShareTypeDeal,
+    ShareTypeInvite,
+    ShareTypeReferralInvite
 } ShareType;
 
 

@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_MeViewController">
@@ -438,6 +439,12 @@
                                                         <action selector="btnInviteClicked:" destination="-1" eventType="touchUpInside" id="H13-3u-XHY"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COW-Dd-8MF" userLabel="testing button">
+                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
+                                                    <connections>
+                                                        <action selector="btnTestReferralClicked:" destination="-1" eventType="touchUpInside" id="4zZ-6X-lpe"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -446,16 +453,20 @@
                                                 <constraint firstAttribute="trailing" secondItem="jwt-KA-UNO" secondAttribute="trailing" id="5cz-1i-eud"/>
                                                 <constraint firstItem="aNv-Nh-iwp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KTc-Qm-jjV" secondAttribute="trailing" constant="8" id="6p4-JV-YYk"/>
                                                 <constraint firstItem="KTc-Qm-jjV" firstAttribute="leading" secondItem="z1I-jJ-gWF" secondAttribute="leading" constant="20" id="9b3-ct-6aO"/>
+                                                <constraint firstItem="COW-Dd-8MF" firstAttribute="top" secondItem="z1I-jJ-gWF" secondAttribute="top" id="CKo-0m-gp0"/>
                                                 <constraint firstAttribute="trailing" secondItem="KTc-Qm-jjV" secondAttribute="trailing" constant="8" id="KOC-tX-5dk"/>
                                                 <constraint firstAttribute="trailing" secondItem="aNv-Nh-iwp" secondAttribute="trailing" constant="20" id="SAx-4q-H8G"/>
                                                 <constraint firstItem="jwt-KA-UNO" firstAttribute="top" secondItem="z1I-jJ-gWF" secondAttribute="top" id="U6b-7V-3cO"/>
                                                 <constraint firstItem="KdJ-4x-Z3w" firstAttribute="top" secondItem="z1I-jJ-gWF" secondAttribute="top" constant="-44" id="bzD-js-tor"/>
                                                 <constraint firstAttribute="bottom" secondItem="jwt-KA-UNO" secondAttribute="bottom" id="fIZ-Uo-CgN"/>
+                                                <constraint firstAttribute="bottom" secondItem="COW-Dd-8MF" secondAttribute="bottom" id="gma-uJ-eLt"/>
+                                                <constraint firstItem="COW-Dd-8MF" firstAttribute="width" secondItem="z1I-jJ-gWF" secondAttribute="width" multiplier="0.5" id="jTm-MA-NDy"/>
                                                 <constraint firstItem="KdJ-4x-Z3w" firstAttribute="leading" secondItem="z1I-jJ-gWF" secondAttribute="leading" constant="20" id="mqK-ew-TKs"/>
                                                 <constraint firstItem="aNv-Nh-iwp" firstAttribute="centerY" secondItem="z1I-jJ-gWF" secondAttribute="centerY" id="nkV-l2-kpe"/>
                                                 <constraint firstItem="jwt-KA-UNO" firstAttribute="leading" secondItem="z1I-jJ-gWF" secondAttribute="leading" id="pZW-tb-Mqh"/>
                                                 <constraint firstAttribute="height" constant="50" id="wQO-eS-NY9"/>
                                                 <constraint firstItem="KTc-Qm-jjV" firstAttribute="centerY" secondItem="z1I-jJ-gWF" secondAttribute="centerY" id="wvn-sO-Bag"/>
+                                                <constraint firstItem="COW-Dd-8MF" firstAttribute="leading" secondItem="z1I-jJ-gWF" secondAttribute="leading" id="yr4-LC-3ll"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
