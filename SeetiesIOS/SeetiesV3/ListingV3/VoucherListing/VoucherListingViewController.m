@@ -190,7 +190,7 @@
     self.ibFooterView.hidden = !hidden;
     self.ibReferralFooter.hidden = hidden;
     
-    self.ibFooterHeightConstraint.constant = self.ibFooterView.hidden? 0 : 50;
+    self.ibFooterHeightConstraint.constant = 50;    //Footer height constraint needs to remain due to tableview constraint to it
     self.ibReferralHeightConstraint.constant = self.ibReferralFooter.hidden? 0 : 50;
 }
 
