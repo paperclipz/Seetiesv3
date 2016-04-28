@@ -170,7 +170,6 @@
 }
 
 -(void)removeDealFromVoucherArray:(DealModel*)dealModel{
-    NSMutableArray<DealExpiryDateModel> *toBeDiscardedArray = [[NSMutableArray<DealExpiryDateModel> alloc] init];
     for (DealExpiryDateModel *expiryModel in self.voucherArray) {
         if([expiryModel.dealModelArray containsObject:dealModel]){
             [expiryModel.dealModelArray removeObject:dealModel];
@@ -178,19 +177,16 @@
             if ([Utils isArrayNull:expiryModel.dealModelArray]) {
                 DealExpiryDateModel *toBeDiscardedModel = [[DealExpiryDateModel alloc] init];
                 toBeDiscardedModel.expiryDate = expiryModel.expiryDate;
-                [toBeDiscardedArray addObject:toBeDiscardedModel];
+                [self.voucherArray removeObjectsInArray:@[toBeDiscardedModel]];
             }
+            break;
         }
-    }
-    
-    if (![Utils isArrayNull:toBeDiscardedArray]) {
-        [self.voucherArray removeObjectsInArray:toBeDiscardedArray];
     }
 }
 
--(void)toggleEmptyView:(BOOL)shouldShow{
-    self.ibEmptyView.hidden = !shouldShow;
-    self.ibLoadingView.hidden = shouldShow;
+-(void)toggleEmptyView:(BOOL)hidden{
+    self.ibEmptyView.hidden = !hidden;
+    self.ibLoadingView.hidden = hidden;
 }
 
 /*
