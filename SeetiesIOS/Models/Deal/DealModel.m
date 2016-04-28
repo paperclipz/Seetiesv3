@@ -41,11 +41,22 @@
     }
     
     DealModel *otherDealModel = (DealModel*)object;
-    return [otherDealModel.dID isEqualToString:self.dID]? YES : NO;
+    //Compare voucher id first else compare deal id
+    if (![Utils isStringNull:otherDealModel.voucher_info.voucher_id] && ![Utils isStringNull:self.voucher_info.voucher_id]) {
+        return [otherDealModel.voucher_info.voucher_id isEqualToString:self.voucher_info.voucher_id]? YES : NO;
+    }
+    else{
+        return [otherDealModel.dID isEqualToString:self.dID]? YES : NO;
+    }
 }
 
 -(NSUInteger)hash{
-    return self.dID.hash;
+    if (![Utils isStringNull:self.voucher_info.voucher_id]) {
+        return self.voucher_info.voucher_id.hash;
+    }
+    else{
+        return self.dID.hash;
+    }
 }
 
 -(NSMutableArray<SeShopDetailModel> *)available_shops{
