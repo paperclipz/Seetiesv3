@@ -19,6 +19,7 @@
 #import "ConnectionsViewController.h"
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
+#import "EditProfileV3ViewController.h"
 
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 {
@@ -167,10 +168,30 @@
 
 - (IBAction)btnEditProfileClicked:(id)sender {
     
-    _editProfileV2ViewController = nil;
-    [self.editProfileV2ViewController initData:self.userProfileModel];
-    [self.navigationController pushViewController:self.editProfileV2ViewController animated:YES];
+//    _editProfileV2ViewController = nil;
+//    [self.editProfileV2ViewController initData:self.userProfileModel];
+//    [self.navigationController pushViewController:self.editProfileV2ViewController animated:YES];
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"EditProfileV3ViewController" bundle:nil];
+    UINavigationController *nav = [sb instantiateViewControllerWithIdentifier:@"EditProfileV3ViewControllerNav"];
+    EditProfileV3ViewController *editProfileVC = (EditProfileV3ViewController *)nav.topViewController;
+    editProfileVC.userProfileData = self.userProfileModel;
+    
+//    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentViewController:vc animated:YES completion:NULL];
+    
+//    EditProfileV3ViewController *vc = [[EditProfileV3ViewController alloc] init];
+    
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (IBAction)btnShareClicked:(id)sender {
@@ -206,6 +227,13 @@
     [self registerNotification];
     
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    if (self.userID && ![self.userID isEqualToString:@""]) {
+        [self requestServerForUserInfo];
+    }
 }
 
 -(void)registerNotification

@@ -1324,6 +1324,9 @@
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 		C71B5E181CBE3BED00B4FA91 /* FriendSuggestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */; };
+		C75015FE1CD0A7640048C279 /* EditProfileV3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */; };
+		C75015FF1CD0A7640048C279 /* EditProfileV3ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */; };
+		C75016021CD0AC420048C279 /* GenericObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C75016011CD0AC420048C279 /* GenericObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3043,6 +3046,11 @@
 		C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoPopOutViewController.xib; sourceTree = "<group>"; };
 		C71B5E161CBE3BED00B4FA91 /* FriendSuggestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSuggestionModel.h; sourceTree = "<group>"; };
 		C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSuggestionModel.m; sourceTree = "<group>"; };
+		C75015FA1CD0A7640048C279 /* EditProfileV3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV3ViewController.h; sourceTree = "<group>"; };
+		C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileV3ViewController.m; sourceTree = "<group>"; };
+		C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditProfileV3ViewController.storyboard; sourceTree = "<group>"; };
+		C75016001CD0AC420048C279 /* GenericObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericObject.h; sourceTree = "<group>"; };
+		C75016011CD0AC420048C279 /* GenericObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericObject.m; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4341,6 +4349,9 @@
 				8AC8F7001BDA414E00DEF14A /* ProfileViewController.h */,
 				8AC8F7011BDA414E00DEF14A /* ProfileViewController.m */,
 				8AC8F7021BDA414E00DEF14A /* ProfileViewController.xib */,
+				C75015FA1CD0A7640048C279 /* EditProfileV3ViewController.h */,
+				C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */,
+				C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */,
 			);
 			path = NewProfile;
 			sourceTree = "<group>";
@@ -4833,6 +4844,8 @@
 				8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */,
 				0B497B021C509579004989DF /* UsersModel.h */,
 				0B497B031C509579004989DF /* UsersModel.m */,
+				C75016001CD0AC420048C279 /* GenericObject.h */,
+				C75016011CD0AC420048C279 /* GenericObject.m */,
 			);
 			name = MODELS;
 			path = Models;
@@ -6668,6 +6681,7 @@
 				C240BAB71CC62F4400B79190 /* NotificationComment@2x.png in Resources */,
 				C240B8CE1CC62F4400B79190 /* HomeGoIcon@2x.png in Resources */,
 				C240BAEC1CC62F4400B79190 /* FollowBtn@3x.png in Resources */,
+				C75015FF1CD0A7640048C279 /* EditProfileV3ViewController.storyboard in Resources */,
 				8A4205291C89501100DB0D20 /* AccountSettingTableViewCell.xib in Resources */,
 				C240B9041CC62F4400B79190 /* MoreVerifyPhoneNumberIcon@2x.png in Resources */,
 				C240B9E21CC62F4400B79190 /* FollowingCollectionTradChiIcon@3x.png in Resources */,
@@ -7796,6 +7810,7 @@
 				8AB276D81CC61FC700BD5EC8 /* UIImage+Alpha.m in Sources */,
 				8A4512341BDE2BEC008DE870 /* LikesListingViewController.m in Sources */,
 				8A114CCC1BE73F5D006AE3F0 /* ParallaxHeaderView.m in Sources */,
+				C75015FE1CD0A7640048C279 /* EditProfileV3ViewController.m in Sources */,
 				8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */,
 				8A11D38C1CC886950023A7ED /* CustomUIActivity.m in Sources */,
 				8A7EDA7E1C747EF000A9E76E /* NotificationModels.m in Sources */,
@@ -7905,6 +7920,7 @@
 				C23FB6A01C99023900021D1F /* FilterModel.m in Sources */,
 				8AB276E61CC61FC700BD5EC8 /* UITextField+Extra.m in Sources */,
 				8AD6C0D61B706CF30040437E /* PSelectYourInterestViewController.m in Sources */,
+				C75016021CD0AC420048C279 /* GenericObject.m in Sources */,
 				8AF6FDCF1C587958005AAE5D /* RegisterObject.m in Sources */,
 				8A114CE81BE75CA0006AE3F0 /* CollectionViewController.m in Sources */,
 				8AFA51E11C47B4AB00E7920E /* CT3_LoginViewController.m in Sources */,
@@ -8076,7 +8092,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
+				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8184,7 +8200,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
+				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = "Release Staging";
@@ -8335,7 +8351,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
 			};
 			name = Debug;
 		};
@@ -8376,7 +8392,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
+				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
 			};
 			name = Release;
 		};
