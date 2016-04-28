@@ -422,6 +422,8 @@
 		8AF33A3D1C3F67F5000A2021 /* CTFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF33A3C1C3F67F5000A2021 /* CTFeedModel.m */; };
 		8AF33A401C3F6DAF000A2021 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF33A3F1C3F6DAF000A2021 /* Location.m */; };
 		8AF33A431C3F6F5C000A2021 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF33A421C3F6F5C000A2021 /* PhotoModel.m */; };
+		8AF3E79E1CD1BEC200F2C66B /* CT3_InviteFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3E79C1CD1BEC200F2C66B /* CT3_InviteFriendViewController.m */; };
+		8AF3E79F1CD1BEC200F2C66B /* CT3_InviteFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF3E79D1CD1BEC200F2C66B /* CT3_InviteFriendViewController.xib */; };
 		8AF428741C8D3F070050289F /* DealHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF428731C8D3F070050289F /* DealHeaderView.m */; };
 		8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF428751C8D3F140050289F /* DealHeaderView.xib */; };
 		8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */; };
@@ -2059,6 +2061,9 @@
 		8AF33A3F1C3F6DAF000A2021 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		8AF33A411C3F6F5C000A2021 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
 		8AF33A421C3F6F5C000A2021 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
+		8AF3E79B1CD1BEC200F2C66B /* CT3_InviteFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_InviteFriendViewController.h; sourceTree = "<group>"; };
+		8AF3E79C1CD1BEC200F2C66B /* CT3_InviteFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_InviteFriendViewController.m; sourceTree = "<group>"; };
+		8AF3E79D1CD1BEC200F2C66B /* CT3_InviteFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_InviteFriendViewController.xib; sourceTree = "<group>"; };
 		8AF428721C8D3F070050289F /* DealHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealHeaderView.h; sourceTree = "<group>"; };
 		8AF428731C8D3F070050289F /* DealHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealHeaderView.m; sourceTree = "<group>"; };
 		8AF428751C8D3F140050289F /* DealHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealHeaderView.xib; sourceTree = "<group>"; };
@@ -3346,7 +3351,6 @@
 				8A114BED1BE73F5C006AE3F0 /* LanguageManager.m */,
 				8A114BEE1BE73F5C006AE3F0 /* Lib */,
 				8A114BFB1BE73F5C006AE3F0 /* Library */,
-				8A114C4E1BE73F5C006AE3F0 /* NMBottomTabBarController */,
 				8A114C551BE73F5C006AE3F0 /* ParallaxHeaderView */,
 				8A114C5B1BE73F5C006AE3F0 /* TextFieldValidator */,
 				8A114C5F1BE73F5C006AE3F0 /* TLTagsContol */,
@@ -3605,13 +3609,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		8A114C4E1BE73F5C006AE3F0 /* NMBottomTabBarController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NMBottomTabBarController;
-			sourceTree = "<group>";
-		};
 		8A114C551BE73F5C006AE3F0 /* ParallaxHeaderView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3693,6 +3690,9 @@
 				8A11D36A1CC7561F0023A7ED /* CT3_ReferalViewController.h */,
 				8A11D36B1CC7561F0023A7ED /* CT3_ReferalViewController.m */,
 				8A11D36C1CC7561F0023A7ED /* CT3_ReferalViewController.xib */,
+				8AF3E79B1CD1BEC200F2C66B /* CT3_InviteFriendViewController.h */,
+				8AF3E79C1CD1BEC200F2C66B /* CT3_InviteFriendViewController.m */,
+				8AF3E79D1CD1BEC200F2C66B /* CT3_InviteFriendViewController.xib */,
 			);
 			path = InviteFriendV3;
 			sourceTree = "<group>";
@@ -7189,6 +7189,7 @@
 				C240B92D1CC62F4400B79190 /* SeetishopOtherIcon@3x.png in Resources */,
 				C240BA631CC62F4400B79190 /* LocationpinIcon@2x.png in Resources */,
 				C240BA3D1CC62F4400B79190 /* CollectBtn@2x.png in Resources */,
+				8AF3E79F1CD1BEC200F2C66B /* CT3_InviteFriendViewController.xib in Resources */,
 				C240B9351CC62F4400B79190 /* SeetishopVerifiedIcon@3x.png in Resources */,
 				C240B8A71CC62F4400B79190 /* FilterSliderBlue@2x.png in Resources */,
 				C240B8EF1CC62F4400B79190 /* MoreAboutIcon@3x.png in Resources */,
@@ -7911,6 +7912,7 @@
 				8AFF08551C90379000918582 /* CT3_SearchListingViewController.m in Sources */,
 				8A114CE61BE75CA0006AE3F0 /* AddCollectionDataViewController.m in Sources */,
 				C294FD2C1C9819B500C455C8 /* FiltersModel.m in Sources */,
+				8AF3E79E1CD1BEC200F2C66B /* CT3_InviteFriendViewController.m in Sources */,
 				8A114CD21BE73F5D006AE3F0 /* UrlDataClass.m in Sources */,
 				8AF6FDEA1C5A289B005AAE5D /* SeDealsFeaturedTblCell.m in Sources */,
 				8AD6C0C21B706CF30040437E /* FullImageViewController.m in Sources */,
