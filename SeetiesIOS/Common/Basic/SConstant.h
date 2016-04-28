@@ -145,9 +145,13 @@ typedef enum
     ServerRequestTypePostCollectionFriendSuggestion,
     ServerRequestTypePostSeetiesFriendSuggestion,
     ServerRequestTypePostNonSeetiesFriendSuggestion,
-    ServerRequestTypePostDealFriendSuggestion
+    ServerRequestTypePostDealFriendSuggestion,
     //** PostFriendSuggestion **//
 
+    //** EditProfile **//
+    ServerRequestTypePostUserProfile
+    //** EditProfile **//
+    
 }ServerRequestType;
 
 typedef enum

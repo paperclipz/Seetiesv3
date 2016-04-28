@@ -320,6 +320,29 @@
     
     SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
+    [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        for (PhotoModel *photo in arrMeta) {
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(photo.image, 0.5) name:photo.photo_id fileName:@"uploadphoto" mimeType:@"image/jpeg"];
+        }
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        NSLog(@"%lli", uploadProgress.completedUnitCount / uploadProgress.totalUnitCount * 100);
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
+
+        [LoadingManager hide];
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+        [LoadingManager hide];
+        
+//        NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
+        
+    }];
+    
 //    AFHTTPRequestOperation *op = [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 //        
 //        //do not put image inside parameters dictionary BUT append it
@@ -495,7 +518,8 @@
         case ServerRequestTypeUserFollower:
         case ServerRequestTypeUserFollowing:
         case ServerRequestTypePostProvisioning:
-        case  ServerRequestTypePostUpdateUser:
+        case ServerRequestTypePostUpdateUser:
+        case ServerRequestTypePostUserProfile:
         default:
             str = API_VERION_URL;
             break;
