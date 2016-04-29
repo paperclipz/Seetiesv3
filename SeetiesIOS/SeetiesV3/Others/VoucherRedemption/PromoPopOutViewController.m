@@ -84,6 +84,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibThankYouDesc;
 @property (weak, nonatomic) IBOutlet UIButton *ibThankYouOkBtn;
 
+@property (strong, nonatomic) IBOutlet UIView *ibMessageView;
+@property (weak, nonatomic) IBOutlet UIView *ibMessageContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibMessageLbl;
+@property (weak, nonatomic) IBOutlet UIButton *ibMessageOkBtn;
+
+@property (strong, nonatomic) IBOutlet UIView *ibReferralSuccessfulView;
+@property (weak, nonatomic) IBOutlet UIView *ibReferralSuccessfulContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibReferralSuccessfulTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibReferralSuccessfulDesc;
+@property (weak, nonatomic) IBOutlet UIButton *ibReferralSuccessfulOkBtn;
+
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
 @property(nonatomic) NSArray<SeShopDetailModel> *shopArray;
@@ -101,6 +112,7 @@
 @property(nonatomic) BOOL hasRequestedPromo;
 @property(nonatomic) BOOL hasRedeemed;
 @property(nonatomic) DealManager *dealManager;
+@property(nonatomic) NSString *message;
 
 @end
 
@@ -209,6 +221,10 @@
 
 -(void)setSelectedShop:(SeShopDetailModel *)selectedShop{
     _selectedShop = selectedShop;
+}
+
+-(void)setMessage:(NSString *)message{
+    _message = message;
 }
 
 -(void)setMainViewToDisplay{
@@ -423,8 +439,32 @@
             self.ibThankYouTitle.text = LocalisedString(@"Thank you for your suggestion!");
             self.ibThankYouDesc.text = LocalisedString(@"We'll get back to you soonest possible with an email update on your suggested place.");
             [self.ibThankYouOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            [Utils setRoundBorder:self.ibThankYouContentView color:[UIColor clearColor] borderRadius:8.0f];
         }
             return self.ibThankYouView;
+            
+        case PopOutViewTypeMessage:
+        {
+            self.ibMessageLbl.text = LocalisedString(self.message);
+            [self.ibMessageOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            
+            CGRect messageRect = [self.message boundingRectWithSize:CGSizeMake(self.ibMessageLbl.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0f]} context:nil];
+            
+            CGFloat contentHeight = messageRect.size.height + self.ibMessageOkBtn.frame.size.height + 60 + 32;
+            self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, contentHeight);
+            [Utils setRoundBorder:self.ibMessageContentView color:[UIColor clearColor] borderRadius:8.0f];
+        }
+            return self.ibMessageView;
+            
+        case PopOutViewTypeReferralSuccessful:
+        {
+            self.ibReferralSuccessfulTitle.text = LocalisedString(@"Yey!");
+            self.ibReferralSuccessfulDesc.text = LocalisedString(@"You can now check your rewards in notification!");
+            [self.ibReferralSuccessfulOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            
+            [Utils setRoundBorder:self.ibMessageContentView color:[UIColor clearColor] borderRadius:8.0f];
+        }
+            return self.ibMessageView;
             
         default:
         {
@@ -651,6 +691,22 @@
         }
             break;
             
+        case PopOutViewTypeMessage:
+        {
+            if (YES) {
+                [nextVC setViewType:PopOutViewTypeQuit];
+            }
+        }
+            break;
+            
+        case PopOutViewTypeReferralSuccessful:
+        {
+            if (YES) {
+                [nextVC setViewType:PopOutViewTypeQuit];
+            }
+        }
+            break;
+            
         case PopOutViewTypeQuit:
         {
             if (YES) {
@@ -660,7 +716,7 @@
             break;
 
         default:
-            [nextVC setViewType:PopOutViewTypeEnterPromo];
+            [nextVC setViewType:PopOutViewTypeQuit];
 
             break;
     }

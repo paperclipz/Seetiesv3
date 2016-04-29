@@ -98,16 +98,26 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMP-ey-pUK" userLabel="copy referral btn">
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="100"/>
+                                    <connections>
+                                        <action selector="btnCopyReferralClicked:" destination="-1" eventType="touchUpInside" id="cgK-Du-uMe"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="xVg-dz-nID" firstAttribute="top" secondItem="v6z-wS-zui" secondAttribute="top" constant="16" id="7Qp-kD-K3M"/>
                                 <constraint firstItem="xVg-dz-nID" firstAttribute="leading" secondItem="v6z-wS-zui" secondAttribute="leading" constant="16" id="FQ6-BO-yky"/>
                                 <constraint firstItem="OZi-Jl-dN7" firstAttribute="leading" secondItem="v6z-wS-zui" secondAttribute="leading" constant="16" id="JWO-r7-z68"/>
+                                <constraint firstAttribute="trailing" secondItem="JMP-ey-pUK" secondAttribute="trailing" id="Mxd-Gl-Irs"/>
+                                <constraint firstItem="JMP-ey-pUK" firstAttribute="top" secondItem="v6z-wS-zui" secondAttribute="top" id="Qwd-bm-CrL"/>
                                 <constraint firstAttribute="trailing" secondItem="OZi-Jl-dN7" secondAttribute="trailing" constant="16" id="Ucf-PJ-X0f"/>
                                 <constraint firstAttribute="bottom" secondItem="OZi-Jl-dN7" secondAttribute="bottom" constant="16" id="Zb9-IN-P8Q"/>
+                                <constraint firstItem="JMP-ey-pUK" firstAttribute="leading" secondItem="v6z-wS-zui" secondAttribute="leading" id="a9K-Uj-hhY"/>
                                 <constraint firstAttribute="height" constant="100" id="b5M-jD-h6O"/>
                                 <constraint firstAttribute="trailing" secondItem="xVg-dz-nID" secondAttribute="trailing" constant="16" id="czz-p5-uTD"/>
+                                <constraint firstAttribute="bottom" secondItem="JMP-ey-pUK" secondAttribute="bottom" id="wl9-tr-SDU"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send friends a mystery gift and you'll get one too. Details" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="561-yh-iOr" userLabel="desc">
@@ -124,12 +134,12 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNO-KW-0QI">
                             <rect key="frame" x="30" y="756" width="540" height="42"/>
-                            <color key="backgroundColor" red="0.95686274510000002" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="dCV-Ia-gKn"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <color key="tintColor" red="0.99215686270000003" green="0.68627450980000004" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Invite Friends" image="ProfileShareIcon.png"/>
                             <connections>
                                 <action selector="btnInviteFriendsClicked:" destination="-1" eventType="touchUpInside" id="1X0-JI-hOA"/>

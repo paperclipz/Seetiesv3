@@ -9,6 +9,7 @@
 #import "CommonViewController.h"
 #import "CustomItemSource.h"
 #import "UIActivityViewController+Extension.h"
+#import "PromoPopOutViewController.h"
 
 @interface CT3_ReferalViewController : CommonViewController
 

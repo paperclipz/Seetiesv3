@@ -23,6 +23,8 @@ typedef enum{
     PopOutViewTypeVerified,
     PopOutViewTypeError,
     PopOutViewTypeThankYou,
+    PopOutViewTypeMessage,
+    PopOutViewTypeReferralSuccessful,
     PopOutViewTypeQuit
 } PopOutViewType;
 
@@ -51,4 +53,5 @@ typedef enum{
 -(void)setEnteredPhoneNumber:(NSString *)enteredPhoneNumber;
 -(void)setEnteredPromoCode:(NSString *)enteredPromoCode;
 -(void)setSelectedShop:(SeShopDetailModel *)selectedShop;
+-(void)setMessage:(NSString*)message;
 @end
