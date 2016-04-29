@@ -8,6 +8,7 @@
 
 #import "CT3_MeViewController.h"
 #import "CT3_NotificationViewController.h"
+#import "CT3_ReferalViewController.h"
 
 @interface CT3_MeViewController ()
 {
@@ -48,6 +49,8 @@
 @property(nonatomic)InviteFrenViewController *inviteFriendViewController;
 @property(nonatomic)PromoPopOutViewController *promoCodeViewController;
 @property(nonatomic)VoucherListingViewController * voucherListingViewController;
+@property(nonnull)CT3_ReferalViewController* ct3_ReferalViewController;
+
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibGuestView;
@@ -67,8 +70,8 @@
 
 - (IBAction)btnTestClicked:(id)sender {
 
-    _ct3_notificationViewController = nil;
-    [self.navigationController pushViewController:self.ct3_notificationViewController animated:YES];
+    _ct3_ReferalViewController = nil;
+    [self.navigationController pushViewController:self.ct3_ReferalViewController animated:YES];
 }
 
 - (IBAction)btnWalletListingClicked:(id)sender {
@@ -266,6 +269,14 @@
 
 #pragma mark Declaration
 
+-(CT3_ReferalViewController*)ct3_ReferalViewController
+{
+    if (!_ct3_ReferalViewController) {
+        _ct3_ReferalViewController = [CT3_ReferalViewController new];
+    }
+    
+    return _ct3_ReferalViewController;
+}
 -(CT3_NotificationViewController*)ct3_notificationViewController
 {
     if (!_ct3_notificationViewController) {

@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface DealExpiryDateModel : NSObject
 
 @property(nonatomic, strong) NSString *expiryDate;
 @property(nonatomic, strong) NSMutableArray<DealModel*> *dealModelArray;
+
+
++(void)saveWalletList:(NSArray<DealExpiryDateModel *>*)array;
++(NSArray<DealExpiryDateModel*>*)getWalletList;
+
 
 @end

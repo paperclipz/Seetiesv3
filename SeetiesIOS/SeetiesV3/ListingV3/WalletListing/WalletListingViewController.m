@@ -539,7 +539,11 @@
         if (self.dealsModel.offset == 1) {
             [self.voucherArray removeAllObjects];
         }
+        
         [self rearrangeVoucherList];
+        
+        [DealExpiryDateModel saveWalletList:self.voucherArray];
+        
         [self.ibTableView reloadData];
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.isLoading = NO;
@@ -561,6 +565,12 @@
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.ibTableView.tableFooterView = nil;
         [self toggleEmptyView:YES];
+        
+        if ([Utils isArrayNull:self.voucherArray]) {
+            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
+            [self.ibTableView reloadData];
+
+        }
     }];
 }
 

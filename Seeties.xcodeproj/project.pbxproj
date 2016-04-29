@@ -4515,8 +4515,8 @@
 		8AD6BA511B705DF20040437E = {
 			isa = PBXGroup;
 			children = (
-				8AD6BA5C1B705DF20040437E /* SeetiesIOS */,
-				8AD6BA761B705DF30040437E /* SeetiesIOSTests */,
+				8AD6BA5C1B705DF20040437E /* Seeties */,
+				8AD6BA761B705DF30040437E /* SeetiesTests */,
 				8AD6BA5B1B705DF20040437E /* Products */,
 				34C5B861384748B0A7678DB2 /* Pods */,
 				01FC4E65D0A113898CC6495A /* Frameworks */,
@@ -4532,7 +4532,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8AD6BA5C1B705DF20040437E /* SeetiesIOS */ = {
+		8AD6BA5C1B705DF20040437E /* Seeties */ = {
 			isa = PBXGroup;
 			children = (
 				0B1D9F261BE2317700AAE8CE /* Launch Screen.storyboard */,
@@ -4563,6 +4563,7 @@
 				8AD6BA6C1B705DF20040437E /* LaunchScreen.xib */,
 				8AD6BA5D1B705DF20040437E /* Supporting Files */,
 			);
+			name = Seeties;
 			path = SeetiesIOS;
 			sourceTree = "<group>";
 		};
@@ -4579,12 +4580,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8AD6BA761B705DF30040437E /* SeetiesIOSTests */ = {
+		8AD6BA761B705DF30040437E /* SeetiesTests */ = {
 			isa = PBXGroup;
 			children = (
 				8AD6BA791B705DF30040437E /* SeetiesIOSTests.m */,
 				8AD6BA771B705DF30040437E /* Supporting Files */,
 			);
+			name = SeetiesTests;
 			path = SeetiesIOSTests;
 			sourceTree = "<group>";
 		};
@@ -5017,8 +5019,6 @@
 			isa = PBXGroup;
 			children = (
 				8AFA51531C47B4AB00E7920E /* Filter */,
-				8AFA51601C47B4AB00E7920E /* PeopleListing */,
-				8AFA51611C47B4AB00E7920E /* PostListing */,
 				8AFA516C1C47B4AB00E7920E /* VoucherListing */,
 				8AFA51731C47B4AB00E7920E /* WalletListing */,
 			);
@@ -5037,20 +5037,6 @@
 				C22702FB1CBF8A9900F9FBF3 /* PostFilterViewController.xib */,
 			);
 			path = Filter;
-			sourceTree = "<group>";
-		};
-		8AFA51601C47B4AB00E7920E /* PeopleListing */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PeopleListing;
-			sourceTree = "<group>";
-		};
-		8AFA51611C47B4AB00E7920E /* PostListing */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PostListing;
 			sourceTree = "<group>";
 		};
 		8AFA51621C47B4AB00E7920E /* ShopListing */ = {

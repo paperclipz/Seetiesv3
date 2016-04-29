@@ -8,6 +8,9 @@
 
 #import "DealExpiryDateModel.h"
 
+#define STORE_DEAL_ARRAY_KEY @"deal_array_key"
+
+
 @implementation DealExpiryDateModel
 
 -(BOOL)isEqual:(id)object{
@@ -25,5 +28,71 @@
 -(NSUInteger)hash{
     return self.expiryDate.hash;
 }
+
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    
+    for (NSString *key in [self codableProperties])
+    {
+        
+        [encoder encodeObject:[self valueForKey:key] forKey:key];
+        
+    }
+    
+    
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        
+        
+        for (NSString *key in [self codableProperties])
+        {
+            [self setValue:[decoder decodeObjectForKey:key] forKey:key];
+            
+        }
+    }
+    
+    return self;
+}
+
+
++(void)saveWalletList:(NSArray<DealExpiryDateModel *>*)array
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults removeObjectForKey:STORE_DEAL_ARRAY_KEY];
+    
+    if (![Utils isArrayNull:array]) {
+        
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:array];
+        [defaults setObject:encodedObject forKey:STORE_DEAL_ARRAY_KEY];
+        [defaults synchronize];
+        
+        
+    }
+    else{
+        
+        SLog(@"%@",array);
+    }
+    
+}
+
++(NSArray<DealExpiryDateModel*>*)getWalletList
+{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData * data = [defaults objectForKey:STORE_DEAL_ARRAY_KEY];
+    
+    NSArray<DealExpiryDateModel *>* array;
+    
+    array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    return array;
+}
+
 
 @end
