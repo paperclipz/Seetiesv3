@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class DealModel;
 @interface Utils : NSObject
 #define MaxDistance 30000
 
@@ -173,6 +174,9 @@ typedef enum {
 +(NSInteger)numberOfDaysLeft:(NSDate*)date;
 +(BOOL)isValidDateString:(NSString*)dateString;
 +(BOOL)isDate:(NSDate*)currentDate betweenFirstDate:(NSDate*)firstDate andLastDate:(NSDate*)lastDate;
+
++(BOOL)isRedeemable:(DealModel*)model;
++(BOOL)isWithinOperationHour:(NSArray*)arrayDays;
 
 // ========================  Day ==========================
 

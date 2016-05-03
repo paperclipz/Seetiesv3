@@ -8337,8 +8337,8 @@
 				Bundle_Name = Seeties;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8364,7 +8364,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
+				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
 			};
 			name = Release;
 		};

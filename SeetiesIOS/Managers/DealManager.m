@@ -88,4 +88,15 @@
     _walletCount = count;
 }
 
+
+//================ Offline Deal listing ================//
+
+
+-(void)uploadReeemDeal:(NSArray*)array
+{
+    
+}
+
+
+
 @end

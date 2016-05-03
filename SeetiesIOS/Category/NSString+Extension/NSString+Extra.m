@@ -97,5 +97,17 @@ NSString * const TagKey = @"tagKey";
     return ranges;
 }
 
-
+-(NSDate*)toDate
+{
+    //NSString *dateString = @"2016-03-01 00:00:00";
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *dateFromString = [[NSDate alloc] init];
+    dateFromString = [dateFormatter dateFromString:self];
+    
+    return dateFromString;
+}
 @end

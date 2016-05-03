@@ -7,8 +7,6 @@
 //
 
 #import "CT3_ReferalViewController.h"
-#import "DealRealmModel.h"
-
 
 @interface CT3_ReferalViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
