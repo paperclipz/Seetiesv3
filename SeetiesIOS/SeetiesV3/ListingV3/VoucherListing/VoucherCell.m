@@ -150,6 +150,7 @@
         [Utils setRoundBorder:self.ibVoucherLeftLbl color:[UIColor clearColor] borderRadius:self.ibVoucherLeftLbl.frame.size.height/2];
     }
     else if (self.dealModel.total_available_vouchers == 0){
+        [self setSoldOutOverlay];
         self.ibVoucherLeftLbl.hidden = YES;
         self.ibVoucherBlackOverylay.hidden = NO;
     }
@@ -161,34 +162,49 @@
 
 -(void)setRedeemCollect{
     if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
+        //Pending referral code API
+//        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && self.dealModel.isCampaignEnd) {
+//            [self setCollectBtnEnabled:NO];
+//            return;
+//        }
+        
         if (self.dealModel.total_available_vouchers == 0) {
-            [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Collect") forState:UIControlStateNormal];
-            [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
-            [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"CollectIcon.png"] forState:UIControlStateNormal];
+            [self setCollectBtnEnabled:NO];
         }
         else{
-            [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Collect") forState:UIControlStateNormal];
-            [self.ibVoucherCollectBtn setBackgroundColor:DEVICE_COLOR];
-            [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"CollectIcon.png"] forState:UIControlStateNormal];
+            [self setCollectBtnEnabled:YES];
         }
     }
     else{
+        //Pending referral code API
+//        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && self.dealModel.isCampaignEnd) {
+//            [self setRedeemBtnEnabled:NO];
+//            return;
+//        }
+        
         if (self.dealModel.voucher_info.redeem_now) {
-            [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
-            [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:242/255.0 green:109/255.0 blue:125/255.0 alpha:1]];
-            [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
+            [self setRedeemBtnEnabled:YES];
         }
         else{
-            [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
-            [self.ibVoucherCollectBtn setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
-            [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
+            [self setRedeemBtnEnabled:NO];
         }
         
     }
 }
 
--(void)setDaysLeft{
+-(void)setDaysLeft{    
     NSInteger numberOfDaysLeft = self.dealModel.collectionDaysLeft;
+
+    //Pending referral code API
+//    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
+//        if (self.dealModel.isCampaignEnd) {
+//            [self setCampaignEndOverlay];
+//            self.ibVoucherBlackOverylay.hidden = NO;
+//        }
+//        else{
+//            self.ibVoucherBlackOverylay.hidden = YES;
+//        }
+//    }
     
     if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
         self.ibDaysLeftLbl.hidden = NO;
@@ -206,6 +222,30 @@
     else{
         self.ibDaysLeftLbl.hidden = YES;
     }
+}
+
+-(void)setCollectBtnEnabled:(BOOL)enabled{
+    [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Collect") forState:UIControlStateNormal];
+    UIColor *btnColour = enabled? DEVICE_COLOR : [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1];
+    [self.ibVoucherCollectBtn setBackgroundColor:btnColour];
+    [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"CollectIcon.png"] forState:UIControlStateNormal];
+}
+
+-(void)setRedeemBtnEnabled:(BOOL)enabled{
+    [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
+    UIColor *btnColour = enabled? [UIColor colorWithRed:242/255.0 green:109/255.0 blue:125/255.0 alpha:1] : [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1];
+    [self.ibVoucherCollectBtn setBackgroundColor:btnColour];
+    [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
+}
+
+-(void)setSoldOutOverlay{
+    [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingSoldOutIcon.png"]];
+    self.ibVoucherOverlayTitle.text = LocalisedString(@"Sold Out");
+}
+
+-(void)setCampaignEndOverlay{
+    [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingSoldOutIcon.png"]];
+    self.ibVoucherOverlayTitle.text = LocalisedString(@"Campaign End");
 }
 
 - (IBAction)collectRedeemBtnClicked:(id)sender {
