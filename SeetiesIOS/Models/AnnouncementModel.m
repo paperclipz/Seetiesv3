@@ -46,6 +46,11 @@
             return AnnouncementType_Post;
             break;
         }
+        
+        CASE(@"promo_code")
+        {
+            return AnnouncementType_Promo;
+        }
   
         DEFAULT
         {

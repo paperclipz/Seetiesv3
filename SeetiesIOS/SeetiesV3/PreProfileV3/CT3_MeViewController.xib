@@ -606,8 +606,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MeGuestModeImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-HW-lRS">
-                    <rect key="frame" x="42" y="18" width="502" height="527"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="MeGuestModeImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="YvM-HW-lRS">
+                    <rect key="frame" x="122" y="18" width="356" height="374"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="YvM-HW-lRS" secondAttribute="height" multiplier="1:1.05" id="KHf-lz-wsQ"/>
                         <constraint firstAttribute="height" constant="328" id="meD-Wy-vBe"/>
@@ -618,9 +618,11 @@
                         </mask>
                     </variation>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join us now to explore more exciting features!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1J-TM-0ka">
-                    <rect key="frame" x="30" y="565" width="540" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Join us now to explore more exciting features!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1J-TM-0ka">
+                    <rect key="frame" x="30" y="412" width="540" height="20"/>
                     <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="3ER-P8-eTS"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="pns-Pv-D5K"/>
                         <constraint firstAttribute="height" constant="42" id="rgP-Ih-uex"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -628,12 +630,13 @@
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="3ER-P8-eTS"/>
                             <exclude reference="rgP-Ih-uex"/>
                         </mask>
                     </variation>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTW-dJ-pGf">
-                    <rect key="frame" x="42" y="606" width="502" height="45"/>
+                    <rect key="frame" x="122" y="452" width="356" height="45"/>
                     <color key="backgroundColor" red="0.61176470589999998" green="0.80000000000000004" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="EU7-ZR-eeE"/>
@@ -653,7 +656,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in or sign up to get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gm-6M-kfn">
-                    <rect key="frame" x="20" y="659" width="560" height="15"/>
+                    <rect key="frame" x="20" y="505" width="560" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ogc-Nk-mM5"/>
                     </constraints>
@@ -668,7 +671,8 @@
                 <constraint firstItem="B1J-TM-0ka" firstAttribute="leading" secondItem="6wc-bF-QIY" secondAttribute="leading" constant="30" id="5Rm-1C-m8y"/>
                 <constraint firstAttribute="trailing" secondItem="2gm-6M-kfn" secondAttribute="trailing" constant="20" id="BAB-K9-95I"/>
                 <constraint firstItem="PTW-dJ-pGf" firstAttribute="leading" secondItem="B1J-TM-0ka" secondAttribute="leading" id="D1p-Wb-HuC"/>
-                <constraint firstAttribute="trailing" secondItem="YvM-HW-lRS" secondAttribute="trailing" constant="56" id="GYO-Mv-BPQ"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2gm-6M-kfn" secondAttribute="bottom" constant="80" id="E33-Kv-GWL"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YvM-HW-lRS" secondAttribute="trailing" constant="56" id="GYO-Mv-BPQ"/>
                 <constraint firstItem="PTW-dJ-pGf" firstAttribute="leading" secondItem="YvM-HW-lRS" secondAttribute="leading" id="JE6-OU-ZiI"/>
                 <constraint firstItem="YvM-HW-lRS" firstAttribute="top" secondItem="6wc-bF-QIY" secondAttribute="top" constant="18" id="KBT-Ly-Sfd"/>
                 <constraint firstItem="PTW-dJ-pGf" firstAttribute="trailing" secondItem="B1J-TM-0ka" secondAttribute="trailing" id="RTx-tu-Tvd"/>
@@ -677,12 +681,14 @@
                 <constraint firstItem="PTW-dJ-pGf" firstAttribute="width" secondItem="YvM-HW-lRS" secondAttribute="width" id="aOB-52-RU4"/>
                 <constraint firstItem="PTW-dJ-pGf" firstAttribute="trailing" secondItem="YvM-HW-lRS" secondAttribute="trailing" id="cJu-Rk-CKL"/>
                 <constraint firstItem="2gm-6M-kfn" firstAttribute="top" secondItem="PTW-dJ-pGf" secondAttribute="bottom" constant="8" id="eFy-Xw-49r"/>
-                <constraint firstItem="YvM-HW-lRS" firstAttribute="leading" secondItem="6wc-bF-QIY" secondAttribute="leading" constant="42" id="qL1-cR-huz"/>
+                <constraint firstItem="YvM-HW-lRS" firstAttribute="centerX" secondItem="6wc-bF-QIY" secondAttribute="centerX" id="noV-1b-260"/>
+                <constraint firstItem="YvM-HW-lRS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6wc-bF-QIY" secondAttribute="leading" constant="42" id="qL1-cR-huz"/>
                 <constraint firstItem="PTW-dJ-pGf" firstAttribute="top" secondItem="B1J-TM-0ka" secondAttribute="bottom" constant="20" id="r7y-CV-w8s"/>
                 <constraint firstItem="2gm-6M-kfn" firstAttribute="leading" secondItem="6wc-bF-QIY" secondAttribute="leading" constant="20" id="rdn-2z-gFt"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="GYO-Mv-BPQ"/>
                     <exclude reference="1YI-Z1-MJQ"/>
                     <exclude reference="D1p-Wb-HuC"/>
                     <exclude reference="RTx-tu-Tvd"/>

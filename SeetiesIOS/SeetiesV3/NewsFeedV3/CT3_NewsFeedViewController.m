@@ -47,6 +47,7 @@
 
 #import "SearchQuickBrowseListingController.h"
 #import "CT3_SearchListingViewController.h"
+#import "DealDetailsViewController.h"
 
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
@@ -118,6 +119,8 @@ static NSCache* heightCache = nil;
 @property(nonatomic)SearchQuickBrowseListingController* searchQuickBrowseListingController;
 
 @property(nonatomic)CT3_SearchListingViewController* ct3_SearchListingViewController;
+@property(nonatomic)PromoPopOutViewController *promoPopoutViewController;
+@property(nonatomic)DealDetailsViewController *dealDetailsViewController;
 /*Controller*/
 
 @end
@@ -181,6 +184,26 @@ static NSCache* heightCache = nil;
     heightCache = nil;
     heightCache = [NSCache new];
     [self requestServerForNewsFeed:self.currentHomeLocationModel.latitude Longtitude:self.currentHomeLocationModel.longtitude];
+}
+
+-(IBAction)backgroundViewDidTap{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - DelegateImplementation
+-(void)viewDealDetailsClicked:(DealsModel*)dealsModel{
+    if (dealsModel.arrDeals.count == 1) {
+        self.dealDetailsViewController = nil;
+        [self.dealDetailsViewController setDealModel:dealsModel.arrDeals[0]];
+        [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+            [self.dealDetailsViewController setupView];
+        }];
+    }
+    else{
+        self.voucherListingViewController = nil;
+        [self.voucherListingViewController initWithDealsModel:dealsModel];
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
 }
 
 #pragma mark - Declaration
@@ -392,6 +415,21 @@ static NSCache* heightCache = nil;
     }
     
     return _searchLocationViewController;
+}
+
+-(PromoPopOutViewController *)promoPopoutViewController{
+    if (!_profileViewController) {
+        _promoPopoutViewController = [PromoPopOutViewController new];
+        _promoPopoutViewController.promoPopOutDelegate = self;
+    }
+    return _promoPopoutViewController;
+}
+
+-(DealDetailsViewController *)dealDetailsViewController{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    return _dealDetailsViewController;
 }
 
 #pragma mark - DEFAULT
@@ -1062,8 +1100,41 @@ static NSCache* heightCache = nil;
                 CTFeedTypeModel* typeModel = [CTFeedTypeModel new];
                 typeModel.feedType = FeedType_Announcement;
                 typeModel.announcementData = self.homeModel.announcements[0];
-                [self showNewAnnouncementView:typeModel];
-
+                
+                switch (typeModel.announcementData.annType) {
+                    case AnnouncementType_Promo:
+                    {
+                        if ([Utils isGuestMode]) {
+                            [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                                
+                                if (buttonIndex == 1) {
+                                    [Utils showLogin];
+                                    
+                                }
+                            }];
+                            return;
+                        }
+                        
+                        if ([Utils isPhoneNumberVerified]) {
+                            self.promoPopoutViewController = nil;
+                            [self.promoPopoutViewController setViewType:PopOutViewTypeEnterPromo];
+                            
+                            STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopoutViewController];
+                            popupController.containerView.backgroundColor = [UIColor clearColor];
+                            [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                            [popupController presentInViewController:self];
+                            [popupController setNavigationBarHidden:YES];
+                        }
+                        else{
+                            [Utils showVerifyPhoneNumber:self];
+                        }
+                    }
+                        break;
+                        
+                    default:
+                        [self showNewAnnouncementView:typeModel];
+                        break;
+                }
             }
                 break;
             
@@ -1144,7 +1215,35 @@ static NSCache* heightCache = nil;
                         [self showPostDetailView:dModel];
                     }
                         
+                    case AnnouncementType_Promo:
+                    {
+                        if ([Utils isGuestMode]) {
+                            [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                                
+                                if (buttonIndex == 1) {
+                                    [Utils showLogin];
+                                    
+                                }
+                            }];
+                            return;
+                        }
+                        
+                        if ([Utils isPhoneNumberVerified]) {
+                            self.promoPopoutViewController = nil;
+                            [self.promoPopoutViewController setViewType:PopOutViewTypeEnterPromo];
+                            
+                            STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopoutViewController];
+                            popupController.containerView.backgroundColor = [UIColor clearColor];
+                            [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                            [popupController presentInViewController:self];
+                            [popupController setNavigationBarHidden:YES];
+                        }
+                        else{
+                            [Utils showVerifyPhoneNumber:self];
+                        }
+                    }
                         break;
+                        
                     case AnnouncementType_NA:
                         
                         [self showNewAnnouncementView:feedTypeModel];
@@ -1239,8 +1338,9 @@ static NSCache* heightCache = nil;
 }
 -(void)showInvitefriendView
 {
-    _inviteFrenViewController  = nil;
-    [self.navigationController pushViewController:self.inviteFrenViewController animated:YES];
+    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+    dataToPost.shareType = ShareTypeInvite;
+    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
 }
 
 -(void)showNewAnnouncementView:(CTFeedTypeModel*)model
