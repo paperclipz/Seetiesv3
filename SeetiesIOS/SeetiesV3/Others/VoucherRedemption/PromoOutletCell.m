@@ -60,6 +60,7 @@
         
         [self.ibShopStatusLbl setSideCurveBorder];
     }
+    [self layoutIfNeeded];
 }
 
 -(void)setShopModel:(SeShopDetailModel *)shopModel{

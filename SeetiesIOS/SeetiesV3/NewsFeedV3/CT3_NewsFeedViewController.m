@@ -48,6 +48,8 @@
 #import "SearchQuickBrowseListingController.h"
 #import "CT3_SearchListingViewController.h"
 #import "DealDetailsViewController.h"
+#import "CT3_ReferalViewController.h"
+#import "CT3_InviteFriendViewController.h"
 
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
@@ -121,6 +123,8 @@ static NSCache* heightCache = nil;
 @property(nonatomic)CT3_SearchListingViewController* ct3_SearchListingViewController;
 @property(nonatomic)PromoPopOutViewController *promoPopoutViewController;
 @property(nonatomic)DealDetailsViewController *dealDetailsViewController;
+@property(nonatomic)CT3_ReferalViewController *referralViewController;
+@property(nonatomic)CT3_InviteFriendViewController *inviteFriendViewController;
 /*Controller*/
 
 @end
@@ -430,6 +434,20 @@ static NSCache* heightCache = nil;
         _dealDetailsViewController = [DealDetailsViewController new];
     }
     return _dealDetailsViewController;
+}
+
+-(CT3_ReferalViewController *)referralViewController{
+    if (!_referralViewController) {
+        _referralViewController = [CT3_ReferalViewController new];
+    }
+    return _referralViewController;
+}
+
+-(CT3_InviteFriendViewController *)inviteFriendViewController{
+    if (!_inviteFriendViewController) {
+        _inviteFriendViewController = [CT3_InviteFriendViewController new];
+    }
+    return _inviteFriendViewController;
 }
 
 #pragma mark - DEFAULT
@@ -1146,6 +1164,11 @@ static NSCache* heightCache = nil;
 
             }
             break;
+                
+            case DealType_ReferFriends:
+            {
+                [self showReferralInvite];
+            }
             
             default:
                 break;
@@ -1338,9 +1361,11 @@ static NSCache* heightCache = nil;
 }
 -(void)showInvitefriendView
 {
-    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
-    dataToPost.shareType = ShareTypeInvite;
-    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+    [self.navigationController pushViewController:self.inviteFriendViewController animated:YES];
+}
+
+-(void)showReferralInvite{
+    [self.navigationController pushViewController:self.referralViewController animated:YES];
 }
 
 -(void)showNewAnnouncementView:(CTFeedTypeModel*)model

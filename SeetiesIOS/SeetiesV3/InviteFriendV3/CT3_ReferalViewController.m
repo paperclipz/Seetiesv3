@@ -16,9 +16,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibCampaignExpiry;
 @property (weak, nonatomic) IBOutlet UILabel *ibCampaignDesc;
 @property (weak, nonatomic) IBOutlet UIButton *ibInviteFriendsBtn;
+@property (weak, nonatomic) IBOutlet UIButton *ibReferralDetailsBtn;
 
 @property(nonatomic) NSString *referral;
 @property(nonatomic) PromoPopOutViewController *promoPopoutViewController;
+@property(nonatomic) InviteFriendModel *inviteFriendModel;
 @end
 
 @implementation CT3_ReferalViewController
@@ -31,7 +33,7 @@
     [Utils setRoundBorder:self.ibInviteFriendsBtn color:[UIColor clearColor] borderRadius:self.ibInviteFriendsBtn.frame.size.height/2];
     
     //Dummy referral code
-    self.referral = @"samuel1234";
+    self.referral = @"SAMUEL5372";
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -41,16 +43,23 @@
 -(void)changeLanguage{
     self.ibHeaderTitle.text = LocalisedString(@"Invite Friends & Get Reward");
     self.ibReferralDesc.text = LocalisedString(@"Tap to copy");
-    self.ibCampaignDesc.text = LocalisedString(@"Send friends a mystery gift and you'll get one too. Details");
+    
+    NSString *languageCode = [Utils getDeviceAppLanguageCode];
+    NSString *message = self.inviteFriendModel.message[languageCode]? self.inviteFriendModel.message[languageCode] : @"";
+    self.ibCampaignDesc.text = LocalisedString(message);
+    
+    self.ibCampaignExpiry.text = LocalisedString(@"10 days left, hurry up");
     [self.ibInviteFriendsBtn setTitle:LocalisedString(@"Invite Friends") forState:UIControlStateNormal];
+    [self.ibReferralDetailsBtn setTitle:LocalisedString(@"Details") forState:UIControlStateNormal];
    
     if (self.referral) {
-        NSString *refCode = [LanguageManager stringForKey:@"{!referral}\n is your referral" withPlaceHolder:@{@"{!referral}":self.referral}];
+        NSString *refCode = [LanguageManager stringForKey:@"Share your promo code\n{!referral}" withPlaceHolder:@{@"{!referral}":self.referral}];
         //    NSString *refCode = [NSString stringWithFormat:@"%@ is your referral code", self.referral];
         NSMutableAttributedString *attrRefCode = [[NSMutableAttributedString alloc] initWithString:refCode];
         NSRange refRange = [refCode rangeOfString:self.referral];
         [attrRefCode beginEditing];
-        [attrRefCode addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:25.0f] range:refRange];
+        [attrRefCode addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:30.0f] range:refRange];
+        [attrRefCode addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:254/255.0f green:236/255.0f blue:108/255.0f alpha:1] range:refRange];
         [attrRefCode endEditing];
         self.ibReferralCode.attributedText = attrRefCode;
     }
@@ -84,7 +93,9 @@
     self.promoPopoutViewController = nil;
     [self.promoPopoutViewController setViewType:PopOutViewTypeMessage];
     [self.promoPopoutViewController setPopOutCondition:PopOutConditionChooseShopOnly];
-    [self.promoPopoutViewController setMessage:@"Every time a friend signs up with your invite code, they'll get a mystery gift, you'll also receive a mystery gift. You can collect your mystery gift in notification"];
+    NSString *languageCode = [Utils getDeviceAppLanguageCode];
+    NSString *message = self.inviteFriendModel.desc[languageCode]? self.inviteFriendModel.desc[languageCode] : @"";
+    [self.promoPopoutViewController setMessage:message];
     
     STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopoutViewController];
     popOutController.containerView.backgroundColor = [UIColor clearColor];
@@ -109,6 +120,14 @@
         _promoPopoutViewController = [PromoPopOutViewController new];
     }
     return _promoPopoutViewController;
+}
+
+-(InviteFriendModel *)inviteFriendModel{
+    if (!_inviteFriendModel) {
+        CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+        _inviteFriendModel = countries.current_country.invite_friend_banner;
+    }
+    return _inviteFriendModel;
 }
 
 @end

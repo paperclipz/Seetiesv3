@@ -10,10 +10,13 @@
 
 #import "PlacesModel.h"
 #import "FilterCurrencyModel.h"
+#import "InviteFriendModel.h"
 
 @protocol PlacesModel
 @end
 @protocol FilterCurrencyModel
+@end
+@protocol InviteFriendModel
 @end
 
 @interface CountryModel : PaginationModel
@@ -29,5 +32,6 @@
 @property(nonatomic,strong)NSString* country_code;
 @property(nonatomic,assign)BOOL home_filter_display;//check whether display on screen
 @property(nonatomic,strong)FilterCurrencyModel *filter_currency;
+@property(nonatomic,strong)InviteFriendModel *invite_friend_banner;
 
 @end
