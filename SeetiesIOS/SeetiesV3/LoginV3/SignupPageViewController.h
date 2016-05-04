@@ -7,7 +7,7 @@
 //
 
 #import "CommonViewController.h"
-typedef void (^SignupBlock)(NSString* username,NSString* password,NSString* email);
+typedef void (^SignupBlock)(NSString* username,NSString* password,NSString* email, NSString *referralCode);
 
 @interface SignupPageViewController : CommonViewController
 @property(nonatomic,copy)SignupBlock signUpClickBlock;

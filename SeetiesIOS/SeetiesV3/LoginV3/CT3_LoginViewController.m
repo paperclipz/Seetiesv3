@@ -62,7 +62,7 @@
 - (IBAction)btnSignupClicked:(id)sender {
     
     [self validateBeforeLogin];
-
+    self.signUpViewController = nil;
     [self.navigationController pushViewController:self.signUpViewController animated:YES];
 }
 
@@ -250,9 +250,9 @@
         _signUpViewController = [SignupPageViewController new];
         
         __weak typeof (self)weakSelf = self;
-        _signUpViewController.signUpClickBlock = ^(NSString* username, NSString* password,NSString* email)
+        _signUpViewController.signUpClickBlock = ^(NSString* username, NSString* password,NSString* email, NSString *referralCode)
         {
-            [weakSelf requestServerForRegisterWithUserName:username Password:password Email:email];
+            [weakSelf requestServerForRegisterWithUserName:username Password:password Email:email ReferralCode:referralCode];
             
         };
     }
@@ -336,7 +336,7 @@
 }
 
 
--(void)requestServerForRegisterWithUserName:(NSString*)username Password:(NSString*)password Email:(NSString*)email
+-(void)requestServerForRegisterWithUserName:(NSString*)username Password:(NSString*)password Email:(NSString*)email ReferralCode:(NSString*)referralCode
 {
     NSDictionary* dict = @{@"email" : email,
                            @"username" : username,

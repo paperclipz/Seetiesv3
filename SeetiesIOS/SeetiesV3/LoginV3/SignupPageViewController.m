@@ -21,6 +21,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSignup;
 @property (weak, nonatomic) IBOutlet UILabel *lblSignUp;
 
+@property (weak, nonatomic) IBOutlet UIView *ibInitialReferralView;
+@property (weak, nonatomic) IBOutlet UILabel *ibEnterReferralLbl;
+@property (weak, nonatomic) IBOutlet UIView *ibReferralView;
+@property (weak, nonatomic) IBOutlet UITextField *ibReferralCodeTxt;
+
 @end
 
 @implementation SignupPageViewController
@@ -30,10 +35,19 @@
     
     if (self.signUpClickBlock) {
         if ([self validate]) {
-            self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text);
+            self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
 
         }
     }
+}
+
+- (IBAction)btnEnterPromoClicked:(id)sender {
+    [UIView animateWithDuration:0.5f animations:^{
+        self.ibReferralView.hidden = NO;
+        [self.ibReferralView setAlpha:1];
+        [self.ibInitialReferralView setAlpha:0];
+        self.ibInitialReferralView.hidden = YES;
+    }];
 }
 
 -(BOOL)validate
@@ -72,6 +86,7 @@
     [Utils setRoundBorder:self.ibContentUserName color:LINE_COLOR borderRadius:self.ibContentUserName.frame.size.height/2 borderWidth:1.0f];
     [Utils setRoundBorder:self.ibContentEmail color:LINE_COLOR borderRadius:self.ibContentEmail.frame.size.height/2 borderWidth:1.0f];
     [Utils setRoundBorder:self.ibContentPassword color:LINE_COLOR borderRadius:self.ibContentPassword.frame.size.height/2 borderWidth:1.0f];
+    [Utils setRoundBorder:self.ibReferralView color:LINE_COLOR borderRadius:self.ibReferralView.frame.size.height/2 borderWidth:1.0f];
     [self.btnSignup setSideCurveBorder];
 }
 
@@ -86,6 +101,8 @@
     self.txtUserName.placeholder = LocalisedString(@"username/ email address");
     self.txtPassword.placeholder = LocalisedString(@"password");
     self.txtEmail.placeholder = LocalisedString(@"email address");
+    self.ibEnterReferralLbl.text = LocalisedString(@"Enter referral code");
+    self.ibReferralCodeTxt.placeholder = LocalisedString(@"referral code (optional)");
 
     [self.btnSignup setTitle:LocalisedString(@"Submit") forState:UIControlStateNormal];
     self.lblSignUp.text = LocalisedString(@"Sign up");
