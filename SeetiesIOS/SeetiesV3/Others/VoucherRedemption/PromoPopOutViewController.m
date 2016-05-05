@@ -98,8 +98,6 @@
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
 @property(nonatomic) NSArray<SeShopDetailModel> *shopArray;
-@property(nonatomic) NSArray<CountryModel> *countryArray;
-@property(nonatomic) NSMutableArray *countryCodeArray;
 @property(nonatomic) NSString *selectedCountryCode;
 @property(nonatomic) NSString *enteredPhoneNumber;
 @property(nonatomic) NSString *enteredPromoCode;
@@ -366,7 +364,6 @@
             [self.ibEnterPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibEnterPhoneTxtField color:[UIColor clearColor] borderRadius:self.ibEnterPhoneTxtField.frame.size.height/2];
             [Utils setRoundBorder:self.ibEnterPhoneCountryCodeView color:DEVICE_COLOR borderRadius:self.ibEnterPhoneCountryCodeView.frame.size.height/2];
-            [self requestServerToGetHomeCountry];
         }
             return self.ibEnterPhoneView;
             
@@ -474,30 +471,23 @@
     }
 }
 
--(void)formatCountryCodeArray{
-    if (![Utils isArrayNull:self.countryArray]) {
-        for (CountryModel *country in self.countryArray) {
+-(NSMutableArray*)getFormattedCountriesCode{
+    CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+    if (!countries || [Utils isArrayNull:countries.countries]) {
+        return nil;
+    }
+    
+    NSMutableArray *tempArr = [[NSMutableArray alloc] init];
+    for (CountryModel *country in countries.countries) {
+        if (country.home_filter_display) {
             NSString *formattedCountryCode = [NSString stringWithFormat:@"%@ (%@)", country.name, country.phone_country_code];
-            [self.countryCodeArray addObject:formattedCountryCode];
+            [tempArr addObject:formattedCountryCode];
         }
     }
+    return tempArr;
 }
 
 #pragma mark - Declaration
--(NSArray<CountryModel> *)countryArray{
-    if (!_countryArray) {
-        _countryArray = [[NSArray<CountryModel> alloc] init];
-    }
-    return _countryArray;
-}
-
--(NSMutableArray *)countryCodeArray{
-    if (!_countryCodeArray) {
-        _countryCodeArray = [[NSMutableArray alloc] init];
-    }
-    return _countryCodeArray;
-}
-
 -(DealManager *)dealManager{
     if(!_dealManager)
     {
@@ -509,14 +499,18 @@
 #pragma mark - IBAction
 
 - (IBAction)selectCountryCodeBtnClicked:(id)sender {
+    NSArray *formattedCountriesCode = [self getFormattedCountriesCode];
+    CountriesModel *countriesModel = [[DataManager Instance] appInfoModel].countries;
     [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
-                                            rows:self.countryCodeArray
+                                            rows:formattedCountriesCode? formattedCountriesCode : [NSArray new]
                                 initialSelection:0
                                 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                     
-                                    CountryModel *country = self.countryArray[selectedIndex];
-                                    self.selectedCountryCode = [country.phone_country_code substringFromIndex:1];
-                                    self.ibEnterPhoneCountryCodeLbl.text = self.countryCodeArray[selectedIndex];
+                                    CountryModel *countryModel = countriesModel.countries[selectedIndex];
+                                    NSString *countryCode = countryModel.phone_country_code;
+                                    self.selectedCountryCode = [countryCode substringFromIndex:1];
+                                    SLog(@"country code:%@", countryCode);
+                                    self.ibEnterPhoneCountryCodeLbl.text = formattedCountriesCode[selectedIndex];
                                     
     } cancelBlock:^(ActionSheetStringPicker *picker) {
         
@@ -841,26 +835,6 @@
 //        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The verification code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         self.isVerified = NO;
         self.isLoading = NO;
-        [LoadingManager hide];
-    }];
-}
-
--(void)requestServerToGetHomeCountry{
-    ProfileModel *profile = [[DataManager Instance] currentUserProfileModel];
-    NSString *langCode = profile.system_language.language_code;
-   
-    NSDictionary *dict = @{@"language_code": langCode
-                           };
-    [LoadingManager show];
-    
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHomeCountry parameter:dict appendString:nil success:^(id object) {
-
-        CountriesModel *countriesModel = [[ConnectionManager dataManager] countriesModel];
-        self.countryArray = countriesModel.countries;
-        [self.countryCodeArray removeAllObjects];
-        [self formatCountryCodeArray];
-        [LoadingManager hide];
-    } failure:^(id object) {
         [LoadingManager hide];
     }];
 }
