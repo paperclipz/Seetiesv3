@@ -23,7 +23,7 @@
     // Initialization code
     
     [Utils setRoundBorder:self.ibCborderview color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
-
+    self.ibTitle.text = LocalisedString(@"Invite friends & get rewards");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

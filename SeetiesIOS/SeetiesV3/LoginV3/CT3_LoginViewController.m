@@ -338,13 +338,16 @@
 
 -(void)requestServerForRegisterWithUserName:(NSString*)username Password:(NSString*)password Email:(NSString*)email ReferralCode:(NSString*)referralCode
 {
-    NSDictionary* dict = @{@"email" : email,
-                           @"username" : username,
-                           @"password" : password,
-                           @"role" : @"user",
-                           @"device_type" : @(DEVICE_TYPE),
-                           
-                           };
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:@{@"email" : email,
+                                                                                  @"username" : username,
+                                                                                  @"password" : password,
+                                                                                  @"role" : @"user",
+                                                                                  @"device_type" : @(DEVICE_TYPE),
+                                                                                  }];
+    
+    if (![Utils isStringNull:referralCode]) {
+        [dict setObject:referralCode forKey:@"referral_code"];
+    }
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeRegister parameter:dict appendString:nil success:^(id object) {
         

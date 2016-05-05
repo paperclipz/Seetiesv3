@@ -44,6 +44,7 @@
 @property (nonatomic,strong)NSString* fb_id;
 @property (nonatomic,strong)NSString* insta_id;
 @property (nonatomic,strong)NSString* contact_no;
+@property (nonatomic,strong)NSString* referral_code;
 
 @property (nonatomic,strong)NSArray<DraftModel>* posts;
 

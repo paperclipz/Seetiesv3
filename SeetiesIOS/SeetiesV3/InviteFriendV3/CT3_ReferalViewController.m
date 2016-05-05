@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ibInviteFriendsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *ibReferralDetailsBtn;
 
-@property(nonatomic) NSString *referral;
+@property(nonatomic) ProfileModel *userProfile;
 @property(nonatomic) PromoPopOutViewController *promoPopoutViewController;
 @property(nonatomic) InviteFriendModel *inviteFriendModel;
 @end
@@ -32,8 +32,6 @@
     [Utils setRoundBorder:self.ibReferralCodeView color:[UIColor whiteColor] borderRadius:8.0f borderWidth:2];
     [Utils setRoundBorder:self.ibInviteFriendsBtn color:[UIColor clearColor] borderRadius:self.ibInviteFriendsBtn.frame.size.height/2];
     
-    //Dummy referral code
-    self.referral = @"SAMUEL5372";
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -48,20 +46,33 @@
     NSString *message = self.inviteFriendModel.message[languageCode]? self.inviteFriendModel.message[languageCode] : @"";
     self.ibCampaignDesc.text = LocalisedString(message);
     
-    self.ibCampaignExpiry.text = LocalisedString(@"10 days left, hurry up");
     [self.ibInviteFriendsBtn setTitle:LocalisedString(@"Invite Friends") forState:UIControlStateNormal];
     [self.ibReferralDetailsBtn setTitle:LocalisedString(@"Details") forState:UIControlStateNormal];
    
-    if (self.referral) {
-        NSString *refCode = [LanguageManager stringForKey:@"Share your promo code\n{!referral}" withPlaceHolder:@{@"{!referral}":self.referral}];
-        //    NSString *refCode = [NSString stringWithFormat:@"%@ is your referral code", self.referral];
+    if (![Utils isStringNull:self.userProfile.referral_code]) {
+        NSString *refCode = [LanguageManager stringForKey:@"Share your promo code\n{!referral}" withPlaceHolder:@{@"{!referral}":self.userProfile.referral_code}];
         NSMutableAttributedString *attrRefCode = [[NSMutableAttributedString alloc] initWithString:refCode];
-        NSRange refRange = [refCode rangeOfString:self.referral];
+        NSRange refRange = [refCode rangeOfString:self.userProfile.referral_code];
         [attrRefCode beginEditing];
         [attrRefCode addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:30.0f] range:refRange];
         [attrRefCode addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:254/255.0f green:236/255.0f blue:108/255.0f alpha:1] range:refRange];
         [attrRefCode endEditing];
         self.ibReferralCode.attributedText = attrRefCode;
+    }
+    
+    if (self.inviteFriendModel.display_expired_period) {
+        NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
+        [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+        [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSDate *expiryDate = [utcDateFormatter dateFromString:self.inviteFriendModel.expired_at];
+        
+        NSInteger daysLeft = [Utils numberOfDaysLeft:expiryDate];
+        self.ibCampaignExpiry.text = [LanguageManager stringForKey:@"{!days} day(s) left, hurry up!" withPlaceHolder:@{@"{!date}": @(daysLeft)}];
+        self.ibCampaignExpiry.hidden = NO;
+    }
+    else{
+        self.ibCampaignExpiry.text = @"";
+        self.ibCampaignExpiry.hidden = YES;
     }
    
 }
@@ -85,7 +96,7 @@
 - (IBAction)btnInviteFriendsClicked:(id)sender {
     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
     dataToPost.shareType = ShareTypeReferralInvite;
-    dataToPost.shareID = self.referral;     //To be changed
+    dataToPost.shareID = self.userProfile.referral_code;
     [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
 }
 
@@ -106,7 +117,7 @@
 
 - (IBAction)btnCopyReferralClicked:(id)sender {
     UIPasteboard *pb = [UIPasteboard generalPasteboard];
-    [pb setString:self.referral];
+    [pb setString:self.userProfile.referral_code];
     [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Referral code copied") Type:TSMessageNotificationTypeMessage];
 }
 
@@ -128,6 +139,13 @@
         _inviteFriendModel = countries.current_country.invite_friend_banner;
     }
     return _inviteFriendModel;
+}
+
+-(ProfileModel *)userProfile{
+    if (!_userProfile) {
+        _userProfile = [[DataManager Instance] currentUserProfileModel];
+    }
+    return _userProfile;
 }
 
 @end

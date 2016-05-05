@@ -509,7 +509,6 @@
                                     CountryModel *countryModel = countriesModel.countries[selectedIndex];
                                     NSString *countryCode = countryModel.phone_country_code;
                                     self.selectedCountryCode = [countryCode substringFromIndex:1];
-                                    SLog(@"country code:%@", countryCode);
                                     self.ibEnterPhoneCountryCodeLbl.text = formattedCountriesCode[selectedIndex];
                                     
     } cancelBlock:^(ActionSheetStringPicker *picker) {

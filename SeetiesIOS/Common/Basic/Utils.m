@@ -209,6 +209,16 @@
     return profileModel.phone_verified;
 }
 
++(BOOL)hasReferralCampaign{
+    CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+    if (!countries) {
+        return NO;
+    }
+    
+    CountryModel *currentCountry = countries.current_country;
+    return currentCountry.invite_friend_banner.message? YES : NO;
+}
+
 #pragma mark - Utilities
 +(NSString*)getWeekName:(int)integer
 {

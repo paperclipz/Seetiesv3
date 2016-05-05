@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -25,13 +25,13 @@
                                     <constraint firstAttribute="height" constant="40" id="wRe-9x-E7i"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Refer friends &amp; get rewarded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUh-Yw-4OK">
-                                <rect key="frame" x="58" y="13" width="211" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Refer friends &amp; get rewarded" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUh-Yw-4OK">
+                                <rect key="frame" x="58" y="22" width="211" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="XNr-0n-9P4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" verticalHuggingPriority="251" image="ArrowBtn.png" translatesAutoresizingMaskIntoConstraints="NO" id="d8C-aI-fdq">
@@ -47,25 +47,14 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ends in 13 days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5G-ya-1KE">
-                                <rect key="frame" x="58" y="32" width="88" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="7qW-f6-gcR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="UUh-Yw-4OK" firstAttribute="centerY" secondItem="7TV-nt-gIp" secondAttribute="centerY" id="2pO-rq-qHI"/>
                             <constraint firstItem="d8C-aI-fdq" firstAttribute="centerY" secondItem="7TV-nt-gIp" secondAttribute="centerY" id="31z-Ub-hRK"/>
-                            <constraint firstItem="J5G-ya-1KE" firstAttribute="leading" secondItem="VeE-eD-J39" secondAttribute="trailing" constant="8" id="62P-ca-Llr"/>
                             <constraint firstItem="d8C-aI-fdq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UUh-Yw-4OK" secondAttribute="trailing" constant="10" id="Az7-tu-fv3"/>
                             <constraint firstItem="VeE-eD-J39" firstAttribute="leading" secondItem="7TV-nt-gIp" secondAttribute="leading" constant="10" id="GOv-pz-JJq"/>
-                            <constraint firstItem="d8C-aI-fdq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="J5G-ya-1KE" secondAttribute="trailing" constant="10" id="UE3-KF-6oe"/>
                             <constraint firstItem="UUh-Yw-4OK" firstAttribute="leading" secondItem="VeE-eD-J39" secondAttribute="trailing" constant="8" id="UbH-Ue-C7t"/>
-                            <constraint firstItem="J5G-ya-1KE" firstAttribute="bottom" secondItem="VeE-eD-J39" secondAttribute="bottom" id="cWl-Ez-3iR"/>
                             <constraint firstItem="VeE-eD-J39" firstAttribute="centerY" secondItem="7TV-nt-gIp" secondAttribute="centerY" id="mqK-EV-vMJ"/>
                             <constraint firstItem="UUh-Yw-4OK" firstAttribute="top" secondItem="VeE-eD-J39" secondAttribute="top" id="nKO-FW-E7U"/>
                             <constraint firstItem="VeE-eD-J39" firstAttribute="centerY" secondItem="7TV-nt-gIp" secondAttribute="centerY" id="pK4-AS-6rw"/>
@@ -76,6 +65,7 @@
                             <mask key="constraints">
                                 <exclude reference="mqK-EV-vMJ"/>
                                 <exclude reference="pxM-eX-bR1"/>
+                                <exclude reference="nKO-FW-E7U"/>
                             </mask>
                         </variation>
                     </view>
@@ -90,6 +80,7 @@
             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="ibCborderview" destination="7TV-nt-gIp" id="IWU-qi-ymI"/>
+                <outlet property="ibTitle" destination="UUh-Yw-4OK" id="oUb-2W-WiB"/>
             </connections>
             <point key="canvasLocation" x="484.5" y="256.5"/>
         </tableViewCell>

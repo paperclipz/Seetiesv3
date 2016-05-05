@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibCollectionTitleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibCollectionCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibInviteLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *ibInviteIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibPromoLbl;
 @property (weak, nonatomic) IBOutlet UIView *ibProfileView;
 @property (weak, nonatomic) IBOutlet UIView *ibWalletView;
@@ -45,7 +46,6 @@
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic, strong)WalletListingViewController *walletListingViewController;
 @property(nonatomic, strong)CollectionListingViewController *collectionListingViewController;
-@property(nonatomic)InviteFrenViewController *inviteFriendViewController;
 @property(nonatomic)PromoPopOutViewController *promoCodeViewController;
 @property(nonatomic)VoucherListingViewController * voucherListingViewController;
 @property(nonatomic)CT3_InviteFriendViewController *ct3InviteFriendViewController;
@@ -110,8 +110,13 @@
 }
 
 - (IBAction)btnInviteClicked:(id)sender {
-//    [self.navigationController pushViewController:self.inviteFriendViewController animated:YES];
-    [self.navigationController pushViewController:self.ct3InviteFriendViewController animated:YES];
+    if ([Utils hasReferralCampaign]) {
+        [self.navigationController pushViewController:self.ct3referalViewController animated:YES];
+    }
+    else{
+        [self.navigationController pushViewController:self.ct3InviteFriendViewController animated:YES];
+    }
+    
 }
 
 - (IBAction)btnTestReferralClicked:(id)sender {
@@ -208,6 +213,7 @@
     [Utils setRoundBorder:self.ibWalletView color:[UIColor clearColor] borderRadius:5.0f];
     [Utils setRoundBorder:self.ibCollectionView color:[UIColor clearColor] borderRadius:5.0f];
     
+    [self.ibInviteIcon setImage:[UIImage imageNamed:[Utils hasReferralCampaign]? @"MeEnterPromoCodeIcon.png" : @"MeInviteFriendsIcon.png"]];
     [self.ibInviteFriendsView prefix_addUpperBorder:OUTLINE_COLOR];
     [self.ibInviteFriendsView prefix_addLowerBorder:OUTLINE_COLOR];
     
@@ -264,7 +270,16 @@
     self.ibViewProfileLbl.text = LocalisedString(@"View Profile");
     self.ibWalletTitleLbl.text = LocalisedString(@"Voucher Wallet");
     self.ibCollectionTitleLbl.text = LocalisedString(@"Collection");
-    self.ibInviteLbl.text = LocalisedString(@"Invite your buddies");
+    if ([Utils hasReferralCampaign]) {
+        self.ibInviteLbl.text = LocalisedString(@"Invite friends & get rewards");
+        self.ibInviteLbl.textColor = DEVICE_COLOR;
+        self.ibInviteLbl.font = [UIFont boldSystemFontOfSize:15.0f];
+    }
+    else{
+        self.ibInviteLbl.text = LocalisedString(@"Invite your buddies");
+        self.ibInviteLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+        self.ibInviteLbl.font = [UIFont systemFontOfSize:15.0f];
+    }
     self.ibPromoLbl.text = LocalisedString(@"Enter a promo code");
     
     self.ibGuestViewTitle.text = LocalisedString(@"Join us to enjoy more exciting features!");
@@ -301,13 +316,6 @@
         _collectionListingViewController = [CollectionListingViewController new];
     }
     return _collectionListingViewController;
-}
-
--(InviteFrenViewController*)inviteFriendViewController{
-    if (!_inviteFriendViewController) {
-        _inviteFriendViewController = [InviteFrenViewController new];
-    }
-    return _inviteFriendViewController;
 }
 
 -(PromoPopOutViewController*)promoCodeViewController{

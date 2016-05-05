@@ -1582,9 +1582,8 @@ static NSCache* heightCache = nil;
 
         }
         
-        if (YES) {
+        if ([Utils hasReferralCampaign]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_ReferFriends]];
-            
         }
         
         [self.ibTableView reloadData];
