@@ -1196,7 +1196,9 @@
         [self requestServerForDealRelevantDeals];
         
     } failure:^(id object) {
-        
+        [self updateViews];
+        [self updateFooterView];
+
     }];
 }
 
@@ -1216,7 +1218,9 @@
         [self requestServerForDealRelevantDeals];
         
     } failure:^(id object) {
-        
+        [self updateViews];
+        [self updateFooterView];
+
     }];
 }
 

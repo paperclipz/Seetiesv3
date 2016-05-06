@@ -8,6 +8,7 @@
 #import "Utils.h"
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "DealModel.h"
 
 @implementation Utils
 
@@ -896,6 +897,100 @@
     
     return YES;
 }
+
++(BOOL)isRedeemable:(DealModel*)model
+{
+    BOOL isRedeemable = false;
+    
+    // loop through period whether it is within campaign period by day
+    
+    NSDate* expiredDate = [model.voucher_info.expired_at toDate];
+    
+    
+    for (int i = 0; i<model.periods_in_date.count; i++) {
+        NSDictionary* dictAvailability = model.periods_in_date[i];
+        
+        NSDate* fromDate = [dictAvailability[@"from"] toDate];
+        NSDate* toDate = [dictAvailability[@"to"] toDate];
+        
+        //            NSDate* fromDate = [@"2016-03-01 00:00:00" toDate];
+        //            NSDate* toDate = [@"2016-04-01 00:00:00" toDate];
+        //
+        if ([Utils date:expiredDate isBetweenDate:fromDate andDate:toDate]) {
+            
+            SLog(@"is in between");
+            return YES;
+        }
+        else{
+            SLog(@"NOT in between");
+            isRedeemable = false;
+        }
+        
+    }
+    
+    
+    return isRedeemable;
+}
+
++(BOOL)isWithinOperationHour:(NSArray*)arrayDays
+{
+    
+    BOOL isOpen = false;
+    
+    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [calendar setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    
+    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:[NSDate date]];
+    NSInteger weekday = ([comps weekday] - 1);      //NSDateComponents Sunday=1 //Seeties Sunday=0
+    NSArray *arrHours = arrayDays[weekday];
+    
+    
+    
+    // loop through period date time to check available in operating hours
+    for (int i = 0; i<arrHours.count; i++) {
+        
+        NSDictionary* dictHour = arrHours[i];
+        
+        
+        int strFrom = [dictHour[@"open"] intValue];
+        NSDate *now = [NSDate date];
+        NSCalendar *calendarFrom = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+        NSDateComponents *componentsFrom = [calendarFrom components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+        [componentsFrom setHour:strFrom/100];
+        NSDate *fromDateTime = [calendar dateFromComponents:componentsFrom];
+        
+        
+        int strTo = [dictHour[@"close"] intValue];
+        NSCalendar *calendarTo = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+        NSDateComponents *componentsTo = [calendarTo components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+        [componentsTo setHour:strTo/100];
+        NSDate *toDateTime = [calendar dateFromComponents:componentsTo];
+        
+        if ([Utils date:now isBetweenDate:fromDateTime andDate:toDateTime]) {
+            
+            SLog(@"is within time period");
+            
+            return YES;
+        }
+        else{
+            SLog(@"is NOT within time period");
+            isOpen = NO;
+        }
+    }
+    return isOpen;
+}
+
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
+{
+    if ([date compare:beginDate] == NSOrderedAscending)
+        return NO;
+    
+    if ([date compare:endDate] == NSOrderedDescending)
+        return NO;
+    
+    return YES;
+}
+
 
 #pragma mark - SYSTEM PREFERENCE
 

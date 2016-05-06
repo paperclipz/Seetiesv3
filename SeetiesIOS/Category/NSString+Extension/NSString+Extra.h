@@ -16,4 +16,9 @@
 -(NSArray*)getTagWithFormat;
 - (NSArray *)rangesInSubstring:(NSString *)substring;
 
+
+// ===== NSDATE ===== //
+-(NSDate*)toDate;
+// ===== NSDATE ===== //
+
 @end

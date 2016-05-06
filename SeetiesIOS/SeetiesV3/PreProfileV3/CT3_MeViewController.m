@@ -8,6 +8,7 @@
 
 #import "CT3_MeViewController.h"
 #import "CT3_NotificationViewController.h"
+#import "CT3_ReferalViewController.h"
 
 @interface CT3_MeViewController ()
 {
@@ -51,6 +52,7 @@
 @property(nonatomic)CT3_InviteFriendViewController *ct3InviteFriendViewController;
 @property(nonatomic)CT3_ReferalViewController *ct3referalViewController;
 
+
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibGuestView;
@@ -70,8 +72,8 @@
 
 - (IBAction)btnTestClicked:(id)sender {
 
-    _ct3_notificationViewController = nil;
-    [self.navigationController pushViewController:self.ct3_notificationViewController animated:YES];
+    _ct3_ReferalViewController = nil;
+    [self.navigationController pushViewController:self.ct3_ReferalViewController animated:YES];
 }
 
 - (IBAction)btnWalletListingClicked:(id)sender {
@@ -262,7 +264,8 @@
         [self requestServerForUserCollection];
     }
     
-  
+    self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @([[DealManager Instance] getWalletCount])}];
+
 }
 
 -(void)changeLanguage{
@@ -289,6 +292,14 @@
 
 #pragma mark Declaration
 
+-(CT3_ReferalViewController*)ct3_ReferalViewController
+{
+    if (!_ct3_ReferalViewController) {
+        _ct3_ReferalViewController = [CT3_ReferalViewController new];
+    }
+    
+    return _ct3_ReferalViewController;
+}
 -(CT3_NotificationViewController*)ct3_notificationViewController
 {
     if (!_ct3_notificationViewController) {
@@ -381,6 +392,9 @@
 
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
+        
+        [[DealManager Instance] setWalletCount:count];
+        
         self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @(count)}];
     } failure:^(id object) {
         

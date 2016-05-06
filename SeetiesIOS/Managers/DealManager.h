@@ -28,4 +28,6 @@
 -(int)getWalletCount;
 
 -(void)setWalletCount:(int)count;
+
+
 @end

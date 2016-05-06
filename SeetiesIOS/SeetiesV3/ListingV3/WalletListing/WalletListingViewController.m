@@ -13,6 +13,10 @@
 @end
 
 @interface WalletListingViewController ()
+{
+    BOOL isOfflineData;
+
+}
 @property (weak, nonatomic) IBOutlet UILabel *ibWalletHeader;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property (weak, nonatomic) IBOutlet UIButton *ibFooterBtn;
@@ -43,6 +47,10 @@
 @end
 
 @implementation WalletListingViewController
+- (IBAction)btnUploadClicked:(id)sender {
+    
+    [[OfflineManager Instance]uploadDealToRedeem];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -353,18 +361,32 @@
 
 -(void)redeemVoucherClicked:(DealModel*)deal{
 //    To do more checking whether voucher can be redeemed
-    if (![Utils isPhoneNumberVerified]) {
+    
+    if (![Utils isPhoneNumberVerified] && !isOfflineData) {
         [Utils showVerifyPhoneNumber:self];
         return;
     }
+
+    BOOL isRedeemable = false;
     
-    if (deal.voucher_info.redeem_now) {
+    if ([Utils isRedeemable:deal]) {
+        
+        if ([Utils isWithinOperationHour:deal.period]) {
+            
+            isRedeemable = true;
+            
+        }
+    }
+    
+    if (isRedeemable) {
         self.dealRedeemViewController = nil;
         [self.dealRedeemViewController setDealModel:deal];
         self.dealRedeemViewController.dealRedeemDelegate = self;
+        self.dealRedeemViewController.isOffline = isOfflineData;
         [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
     }
     else{
+        
         self.promoPopOutViewController = nil;
         [self.promoPopOutViewController setViewType:PopOutViewTypeError];
         [self.promoPopOutViewController setDealModel:deal];
@@ -381,17 +403,26 @@
 -(void)onDealRedeemed:(DealModel *)dealModel{
     if (dealModel.total_available_vouchers != -1) {
         [self removeDealFromVoucherArray:dealModel];
+        [DealExpiryDateModel saveWalletList:self.voucherArray];
+
     }
     
     [self.ibTableView reloadData];
     
     self.redemptionHistoryViewController = nil;
-    [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
+    
+    if ([ConnectionManager isNetworkAvailable]) {
+        [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
+
+    }
+    else{
+    
+        [self.dealRedeemViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction)emptyBtnClicked:(id)sender {
     self.voucherListingViewController = nil;
-    HomeModel *homeModel = [[DataManager Instance] homeModel];
     NSDictionary *locationDict = [Utils getSavedUserLocation];
     HomeLocationModel *locationModel = [[HomeLocationModel alloc] init];
     @try {
@@ -399,7 +430,7 @@
         locationModel.longtitude = locationDict[KEY_LONGTITUDE];
         locationModel.place_id = locationDict[KEY_PLACE_ID];
         locationModel.locationName = locationDict[KEY_LOCATION];
-        locationModel.countryId = [locationDict[KEY_COUNTRY_ID] integerValue];
+        locationModel.countryId = (int)[locationDict[KEY_COUNTRY_ID] integerValue];
     } @catch (NSException *exception) {
         SLog(@"Wallet location exception: %@", exception);
     }
@@ -539,7 +570,11 @@
         if (self.dealsModel.offset == 1) {
             [self.voucherArray removeAllObjects];
         }
+        isOfflineData = NO;
         [self rearrangeVoucherList];
+        
+        [DealExpiryDateModel saveWalletList:self.voucherArray];
+        
         [self.ibTableView reloadData];
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.isLoading = NO;
@@ -557,10 +592,24 @@
             [self toggleEmptyView:NO];
         }
     } failure:^(id object) {
+        
+        isOfflineData = YES;
+
+        
         self.isLoading = NO;
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.ibTableView.tableFooterView = nil;
-        [self toggleEmptyView:YES];
+        
+        if ([Utils isArrayNull:self.voucherArray]) {
+            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
+            [self.ibTableView reloadData];
+
+        }
+        
+        if ([Utils isArrayNull:self.voucherArray]) {
+            [self toggleEmptyView:YES];
+        }
+
     }];
 }
 
@@ -603,4 +652,69 @@
     }];
 }
 
+
+-(void)requestServerToRedeemVouchers:(NSArray<DealModel>*)array{
+   
+    if (self.isLoading) {
+        return;
+    }
+    
+    NSDictionary *dict = @{
+                           @"token": [Utils getAppToken]
+                           };
+    
+//    user location     //
+    CLLocation *userLocation = [[SearchManager Instance] getAppLocation];
+//    user location     //
+
+    NSMutableArray* dictDeals = [NSMutableArray new];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    for (int i = 0; i < array.count; i++) {
+        
+        DealModel* model = array[i];
+        NSDictionary *voucherDict = @{@"deal_id": model.dID?model.dID:@"",
+                                      @"voucher_id": model.voucher_info.voucher_id?model.voucher_info.voucher_id:@"",
+                                      @"datetime": [formatter stringFromDate:[[NSDate alloc] init]],
+                                      @"lat": @(userLocation.coordinate.latitude),
+                                      @"lng": @(userLocation.coordinate.longitude)
+                                      };
+        
+        [dictDeals addObject:voucherDict];
+
+    }
+    
+    
+    NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+    
+    
+    for (int i = 0; i<dictDeals.count; i++) {
+        
+        NSDictionary* tempDict = dictDeals[i];
+        
+        NSDictionary* appendDict = @{[NSString stringWithFormat:@"voucher_info[%d]",i] : tempDict};
+        
+        [finalDict addEntriesFromDictionary:appendDict];
+        
+    }
+    
+    self.isLoading = YES;
+
+    [LoadingManager show];
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutRedeemVoucher parameter:finalDict appendString:nil success:^(id object) {
+        
+        //Remove voucher from deal manager if it is not reusable
+        
+        self.isLoading = NO;
+        [LoadingManager hide];
+        
+    } failure:^(id object) {
+        self.isLoading = NO;
+        [LoadingManager hide];
+    }];
+}
 @end

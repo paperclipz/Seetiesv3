@@ -72,6 +72,7 @@
 #import "MessageManager.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import "OfflineManager.h"
 
 #import "AutoCoding.h"
 #import "CustomBlock.h"

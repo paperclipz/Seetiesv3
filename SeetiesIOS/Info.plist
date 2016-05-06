@@ -31,9 +31,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb476862919076992</string>
-				<string>testapp123</string>
-				<string>Seeties</string>
+				<string>fb476862919076992seeties</string>
 			</array>
 		</dict>
 	</array>
@@ -235,5 +233,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>FacebookUrlSchemeSuffix</key>
+	<string>seeties</string>
 </dict>
 </plist>

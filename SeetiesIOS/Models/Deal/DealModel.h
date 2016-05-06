@@ -37,6 +37,7 @@
 
 @interface DealModel : JSONModel
 
+@property(nonatomic,strong)UIImage* testImage;
 @property(nonatomic,strong) NSString * dID;
 @property(nonatomic,strong) NSString *title;
 @property(nonatomic,strong) NSString *cover_title;
@@ -70,4 +71,8 @@
 @property(nonatomic, strong) NSArray *collection_periods_in_date;
 
 -(NSString*)getNextAvailableRedemptionDateString;
+
++(void)saveWalletList:(NSArray<DealModel>*)array;
++(NSArray<DealModel>*)getWalletList;
+
 @end
