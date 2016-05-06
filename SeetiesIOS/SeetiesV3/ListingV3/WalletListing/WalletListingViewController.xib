@@ -71,7 +71,7 @@
                                 <action selector="historyBtnClicked:" destination="-1" eventType="touchUpInside" id="boK-xn-bFa"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrv-wX-8zb">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrv-wX-8zb">
                             <rect key="frame" x="26" y="19" width="236" height="26"/>
                             <state key="normal" title="upload offline deal"/>
                             <connections>

@@ -331,28 +331,30 @@
 }
 
 -(NSUserDefaults *)userDefault{
+    
     if (!_userDefault) {
         _userDefault = [NSUserDefaults standardUserDefaults];
     }
+    
     return _userDefault;
 }
 
 #pragma mark - RequestServer
 -(void)requestServerToRedeemVoucher{
     
-    if (_isOffline) {
-        [[OfflineManager Instance]addDealToRedeem:self.dealModel];
-        
-        [self dropBottomView];
-
-        if ([self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
-            [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
-        }
-        
-        NSMutableArray<DealModel>* arrayDealIDs = [[[OfflineManager Instance] arrDealToRedeem] mutableCopy];
-        
-        return;
-    }
+//    if (_isOffline) {
+//        [[OfflineManager Instance]addDealToRedeem:self.dealModel];
+//        
+//        [self dropBottomView];
+//
+//        if ([self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
+//            [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
+//        }
+//        
+//        NSMutableArray<DealModel>* arrayDealIDs = [[[OfflineManager Instance] arrDealToRedeem] mutableCopy];
+//        
+//        return;
+//    }
     
     if (self.isRedeeming) {
         return;

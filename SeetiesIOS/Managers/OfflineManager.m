@@ -9,7 +9,8 @@
 #import "OfflineManager.h"
 #import "DealExpiryDateModel.h"
 
-#define REDEEM_KEY @"Deal_To_Redeem"
+#define REDEEM_KEY @"DEAL_TO_REDEEM"
+#define NEWS_FEED_KEY @"NEWS_FEED_KEY"
 
 @interface OfflineManager()
 {
@@ -55,7 +56,7 @@
     NSMutableArray<DealModel>* array = [NSMutableArray<DealModel> new];
     
     [array addObject:dealModel];
-    [self setArrDealToRedeem:array];
+    [self saveArrDealToRedeem:array];
 }
 
 -(void)deleteDealsToRedeem//delete when online and clear all local data
@@ -85,7 +86,7 @@
     return self.arrDealToRedeem;
 }
 
--(void)setArrDealToRedeem:(NSMutableArray<DealModel>*)arrDealToRedeem
+-(void)saveArrDealToRedeem:(NSMutableArray<DealModel>*)arrDealToRedeem
 {
     NSData * data = [self.userDefaults objectForKey:REDEEM_KEY];
     NSMutableArray<DealModel>* arrayDealIDs = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
@@ -189,5 +190,42 @@
     }];
 }
 
+// =============================================================  News Feed  =========================================================== //
+
+
++(void)saveNewsfeed:(NSMutableArray<CTFeedTypeModel>* )array
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults removeObjectForKey:NEWS_FEED_KEY];
+    
+    if (![Utils isArrayNull:array]) {
+        
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:array];
+        [defaults setObject:encodedObject forKey:NEWS_FEED_KEY];
+        [defaults synchronize];
+        
+        
+    }
+    else{
+        
+        SLog(@"%@",array);
+    }
+    
+}
+
++(NSArray<CTFeedTypeModel>*)getNewsFeed
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData * data = [defaults objectForKey:NEWS_FEED_KEY];
+    
+    NSArray<CTFeedTypeModel>* array;
+    
+    array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    return array;
+}
+// =============================================================  News Feed  =========================================================== //
 
 @end

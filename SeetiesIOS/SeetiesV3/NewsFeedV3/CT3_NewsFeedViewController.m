@@ -1509,15 +1509,36 @@ static NSCache* heightCache = nil;
             NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
             self.newsFeedModels = model;
             [self.arrayNewsFeed addObjectsFromArray:model.items];
+            
+            
             [self.ibTableView reloadData];
 //            [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
             [self.ibTableView hideAll];
+            
+            
+            // ========== Offline ========== //
+          //  [OfflineManager saveNewsfeed:self.arrayNewsFeed];
+            // ========== Offline ========== //
+
+            
         } failure:^(id object) {
             [self.ibTableView.pullToRefreshView stopAnimating];
             isMiddleOfLoadingServer = NO;
             [self.ibTableView hideAll];
+            
+//            // ========== Offline ========== //
+//
+//            if ([Utils isArrayNull:self.arrayNewsFeed]) {
+//                
+//                self.arrayNewsFeed =[OfflineManager getNewsFeed];
+//                
+//                [self.ibTableView reloadData];
+//
+//            }
+//            // ========== Offline ========== //
+
         }];
 
     }
