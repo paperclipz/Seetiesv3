@@ -12,16 +12,15 @@
 @interface OfflineManager : NSObject
 
 +(id)Instance;
-
-// ========== Deal model ========== //
 @property (nonatomic,readonly) NSMutableArray<DealModel>* arrDealToRedeem;
 
--(void)uploadDealToRedeem;
+//-(void)uploadDealToRedeem;
+//-(void)addDealToRedeem:(DealModel*)dealModel;
+//-(void)deleteDealsToRedeem;
 
--(void)addDealToRedeem:(DealModel*)dealModel;
 
--(void)deleteDealsToRedeem;
-// ========== Deal model ========== //
 
+//+(NSArray<CTFeedTypeModel>*)getNewsFeed;
+//+(void)saveNewsfeed:(NSMutableArray<CTFeedTypeModel>* )array;
 
 @end

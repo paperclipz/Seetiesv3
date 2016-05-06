@@ -15,6 +15,35 @@
 @end
 @implementation ProfileModel
 
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    
+    for (NSString *key in [self codableProperties])
+    {
+        
+        [encoder encodeObject:[self valueForKey:key] forKey:key];
+        
+    }
+    
+    
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        
+        
+        for (NSString *key in [self codableProperties])
+        {
+            [self setValue:[decoder decodeObjectForKey:key] forKey:key];
+            
+        }
+    }
+    
+    return self;
+}
+
 -(id)copyWithZone:(NSZone *)zone
 {
     id copy = [[[self class] alloc] init];
@@ -59,6 +88,7 @@
                                                        @"profile_photo_images.s": @"profile_photo_images"
                                                        }];
 }
+
 
 
 @end

@@ -31,8 +31,6 @@
 @property(nonatomic,strong)NSDictionary* dictData;
 @property(nonatomic,strong)AnnouncementModel* announcementData;
 
-//@property(nonatomic,strong)NSArray<CollectionModel>* arrCollection;
-
 @end
 
 

@@ -49,7 +49,7 @@
 @implementation WalletListingViewController
 - (IBAction)btnUploadClicked:(id)sender {
     
-    [[OfflineManager Instance]uploadDealToRedeem];
+    //[[OfflineManager Instance]uploadDealToRedeem];
 }
 
 - (void)viewDidLoad {
@@ -573,7 +573,9 @@
         isOfflineData = NO;
         [self rearrangeVoucherList];
         
-        [DealExpiryDateModel saveWalletList:self.voucherArray];
+        
+        //comment for offline mode
+      //  [DealExpiryDateModel saveWalletList:self.voucherArray];
         
         [self.ibTableView reloadData];
         [self.ibTableView.pullToRefreshView stopAnimating];
@@ -594,17 +596,18 @@
     } failure:^(id object) {
         
         isOfflineData = YES;
-
         
         self.isLoading = NO;
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.ibTableView.tableFooterView = nil;
         
-        if ([Utils isArrayNull:self.voucherArray]) {
-            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
-            [self.ibTableView reloadData];
+        //comment for offline mode
 
-        }
+//        if ([Utils isArrayNull:self.voucherArray]) {
+//            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
+//            [self.ibTableView reloadData];
+//
+//        }
         
         if ([Utils isArrayNull:self.voucherArray]) {
             [self toggleEmptyView:YES];
@@ -625,6 +628,7 @@
     NSString *appendString = deal.voucher_info.voucher_id;
     
     [LoadingManager show];
+    
     self.isLoading = YES;
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypeDeleteVoucher parameter:dict appendString:appendString success:^(id object) {
