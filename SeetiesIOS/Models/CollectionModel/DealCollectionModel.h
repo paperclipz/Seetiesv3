@@ -16,7 +16,7 @@
 
 @property(nonatomic,strong)NSArray* content;
 
-@property(nonatomic,assign)int number_deals_collectable;
+@property(nonatomic,assign)int total_deals_collectable;
 
 @property(nonatomic,assign)int total_deals_collected;
 
@@ -29,5 +29,6 @@
 @property(nonatomic,strong)NSString* cTitle;
 
 //expired_info
-
+@property(nonatomic,strong)NSString* expired_at;
+@property(nonatomic,assign)int expired_in_days;
 @end

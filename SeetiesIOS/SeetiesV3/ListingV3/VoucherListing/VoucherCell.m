@@ -11,6 +11,7 @@
 
 @interface VoucherCell()
 @property (nonatomic) DealModel *dealModel;
+@property (nonatomic) DealCollectionModel *dealCollectionModel;
 
 @property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibVoucherImage;
@@ -55,7 +56,17 @@
 
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
-    
+    _dealCollectionModel = nil;
+    [self initView];
+}
+
+-(void)setDealModel:(DealModel *)dealModel dealCollectionModel:(DealCollectionModel *)dealCollectionModel{
+    _dealModel = dealModel;
+    _dealCollectionModel = dealCollectionModel;
+    [self initView];
+}
+
+-(void)initView{
     if (![Utils isStringNull:self.dealModel.cover_title]) {
         self.ibVoucherTitleLbl.text = self.dealModel.cover_title;
     }
@@ -107,7 +118,6 @@
     [self setRedeemCollect];
     [self setVoucherLeft];
     [self setDaysLeft];
-    
 }
 
 -(void)setDealType{
@@ -161,12 +171,20 @@
 }
 
 -(void)setRedeemCollect{
+    NSInteger campaignDaysLeft = 0;
+    if (self.dealCollectionModel) {
+        NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
+        [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+        [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSDate *campaignEndDate = [utcDateFormatter dateFromString:self.dealCollectionModel.expired_at];
+        campaignDaysLeft = [Utils numberOfDaysLeft:campaignEndDate];
+    }
+    
     if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
-        //Pending referral code API
-//        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && self.dealModel.isCampaignEnd) {
-//            [self setCollectBtnEnabled:NO];
-//            return;
-//        }
+        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && (self.dealCollectionModel && campaignDaysLeft <= 0)) {
+            [self setCollectBtnEnabled:NO];
+            return;
+        }
         
         if (self.dealModel.total_available_vouchers == 0) {
             [self setCollectBtnEnabled:NO];
@@ -176,11 +194,10 @@
         }
     }
     else{
-        //Pending referral code API
-//        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && self.dealModel.isCampaignEnd) {
-//            [self setRedeemBtnEnabled:NO];
-//            return;
-//        }
+        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && (self.dealCollectionModel && campaignDaysLeft <= 0)) {
+            [self setRedeemBtnEnabled:NO];
+            return;
+        }
         
         if (self.dealModel.voucher_info.redeem_now) {
             [self setRedeemBtnEnabled:YES];
@@ -195,16 +212,24 @@
 -(void)setDaysLeft{    
     NSInteger numberOfDaysLeft = self.dealModel.collectionDaysLeft;
 
-    //Pending referral code API
-//    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
-//        if (self.dealModel.isCampaignEnd) {
-//            [self setCampaignEndOverlay];
-//            self.ibVoucherBlackOverylay.hidden = NO;
-//        }
-//        else{
-//            self.ibVoucherBlackOverylay.hidden = YES;
-//        }
-//    }
+    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
+        NSInteger campaignDaysLeft = 0;
+        if (self.dealCollectionModel) {
+            NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
+            [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+            [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate *campaignEndDate = [utcDateFormatter dateFromString:self.dealCollectionModel.expired_at];
+            campaignDaysLeft = [Utils numberOfDaysLeft:campaignEndDate];
+        }
+        
+        if (campaignDaysLeft <= 0) {
+            [self setCampaignEndOverlay];
+            self.ibVoucherBlackOverylay.hidden = NO;
+        }
+        else{
+            self.ibVoucherBlackOverylay.hidden = YES;
+        }
+    }
     
     if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
         self.ibDaysLeftLbl.hidden = NO;

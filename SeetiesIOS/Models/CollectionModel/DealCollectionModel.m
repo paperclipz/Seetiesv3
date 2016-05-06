@@ -15,6 +15,12 @@
 @end
 
 @implementation DealCollectionModel
+
++(JSONKeyMapper *)keyMapper{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"expired_info.expired_in_days": @"expired_in_days",
+                                                       @"expired_info.expired_at": @"expired_at"}];
+}
+
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
