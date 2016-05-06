@@ -11,6 +11,9 @@
 
 
 @interface VoucherListingViewController ()
+{
+    NSString* refferalID;
+}
 @property (nonatomic) DealsModel *dealsModel;
 @property (nonatomic) DealCollectionModel *dealCollectionModel;
 @property (nonatomic) HomeLocationModel *locationModel;
@@ -151,6 +154,10 @@
             self.ibAltTitle.text = LocalisedString(@"Referral Rewards");
             [self showFirstHeader:NO];
             [self showFirstFooter:NO];
+           // [self requestServerForCollectionInfo];
+
+            
+            [self requestServerForDealListing];
             break;
             
         default:
@@ -434,7 +441,14 @@
     self.dealViewType = 5;
 }
 
--(void)initWithReferralID:(NSString*)referralID{
+//for referral
+-(void)initWithDealCollectionModel:(DealCollectionModel*)model ReferralID:(NSString*)refID
+{
+    
+    refferalID = refID;
+    
+    self.dealCollectionModel = model;
+    
     self.dealViewType = 6;
     
 }
@@ -672,6 +686,12 @@
                 case 4:
                     [self requestServerForDealRelevantDeals];
                     
+                    break;
+                
+                case 6:
+                    [self requestServerForDealListing];
+                    break;
+
                 default:
                     break;
             }
@@ -768,6 +788,34 @@
 }
 
 #pragma mark - RequestServer
+
+
+-(void)requestServerForCollectionInfo
+{
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                           @"deal_collection_id" : self.dealCollectionModel.deal_collection_id,
+                         };
+    
+    NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+    
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@",self.dealCollectionModel.deal_collection_id];
+
+    if (refferalID) {
+        [finalDict setObject:refferalID forKey:@"referral_code"];
+    }
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetDealCollectionInfo parameter:finalDict appendString:appendString success:^(id object) {
+
+        self.dealCollectionModel = [[ConnectionManager dataManager]dealCollectionModel];
+        
+        self.lblTitle.text = self.dealCollectionModel.cTitle;
+        
+    }failure:^(id object) {
+        
+    }];
+}
+
 
 -(void)requestServerForSuperDealListing{
     
@@ -873,10 +921,18 @@
             [finalDict addEntriesFromDictionary:[self getFilterDict]];
         }
 
+        if (![Utils isStringNull:refferalID]) {
+            [finalDict setObject:refferalID forKey:@"referral_code"];
+        }
+        
     }
     @catch (NSException *exception) {
         SLog(@"error passing model in requestServerForDealListing");
         self.isLoading = NO;
+    }
+    
+    if (refferalID) {
+        [finalDict setObject:refferalID forKey:@"referral_code"];
     }
     
     NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.dealCollectionModel.deal_collection_id];

@@ -77,7 +77,6 @@
 {
     [super viewWillAppear:animated];
     /* Listen for keyboard */
-    self.screenName = @"IOS Full Image Page";
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

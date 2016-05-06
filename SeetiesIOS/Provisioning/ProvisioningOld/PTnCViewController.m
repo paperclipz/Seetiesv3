@@ -39,7 +39,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Provisioning 1st";
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

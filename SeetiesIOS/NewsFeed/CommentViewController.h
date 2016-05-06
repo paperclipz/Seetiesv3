@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "BHInputToolbar.h"
-#import "GAITrackedViewController.h"
 #import "LLARingSpinnerView.h"
 #import "ProfileViewController.h"
 @class ProfileViewController;
-@interface CommentViewController : GAITrackedViewController<UIScrollViewDelegate,BHInputToolbarDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface CommentViewController : UIViewController<UIScrollViewDelegate,BHInputToolbarDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property (nonatomic, strong) BHInputToolbar *inputToolbar;

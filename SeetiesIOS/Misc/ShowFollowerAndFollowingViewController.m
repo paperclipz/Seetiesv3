@@ -80,7 +80,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Follower And Following Page";
     
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {

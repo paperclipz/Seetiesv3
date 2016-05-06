@@ -103,6 +103,12 @@
             break;
             
         }
+        
+        CASE (@"referral_reward"){
+            _notType = NotificationType_ReferralReward;
+            break;
+            
+        }
 
         
         DEFAULT

@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
-@interface PTnCViewController : GAITrackedViewController{
+@interface PTnCViewController : UIViewController{
     
     NSString *GetLoginID;
     NSString *GetPassword;

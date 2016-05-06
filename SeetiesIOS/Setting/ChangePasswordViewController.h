@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TPKeyboardAvoidingScrollView.h"
 #import "UrlDataClass.h"
-#import "GAITrackedViewController.h"
-@interface ChangePasswordViewController : GAITrackedViewController<UITextFieldDelegate,UIScrollViewDelegate>
+@interface ChangePasswordViewController : UIViewController<UITextFieldDelegate,UIScrollViewDelegate>
 
 @end
