@@ -72,8 +72,8 @@
 
 - (IBAction)btnTestClicked:(id)sender {
 
-    _ct3_ReferalViewController = nil;
-    [self.navigationController pushViewController:self.ct3_ReferalViewController animated:YES];
+    _ct3referalViewController = nil;
+    [self.navigationController pushViewController:self.ct3referalViewController animated:YES];
 }
 
 - (IBAction)btnWalletListingClicked:(id)sender {
@@ -292,13 +292,13 @@
 
 #pragma mark Declaration
 
--(CT3_ReferalViewController*)ct3_ReferalViewController
+-(CT3_ReferalViewController*)ct3referalViewController
 {
-    if (!_ct3_ReferalViewController) {
-        _ct3_ReferalViewController = [CT3_ReferalViewController new];
+    if (!_ct3referalViewController) {
+        _ct3referalViewController = [CT3_ReferalViewController new];
     }
     
-    return _ct3_ReferalViewController;
+    return _ct3referalViewController;
 }
 -(CT3_NotificationViewController*)ct3_notificationViewController
 {
@@ -356,13 +356,6 @@
         _ct3InviteFriendViewController = [CT3_InviteFriendViewController new];
     }
     return _ct3InviteFriendViewController;
-}
-
--(CT3_ReferalViewController *)ct3referalViewController{
-    if (!_ct3referalViewController) {
-        _ct3referalViewController = [CT3_ReferalViewController new];
-    }
-    return _ct3referalViewController;
 }
 
 -(void)reloadData
