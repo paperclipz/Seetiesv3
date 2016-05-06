@@ -20,6 +20,7 @@ typedef enum
     ServerRequestTypeLoginInstagram,
     ServerRequestTypeRegister,
     ServerRequestTypeGetLogout,
+    ServerRequestTypePostCheckUserRegistrationData,
     /*Login*/
 
     ServerRequestTypeGetNewsFeed,

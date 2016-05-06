@@ -35,6 +35,14 @@
     
     if (self.signUpClickBlock) {
         if ([self validate]) {
+            if (![self requestServerToCheckUserRegistrationData:self.ibReferralCodeTxt.text forField:@"referral_code"]) {
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Referral code is invalid, but you may continue and try again later.") cancelButtonTitle:LocalisedString(@"Continue") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                    self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
+                    
+                }];
+                return;
+            }
+            
             self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
 
         }
@@ -69,7 +77,12 @@
     else if(![Utils validateEmail:self.txtEmail.text])
     {
         [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Not valid email address") type:TSMessageNotificationTypeError];
-
+        return NO;
+    }
+    else if (self.ibReferralCodeTxt.text.length > 0 && self.ibReferralCodeTxt.text.length != 10){
+        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Referral code should be exactly 10 characters") type:TSMessageNotificationTypeError];
+        
+        return NO;
     }
     
     return YES;
@@ -130,5 +143,28 @@
     return _forgotPasswordViewController;
 }
 
+#pragma mark - RequestServer
+-(BOOL)requestServerToCheckUserRegistrationData:(NSString*)data forField:(NSString*)field{
+    if ([Utils isStringNull:data] || [Utils isStringNull:field]) {
+        return YES;
+    }
+    
+    [LoadingManager show];
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:@{@"field" : field,
+                                                                                  @"value" : data
+                                                                                  }];
+    __block BOOL result;
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostCheckUserRegistrationData parameter:dict appendString:nil success:^(id object) {
+        
+        result = YES;
+        
+    } failure:^(id object) {
+        
+        result = NO;
+        
+    }];
+    [LoadingManager hide];
+    return result;
+}
 
 @end

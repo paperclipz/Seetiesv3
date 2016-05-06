@@ -442,6 +442,11 @@
             
             break;
             
+        case ServerRequestTypePostCheckUserRegistrationData:
+            str = [NSString stringWithFormat:@"%@/register/check",API_VERION_URL];
+            
+            break;
+            
         case ServerRequestTypeGetNewsFeed:
             str = [NSString stringWithFormat:@"%@/feed/v2",API_VERION_URL];
             
@@ -766,7 +771,20 @@
             
             SLog(@"%@",dict[@"message"]);
             
-            [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+            BOOL showError = YES;
+            switch (type) {
+                case ServerRequestTypePostCheckUserRegistrationData:
+                    showError = NO;
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            if (showError) {
+                [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+            }
+            
             //[TSMessage show];
             
             hasError = YES;
