@@ -19,9 +19,9 @@
 @interface VoucherCell : CommonTableViewCell
 @property id<VoucherCellDelegate> voucherCellDelegate;
 //For normal deal listing
--(void)setDealModel:(DealModel*)dealModel;
+-(void)initDealModel:(DealModel*)dealModel;
 //For referral deal listing
--(void)setDealModel:(DealModel*)dealModel dealCollectionModel:(DealCollectionModel*)dealCollectionModel;
+-(void)initDealModel:(DealModel*)dealModel dealCollectionModel:(DealCollectionModel*)dealCollectionModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constUpperContentHeight;
 
 @end

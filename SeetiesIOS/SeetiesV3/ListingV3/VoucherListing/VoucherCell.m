@@ -54,13 +54,13 @@
     // Configure the view for the selected state
 }
 
--(void)setDealModel:(DealModel *)dealModel{
+-(void)initDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
     _dealCollectionModel = nil;
     [self initView];
 }
 
--(void)setDealModel:(DealModel *)dealModel dealCollectionModel:(DealCollectionModel *)dealCollectionModel{
+-(void)initDealModel:(DealModel *)dealModel dealCollectionModel:(DealCollectionModel *)dealCollectionModel{
     _dealModel = dealModel;
     _dealCollectionModel = dealCollectionModel;
     [self initView];
@@ -173,11 +173,15 @@
 -(void)setRedeemCollect{
     NSInteger campaignDaysLeft = 0;
     if (self.dealCollectionModel) {
-        NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
-        [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-        [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSDate *campaignEndDate = [utcDateFormatter dateFromString:self.dealCollectionModel.expired_at];
-        campaignDaysLeft = [Utils numberOfDaysLeft:campaignEndDate];
+        @try {
+            NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
+            [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+            [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate *campaignEndDate = [utcDateFormatter dateFromString:self.dealCollectionModel.expired_at];
+            campaignDaysLeft = [Utils numberOfDaysLeft:campaignEndDate];
+        } @catch (NSException *exception) {
+            
+        }
     }
     
     if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
