@@ -16,6 +16,10 @@
 {
     NSArray* imageArray;
     int varietyImageAnimationIndex;
+    BOOL isMiddleOfRegistering;
+    BOOL isMiddleOfLogin;
+    BOOL isMiddleOfFacebookLogin;
+    BOOL isMiddleOfInstaLogin;
 
 }
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
@@ -72,6 +76,10 @@
     [self initSelfView];
     [self changeLanguage];
     varietyImageAnimationIndex = 1;
+    isMiddleOfRegistering = NO;
+    isMiddleOfLogin = NO;
+    isMiddleOfFacebookLogin = NO;
+    isMiddleOfInstaLogin = NO;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -289,16 +297,21 @@
 -(void)requestServerForLogin:(NSString*)userName Password:(NSString*)password OnComplete:(VoidBlock)onComplete
 {
  
+    if (isMiddleOfLogin) {
+        return;
+    }
     [LoadingManager show];
     
     NSDictionary* dict = @{@"login_id" : userName,
                            @"password" : password,
                            @"device_type" : @"2"};
     
+    isMiddleOfLogin = YES;
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeLogin parameter:dict appendString:nil success:^(id object) {
         
-        
+        isMiddleOfLogin = NO;
+
         if (onComplete) {
             onComplete();
         }
@@ -306,6 +319,8 @@
         
     } failure:^(id object) {
         
+        isMiddleOfLogin = NO;
+
     }];
 
     
@@ -313,7 +328,13 @@
 
 -(void)requestServerForFacebookLogin{
 
+    if (isMiddleOfFacebookLogin) {
+        return;
+    }
+    
     [LoadingManager show];
+    
+    
     FacebookModel* model = [[ConnectionManager dataManager]facebookLoginModel];
   
     NSDictionary* dict = @{@"fb_id" : model.uID,
@@ -321,8 +342,13 @@
                            @"role" : @"user",
                            @"device_type" : @(DEVICE_TYPE)};
     
+    
+    isMiddleOfFacebookLogin = YES;
+    
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeLoginFacebook parameter:dict appendString:nil success:^(id object) {
         
+        isMiddleOfFacebookLogin = NO;
+
 
         if (self.didFinishLoginBlock) {
             self.didFinishLoginBlock();
@@ -330,7 +356,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
 
     } failure:^(id object) {
-        
+        isMiddleOfFacebookLogin = NO;
     }];
     
 }
@@ -338,6 +364,10 @@
 
 -(void)requestServerForRegisterWithUserName:(NSString*)username Password:(NSString*)password Email:(NSString*)email
 {
+    
+    if (isMiddleOfRegistering) {
+        return;
+    }
     NSDictionary* dict = @{@"email" : email,
                            @"username" : username,
                            @"password" : password,
@@ -346,7 +376,11 @@
                            
                            };
     
+    isMiddleOfRegistering = YES;
+    
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeRegister parameter:dict appendString:nil success:^(id object) {
+        
+        isMiddleOfRegistering = NO;
         
         NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:object];
         if ([dict[@"status"] isEqualToString:@"ok"]) {
@@ -365,6 +399,8 @@
         
     } failure:^(id object) {
         
+        isMiddleOfRegistering = NO;
+
     }];
     
 }
@@ -372,6 +408,10 @@
 -(void)requestServerForInstagramLogin
 {
     
+    
+    if (isMiddleOfInstaLogin) {
+        return;
+    }
     InstagramUser* model = [[ConnectionManager dataManager]instagramUserModel];
 
     NSDictionary* dict = @{@"insta_id" : model.Id,
@@ -379,7 +419,11 @@
                            @"device_type" : @(DEVICE_TYPE),
                            };
     
+    isMiddleOfInstaLogin = YES;
+    
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeLoginInstagram parameter:dict appendString:nil success:^(id object) {
+        
+        isMiddleOfInstaLogin = NO;
         
         if (self.didFinishLoginBlock) {
             self.didFinishLoginBlock();
@@ -389,6 +433,8 @@
         
     } failure:^(id object) {
         
+        isMiddleOfInstaLogin = NO;
+
     }];
 }
 
