@@ -93,7 +93,6 @@
         _manager.securityPolicy.validatesDomainName = NO;
         _manager.responseSerializer =[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
-
     }
     
     return _manager;
@@ -576,6 +575,8 @@
             break;
             
         case ServerRequestTypeGetDealCollectionDeals:
+        case ServerRequestTypeGetDealCollectionInfo:
+
             str = [NSString stringWithFormat:@"%@/deal-collections", API_VERION_URL];
 
             break;
@@ -1151,6 +1152,17 @@
             
         }
             break;
+            
+        case ServerRequestTypeGetDealCollectionInfo:
+        {
+            NSDictionary *dict = obj[@"data"];
+            
+            self.dataManager.dealCollectionModel = [[DealCollectionModel alloc]initWithDictionary:dict error:nil];
+            
+        }
+            
+            break;
+            
             
         case ServerRequestTypePostCollectDeals:
         case ServerRequestTypeDeleteVoucher:

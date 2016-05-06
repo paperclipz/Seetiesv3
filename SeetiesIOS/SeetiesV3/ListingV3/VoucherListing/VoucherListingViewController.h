@@ -41,5 +41,5 @@ typedef void (^HomeModelBlock)(HomeLocationModel* model);
 -(void)initWithDealsModel:(DealsModel*)dealsModel;
 
 //Init for Referral code Deals (To be changed)
--(void)initForReferralWithCollectionID:(NSString*)collID;
+-(void)initWithDealCollectionModel:(DealCollectionModel*)model ReferralID:(NSString*)refID;
 @end

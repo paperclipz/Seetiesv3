@@ -11,7 +11,23 @@
 @interface DealCollectionModel : JSONModel
 
 @property(nonatomic,strong)NSArray<PhotoModel>* photos;
+
 @property(nonatomic,strong)NSString* deal_collection_id;
+
 @property(nonatomic,strong)NSArray* content;
+
+@property(nonatomic,assign)int number_deals_collectable;
+
+@property(nonatomic,assign)int total_deals_collected;
+
+@property(nonatomic,strong)NSString* cDescription;
+
+@property(nonatomic,strong)NSString* language_code;
+
+@property(nonatomic,strong)NSString* language_name;
+
+@property(nonatomic,strong)NSString* cTitle;
+
+//expired_info
 
 @end

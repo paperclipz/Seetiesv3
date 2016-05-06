@@ -3032,8 +3032,8 @@
 		C75015FA1CD0A7640048C279 /* EditProfileV3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV3ViewController.h; sourceTree = "<group>"; };
 		C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileV3ViewController.m; sourceTree = "<group>"; };
 		C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditProfileV3ViewController.storyboard; sourceTree = "<group>"; };
-		C75016001CD0AC420048C279 /* GenericObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericObject.h; sourceTree = "<group>"; };
-		C75016011CD0AC420048C279 /* GenericObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericObject.m; sourceTree = "<group>"; };
+		C75016001CD0AC420048C279 /* GenericObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericObject.h; path = ../GenericObject.h; sourceTree = "<group>"; };
+		C75016011CD0AC420048C279 /* GenericObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericObject.m; path = ../GenericObject.m; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4781,8 +4781,6 @@
 				8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */,
 				0B497B021C509579004989DF /* UsersModel.h */,
 				0B497B031C509579004989DF /* UsersModel.m */,
-				C75016001CD0AC420048C279 /* GenericObject.h */,
-				C75016011CD0AC420048C279 /* GenericObject.m */,
 			);
 			name = MODELS;
 			path = Models;
@@ -4791,6 +4789,8 @@
 		8AEDBF791C2031BA000BD2FF /* AppModel */ = {
 			isa = PBXGroup;
 			children = (
+				C75016001CD0AC420048C279 /* GenericObject.h */,
+				C75016011CD0AC420048C279 /* GenericObject.m */,
 				8AEDBF7A1C2031BA000BD2FF /* EditHourModel.h */,
 				8AEDBF7B1C2031BA000BD2FF /* EditHourModel.m */,
 				8AEDBF7C1C2031BA000BD2FF /* OpeningPeriodModel.h */,

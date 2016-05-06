@@ -37,6 +37,7 @@
 @class InstagramUser;
 @class SuggestedPlaceModel;
 @class FriendSuggestionModel;
+@class DealCollectionModel;
 
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
@@ -95,6 +96,11 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)NotificationModels* notificationModels;
 @property(nonatomic,strong)NotificationModels* followingNotificationModels;
 @property(nonatomic,strong)AppInfoModel* appInfoModel;
+
+
+/* ================================ Notification ================================ */
+@property(nonatomic,strong)DealCollectionModel* dealCollectionModel;
+
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;

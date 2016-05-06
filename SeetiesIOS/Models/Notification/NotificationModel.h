@@ -27,7 +27,11 @@
 @property(nonatomic,strong)SeShopDetailModel* seetishop;
 
 @property(nonatomic,strong)CollectionModel* collectionInfo;
+
+//for referral notification usage
 @property(nonatomic,strong)DealCollectionModel* deal_collection;
+@property(nonatomic,strong)NSString* referral_u_id;
+
 
 //for following notification
 @property(nonatomic,strong)NSDictionary* followCollectionInfo;

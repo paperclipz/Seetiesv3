@@ -308,7 +308,7 @@
             
         case NotificationType_ReferralReward:
             
-            [self showVoucherListingReferralView:model.deal_collection.deal_collection_id];
+            [self showVoucherListingReferralView:model.deal_collection.deal_collection_id ReferralID:model.referral_u_id];
             
             break;
 
@@ -510,14 +510,17 @@
     }
 }
 
--(void)showVoucherListingReferralView:(NSString*)dealCollectionID
+-(void)showVoucherListingReferralView:(NSString*)dealCollectionID ReferralID:(NSString*)refID
 {
     if (![Utils isStringNull:dealCollectionID]) {
         
      
+        DealCollectionModel* cModel = [DealCollectionModel new];
+        cModel.deal_collection_id = dealCollectionID;
+        
         _voucherListingViewController = nil;
         
-        [self.voucherListingViewController initForReferralWithCollectionID:dealCollectionID];
+        [self.voucherListingViewController initWithDealCollectionModel:cModel ReferralID:refID];
         
         [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
     }
