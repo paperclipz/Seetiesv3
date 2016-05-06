@@ -43,7 +43,6 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Forgot Password Page";
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

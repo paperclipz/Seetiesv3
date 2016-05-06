@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
-@interface PTellUsYourCityViewController : GAITrackedViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIScrollViewDelegate>{
+
+@interface PTellUsYourCityViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIScrollViewDelegate>{
     
     IBOutlet UIScrollView *MainScorll;
     IBOutlet UILabel *ShowSelectLang01;

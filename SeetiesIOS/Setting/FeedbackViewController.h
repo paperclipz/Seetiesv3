@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TPKeyboardAvoidingScrollView.h"
 #import "UrlDataClass.h"
-#import "GAITrackedViewController.h"
-@interface FeedbackViewController : GAITrackedViewController<UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>
+
+@interface FeedbackViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>
 @end

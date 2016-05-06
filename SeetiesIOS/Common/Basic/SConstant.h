@@ -226,6 +226,7 @@ typedef enum
     NotificationType_None = 12,
     NotificationType_User = 13,
     NotificationType_DealShared = 14,
+    NotificationType_ReferralReward = 15,
     
 }NotificationType;
 

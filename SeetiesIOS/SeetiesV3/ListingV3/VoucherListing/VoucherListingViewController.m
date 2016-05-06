@@ -434,7 +434,8 @@
     self.dealViewType = 5;
 }
 
--(void)initWithReferralID:(NSString*)referralID{
+-(void)initForReferralWithCollectionID:(NSString*)collID
+{
     self.dealViewType = 6;
     
 }

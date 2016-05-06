@@ -78,7 +78,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     [super viewWillAppear:animated];
-    self.screenName = @"IOS Change Password Page";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CheckFB = [defaults objectForKey:@"CheckPassword"];
     NSLog(@"CheckFB is %@",CheckFB);

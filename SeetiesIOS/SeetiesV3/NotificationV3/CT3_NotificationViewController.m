@@ -305,6 +305,14 @@
             
             break;
             
+            
+        case NotificationType_ReferralReward:
+            
+            [self showVoucherListingReferralView:model.deal_collection.deal_collection_id];
+            
+            break;
+
+            
         case NotificationType_Seeties:
         {
            
@@ -498,6 +506,19 @@
         
         _voucherListingViewController = nil;
         [self.voucherListingViewController initData:cModel withLocation:nil];
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
+}
+
+-(void)showVoucherListingReferralView:(NSString*)dealCollectionID
+{
+    if (![Utils isStringNull:dealCollectionID]) {
+        
+     
+        _voucherListingViewController = nil;
+        
+        [self.voucherListingViewController initForReferralWithCollectionID:dealCollectionID];
+        
         [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
     }
 }

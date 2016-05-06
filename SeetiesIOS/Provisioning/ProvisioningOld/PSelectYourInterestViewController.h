@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAITrackedViewController.h"
 #import "UrlDataClass.h"
-@interface PSelectYourInterestViewController : GAITrackedViewController<UIScrollViewDelegate>{
+@interface PSelectYourInterestViewController : UIViewController<UIScrollViewDelegate>{
     
     IBOutlet UIScrollView *MainScroll;
     

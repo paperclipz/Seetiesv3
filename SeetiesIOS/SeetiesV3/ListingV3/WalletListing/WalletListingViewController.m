@@ -631,7 +631,8 @@
     
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypeDeleteVoucher parameter:dict appendString:appendString success:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypeDeleteVoucher parameter:dict appendString:appendString success:^(id object)
+    {
 
         [self.ibTableView beginUpdates];
         DealExpiryDateModel *expiryModel = self.voucherArray[indexPath.section];

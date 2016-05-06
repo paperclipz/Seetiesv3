@@ -8,6 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 
+@class DealCollectionModel;
 @protocol ProfileModel
 @end
 
@@ -26,6 +27,7 @@
 @property(nonatomic,strong)SeShopDetailModel* seetishop;
 
 @property(nonatomic,strong)CollectionModel* collectionInfo;
+@property(nonatomic,strong)DealCollectionModel* deal_collection;
 
 //for following notification
 @property(nonatomic,strong)NSDictionary* followCollectionInfo;
