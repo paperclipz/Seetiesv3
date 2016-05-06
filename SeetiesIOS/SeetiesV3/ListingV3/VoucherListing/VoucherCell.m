@@ -215,11 +215,16 @@
     if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
         NSInteger campaignDaysLeft = 0;
         if (self.dealCollectionModel) {
-            NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
-            [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-            [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            NSDate *campaignEndDate = [utcDateFormatter dateFromString:self.dealCollectionModel.expired_at];
-            campaignDaysLeft = [Utils numberOfDaysLeft:campaignEndDate];
+           
+            @try {
+                NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
+                [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+                [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                NSDate *campaignEndDate = [utcDateFormatter dateFromString:self.dealCollectionModel.expired_at];
+                campaignDaysLeft = [Utils numberOfDaysLeft:campaignEndDate];
+            } @catch (NSException *exception) {
+                
+            }
         }
         
         if (campaignDaysLeft <= 0) {
