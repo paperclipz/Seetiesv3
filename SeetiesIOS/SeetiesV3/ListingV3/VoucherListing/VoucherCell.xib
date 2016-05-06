@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -288,8 +288,8 @@
                                                             <constraint firstAttribute="height" constant="13" id="Sqj-rI-nD7"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTW-iU-eID" userLabel="city lbl" customClass="TTTAttributedLabel">
-                                                        <rect key="frame" x="0.0" y="51" width="0.0" height="0.0"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="city" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTW-iU-eID" userLabel="city lbl" customClass="TTTAttributedLabel">
+                                                        <rect key="frame" x="0.0" y="31" width="22" height="16"/>
                                                         <color key="backgroundColor" red="0.40784313729999999" green="0.81568627449999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -299,7 +299,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="5pl-vV-xdH" secondAttribute="trailing" id="0Ty-7N-m8R"/>
-                                                    <constraint firstItem="oTW-iU-eID" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5pl-vV-xdH" secondAttribute="bottom" constant="8" id="Cjm-8v-K2I"/>
+                                                    <constraint firstItem="oTW-iU-eID" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5pl-vV-xdH" secondAttribute="bottom" id="Cjm-8v-K2I"/>
                                                     <constraint firstItem="5pl-vV-xdH" firstAttribute="centerY" secondItem="6p8-OR-F9U" secondAttribute="centerY" id="K32-ma-v9Q"/>
                                                     <constraint firstItem="oTW-iU-eID" firstAttribute="leading" secondItem="6p8-OR-F9U" secondAttribute="leading" id="NcX-CJ-Gyh"/>
                                                     <constraint firstAttribute="bottom" secondItem="oTW-iU-eID" secondAttribute="bottom" constant="8" id="PtX-Bb-830"/>
@@ -312,6 +312,7 @@
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="K32-ma-v9Q"/>
+                                                        <exclude reference="PtX-Bb-830"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -352,6 +353,7 @@
                                             <constraint firstAttribute="bottom" secondItem="Hn1-Bi-thL" secondAttribute="bottom" constant="8" id="NyO-F6-Da8"/>
                                             <constraint firstAttribute="trailing" secondItem="HFk-fH-rUh" secondAttribute="trailing" constant="16" id="Qru-JN-rpg"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HFk-fH-rUh" secondAttribute="bottom" constant="8" id="Rak-5l-o1f"/>
+                                            <constraint firstItem="oTW-iU-eID" firstAttribute="bottom" secondItem="HFk-fH-rUh" secondAttribute="bottom" id="UMy-cU-jQk"/>
                                             <constraint firstItem="6p8-OR-F9U" firstAttribute="leading" secondItem="e3P-1s-3rk" secondAttribute="leading" constant="16" id="W6a-U6-5Wu"/>
                                             <constraint firstAttribute="trailing" secondItem="6p8-OR-F9U" secondAttribute="trailing" constant="8" id="fVL-HS-MU8"/>
                                             <constraint firstItem="Hn1-Bi-thL" firstAttribute="leading" secondItem="e3P-1s-3rk" secondAttribute="leading" constant="16" id="h5q-IU-hY3"/>
@@ -441,6 +443,7 @@
                 <outlet property="ibVoucherLeftLbl" destination="1gD-qU-88Z" id="8fL-gD-9HA"/>
                 <outlet property="ibVoucherOverlayTitle" destination="UdC-2f-wlA" id="FJc-vy-1u2"/>
                 <outlet property="ibVoucherReferralCityLbl" destination="oTW-iU-eID" id="PDq-7R-rBV"/>
+                <outlet property="ibVoucherReferralShopLbl" destination="5pl-vV-xdH" id="ScJ-3x-kav"/>
                 <outlet property="ibVoucherShopLbl" destination="8aD-FT-HAc" id="sLR-4t-WTl"/>
                 <outlet property="ibVoucherTitleLbl" destination="2pN-4s-OQJ" id="4PU-wK-rZc"/>
             </connections>

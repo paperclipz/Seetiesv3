@@ -641,7 +641,7 @@
         
         DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
 
-        [voucherCell setDealModel:deal dealCollectionModel:self.dealCollectionModel];
+        [voucherCell initDealModel:deal dealCollectionModel:self.dealCollectionModel];
 
     }
     else{
@@ -651,11 +651,11 @@
             
             if ([self.dealManager checkIfDealIsCollected:deal.dID]) {
                 deal.voucher_info.voucher_id = [self.dealManager getCollectedDealVoucherId:deal.dID];
-                [voucherCell setDealModel:deal];
+                [voucherCell initDealModel:deal];
             }
             else{
                 deal.voucher_info.voucher_id = nil;
-                [voucherCell setDealModel:deal];
+                [voucherCell initDealModel:deal];
             }
         }  
 
