@@ -630,18 +630,31 @@
     
     
     voucherCell.constUpperContentHeight.constant = tableView.frame.size.width/2;
-    if (![Utils isArrayNull:self.dealsArray]) {
-        DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
+    
+    
+    if (self.dealViewType == 6) {
         
-        if ([self.dealManager checkIfDealIsCollected:deal.dID]) {
-            deal.voucher_info.voucher_id = [self.dealManager getCollectedDealVoucherId:deal.dID];
-            [voucherCell setDealModel:deal];
-        }
-        else{
-            deal.voucher_info.voucher_id = nil;
-            [voucherCell setDealModel:deal];
-        }
-    }  
+        DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
+
+        [voucherCell setDealModel:deal dealCollectionModel:self.dealCollectionModel];
+
+    }
+    else{
+    
+        if (![Utils isArrayNull:self.dealsArray]) {
+            DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
+            
+            if ([self.dealManager checkIfDealIsCollected:deal.dID]) {
+                deal.voucher_info.voucher_id = [self.dealManager getCollectedDealVoucherId:deal.dID];
+                [voucherCell setDealModel:deal];
+            }
+            else{
+                deal.voucher_info.voucher_id = nil;
+                [voucherCell setDealModel:deal];
+            }
+        }  
+
+    }
     
     return voucherCell;
 }
