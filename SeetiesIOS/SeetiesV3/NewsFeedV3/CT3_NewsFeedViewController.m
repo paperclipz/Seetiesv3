@@ -198,7 +198,7 @@ static NSCache* heightCache = nil;
 -(void)viewDealDetailsClicked:(DealsModel*)dealsModel{
     if (dealsModel.arrDeals.count == 1) {
         self.dealDetailsViewController = nil;
-        [self.dealDetailsViewController setDealModel:dealsModel.arrDeals[0]];
+        [self.dealDetailsViewController initDealModel:dealsModel.arrDeals[0]];
         [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
             [self.dealDetailsViewController setupView];
         }];

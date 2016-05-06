@@ -1059,7 +1059,7 @@
 {
     _dealDetailsViewController = nil;
     
-    [self.dealDetailsViewController setDealModel:model];
+    [self.dealDetailsViewController initDealModel:model];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         
         [self.dealDetailsViewController setupView];

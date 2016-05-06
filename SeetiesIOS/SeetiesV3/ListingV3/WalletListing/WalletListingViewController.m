@@ -278,7 +278,7 @@
     DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
     DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
     self.dealDetailsViewController = nil;
-    [self.dealDetailsViewController setDealModel:voucher];
+    [self.dealDetailsViewController initDealModel:voucher];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         [self.dealDetailsViewController setupView];
     }];
@@ -458,7 +458,7 @@
 -(void)viewDealDetailsClicked:(DealsModel *)dealsModel{
     if (dealsModel.arrDeals.count == 1) {
         self.dealDetailsViewController = nil;
-        [self.dealDetailsViewController setDealModel:dealsModel.arrDeals[0]];
+        [self.dealDetailsViewController initDealModel:dealsModel.arrDeals[0]];
         [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
             [self.dealDetailsViewController setupView];
         }];

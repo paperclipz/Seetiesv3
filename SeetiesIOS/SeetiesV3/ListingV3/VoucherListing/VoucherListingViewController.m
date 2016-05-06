@@ -154,13 +154,18 @@
             
         //Deal listing from referral code
         case 6:
+        {
             self.ibAltTitle.text = LocalisedString(@"Referral Rewards");
             [self showFirstHeader:NO];
             [self showFirstFooter:NO];
-            [self requestServerForCollectionInfo];
+            [self requestServerForCollectionInfo:^{
+                [self requestServerForDealListing];
 
+            }];
             
-            [self requestServerForDealListing];
+            
+        }
+           
             break;
             
         default:
@@ -663,10 +668,10 @@
     DealModel *dealModel = [self.dealsArray objectAtIndex:indexPath.row];
     self.dealDetailsViewController = nil;
     if (self.dealViewType == 6) {
-        [self.dealDetailsViewController setDealModel:dealModel withReferral:refferalID];
+        [self.dealDetailsViewController initDealModel:dealModel withReferral:refferalID];
     }
     else{
-        [self.dealDetailsViewController setDealModel:dealModel];
+        [self.dealDetailsViewController initDealModel:dealModel];
     }
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         [self.dealDetailsViewController setupView];
@@ -811,7 +816,7 @@
 #pragma mark - RequestServer
 
 
--(void)requestServerForCollectionInfo
+-(void)requestServerForCollectionInfo:(VoidBlock)didCompleteBlock
 {
     
     if (isDealCollectionLoading) {
@@ -846,6 +851,9 @@
         
         isDealCollectionLoading = NO;
 
+        if (didCompleteBlock) {
+            didCompleteBlock();
+        }
         
     }failure:^(id object) {
         
@@ -1148,7 +1156,7 @@
         [self.ibVoucherTable reloadData];
         self.isCollecting = NO;
         
-        [self requestServerForCollectionInfo];
+        [self requestServerForCollectionInfo:nil];
     } failure:^(id object) {
         self.isCollecting = NO;
     }];

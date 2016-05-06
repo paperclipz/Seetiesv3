@@ -105,8 +105,8 @@
 @property(nonatomic) NSArray *viewArray;
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) DealsModel *dealsModel;
-@property(nonatomic) NSString *referralID;
-@property(nonatomic) BOOL isProcessing;
+@property(nonatomic, strong) NSString *referralID;
+@property(nonatomic, assign) BOOL isProcessing;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) NSMutableArray<SeShopDetailModel> *nearbyShopArray;
 @property(nonatomic) NSMutableArray<NSDictionary> *dealAvailabilityArray;
@@ -220,12 +220,12 @@
 }
 */
 
--(void)setDealModel:(DealModel *)dealModel{
+-(void)initDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
     _referralID = nil;
 }
 
--(void)setDealModel:(DealModel *)dealModel withReferral:(NSString*)referralId{
+-(void)initDealModel:(DealModel *)dealModel withReferral:(NSString*)referralId{
     _dealModel = dealModel;
     _referralID = referralId;
 }
