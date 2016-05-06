@@ -811,6 +811,11 @@
 -(void)onDealRedeemed:(DealModel*)dealModel{
     self.redemptionHistoryViewController = nil;
     [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
+    
+    if (self.dealViewType == 6) {
+        [self requestServerForCollectionInfo];
+        [self requestServerForDealListing];
+    }
 }
 
 #pragma mark - RequestServer
