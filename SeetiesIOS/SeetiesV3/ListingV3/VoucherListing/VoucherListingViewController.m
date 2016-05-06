@@ -813,8 +813,12 @@
     [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
     
     if (self.dealViewType == 6) {
-        [self requestServerForCollectionInfo];
-        [self requestServerForDealListing];
+        
+        _dealsModel = nil;
+        _dealsArray = nil;
+        [self requestServerForCollectionInfo:^{
+            [self requestServerForDealListing];
+        }];
     }
 }
 
