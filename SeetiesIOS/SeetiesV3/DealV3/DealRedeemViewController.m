@@ -401,8 +401,8 @@
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutRedeemVoucher parameter:finalDict appendString:nil success:^(id object) {
 
-        //Remove voucher from deal manager if it is not reusable
-        if (self.dealModel.total_available_vouchers != -1) {
+        //Remove voucher from deal manager if it is 1 time use
+        if (self.dealModel.voucher_info.total_redeemable_count == 1) {
             [self.dealManager removeCollectedDeal:self.dealModel.dID];
         }
         if (self.dealRedeemDelegate) {

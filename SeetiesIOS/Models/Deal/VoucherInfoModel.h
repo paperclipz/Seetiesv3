@@ -25,4 +25,5 @@
 @property(nonatomic, assign) BOOL redeem_now;
 @property(nonatomic, strong) NSString *shop_id;
 @property(nonatomic, strong) SeShopDetailModel *shop_info;
+@property(nonatomic, assign) int total_redeemable_count;
 @end
