@@ -33,6 +33,14 @@
     return [[ConnectionManager Instance] dataManager];
 }
 
+
++(BOOL)isNetworkAvailable
+{
+    BOOL isReachable = [AFNetworkReachabilityManager sharedManager].reachable;
+    
+    return isReachable;
+}
+
 -(id)init
 {
     self = [super init];//set default dev
@@ -703,7 +711,6 @@
 }
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type withURL:(NSString*)url completionBlock:(IDBlock)completionBlock errorBlock:(IDBlock)errorBlock
 {
-    
     
     NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", url,[obj bv_jsonStringWithPrettyPrint:YES]);
     

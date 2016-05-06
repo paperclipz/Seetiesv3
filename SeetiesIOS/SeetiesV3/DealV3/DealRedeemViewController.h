@@ -17,6 +17,7 @@
 
 @interface DealRedeemViewController : CommonViewController
 @property id<DealRedeemDelegate> dealRedeemDelegate;
-
+@property(nonatomic,assign)BOOL isOffline;
 -(void)setDealModel:(DealModel *)dealModel;
+
 @end

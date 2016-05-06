@@ -82,7 +82,6 @@
 
 +(NSArray<DealExpiryDateModel*>*)getWalletList
 {
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSData * data = [defaults objectForKey:STORE_DEAL_ARRAY_KEY];
@@ -94,5 +93,31 @@
     return array;
 }
 
++(void)deleteVoucherWallet:(DealModel*)model
+{
+    if (model.total_available_vouchers != -1) {
+        
+        NSArray<DealExpiryDateModel *>* array = [DealExpiryDateModel getWalletList];
+        
+        for (int i = 0; array.count; i++) {
+            
+            DealExpiryDateModel* deModel = array[i];
+            for (int j = 0; j<deModel.dealModelArray.count; j++) {
+                
+                DealModel* dModel = deModel.dealModelArray[i];
+                
+                if ([model isEqual:dModel]) {
+                    
+                    [array[i].dealModelArray removeObject:dModel];
+                    
+                    [DealExpiryDateModel saveWalletList:array];
+                    
+                    break;
+                }
+                
+            }
+        }
+    }
+}
 
 @end

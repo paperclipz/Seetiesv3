@@ -49,7 +49,7 @@
 @property(nonatomic)InviteFrenViewController *inviteFriendViewController;
 @property(nonatomic)PromoPopOutViewController *promoCodeViewController;
 @property(nonatomic)VoucherListingViewController * voucherListingViewController;
-@property(nonnull)CT3_ReferalViewController* ct3_ReferalViewController;
+@property(nonatomic)CT3_ReferalViewController* ct3_ReferalViewController;
 
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
 
@@ -251,7 +251,8 @@
         [self requestServerForUserCollection];
     }
     
-  
+    self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @([[DealManager Instance] getWalletCount])}];
+
 }
 
 -(void)changeLanguage{
@@ -362,6 +363,9 @@
 
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
+        
+        [[DealManager Instance] setWalletCount:count];
+        
         self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @(count)}];
     } failure:^(id object) {
         

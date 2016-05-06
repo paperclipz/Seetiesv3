@@ -14,6 +14,7 @@
 
 @interface WalletListingViewController ()
 {
+    BOOL isOfflineData;
 
 }
 @property (weak, nonatomic) IBOutlet UILabel *ibWalletHeader;
@@ -46,6 +47,10 @@
 @end
 
 @implementation WalletListingViewController
+- (IBAction)btnUploadClicked:(id)sender {
+    
+    [[OfflineManager Instance]uploadDealToRedeem];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -356,7 +361,8 @@
 
 -(void)redeemVoucherClicked:(DealModel*)deal{
 //    To do more checking whether voucher can be redeemed
-    if (![Utils isPhoneNumberVerified]) {
+    
+    if (![Utils isPhoneNumberVerified] && !isOfflineData) {
         [Utils showVerifyPhoneNumber:self];
         return;
     }
@@ -376,6 +382,7 @@
         self.dealRedeemViewController = nil;
         [self.dealRedeemViewController setDealModel:deal];
         self.dealRedeemViewController.dealRedeemDelegate = self;
+        self.dealRedeemViewController.isOffline = isOfflineData;
         [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
     }
     else{
@@ -396,17 +403,26 @@
 -(void)onDealRedeemed:(DealModel *)dealModel{
     if (dealModel.total_available_vouchers != -1) {
         [self removeDealFromVoucherArray:dealModel];
+        [DealExpiryDateModel saveWalletList:self.voucherArray];
+
     }
     
     [self.ibTableView reloadData];
     
     self.redemptionHistoryViewController = nil;
-    [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
+    
+    if ([ConnectionManager isNetworkAvailable]) {
+        [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
+
+    }
+    else{
+    
+        [self.dealRedeemViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction)emptyBtnClicked:(id)sender {
     self.voucherListingViewController = nil;
-    HomeModel *homeModel = [[DataManager Instance] homeModel];
     NSDictionary *locationDict = [Utils getSavedUserLocation];
     HomeLocationModel *locationModel = [[HomeLocationModel alloc] init];
     @try {
@@ -414,7 +430,7 @@
         locationModel.longtitude = locationDict[KEY_LONGTITUDE];
         locationModel.place_id = locationDict[KEY_PLACE_ID];
         locationModel.locationName = locationDict[KEY_LOCATION];
-        locationModel.countryId = [locationDict[KEY_COUNTRY_ID] integerValue];
+        locationModel.countryId = (int)[locationDict[KEY_COUNTRY_ID] integerValue];
     } @catch (NSException *exception) {
         SLog(@"Wallet location exception: %@", exception);
     }
@@ -554,7 +570,7 @@
         if (self.dealsModel.offset == 1) {
             [self.voucherArray removeAllObjects];
         }
-        
+        isOfflineData = NO;
         [self rearrangeVoucherList];
         
         [DealExpiryDateModel saveWalletList:self.voucherArray];
@@ -576,16 +592,24 @@
             [self toggleEmptyView:NO];
         }
     } failure:^(id object) {
+        
+        isOfflineData = YES;
+
+        
         self.isLoading = NO;
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.ibTableView.tableFooterView = nil;
-        [self toggleEmptyView:YES];
         
         if ([Utils isArrayNull:self.voucherArray]) {
             self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
             [self.ibTableView reloadData];
 
         }
+        
+        if ([Utils isArrayNull:self.voucherArray]) {
+            [self toggleEmptyView:YES];
+        }
+
     }];
 }
 
@@ -629,7 +653,7 @@
 }
 
 
--(void)requestServerToRedeemVoucher:(NSArray<DealModel>*)array{
+-(void)requestServerToRedeemVouchers:(NSArray<DealModel>*)array{
    
     if (self.isLoading) {
         return;

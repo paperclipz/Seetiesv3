@@ -17,6 +17,7 @@
 
 +(void)saveWalletList:(NSArray<DealExpiryDateModel *>*)array;
 +(NSArray<DealExpiryDateModel*>*)getWalletList;
++(void)deleteVoucherWallet:(DealModel*)model;
 
 
 @end

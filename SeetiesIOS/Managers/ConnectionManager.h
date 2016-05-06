@@ -44,6 +44,7 @@ typedef void (^IErrorBlock)(id object);
 @property(nonatomic,strong)NSString* subPath;
 
 +(NSString*)getServerPath;
++(BOOL)isNetworkAvailable;
 
 +(id)Instance;
 +(DataManager*)dataManager;

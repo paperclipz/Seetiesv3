@@ -147,6 +147,7 @@
 		8A11D3911CC886950023A7ED /* UIActivityViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D38A1CC886950023A7ED /* UIActivityViewController+Extension.m */; };
 		8A11D3951CC88DC80023A7ED /* AutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D3941CC88DC80023A7ED /* AutoCoding.m */; };
 		8A11D3981CC88EDD0023A7ED /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A11D3971CC88EDD0023A7ED /* UIImage+PECrop.m */; };
+		8A142D441CDB61D700337DBF /* OfflineManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A142D431CDB61D700337DBF /* OfflineManager.m */; };
 		8A2E23431CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E23421CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		8A31CA771C9BA60B00CC5FB9 /* SuggestedPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A31CA761C9BA60B00CC5FB9 /* SuggestedPlaceModel.m */; };
 		8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A34094D1B8AD267009B66C3 /* NYXImagesHelper.m */; };
@@ -1582,6 +1583,8 @@
 		8A11D3941CC88DC80023A7ED /* AutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCoding.m; sourceTree = "<group>"; };
 		8A11D3961CC88EDD0023A7ED /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
 		8A11D3971CC88EDD0023A7ED /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
+		8A142D421CDB61D700337DBF /* OfflineManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineManager.h; sourceTree = "<group>"; };
+		8A142D431CDB61D700337DBF /* OfflineManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineManager.m; sourceTree = "<group>"; };
 		8A2E23411CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		8A2E23421CCF39EB00693C65 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 		8A31CA751C9BA60B00CC5FB9 /* SuggestedPlaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuggestedPlaceModel.h; path = SeetiesIOS/MODELS/Location/SuggestedPlaceModel.h; sourceTree = SOURCE_ROOT; };
@@ -4630,8 +4633,8 @@
 			isa = PBXGroup;
 			children = (
 				8AD6BD721B706CF30040437E /* ConnectionManager.h */,
-				8AD6BD731B706CF30040437E /* ConnectionManager.m */,
 				8AD6C8271B736C000040437E /* DataManager.h */,
+				8AD6BD731B706CF30040437E /* ConnectionManager.m */,
 				8AD6C8281B736C000040437E /* DataManager.m */,
 				8A7420EA1B82F7D5005DA654 /* LoadingManager.h */,
 				8A7420EB1B82F7D5005DA654 /* LoadingManager.m */,
@@ -4643,6 +4646,8 @@
 				8AF6FDD51C589C64005AAE5D /* MessageManager.m */,
 				C295DCD91C72C54300A1DED3 /* DealManager.h */,
 				C295DCDA1C72C54300A1DED3 /* DealManager.m */,
+				8A142D421CDB61D700337DBF /* OfflineManager.h */,
+				8A142D431CDB61D700337DBF /* OfflineManager.m */,
 			);
 			name = MANAGER;
 			path = Managers;
@@ -7596,6 +7601,7 @@
 				8AF6FE071C5F3F36005AAE5D /* CountriesModel.m in Sources */,
 				8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */,
 				8AF8679F1C7DAC1100B0195D /* SelectCategoryCollectionViewCell.m in Sources */,
+				8A142D441CDB61D700337DBF /* OfflineManager.m in Sources */,
 				8AEDBFB91C2031BA000BD2FF /* SearchModel.m in Sources */,
 				8A11D3981CC88EDD0023A7ED /* UIImage+PECrop.m in Sources */,
 				8AB276D71CC61FC700BD5EC8 /* UIImage+Extension.m in Sources */,

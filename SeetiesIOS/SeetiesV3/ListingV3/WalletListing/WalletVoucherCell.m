@@ -16,6 +16,9 @@
 #define REDEEM_IN_ATIVE [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.f alpha:1]
 
 @interface WalletVoucherCell()
+{
+
+}
 @property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibVoucherImg;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTitleLbl;
