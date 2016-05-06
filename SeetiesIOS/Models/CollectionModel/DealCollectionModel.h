@@ -16,7 +16,7 @@
 
 @property(nonatomic,strong)NSArray* content;
 
-@property(nonatomic,assign)int number_deals_collectable;
+@property(nonatomic,assign)int total_deals_collectable;
 
 @property(nonatomic,assign)int total_deals_collected;
 
