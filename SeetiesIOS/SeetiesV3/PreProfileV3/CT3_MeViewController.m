@@ -113,16 +113,14 @@
 
 - (IBAction)btnInviteClicked:(id)sender {
     if ([Utils hasReferralCampaign]) {
+        self.ct3referalViewController = nil;
         [self.navigationController pushViewController:self.ct3referalViewController animated:YES];
     }
     else{
+        self.ct3InviteFriendViewController = nil;
         [self.navigationController pushViewController:self.ct3InviteFriendViewController animated:YES];
     }
     
-}
-
-- (IBAction)btnTestReferralClicked:(id)sender {
-    [self.navigationController pushViewController:self.ct3referalViewController animated:YES];
 }
 
 - (IBAction)btnPromoClicked:(id)sender {

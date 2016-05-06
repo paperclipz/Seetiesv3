@@ -87,26 +87,29 @@
 
 -(int)getWalletCount{
     
-    if ([ConnectionManager isNetworkAvailable])
-    {
-        return self.walletCount;
+    
+    return self.walletCount;
 
-    }
-    else{
-        
-        
-        int count = 0;
-        NSArray<DealExpiryDateModel *>* arrExpireData = [DealExpiryDateModel getWalletList];
-        
-        for (int i = 0; i<arrExpireData.count; i++)
-        {
-            DealExpiryDateModel* model = arrExpireData[i];
-            count += model.dealModelArray.count;
-            
-        }
-        
-        return count;
-    }
+//    if ([ConnectionManager isNetworkAvailable])
+//    {
+//        return self.walletCount;
+//
+//    }
+//    else{
+//        
+//        
+//        int count = 0;
+//        NSArray<DealExpiryDateModel *>* arrExpireData = [DealExpiryDateModel getWalletList];
+//        
+//        for (int i = 0; i<arrExpireData.count; i++)
+//        {
+//            DealExpiryDateModel* model = arrExpireData[i];
+//            count += model.dealModelArray.count;
+//            
+//        }
+//        
+//        return count;
+//    }
 }
 
 -(void)setWalletCount:(int)count{

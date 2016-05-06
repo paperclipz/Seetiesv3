@@ -401,7 +401,7 @@
 }
 
 -(void)onDealRedeemed:(DealModel *)dealModel{
-    if (dealModel.total_available_vouchers != -1) {
+    if (dealModel.voucher_info.total_redeemable_count == 1) {
         [self removeDealFromVoucherArray:dealModel];
         [DealExpiryDateModel saveWalletList:self.voucherArray];
 
@@ -411,14 +411,14 @@
     
     self.redemptionHistoryViewController = nil;
     
-    if ([ConnectionManager isNetworkAvailable]) {
+//    if ([ConnectionManager isNetworkAvailable]) {
         [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
 
-    }
-    else{
-    
-        [self.dealRedeemViewController dismissViewControllerAnimated:YES completion:nil];
-    }
+//    }
+//    else{
+//    
+//        [self.dealRedeemViewController dismissViewControllerAnimated:YES completion:nil];
+//    }
 }
 
 - (IBAction)emptyBtnClicked:(id)sender {

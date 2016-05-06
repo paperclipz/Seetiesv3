@@ -1361,10 +1361,12 @@ static NSCache* heightCache = nil;
 }
 -(void)showInvitefriendView
 {
+    self.inviteFriendViewController = nil;
     [self.navigationController pushViewController:self.inviteFriendViewController animated:YES];
 }
 
 -(void)showReferralInvite{
+    self.referralViewController = nil;
     [self.navigationController pushViewController:self.referralViewController animated:YES];
 }
 

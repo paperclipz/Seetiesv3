@@ -89,12 +89,12 @@
         SLog(@"profile_photo fail");
     }
     
-    if (self.dealModel.total_available_vouchers == -1) {
+    if (self.dealModel.voucher_info.total_redeemable_count == -1) {
         self.ibDealUsageLbl.text = LocalisedString(@"REUSABLE");
         [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:122/255.0f green:210/255.0f blue:26/255.0f alpha:1]];
     }
     else{
-        self.ibDealUsageLbl.text = LocalisedString(@"1-TIME-USE");
+        self.ibDealUsageLbl.text = [LanguageManager stringForKey:@"{!count}-TIME-USE" withPlaceHolder:@{@"{!count}":@(self.dealModel.voucher_info.total_redeemable_count)}];
         [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:253/255.0f green:175/255.0f blue:23/255.0f alpha:1]];
     }
     self.ibDealUsageLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
