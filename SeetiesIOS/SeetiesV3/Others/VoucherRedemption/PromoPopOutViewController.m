@@ -109,6 +109,7 @@
 @property(nonatomic) BOOL hasRequestedTotp;
 @property(nonatomic) BOOL hasRequestedPromo;
 @property(nonatomic) BOOL hasRedeemed;
+@property(nonatomic) BOOL isReferral;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) NSString *message;
 
@@ -136,6 +137,7 @@
     self.hasRequestedTotp = NO;
     self.hasRequestedPromo = NO;
     self.hasRedeemed = NO;
+    self.isReferral = NO;
     [self setMainViewToDisplay];
    
     // Do any additional setup after loading the view from its nib.
@@ -459,9 +461,9 @@
             self.ibReferralSuccessfulDesc.text = LocalisedString(@"You can now check your rewards in notification!");
             [self.ibReferralSuccessfulOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             
-            [Utils setRoundBorder:self.ibMessageContentView color:[UIColor clearColor] borderRadius:8.0f];
+            [Utils setRoundBorder:self.ibReferralSuccessfulContentView color:[UIColor clearColor] borderRadius:8.0f];
         }
-            return self.ibMessageView;
+            return self.ibReferralSuccessfulView;
             
         default:
         {
@@ -535,6 +537,11 @@
         case PopOutViewTypeEnterPromo:
         {
             if (self.hasRequestedPromo) {
+                if (self.isReferral) {
+                    [nextVC setViewType:PopOutViewTypeReferralSuccessful];
+                    break;
+                }
+                
                 [nextVC setDealsModel:self.dealsModel];
                 [nextVC setEnteredPromoCode:self.enteredPromoCode];
                 nextVC.promoPopOutDelegate = self.promoPopOutDelegate;
@@ -855,13 +862,22 @@
         self.hasRequestedPromo = YES;
         [LoadingManager hide];
         self.isLoading = NO;
+        
+        @try {
+            NSDictionary *dict = object[@"data"];
+            NSString *type = dict[@"type"];
+            
+            self.isReferral = [type isEqualToString:VOUCHER_TYPE_REFERRAL];
+        } @catch (NSException *exception) {
+            self.isReferral = NO;
+        }
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
         
     } failure:^(id object) {
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
-        [MessageManager showMessageInPopOut:LocalisedString(@"system") subtitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.")];
+//        [MessageManager showMessageInPopOut:LocalisedString(@"system") subtitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.")];
 //        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         [LoadingManager hide];
         self.isLoading = NO;
