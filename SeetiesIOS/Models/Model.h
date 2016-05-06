@@ -8,10 +8,12 @@
 
 #import "JSONModel.h"
 
+
 @interface Model : JSONModel
 
 @property (strong, nonatomic) NSString* status;
 @property (strong, nonatomic) NSString* error;
 @property (strong, nonatomic) NSString* message;
+
 
 @end

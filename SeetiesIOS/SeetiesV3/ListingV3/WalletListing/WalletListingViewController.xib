@@ -71,6 +71,13 @@
                                 <action selector="historyBtnClicked:" destination="-1" eventType="touchUpInside" id="boK-xn-bFa"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrv-wX-8zb">
+                            <rect key="frame" x="26" y="19" width="236" height="26"/>
+                            <state key="normal" title="upload offline deal"/>
+                            <connections>
+                                <action selector="btnUploadClicked:" destination="-1" eventType="touchUpInside" id="xaG-DD-az7"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -167,7 +174,7 @@
                     <exclude reference="Ct2-2B-Ejc"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="559" y="419"/>
+            <point key="canvasLocation" x="561" y="448"/>
         </view>
         <view contentMode="scaleToFill" id="nBc-es-yJ3">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>

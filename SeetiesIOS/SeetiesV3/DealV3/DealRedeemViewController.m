@@ -9,6 +9,7 @@
 #import "DealRedeemViewController.h"
 #import "YLImageView.h"
 #import "YLGIFImage.h"
+#import "DealExpiryDateModel.h"
 
 @interface DealRedeemViewController ()
 {
@@ -73,6 +74,7 @@
 }
 
 - (IBAction)btnDirectionClicked:(id)sender {
+    
     [[MapManager Instance]showMapOptions:self.view LocationLat:self.dealModel.voucher_info.shop_info.location.lat LocationLong:self.dealModel.voucher_info.shop_info.location.lng];
 }
 
@@ -337,9 +339,27 @@
 
 #pragma mark - RequestServer
 -(void)requestServerToRedeemVoucher{
-    if (self.isRedeeming) {
+    
+    if (_isOffline) {
+        [[OfflineManager Instance]addDealToRedeem:self.dealModel];
+        
+        [self dropBottomView];
+
+        if ([self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
+            [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
+        }
+        
+        NSMutableArray<DealModel>* arrayDealIDs = [[[OfflineManager Instance] arrDealToRedeem] mutableCopy];
+        
         return;
     }
+    
+    if (self.isRedeeming) {
+        return;
+    
+    }
+    
+    
     
     self.isRedeeming = YES;
     

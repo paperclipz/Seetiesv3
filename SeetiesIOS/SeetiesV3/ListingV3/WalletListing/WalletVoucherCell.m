@@ -8,8 +8,17 @@
 
 #import "WalletVoucherCell.h"
 #import "TTTAttributedLabel.h"
+#import "NSDate+Calendar.h"
+#import "NSString+Extra.h"
+#import "AFNetworkReachabilityManager.h"
+
+#define REDEEM_ATIVE [UIColor colorWithRed:232/255.0f green:86/255.0f blue:99/255.f alpha:1]
+#define REDEEM_IN_ATIVE [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.f alpha:1]
 
 @interface WalletVoucherCell()
+{
+
+}
 @property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibVoucherImg;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTitleLbl;
@@ -112,13 +121,17 @@
         self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     }
     
-    VoucherInfoModel *voucherModel = self.dealModel.voucher_info;
-    if (voucherModel.redeem_now) {
-        [self.ibRedeemBtn setBackgroundColor:[UIColor colorWithRed:232/255.0f green:86/255.0f blue:99/255.f alpha:1]];
+    [self.ibRedeemBtn setBackgroundColor:REDEEM_IN_ATIVE];
+
+    if ([Utils isRedeemable:dealModel]) {
+        
+        if ([Utils isWithinOperationHour:dealModel.period]) {
+            
+            [self.ibRedeemBtn setBackgroundColor:REDEEM_ATIVE];
+
+        }
     }
-    else{
-        [self.ibRedeemBtn setBackgroundColor:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.f alpha:1]];
-    }
+    
     
     if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO]) {
         self.ibPromoLbl.hidden = NO;
@@ -126,6 +139,9 @@
     else{
         self.ibPromoLbl.hidden = YES;
     }
+    
+    // ========================= setup redeem active / in active ===========================//
+
     self.ibPromoLbl.text = LocalisedString(@"PROMO CODE");
     self.ibPromoLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
     [Utils setRoundBorder:self.ibPromoLbl color:[UIColor clearColor] borderRadius:self.ibPromoLbl.frame.size.height/2];
@@ -137,5 +153,6 @@
         [self.walletVoucherDelegate redeemVoucherClicked:self.dealModel];
     }
 }
+
 
 @end

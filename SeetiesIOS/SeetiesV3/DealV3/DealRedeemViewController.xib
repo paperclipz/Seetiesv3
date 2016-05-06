@@ -511,9 +511,9 @@
         <image name="CloseIconGrey.png" width="15" height="15"/>
         <image name="DealRedeemCardDown.png" width="1162" height="402"/>
         <image name="DealRedeemCardUp.png" width="1162" height="1162"/>
-        <image name="HowToRedeem1.gif" width="503" height="254"/>
-        <image name="HowToRedeem2.gif" width="320" height="329"/>
-        <image name="HowToRedeem3.gif" width="402" height="201"/>
+        <image name="HowToRedeem1.gif" width="438" height="249"/>
+        <image name="HowToRedeem2.gif" width="229" height="319"/>
+        <image name="HowToRedeem3.gif" width="323" height="190"/>
         <image name="SSBlueDirectionIcon.png" width="26" height="26"/>
         <image name="SsDefaultDisplayPhoto.png" width="30" height="30"/>
         <image name="SwipeToRedeemBg.png" width="1242" height="2208"/>

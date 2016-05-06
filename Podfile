@@ -22,13 +22,14 @@ pod 'InstagramKit', '~> 3.0'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'NSDate-Time-Ago'
+pod 'NSDate+Calendar'
 pod 'MMPickerView', '~> 0.0.1'
 pod 'IDMPhotoBrowser'
 pod 'YLGIFImage'
 pod 'AFNetworking', '~> 3.0'
+pod 'Realm'
 
 #================ Possible can be deleted =====================#
-
 #pod 'DBCamera', '~> 2.4'
 pod 'PureLayout'
 
