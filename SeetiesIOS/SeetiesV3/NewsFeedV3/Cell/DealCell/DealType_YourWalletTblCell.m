@@ -7,6 +7,7 @@
 //
 
 #import "DealType_YourWalletTblCell.h"
+#import "DealManager.h"
 
 @interface DealType_YourWalletTblCell()
 @property (weak, nonatomic) IBOutlet UIView *ibCborderview;
@@ -18,6 +19,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    int walletCount = [[DealManager Instance]getWalletCount];
+    NSString *countString = walletCount < 100? [NSString stringWithFormat:@"%d", walletCount] : @"99+";
+    self.lblCount.text = countString;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -37,8 +42,7 @@
 {
     self.ibTitle.text = LocalisedString(@"Voucher Wallet");
     self.ibDesc.text = LocalisedString(@"Check out your collected deals");
-    NSString *countString = walletCount < 100? [NSString stringWithFormat:@"%d", walletCount] : @"99+";
-    self.lblCount.text = countString;
+  
     
 }
 

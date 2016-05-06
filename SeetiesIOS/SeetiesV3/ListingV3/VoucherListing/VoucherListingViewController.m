@@ -13,6 +13,8 @@
 @interface VoucherListingViewController ()
 {
     NSString* refferalID;
+    
+    BOOL isDealCollectionLoading;
 }
 @property (nonatomic) DealsModel *dealsModel;
 @property (nonatomic) DealCollectionModel *dealCollectionModel;
@@ -76,6 +78,7 @@
     
     self.isLoading = NO;
     self.isCollecting = NO;
+    isDealCollectionLoading = NO;
     [self initSelfView];
 }
 
@@ -154,7 +157,7 @@
             self.ibAltTitle.text = LocalisedString(@"Referral Rewards");
             [self showFirstHeader:NO];
             [self showFirstFooter:NO];
-           // [self requestServerForCollectionInfo];
+            [self requestServerForCollectionInfo];
 
             
             [self requestServerForDealListing];
@@ -792,6 +795,10 @@
 
 -(void)requestServerForCollectionInfo
 {
+    
+    if (isDealCollectionLoading) {
+        return;
+    }
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
                            @"deal_collection_id" : self.dealCollectionModel.deal_collection_id,
                          };
@@ -802,8 +809,10 @@
     NSString* appendString = [NSString stringWithFormat:@"%@",self.dealCollectionModel.deal_collection_id];
 
     if (refferalID) {
-        [finalDict setObject:refferalID forKey:@"referral_code"];
+        [finalDict setObject:refferalID forKey:@"referral_u_id"];
     }
+    
+    isDealCollectionLoading = YES;
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetDealCollectionInfo parameter:finalDict appendString:appendString success:^(id object) {
 
@@ -811,8 +820,19 @@
         
         self.lblTitle.text = self.dealCollectionModel.cTitle;
         
+     
+        self.ibReferralCountLbl.text = [NSString stringWithFormat:@"(%d/%d)",self.dealCollectionModel.total_deals_collected,self.dealCollectionModel.total_deals_collectable];
+        
+        self.ibReferralLbl.text = [LanguageManager stringForKey:@"You can collect {!number} deal" withPlaceHolder:@{@"{!number}" : @(self.dealCollectionModel.total_deals_collectable)}];
+
+        
+        isDealCollectionLoading = NO;
+
+        
     }failure:^(id object) {
         
+        isDealCollectionLoading = NO;
+
     }];
 }
 
@@ -932,7 +952,7 @@
     }
     
     if (refferalID) {
-        [finalDict setObject:refferalID forKey:@"referral_code"];
+        [finalDict setObject:refferalID forKey:@"referral_u_id"];
     }
     
     NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.dealCollectionModel.deal_collection_id];
@@ -1091,6 +1111,10 @@
     [finalDict addEntriesFromDictionary:coreDict];
     [finalDict addEntriesFromDictionary:locationDict];
     
+    if (refferalID) {
+        [finalDict setObject:refferalID forKey:@"referral_u_id"];
+    }
+    
     self.isCollecting = YES;
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostCollectDeals parameter:finalDict appendString:nil success:^(id object) {
@@ -1100,10 +1124,13 @@
         model.total_available_vouchers = dealModel.total_available_vouchers;
         
         [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
+        
         [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
         [self RequestServerForVouchersCount];
         [self.ibVoucherTable reloadData];
         self.isCollecting = NO;
+        
+        [self requestServerForCollectionInfo];
     } failure:^(id object) {
         self.isCollecting = NO;
     }];
