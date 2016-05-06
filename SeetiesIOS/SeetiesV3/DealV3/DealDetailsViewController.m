@@ -105,6 +105,7 @@
 @property(nonatomic) NSArray *viewArray;
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) DealsModel *dealsModel;
+@property(nonatomic) NSString *referralID;
 @property(nonatomic) BOOL isProcessing;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) NSMutableArray<SeShopDetailModel> *nearbyShopArray;
@@ -221,6 +222,12 @@
 
 -(void)setDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
+    _referralID = nil;
+}
+
+-(void)setDealModel:(DealModel *)dealModel withReferral:(NSString*)referralId{
+    _dealModel = dealModel;
+    _referralID = referralId;
 }
 
 -(void)initSelfView{
@@ -1242,6 +1249,10 @@
     
     [finalDict addEntriesFromDictionary:coreDict];
     [finalDict addEntriesFromDictionary:locationDict];
+    
+    if (self.referralID) {
+        [finalDict setObject:self.referralID forKey:@"referral_u_id"];
+    }
     
     self.isProcessing = YES;
     
