@@ -19,8 +19,7 @@
 #import "CTWebViewController.h"
 #import "VoucherListingViewController.h"
 
-
-@interface CT3_NotificationViewController () 
+@interface CT3_NotificationViewController ()
 @property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
 @property (nonatomic, strong) NotificationTableViewController *followingTableViewController;
 @property (nonatomic, strong) NotificationTableViewController *notificationTableViewController;
@@ -43,6 +42,12 @@
 @end
 
 @implementation CT3_NotificationViewController
+
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [Utils requestServerForNotificationCount];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -243,6 +248,16 @@
 //        return;
 //    }
     switch (model.notType) {
+        case NotificationType_Phone_Verification:
+        {
+            if (![Utils isPhoneNumberVerified]) {
+                [Utils showVerifyPhoneNumber:self];
+
+            }
+
+        }
+            break;
+            
         case NotificationType_Mention:
         case NotificationType_Comment:
         case NotificationType_PostShared:

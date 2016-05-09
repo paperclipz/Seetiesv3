@@ -1584,6 +1584,7 @@ static NSCache* heightCache = nil;
             constTopScrollView.constant = TopBarHeight;
         }
 
+        
         if (![Utils isArrayNull:self.homeModel.featured_deals]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_SuperDeal]];
             needToShowWallet = YES;
@@ -1596,6 +1597,12 @@ static NSCache* heightCache = nil;
             }
         }
         
+        if (![Utils isGuestMode]) {
+            if ([Utils hasReferralCampaign]) {
+                [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_ReferFriends]];
+            }
+        }
+        
         if (![Utils isArrayNull:self.homeModel.quick_browse]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_QuickBrowse]];
         }
@@ -1605,9 +1612,7 @@ static NSCache* heightCache = nil;
 
         }
         
-        if ([Utils hasReferralCampaign]) {
-            [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_ReferFriends]];
-        }
+       
         
         [self.ibTableView reloadData];
 

@@ -29,7 +29,8 @@
 @interface DealDetailsViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, PromoPopOutDelegate, DealRedeemDelegate>
 
 -(void)initDealModel:(DealModel *)dealModel;// set before push
--(void)initDealModel:(DealModel *)dealModel withReferral:(NSString*)referralId;
+//For referral campaign
+-(void)initDealModel:(DealModel *)dealModel withReferral:(NSString*)referralId withDealCollectionInfo:(DealCollectionModel*)dealCollectionModel;
 -(void)setupView;// on completion setup view
 
 @property(nonatomic,copy)DealModelBlock dealModelBlock;

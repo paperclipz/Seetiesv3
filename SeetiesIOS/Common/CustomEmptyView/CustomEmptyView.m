@@ -12,6 +12,7 @@
 
 @interface CustomEmptyView()
 @property (nonatomic, strong) EmptyStateView *customEmptyStateView;
+@property (weak, nonatomic) IBOutlet UILabel *lblLoading;
 
 @end
 
@@ -63,5 +64,11 @@
     } @catch (NSException *exception) {
         
     }
-  }
+  
+}
+
+-(void)awakeFromNib
+{
+    self.lblLoading.text = LocalisedString(@"Collect Now, Pay at Shop");
+}
 @end

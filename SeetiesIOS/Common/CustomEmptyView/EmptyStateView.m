@@ -8,6 +8,11 @@
 
 #import "EmptyStateView.h"
 
+@interface EmptyStateView()
+@property (weak, nonatomic) IBOutlet UILabel *lblLoading;
+
+@end
+
 @implementation EmptyStateView
 
 /*
@@ -56,4 +61,9 @@
     }
 }
 
+-(void)awakeFromNib
+{
+    self.lblLoading.text = LocalisedString(@"Collect Now, Pay at Shop");
+    
+}
 @end

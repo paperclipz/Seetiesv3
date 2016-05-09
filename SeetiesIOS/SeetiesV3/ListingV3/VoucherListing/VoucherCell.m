@@ -87,16 +87,16 @@
     SeShopDetailModel *shopModel = self.dealModel.shops[0];
     NSString *shopName = shopModel.name;
     NSString *shopAddress = shopModel.location.display_address;
-    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
-        self.ibReferralShopView.hidden = NO;
-        self.ibNormalShopView.hidden = YES;
-        
-        self.ibVoucherReferralShopLbl.text = shopName;
-        self.ibVoucherReferralCityLbl.text = [shopAddress uppercaseString];   //To be changed to city
-        self.ibVoucherReferralCityLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-        [Utils setRoundBorder:self.ibVoucherReferralCityLbl color:[UIColor clearColor] borderRadius:self.ibVoucherReferralCityLbl.frame.size.height/2];
-    }
-    else{
+//    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
+//        self.ibReferralShopView.hidden = NO;
+//        self.ibNormalShopView.hidden = YES;
+//        
+//        self.ibVoucherReferralShopLbl.text = shopName;
+//        self.ibVoucherReferralCityLbl.text = [shopAddress uppercaseString];   //To be changed to city
+//        self.ibVoucherReferralCityLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+//        [Utils setRoundBorder:self.ibVoucherReferralCityLbl color:[UIColor clearColor] borderRadius:self.ibVoucherReferralCityLbl.frame.size.height/2];
+//    }
+//    else{
         self.ibReferralShopView.hidden = YES;
         self.ibNormalShopView.hidden = NO;
         
@@ -112,12 +112,13 @@
         else{
             self.ibVoucherShopLbl.text = [NSString stringWithFormat:@"%@ \u2022 %@", shopName, shopAddress];
         }
-    }
+//    }
     
     [self setDealType];
     [self setRedeemCollect];
     [self setVoucherLeft];
     [self setDaysLeft];
+    [self setHeaderOverlay];
 }
 
 -(void)setDealType{
@@ -152,17 +153,12 @@
 }
 
 -(void)setVoucherLeft{
-    if (self.dealModel.total_available_vouchers > 0 && self.dealModel.total_available_vouchers <= 10) {
+    if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE] && (self.dealModel.total_available_vouchers > 0 && self.dealModel.total_available_vouchers <= 10)) {
         self.ibVoucherLeftLbl.hidden = NO;
         self.ibVoucherBlackOverylay.hidden = YES;
         self.ibVoucherLeftLbl.text = [LanguageManager stringForKey:@"{!number} voucher(s) left" withPlaceHolder:@{@"{!number}": @(self.dealModel.total_available_vouchers)}];
         self.ibVoucherLeftLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
         [Utils setRoundBorder:self.ibVoucherLeftLbl color:[UIColor clearColor] borderRadius:self.ibVoucherLeftLbl.frame.size.height/2];
-    }
-    else if (self.dealModel.total_available_vouchers == 0){
-        [self setSoldOutOverlay];
-        self.ibVoucherLeftLbl.hidden = YES;
-        self.ibVoucherBlackOverylay.hidden = NO;
     }
     else{
         self.ibVoucherLeftLbl.hidden = YES;
@@ -171,76 +167,62 @@
 }
 
 -(void)setRedeemCollect{
-    NSInteger campaignDaysLeft = 0;
-    if (self.dealCollectionModel) {
-        @try {
-            NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
-            [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-            [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            NSDate *campaignEndDate = [utcDateFormatter dateFromString:self.dealCollectionModel.expired_at];
-            campaignDaysLeft = [Utils numberOfDaysLeft:campaignEndDate];
-        } @catch (NSException *exception) {
+    SWITCH (self.dealModel.voucher_info.status) {
+        CASE (VOUCHER_STATUS_NONE)
+        {
+            if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
+                if (self.dealCollectionModel && ([self.dealCollectionModel isCampaignExpired] || [self.dealCollectionModel isExceedNumberOfCollectable])) {
+                    [self setCollectBtnEnabled:NO];
+                    return;
+                }
+            }
             
+            if (self.dealModel.total_available_vouchers == 0) {
+                [self setCollectBtnEnabled:NO];
+            }
+            else{
+                [self setCollectBtnEnabled:YES];
+            }
+            break;
         }
+            
+        CASE (VOUCHER_STATUS_COLLECTED)
+        {
+            if (self.dealModel.voucher_info.redeem_now) {
+                [self setRedeemBtnEnabled:YES];
+            }
+            else{
+                [self setRedeemBtnEnabled:NO];
+            }
+            break;
+        }
+            
+        CASE (VOUCHER_STATUS_REDEEMED)
+        {
+            [self setRedeemBtnEnabled:NO];
+            break;
+        }
+        
+        CASE (VOUCHER_STATUS_EXPIRED)
+        {
+            [self setRedeemBtnEnabled:NO];
+            break;
+        }
+        
+        DEFAULT
+        {
+            [self setCollectBtnEnabled:NO];
+            break;
+        }
+        
     }
     
-    if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
-        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && (self.dealCollectionModel && campaignDaysLeft <= 0)) {
-            [self setCollectBtnEnabled:NO];
-            return;
-        }
-        
-        if (self.dealModel.total_available_vouchers == 0) {
-            [self setCollectBtnEnabled:NO];
-        }
-        else{
-            [self setCollectBtnEnabled:YES];
-        }
-    }
-    else{
-        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && (self.dealCollectionModel && campaignDaysLeft <= 0)) {
-            [self setRedeemBtnEnabled:NO];
-            return;
-        }
-        
-        if (self.dealModel.voucher_info.redeem_now) {
-            [self setRedeemBtnEnabled:YES];
-        }
-        else{
-            [self setRedeemBtnEnabled:NO];
-        }
-        
-    }
 }
 
 -(void)setDaysLeft{    
     NSInteger numberOfDaysLeft = self.dealModel.collectionDaysLeft;
-
-    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
-        NSInteger campaignDaysLeft = 0;
-        if (self.dealCollectionModel) {
-           
-            @try {
-                NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
-                [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-                [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                NSDate *campaignEndDate = [utcDateFormatter dateFromString:self.dealCollectionModel.expired_at];
-                campaignDaysLeft = [Utils numberOfDaysLeft:campaignEndDate];
-            } @catch (NSException *exception) {
-                
-            }
-        }
-        
-        if (campaignDaysLeft <= 0) {
-            [self setCampaignEndOverlay];
-            self.ibVoucherBlackOverylay.hidden = NO;
-        }
-        else{
-            self.ibVoucherBlackOverylay.hidden = YES;
-        }
-    }
     
-    if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0) {
+    if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE] && (numberOfDaysLeft < 8 && numberOfDaysLeft > 0)) {
         self.ibDaysLeftLbl.hidden = NO;
         self.ibDaysLeftLbl.text = [LanguageManager stringForKey:@"{!number} day(s) left" withPlaceHolder:@{@"{!number}": @(numberOfDaysLeft)}];
         self.ibDaysLeftLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -258,6 +240,35 @@
     }
 }
 
+-(void)setHeaderOverlay{
+    NSInteger collectionDaysLeft = self.dealModel.collectionDaysLeft;
+    
+    self.ibVoucherBlackOverylay.hidden = NO;
+    if (self.dealCollectionModel && [self.dealCollectionModel isCampaignExpired]) {
+        [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingCampaignEnd.png"]];
+        self.ibVoucherOverlayTitle.text = LocalisedString(@"Campaign End");
+    }
+    else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_EXPIRED]){
+        [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsExpiredIcon.png"]];
+        self.ibVoucherOverlayTitle.text = LocalisedString(@"Expired");
+    }
+    else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE] && collectionDaysLeft <= 0){
+        [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsExpiredIcon.png"]];
+        self.ibVoucherOverlayTitle.text = LocalisedString(@"Expired");
+    }
+    else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE] && self.dealModel.total_available_vouchers == 0){
+        [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingSoldOutIcon.png"]];
+        self.ibVoucherOverlayTitle.text = LocalisedString(@"Sold Out");
+    }
+    else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_REDEEMED]){
+        [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsRedeemedIcon.png"]];
+        self.ibVoucherOverlayTitle.text = LocalisedString(@"Redeemed");
+    }
+    else{
+        self.ibVoucherBlackOverylay.hidden = YES;
+    }
+}
+
 -(void)setCollectBtnEnabled:(BOOL)enabled{
     [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Collect") forState:UIControlStateNormal];
     UIColor *btnColour = enabled? DEVICE_COLOR : [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1];
@@ -270,16 +281,6 @@
     UIColor *btnColour = enabled? [UIColor colorWithRed:242/255.0 green:109/255.0 blue:125/255.0 alpha:1] : [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1];
     [self.ibVoucherCollectBtn setBackgroundColor:btnColour];
     [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
-}
-
--(void)setSoldOutOverlay{
-    [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingSoldOutIcon.png"]];
-    self.ibVoucherOverlayTitle.text = LocalisedString(@"Sold Out");
-}
-
--(void)setCampaignEndOverlay{
-    [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingCampaignEnd.png"]];
-    self.ibVoucherOverlayTitle.text = LocalisedString(@"Campaign End");
 }
 
 - (IBAction)collectRedeemBtnClicked:(id)sender {

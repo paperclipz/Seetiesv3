@@ -133,18 +133,25 @@
     }
     
     
-    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO]) {
+    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO] || [self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
         self.ibPromoLbl.hidden = NO;
+        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO]) {
+            self.ibPromoLbl.text = LocalisedString(@"PROMO CODE");
+        }
+        else if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]){
+            self.ibPromoLbl.text = LocalisedString(@"REFERRAL");
+        }
+        self.ibPromoLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+        [Utils setRoundBorder:self.ibPromoLbl color:[UIColor clearColor] borderRadius:self.ibPromoLbl.frame.size.height/2];
     }
     else{
         self.ibPromoLbl.hidden = YES;
     }
     
     // ========================= setup redeem active / in active ===========================//
-
-    self.ibPromoLbl.text = LocalisedString(@"PROMO CODE");
-    self.ibPromoLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-    [Utils setRoundBorder:self.ibPromoLbl color:[UIColor clearColor] borderRadius:self.ibPromoLbl.frame.size.height/2];
+    
+    
+    
     
 }
 

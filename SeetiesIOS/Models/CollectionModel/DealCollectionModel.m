@@ -7,6 +7,7 @@
 //
 
 #import "DealCollectionModel.h"
+#import "NSDate+Calendar.h"
 
 @interface DealCollectionModel()
 
@@ -74,4 +75,43 @@
 //{
 //    return nil;
 //}
+
+#pragma mark - process is campaign is expired
+
+-(BOOL)isCampaignExpired
+{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    
+    NSDate *expiryDate = [formatter dateFromString:self.expired_at];
+    
+    
+    if ([expiryDate isGreaterDate:[NSDate date]]) {
+        
+       
+        return YES;
+        
+    }
+    else{
+        return NO;
+        
+    }
+}
+
+#pragma mark - process is voucher is able to redeem
+
+-(BOOL)isExceedNumberOfCollectable
+{
+    
+    if (self.total_deals_collected >= self.total_deals_collectable) {
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
 @end

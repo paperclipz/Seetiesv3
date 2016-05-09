@@ -380,7 +380,7 @@
     
     if (isRedeemable) {
         self.dealRedeemViewController = nil;
-        [self.dealRedeemViewController setDealModel:deal];
+        [self.dealRedeemViewController initWithDealModel:deal];
         self.dealRedeemViewController.dealRedeemDelegate = self;
         self.dealRedeemViewController.isOffline = isOfflineData;
         [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];

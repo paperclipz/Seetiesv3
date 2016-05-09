@@ -54,6 +54,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHowToRedeemTopConstraint;
 
 @property(nonatomic) DealModel *dealModel;
+@property(nonatomic) NSString *referralID;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) BOOL isRedeeming;
 @property(nonatomic) BOOL hasRedeemed;
@@ -117,8 +118,14 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)setDealModel:(DealModel *)dealModel{
+-(void)initWithDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
+    _referralID = nil;
+}
+
+-(void)initWithDealModel:(DealModel *)dealModel referralID:(NSString *)referralId{
+    _dealModel = dealModel;
+    _referralID = referralId;
 }
 
 -(void)initSelfView{
@@ -395,6 +402,10 @@
         
         [finalDict addEntriesFromDictionary:appendDict];
 
+    }
+    
+    if (self.referralID) {
+        [finalDict setObject:self.referralID forKey:@"referral_u_id"];
     }
     
     [LoadingManager show];

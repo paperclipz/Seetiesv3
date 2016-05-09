@@ -97,6 +97,7 @@
     switch (model.notType) {
         case NotificationType_Follow:
         case NotificationType_CollectionFollow:
+        case NotificationType_User:
 
             imageName = @"NotificationFollow.png";
             break;
@@ -116,15 +117,18 @@
             imageName = @"NotificationComment.png";
 
             break;
-        default:
+
         case NotificationType_Post:
         case NotificationType_PostShared:
         case NotificationType_SeetiesShared:
+        case NotificationType_DealShared:
 
             imageName = @"NotificationShare.png";
 
             break;
-            
+        default:
+        case NotificationType_None:
+        case NotificationType_ReferralReward:
         case NotificationType_Seeties:
             
             imageName = @"NotificationBySeeties.png";

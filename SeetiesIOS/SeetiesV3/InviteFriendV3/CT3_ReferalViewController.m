@@ -50,12 +50,13 @@
     [self.ibReferralDetailsBtn setTitle:LocalisedString(@"Details") forState:UIControlStateNormal];
    
     if (![Utils isStringNull:self.userProfile.referral_code]) {
+        self.userProfile.referral_code = [self.userProfile.referral_code uppercaseString];
         NSString *refCode = [LanguageManager stringForKey:@"Share your promo code\n{!referral}" withPlaceHolder:@{@"{!referral}":self.userProfile.referral_code}];
         NSMutableAttributedString *attrRefCode = [[NSMutableAttributedString alloc] initWithString:refCode];
         NSRange refRange = [refCode rangeOfString:self.userProfile.referral_code];
         [attrRefCode beginEditing];
         [attrRefCode addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:30.0f] range:refRange];
-        [attrRefCode addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:254/255.0f green:236/255.0f blue:108/255.0f alpha:1] range:refRange];
+        [attrRefCode addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:255/255.0f green:236/255.0f blue:109/255.0f alpha:1] range:refRange];
         [attrRefCode endEditing];
         self.ibReferralCode.attributedText = attrRefCode;
     }
@@ -118,7 +119,7 @@
 - (IBAction)btnCopyReferralClicked:(id)sender {
     UIPasteboard *pb = [UIPasteboard generalPasteboard];
     [pb setString:self.userProfile.referral_code];
-    [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Referral code copied") Type:TSMessageNotificationTypeMessage];
+    [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Referral code copied") Type:TSMessageNotificationTypeSuccess];
 }
 
 -(IBAction)backgroundViewDidTap{

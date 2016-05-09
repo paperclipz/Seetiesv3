@@ -309,4 +309,8 @@ typedef enum {
 #define CHINESE_STR @"繁體中文 "
 #define CHINESE_CENTRAL @"中文 "
 
+#pragma mark - NOTIFICATION
++(void)startNotification;
++(void)requestServerForNotificationCount;
+
 @end
