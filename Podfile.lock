@@ -43,9 +43,6 @@ PODS:
   - NSDate-Time-Ago (1.0.1)
   - pop (1.0.9)
   - PureLayout (3.0.1)
-  - Realm (0.99.1):
-    - Realm/Headers (= 0.99.1)
-  - Realm/Headers (0.99.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -77,7 +74,6 @@ DEPENDENCIES:
   - NSDate+Calendar
   - NSDate-Time-Ago
   - PureLayout
-  - Realm
   - SDWebImage
   - STPopup
   - SVPullToRefresh
@@ -118,7 +114,6 @@ SPEC CHECKSUMS:
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
-  Realm: 522a0cc8e1f8755ee56d7dc16ca0fc380d045766
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   STPopup: dca530d01343df997c5ed42a7465355cd5cbf01d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c

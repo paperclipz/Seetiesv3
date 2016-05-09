@@ -673,6 +673,15 @@
     else{
         [self.dealDetailsViewController initDealModel:dealModel];
     }
+    
+    
+    __weak typeof (self)weakSelf = self;
+    self.dealDetailsViewController.dealModelBlock = ^(DealModel* model)
+    {
+        [weakSelf.dealsArray replaceObjectAtIndex:indexPath.row withObject:model];
+        
+    };
+    
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         [self.dealDetailsViewController setupView];
     }];

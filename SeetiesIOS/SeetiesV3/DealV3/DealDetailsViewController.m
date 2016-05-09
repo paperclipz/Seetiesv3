@@ -184,6 +184,22 @@
     [self.ibDealsTable registerNib:[UINib nibWithNibName:@"SeDealsFeaturedTblCell" bundle:nil] forCellReuseIdentifier:@"SeDealsFeaturedTblCell"];
     [self.ibNearbyShopCollection registerNib:[UINib nibWithNibName:@"NearbyShopsCell" bundle:nil] forCellWithReuseIdentifier:@"NearbyShopsCell"];
     
+    
+    __weak typeof (self)weakSelf = self;
+    
+    self.btnBackBlock = ^(id object)
+    {
+    
+        if (weakSelf.dealModelBlock) {
+            weakSelf.dealModelBlock(weakSelf.dealModel);
+        }
+
+    };
+    
+    
+    
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{

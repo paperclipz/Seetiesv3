@@ -31,4 +31,6 @@
 -(void)initDealModel:(DealModel *)dealModel;// set before push
 -(void)initDealModel:(DealModel *)dealModel withReferral:(NSString*)referralId;
 -(void)setupView;// on completion setup view
+
+@property(nonatomic,copy)DealModelBlock dealModelBlock;
 @end
