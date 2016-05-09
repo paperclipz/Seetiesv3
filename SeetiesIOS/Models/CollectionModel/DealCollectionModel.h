@@ -31,4 +31,10 @@
 //expired_info
 @property(nonatomic,strong)NSString* expired_at;
 @property(nonatomic,assign)int expired_in_days;
+
+-(BOOL)validateAbleToRedeem:(DealCollectionModel*)model;
+
+-(BOOL)isCampaignExpired;
+-(BOOL)isExceedNumberOfCollectable;
+
 @end

@@ -244,10 +244,10 @@
 - (NSString *)GetBaseURLPath {
     
     if ([Utils isAppProductionBuild]) {
-        return kProductionBasePath;
+        return PRODUCTION_BASE_PATH;
     }
     
-    return kDevelopmentBasePath;
+    return DEVELOPMENT_BASE_PATH;
 }
 
 @end

@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="emptyStateView" destination="57I-NY-6tp" id="wHD-Fo-Exe"/>
                 <outlet property="ibLoadingImg" destination="Zi1-wW-8Ig" id="WFz-cs-39v"/>
+                <outlet property="lblLoading" destination="YnG-nD-4aW" id="bVd-7m-kFD"/>
                 <outlet property="loadingView" destination="6dy-tm-L7p" id="Iz3-tu-gWR"/>
             </connections>
         </placeholder>

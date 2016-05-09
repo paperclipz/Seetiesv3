@@ -331,8 +331,8 @@ static BOOL IS_SIMULATOR = NO;
 #define DEVICE_TYPE 2
 
 //Share path
-#define kProductionBasePath @"https://seeties.me/"
-#define kDevelopmentBasePath @"https://itcave2.seeties.me/"
+#define PRODUCTION_BASE_PATH @"https://seeties.me/"
+#define DEVELOPMENT_BASE_PATH @"https://itcave2.seeties.me/"
 
 
 

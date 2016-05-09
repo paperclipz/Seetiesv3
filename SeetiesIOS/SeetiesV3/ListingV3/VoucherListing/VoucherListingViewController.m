@@ -8,7 +8,8 @@
 
 #import "VoucherListingViewController.h"
 #import "CT3_SearchListingViewController.h"
-
+#import "NSDate+Calendar.h"
+#import "UIView+Toast.h"
 
 @interface VoucherListingViewController ()
 {
@@ -736,6 +737,10 @@
 }
 
 -(void)voucherCollectRedeemClicked:(DealModel *)dealModel{
+   
+    
+    // checking for guest mode
+    
     if ([Utils isGuestMode]) {
         [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
@@ -746,12 +751,35 @@
         }];
         return;
     }
-    else{
-        if (![Utils isPhoneNumberVerified]) {
-            [Utils showVerifyPhoneNumber:self];
-            return;
-        }
+    
+    // checking for phone verification
+    if (![Utils isPhoneNumberVerified]) {
+        [Utils showVerifyPhoneNumber:self];
+        return;
     }
+    
+    // checking for referral redeem state. from deal collection model whether exceed the number of allowed count
+    if ([self.dealCollectionModel isExceedNumberOfCollectable]) {
+      
+        // create a new style
+        CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
+        
+        // this is just one of many style options
+        style.messageColor = [UIColor whiteColor];
+        
+        style.messageFont = [UIFont fontWithName:CustomFontNameBold size:10];
+        style.cornerRadius = 12;
+        
+        // present the toast with the new style
+        [self.view makeToast:LocalisedString(@"You Have Exceed The Number To Collect")
+                    duration:3.0
+                    position:CSToastPositionBottom
+                       style:style];
+
+
+        return;
+    }
+    
     
     if ([Utils isStringNull:dealModel.voucher_info.voucher_id]) {
         if (dealModel.total_available_vouchers == 0) {
@@ -861,11 +889,24 @@
         
         self.lblTitle.text = self.dealCollectionModel.cTitle;
         
-     
-        self.ibReferralCountLbl.text = [NSString stringWithFormat:@"(%d/%d)",self.dealCollectionModel.total_deals_collected,self.dealCollectionModel.total_deals_collectable];
         
-        self.ibReferralLbl.text = [LanguageManager stringForKey:@"You can collect {!number} deal" withPlaceHolder:@{@"{!number}" : @(self.dealCollectionModel.total_deals_collectable)}];
-
+        if ([self.dealCollectionModel isCampaignExpired])
+        {
+            self.ibReferralCountLbl.hidden = NO;
+                
+            self.ibReferralCountLbl.text = [NSString stringWithFormat:@"(%d/%d)",self.dealCollectionModel.total_deals_collected,self.dealCollectionModel.total_deals_collectable];
+            
+            self.ibReferralLbl.text = [LanguageManager stringForKey:@"You can collect {!number} deal" withPlaceHolder:@{@"{!number}" : @(self.dealCollectionModel.total_deals_collectable)}];
+            
+        }
+        
+        else{
+            
+            self.ibReferralLbl.text = LocalisedString(@"Oopsss, the campaign has ended");
+            
+            self.ibReferralCountLbl.hidden = YES;
+            
+        }
         
         isDealCollectionLoading = NO;
 
