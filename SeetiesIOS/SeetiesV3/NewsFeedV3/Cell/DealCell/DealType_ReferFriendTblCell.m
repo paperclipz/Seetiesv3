@@ -26,12 +26,17 @@
     
     [Utils setRoundBorder:self.ibCborderview color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
 
+    
+}
+
+-(void)initData
+{
     @try {
-        InviteFriendModel* model = [[[[[ConnectionManager dataManager] appInfoModel]countries]current_country]invite_friend_banner];
+        InviteFriendModel* model = [[[[[DataManager Instance] appInfoModel]countries]current_country]invite_friend_banner];
         
         if (model) {
             
-            self.ibTitle.text = model.title;
+            self.ibTitle.text = LocalisedString(model.title);
             [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 
                 self.ibImageView.image = image;
@@ -42,7 +47,7 @@
     } @finally {
         
     }
-   
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

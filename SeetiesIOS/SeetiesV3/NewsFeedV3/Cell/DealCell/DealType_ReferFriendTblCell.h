@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DealType_ReferFriendTblCell : CommonTableViewCell
+-(void)initData;
 
 @end

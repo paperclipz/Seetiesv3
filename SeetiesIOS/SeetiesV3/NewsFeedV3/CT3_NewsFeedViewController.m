@@ -798,7 +798,9 @@ static NSCache* heightCache = nil;
                 if (cell == nil) {
                     cell = [[DealType_ReferFriendTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
-                                
+                
+                [cell initData];
+                
                 return cell;
                 
             }

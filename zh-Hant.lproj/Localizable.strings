@@ -1437,7 +1437,7 @@
 "Every time a friend signs up with your invite code, both of you receive a reward each. Terms and conditions apply." = "每當您的好友使用您的邀請碼加入時, 你們各自便可獲取一份限量禮卷喔! 附加條規";
 "Okay!" = "好的, 瞭解!";
 "Rewards" = "好康禮劵";
-"You have {!number} deal(s) to collect." = "您可收藏{!numbers}張優惠劵";
+"You have {!number} deal(s) to collect." = "您可收藏{!number}張優惠劵";
 "Choose the outlet where you want to redeem" = "選擇您將領取的分店";
 "Confirm" = "確定";
 "Oops, this deal is currently unavailable. Please check again later." = "哎唷... 暫無優惠劵, 請稍候再試";

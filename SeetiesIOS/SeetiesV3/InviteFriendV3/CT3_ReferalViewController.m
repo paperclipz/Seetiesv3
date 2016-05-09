@@ -31,7 +31,7 @@
     
     CGRect frame = [Utils getDeviceScreenSize];
     if (frame.size.width <= 320) {
-        self.contLeading.constant = 94;
+        self.contLeading.constant = 104;
     }
     else{
         self.contLeading.constant = 64;
