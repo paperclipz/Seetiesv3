@@ -66,6 +66,9 @@
         
         return @"";
     }
+    else if ([activityType isEqualToString:@"com.tencent.xin.sharetimeline"]) {
+        return [NSURL URLWithString:[self getShareLink:self.shareType]];
+    }
 //    else if ([activityType isEqualToString:@"com.custom.messenger"]) {
 //        
 //        NSURL *url = [NSURL URLWithString:@"sms:98765432"];
@@ -169,9 +172,13 @@
             break;
         
         case ShareTypeReferralInvite:
+        {
+            message = [LanguageManager stringForKey:@"Sharing is caring! Get an instant reward when you sign up with the promo code '{!referral_code}'.\n{Seeties URL}" withPlaceHolder:@{@"{!referral_code}":self.shareID, @"{Seeties URL}":[self getShareLink:self.shareType]}];
+        }
+            break;
         case ShareTypeInvite:
         {
-            message = [LanguageManager stringForKey:@"Seeties is all about deals and places - discover and collect awesome deals from your favourite shops to eat, play and hangout.\n{Seeties URL}" withPlaceHolder:@{@"{Seeties URL}":[self getShareLink:self.shareType]}];
+            message = [LanguageManager stringForKey:@"Sharing is caring! Sign up with Seeties today.\n{Seeties URL}" withPlaceHolder:@{@"{Seeties URL}":[self getShareLink:self.shareType]}];
         }
             break;
             
