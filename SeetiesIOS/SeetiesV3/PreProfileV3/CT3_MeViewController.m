@@ -213,7 +213,7 @@
     [Utils setRoundBorder:self.ibWalletView color:[UIColor clearColor] borderRadius:5.0f];
     [Utils setRoundBorder:self.ibCollectionView color:[UIColor clearColor] borderRadius:5.0f];
     
-    [self.ibInviteIcon setImage:[UIImage imageNamed:[Utils hasReferralCampaign]? @"MeEnterPromoCodeIcon.png" : @"MeInviteFriendsIcon.png"]];
+    [self.ibInviteIcon setImage:[UIImage imageNamed:[Utils hasReferralCampaign]? @"ReferMeIcon.png" : @"MeInviteFriendsIcon.png"]];
     [self.ibInviteFriendsView prefix_addUpperBorder:OUTLINE_COLOR];
     [self.ibInviteFriendsView prefix_addLowerBorder:OUTLINE_COLOR];
     

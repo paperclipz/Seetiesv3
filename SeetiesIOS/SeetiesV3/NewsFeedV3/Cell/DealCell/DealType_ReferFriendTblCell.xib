@@ -18,7 +18,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TV-nt-gIp">
                         <rect key="frame" x="0.0" y="0.0" width="321" height="65"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeVoucherWalletIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="VeE-eD-J39">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReferMeIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="VeE-eD-J39">
                                 <rect key="frame" x="10" y="13" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Wh8-c5-I2q"/>
@@ -87,6 +87,6 @@
     </objects>
     <resources>
         <image name="ArrowBtn.png" width="30" height="30"/>
-        <image name="HomeVoucherWalletIcon.png" width="23" height="21"/>
+        <image name="ReferMeIcon.png" width="27" height="22"/>
     </resources>
 </document>

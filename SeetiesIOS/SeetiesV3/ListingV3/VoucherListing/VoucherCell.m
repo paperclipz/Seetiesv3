@@ -278,7 +278,7 @@
 }
 
 -(void)setCampaignEndOverlay{
-    [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingSoldOutIcon.png"]];
+    [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingCampaignEnd.png"]];
     self.ibVoucherOverlayTitle.text = LocalisedString(@"Campaign End");
 }
 

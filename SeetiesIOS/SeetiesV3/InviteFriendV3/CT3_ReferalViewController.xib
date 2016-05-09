@@ -27,7 +27,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96K-vI-9Tn" userLabel="content view">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SuccessfulRedeemImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="SYE-OY-i1Y" userLabel="main img">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReferCampaignVisual.png" translatesAutoresizingMaskIntoConstraints="NO" id="SYE-OY-i1Y" userLabel="main img">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="SYE-OY-i1Y" secondAttribute="height" multiplier="1:1" id="pAd-wV-BYG"/>
@@ -137,15 +137,14 @@
                                 <action selector="btnCampaignDescClicked:" destination="-1" eventType="touchUpInside" id="zll-ma-uGd"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNO-KW-0QI">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNO-KW-0QI">
                             <rect key="frame" x="30" y="526" width="540" height="42"/>
                             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="dCV-Ia-gKn"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="tintColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" image="ProfileShareIcon.png"/>
+                            <state key="normal" image="ReferCampaignSend.png"/>
                             <connections>
                                 <action selector="btnInviteFriendsClicked:" destination="-1" eventType="touchUpInside" id="1X0-JI-hOA"/>
                             </connections>
@@ -232,7 +231,7 @@
     </objects>
     <resources>
         <image name="BackIcon.png" width="40" height="40"/>
-        <image name="ProfileShareIcon.png" width="40" height="40"/>
-        <image name="SuccessfulRedeemImg.png" width="570" height="542"/>
+        <image name="ReferCampaignSend.png" width="50" height="50"/>
+        <image name="ReferCampaignVisual.png" width="187" height="186"/>
     </resources>
 </document>
