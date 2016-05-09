@@ -60,7 +60,7 @@
     
     // which row our activity is shown in
     // top row is UIActivityCategoryShare, bottom row is UIActivityCategoryAction
-    return UIActivityCategoryShare;
+    return UIActivityCategoryAction;
 }
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {

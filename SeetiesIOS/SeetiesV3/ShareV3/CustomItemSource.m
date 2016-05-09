@@ -56,17 +56,22 @@
 //        return [self GetFormattedStringWithAppendURL:YES];
 //    }
     
-    if ([activityType isEqualToString:@"net.whatsapp.WhatsApp.ShareExtension"]) {
-        
-        //        NSURL *url = [[NSURL alloc] initWithString:[self GetFormattedStringWithAppendURL:YES]];
-        
+    if ([activityType isEqualToString:@"com.custom.whatsapp"]) {
+                
         NSString *str = [self GetFormattedStringWithAppendURL:YES];
         NSString *string = [NSString stringWithFormat:@"whatsapp://send?text=%@",str];
         NSURL *url = [NSURL URLWithString:[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         [[UIApplication sharedApplication] openURL: url];
+
         
         return @"";
     }
+//    else if ([activityType isEqualToString:@"com.custom.messenger"]) {
+//        
+//        NSURL *url = [NSURL URLWithString:@"sms:98765432"];
+//        [[UIApplication sharedApplication] openURL:url];
+//    }
+    
     return [self GetFormattedStringWithAppendURL:YES];
 }
 

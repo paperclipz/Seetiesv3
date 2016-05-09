@@ -35,16 +35,20 @@
     }
     
     //Create custom facebook UIActivity
-//    CustomUIActivity *customFBControl = [[CustomUIActivity alloc] initWithTitle:@"Facebook" activityImage:[UIImage imageNamed:@"FB-f-Logo__blue_144"] activityType:@"com.apple.UIKit.activity.PostToFacebook" completionBlock:^(id object){
-//        
-//        FBSDKShareLinkContent *content = dataToPost.fbShareContent;
-//        
-//        [FBSDKShareDialog showFromViewController:weakSelf
-//                                     withContent:content
-//                                        delegate:nil];
-//    }];
-//    
-//    [customUIActivity addObject:customFBControl];
+    CustomUIActivity *customFBControl = [[CustomUIActivity alloc] initWithTitle:@"Facebook" activityImage:[UIImage imageNamed:@"ShareViaFacebook"] activityType:@"com.custom.PostToFacebook" completionBlock:^(id object){
+        
+        FBSDKShareLinkContent *content = dataToPost.fbShareContent;
+        
+        [FBSDKShareDialog showFromViewController:weakSelf
+                                     withContent:content
+                                        delegate:nil];
+    }];
+    
+    [customUIActivity addObject:customFBControl];
+    
+    CustomUIActivity *customWhatsApp = [[CustomUIActivity alloc] initWithTitle:@"Whatsapp" activityImage:[UIImage imageNamed:@"ShareViaWhatsapp"] activityType:@"com.custom.whatsapp" completionBlock:nil];
+    
+    [customUIActivity addObject:customWhatsApp];
     
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[dataToPost] applicationActivities:customUIActivity];
     
@@ -55,7 +59,7 @@
                                    UIActivityTypeAddToReadingList,
                                    UIActivityTypePostToFlickr,
                                    UIActivityTypeCopyToPasteboard,
-//                                   UIActivityTypePostToFacebook,
+                                   UIActivityTypePostToFacebook,
                                    UIActivityTypePostToVimeo];
     
     activityVC.excludedActivityTypes = excludeActivities;
