@@ -110,6 +110,11 @@
             
         }
 
+        CASE (@"phone_verification"){
+            _notType = NotificationType_Phone_Verification;
+            break;
+            
+        }
         
         DEFAULT
         {

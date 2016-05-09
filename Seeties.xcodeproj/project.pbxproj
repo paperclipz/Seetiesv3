@@ -8105,6 +8105,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
@@ -8212,6 +8213,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
@@ -8361,6 +8363,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
@@ -8401,6 +8404,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;

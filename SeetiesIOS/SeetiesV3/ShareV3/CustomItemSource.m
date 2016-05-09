@@ -56,6 +56,18 @@
 //        return [self GetFormattedStringWithAppendURL:YES];
 //    }
     
+    if ([activityType isEqualToString:@"net.whatsapp.WhatsApp.ShareExtension"]) {
+        
+        //        NSURL *url = [[NSURL alloc] initWithString:[self GetFormattedStringWithAppendURL:YES]];
+        
+        NSString *str = [self GetFormattedStringWithAppendURL:YES];
+        NSString *string = [NSString stringWithFormat:@"whatsapp://send?text=%@",str];
+        NSURL *url = [NSURL URLWithString:[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [[UIApplication sharedApplication] openURL: url];
+        
+        
+        return @"";
+    }
     return [self GetFormattedStringWithAppendURL:YES];
 }
 

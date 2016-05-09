@@ -759,7 +759,7 @@
     }
     
     // checking for referral redeem state. from deal collection model whether exceed the number of allowed count
-    if ([self.dealCollectionModel isExceedNumberOfCollectable]) {
+    if ([self.dealCollectionModel isExceedNumberOfCollectable] && self.dealViewType == 6) {
       
         // create a new style
         CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
