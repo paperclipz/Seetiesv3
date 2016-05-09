@@ -44,6 +44,12 @@
 
 @implementation CT3_NotificationViewController
 
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [Utils requestServerForNotificationCount];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
   
