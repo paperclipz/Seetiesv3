@@ -65,7 +65,6 @@
         NSURL *url = [NSURL URLWithString:[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         [[UIApplication sharedApplication] openURL: url];
         
-        
         return @"";
     }
     return [self GetFormattedStringWithAppendURL:YES];
