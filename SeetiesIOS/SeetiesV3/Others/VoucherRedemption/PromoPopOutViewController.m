@@ -457,9 +457,9 @@
             
         case PopOutViewTypeReferralSuccessful:
         {
-            self.ibReferralSuccessfulTitle.text = LocalisedString(@"Yey!");
-            self.ibReferralSuccessfulDesc.text = LocalisedString(@"You can now check your rewards in notification!");
-            [self.ibReferralSuccessfulOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            self.ibReferralSuccessfulTitle.text = LocalisedString(@"Yay!");
+            self.ibReferralSuccessfulDesc.text = LocalisedString(@"Collect your reward via your notification.");
+            [self.ibReferralSuccessfulOkBtn setTitle:LocalisedString(@"Okay") forState:UIControlStateNormal];
             
             [Utils setRoundBorder:self.ibReferralSuccessfulContentView color:[UIColor clearColor] borderRadius:8.0f];
         }

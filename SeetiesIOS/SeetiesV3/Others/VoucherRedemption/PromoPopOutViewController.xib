@@ -1290,7 +1290,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yey!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOn-XG-5mq" userLabel="title">
-                            <rect key="frame" x="10" y="236" width="248" height="18"/>
+                            <rect key="frame" x="10" y="216" width="248" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="SW0-Px-UMQ"/>
                             </constraints>
@@ -1304,7 +1304,7 @@
                             </variation>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can now check your rewards in notification!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzO-Mu-Ndi" userLabel="desc">
-                            <rect key="frame" x="8" y="264" width="252" height="36"/>
+                            <rect key="frame" x="16" y="244" width="236" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="JSv-Wu-WR5"/>
                             </constraints>
@@ -1329,7 +1329,7 @@
                         <constraint firstAttribute="width" constant="300" id="0VU-am-aAO"/>
                         <constraint firstAttribute="bottom" secondItem="9Gn-vT-UQr" secondAttribute="bottom" id="3wt-dS-LmC"/>
                         <constraint firstAttribute="height" constant="400" id="6Fo-gr-7tY"/>
-                        <constraint firstItem="tzO-Mu-Ndi" firstAttribute="leading" secondItem="QkJ-sl-FVL" secondAttribute="leading" constant="8" id="8Pd-dW-1x1"/>
+                        <constraint firstItem="tzO-Mu-Ndi" firstAttribute="leading" secondItem="QkJ-sl-FVL" secondAttribute="leading" constant="16" id="8Pd-dW-1x1"/>
                         <constraint firstAttribute="trailing" secondItem="9Gn-vT-UQr" secondAttribute="trailing" id="9JO-0e-Xbt"/>
                         <constraint firstItem="tzO-Mu-Ndi" firstAttribute="bottom" secondItem="9Gn-vT-UQr" secondAttribute="bottom" id="CMA-fv-oQ9"/>
                         <constraint firstItem="tzO-Mu-Ndi" firstAttribute="top" secondItem="BOn-XG-5mq" secondAttribute="bottom" constant="10" id="F87-3e-Jd7"/>
@@ -1338,12 +1338,12 @@
                         <constraint firstItem="9Gn-vT-UQr" firstAttribute="top" secondItem="tzO-Mu-Ndi" secondAttribute="bottom" constant="40" id="Nf6-Gg-OiT"/>
                         <constraint firstItem="BOn-XG-5mq" firstAttribute="leading" secondItem="QkJ-sl-FVL" secondAttribute="leading" constant="10" id="Ukb-2b-1iN"/>
                         <constraint firstItem="9Gn-vT-UQr" firstAttribute="leading" secondItem="QkJ-sl-FVL" secondAttribute="leading" id="WvC-xX-reA"/>
-                        <constraint firstItem="9Gn-vT-UQr" firstAttribute="top" secondItem="tzO-Mu-Ndi" secondAttribute="bottom" constant="20" id="Zo6-dY-QPE"/>
+                        <constraint firstItem="9Gn-vT-UQr" firstAttribute="top" secondItem="tzO-Mu-Ndi" secondAttribute="bottom" constant="40" id="Zo6-dY-QPE"/>
                         <constraint firstAttribute="height" constant="400" id="bJi-zO-6F4"/>
                         <constraint firstItem="pNU-0L-lnA" firstAttribute="top" secondItem="QkJ-sl-FVL" secondAttribute="top" constant="40" id="dR9-lS-SRB"/>
                         <constraint firstAttribute="width" constant="300" id="l5u-ds-Th3"/>
                         <constraint firstAttribute="trailing" secondItem="pNU-0L-lnA" secondAttribute="trailing" constant="65" id="maT-Ht-CIy"/>
-                        <constraint firstAttribute="trailing" secondItem="tzO-Mu-Ndi" secondAttribute="trailing" constant="8" id="o8g-gD-5cW"/>
+                        <constraint firstAttribute="trailing" secondItem="tzO-Mu-Ndi" secondAttribute="trailing" constant="16" id="o8g-gD-5cW"/>
                         <constraint firstItem="BOn-XG-5mq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pNU-0L-lnA" secondAttribute="bottom" constant="20" id="p7k-B3-YdQ"/>
                     </constraints>
                     <variation key="default">

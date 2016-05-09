@@ -51,7 +51,7 @@
    
     if (![Utils isStringNull:self.userProfile.referral_code]) {
         self.userProfile.referral_code = [self.userProfile.referral_code uppercaseString];
-        NSString *refCode = [LanguageManager stringForKey:@"Share your promo code\n{!referral}" withPlaceHolder:@{@"{!referral}":self.userProfile.referral_code}];
+        NSString *refCode = [LanguageManager stringForKey:@"Share your promo code\n{!referral code}" withPlaceHolder:@{@"{!referral code}":self.userProfile.referral_code}];
         NSMutableAttributedString *attrRefCode = [[NSMutableAttributedString alloc] initWithString:refCode];
         NSRange refRange = [refCode rangeOfString:self.userProfile.referral_code];
         [attrRefCode beginEditing];
@@ -68,7 +68,7 @@
         NSDate *expiryDate = [utcDateFormatter dateFromString:self.inviteFriendModel.expired_at];
         
         NSInteger daysLeft = [Utils numberOfDaysLeft:expiryDate];
-        self.ibCampaignExpiry.text = [LanguageManager stringForKey:@"{!days} day(s) left, hurry up!" withPlaceHolder:@{@"{!date}": @(daysLeft)}];
+        self.ibCampaignExpiry.text = [LanguageManager stringForKey:@"Promo ends in {!days} days - don't wait!" withPlaceHolder:@{@"{!days}": @(daysLeft)}];
         self.ibCampaignExpiry.hidden = NO;
     }
     else{
@@ -119,7 +119,7 @@
 - (IBAction)btnCopyReferralClicked:(id)sender {
     UIPasteboard *pb = [UIPasteboard generalPasteboard];
     [pb setString:self.userProfile.referral_code];
-    [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Referral code copied") Type:TSMessageNotificationTypeSuccess];
+    [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Code Copied") Type:TSMessageNotificationTypeSuccess];
 }
 
 -(IBAction)backgroundViewDidTap{

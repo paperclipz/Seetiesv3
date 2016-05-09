@@ -156,7 +156,7 @@
         //Deal listing from referral code
         case 6:
         {
-            self.ibAltTitle.text = LocalisedString(@"Referral Rewards");
+            self.ibAltTitle.text = LocalisedString(@"Rewards");
             [self showFirstHeader:NO];
             [self showFirstFooter:NO];
             [self requestServerForCollectionInfo:^{
@@ -922,12 +922,12 @@
                 
             self.ibReferralCountLbl.text = [NSString stringWithFormat:@"(%d/%d)",self.dealCollectionModel.total_deals_collected,self.dealCollectionModel.total_deals_collectable];
             
-            self.ibReferralLbl.text = [LanguageManager stringForKey:@"You can collect {!number} deal" withPlaceHolder:@{@"{!number}" : @(self.dealCollectionModel.total_deals_collectable)}];
+            self.ibReferralLbl.text = [LanguageManager stringForKey:@"You have {!number} deal(s) to collect." withPlaceHolder:@{@"{!number}" : @(self.dealCollectionModel.total_deals_collectable - self.dealCollectionModel.total_deals_collected)}];
             
         }
         else{
             
-            self.ibReferralLbl.text = LocalisedString(@"Oopsss, the campaign has ended");
+            self.ibReferralLbl.text = LocalisedString(@"Oops, this deal has expired. Sorry!");
             
             self.ibReferralCountLbl.hidden = YES;
             

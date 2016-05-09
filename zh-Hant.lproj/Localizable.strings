@@ -1403,6 +1403,56 @@
 "Pay Later" = "加載中";
 "Collect Now, Pay at Shop" = "努力加載中...";
 
+"Everytime a friend signs up with your invite code, each of you will receive a reward. Collect your reward via your notification!" = "每當您的好友使用您的邀請碼加入, 你們各自便可在“個人通知”內獲取限量禮劵喔!";
+"The reward is now yours. Redeem it via your notification." = "限量禮劵已被分發, 趕快到\"個人通知“內領取吧!";
+"Enter invite code" = "輸入邀請碼";
+"Invite code (optional)" = "邀請碼 (自選)";
+"Your referral code is invalid! But you may continue and try again later." = "哎呀, 邀請碼無效, 請確認再試!";
+"Continue" = "好的";
+"Get Rewards" = "獲取好康";
+"Enter your promo code" = "輸入優惠序號";
+"Yay!" = "恭喜您";
+"Collect your reward via your notification." = "趕快到個人通知內查領取你的禮劵吧!";
+"Okay" = "好的";
+"Congratulations! You've received a reward. Check it out!" = "恭喜, 您已獲得一份限量禮卷。 點擊查閱!";
+"Welcome to Seeties! To start collecting and redeeming deals, please verify your phone number." = "歡迎來到Seeties! 為了享有與收藏更多的優惠, 趕快認證您的手機號碼吧!";
+"{!name} has joined Seeties via your invitation." = "{!name} 已成功使用您的邀請碼加入唷!";
+"Congratulations! A reward awaits for you for getting {!name} on board. Check it out!  " = "Seeties為了回饋您對{!name}的邀請, 您現已獲得一份限量禮卷. ";
+"Invite Friends" = "邀請好友";
+"The More, The Merrier" = "越多朋友, 越多樂趣";
+"Invite friends to join Seeties, and share exciting deals together!" = "快通知您的好友們來領取各種好康吧!";
+"Invite Friends & Get Reward" = "邀請好友, 獲取好康";
+"Share your promo code" = "分享個人邀請碼";
+"{!referral code}" = "{!referral code}";
+//======CHANGE======//
+"Share your promo code\n{!referral code}" = "分享個人邀請碼\n{!referral code}";
+//======CHANGE======//
+"Code Copied" = "複製邀請碼";
+"Give your friends a 1-for-1 deal and receive one yourself" = "";
+"Details" = "詳情";
+"Give your friends a super value deal and receive one yourself!" = "與您的好友分享一份超值優惠, 同樣的你也會獲取一份喔!";
+"Invite Friends" = "邀請好友";
+"Promo ends in {!days} days - don't wait!" = "好康只剩{!days}天喔, 趕快邀請吧!";
+"Every time a friend signs up with your invite code, both of you receive a reward. Collect your reward in your notification!\n\nAlso stand a chance to win daily prizes:\n- Pertamina gasoline voucher IDR 50.000\n- Jersey Euro Cup 2016\n\n*Terms and conditions apply." = "";
+"Every time a friend signs up with your invite code, both of you receive a reward each. Terms and conditions apply." = "每當您的好友使用您的邀請碼加入時, 你們各自便可獲取一份限量禮卷喔! 附加條規";
+"Okay!" = "好的, 瞭解!";
+"Rewards" = "好康禮劵";
+"You have {!number} deal(s) to collect." = "您可收藏{!numbers}張優惠劵";
+"Choose the outlet where you want to redeem" = "選擇您將領取的分店";
+"Confirm" = "確定";
+"Oops, this deal is currently unavailable. Please check again later." = "哎唷... 暫無優惠劵, 請稍候再試";
+"Oops, this deal has expired. Sorry!" = "抱歉, 優惠已截止";
+"Sign Up with Seeties!" = "加入Seeties!";
+"Join Seeties to enjoy awesome deals around your city! " = "快來加入Seeties以獲取各種精選優惠吧!";
+"Sharing is caring! Get an instant reward when you sign up with the promo code '{!referral_code}'. \nhttps://seeties.me/referral/signup/{code}" = "好康來報到! 使用我的邀請碼加入Seeties便可獲取好康喔! - '{!referral_code}'. \nhttps://seeties.me/referral/signup/{code}";
+"Sharing is caring!\nSign up with Seeties today. \nhttps://seeties.me/signup/" = "快來與我加入Seeties以發掘更多好康吧!\nhttps://seeties.me/signup/";
+"Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "版本 {!version number}\n- 邀請好友, 獲取好康\n- 系統整頓";
+"Kindly key in your valid email" = "請輸入有效電郵";
+"Kindly fill in all required fields" = "請輸入必要資訊";
+"Email" = "電郵";
+"Feedback" = "您的意見";
+"Include Screenshot" = "附加截圖";
+"REFERRAL" = "邀請回饋";
 
 
 
