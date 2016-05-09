@@ -56,7 +56,7 @@
 //        return [self GetFormattedStringWithAppendURL:YES];
 //    }
     
-    if ([activityType isEqualToString:@"com.custom.whatsapp"]) {
+    if ([activityType isEqualToString:@"com.custom.whatsapp"] ||[activityType isEqualToString:@"net.whatsapp.WhatsApp.ShareExtension"]) {
                 
         NSString *str = [self GetFormattedStringWithAppendURL:YES];
         NSString *string = [NSString stringWithFormat:@"whatsapp://send?text=%@",str];
