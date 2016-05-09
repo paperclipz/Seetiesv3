@@ -208,7 +208,7 @@
                 <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lR8-P7-x9b" userLabel="referral view">
                     <rect key="frame" x="35" y="274" width="250" height="48"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ReferSignupIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="7RO-Ez-iOE">
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignUpReferralIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="7RO-Ez-iOE">
                             <rect key="frame" x="10" y="4" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="LSK-dR-FfI"/>
@@ -311,9 +311,9 @@
     </objects>
     <resources>
         <image name="GreyBackBtn.png" width="40" height="40"/>
-        <image name="ReferSignupIcon.png" width="30" height="31"/>
         <image name="SignUpEmailIcon.png" width="17" height="13"/>
         <image name="SignUpNameIcon.png" width="12" height="17"/>
         <image name="SignUpPasswordIcon.png" width="14" height="17"/>
+        <image name="SignUpReferralIcon.png" width="17" height="17"/>
     </resources>
 </document>

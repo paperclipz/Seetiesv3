@@ -509,6 +509,8 @@
 		8AFF08601C90379000918582 /* SearchQuickBrowseListingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF084D1C90379000918582 /* SearchQuickBrowseListingController.xib */; };
 		8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF09101C9038C400918582 /* ComplexTagModel.m */; };
 		8AFF09361C92802400918582 /* olivier_demo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF09351C927DD500918582 /* olivier_demo.ttf */; };
+		C204C1731CE0EE55003C4840 /* SignUpReferralIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C204C1711CE0EE55003C4840 /* SignUpReferralIcon@2x.png */; };
+		C204C1741CE0EE55003C4840 /* SignUpReferralIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C204C1721CE0EE55003C4840 /* SignUpReferralIcon@3x.png */; };
 		C206B7A91C90319C00786128 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C206B7A71C90319C00786128 /* TermsViewController.m */; };
 		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
@@ -2208,6 +2210,8 @@
 		8AFF09101C9038C400918582 /* ComplexTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComplexTagModel.m; path = SeetiesIOS/MODELS/ComplexTagModel.m; sourceTree = SOURCE_ROOT; };
 		8AFF09351C927DD500918582 /* olivier_demo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = olivier_demo.ttf; sourceTree = "<group>"; };
 		A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C204C1711CE0EE55003C4840 /* SignUpReferralIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SignUpReferralIcon@2x.png"; path = "../../../../../../seeties_ios_artwork/3.0/Sign Up/SignUpReferralIcon@2x.png"; sourceTree = "<group>"; };
+		C204C1721CE0EE55003C4840 /* SignUpReferralIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SignUpReferralIcon@3x.png"; path = "../../../../../../seeties_ios_artwork/3.0/Sign Up/SignUpReferralIcon@3x.png"; sourceTree = "<group>"; };
 		C206B7A61C90319C00786128 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		C206B7A71C90319C00786128 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
 		C206B7A81C90319C00786128 /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
@@ -5681,6 +5685,8 @@
 		C240B6431CC62F4300B79190 /* Sign Up */ = {
 			isa = PBXGroup;
 			children = (
+				C204C1711CE0EE55003C4840 /* SignUpReferralIcon@2x.png */,
+				C204C1721CE0EE55003C4840 /* SignUpReferralIcon@3x.png */,
 				C240B6441CC62F4300B79190 /* SignUpEmailIcon@2x.png */,
 				C240B6451CC62F4300B79190 /* SignUpEmailIcon@3x.png */,
 				C240B6461CC62F4300B79190 /* SignUpNameIcon@2x.png */,
@@ -6621,6 +6627,7 @@
 				C240BB501CC62F4400B79190 /* ShareLineIcon@2x.png in Resources */,
 				C76F4D411CE0CD22006B9F66 /* FacebookIcon.png in Resources */,
 				0BA94DCC1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib in Resources */,
+				C204C1731CE0EE55003C4840 /* SignUpReferralIcon@2x.png in Resources */,
 				C240B9701CC62F4400B79190 /* TabBarMoreIconChi@3x.png in Resources */,
 				C240BA781CC62F4400B79190 /* YellowCollections@3x.png in Resources */,
 				C240B8B61CC62F4400B79190 /* EmptyGreyImg.png in Resources */,
@@ -7130,6 +7137,7 @@
 				C240B97D1CC62F4400B79190 /* BgWalkHome4@2x.jpg in Resources */,
 				C240BB311CC62F4400B79190 /* SSDefaultLogo@3x.png in Resources */,
 				C240BB471CC62F4400B79190 /* BlackBack@3x.png in Resources */,
+				C204C1741CE0EE55003C4840 /* SignUpReferralIcon@3x.png in Resources */,
 				C240B9881CC62F4400B79190 /* BgWalkWallet3@3x.jpg in Resources */,
 				C240B94A1CC62F4400B79190 /* SplashSlogan.png in Resources */,
 				C76F4D5A1CE0DF51006B9F66 /* ShareViaWhatsapp@2x.png in Resources */,

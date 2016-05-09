@@ -50,7 +50,7 @@
 }
 
 -(void)changeLanguage{
-    self.ibHeaderTitle.text = LocalisedString(@"Invite Friends & Get Reward");
+    self.ibHeaderTitle.text = LocalisedString(@"Invite Friends & Get Rewards");
     self.ibReferralDesc.text = LocalisedString(@"Tap to copy");
     
     NSString *languageCode = [Utils getDeviceAppLanguageCode];
