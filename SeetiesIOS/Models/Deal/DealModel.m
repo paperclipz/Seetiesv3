@@ -105,8 +105,8 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSInteger numberOfDaysLeft = 0;
     
-    if ([Utils isValidDateString:self.expired_at]) {
-        NSDate *expiryDate = [dateFormatter dateFromString:self.expired_at];
+    if ([Utils isValidDateString:self.voucher_info.expired_at]) {
+        NSDate *expiryDate = [dateFormatter dateFromString:self.voucher_info.expired_at];
         
         numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
     }

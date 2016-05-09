@@ -18,6 +18,6 @@
 @interface DealRedeemViewController : CommonViewController
 @property id<DealRedeemDelegate> dealRedeemDelegate;
 @property(nonatomic,assign)BOOL isOffline;
--(void)setDealModel:(DealModel *)dealModel;
-
+-(void)initWithDealModel:(DealModel *)dealModel;
+-(void)initWithDealModel:(DealModel*)dealModel referralID:(NSString*)referralId;
 @end

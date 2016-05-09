@@ -669,7 +669,7 @@
     DealModel *dealModel = [self.dealsArray objectAtIndex:indexPath.row];
     self.dealDetailsViewController = nil;
     if (self.dealViewType == 6) {
-        [self.dealDetailsViewController initDealModel:dealModel withReferral:refferalID];
+        [self.dealDetailsViewController initDealModel:dealModel withReferral:refferalID withDealCollectionInfo:self.dealCollectionModel];
     }
     else{
         [self.dealDetailsViewController initDealModel:dealModel];
@@ -679,8 +679,8 @@
     __weak typeof (self)weakSelf = self;
     self.dealDetailsViewController.dealModelBlock = ^(DealModel* model)
     {
+        [weakSelf requestServerForCollectionInfo:nil];
         [weakSelf.dealsArray replaceObjectAtIndex:indexPath.row withObject:model];
-        
     };
     
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
@@ -737,10 +737,7 @@
 }
 
 -(void)voucherCollectRedeemClicked:(DealModel *)dealModel{
-   
-    
     // checking for guest mode
-    
     if ([Utils isGuestMode]) {
         [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
@@ -758,70 +755,99 @@
         return;
     }
     
-    // checking for referral redeem state. from deal collection model whether exceed the number of allowed count
-    if ([self.dealCollectionModel isExceedNumberOfCollectable]) {
-      
-        // create a new style
-        CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
+    SWITCH (dealModel.voucher_info.status) {
+        CASE(VOUCHER_STATUS_NONE)
+        {
+            //Referral type specific checking
+            if ([dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
+                if (self.dealCollectionModel && [self.dealCollectionModel isCampaignExpired]) {
+                    return;
+                }
+                // checking for referral redeem state. from deal collection model whether exceed the number of allowed count
+                if (self.dealCollectionModel && [self.dealCollectionModel isExceedNumberOfCollectable]) {
+                    // create a new style
+                    CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
+                    
+                    // this is just one of many style options
+                    style.messageColor = [UIColor whiteColor];
+                    
+                    style.messageFont = [UIFont fontWithName:CustomFontNameBold size:10];
+                    style.cornerRadius = 12;
+                    
+                    // present the toast with the new style
+                    [self.view makeToast:LocalisedString(@"You Have Exceed The Number To Collect")
+                                duration:3.0
+                                position:CSToastPositionBottom
+                                   style:style];
+                    return;
+                }
+            }
+            
+            if (dealModel.total_available_vouchers == 0) {
+                return;
+            }
+            
+            if (dealModel.shops.count == 1) {
+                SeShopDetailModel *shopModel = [dealModel.shops objectAtIndex:0];
+                [self requestServerToCollectVoucher:dealModel fromShop:shopModel];
+            }
+            else if(dealModel.shops.count > 1){
+                self.promoPopOutViewController = nil;
+                [self.promoPopOutViewController setViewType:PopOutViewTypeChooseShop];
+                [self.promoPopOutViewController setPopOutCondition:PopOutConditionChooseShopOnly];
+                [self.promoPopOutViewController setDealModel:dealModel];
+                [self.promoPopOutViewController setShopArray:dealModel.available_shops];
+                self.promoPopOutViewController.promoPopOutDelegate = self;
+                
+                STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
+                popOutController.containerView.backgroundColor = [UIColor clearColor];
+                [popOutController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                [popOutController presentInViewController:self];
+                [popOutController setNavigationBarHidden:YES];
+            }
+            break;
+        }
         
-        // this is just one of many style options
-        style.messageColor = [UIColor whiteColor];
+        CASE(VOUCHER_STATUS_COLLECTED)
+        {
+            if (dealModel.voucher_info.redeem_now) {
+                self.dealRedeemViewController = nil;
+                if ([dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && refferalID) {
+                    [self.dealRedeemViewController initWithDealModel:dealModel referralID:refferalID];
+                }
+                else{
+                    [self.dealRedeemViewController initWithDealModel:dealModel];
+                }
+                self.dealRedeemViewController.dealRedeemDelegate = self;
+                [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
+            }
+            else{
+                self.promoPopOutViewController = nil;
+                [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+                [self.promoPopOutViewController setDealModel:dealModel];
+                
+                STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+                popupController.containerView.backgroundColor = [UIColor clearColor];
+                [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                [popupController presentInViewController:self];
+                [popupController setNavigationBarHidden:YES];
+            }
+            break;
+        }
         
-        style.messageFont = [UIFont fontWithName:CustomFontNameBold size:10];
-        style.cornerRadius = 12;
-        
-        // present the toast with the new style
-        [self.view makeToast:LocalisedString(@"You Have Exceed The Number To Collect")
-                    duration:3.0
-                    position:CSToastPositionBottom
-                       style:style];
-
-
-        return;
-    }
-    
-    
-    if ([Utils isStringNull:dealModel.voucher_info.voucher_id]) {
-        if (dealModel.total_available_vouchers == 0) {
+        CASE(VOUCHER_STATUS_REDEEMED)
+        {
             return;
         }
         
-        if (dealModel.shops.count == 1) {
-            SeShopDetailModel *shopModel = [dealModel.shops objectAtIndex:0];
-            [self requestServerToCollectVoucher:dealModel fromShop:shopModel];
+        CASE(VOUCHER_STATUS_EXPIRED)
+        {
+            return;
         }
-        else if(dealModel.shops.count > 1){
-            self.promoPopOutViewController = nil;
-            [self.promoPopOutViewController setViewType:PopOutViewTypeChooseShop];
-            [self.promoPopOutViewController setPopOutCondition:PopOutConditionChooseShopOnly];
-            [self.promoPopOutViewController setDealModel:dealModel];
-            [self.promoPopOutViewController setShopArray:dealModel.available_shops];
-            self.promoPopOutViewController.promoPopOutDelegate = self;
-            
-            STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
-            popOutController.containerView.backgroundColor = [UIColor clearColor];
-            [popOutController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
-            [popOutController presentInViewController:self];
-            [popOutController setNavigationBarHidden:YES];
-        }
-    }
-    else{
-        if (dealModel.voucher_info.redeem_now) {
-            self.dealRedeemViewController = nil;
-            [self.dealRedeemViewController setDealModel:dealModel];
-            self.dealRedeemViewController.dealRedeemDelegate = self;
-            [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
-        }
-        else{
-            self.promoPopOutViewController = nil;
-            [self.promoPopOutViewController setViewType:PopOutViewTypeError];
-            [self.promoPopOutViewController setDealModel:dealModel];
-            
-            STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
-            popupController.containerView.backgroundColor = [UIColor clearColor];
-            [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
-            [popupController presentInViewController:self];
-            [popupController setNavigationBarHidden:YES];
+        
+        DEFAULT
+        {
+            return;
         }
     }
 }
@@ -890,7 +916,7 @@
         self.lblTitle.text = self.dealCollectionModel.cTitle;
         
         
-        if ([self.dealCollectionModel isCampaignExpired])
+        if (![self.dealCollectionModel isCampaignExpired])
         {
             self.ibReferralCountLbl.hidden = NO;
                 
@@ -899,7 +925,6 @@
             self.ibReferralLbl.text = [LanguageManager stringForKey:@"You can collect {!number} deal" withPlaceHolder:@{@"{!number}" : @(self.dealCollectionModel.total_deals_collectable)}];
             
         }
-        
         else{
             
             self.ibReferralLbl.text = LocalisedString(@"Oopsss, the campaign has ended");
@@ -1215,7 +1240,10 @@
         [self.ibVoucherTable reloadData];
         self.isCollecting = NO;
         
-        [self requestServerForCollectionInfo:nil];
+        if (self.dealViewType == 6) {
+            [self requestServerForCollectionInfo:nil];
+        }
+        
     } failure:^(id object) {
         self.isCollecting = NO;
     }];

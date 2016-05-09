@@ -224,15 +224,14 @@
             
         case ShareTypeInvite:
         {
-            finalLink = @"http://seeties.me";
+            finalLink = seetiesLink;
         }
             break;
             
         case ShareTypeReferralInvite:
         {
-            //To be changed
-            subLink = @"http://seeties.me/referral/signup/";
-            finalLink = [NSString stringWithFormat:@"%@%@", subLink, self.shareID];
+            subLink = @"referral/signup/";
+            finalLink = [NSString stringWithFormat:@"%@%@%@",seetiesLink, subLink, self.shareID];
         }
             break;
     }
