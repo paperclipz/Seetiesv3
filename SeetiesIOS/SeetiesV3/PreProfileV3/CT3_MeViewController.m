@@ -213,7 +213,24 @@
     [Utils setRoundBorder:self.ibWalletView color:[UIColor clearColor] borderRadius:5.0f];
     [Utils setRoundBorder:self.ibCollectionView color:[UIColor clearColor] borderRadius:5.0f];
     
-    [self.ibInviteIcon setImage:[UIImage imageNamed:[Utils hasReferralCampaign]? @"ReferMeIcon.png" : @"MeInviteFriendsIcon.png"]];
+    if ([Utils hasReferralCampaign]) {
+        CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+        CountryModel *currentCountry = countries.current_country;
+        InviteFriendModel *inviteFriend = currentCountry.invite_friend_banner;
+        [self.ibInviteIcon sd_setImageCroppedWithURL:[NSURL URLWithString:inviteFriend.image] completed:nil];
+        
+        self.ibInviteLbl.text = LocalisedString(inviteFriend.title);
+        self.ibInviteLbl.textColor = DEVICE_COLOR;
+        self.ibInviteLbl.font = [UIFont boldSystemFontOfSize:15.0f];
+    }
+    else{
+        [self.ibInviteIcon setImage:[UIImage imageNamed:@"MeInviteFriendsIcon.png"]];
+        
+        self.ibInviteLbl.text = LocalisedString(@"Invite your buddies");
+        self.ibInviteLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+        self.ibInviteLbl.font = [UIFont systemFontOfSize:15.0f];
+    }
+    
     [self.ibInviteFriendsView prefix_addUpperBorder:OUTLINE_COLOR];
     [self.ibInviteFriendsView prefix_addLowerBorder:OUTLINE_COLOR];
     
@@ -271,16 +288,6 @@
     self.ibViewProfileLbl.text = LocalisedString(@"View Profile");
     self.ibWalletTitleLbl.text = LocalisedString(@"Voucher Wallet");
     self.ibCollectionTitleLbl.text = LocalisedString(@"Collection");
-    if ([Utils hasReferralCampaign]) {
-        self.ibInviteLbl.text = LocalisedString(@"Invite friends & get rewards");
-        self.ibInviteLbl.textColor = DEVICE_COLOR;
-        self.ibInviteLbl.font = [UIFont boldSystemFontOfSize:15.0f];
-    }
-    else{
-        self.ibInviteLbl.text = LocalisedString(@"Invite your buddies");
-        self.ibInviteLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
-        self.ibInviteLbl.font = [UIFont systemFontOfSize:15.0f];
-    }
     self.ibPromoLbl.text = LocalisedString(@"Enter a promo code");
     
     self.ibGuestViewTitle.text = LocalisedString(@"Join us to enjoy more exciting features!");
