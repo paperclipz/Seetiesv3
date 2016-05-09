@@ -9,6 +9,7 @@
 #import "CT3_ReferalViewController.h"
 
 @interface CT3_ReferalViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contLeading;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
 @property (weak, nonatomic) IBOutlet UIView *ibReferralCodeView;
 @property (weak, nonatomic) IBOutlet UILabel *ibReferralCode;
@@ -27,6 +28,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    if (frame.size.width <= 320) {
+        self.contLeading.constant = 94;
+    }
+    else{
+        self.contLeading.constant = 64;
+
+    }
+    
     // Do any additional setup after loading the view from its nib.
     
     [Utils setRoundBorder:self.ibReferralCodeView color:[UIColor whiteColor] borderRadius:8.0f borderWidth:2];
