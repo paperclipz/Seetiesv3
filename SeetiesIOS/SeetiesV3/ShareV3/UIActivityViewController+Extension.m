@@ -50,6 +50,10 @@
     
     [customUIActivity addObject:customWhatsApp];
     
+    CustomUIActivity *customLineApp = [[CustomUIActivity alloc] initWithTitle:@"Line" activityImage:[UIImage imageNamed:@"ShareViaLine"] activityType:@"com.custom.line" completionBlock:nil];
+    
+    [customUIActivity addObject:customLineApp];
+    
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[dataToPost] applicationActivities:customUIActivity];
     
     NSArray *excludeActivities = @[UIActivityTypeAirDrop,

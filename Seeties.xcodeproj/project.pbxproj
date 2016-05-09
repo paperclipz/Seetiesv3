@@ -1345,8 +1345,14 @@
 		C75015FE1CD0A7640048C279 /* EditProfileV3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */; };
 		C75015FF1CD0A7640048C279 /* EditProfileV3ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */; };
 		C75016021CD0AC420048C279 /* GenericObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C75016011CD0AC420048C279 /* GenericObject.m */; };
-		C76F4CF01CE09B62006B9F66 /* ShareViaWhatsapp.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4CEF1CE09B62006B9F66 /* ShareViaWhatsapp.png */; };
-		C76F4CF21CE09B7C006B9F66 /* ShareViaFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4CF11CE09B7C006B9F66 /* ShareViaFacebook.png */; };
+		C76F4D411CE0CD22006B9F66 /* FacebookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4D401CE0CD22006B9F66 /* FacebookIcon.png */; };
+		C76F4D431CE0CD26006B9F66 /* WhatsappIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4D421CE0CD26006B9F66 /* WhatsappIcon.png */; };
+		C76F4D561CE0DF51006B9F66 /* ShareViaFacebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4D501CE0DF51006B9F66 /* ShareViaFacebook@2x.png */; };
+		C76F4D571CE0DF51006B9F66 /* ShareViaFacebook@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4D511CE0DF51006B9F66 /* ShareViaFacebook@3x.png */; };
+		C76F4D581CE0DF51006B9F66 /* ShareViaLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4D521CE0DF51006B9F66 /* ShareViaLine@2x.png */; };
+		C76F4D591CE0DF51006B9F66 /* ShareViaLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4D531CE0DF51006B9F66 /* ShareViaLine@3x.png */; };
+		C76F4D5A1CE0DF51006B9F66 /* ShareViaWhatsapp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4D541CE0DF51006B9F66 /* ShareViaWhatsapp@2x.png */; };
+		C76F4D5B1CE0DF51006B9F66 /* ShareViaWhatsapp@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4D551CE0DF51006B9F66 /* ShareViaWhatsapp@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3073,8 +3079,14 @@
 		C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditProfileV3ViewController.storyboard; sourceTree = "<group>"; };
 		C75016001CD0AC420048C279 /* GenericObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericObject.h; path = ../GenericObject.h; sourceTree = "<group>"; };
 		C75016011CD0AC420048C279 /* GenericObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericObject.m; path = ../GenericObject.m; sourceTree = "<group>"; };
-		C76F4CEF1CE09B62006B9F66 /* ShareViaWhatsapp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShareViaWhatsapp.png; sourceTree = "<group>"; };
-		C76F4CF11CE09B7C006B9F66 /* ShareViaFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShareViaFacebook.png; sourceTree = "<group>"; };
+		C76F4D401CE0CD22006B9F66 /* FacebookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FacebookIcon.png; sourceTree = "<group>"; };
+		C76F4D421CE0CD26006B9F66 /* WhatsappIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhatsappIcon.png; sourceTree = "<group>"; };
+		C76F4D501CE0DF51006B9F66 /* ShareViaFacebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareViaFacebook@2x.png"; sourceTree = "<group>"; };
+		C76F4D511CE0DF51006B9F66 /* ShareViaFacebook@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareViaFacebook@3x.png"; sourceTree = "<group>"; };
+		C76F4D521CE0DF51006B9F66 /* ShareViaLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareViaLine@2x.png"; sourceTree = "<group>"; };
+		C76F4D531CE0DF51006B9F66 /* ShareViaLine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareViaLine@3x.png"; sourceTree = "<group>"; };
+		C76F4D541CE0DF51006B9F66 /* ShareViaWhatsapp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareViaWhatsapp@2x.png"; sourceTree = "<group>"; };
+		C76F4D551CE0DF51006B9F66 /* ShareViaWhatsapp@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareViaWhatsapp@3x.png"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6378,8 +6390,14 @@
 				C240B8741CC62F4400B79190 /* ShareMessangerIcon@3x.png */,
 				C240B8751CC62F4400B79190 /* ShareWhatsappIcon@2x.png */,
 				C240B8761CC62F4400B79190 /* ShareWhatsappIcon@3x.png */,
-				C76F4CF11CE09B7C006B9F66 /* ShareViaFacebook.png */,
-				C76F4CEF1CE09B62006B9F66 /* ShareViaWhatsapp.png */,
+				C76F4D401CE0CD22006B9F66 /* FacebookIcon.png */,
+				C76F4D421CE0CD26006B9F66 /* WhatsappIcon.png */,
+				C76F4D501CE0DF51006B9F66 /* ShareViaFacebook@2x.png */,
+				C76F4D511CE0DF51006B9F66 /* ShareViaFacebook@3x.png */,
+				C76F4D521CE0DF51006B9F66 /* ShareViaLine@2x.png */,
+				C76F4D531CE0DF51006B9F66 /* ShareViaLine@3x.png */,
+				C76F4D541CE0DF51006B9F66 /* ShareViaWhatsapp@2x.png */,
+				C76F4D551CE0DF51006B9F66 /* ShareViaWhatsapp@3x.png */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -6601,6 +6619,7 @@
 				C240B8C71CC62F4400B79190 /* HomeAutoDetectIcon@3x.png in Resources */,
 				C240B8A61CC62F4400B79190 /* DealsListingVoucherWalletIcon@3x.png in Resources */,
 				C240BB501CC62F4400B79190 /* ShareLineIcon@2x.png in Resources */,
+				C76F4D411CE0CD22006B9F66 /* FacebookIcon.png in Resources */,
 				0BA94DCC1BEAFA64003AB2E4 /* SuggestedCollectionsViewController.xib in Resources */,
 				C240B9701CC62F4400B79190 /* TabBarMoreIconChi@3x.png in Resources */,
 				C240BA781CC62F4400B79190 /* YellowCollections@3x.png in Resources */,
@@ -6663,7 +6682,6 @@
 				C240B9081CC62F4400B79190 /* NaviBackIcon@2x.png in Resources */,
 				C240B96B1CC62F4400B79190 /* TabBarMoreIcon@2x.png in Resources */,
 				C240BAD01CC62F4400B79190 /* MoreIcon@3x.png in Resources */,
-				C76F4CF01CE09B62006B9F66 /* ShareViaWhatsapp.png in Resources */,
 				0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */,
 				C240B9481CC62F4400B79190 /* SplashOverlay@3x.png in Resources */,
 				8A84C5DF1C7FF448006A0D76 /* NoImage.png in Resources */,
@@ -6672,6 +6690,7 @@
 				C240BB131CC62F4400B79190 /* AutoComplete@2x.png in Resources */,
 				C240B9A41CC62F4400B79190 /* TickIcon@3x.png in Resources */,
 				C240BA0A1CC62F4400B79190 /* AddLanguageBtn@3x.png in Resources */,
+				C76F4D561CE0DF51006B9F66 /* ShareViaFacebook@2x.png in Resources */,
 				C2B628391CDE0508002BBAF9 /* ReferSuccess@3x.png in Resources */,
 				C240BB481CC62F4400B79190 /* ShareCopyLinkIcon@2x.png in Resources */,
 				C240B8F51CC62F4400B79190 /* MoreDraftsIcon@3x.png in Resources */,
@@ -6819,6 +6838,7 @@
 				C240B9751CC62F4400B79190 /* TabBarMoreIconThaiActive@2x.png in Resources */,
 				C240BB261CC62F4400B79190 /* SSBestKnowIcon@3x.png in Resources */,
 				C240B9ED1CC62F4400B79190 /* MoreBtn@2x.png in Resources */,
+				C76F4D431CE0CD26006B9F66 /* WhatsappIcon.png in Resources */,
 				C240B8D31CC62F4400B79190 /* HomeHeaderOverlay@3x.png in Resources */,
 				C240B9B31CC62F4400B79190 /* Icon-Small@3x.png in Resources */,
 				C240B9FF1CC62F4400B79190 /* SendCommentBtn@2x.png in Resources */,
@@ -7042,6 +7062,7 @@
 				C240B90C1CC62F4400B79190 /* NaviCollapseIcon@2x.png in Resources */,
 				8A5CFE1F1C7D8E53004E2CBA /* SelectCategoryViewController.xib in Resources */,
 				8A6CCA3F1C17E5A800BCD54E /* SeShopFeatureTableViewCell.xib in Resources */,
+				C76F4D571CE0DF51006B9F66 /* ShareViaFacebook@3x.png in Resources */,
 				C2B628301CDE0508002BBAF9 /* ReferCampaignVisual@3x.png in Resources */,
 				8A509D6B1C9911CD004C74C7 /* FeedType_headerTblCell.xib in Resources */,
 				C240B9FB1CC62F4400B79190 /* WhiteCollected@2x.png in Resources */,
@@ -7111,6 +7132,7 @@
 				C240BB471CC62F4400B79190 /* BlackBack@3x.png in Resources */,
 				C240B9881CC62F4400B79190 /* BgWalkWallet3@3x.jpg in Resources */,
 				C240B94A1CC62F4400B79190 /* SplashSlogan.png in Resources */,
+				C76F4D5A1CE0DF51006B9F66 /* ShareViaWhatsapp@2x.png in Resources */,
 				C240B99C1CC62F4400B79190 /* CurrencyArrow@3x.png in Resources */,
 				C240BAA71CC62F4400B79190 /* GreyBackBtn@2x.png in Resources */,
 				C240B89C1CC62F4400B79190 /* SwipeToRedeemSwipeIcon@3x.png in Resources */,
@@ -7158,6 +7180,7 @@
 				C238E3291C4649AA00570A25 /* slider-default-track.png in Resources */,
 				C240B8C31CC62F4400B79190 /* ShareToBuddiesIcon@3x.png in Resources */,
 				C26676221C6485400021B6B0 /* RedemptionHistoryCell.xib in Resources */,
+				C76F4D591CE0DF51006B9F66 /* ShareViaLine@3x.png in Resources */,
 				C238E32B1C4649AA00570A25 /* slider-default-trackBackground.png in Resources */,
 				8AFB068B1CA140E300DAEE22 /* ReportProblemViewController.xib in Resources */,
 				C240BACA1CC62F4400B79190 /* ChangePlaceIcon@3x.png in Resources */,
@@ -7235,6 +7258,7 @@
 				C240BAF21CC62F4400B79190 /* LikeIcon@3x.png in Resources */,
 				C240BA851CC62F4400B79190 /* ConnectWithInstagram@2x.png in Resources */,
 				C240BB3D1CC62F4400B79190 /* SSWhiteVerifiedIcon@3x.png in Resources */,
+				C76F4D581CE0DF51006B9F66 /* ShareViaLine@2x.png in Resources */,
 				C240BB071CC62F4400B79190 /* ProfileLocationIcon@2x.png in Resources */,
 				8AD6C1031B706CF30040437E /* ChangePasswordViewController.xib in Resources */,
 				C240BAD61CC62F4400B79190 /* PostLikeIcon@3x.png in Resources */,
@@ -7250,6 +7274,7 @@
 				C240B8991CC62F4400B79190 /* SwipeToRedeemSeetiesLogo@2x.png in Resources */,
 				C240B8B31CC62F4400B79190 /* CloseIconGrey@2x.png in Resources */,
 				C240BADF1CC62F4400B79190 /* TranslateArrow@2x.png in Resources */,
+				C76F4D5B1CE0DF51006B9F66 /* ShareViaWhatsapp@3x.png in Resources */,
 				C240BA8D1CC62F4400B79190 /* InstagramBtnInactive@2x.png in Resources */,
 				C240B92A1CC62F4400B79190 /* SeetishopNightlifeIcon@2x.png in Resources */,
 				C240BB331CC62F4400B79190 /* SSFacebookIcon@3x.png in Resources */,
@@ -7286,7 +7311,6 @@
 				C240BA8F1CC62F4400B79190 /* InviteBtnActive@2x.png in Resources */,
 				0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */,
 				C240BAAD1CC62F4400B79190 /* SeetiesLogo@2x.png in Resources */,
-				C76F4CF21CE09B7C006B9F66 /* ShareViaFacebook.png in Resources */,
 				C240BB541CC62F4400B79190 /* ShareWhatsappIcon@2x.png in Resources */,
 				C238E3391C4649AA00570A25 /* slider-metal-handle.png in Resources */,
 				C240B9BE1CC62F4400B79190 /* CheckGrey@3x.png in Resources */,
@@ -8090,7 +8114,7 @@
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8118,7 +8142,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8199,7 +8223,7 @@
 				Bundle_Name = Seeties;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8227,7 +8251,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = "Release Staging";
@@ -8350,7 +8374,7 @@
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8379,7 +8403,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 			};
 			name = Debug;
 		};
@@ -8421,7 +8445,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 			};
 			name = Release;
 		};

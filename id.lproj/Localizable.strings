@@ -1400,6 +1400,56 @@
 "Pay Later" = "Pay at Shop";
 
 "Collect Now, Pay at Shop" = "Collect Now, Pay at Shop";
+"Everytime a friend signs up with your invite code, each of you will receive a reward. Collect your reward via your notification!" = "Dapatkan hadiah menarik untuk setiap kode referral yang digunakan temanmu saat mendaftar ke dalam Seeties. Ambil hadiahmu di notifikasi. ";
+"The reward is now yours. Redeem it via your notification." = "Hadiah ini kini jadi milikmu. Lihat dan redeem sekarang juga di notifikasi.";
+"Enter invite code" = "Masukkan kode referral";
+"Invite code (optional)" = "Kode referral (opsional)";
+"Your referral code is invalid! But you may continue and try again later." = "Kode referral salah! Silakan lanjut dan coba masukkan beberapa saat lagi.";
+"Continue" = "Lanjutkan";
+"Get Rewards" = "Dapatkan Hadiah";
+"Enter your promo code" = "Masukkan kode promo";
+"Yay!" = "Yay!";
+"Collect your reward via your notification." = "Ambil hadiahmu di notifikasi";
+"Okay" = "OK";
+"Congratulations! You've received a reward. Check it out!" = "Selamat, kamu baru saja mendapatkan hadiah misterius! Lihat sekarang juga!";
+"Welcome to Seeties! To start collecting and redeeming deals, please verify your phone number." = "Selamat datang di Seeties! Mohon verifikasi nomor telepon sebelum mulai mengumpulkan dan redeem penawaran yang tersedia. ";
+"{!name} has joined Seeties via your invitation." = "{!name} telah bergabung ke Seeties lewat undanganmu";
+"Congratulations! A reward awaits for you for getting {!name} on board. Check it out!  " = "Selamat! Kamu baru saja mendapatkan hadiah karena telah mengundang {!name} ke Seeties. Lihat hadiahnya sekarang!";
+"Invite Friends" = "Undang Teman";
+"The More, The Merrier" = "Makin Banyak, Makin Seru!";
+"Invite friends to join Seeties, and share exciting deals together!" = "Undang teman untuk bergabung ke Seeties dan bagikan berbagai penawaran menarik bersama-sama!";
+"Invite Friends & Get Reward" = "Undang Teman & Dapatkan Hadiah Langsung";
+"Share your promo code" = "Bagikan kode promo";
+"{!referral code}" = "{!referral code}";
+//======CHANGE======//
+"Share your promo code\n{!referral code}" = "Bagikan kode promo\n{!referral code}";
+//======CHANGE======//
+"Code Copied" = "Kode tersalin";
+"Give your friends a 1-for-1 deal and receive one yourself" = "Dapatkan hadiah langsung voucher Buy1 Free 1 untukmu dan temanmu";
+"Details" = "Rincian";
+"Give your friends a super value deal and receive one yourself!" = "Dapatkan hadiah langsung voucher super deals untukmu dan temanmu";
+"Invite Friends" = "Undang Teman";
+"Promo ends in {!days} days - don't wait!" = "Promo berakhir dalam {!days} hari - ambil sekarang!";
+"Every time a friend signs up with your invite code, both of you receive a reward. Collect your reward in your notification!\n\nAlso stand a chance to win daily prizes:\n- Pertamina gasoline voucher IDR 50.000\n- Jersey Euro Cup 2016\n\n*Terms and conditions apply." = "Ada hadiah menarik untuk setiap kode referral yang digunakan temanmu saat mendaftar ke dalam Seeties. Ambil hadiahmu di notifikasi. \n\nDapatkan juga kesempatan memenangkan hadiah harian:\n- Voucher bensin IDR 50.000 Pertamina\n- Jersey Euro Cup 2016\n\n*Syarat & ketentuan berlaku";
+"Every time a friend signs up with your invite code, both of you receive a reward each. Terms and conditions apply." = "Ada hadiah menarik untuk setiap kode referral yang digunakan temanmu saat mendaftar ke dalam Seeties. Syarat dan ketentuan berlaku.";
+"Okay!" = "OK!";
+"Rewards" = "Hadiah Kode referral";
+"You have {!number} deal(s) to collect." = "Kamu punya {!number} penawaran untuk dikumpulkan.";
+"Choose the outlet where you want to redeem" = "Pilih lokasi toko untuk melakukan redeem";
+"Confirm" = "Konfirmasi";
+"Oops, this deal is currently unavailable. Please check again later." = "Ups, untuk sementara penawaran ini tidak berlaku. Silakan cek kembali beberapa saat lagi.";
+"Oops, this deal has expired. Sorry!" = "Maaf, masa berlaku penawaran ini telah habis.";
+"Sign Up with Seeties!" = "";
+"Join Seeties to enjoy awesome deals around your city! " = "Gabung ke Seeties untuk menikmati penawaran menarik di kotamu! ";
+"Sharing is caring! Get an instant reward when you sign up with the invite code '{!referral_code}'. \nhttps://seeties.me/referral/signup/{code}" = "Berbagi itu indah. Dapatkan hadiah langsung saat mendaftar menggunakan kode referral '{!referral_code}'. \nhttps://seeties.me/referral/signup/{code}";
+"Sharing is caring!\nSign up with Seeties today. \nhttps://seeties.me/signup/" = "";
+"Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "Versi {!version number}\n- Undang teman & dapatkan hadiah langsung\n- Fix bugs";
+"Kindly key in your valid email" = "Silakan berikan alamat email";
+"Kindly fill in all required fields" = "Silakan isi semua kolom isian yang diminta";
+"Email" = "Email";
+"Feedback" = "Tanggapan";
+"Include Screenshot" = "Masukan screenshot";
+"REFERRAL" = "REFERRAL";
 
 
 

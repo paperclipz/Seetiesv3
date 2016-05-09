@@ -36,7 +36,7 @@
     if (self.signUpClickBlock) {
         if ([self validate]) {
             if (![self requestServerToCheckUserRegistrationData:self.ibReferralCodeTxt.text forField:@"referral_code"]) {
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Referral code is invalid, but you may continue and try again later.") cancelButtonTitle:LocalisedString(@"Continue") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Your referral code is invalid! But you may continue and try again later.") cancelButtonTitle:LocalisedString(@"Continue") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
                     
                 }];
@@ -114,8 +114,8 @@
     self.txtUserName.placeholder = LocalisedString(@"username/ email address");
     self.txtPassword.placeholder = LocalisedString(@"password");
     self.txtEmail.placeholder = LocalisedString(@"email address");
-    self.ibEnterReferralLbl.text = LocalisedString(@"Enter referral code");
-    self.ibReferralCodeTxt.placeholder = LocalisedString(@"referral code (optional)");
+    self.ibEnterReferralLbl.text = LocalisedString(@"Enter invite code");
+    self.ibReferralCodeTxt.placeholder = LocalisedString(@"Invite code (optional)");
 
     [self.btnSignup setTitle:LocalisedString(@"Submit") forState:UIControlStateNormal];
     self.lblSignUp.text = LocalisedString(@"Sign up");
