@@ -1241,7 +1241,10 @@
         self.isCollecting = NO;
         
         if (self.dealViewType == 6) {
-            [self requestServerForCollectionInfo:nil];
+            [self requestServerForCollectionInfo:^{
+                [self.ibVoucherTable reloadData];
+
+            }];
         }
         
     } failure:^(id object) {

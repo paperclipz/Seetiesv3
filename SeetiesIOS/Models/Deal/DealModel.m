@@ -23,7 +23,8 @@
                                                        @"redemption_periods.periods_in_hours.period": @"period",
                                                        @"redemption_periods.periods_in_date": @"periods_in_date",
                                                        @"type": @"voucher_type",
-                                                       @"collection_periods.periods_in_date": @"collection_periods_in_date"
+                                                       @"collection_periods.periods_in_date": @"collection_periods_in_date",
+                                                       @"collection_periods.expired_at": @"collection_expired_at"
                                                        }];
 }
 
@@ -83,15 +84,9 @@
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSInteger numberOfDaysLeft = 0;
-    NSString *collectionEndDate = @"";
     
-    if (![Utils isArrayNull:self.collection_periods_in_date]) {
-        NSDictionary *dict = self.collection_periods_in_date[0];
-        collectionEndDate = dict[@"to"];
-    }
-    
-    if ([Utils isValidDateString:collectionEndDate]) {
-        NSDate *expiryDate = [dateFormatter dateFromString:collectionEndDate];
+    if ([Utils isValidDateString:self.collection_expired_at]) {
+        NSDate *expiryDate = [dateFormatter dateFromString:self.collection_expired_at];
         
         numberOfDaysLeft = [Utils numberOfDaysLeft:expiryDate];
     }
