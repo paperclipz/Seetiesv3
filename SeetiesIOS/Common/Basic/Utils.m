@@ -1103,4 +1103,53 @@
    
 }
 
+#pragma mark - Notification
+
+
++(void)startNotification
+{
+    [NSTimer scheduledTimerWithTimeInterval:30.0
+                                     target:[Utils class]
+                                   selector:@selector(requestServerForNotificationCount)
+                                   userInfo:nil
+                                    repeats:YES];
+
+}
+
++(void)requestServerForNotificationCount
+{
+    
+    if ([Utils isGuestMode]) {
+        
+        return;
+    }
+    
+    NSString* token = [Utils getAppToken];
+    
+    NSDictionary* dict = @{@"token" : token?token:@""};
+    
+    if (![Utils isStringNull:token]) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetNotificationCount parameter:dict appendString:nil success:^(id object)
+         {
+             NSDictionary* returnDict = object[@"data"];
+             
+             @try {
+                 int notCount = [returnDict[@"total_new_notifications"] intValue];
+                 
+                 NSDictionary* dict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",notCount] forKey:@"NOTIFICATION_COUNT"];
+                 [[NSNotificationCenter defaultCenter]
+                  postNotificationName:@"UpdateNotification"
+                  object:nil userInfo:dict];
+             }
+             @catch (NSException *exception) {
+                 SLog(@"server count not found");
+             }
+             
+         } failure:^(id object) {
+             
+         }];
+    }
+}
+
 @end
