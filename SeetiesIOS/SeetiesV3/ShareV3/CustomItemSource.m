@@ -69,6 +69,14 @@
     else if ([activityType isEqualToString:@"com.tencent.xin.sharetimeline"]) {
         return [NSURL URLWithString:[self getShareLink:self.shareType]];
     }
+    else if ([activityType isEqualToString:@"com.custom.line"]) {
+        NSString *str = [self GetFormattedStringWithAppendURL:YES];
+        NSString *string = [NSString stringWithFormat:@"line://msg/text/%@",str];
+        NSURL *url = [NSURL URLWithString:[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [[UIApplication sharedApplication] openURL: url];
+
+        return @"";
+    }
 //    else if ([activityType isEqualToString:@"com.custom.messenger"]) {
 //        
 //        NSURL *url = [NSURL URLWithString:@"sms:98765432"];

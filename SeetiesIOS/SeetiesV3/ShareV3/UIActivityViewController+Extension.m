@@ -35,7 +35,7 @@
     }
     
     //Create custom facebook UIActivity
-    CustomUIActivity *customFBControl = [[CustomUIActivity alloc] initWithTitle:@"Facebook" activityImage:[UIImage imageNamed:@"FacebookIcon"] activityType:@"com.custom.PostToFacebook" completionBlock:^(id object){
+    CustomUIActivity *customFBControl = [[CustomUIActivity alloc] initWithTitle:@"Facebook" activityImage:[UIImage imageNamed:@"ShareViaFacebook"] activityType:@"com.custom.PostToFacebook" completionBlock:^(id object){
         
         FBSDKShareLinkContent *content = dataToPost.fbShareContent;
         
@@ -46,9 +46,13 @@
     
     [customUIActivity addObject:customFBControl];
     
-    CustomUIActivity *customWhatsApp = [[CustomUIActivity alloc] initWithTitle:@"Whatsapp" activityImage:[UIImage imageNamed:@"WhatsappIcon"] activityType:@"com.custom.whatsapp" completionBlock:nil];
+    CustomUIActivity *customWhatsApp = [[CustomUIActivity alloc] initWithTitle:@"Whatsapp" activityImage:[UIImage imageNamed:@"ShareViaWhatsapp"] activityType:@"com.custom.whatsapp" completionBlock:nil];
     
     [customUIActivity addObject:customWhatsApp];
+    
+    CustomUIActivity *customLineApp = [[CustomUIActivity alloc] initWithTitle:@"Line" activityImage:[UIImage imageNamed:@"ShareViaLine"] activityType:@"com.custom.line" completionBlock:nil];
+    
+    [customUIActivity addObject:customLineApp];
     
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[dataToPost] applicationActivities:customUIActivity];
     
