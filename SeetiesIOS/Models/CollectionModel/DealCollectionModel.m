@@ -92,11 +92,11 @@
     if ([expiryDate isGreaterDate:[NSDate date]]) {
         
        
-        return YES;
+        return NO;
         
     }
     else{
-        return NO;
+        return YES;
         
     }
 }
