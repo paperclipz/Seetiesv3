@@ -1344,6 +1344,8 @@
 		C75015FE1CD0A7640048C279 /* EditProfileV3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */; };
 		C75015FF1CD0A7640048C279 /* EditProfileV3ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */; };
 		C75016021CD0AC420048C279 /* GenericObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C75016011CD0AC420048C279 /* GenericObject.m */; };
+		C76F4CF01CE09B62006B9F66 /* ShareViaWhatsapp.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4CEF1CE09B62006B9F66 /* ShareViaWhatsapp.png */; };
+		C76F4CF21CE09B7C006B9F66 /* ShareViaFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = C76F4CF11CE09B7C006B9F66 /* ShareViaFacebook.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3068,6 +3070,8 @@
 		C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditProfileV3ViewController.storyboard; sourceTree = "<group>"; };
 		C75016001CD0AC420048C279 /* GenericObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericObject.h; path = ../GenericObject.h; sourceTree = "<group>"; };
 		C75016011CD0AC420048C279 /* GenericObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericObject.m; path = ../GenericObject.m; sourceTree = "<group>"; };
+		C76F4CEF1CE09B62006B9F66 /* ShareViaWhatsapp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShareViaWhatsapp.png; sourceTree = "<group>"; };
+		C76F4CF11CE09B7C006B9F66 /* ShareViaFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShareViaFacebook.png; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6361,6 +6365,8 @@
 				C240B8741CC62F4400B79190 /* ShareMessangerIcon@3x.png */,
 				C240B8751CC62F4400B79190 /* ShareWhatsappIcon@2x.png */,
 				C240B8761CC62F4400B79190 /* ShareWhatsappIcon@3x.png */,
+				C76F4CF11CE09B7C006B9F66 /* ShareViaFacebook.png */,
+				C76F4CEF1CE09B62006B9F66 /* ShareViaWhatsapp.png */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -6644,6 +6650,7 @@
 				C240B9081CC62F4400B79190 /* NaviBackIcon@2x.png in Resources */,
 				C240B96B1CC62F4400B79190 /* TabBarMoreIcon@2x.png in Resources */,
 				C240BAD01CC62F4400B79190 /* MoreIcon@3x.png in Resources */,
+				C76F4CF01CE09B62006B9F66 /* ShareViaWhatsapp.png in Resources */,
 				0BBFE0501B9D624C004B17E9 /* EditProfileV2ViewController.xib in Resources */,
 				C240B9481CC62F4400B79190 /* SplashOverlay@3x.png in Resources */,
 				8A84C5DF1C7FF448006A0D76 /* NoImage.png in Resources */,
@@ -7266,6 +7273,7 @@
 				C240BA8F1CC62F4400B79190 /* InviteBtnActive@2x.png in Resources */,
 				0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */,
 				C240BAAD1CC62F4400B79190 /* SeetiesLogo@2x.png in Resources */,
+				C76F4CF21CE09B7C006B9F66 /* ShareViaFacebook.png in Resources */,
 				C240BB541CC62F4400B79190 /* ShareWhatsappIcon@2x.png in Resources */,
 				C238E3391C4649AA00570A25 /* slider-metal-handle.png in Resources */,
 				C240B9BE1CC62F4400B79190 /* CheckGrey@3x.png in Resources */,
@@ -8094,7 +8102,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
+				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8201,7 +8209,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
+				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = "Release Staging";
@@ -8324,7 +8332,7 @@
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8351,7 +8359,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
 			};
 			name = Debug;
 		};
@@ -8391,7 +8399,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
+				PROVISIONING_PROFILE = "e1e9323c-40d1-45d8-ae3c-5a37649ce3dd";
 			};
 			name = Release;
 		};
