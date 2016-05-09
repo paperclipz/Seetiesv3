@@ -241,7 +241,6 @@
 }
 
 -(void)setHeaderOverlay{
-    NSInteger collectionDaysLeft = self.dealModel.collectionDaysLeft;
     
     self.ibVoucherBlackOverylay.hidden = NO;
     if (self.dealCollectionModel && [self.dealCollectionModel isCampaignExpired]) {
@@ -252,17 +251,22 @@
         [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsExpiredIcon.png"]];
         self.ibVoucherOverlayTitle.text = LocalisedString(@"Expired");
     }
-    else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE] && collectionDaysLeft <= 0){
-        [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsExpiredIcon.png"]];
-        self.ibVoucherOverlayTitle.text = LocalisedString(@"Expired");
-    }
-    else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE] && self.dealModel.total_available_vouchers == 0){
-        [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingSoldOutIcon.png"]];
-        self.ibVoucherOverlayTitle.text = LocalisedString(@"Sold Out");
-    }
     else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_REDEEMED]){
         [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsRedeemedIcon.png"]];
         self.ibVoucherOverlayTitle.text = LocalisedString(@"Redeemed");
+    }
+    else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE]){
+        if ([Utils isValidDateString:self.dealModel.collection_expired_at] && self.dealModel.collectionDaysLeft <= 0) {
+            [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsExpiredIcon.png"]];
+            self.ibVoucherOverlayTitle.text = LocalisedString(@"Expired");
+        }
+        else if (self.dealModel.total_available_vouchers == 0){
+            [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsListingSoldOutIcon.png"]];
+            self.ibVoucherOverlayTitle.text = LocalisedString(@"Sold Out");
+        }
+        else{
+            self.ibVoucherBlackOverylay.hidden = YES;
+        }
     }
     else{
         self.ibVoucherBlackOverylay.hidden = YES;
