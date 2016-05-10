@@ -163,7 +163,7 @@
     [self configureNotificaiton:application];
     [self configureSetup];
     [self checkCurrentAppLanguage];
-    [self showWindow];
+ //   [self showWindow];
    
     [Crashlytics startWithAPIKey:FABRIC_API_KEY];
 
@@ -375,6 +375,8 @@
         [self processAPIVersion];
     } failure:^(id object) {
         
+        [self showWindow];
+
     }];
   
 }
@@ -383,8 +385,11 @@
 
 -(void)processAPIVersion
 {
+    
+    SLog(@"YES!!");
     ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
     
+    [self showWindow];
     //[Utils setIsDevelopment:!model.production];
     //Check version if same then proceed, if not same then promp error and also proceed to landing
     if (![model.version isEqualToString:API_VERSION]) {

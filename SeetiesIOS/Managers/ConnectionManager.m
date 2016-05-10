@@ -684,7 +684,7 @@
 
 -(BOOL)isNeedRelogin:(NSDictionary*)obj
 {
-    
+    return NO;
     @try {
         NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:obj];
         
@@ -745,13 +745,13 @@
     NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", url,[obj bv_jsonStringWithPrettyPrint:YES]);
     
     
-    if ([self isNeedRelogin:obj]) {
-        
-        SLog(@"change to dev");
-        [self saveProductionSetting:obj];
-      
-        return;
-    }
+//    if ([self isNeedRelogin:obj]) {
+//        
+//        SLog(@"change to dev");
+//        [self saveProductionSetting:obj];
+//      
+//        return;
+//    }
     
     
     [self saveProductionSetting:obj];
