@@ -448,7 +448,7 @@
 -(void)logout
 {
     
-    [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to sign out of Seeties?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Maybe not..") otherButtonTitles:@[@"Yeah!!"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+    [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to sign out of Seeties?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Maybe not..") otherButtonTitles:@[LocalisedString(@"Yeah!!")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
         
         if (buttonIndex == 0) {
             

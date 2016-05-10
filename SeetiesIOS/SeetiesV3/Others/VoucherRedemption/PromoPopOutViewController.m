@@ -552,6 +552,7 @@
         {
             if (self.hasRequestedPromo) {
                 if (self.isReferral) {
+                    [Utils requestServerForNotificationCount];
                     [nextVC setViewType:PopOutViewTypeReferralSuccessful];
                     break;
                 }

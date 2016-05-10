@@ -267,7 +267,7 @@
     //Category
     FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
     catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    catCategory.categoryName = LocalisedString(@"Deals by Category");
+    catCategory.categoryName = LocalisedString(@"Category");
     catCategory.filterCategoryType = FilterTypeCat;
     
     HomeModel *homeModel = [[DataManager Instance] homeModel];
@@ -373,7 +373,7 @@
     //Category
     FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
     catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    catCategory.categoryName = LocalisedString(@"Deals by Category");
+    catCategory.categoryName = LocalisedString(@"Category");
     catCategory.filterCategoryType = FilterTypeCat;
     
     HomeModel *homeModel = [[DataManager Instance] homeModel];

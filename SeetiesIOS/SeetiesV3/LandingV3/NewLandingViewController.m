@@ -208,7 +208,7 @@
     [CrashlyticsKit setUserIdentifier:model.uid];
     
     [self requestServerForUserInfo];
-
+    [Utils requestServerForNotificationCount];
 }
 
 -(ProfileViewController*)profileViewController

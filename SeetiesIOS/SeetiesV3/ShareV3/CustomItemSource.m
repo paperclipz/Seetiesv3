@@ -255,7 +255,8 @@
             
         case ShareTypeInvite:
         {
-            finalLink = seetiesLink;
+            subLink = @"signup/";
+            finalLink = [NSString stringWithFormat:@"%@%@", seetiesLink, subLink];
         }
             break;
             
