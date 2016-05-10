@@ -359,7 +359,7 @@
             self.ibEnterPhoneTitle.text = LocalisedString(@"Enter Phone Number");
             self.ibEnterPhoneDesc.text = LocalisedString(@"Please verify your phone number to collect the voucher.");
             self.ibEnterPhoneCountryCodeLbl.text = LocalisedString(@"Select Country Code");
-            self.ibEnterPhoneTxtField.placeholder = LocalisedString(@"eg. 01x xxx xxxx");
+            self.ibEnterPhoneTxtField.placeholder = LocalisedString(@"eg. 1x xxx xxxx");
             [self.ibEnterPhoneConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
             
             self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, 470);

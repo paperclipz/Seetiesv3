@@ -53,14 +53,14 @@
         default:
         case 0:
             self.ibImage.image = [UIImage imageNamed:@"EmptyStateImg.png"];
-            self.lblDesc.text = LocalisedString(@"No Collections");
+            self.lblDesc.text = LocalisedString(@"There's nothing 'ere, yet.");
 
 
             break;
             
         case 1:
             self.ibImage.image = [UIImage imageNamed:@"EmptyStateImg.png"];
-            self.lblDesc.text = LocalisedString(@"Would you like to start a post?(:");
+            self.lblDesc.text = LocalisedString(@"Would you like to start a post? (=");
 
             break;
             
