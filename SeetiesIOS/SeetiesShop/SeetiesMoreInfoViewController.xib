@@ -51,12 +51,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlT-gL-RCd">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rekindle Cafe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4C-jn-Zry">
-                            <rect key="frame" x="0.0" y="29" width="320" height="24"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="YyN-kx-LCl">
                             <rect key="frame" x="-5" y="20" width="40" height="40"/>
                             <constraints>
@@ -88,6 +82,12 @@
                                 <action selector="btnTranslationClicked:" destination="-1" eventType="touchUpInside" id="rb0-h4-rxu"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rekindle Cafe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4C-jn-Zry">
+                            <rect key="frame" x="94" y="29" width="133" height="24"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -97,17 +97,20 @@
                         <constraint firstItem="ABi-z1-rSE" firstAttribute="top" secondItem="dlT-gL-RCd" secondAttribute="top" id="Hgb-bC-bSc"/>
                         <constraint firstItem="YyN-kx-LCl" firstAttribute="leading" secondItem="dlT-gL-RCd" secondAttribute="leading" constant="-5" id="IrE-f4-0XY"/>
                         <constraint firstAttribute="bottom" secondItem="Pw2-9X-zHA" secondAttribute="bottom" id="Itv-ha-8Ae"/>
-                        <constraint firstAttribute="trailing" secondItem="V4C-jn-Zry" secondAttribute="trailing" id="Yhx-cK-zax"/>
+                        <constraint firstItem="V4C-jn-Zry" firstAttribute="centerX" secondItem="dlT-gL-RCd" secondAttribute="centerX" id="VIV-O2-B3p"/>
+                        <constraint firstAttribute="trailing" secondItem="V4C-jn-Zry" secondAttribute="trailing" constant="50" id="Yhx-cK-zax"/>
                         <constraint firstItem="YyN-kx-LCl" firstAttribute="top" secondItem="V4C-jn-Zry" secondAttribute="top" constant="-9" id="awr-tb-2SF"/>
-                        <constraint firstItem="V4C-jn-Zry" firstAttribute="leading" secondItem="YyN-kx-LCl" secondAttribute="trailing" constant="-35" id="gH4-h4-wDq"/>
+                        <constraint firstItem="V4C-jn-Zry" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YyN-kx-LCl" secondAttribute="trailing" constant="15" id="gH4-h4-wDq"/>
                         <constraint firstAttribute="bottom" secondItem="YyN-kx-LCl" secondAttribute="bottom" constant="4" id="gfG-RC-aeO"/>
                         <constraint firstAttribute="bottom" secondItem="V4C-jn-Zry" secondAttribute="bottom" constant="11" id="jit-wU-BgF"/>
                         <constraint firstItem="ABi-z1-rSE" firstAttribute="leading" secondItem="dlT-gL-RCd" secondAttribute="leading" id="nHh-sc-ZfS"/>
                         <constraint firstAttribute="trailing" secondItem="Pw2-9X-zHA" secondAttribute="trailing" id="skg-DV-gOX"/>
                         <constraint firstItem="Pw2-9X-zHA" firstAttribute="top" secondItem="dlT-gL-RCd" secondAttribute="top" constant="20" id="sqp-zx-6LR"/>
+                        <constraint firstItem="Pw2-9X-zHA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="V4C-jn-Zry" secondAttribute="trailing" id="zfD-nO-KPp"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="Yhx-cK-zax"/>
                             <exclude reference="Ckc-JG-UXl"/>
                         </mask>
                     </variation>

@@ -29,4 +29,5 @@
 -(void)reloadData;
 -(void)showIntroView;
 
+-(void)reloadTabbar;
 @end

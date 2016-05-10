@@ -132,6 +132,7 @@ typedef enum {
 +(void)reloadAppView:(BOOL)navigateToHome;
 +(void)reloadProfileView;
 +(void)reloadHomeView:(int)type;
++(void)reloadTabbar;
 
 +(NSData*)getParseToken;
 +(void)setParseToken:(NSData*)data;
