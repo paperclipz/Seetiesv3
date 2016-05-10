@@ -30,12 +30,17 @@
     [super viewDidLoad];
     
     CGRect frame = [Utils getDeviceScreenSize];
-    if (frame.size.width <= 320) {
+    if (frame.size.height <= 480) {
         self.contLeading.constant = 104;
+        SLog(@"iphone4");
+    }
+    else if (frame.size.height <= 667){
+        self.contLeading.constant = 74;
+        SLog(@"iphone5/6");
     }
     else{
         self.contLeading.constant = 64;
-
+        SLog(@"iphone6+");
     }
     
     // Do any additional setup after loading the view from its nib.

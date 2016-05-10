@@ -122,7 +122,7 @@
     }
     
     [self.ibRedeemBtn setBackgroundColor:REDEEM_IN_ATIVE];
-
+    [self.ibRedeemBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
     if ([Utils isRedeemable:dealModel]) {
         
         if ([Utils isWithinOperationHour:dealModel.period]) {

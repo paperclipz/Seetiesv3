@@ -35,16 +35,12 @@
     
     if (self.signUpClickBlock) {
         if ([self validate]) {
-            if (![self requestServerToCheckUserRegistrationData:self.ibReferralCodeTxt.text forField:@"referral_code"]) {
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Your referral code is invalid! But you may continue and try again later.") cancelButtonTitle:LocalisedString(@"Continue") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
-                    self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
-                    
-                }];
-                return;
+            if ([Utils isStringNull:self.ibReferralCodeTxt.text]) {
+                self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
             }
-            
-            self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
-
+            else{
+                [self requestServerToCheckUserRegistrationData:self.ibReferralCodeTxt.text forField:@"referral_code"];
+            }
         }
     }
 }
@@ -144,27 +140,28 @@
 }
 
 #pragma mark - RequestServer
--(BOOL)requestServerToCheckUserRegistrationData:(NSString*)data forField:(NSString*)field{
+-(void)requestServerToCheckUserRegistrationData:(NSString*)data forField:(NSString*)field{
     if ([Utils isStringNull:data] || [Utils isStringNull:field]) {
-        return YES;
+        return;
     }
     
     [LoadingManager show];
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:@{@"field" : field,
                                                                                   @"value" : data
                                                                                   }];
-    __block BOOL result;
+
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostCheckUserRegistrationData parameter:dict appendString:nil success:^(id object) {
         
-        result = YES;
+        self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
         
     } failure:^(id object) {
-        
-        result = NO;
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Your referral code is invalid! But you may continue and try again later.") cancelButtonTitle:LocalisedString(@"Continue") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
+            
+        }];
         
     }];
     [LoadingManager hide];
-    return result;
 }
 
 @end

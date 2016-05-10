@@ -1441,8 +1441,10 @@
 "Oops, this deal has expired. Sorry!" = "Maaf, masa berlaku penawaran ini telah habis.";
 "Sign Up with Seeties!" = "";
 "Join Seeties to enjoy awesome deals around your city! " = "Gabung ke Seeties untuk menikmati penawaran menarik di kotamu! ";
-"Sharing is caring! Get an instant reward when you sign up with the invite code '{!referral_code}'. \nhttps://seeties.me/referral/signup/{code}" = "Berbagi itu indah. Dapatkan hadiah langsung saat mendaftar menggunakan kode referral '{!referral_code}'. \nhttps://seeties.me/referral/signup/{code}";
-"Sharing is caring!\nSign up with Seeties today. \nhttps://seeties.me/signup/" = "";
+//======CHANGE======//
+"Sharing is caring! Get an instant reward when you sign up with the invite code '{!referral_code}'.\n{!Seeties URL}" = "Berbagi itu indah. Dapatkan hadiah langsung saat mendaftar menggunakan kode referral '{!referral_code}'.\n{!Seeties URL}";
+"Sharing is caring!\nSign up with Seeties today.\n{!Seeties URL}" = "";
+//======CHANGE======//
 "Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "Versi {!version number}\n- Undang teman & dapatkan hadiah langsung\n- Fix bugs";
 "Kindly key in your valid email" = "Silakan berikan alamat email";
 "Kindly fill in all required fields" = "Silakan isi semua kolom isian yang diminta";
