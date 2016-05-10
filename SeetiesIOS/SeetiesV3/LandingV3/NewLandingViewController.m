@@ -32,7 +32,6 @@
 
 @implementation NewLandingViewController
 
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [self reloadBadgeView];
@@ -44,6 +43,7 @@
     
     [self.view addSubview:self.tabBarController.view];
     
+    [self changeLanguage];
     [self requestServerForLanguageList];
     [self registerNotification];
     if (![Utils checkUserIsLogin]) {

@@ -550,6 +550,7 @@
         [self.ibTableView reloadData];
         
         [Utils reloadAppView:NO];
+        [Utils reloadTabbar];
         
     } failure:^(id object) {
         

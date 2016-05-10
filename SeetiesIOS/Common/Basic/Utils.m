@@ -76,8 +76,6 @@
     if (navigateToHome) {
         appdelegate.landingViewController.tabBarController.selectedIndex = 0;
     }
-    
-    [Utils reloadTabbar];
 }
 
 
