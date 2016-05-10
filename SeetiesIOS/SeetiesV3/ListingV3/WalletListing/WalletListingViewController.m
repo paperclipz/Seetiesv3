@@ -259,15 +259,21 @@
     label.font = [UIFont boldSystemFontOfSize:13.0f];
     label.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     
-    DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
-    if ([expiryModel.expiryDate isEqualToString:@"new"]) {
-        label.text = LocalisedString(@"New Deals");
-    }
-    else if ([expiryModel.expiryDate isEqualToString:@"noDate"]){
-        label.text = LocalisedString(@"No expiry");
-    }
-    else{
-        label.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": expiryModel.expiryDate}];
+    
+    @try {
+        DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:section];
+        if ([expiryModel.expiryDate isEqualToString:@"new"]) {
+            label.text = LocalisedString(@"New Deals");
+        }
+        else if ([expiryModel.expiryDate isEqualToString:@"noDate"]){
+            label.text = LocalisedString(@"No expiry");
+        }
+        else{
+            label.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": expiryModel.expiryDate}];
+        }
+
+    } @catch (NSException *exception) {
+        
     }
     
     [contentView addSubview:label];

@@ -184,25 +184,31 @@
     [userDefault synchronize];
 }
 
-+(NSString*)stringForKey:(NSString*)key withPlaceHolder:(NSDictionary*)dict
++(NSString*)stringForKey:(NSString*)cKey withPlaceHolder:(NSDictionary*)dict
 {
-    NSString* str = LocalisedString(key);
-    
-    for (NSString *key in dict.allKeys) {
-        @try {
-            
-            if ([dict[key] isKindOfClass:[NSString class]]) {
-                str = [str stringByReplacingOccurrencesOfString:key withString:dict[key]];
+    NSString* str = LocalisedString(cKey);
+
+    if (str && dict) {
+  
+        for (NSString *key in dict.allKeys) {
+            @try {
+                
+                if ([dict[key] isKindOfClass:[NSString class]]) {
+                    str = [str stringByReplacingOccurrencesOfString:key withString:dict[key]];
+                }
+                else {
+                    str = [str stringByReplacingOccurrencesOfString:key withString:[dict[key] stringValue]];
+                }
+                
+            } @catch (NSException *exception) {
+                SLog(@"Language manager error key: %@", key);
             }
-            else {
-                str = [str stringByReplacingOccurrencesOfString:key withString:[dict[key] stringValue]];
-            }
             
-        } @catch (NSException *exception) {
-            SLog(@"Language manager error key: %@", key);
         }
-        
     }
+  
+    
+    
     
     return str;
 }

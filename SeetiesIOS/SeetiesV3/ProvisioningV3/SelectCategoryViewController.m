@@ -40,6 +40,9 @@
     [super viewDidLoad];
     [self initSelfView];
     
+    self.navigationController.interactivePopGestureRecognizer.enabled = false;
+
+    
     [[ConnectionManager Instance]requestServerForAppInfo:^(id object) {
         
         @try {

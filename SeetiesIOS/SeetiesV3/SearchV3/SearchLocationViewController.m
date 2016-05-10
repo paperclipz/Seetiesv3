@@ -669,7 +669,14 @@
             
             NSIndexPath* countryIndexPath = self.ibCountryTable.indexPathForSelectedRow;
             
-            CountryModel* model = self.arrCountries[countryIndexPath.row];
+            CountryModel* model;
+            @try {
+                
+                model = self.arrCountries[countryIndexPath.row];
+
+            } @catch (NSException *exception) {
+                
+            }
             if(![Utils isStringNull:model.paging.next])
             {
                 

@@ -21,6 +21,6 @@
 - (Locale *)getSelectedLocale;
 - (NSString *)getTranslationForKey:(NSString *)key;
 - (void)setLanguageCode:(NSString*)code;
-+(NSString*)stringForKey:(NSString*)key withPlaceHolder:(NSDictionary*)dict;
++(NSString*)stringForKey:(NSString*)cKey withPlaceHolder:(NSDictionary*)dict;
 
 @end

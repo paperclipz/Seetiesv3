@@ -894,12 +894,15 @@
     if (isDealCollectionLoading) {
         return;
     }
-    NSDictionary* dict = @{@"token" : [Utils getAppToken],
-                           @"deal_collection_id" : self.dealCollectionModel.deal_collection_id,
-                         };
+    
+    NSDictionary* dict = @{@"token" : [Utils getAppToken]};
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
-    
+
+    if ([Utils isStringNull:self.dealCollectionModel.deal_collection_id]) {
+        
+        [finalDict setObject:self.dealCollectionModel.deal_collection_id forKey:@"deal_collection_id"];
+    }
     
     NSString* appendString = [NSString stringWithFormat:@"%@",self.dealCollectionModel.deal_collection_id];
 

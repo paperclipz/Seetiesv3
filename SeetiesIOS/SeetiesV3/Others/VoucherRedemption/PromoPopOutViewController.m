@@ -501,21 +501,35 @@
 #pragma mark - IBAction
 
 - (IBAction)selectCountryCodeBtnClicked:(id)sender {
-    NSArray *formattedCountriesCode = [self getFormattedCountriesCode];
-    CountriesModel *countriesModel = [[DataManager Instance] appInfoModel].countries;
-    [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
-                                            rows:formattedCountriesCode? formattedCountriesCode : [NSArray new]
-                                initialSelection:0
-                                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                    
-                                    CountryModel *countryModel = countriesModel.countries[selectedIndex];
-                                    NSString *countryCode = countryModel.phone_country_code;
-                                    self.selectedCountryCode = [countryCode substringFromIndex:1];
-                                    self.ibEnterPhoneCountryCodeLbl.text = formattedCountriesCode[selectedIndex];
-                                    
-    } cancelBlock:^(ActionSheetStringPicker *picker) {
+    
+    NSArray *formattedCountriesCode;
+
+    @try {
+        formattedCountriesCode = [self getFormattedCountriesCode];
         
-    } origin:sender];
+    } @catch (NSException *exception) {
+        
+    }
+    
+    if (formattedCountriesCode) {
+        
+        CountriesModel *countriesModel = [[DataManager Instance] appInfoModel].countries;
+        [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
+                                                rows:formattedCountriesCode? formattedCountriesCode : [NSArray new]
+                                    initialSelection:0
+                                           doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                               
+                                               CountryModel *countryModel = countriesModel.countries[selectedIndex];
+                                               NSString *countryCode = countryModel.phone_country_code;
+                                               self.selectedCountryCode = [countryCode substringFromIndex:1];
+                                               self.ibEnterPhoneCountryCodeLbl.text = formattedCountriesCode[selectedIndex];
+                                               
+                                           } cancelBlock:^(ActionSheetStringPicker *picker) {
+                                               
+                                           } origin:sender];
+
+    }
+    
 }
 
 - (IBAction)resendCodeBtnClicked:(id)sender {
