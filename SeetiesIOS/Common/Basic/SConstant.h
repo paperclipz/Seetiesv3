@@ -28,7 +28,7 @@ typedef enum
     ServerRequestTypePostProvisioning,
     ServerRequestTypeGetLanguage,
     ServerRequestTypeGetCategory,
-   // ServerRequestTypeGetApiVersion,
+    ServerRequestTypeGetApiVersion,
     
     
     ServerRequestTypeGetExplore,

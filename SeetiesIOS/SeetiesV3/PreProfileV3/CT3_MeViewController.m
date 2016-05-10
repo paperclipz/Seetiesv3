@@ -281,6 +281,7 @@
     
     self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @([[DealManager Instance] getWalletCount])}];
 
+    
 }
 
 -(void)changeLanguage{

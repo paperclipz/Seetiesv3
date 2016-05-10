@@ -465,12 +465,12 @@
             str = [NSString stringWithFormat:@"%@/system/update/category",API_VERION_URL];
             
             break;
-//        case ServerRequestTypeGetApiVersion:
-//            
-//            str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
-//            return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
-//            
-//            break;
+        case ServerRequestTypeGetApiVersion:
+            
+            str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
+           // return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
+            
+            break;
         case ServerRequestTypeGetExplore:
             str = [NSString stringWithFormat:@"%@/explore",API_VERION_URL];
             
@@ -891,12 +891,11 @@
             
             break;
             
-//        case ServerRequestTypeGetApiVersion:
-//        {
-//            self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
-//            
-//           // [self processApiversion];
-//        }
+        case ServerRequestTypeGetApiVersion:
+        {
+            self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:&error];
+            
+        }
             break;
             
         case ServerRequestTypeGetNewsFeed:

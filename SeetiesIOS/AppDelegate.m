@@ -158,7 +158,7 @@
     NSSetUncaughtExceptionHandler(&myExceptionHandler);
     
  
-    
+    [self requestForApiVersion];
     [self registrationForApi];
     [self configureNotificaiton:application];
     [self configureSetup];
@@ -367,25 +367,25 @@
     
 }
 
-//-(void)requestForApiVersion{
-//    
-//    
-//    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetApiVersion param:nil  appendString:nil completeHandler:^(id object) {
-//        [self processAPIVersion];
-//
-//    } errorBlock:^(id object) {
-//    }];
-//  
-//}
+-(void)requestForApiVersion{
+    
+    
+    [[ConnectionManager Instance]requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetApiVersion parameter:nil appendString:nil success:^(id object) {
+        
+        [self processAPIVersion];
+    } failure:^(id object) {
+        
+    }];
+  
+}
 
 #pragma mark -  connection processing
+
 -(void)processAPIVersion
 {
     ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
     
-    [Utils setIsDevelopment:!model.production];
-
-    
+    //[Utils setIsDevelopment:!model.production];
     //Check version if same then proceed, if not same then promp error and also proceed to landing
     if (![model.version isEqualToString:API_VERSION]) {
       
@@ -400,9 +400,6 @@
                               }
                           }];        
     }
-   
-  
-
 }
 
 -(void)showWindow

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DealType_YourWalletTblCell : CommonTableViewCell
--(void)initData:(int)walletCount;
+-(void)initData;
 
 @end
