@@ -41,27 +41,71 @@
     [super viewDidLoad];
 
     
-    [self.view addSubview:self.tabBarController.view];
+    [self requestForApiVersion];
     
-    [self changeLanguage];
-    [self requestServerForLanguageList];
-    [self registerNotification];
-    if (![Utils checkUserIsLogin]) {
-        [Utils showLogin];
-    }
-    else{
-        [Utils startNotification];
-        [self requestServerForUserInfo];
-        [Utils reloadAppView:YES];
-    }
     
-    [self requestServerForCountry];
-    
-   // [self showIntroView];
-    [self showAnimatedSplash];
-
 }
 
+-(void)requestForApiVersion{
+    
+    [LoadingManager show];
+    [[ConnectionManager Instance]requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetApiVersion parameter:nil appendString:nil success:^(id object) {
+        
+        [self processAPIVersion];
+        
+        [self.view addSubview:self.tabBarController.view];
+        [self changeLanguage];
+        [self requestServerForLanguageList];
+        [self registerNotification];
+        if (![Utils checkUserIsLogin]) {
+            [Utils showLogin];
+        }
+        else{
+            [Utils startNotification];
+            [self requestServerForUserInfo];
+            [Utils reloadAppView:YES];
+        }
+        
+        [self requestServerForCountry];
+        
+        // [self showIntroView];
+        [self showAnimatedSplash];
+        [LoadingManager hide];
+
+        
+    } failure:^(id object) {
+        
+        //[self showWindow];
+        [LoadingManager hide];
+
+    }];
+    
+}
+
+#pragma mark -  connection processing
+
+-(void)processAPIVersion
+{
+    
+    ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
+    
+    
+    //[Utils setIsDevelopment:!model.production];
+    //Check version if same then proceed, if not same then promp error and also proceed to landing
+    if (![model.version isEqualToString:API_VERSION]) {
+        
+        [UIAlertView showWithTitle:model.title
+                           message:model.message
+                 cancelButtonTitle:@"OK"
+                 otherButtonTitles:nil
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              if (buttonIndex == [alertView cancelButtonIndex]) {
+                                  NSString *iTunesLink = @"https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8";
+                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+                              }
+                          }];
+    }
+}
 -(void)showAnimatedSplash
 {
     self.ibSplashView.frame = self.view.frame;

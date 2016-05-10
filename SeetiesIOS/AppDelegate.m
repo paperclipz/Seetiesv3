@@ -158,12 +158,13 @@
     NSSetUncaughtExceptionHandler(&myExceptionHandler);
     
  
-    [self requestForApiVersion];
+    
+    //[self requestForApiVersion];
     [self registrationForApi];
     [self configureNotificaiton:application];
     [self configureSetup];
     [self checkCurrentAppLanguage];
- //   [self showWindow];
+    [self showWindow];
    
     [Crashlytics startWithAPIKey:FABRIC_API_KEY];
 
@@ -365,46 +366,6 @@
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
     
-}
-
--(void)requestForApiVersion{
-    
-    
-    [[ConnectionManager Instance]requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetApiVersion parameter:nil appendString:nil success:^(id object) {
-        
-        [self processAPIVersion];
-    } failure:^(id object) {
-        
-        [self showWindow];
-
-    }];
-  
-}
-
-#pragma mark -  connection processing
-
--(void)processAPIVersion
-{
-    
-    SLog(@"YES!!");
-    ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
-    
-    [self showWindow];
-    //[Utils setIsDevelopment:!model.production];
-    //Check version if same then proceed, if not same then promp error and also proceed to landing
-    if (![model.version isEqualToString:API_VERSION]) {
-      
-        [UIAlertView showWithTitle:model.title
-                           message:model.message
-                 cancelButtonTitle:@"OK"
-                 otherButtonTitles:nil
-                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                              if (buttonIndex == [alertView cancelButtonIndex]) {
-                                  NSString *iTunesLink = @"https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8";
-                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
-                              }
-                          }];        
-    }
 }
 
 -(void)showWindow
