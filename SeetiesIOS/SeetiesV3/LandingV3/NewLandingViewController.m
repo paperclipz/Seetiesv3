@@ -28,6 +28,8 @@
 @property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
 @property (strong, nonatomic) IBOutlet UIView *ibSplashView;
 
+@property (nonatomic, weak)IBOutlet YLImageView *loadingImage;
+
 @end
 
 @implementation NewLandingViewController
@@ -40,15 +42,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
     [self requestForApiVersion];
-    
+    [self showAnimatedSplash];
+
     
 }
 
 -(void)requestForApiVersion{
     
-    [LoadingManager show];
+    if (self.loadingImage) {
+        self.loadingImage.image = [YLGIFImage imageNamed:@"Loading.gif"];
+    }
+    
     [[ConnectionManager Instance]requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetApiVersion parameter:nil appendString:nil success:^(id object) {
         
         [self processAPIVersion];
@@ -69,14 +74,12 @@
         [self requestServerForCountry];
         
         // [self showIntroView];
-        [self showAnimatedSplash];
-        [LoadingManager hide];
-
+        self.loadingImage.image = nil;
         
     } failure:^(id object) {
-        
+        self.loadingImage.image = nil;
+
         //[self showWindow];
-        [LoadingManager hide];
 
     }];
     
@@ -109,7 +112,6 @@
 -(void)showAnimatedSplash
 {
     self.ibSplashView.frame = self.view.frame;
-    
     
     [UIView animateWithDuration:1.0 animations:^{
         

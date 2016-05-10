@@ -3,12 +3,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewLandingViewController">
             <connections>
                 <outlet property="ibLogo" destination="5Xc-IY-hW2" id="nxU-iu-xsp"/>
                 <outlet property="ibSplashView" destination="bWl-hD-3C7" id="mEC-BE-EFH"/>
+                <outlet property="loadingImage" destination="A6g-3b-stO" id="YW4-mF-94b"/>
                 <outlet property="view" destination="EwF-3C-SM8" id="JmA-0h-wlT"/>
             </connections>
         </placeholder>
@@ -16,7 +18,43 @@
         <view contentMode="scaleToFill" id="EwF-3C-SM8">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMv-jm-n0I" userLabel="loading view">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collect Now Pay Later" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jr-Fw-FvF" userLabel="loading txt">
+                            <rect key="frame" x="250" y="325" width="100" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="d1A-vt-PD4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loading.gif" translatesAutoresizingMaskIntoConstraints="NO" id="A6g-3b-stO" userLabel="loading gif" customClass="YLImageView">
+                            <rect key="frame" x="265" y="245" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70" id="6ZU-5q-YQr"/>
+                                <constraint firstAttribute="width" secondItem="A6g-3b-stO" secondAttribute="height" multiplier="1:1" id="93M-KR-EmV"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="A6g-3b-stO" firstAttribute="centerX" secondItem="CMv-jm-n0I" secondAttribute="centerX" id="0VQ-cm-JEp"/>
+                        <constraint firstItem="A6g-3b-stO" firstAttribute="centerY" secondItem="CMv-jm-n0I" secondAttribute="centerY" constant="-20" id="HIt-G7-kSj"/>
+                        <constraint firstItem="5Jr-Fw-FvF" firstAttribute="top" secondItem="A6g-3b-stO" secondAttribute="bottom" constant="10" id="IPh-cT-8c4"/>
+                        <constraint firstItem="5Jr-Fw-FvF" firstAttribute="centerX" secondItem="CMv-jm-n0I" secondAttribute="centerX" id="asj-Gu-Ikv"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="CMv-jm-n0I" secondAttribute="trailing" id="Bxq-dl-IOM"/>
+                <constraint firstItem="CMv-jm-n0I" firstAttribute="leading" secondItem="EwF-3C-SM8" secondAttribute="leading" id="g7c-I1-Guw"/>
+                <constraint firstItem="CMv-jm-n0I" firstAttribute="top" secondItem="EwF-3C-SM8" secondAttribute="top" id="gFh-lQ-y08"/>
+                <constraint firstAttribute="bottom" secondItem="CMv-jm-n0I" secondAttribute="bottom" id="jFl-ze-yFp"/>
+            </constraints>
             <point key="canvasLocation" x="462" y="-280"/>
         </view>
         <view contentMode="scaleToFill" id="bWl-hD-3C7">
@@ -40,5 +78,6 @@
     </objects>
     <resources>
         <image name="LaunchScreenIcon.png" width="38" height="48"/>
+        <image name="Loading.gif" width="249" height="249"/>
     </resources>
 </document>
