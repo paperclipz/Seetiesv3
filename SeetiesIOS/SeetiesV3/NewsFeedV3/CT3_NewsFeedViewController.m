@@ -497,12 +497,12 @@ static NSCache* heightCache = nil;
         [self RequestServerForVouchersCount];
     }
     
-    @try {
-        [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
-
-    } @catch (NSException *exception) {
-        
-    }
+//    @try {
+//        [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
+//
+//    } @catch (NSException *exception) {
+//        
+//    }
 }
 
 -(void)initSelfView
