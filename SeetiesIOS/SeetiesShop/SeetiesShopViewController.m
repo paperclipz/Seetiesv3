@@ -660,6 +660,13 @@
             // open nearby seetiShop
         
         };
+        
+        _seNearbySeetishop.viewDidFinishLoadBlock = ^(void)
+        {
+            [weakSelf rearrangeView];
+            
+        };
+
     
         
     }
