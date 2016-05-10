@@ -495,4 +495,114 @@
 
 }
 
+-(void)reloadTabbar
+{
+    [self changeLanguage];
+}
+
+-(void)changeLanguage
+{
+    NSString* strActive1 = @"";
+    NSString* inActive1 = @"";
+    
+    NSString* strActive2 = @"";
+    NSString* inActive2 = @"";
+    
+    NSString* strActive3 = @"";
+    NSString* inActive3 = @"";
+    
+    SWITCH ([Utils getDeviceAppLanguageCode]) {
+        
+        
+        CASE (CHINESE_CODE){
+            
+            strActive1 = @"CN_TabbarHomeIcon_Active";
+            inActive1 = @"CN_TabbarHomeIcon_Inactive";
+            strActive2 = @"CN_TabbarMeIcon_Active";
+            inActive2 = @"CN_TabbarMeIcon_Inactive";
+            strActive3 = @"CN_TabbarMoreIcon_Active";
+            inActive3 = @"CN_TabbarMoreIcon_Inactive";
+            
+            break;
+            
+        }
+        CASE (TAIWAN_CODE){
+            
+            strActive1 = @"TW_TabbarHomeIcon_Active";
+            inActive1 = @"TW_TabbarHomeIcon_Inactive";
+            strActive2 = @"CN_TabbarMeIcon_Active";
+            inActive2 = @"CN_TabbarMeIcon_Inactive";
+            strActive3 = @"CN_TabbarMoreIcon_Active";
+            inActive3 = @"CN_TabbarMoreIcon_Inactive";
+            
+            break;
+            
+        }
+        CASE (INDONESIA_CODE){
+            strActive1 = @"ID_TabbarHomeIcon_Active";
+            inActive1 = @"ID_TabbarHomeIcon_Inactive";
+            strActive2 = @"EN_TabbarMeIcon_Active";
+            inActive2 = @"EN_TabbarMeIcon_Inactive";
+            strActive3 = @"EN_TabbarMoreIcon_Active";
+            inActive3 = @"EN_TabbarMoreIcon_Inactive";
+            
+            break;
+            
+        }
+        
+        CASE (THAI_CODE){
+            strActive1 = @"TH_TabbarHomeIcon_Active";
+            inActive1 = @"TH_TabbarHomeIcon_Inactive";
+            strActive2 = @"TH_TabbarMeIcon_Active";
+            inActive2 = @"TH_TabbarMeIcon_Inactive";
+            strActive3 = @"TH_TabbarMoreIcon_Active";
+            inActive3 = @"TH_TabbarMoreIcon_Inactive";
+            break;
+            
+        }
+        
+        
+        DEFAULT
+        CASE (ENGLISH_CODE){
+            
+            strActive1 = @"EN_TabbarHomeIcon_Active";
+            inActive1 = @"EN_TabbarHomeIcon_Inactive";
+            strActive2 = @"EN_TabbarMeIcon_Active";
+            inActive2 = @"EN_TabbarMeIcon_Inactive";
+            strActive3 = @"EN_TabbarMoreIcon_Active";
+            inActive3 = @"EN_TabbarMoreIcon_Inactive";
+            break;
+            
+        }
+        
+    }
+    
+    UITabBarItem *item1 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",inActive1]]
+                                                                        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strActive1]]];
+    _newsFeedViewController.tabBarItem = item1;
+    
+    UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",inActive2]]
+                                                                        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strActive2]]];
+    
+    
+    _ct3MeViewController.tabBarItem = item2;
+    
+    UITabBarItem *item3 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",inActive3]]
+                                                                        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strActive3]]];
+    
+    
+    _ct3_MoreViewController.tabBarItem = item3;
+    
+    
+    _newsFeedViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+    _newsFeedViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -1.0f, -7, 1);
+    
+    _ct3_MoreViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5);
+    _ct3_MoreViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -1.0f, -7, 1);
+    
+    _ct3MeViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+    _ct3MeViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -2.0f, -7, 2);
+
+}
+
 @end

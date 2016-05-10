@@ -76,6 +76,8 @@
     if (navigateToHome) {
         appdelegate.landingViewController.tabBarController.selectedIndex = 0;
     }
+    
+    [Utils reloadTabbar];
 }
 
 
@@ -97,6 +99,14 @@
     
     appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appdelegate.landingViewController.ct3MeViewController reloadData];
+}
+
++(void)reloadTabbar
+{
+    AppDelegate *appdelegate;
+    
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appdelegate.landingViewController reloadTabbar];
 }
 
 +(BOOL)isLogin
