@@ -922,7 +922,7 @@
                 
             self.ibReferralCountLbl.text = [NSString stringWithFormat:@"(%d/%d)",self.dealCollectionModel.total_deals_collected,self.dealCollectionModel.total_deals_collectable];
             
-            self.ibReferralLbl.text = [LanguageManager stringForKey:@"You have {!number} deal(s) to collect." withPlaceHolder:@{@"{!number}" : @(self.dealCollectionModel.total_deals_collectable - self.dealCollectionModel.total_deals_collected)}];
+            self.ibReferralLbl.text = [LanguageManager stringForKey:@"You have {!number} deal(s) to collect." withPlaceHolder:@{@"{!number}" : @(self.dealCollectionModel.total_deals_collectable)}];
             
         }
         else{
