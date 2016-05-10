@@ -459,7 +459,7 @@
             hModel.place_id = @"";
             hModel.locationName = [model locationNameWithCustomKey:self.countriesModel.current_country.place_display_fields];
 
-            [UIAlertView showWithTitle:[NSString stringWithFormat:@"%@%@ ?",LocalisedString(@"Are you in "),hModel.locationName] message:LocalisedString(@"Would you like to set this as your current location") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            [UIAlertView showWithTitle:[LanguageManager stringForKey:@"Are you in {!location name}?" withPlaceHolder:@{@"{!location name}":hModel.locationName}]  message:LocalisedString(@"Would you like to set this as your current location?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                 
                 if (buttonIndex == 1) {
                     if (self.homeLocationRefreshBlock) {
