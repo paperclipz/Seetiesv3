@@ -496,6 +496,13 @@ static NSCache* heightCache = nil;
     if (![Utils isGuestMode]) {
         [self RequestServerForVouchersCount];
     }
+    
+    @try {
+        [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
+
+    } @catch (NSException *exception) {
+        
+    }
 }
 
 -(void)initSelfView
@@ -768,7 +775,7 @@ static NSCache* heightCache = nil;
                 
                 if (self.homeModel) {
                     
-                    [cell initData:[[DealManager Instance] getWalletCount]];
+                    [cell initData];
 
                 }
                 return cell;

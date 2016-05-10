@@ -20,9 +20,17 @@
 - (void)awakeFromNib {
     // Initialization code
     
+   }
+
+-(void)initData
+{
     int walletCount = [[DealManager Instance]getWalletCount];
     NSString *countString = walletCount < 100? [NSString stringWithFormat:@"%d", walletCount] : @"99+";
     self.lblCount.text = countString;
+    
+    self.ibTitle.text = LocalisedString(@"Voucher Wallet");
+    self.ibDesc.text = LocalisedString(@"Check out your collected deals");
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -38,12 +46,5 @@
     [Utils setRoundBorder:self.ibCborderview color:OUTLINE_COLOR borderRadius:0 borderWidth:1.0f];
 }
 
--(void)initData:(int)walletCount
-{
-    self.ibTitle.text = LocalisedString(@"Voucher Wallet");
-    self.ibDesc.text = LocalisedString(@"Check out your collected deals");
-  
-    
-}
 
 @end
