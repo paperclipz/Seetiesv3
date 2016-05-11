@@ -83,10 +83,9 @@
 
     }
 }
-
--(void)setCustomIndexPath:(NSIndexPath *)indexPath
+-(void)awakeFromNib
 {
-    [self.ibPostImageView setCustomBackgroundColorForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    self.ibPostImageView.backgroundColor = TWO_ZERO_FOUR_COLOR;
 
 }
 

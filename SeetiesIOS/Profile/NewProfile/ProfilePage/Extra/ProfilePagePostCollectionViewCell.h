@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfilePagePostCollectionViewCell : UICollectionViewCell
+@interface ProfilePagePostCollectionViewCell : CommonCollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 
 @end
