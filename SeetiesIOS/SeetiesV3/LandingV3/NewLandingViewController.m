@@ -42,13 +42,49 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self requestForApiVersion];
+    
+    if ([Utils getIsDevelopment]) {
+        
+        [self requestForApiVersion:nil];
+        [self initSelfView];
+
+    }
+    else{
+        [self requestForApiVersion:^{
+            [self initSelfView];
+
+        }];
+    }
     [self showAnimatedSplash];
 
     
 }
 
--(void)requestForApiVersion{
+-(void)initSelfView
+{
+    [self.view addSubview:self.tabBarController.view];
+    
+    [self changeLanguage];
+    
+    [self requestServerForLanguageList];
+    
+    [self registerNotification];
+    
+    if (![Utils checkUserIsLogin]) {
+        
+        [Utils showLogin];
+    }
+    else{
+        [Utils startNotification];
+        
+        [self requestServerForUserInfo];
+        
+        [Utils reloadAppView:YES];
+    }
+    
+    [self requestServerForCountry];}
+
+-(void)requestForApiVersion:(VoidBlock)completionBlock{
     
     if (self.loadingImage) {
         self.loadingImage.image = [YLGIFImage imageNamed:@"Loading.gif"];
@@ -58,28 +94,15 @@
         
         [self processAPIVersion];
         
-        [self.view addSubview:self.tabBarController.view];
-        [self changeLanguage];
-        [self requestServerForLanguageList];
-        [self registerNotification];
-        if (![Utils checkUserIsLogin]) {
-            [Utils showLogin];
+        if (completionBlock) {
+            completionBlock();
         }
-        else{
-            [Utils startNotification];
-            [self requestServerForUserInfo];
-            [Utils reloadAppView:YES];
-        }
-        
-        [self requestServerForCountry];
-        
         // [self showIntroView];
         self.loadingImage.image = nil;
         
     } failure:^(id object) {
         self.loadingImage.image = nil;
 
-        //[self showWindow];
 
     }];
     
@@ -167,11 +190,6 @@
     [self.newsFeedViewController reloadData];
 
 }
-
--(void)initSelfView
-{
-   // [self.view addSubview:self.leveyTabBarController.view];
-   }
 
 #pragma mark - Declaration
 
