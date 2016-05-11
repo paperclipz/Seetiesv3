@@ -1179,6 +1179,11 @@ static NSCache* heightCache = nil;
                     }
                         break;
                         
+                    case AnnouncementType_Referral:
+                    {
+                        [self showReferralInvite];
+                    }
+                        
                     default:
                         [self showNewAnnouncementView:typeModel];
                         break;

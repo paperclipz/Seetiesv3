@@ -80,6 +80,11 @@
         {
             return AnnouncementType_Promo;
         }
+        
+        CASE(@"referral")
+        {
+            return AnnouncementType_Referral;
+        }
   
         DEFAULT
         {

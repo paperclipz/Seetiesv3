@@ -40,6 +40,7 @@
   
     [self validateBeforeLogin];
     __weak typeof (self)weakSelf = self;
+    _webViewController = nil;
     self.webViewController.title = LocalisedString(@"Instagram");
     self.webViewController.didFinishLoadConnectionBlock = ^(void)
     {
