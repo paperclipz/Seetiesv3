@@ -64,6 +64,8 @@
     [Utils reloadAppView:YES];
     [appdelegate.landingViewController showLoginView];
     
+    //Clear instagram webview cookie
+    [[InstagramEngine sharedEngine] logout];
 }
 
 +(void)reloadAppView:(BOOL)navigateToHome
