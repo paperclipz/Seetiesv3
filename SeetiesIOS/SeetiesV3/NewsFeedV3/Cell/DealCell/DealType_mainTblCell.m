@@ -69,6 +69,9 @@
     DealCollectionModel* model = self.arrDealCollections[indexPath.row];
     
     [cell initData:model];
+    
+    [cell setCustomIndexPath:indexPath];
+    
     return cell;
 }
 

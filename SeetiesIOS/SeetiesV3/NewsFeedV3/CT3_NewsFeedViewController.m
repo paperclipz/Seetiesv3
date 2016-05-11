@@ -25,6 +25,7 @@
 #import "InviteFrenViewController.h"
 #import "ProfileViewController.h"
 #import "CTWebViewController.h"
+#import "CT3_EnableLocationViewController.h"
 
 #import "DealType_mainTblCell.h"
 #import "DealType_QuickBrowseTblCell.h"
@@ -78,6 +79,8 @@ static NSCache* heightCache = nil;
     NSString* update_location_method;
 
     BOOL isDealCollectionShown;
+    
+    BOOL isLoadingLocation;
 
     
 }
@@ -125,6 +128,8 @@ static NSCache* heightCache = nil;
 @property(nonatomic)DealDetailsViewController *dealDetailsViewController;
 @property(nonatomic)CT3_ReferalViewController *referralViewController;
 @property(nonatomic)CT3_InviteFriendViewController *inviteFriendViewController;
+@property(nonatomic)CT3_EnableLocationViewController* enableLocationViewController;
+
 /*Controller*/
 
 @end
@@ -132,6 +137,30 @@ static NSCache* heightCache = nil;
 @implementation CT3_NewsFeedViewController
 
 #pragma mark -IBACTION
+
+- (IBAction)btnutoDetectClicked:(id)sender {
+    
+    if ([SearchManager isDeviceGPSTurnedOn]) {
+        
+        if (isLoadingLocation) {
+            return;
+        }
+        
+        isLoadingLocation = YES;
+        
+        [[SearchManager Instance]startSearchGPSLocation:^(CLLocation *location) {
+            
+            [self getCurrentLocationGoogleGeoCode:location];
+        }];
+        
+//        [UIAlertView showWithTitle:LocalisedString(@"Couldn't get your location now") message:LocalisedString(@"try again later") cancelButtonTitle:LocalisedString(@"OK") otherButtonTitles:nil tapBlock:nil];
+    }
+    else{
+        
+        [self presentViewController:self.enableLocationViewController animated:YES completion:nil];
+    }
+}
+
 
 - (IBAction)btnSearchLocationClicked:(id)sender {
     
@@ -176,20 +205,6 @@ static NSCache* heightCache = nil;
 
 }
 
--(void)reloadNewsFeed
-{
-    self.newsFeedModels = nil;
-    
-    if (![Utils isArrayNull:self.arrayNewsFeed]) {
-        [self.arrayNewsFeed removeAllObjects];
-        [self.ibTableView reloadData];
-    }
-    [heightCache removeAllObjects];
-    heightCache = nil;
-    heightCache = [NSCache new];
-    [self requestServerForNewsFeed:self.currentHomeLocationModel.latitude Longtitude:self.currentHomeLocationModel.longtitude];
-}
-
 -(IBAction)backgroundViewDidTap{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -211,6 +226,15 @@ static NSCache* heightCache = nil;
 }
 
 #pragma mark - Declaration
+
+-(CT3_EnableLocationViewController*)enableLocationViewController
+{
+    if (!_enableLocationViewController) {
+        _enableLocationViewController = [CT3_EnableLocationViewController new];
+    }
+    
+    return _enableLocationViewController;
+}
 
 -(DealManager *)dealManager{
     if(!_dealManager)
@@ -402,17 +426,12 @@ static NSCache* heightCache = nil;
         
         _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model, CountryModel *countryModel)
         {
+            
             isFirstLoad = YES;
 
-            weakself.currentHomeLocationModel = model;
-            weakself.currentHomeLocationModel.countryId = countryModel.country_id;
+            [weakself locationDidChange:model Country:countryModel];
             
-            [Utils saveUserLocation:weakself.currentHomeLocationModel.locationName Longtitude:weakself.currentHomeLocationModel.longtitude Latitude:weakself.currentHomeLocationModel.latitude PlaceID:weakself.currentHomeLocationModel.place_id CountryID:countryModel.country_id SourceType:model.type];
-            weakself.locationName = weakself.currentHomeLocationModel.locationName;
             [weakself.searchLocationViewController.navigationController popViewControllerAnimated:YES];
-            
-            [weakself reloadNewsFeed];
-            [weakself requestServerForHome:model];
 
         };
     
@@ -454,6 +473,9 @@ static NSCache* heightCache = nil;
 - (void)viewDidLoad {
     
     isFirstLoad = YES;
+    
+    isLoadingLocation = NO;
+    
     [super viewDidLoad];
     
     lastUpdatedDateTime = @"";
@@ -1702,12 +1724,7 @@ static NSCache* heightCache = nil;
         {
             [self getGoogleGeoCode:^(HomeLocationModel *model) {
                 
-                        self.currentHomeLocationModel = model;
-                        
-                        [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
-                        self.locationName = self.currentHomeLocationModel.locationName;
-                        [self reloadNewsFeed];
-                        [self requestServerForHome:model];
+                [self locationDidChange:model];
                 
             }];
         
@@ -1723,13 +1740,8 @@ static NSCache* heightCache = nil;
                     
                     if (buttonIndex == 1) {
                         
-                        self.currentHomeLocationModel = model;
+                        [self locationDidChange:model];
                         
-                        [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
-                        self.locationName = self.currentHomeLocationModel.locationName;
-                        [self reloadNewsFeed];
-                        [self requestServerForHome:model];
-                                                
                     }
                     else{
                         
@@ -1795,15 +1807,6 @@ static NSCache* heightCache = nil;
             hModel.address_components.administrative_area_level_1 = model.state;
             hModel.address_components.political = model.political;
             hModel.locationName = model.locationName;
-
-//            if (![Utils isStringNull:model.subLocality]) {
-//                hModel.locationName = model.locationName;
-//
-//            }
-//            else{
-//                hModel.locationName = model.subLocality_lvl_1;
-//
-//            }
             
             if (completionBlock) {
                 completionBlock(hModel);
@@ -1829,6 +1832,7 @@ static NSCache* heightCache = nil;
 //    }
 //}
 
+#pragma mark - View Method
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // UITableView only moves in one direction, y axis
@@ -1890,39 +1894,23 @@ static NSCache* heightCache = nil;
    
 }
 
+#pragma mark - Reload
 
--(BOOL)validateLocalLocation
+-(void)reloadNewsFeed
 {
+    self.newsFeedModels = nil;
     
-    NSDictionary* dict = [Utils getSavedUserLocation];
-    
-    
-    @try {
-        if (dict) {
-            
-            NSString* latitude = dict[KEY_LATITUDE];
-            NSString* location = dict[KEY_LOCATION];
-            
-            if (![Utils isStringNull:location]) {
-                return YES;
-            }
-            else if(![Utils isStringNull:latitude])
-            {
-                return YES;
-                
-            }
-            
-        }
-
+    if (![Utils isArrayNull:self.arrayNewsFeed]) {
+        [self.arrayNewsFeed removeAllObjects];
+        [self.ibTableView reloadData];
     }
-    @catch (NSException *exception) {
-        return NO;
-
-    }
-    
-    return NO;
-    
+    [heightCache removeAllObjects];
+    heightCache = nil;
+    heightCache = [NSCache new];
+    [self requestServerForNewsFeed:self.currentHomeLocationModel.latitude Longtitude:self.currentHomeLocationModel.longtitude];
 }
+
+
 -(void)reloadData
 {
     
@@ -1955,7 +1943,6 @@ static NSCache* heightCache = nil;
         
         NSDictionary* dict = [Utils getSavedUserLocation];
         
-        
         HomeLocationModel* model = [HomeLocationModel new];
         model.type = @"none";
         model.latitude = dict[KEY_LATITUDE];
@@ -1980,7 +1967,6 @@ static NSCache* heightCache = nil;
         NSDictionary* dict = [Utils getSavedUserLocation];
         
         
-        
         HomeLocationModel* model = [HomeLocationModel new];
         model.type = @"none";
         model.latitude = dict[KEY_LATITUDE];
@@ -1996,6 +1982,111 @@ static NSCache* heightCache = nil;
 
     }
 
+}
+
+#pragma mark - Validation
+-(BOOL)validateLocalLocation
+{
+    
+    NSDictionary* dict = [Utils getSavedUserLocation];
+    
+    
+    @try {
+        if (dict) {
+            
+            NSString* latitude = dict[KEY_LATITUDE];
+            NSString* location = dict[KEY_LOCATION];
+            
+            if (![Utils isStringNull:location]) {
+                return YES;
+            }
+            else if(![Utils isStringNull:latitude])
+            {
+                return YES;
+                
+            }
+            
+        }
+        
+    }
+    @catch (NSException *exception) {
+        return NO;
+        
+    }
+    
+    return NO;
+    
+}
+#pragma mark - Location
+-(void)getCurrentLocationGoogleGeoCode:(CLLocation*)location
+{
+    
+    [self.searchManager getGoogleGeoCode:location completionBlock:^(id object) {
+        
+        NSDictionary* temp = [[NSDictionary alloc]initWithDictionary:object];
+        NSArray* arrayLocations = [temp valueForKey:@"results"];
+        
+        if (![Utils isArrayNull:arrayLocations]) {
+            NSDictionary* tempLocation = arrayLocations[0];
+            
+            SearchLocationDetailModel* model = [[SearchLocationDetailModel alloc]initWithDictionary:tempLocation error:nil];
+            [model process];
+            
+            HomeLocationModel* hModel = [HomeLocationModel new];
+            hModel.timezone = @"";
+            hModel.type = Type_Current;
+            hModel.latitude = model.lat;
+            hModel.longtitude = model.lng;
+            hModel.place_id = @"";
+            
+            
+            AppInfoModel* appInfo = [[ConnectionManager dataManager]appInfoModel];
+            hModel.locationName = [model locationNameWithCustomKey:appInfo.countries.current_country.place_display_fields];
+            hModel.countryId = appInfo.countries.current_country.country_id;
+            
+            
+            isLoadingLocation = NO;
+
+            [UIAlertView showWithTitle:[LanguageManager stringForKey:@"Are you in {!location name}?" withPlaceHolder:@{@"{!location name}":hModel.locationName}]  message:LocalisedString(@"Would you like to set this as your current location?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                
+                if (buttonIndex == 1) {
+                    [self locationDidChange:hModel Country:appInfo.countries.current_country];
+                    
+                }
+            }];
+            
+        }
+    }];
+}
+
+//for current country location
+-(void)locationDidChange:(HomeLocationModel*)homeModel Country:(CountryModel*)countryModel
+{
+
+        self.currentHomeLocationModel = homeModel;
+        self.currentHomeLocationModel.countryId = countryModel.country_id;
+        
+        [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.
+         longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:countryModel.country_id SourceType:self.currentHomeLocationModel.type];
+    
+    self.locationName = self.currentHomeLocationModel.locationName;
+    
+        [self reloadNewsFeed];
+    
+        [self requestServerForHome:self.currentHomeLocationModel];
+
+}
+
+
+//for updater
+-(void)locationDidChange:(HomeLocationModel*)model
+{
+    self.currentHomeLocationModel = model;
+    
+    [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
+    self.locationName = self.currentHomeLocationModel.locationName;
+    [self reloadNewsFeed];
+    [self requestServerForHome:model];
 }
 
 @end

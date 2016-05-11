@@ -22,4 +22,9 @@
 
 }
 
+-(void)setCustomIndexPath:(NSIndexPath *)indexPath
+{
+    [self.ibImageView setCustomBackgroundColorForIndexPath:indexPath];
+}
+
 @end

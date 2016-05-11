@@ -154,7 +154,7 @@ typedef enum {
 
 #define SELECTED_GREEN [UIColor colorWithRed:156.0f/255.0 green:204.0f/255.0 blue:101.0f/255.0 alpha:1.0]
 #define SELECTED_RED [UIColor colorWithRed:226.0/255.0 green:60.0/255.0 blue:78.0/255.0 alpha:1.0]
-#define SELECTED_YELLOW [UIColor colorWithRed:250.0/255.0 green:221.0/255.0 blue:78.0/96.0 alpha:1.0]
+#define SELECTED_YELLOW [UIColor colorWithRed:250.0/255.0 green:221.0/255.0 blue:96.0/255.0 alpha:1.0]
 
 #define LINE_COLOR [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0]
 #define ERROR_COLOR [UIColor colorWithRed:239.0/255.0 green:94.0/255.0 blue:65.0/255.0 alpha:1.0]

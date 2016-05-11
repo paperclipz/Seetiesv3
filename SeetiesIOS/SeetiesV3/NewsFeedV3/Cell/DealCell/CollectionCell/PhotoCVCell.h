@@ -15,5 +15,4 @@
 
 -(void)initData:(DealModel*)model;
 -(void)initCoverTitle:(NSString*)title CoverImage:(NSString*)coverImage;
-
 @end

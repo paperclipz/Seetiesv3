@@ -15,6 +15,9 @@
 @end
 @implementation CommonCollectionViewCell
 
+-(void)setCustomIndexPath:(NSIndexPath*)indexPath
+{
+}
 
 - (void)awakeFromNib {
     // Initialization code

@@ -14,6 +14,11 @@
 @end
 @implementation CommonTableViewCell
 
+-(void)setCustomIndexPath
+{
+
+}
+
 +(float)getHeight
 {
     UIView *infoView = [[[NSBundle mainBundle] loadNibNamed:[NSString stringWithFormat:@"%@",[self class]] owner:self options:nil] objectAtIndex:0];

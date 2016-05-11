@@ -26,3 +26,9 @@
 -(void)setSquareBorder;
 
 @end
+
+
+@interface UIView (BackgroundColor)
+
+-(void)setCustomBackgroundColorForIndexPath:(NSIndexPath*)indexPath;
+@end

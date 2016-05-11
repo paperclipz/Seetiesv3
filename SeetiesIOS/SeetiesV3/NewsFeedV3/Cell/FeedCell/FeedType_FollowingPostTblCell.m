@@ -84,6 +84,12 @@
     }
 }
 
+-(void)setCustomIndexPath:(NSIndexPath *)indexPath
+{
+    [self.ibPostImageView setCustomBackgroundColorForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+
+}
+
 -(void)initSelfView
 {
     ibImgProfilePadding.alpha = 0.3;

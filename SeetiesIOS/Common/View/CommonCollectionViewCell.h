@@ -12,4 +12,5 @@
 -(void)initSelfView;
 - (id)initWithFrame:(CGRect)frame name:(NSString*)name;
 
+-(void)setCustomIndexPath:(NSIndexPath*)indexPath;
 @end
