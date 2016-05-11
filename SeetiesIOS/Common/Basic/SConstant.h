@@ -195,7 +195,8 @@ typedef enum
     AnnouncementType_Post = 2,
     AnnouncementType_URL = 3,
     AnnouncementType_Promo = 4,
-    AnnouncementType_NA = 5
+    AnnouncementType_Referral = 5,
+    AnnouncementType_NA = 6
     
 }AnnouncementType;
 
