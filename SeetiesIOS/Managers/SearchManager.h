@@ -14,8 +14,11 @@
 #import "FSConverter.h"
 #import "HomeLocationModel.h"
 
+@class CountryModel;
+
 typedef void (^LocationBlock)(CLLocation* location);
 typedef void (^HomeLocationBlock)(HomeLocationModel* model);
+typedef void (^HomeLocationCountryBlock)(HomeLocationModel* hModel,CountryModel* cModel);
 
 typedef void(^SearchManagerSuccessBlock)(CLLocation *currentLocation);
 typedef void(^SearchManagerFailBlock)(NSString *status);
