@@ -21,6 +21,12 @@
     
 }
 
+-(void)setCustomIndexPath:(NSIndexPath *)indexPath
+{
+    [self.ibImageView setCustomBackgroundColorForIndexPath:indexPath];
+
+}
+
 -(void)initData:(DealCollectionModel*)model
 {
     
@@ -29,6 +35,7 @@
         self.lblTitle.text = dictContent[@"title"];
         
         PhotoModel* pModel = model.photos[0];
+        
         
         if (![Utils isStringNull:pModel.imageURL]) {
             [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] withPlaceHolder:nil completed:^(UIImage *image) {

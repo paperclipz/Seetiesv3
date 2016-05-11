@@ -103,3 +103,43 @@
 }
 
 @end
+
+@implementation UIView(BackgroundColor)
+-(void)setCustomBackgroundColorForIndexPath:(NSIndexPath*)indexPath
+{
+    
+    int counter = indexPath.row%4;
+
+    UIColor* color;
+    switch (counter) {
+        default:
+            
+        case 0:
+            color = DEVICE_COLOR;
+            
+            break;
+            
+        case 1:
+            color = SELECTED_RED;
+            
+            break;
+            
+            
+        case 2:
+            color = SELECTED_GREEN;
+            
+            break;
+            
+        case 3:
+            color = SELECTED_YELLOW;
+            
+            break;
+            
+            
+    }
+    
+    self.backgroundColor = color;
+}
+
+@end
+

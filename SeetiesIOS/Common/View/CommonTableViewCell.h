@@ -12,4 +12,5 @@
 -(void)initSelfView;
 +(float)getHeight;
 
+-(void)setCustomIndexPath:(NSIndexPath*)indexPath;
 @end

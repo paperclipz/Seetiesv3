@@ -20,7 +20,7 @@
                                 <rect key="frame" x="167" y="0.0" width="167" height="110"/>
                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-9q-tNj">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" misplaced="YES" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-9q-tNj">
                                 <rect key="frame" x="259" y="127" width="59" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="59" id="Mfw-xo-dOK"/>
@@ -157,7 +157,7 @@
         <image name="CollectionInFeedOverlay.png" width="300" height="126"/>
         <image name="CollectionPostIcon.png" width="18" height="18"/>
         <image name="FollowerNumber.png" width="25" height="25"/>
-        <image name="FollowingCollectionIcon.png" width="115" height="38"/>
+        <image name="FollowingCollectionIcon.png" width="800" height="800"/>
         <image name="PrivateCollectionIcon.png" width="17" height="20"/>
     </resources>
 </document>

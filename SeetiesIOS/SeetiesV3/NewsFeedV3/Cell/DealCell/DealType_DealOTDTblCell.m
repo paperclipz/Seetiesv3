@@ -166,6 +166,7 @@
 
     }
 
+    [cell setCustomIndexPath:indexPath];
     
     return cell;
     
