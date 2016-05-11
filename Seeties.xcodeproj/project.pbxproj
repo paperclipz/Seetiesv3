@@ -1118,7 +1118,6 @@
 		8AD6C80A1B7096BA0040437E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6C80C1B7096BA0040437E /* Localizable.strings */; };
 		8AD6C8291B736C000040437E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8281B736C000040437E /* DataManager.m */; };
 		8AD6C82E1B737A830040437E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C82D1B737A830040437E /* CoreData.framework */; };
-		8AD6C8301B737AAB0040437E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C82F1B737AAB0040437E /* SystemConfiguration.framework */; };
 		8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C87D1B74AAE90040437E /* QuartzCore.framework */; };
 		8ADD47031C4CFD6D00AEAE2B /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */; };
 		8AE478B91CC4E93F0053DB24 /* CustomEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE478B81CC4E93F0053DB24 /* CustomEmptyView.xib */; };
@@ -3040,7 +3039,6 @@
 				0BC789A61BF4A31C00D126A3 /* AdSupport.framework in Frameworks */,
 				8A3409D31B8B0DE6009B66C3 /* ImageIO.framework in Frameworks */,
 				8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */,
-				8AD6C8301B737AAB0040437E /* SystemConfiguration.framework in Frameworks */,
 				8AD6C82E1B737A830040437E /* CoreData.framework in Frameworks */,
 				8AD6C2D11B707B270040437E /* libicucore.dylib in Frameworks */,
 				8AD6C2CF1B707B1E0040437E /* libz.1.2.5.dylib in Frameworks */,

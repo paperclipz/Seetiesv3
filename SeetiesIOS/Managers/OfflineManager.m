@@ -43,11 +43,14 @@
 }
 
 
--(void)uploadDealToRedeem
+-(void)uploadDealToRedeem:(VoidBlock)completionBlock
 {
     
-    // [self deleteDealsToRedeem];
-    [self requestServerToRedeemVouchers:self.arrDealToRedeem];
+    if (self.arrDealToRedeem.count>0) {
+        
+        [self requestServerToRedeemVouchers:self.arrDealToRedeem CompletionBlock:completionBlock];
+
+    }
 }
 
 -(void)addDealToRedeem:(DealModel*)dealModel
@@ -56,12 +59,14 @@
     NSMutableArray<DealModel>* array = [NSMutableArray<DealModel> new];
     
     [array addObject:dealModel];
+    
     [self saveArrDealToRedeem:array];
 }
 
 -(void)deleteDealsToRedeem//delete when online and clear all local data
 {
     [self.userDefaults setObject:nil forKey:REDEEM_KEY];
+    [self.userDefaults synchronize];
     
 }
 
@@ -98,9 +103,10 @@
         [self.userDefaults setObject:encodedObject forKey:REDEEM_KEY];
         [self.userDefaults synchronize];
         
+        [self displayOfflineCollectedDeal:arrDealToRedeem];
+
     }
     else{
-        
         
         NSMutableArray<DealModel>* arrTemp = arrayDealIDs;
         
@@ -114,17 +120,32 @@
         [self.userDefaults setObject:encodedObject forKey:REDEEM_KEY];
         [self.userDefaults synchronize];
         
-        
-        
-        
-        
+        [self displayOfflineCollectedDeal:arrayWithoutDuplicates];
     }
     
 }
 
+
+-(void)displayOfflineCollectedDeal:(NSArray<DealModel>*)array
+{
+    
+    NSMutableString* str = [NSMutableString stringWithFormat:@"\nTotal Collected deals [%lu]\n",(unsigned long)array.count];
+    for (int i = 0;i<array.count;i++)
+    {
+        
+        DealModel* dealModel = array[i];
+        
+        NSString* string = [NSString stringWithFormat:@"%d. %@ \n",i+1,dealModel.dID];
+        
+        [str appendString:string];
+    }
+    
+    SLog(@"%@",str);
+}
+
 #pragma mark - Request Server
 
--(void)requestServerToRedeemVouchers:(NSArray<DealModel>*)array{
+-(void)requestServerToRedeemVouchers:(NSArray<DealModel>*)array CompletionBlock:(VoidBlock)completionBlock{
     
     if (self.isLoading) {
         return;
@@ -178,11 +199,16 @@
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutRedeemVoucher parameter:finalDict appendString:nil success:^(id object) {
         
-        [self.userDefaults setObject:nil forKey:REDEEM_KEY];
-        [self.userDefaults synchronize];
+        
+        // deletedeals in dictionary after uploading
+        [self deleteDealsToRedeem];
         
         self.isLoading = NO;
         [LoadingManager hide];
+        
+        if (completionBlock) {
+            completionBlock();
+        }
         
     } failure:^(id object) {
         self.isLoading = NO;

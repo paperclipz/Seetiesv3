@@ -619,20 +619,12 @@
                                 </mask>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duK-1v-5Wn" userLabel="desc title">
-                            <rect key="frame" x="16" y="77" width="568" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="ffW-fJ-fiM"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4x-ov-uHa" userLabel="description">
-                            <rect key="frame" x="16" y="108" width="568" height="0.0"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4x-ov-uHa" userLabel="description">
+                            <rect key="frame" x="16" y="108" width="568" height="72"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="xPb-lN-FbI"/>
                             </constraints>
+                            <string key="text">DescriptionasdsadsadsadasdasdsadsadasdsadsadsadsadsdDescriptionasdsadsadsadasdasdsadsadasdsadsadsadsadsdDescriptionasdsadsadsadasdasdsadsadasdsadsadsadsadsdDescriptionasdsadsadsadasdasdsadsadasdsadsadsadsadsdDescriptionasdsadsadsadasdasdsadsadasdsadsadsadsadsd</string>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
@@ -642,7 +634,7 @@
                             </variation>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l7C-D2-XyF" userLabel="redemption type content view">
-                            <rect key="frame" x="16" y="113" width="576" height="0.0"/>
+                            <rect key="frame" x="16" y="185" width="576" height="0.0"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" id="Aey-4H-hO2"/>
@@ -668,6 +660,15 @@
                                 <constraint firstAttribute="height" constant="1" id="8M1-Yc-42A"/>
                             </constraints>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duK-1v-5Wn" userLabel="desc title">
+                            <rect key="frame" x="16" y="77" width="568" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="ffW-fJ-fiM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>

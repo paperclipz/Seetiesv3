@@ -216,7 +216,8 @@
 }
 
 +(BOOL)isPhoneNumberVerified{
-    ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
+    
+    ProfileModel *profileModel = [[DataManager Instance] getCurrentUserProfileModel];
     return profileModel.phone_verified;
 }
 

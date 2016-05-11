@@ -36,7 +36,9 @@
 
 +(BOOL)isNetworkAvailable
 {
-    BOOL isReachable = [AFNetworkReachabilityManager sharedManager].reachable;
+    
+   BOOL isReachable = [AFNetworkReachabilityManager sharedManager].reachable;
+
     
     return isReachable;
 }

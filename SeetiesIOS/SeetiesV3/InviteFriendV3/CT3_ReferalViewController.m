@@ -160,7 +160,7 @@
 
 -(ProfileModel *)userProfile{
     if (!_userProfile) {
-        _userProfile = [[DataManager Instance] currentUserProfileModel];
+        _userProfile = [[DataManager Instance] getCurrentUserProfileModel];
     }
     return _userProfile;
 }

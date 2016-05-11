@@ -157,7 +157,7 @@
         if ([Utils isPhoneNumberVerified]) {
             
             ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
-            cell.lblTitle.text = [LanguageManager stringForKey:@"Phone Number = {!phone number}" withPlaceHolder:@{@"{!phone number}": profileModel.contact_no}];
+            cell.lblTitle.text = [LanguageManager stringForKey:@"Phone Number = {!phone number}" withPlaceHolder:@{@"{!phone number}": profileModel.contact_no?profileModel.contact_no:@""}];
             
             @try {
                 cell.ibImageView.image = [self getIconImage:@"Verified"];

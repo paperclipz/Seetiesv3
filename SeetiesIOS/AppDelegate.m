@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import <sys/utsname.h>
 #import "NewLandingViewController.h"
+#import "AFHTTPSessionManager.h"
 
 #define FABRIC_API_KEY @"506d5ee5657719d0cbaa94569d3352125456f169"
 @interface AppDelegate ()
@@ -375,6 +376,8 @@
     self.window.rootViewController = navigationController;//self.landingV2ViewController
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    [[AFNetworkReachabilityManager sharedManager]startMonitoring];
+
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application

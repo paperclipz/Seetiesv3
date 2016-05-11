@@ -340,7 +340,7 @@
             [self.ibChangeVerifiedPhoneBtn setTitle:LocalisedString(@"Change Phone Number") forState:UIControlStateNormal];
             
             [self.ibChangeVerifiedPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
-            ProfileModel* model = [[ConnectionManager dataManager]currentUserProfileModel];
+            ProfileModel* model = [[ConnectionManager dataManager]getCurrentUserProfileModel];
             
             if (![Utils isStringNull:model.contact_no]) {
                 self.ibChangeVerifiedPhoneNumberLbl.text = [NSString stringWithFormat:@"+%@", model.contact_no];

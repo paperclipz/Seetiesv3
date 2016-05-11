@@ -9,6 +9,7 @@
 #import "CT3_MeViewController.h"
 #import "CT3_NotificationViewController.h"
 #import "CT3_ReferalViewController.h"
+#import "OfflineManager.h"
 
 @interface CT3_MeViewController ()
 {
@@ -72,7 +73,22 @@
 
 - (IBAction)btnTestClicked:(id)sender {
 
+    if ([ConnectionManager isNetworkAvailable]) {
+        
+        SLog(@"network available");
+
+    }
+    
+    else
+    {
+    
+        SLog(@"network not available");
+    }
+    
+    
+    return;
     _ct3referalViewController = nil;
+    
     [self.navigationController pushViewController:self.ct3referalViewController animated:YES];
 }
 
@@ -177,7 +193,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.profileModel = [[DataManager Instance] currentUserProfileModel];
+    self.profileModel = [[DataManager Instance] getCurrentUserProfileModel];
     self.ibProfileName.text = self.profileModel.username;
 
 }
@@ -366,7 +382,7 @@
 
 -(void)reloadData
 {
-    ProfileModel* model = [[DataManager Instance] currentUserProfileModel];
+    ProfileModel* model = [[DataManager Instance] getCurrentUserProfileModel];
     self.profileModel = model;
 }
 
@@ -397,6 +413,10 @@
         self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @(count)}];
     } failure:^(id object) {
         
+        int count = [ProfileModel getWalletCount];
+
+        self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @(count)}];
+
     }];
 }
 

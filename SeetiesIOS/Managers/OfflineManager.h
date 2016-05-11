@@ -14,10 +14,9 @@
 +(id)Instance;
 @property (nonatomic,readonly) NSMutableArray<DealModel>* arrDealToRedeem;
 
-//-(void)uploadDealToRedeem;
-//-(void)addDealToRedeem:(DealModel*)dealModel;
-//-(void)deleteDealsToRedeem;
-
+-(void)uploadDealToRedeem:(VoidBlock)completionBlock;
+-(void)addDealToRedeem:(DealModel*)dealModel;
+-(void)deleteDealsToRedeem;
 
 
 //+(NSArray<CTFeedTypeModel>*)getNewsFeed;

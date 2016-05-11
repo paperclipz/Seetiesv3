@@ -24,7 +24,7 @@
 
 -(void)initData
 {
-    int walletCount = [[DealManager Instance]getWalletCount];
+    int walletCount = [ProfileModel getWalletCount];
     NSString *countString = walletCount < 100? [NSString stringWithFormat:@"%d", walletCount] : @"99+";
     self.lblCount.text = countString;
     

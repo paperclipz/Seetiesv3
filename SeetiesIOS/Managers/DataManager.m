@@ -249,7 +249,21 @@
      postNotificationName:@"updatePhoneVerification"
      object:self];
     
+    [ProfileModel saveUserProfile:model];
+    
 }
 
+-(ProfileModel*)getCurrentUserProfileModel
+{
+    if (_currentUserProfileModel) {
+        return _currentUserProfileModel;
+    }
+    else{
+        
+        return [ProfileModel getUserProfile];
 
+    }
+    
+    return _currentUserProfileModel;
+}
 @end

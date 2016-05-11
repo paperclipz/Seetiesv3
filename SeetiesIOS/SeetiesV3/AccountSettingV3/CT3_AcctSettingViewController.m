@@ -55,7 +55,7 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
-    self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
+    self.profileModel = [[ConnectionManager dataManager]getCurrentUserProfileModel];
     
     if ([Utils isStringNull:self.profileModel.fb_id]) {
         
@@ -198,7 +198,7 @@
                    
                     cell.lblDesc.text = @"";
 
-                    ProfileModel*pModel = [[ConnectionManager dataManager] currentUserProfileModel];
+                    ProfileModel*pModel = [[ConnectionManager dataManager] getCurrentUserProfileModel];
                     cell.lblDesc.text = pModel.email;
                 }
                 else if(indexPath.row == 1)//change password
@@ -480,7 +480,7 @@
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUpdateUser parameter:dict appendString:appendString success:^(id object) {
         
-        self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
+        self.profileModel = [[ConnectionManager dataManager]getCurrentUserProfileModel];
 
     } failure:^(id object) {
         
@@ -515,7 +515,7 @@
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUpdateUser parameter:dict appendString:appendString success:^(id object) {
 
         
-        self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
+        self.profileModel = [[ConnectionManager dataManager]getCurrentUserProfileModel];
         
        
     } failure:^(id object) {

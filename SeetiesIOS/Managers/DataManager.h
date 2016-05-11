@@ -117,4 +117,6 @@ typedef void(^CompletionVoidBlock) (void);
 +(BOOL)isUserFollowed:(NSString*)UserID isFollowing:(BOOL)isFollowing;
 
 +(void)setUserFollowing:(NSString*)UserID isFollowing:(BOOL)following;
+-(ProfileModel*)getCurrentUserProfileModel;
+
 @end

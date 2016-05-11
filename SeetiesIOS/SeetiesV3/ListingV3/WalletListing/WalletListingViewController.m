@@ -47,13 +47,26 @@
 @end
 
 @implementation WalletListingViewController
+
 - (IBAction)btnUploadClicked:(id)sender {
     
-    //[[OfflineManager Instance]uploadDealToRedeem];
+   
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    // upload offline deal data
+    if ([ConnectionManager isNetworkAvailable]) {
+        [[OfflineManager Instance]uploadDealToRedeem:^{
+            
+            self.dealsModel = nil;
+            [self requestServerForVoucherListing];
+            
+        }];
+    }
+    
     // Do any additional setup after loading the view from its nib.
     
     [self.ibTableView registerNib:[UINib nibWithNibName:@"WalletVoucherCell" bundle:nil] forCellReuseIdentifier:@"WalletVoucherCell"];
@@ -65,7 +78,6 @@
     self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
     
     [self.ibTableView addPullToRefreshWithActionHandler:^{
-        self.dealsModel = nil;
         self.ibTableView.tableFooterView = self.ibTableFooterView;
         [self requestServerForVoucherListing];
     }];
@@ -368,7 +380,7 @@
 -(void)redeemVoucherClicked:(DealModel*)deal{
 //    To do more checking whether voucher can be redeemed
     
-    if (![Utils isPhoneNumberVerified] && !isOfflineData) {
+    if (![Utils isPhoneNumberVerified]) {
         [Utils showVerifyPhoneNumber:self];
         return;
     }
@@ -388,7 +400,7 @@
         self.dealRedeemViewController = nil;
         [self.dealRedeemViewController initWithDealModel:deal];
         self.dealRedeemViewController.dealRedeemDelegate = self;
-        self.dealRedeemViewController.isOffline = isOfflineData;
+      //  self.dealRedeemViewController.isOffline = isOfflineData;
         [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
     }
     else{
@@ -417,14 +429,14 @@
     
     self.redemptionHistoryViewController = nil;
     
-//    if ([ConnectionManager isNetworkAvailable]) {
+    if ([ConnectionManager isNetworkAvailable]) {
         [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
 
-//    }
-//    else{
-//    
-//        [self.dealRedeemViewController dismissViewControllerAnimated:YES completion:nil];
-//    }
+    }
+    else{
+    
+        [self.dealRedeemViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction)emptyBtnClicked:(id)sender {
@@ -581,7 +593,7 @@
         
         
         //comment for offline mode
-      //  [DealExpiryDateModel saveWalletList:self.voucherArray];
+        [DealExpiryDateModel saveWalletList:self.voucherArray];
         
         [self.ibTableView reloadData];
         [self.ibTableView.pullToRefreshView stopAnimating];
@@ -609,11 +621,11 @@
         
         //comment for offline mode
 
-//        if ([Utils isArrayNull:self.voucherArray]) {
-//            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
-//            [self.ibTableView reloadData];
-//
-//        }
+        if ([Utils isArrayNull:self.voucherArray]) {
+            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
+            [self.ibTableView reloadData];
+
+        }
         
         if ([Utils isArrayNull:self.voucherArray]) {
             [self toggleEmptyView:YES];

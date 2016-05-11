@@ -1303,6 +1303,10 @@
         
     } failure:^(id object) {
         
+        self.userProfileModel = [ProfileModel getUserProfile];
+        
+        [self assignData];
+
     }];
 }
 
