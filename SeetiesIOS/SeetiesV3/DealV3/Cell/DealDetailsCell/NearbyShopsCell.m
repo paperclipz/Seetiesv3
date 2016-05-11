@@ -25,7 +25,7 @@
 -(void)setShopModel:(SeShopDetailModel *)shopModel{
     _shopModel = shopModel;
     
-    if (!self.shopModel.profile_photo[@"picture"]) {
+    if (![Utils isStringNull:self.shopModel.profile_photo[@"picture"]]) {
         [self.ibShopImage sd_setImageCroppedWithURL:[NSURL URLWithString:self.shopModel.profile_photo[@"picture"]] completed:nil];
     }
     else{
