@@ -488,7 +488,7 @@
 
 -(void)updateHeaderView{
     self.ibHeaderScrollviewHeightConstraint.constant = self.ibHeaderImageScrollView.frame.size.width/2;
-    [self.view layoutIfNeeded];
+    [self.ibHeaderView layoutIfNeeded];
     
     self.ibHeaderSubTitleLbl.text = self.dealModel.title;
     
@@ -788,6 +788,7 @@
     }
     self.ibRedemptionContentViewHeightConstraint.constant = redemptionYOrigin;
     
+    [self.ibDealDetailsView layoutIfNeeded];
     CGFloat contentHeight = self.ibDealDetailsRedemptionContentView.frame.origin.y + self.ibRedemptionContentViewHeightConstraint.constant + contentHeightPadding;
     [self.ibDealDetailsView setHeight:contentHeight];
 }
@@ -803,6 +804,7 @@
     CGRect rect = [emptyText boundingRectWithSize:CGSizeMake(self.ibAvailabilityEmptyTxt.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
     self.ibAvailabilityEmptyTxt.text = emptyText;
     
+    [self.ibAvailabilityView layoutIfNeeded];
     if (self.dealAvailabilityArray.count == 0) {
         self.ibAvailabiltyEmptyTxtHeightConstraint.constant = rect.size.height;
         [self.ibAvailabilityView setHeight:self.ibAvailabilityEmptyTxt.frame.origin.y + self.ibAvailabiltyEmptyTxtHeightConstraint.constant + contentHeightPadding + 24];
@@ -826,6 +828,7 @@
     float cellHeight = [PromoOutletCell getHeight];
     NSInteger numberOfShop = self.dealModel.shops.count > 3? 3 : self.dealModel.shops.count;
     float tableHeight = cellHeight * numberOfShop;
+    [self.ibShopView layoutIfNeeded];
     CGFloat totalHeight = self.ibShopTable.frame.origin.y + tableHeight + contentHeightPadding;
     
     if (self.dealModel.shops.count > 3) {
@@ -895,6 +898,7 @@
             self.ibTnCReadMoreLbl.hidden = NO;
         }
         
+        [self.ibTnCView layoutIfNeeded];
         [self.ibTnCView setHeight:self.ibTnCReadMoreLbl.frame.origin.y + self.ibTnCSeeMoreHeightConstraint.constant + contentHeightPadding];
     }
 }
@@ -905,6 +909,7 @@
     [self.ibNearbyShopCollection reloadData];
     
     if (self.nearbyShopArray.count > 0) {
+        [self.ibNearbyShopView layoutIfNeeded];
         CGFloat contentHeight = self.ibNearbyShopCollection.frame.origin.y + 132 + 16 + contentHeightPadding;
         [self.ibNearbyShopView setHeight:contentHeight];
     }
@@ -924,6 +929,7 @@
         float cellHeight = [SeDealsFeaturedTblCell getHeight];
         NSInteger numberOfDeals = totalDeals > 3? 3 : dealsArray.count;
         float tableHeight = cellHeight * numberOfDeals;
+        [self.ibDealsView layoutIfNeeded];
         CGFloat totalHeight = self.ibDealsTable.frame.origin.y + tableHeight + contentHeightPadding;
         
         if (totalDeals > 3) {

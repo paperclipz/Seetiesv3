@@ -861,10 +861,15 @@
 +(NSInteger)numberOfDaysLeft:(NSDate*)date{
     NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     [cal setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    NSDateComponents *fromDateComponent = [cal components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:[NSDate new]];
-    NSDateComponents *toDateComponent = [cal components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:date];
     
-    NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:[cal dateFromComponents:fromDateComponent] toDate:[cal dateFromComponents:toDateComponent] options:NSCalendarWrapComponents];
+    NSDateComponents *components = [cal components:NSCalendarUnitDay|NSCalendarUnitMinute fromDate:[NSDate new] toDate:date options:NSCalendarWrapComponents];
+    
+    if ([components day] == 0) {
+        //if same day, check for time expiry
+        if ([components minute] > 0) {
+            return [components day]+1;
+        }
+    }
     
     return [components day];
 }
