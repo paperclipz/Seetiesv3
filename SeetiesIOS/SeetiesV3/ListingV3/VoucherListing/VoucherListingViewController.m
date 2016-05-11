@@ -679,7 +679,10 @@
     __weak typeof (self)weakSelf = self;
     self.dealDetailsViewController.dealModelBlock = ^(DealModel* model)
     {
-        [weakSelf requestServerForCollectionInfo:nil];
+        if (weakSelf.dealViewType == 6) {
+            [weakSelf requestServerForCollectionInfo:nil];
+        }
+        
         [weakSelf.dealsArray replaceObjectAtIndex:indexPath.row withObject:model];
     };
     
@@ -899,7 +902,7 @@
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
 
-    if ([Utils isStringNull:self.dealCollectionModel.deal_collection_id]) {
+    if (![Utils isStringNull:self.dealCollectionModel.deal_collection_id]) {
         
         [finalDict setObject:self.dealCollectionModel.deal_collection_id forKey:@"deal_collection_id"];
     }
