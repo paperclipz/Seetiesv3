@@ -58,14 +58,14 @@
     
     
     // upload offline deal data
-    if ([ConnectionManager isNetworkAvailable]) {
-        [[OfflineManager Instance]uploadDealToRedeem:^{
-            
-            self.dealsModel = nil;
-            [self requestServerForVoucherListing];
-            
-        }];
-    }
+//    if ([ConnectionManager isNetworkAvailable]) {
+//        [[OfflineManager Instance]uploadDealToRedeem:^{
+//            
+//            self.dealsModel = nil;
+//            [self requestServerForVoucherListing];
+//            
+//        }];
+//    }
     
     // Do any additional setup after loading the view from its nib.
     
@@ -421,7 +421,9 @@
 -(void)onDealRedeemed:(DealModel *)dealModel{
     if (dealModel.voucher_info.total_redeemable_count == 1) {
         [self removeDealFromVoucherArray:dealModel];
-        [DealExpiryDateModel saveWalletList:self.voucherArray];
+        
+        //comment : save wallet offline listing
+        //[DealExpiryDateModel saveWalletList:self.voucherArray];
 
     }
     
@@ -592,8 +594,8 @@
         [self rearrangeVoucherList];
         
         
-        //comment for offline mode
-        [DealExpiryDateModel saveWalletList:self.voucherArray];
+//        //comment for offline mode
+//        [DealExpiryDateModel saveWalletList:self.voucherArray];
         
         [self.ibTableView reloadData];
         [self.ibTableView.pullToRefreshView stopAnimating];
@@ -619,13 +621,13 @@
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.ibTableView.tableFooterView = nil;
         
-        //comment for offline mode
-
-        if ([Utils isArrayNull:self.voucherArray]) {
-            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
-            [self.ibTableView reloadData];
-
-        }
+//        //comment for offline mode
+//
+//        if ([Utils isArrayNull:self.voucherArray]) {
+//            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
+//            [self.ibTableView reloadData];
+//
+//        }
         
         if ([Utils isArrayNull:self.voucherArray]) {
             [self toggleEmptyView:YES];
