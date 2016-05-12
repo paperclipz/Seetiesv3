@@ -739,7 +739,6 @@ static NSCache* heightCache = nil;
                     cell = [[DealType_mainTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 
-
                 [cell initData:self.homeModel];
                  __weak typeof (self)weakSelf = self;
                 cell.didSelectDealCollectionBlock = ^(DealCollectionModel* model)
@@ -849,9 +848,12 @@ static NSCache* heightCache = nil;
             /*Following Post*/
             static NSString *CellIdentifier = @"FeedType_headerTblCell";
             FeedType_headerTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
             if (cell == nil) {
                 cell = [[FeedType_headerTblCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
+            
+            [cell initData];
             [cell setUserInteractionEnabled:NO];
             return cell;
         }
