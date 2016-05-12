@@ -44,7 +44,7 @@
 
 + (void)show
 {
-    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Hang on. It's loading!"),
+    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Loading!"),
                                       KVNProgressViewParameterBackgroundType: @(KVNProgressBackgroundTypeSolid),
                                       KVNProgressViewParameterFullScreen: @([[LoadingManager Instance] isFullScreen])}];
     
@@ -65,7 +65,7 @@
 }
 - (void)showWithSolidBackground
 {
-    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Hang on. It's loading!"),
+    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Loading!"),
                                       KVNProgressViewParameterBackgroundType: @(KVNProgressBackgroundTypeSolid),
                                       KVNProgressViewParameterFullScreen: @([self isFullScreen])}];
     

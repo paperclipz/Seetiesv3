@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/A3ParallaxScrollView.framework"
   install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/AMPopTip.framework"
   install_framework "Pods/APParallaxHeader.framework"
   install_framework "Pods/ActionSheetPicker_3_0.framework"
   install_framework "Pods/BOString.framework"
@@ -115,6 +116,7 @@ fi
 if [[ "$CONFIGURATION" == "Debug Staging" ]]; then
   install_framework "Pods/A3ParallaxScrollView.framework"
   install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/AMPopTip.framework"
   install_framework "Pods/APParallaxHeader.framework"
   install_framework "Pods/ActionSheetPicker_3_0.framework"
   install_framework "Pods/BOString.framework"
@@ -144,6 +146,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/A3ParallaxScrollView.framework"
   install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/AMPopTip.framework"
   install_framework "Pods/APParallaxHeader.framework"
   install_framework "Pods/ActionSheetPicker_3_0.framework"
   install_framework "Pods/BOString.framework"
@@ -173,6 +176,7 @@ fi
 if [[ "$CONFIGURATION" == "Release Staging" ]]; then
   install_framework "Pods/A3ParallaxScrollView.framework"
   install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/AMPopTip.framework"
   install_framework "Pods/APParallaxHeader.framework"
   install_framework "Pods/ActionSheetPicker_3_0.framework"
   install_framework "Pods/BOString.framework"

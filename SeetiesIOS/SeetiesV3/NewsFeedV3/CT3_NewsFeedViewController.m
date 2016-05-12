@@ -487,8 +487,6 @@ static NSCache* heightCache = nil;
     
     [self initSelfView];
 
-    [self.ibTableView setupCustomEmptyView];
-
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -497,6 +495,7 @@ static NSCache* heightCache = nil;
     [super viewDidAppear:animated];
     
     [self.ibTableView showLoading];
+    
     
     if (self.needShowIntroView) {
         
@@ -513,7 +512,10 @@ static NSCache* heightCache = nil;
 
     if (!isFirstLoad) {
         [self requestServerForHomeUpdate:self.currentHomeLocationModel];
+        [self.ibTableView showEmptyState];
+
     }
+    
     
     if (![Utils isGuestMode]) {
         [self RequestServerForVouchersCount];
@@ -548,6 +550,9 @@ static NSCache* heightCache = nil;
     
     self.ibTableView.estimatedRowHeight = [FeedType_FollowingPostTblCell getHeight];
     self.ibTableView.rowHeight = UITableViewAutomaticDimension;
+    [self.ibTableView setupCustomEmptyView];
+    self.ibTableView.customEmptyStateView.emptyStateDesc.text = LocalisedString(@"No Internet Connection");
+    
 
 }
 
@@ -1559,9 +1564,20 @@ static NSCache* heightCache = nil;
 
             
         } failure:^(id object) {
+            
+            isFirstLoad = NO;
+
             [self.ibTableView.pullToRefreshView stopAnimating];
             isMiddleOfLoadingServer = NO;
-            [self.ibTableView hideAll];
+            
+            if ([Utils isArrayNull:self.arrayNewsFeed]) {
+                [self.ibTableView showEmptyState];
+
+            }
+            else{
+                [self.ibTableView hideAll];
+
+            }
             
 //            // ========== Offline ========== //
 //
@@ -1594,6 +1610,8 @@ static NSCache* heightCache = nil;
     [self.ibTableView showLoading];
 
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHome parameter:dict appendString:nil success:^(id object) {
+
+        isFirstLoad = NO;
 
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.homeModel = [[ConnectionManager dataManager]homeModel];
@@ -1659,7 +1677,11 @@ static NSCache* heightCache = nil;
        // [self.ibTableView reloadData];
   
     } failure:^(id object) {
+        
+        isFirstLoad = NO;
+
         [self.ibTableView.pullToRefreshView stopAnimating];
+        
         [self.ibTableView showEmptyState];
 
     }];

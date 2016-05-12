@@ -16,6 +16,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AMPopTip (1.0.0)
   - APParallaxHeader (0.1.6)
   - BOString (0.10.0)
   - CLLocationManager-blocks (1.3.3)
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - A3ParallaxScrollView (~> 1.0)
   - ActionSheetPicker-3.0 (~> 1.7.1)
   - AFNetworking (~> 3.0)
+  - AMPopTip
   - APParallaxHeader
   - BOString
   - CLLocationManager-blocks
@@ -95,6 +97,7 @@ SPEC CHECKSUMS:
   A3ParallaxScrollView: 1d16dc1881721642d5f25e320cabe7adcc997035
   ActionSheetPicker-3.0: c5bdca19fd8b3d798f0c79892cbab6f11a8523ae
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AMPopTip: e1cd96e10a64fb329d9cba8d6f8758d20987b079
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   BOString: b4c4df4f8a7f046c42a51c32629772dc2701fc47
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b

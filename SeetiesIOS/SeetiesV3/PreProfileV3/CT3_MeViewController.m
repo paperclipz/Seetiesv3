@@ -355,6 +355,7 @@
     if (!_promoCodeViewController) {
         _promoCodeViewController = [PromoPopOutViewController new];
         _promoCodeViewController.promoPopOutDelegate = self;
+        
     }
     return _promoCodeViewController;
 }

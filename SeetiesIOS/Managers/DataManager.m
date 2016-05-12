@@ -211,7 +211,6 @@
 
 }
 
-
 +(BOOL)isUserFollowed:(NSString*)UserID isFollowing:(BOOL)isFollowing
 {
     
@@ -228,9 +227,7 @@
     
     return isCollected;
     
-    
 }
-
 
 +(void)setUserFollowing:(NSString*)UserID isFollowing:(BOOL)following
 {

@@ -74,12 +74,44 @@
 
 - (IBAction)btnLikeClicked:(id)sender {
     
+  
+    
+    
     if (self.btnLike.selected) {
         [self requestServerToUnlikePost];
 
     }
     else{
         [self requestServerToLikePost];
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            self.btnLike.layer.transform = CATransform3DMakeScale(0.6, 0.6, 1.0);
+        }completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:0.1
+                                  delay:0.0
+                 usingSpringWithDamping:0.8
+                  initialSpringVelocity:1.0
+                                options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^
+             {
+                 self.btnLike.layer.transform = CATransform3DMakeScale(1.1, 1.1, 1.0);
+             }
+                             completion:^(BOOL finished) {
+                                 
+                                 [UIView animateWithDuration:0.1
+                                                       delay:0.0
+                                      usingSpringWithDamping:0.3
+                                       initialSpringVelocity:1.0
+                                                     options:UIViewAnimationOptionCurveEaseInOut
+                                                  animations:^
+                                  {
+                                      self.btnLike.layer.transform = CATransform3DIdentity;
+                                  }
+                                                  completion:nil];
+                             }];
+        }];
+
 
     }
 }

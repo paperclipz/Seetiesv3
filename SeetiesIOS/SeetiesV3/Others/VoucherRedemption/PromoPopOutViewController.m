@@ -7,11 +7,17 @@
 //
 
 #import "PromoPopOutViewController.h"
+#import "UIView+Toast.h"
+#import "AMPopTip.h"
 
-@interface PromoPopOutViewController (){
+@interface PromoPopOutViewController ()
+{
     NSCharacterSet *alphaNumericSet;
     NSCharacterSet *numericSet;
 }
+
+@property (nonatomic, strong) AMPopTip *popTip;
+
 @property (strong, nonatomic) IBOutlet UIView *ibEnterPromoView;
 @property (weak, nonatomic) IBOutlet UITextField *ibPromoCodeText;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitleLbl;
@@ -490,6 +496,20 @@
 }
 
 #pragma mark - Declaration
+
+-(AMPopTip*)popTip
+{
+    if (!_popTip) {
+        _popTip = [AMPopTip popTip];
+        _popTip.shouldDismissOnTap = YES;
+        _popTip.offset = -15;
+        _popTip.edgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+        _popTip.popoverColor = SELECTED_RED;
+    }
+    
+    return _popTip;
+}
+
 -(DealManager *)dealManager{
     if(!_dealManager)
     {
@@ -857,6 +877,7 @@
         self.isVerified = NO;
         self.isLoading = NO;
         [LoadingManager hide];
+        
     }];
 }
 
@@ -892,11 +913,14 @@
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
-//        [MessageManager showMessageInPopOut:LocalisedString(@"system") subtitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.")];
-//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         [LoadingManager hide];
         self.isLoading = NO;
         self.hasRequestedPromo = NO;
+        
+        
+      
+        [self.popTip showText:[NSString stringWithFormat:@"%@",object] direction:AMPopTipDirectionUp maxWidth:self.ibEnterPromoView.frame.size.width inView:self.ibEnterPromoView fromFrame:self.ibPromoCodeText.frame duration:2.0f];
+
     }];
 }
 
@@ -905,6 +929,11 @@
         return;
     }
     
+    if([Utils isStringNull:self.enteredPromoCode])
+    {
+        return;
+    }
+
     NSString *appendString = [NSString stringWithFormat:@"%@/redeem", self.enteredPromoCode];
     NSDictionary *dict = @{@"promo_code": self.enteredPromoCode,
                            @"token": [Utils getAppToken],

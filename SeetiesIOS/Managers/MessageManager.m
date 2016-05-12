@@ -9,6 +9,7 @@
 #import "MessageManager.h"
 #import "AppDelegate.h"
 #import "UIWindow+Extra.h"
+#import "UIView+Toast.h"
 
 @implementation MessageManager
 
@@ -40,4 +41,26 @@
     [UIAlertView showWithTitle:title message:subtitle cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:nil];
 }
 
+
++(void)showToastMessage:(NSString*)title InView:(UIView*)view
+{
+    
+    if ([Utils isStringNull:title]) {
+        return;
+    }
+    CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
+    
+    // this is just one of many style options
+    style.messageColor = [UIColor whiteColor];
+    
+    style.messageFont = [UIFont fontWithName:CustomFontNameBold size:10];
+    style.cornerRadius = 12;
+    
+    // present the toast with the new style
+    [view makeToast:LocalisedString(title)
+                duration:3.0
+                position:CSToastPositionBottom
+                   style:style];
+
+}
 @end

@@ -785,7 +785,15 @@
             }
             
             if (showError) {
-                [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+                
+                switch (type) {
+                    case ServerRequestTypeGetPromoCode:
+                        break;
+                        
+                    default:
+                        [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+                        break;
+                }
             }
             
             //[TSMessage show];
