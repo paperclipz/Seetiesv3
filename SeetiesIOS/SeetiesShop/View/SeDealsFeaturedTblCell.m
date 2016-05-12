@@ -45,7 +45,8 @@
 -(void)initData:(DealModel*)model
 {
     self.dealModel = model;
-
+    
+    //Check for is-feature tag
     if (self.dealModel.is_feature) {
         self.lblFeatured.hidden = NO;
         
@@ -71,9 +72,23 @@
     else{
         self.lblFeatured.hidden = YES;
         constLblDiscountLeading.constant = 8;
-
+    }
+    
+    //Check for discount/free tag
+    if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT] || [self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]) {
         
-
+        self.lblDiscount.text = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage}];
+        self.lblDiscount.backgroundColor = SELECTED_GREEN;
+    }
+    else if([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE])
+    {
+        self.lblDiscount.text = LocalisedString(@"FREE");
+        
+        self.lblDiscount.backgroundColor = DEVICE_COLOR;
+        
+    }
+    else{
+        self.lblDiscount.hidden = YES;
     }
     
     @try {

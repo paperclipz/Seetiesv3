@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FeedType_headerTblCell : CommonTableViewCell
-
+-(void)initData;
 @end

@@ -27,10 +27,8 @@
     // Configure the view for the selected state
 }
 
--(void)initSelfView
-{
+-(void)initData{
     [self changeLanguage];
-
 }
 
 -(void)changeLanguage

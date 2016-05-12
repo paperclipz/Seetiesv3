@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIView *ibLoadingView;
 @property (weak, nonatomic) IBOutlet UILabel *ibLoadingTxt;
 @property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibEmptyWalletImgLeadingConstraint;
 
 @property (strong, nonatomic) IBOutlet UIView *ibTableFooterView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ibActivityIndicatorView;
@@ -63,6 +64,15 @@
     [Utils setRoundBorder:self.ibEmptyBtn color:DEVICE_COLOR borderRadius:self.ibEmptyBtn.frame.size.height/2 borderWidth:1.0f];
     
     self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
+    self.ibEmptyStateView.frame = self.ibTableView.frame;
+    CGRect frame = [Utils getDeviceScreenSize];
+    if (frame.size.height <= 480) {
+        self.ibEmptyWalletImgLeadingConstraint.constant = 85;
+        SLog(@"iphone4");
+    }
+    else{
+        self.ibEmptyWalletImgLeadingConstraint.constant = 75;
+    }
     
     [self.ibTableView addPullToRefreshWithActionHandler:^{
         self.dealsModel = nil;
@@ -428,22 +438,30 @@
 }
 
 - (IBAction)emptyBtnClicked:(id)sender {
-    self.voucherListingViewController = nil;
-    NSDictionary *locationDict = [Utils getSavedUserLocation];
-    HomeLocationModel *locationModel = [[HomeLocationModel alloc] init];
-    @try {
-        locationModel.latitude = locationDict[KEY_LATITUDE];
-        locationModel.longtitude = locationDict[KEY_LONGTITUDE];
-        locationModel.place_id = locationDict[KEY_PLACE_ID];
-        locationModel.locationName = locationDict[KEY_LOCATION];
-        locationModel.countryId = (int)[locationDict[KEY_COUNTRY_ID] integerValue];
-    } @catch (NSException *exception) {
-        SLog(@"Wallet location exception: %@", exception);
+    HomeModel *homeModel = [[DataManager Instance] homeModel];
+    if ([Utils isArrayNull:homeModel.featured_deals]) {
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"This feature is not available at your place") cancelButtonTitle:LocalisedString(@"Okay") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            [Utils reloadAppView:YES];
+        }];
     }
-    
-    [self.voucherListingViewController initWithLocation:locationModel];
-    [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
-    }];
+    else{
+        self.voucherListingViewController = nil;
+        NSDictionary *locationDict = [Utils getSavedUserLocation];
+        HomeLocationModel *locationModel = [[HomeLocationModel alloc] init];
+        @try {
+            locationModel.latitude = locationDict[KEY_LATITUDE];
+            locationModel.longtitude = locationDict[KEY_LONGTITUDE];
+            locationModel.place_id = locationDict[KEY_PLACE_ID];
+            locationModel.locationName = locationDict[KEY_LOCATION];
+            locationModel.countryId = (int)[locationDict[KEY_COUNTRY_ID] integerValue];
+        } @catch (NSException *exception) {
+            SLog(@"Wallet location exception: %@", exception);
+        }
+        
+        [self.voucherListingViewController initWithLocation:locationModel];
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
+        }];
+    }
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
