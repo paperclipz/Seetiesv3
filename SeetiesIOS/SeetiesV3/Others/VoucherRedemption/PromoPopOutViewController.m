@@ -886,6 +886,10 @@
         return;
     }
     
+    if ([Utils isStringNull:self.enteredPromoCode]) {
+        return;
+    }
+    
     NSString *appendString = self.enteredPromoCode;
     NSDictionary *dict = @{@"promo_code": self.enteredPromoCode,
                            @"token": [Utils getAppToken]
