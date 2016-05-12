@@ -7,6 +7,8 @@
 //
 
 #import "UIWindow+Extra.h"
+#import "UIViewController+Extension.h"
+#import "NewLandingViewController.h"
 
 @implementation UIWindow(Extra)
 
@@ -14,19 +16,7 @@
 {
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
-    while (topController.presentedViewController) {
-        topController = topController.presentedViewController;
-    }
-    
-    return topController;
+    return [topController topVisibleViewController];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

@@ -364,21 +364,10 @@ typedef enum {
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
         
     } errorBlock:^(id object) {
-        
-        [MessageManager showMessage:@"Failed to update Profile!" SubTitle:nil Type:TSMessageNotificationTypeError];
-        
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                
+//        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
     
-//    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUserProfile parameter:[self getDataForPost] appendString:[NSString stringWithFormat:@"%@", [Utils getUserID]] success:^(id object) {
-//        
-////        [MessageManager showMessage:LocalisedString(@"Successfully share to friend") SubTitle:nil Type:TSMessageNotificationTypeSuccess];
-//        
-//        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-//        
-//    } failure:^(id object) {
-//        
-//    }];
 }
 
 #pragma mark - UITableViewDataSource method

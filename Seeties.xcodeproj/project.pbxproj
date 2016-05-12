@@ -1323,6 +1323,7 @@
 		C75015FE1CD0A7640048C279 /* EditProfileV3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */; };
 		C75015FF1CD0A7640048C279 /* EditProfileV3ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */; };
 		C75016021CD0AC420048C279 /* GenericObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C75016011CD0AC420048C279 /* GenericObject.m */; };
+		C7B8E7CC1CE4691300588C7E /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B8E7CB1CE4691300588C7E /* UIViewController+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -3028,6 +3029,8 @@
 		C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditProfileV3ViewController.storyboard; sourceTree = "<group>"; };
 		C75016001CD0AC420048C279 /* GenericObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericObject.h; path = ../GenericObject.h; sourceTree = "<group>"; };
 		C75016011CD0AC420048C279 /* GenericObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericObject.m; path = ../GenericObject.m; sourceTree = "<group>"; };
+		C7B8E7CA1CE4691300588C7E /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
+		C7B8E7CB1CE4691300588C7E /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5100,6 +5103,7 @@
 		8AB276431CC61FC700BD5EC8 /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
+				C7B8E7C61CE4688F00588C7E /* UIViewController+Extension */,
 				8AB276441CC61FC700BD5EC8 /* Categories */,
 				8AB2765B1CC61FC700BD5EC8 /* CustomFont.h */,
 				8AB2765C1CC61FC700BD5EC8 /* NSArray+Extension */,
@@ -6456,6 +6460,15 @@
 			name = FriendSuggestion;
 			sourceTree = "<group>";
 		};
+		C7B8E7C61CE4688F00588C7E /* UIViewController+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C7B8E7CA1CE4691300588C7E /* UIViewController+Extension.h */,
+				C7B8E7CB1CE4691300588C7E /* UIViewController+Extension.m */,
+			);
+			name = "UIViewController+Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7698,6 +7711,7 @@
 				8A6BB4351BF0C338005AA1B3 /* UIViewController+TargetViewController.m in Sources */,
 				8AF920D81C731D6400BC041D /* CT3_AnnouncementViewController.m in Sources */,
 				8A5CFE1E1C7D8E53004E2CBA /* SelectCategoryViewController.m in Sources */,
+				C7B8E7CC1CE4691300588C7E /* UIViewController+Extension.m in Sources */,
 				C24383F41C5B5BF100ACEBF8 /* DealDetailsViewController.m in Sources */,
 				8AC8F72E1BDA414E00DEF14A /* ProfilePageCollectionHeaderView.m in Sources */,
 				C206B7A91C90319C00786128 /* TermsViewController.m in Sources */,
@@ -8036,7 +8050,7 @@
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8061,10 +8075,11 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
+					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8145,7 +8160,7 @@
 				Bundle_Name = Seeties;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8170,10 +8185,11 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
+					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = "Release Staging";
@@ -8270,6 +8286,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -8296,7 +8313,7 @@
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8321,11 +8338,12 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
+					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 			};
 			name = Debug;
 		};
@@ -8338,7 +8356,7 @@
 				Bundle_Name = Seeties;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8363,11 +8381,12 @@
 					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
+					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 			};
 			name = Release;
 		};
