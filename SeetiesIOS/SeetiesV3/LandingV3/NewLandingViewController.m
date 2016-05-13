@@ -42,22 +42,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //[self requestForApiVersion:nil];
+    [self initSelfView];
     
-    if ([Utils getIsDevelopment]) {
-        
-        [self requestForApiVersion:nil];
-        [self initSelfView];
-
-    }
-    else{
-        [self requestForApiVersion:^{
-            [self initSelfView];
-
-        }];
-    }
+//    if (![Utils getIsDevelopment]) {
+//        
+//        [self requestForApiVersion:nil];
+//        [self initSelfView];
+//
+//    }
+//    else{
+//        [self requestForApiVersion:^{
+//            [self initSelfView];
+//
+//        }];
+//    }
     [self showAnimatedSplash];
 
-    
 }
 
 -(void)initSelfView
@@ -82,7 +83,8 @@
         [Utils reloadAppView:YES];
     }
     
-    [self requestServerForCountry];}
+    [self requestServerForCountry];
+}
 
 -(void)requestForApiVersion:(VoidBlock)completionBlock{
     

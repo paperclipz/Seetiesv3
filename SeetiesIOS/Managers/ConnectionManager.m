@@ -12,6 +12,10 @@
 #import "AFHTTPSessionManager.h"
 
 @interface ConnectionManager()
+{
+    BOOL isForceUpdatePrompt;
+}
+
 @property (strong, nonatomic) DataManager *dataManager;
 @property(strong,nonatomic)AFHTTPSessionManager* manager;
 
@@ -47,6 +51,7 @@
 {
     self = [super init];//set default dev
     
+    isForceUpdatePrompt = NO;
     
     if ([Utils isAppProductionBuild]) {
         self.serverPath = SERVER_PATH_LIVE;
@@ -1435,17 +1440,22 @@
                 
             }];
         }
-        else if ([code isEqualToString:@"seeties.apiversion.message"]) {
+        else if ([code isEqualToString:@"seeties.apiversion.message"] && !isForceUpdatePrompt) {
          
             
             [Utils showLogin];
+            
+            isForceUpdatePrompt = YES;
+            
             [UIAlertView showWithTitle:LocalisedString(@"system") message:message cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                 
                 if (buttonIndex == 0) {//cancel
                     
+                    isForceUpdatePrompt = NO;
+                    
                 }else if(buttonIndex == 1)//route to app store
                 {
-                    
+                    isForceUpdatePrompt = NO;
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/my/app/seeties-explore-best-places/id956400552?mt=8"]];
                     
                    // }];
@@ -1457,7 +1467,6 @@
     }
     else if([response statusCode] == 401)
     {
-        SLog(@"GGWP");
         [Utils showLogin];
 
     }

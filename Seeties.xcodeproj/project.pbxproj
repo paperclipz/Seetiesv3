@@ -8079,7 +8079,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
+				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8189,7 +8189,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
+				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = "Release Staging";
@@ -8343,7 +8343,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
+				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
 			};
 			name = Debug;
 		};
@@ -8386,7 +8386,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
+				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
 			};
 			name = Release;
 		};
