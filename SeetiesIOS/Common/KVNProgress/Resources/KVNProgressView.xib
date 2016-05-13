@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -35,14 +36,21 @@
                                 <constraint firstAttribute="height" constant="114" id="mRF-1b-hE3"/>
                             </constraints>
                         </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loading.gif" translatesAutoresizingMaskIntoConstraints="NO" id="bKM-yc-oqm" customClass="YLImageView">
+                            <rect key="frame" x="103" y="10" width="114" height="114"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="bKM-yc-oqm" firstAttribute="bottom" secondItem="iI6-MR-KeW" secondAttribute="bottom" id="7QO-98-8J9"/>
                         <constraint firstItem="gXU-1y-b5M" firstAttribute="top" secondItem="iI6-MR-KeW" secondAttribute="bottom" constant="20" id="EMi-mI-8Vy"/>
                         <constraint firstAttribute="trailing" secondItem="gXU-1y-b5M" secondAttribute="trailing" constant="20" id="NfM-dd-C8T"/>
+                        <constraint firstItem="bKM-yc-oqm" firstAttribute="top" secondItem="iI6-MR-KeW" secondAttribute="top" id="P8o-6N-7GS"/>
+                        <constraint firstItem="bKM-yc-oqm" firstAttribute="trailing" secondItem="iI6-MR-KeW" secondAttribute="trailing" id="ZTF-8v-u4C"/>
                         <constraint firstItem="iI6-MR-KeW" firstAttribute="top" secondItem="dvZ-0c-TMi" secondAttribute="top" constant="10" id="axR-gj-btf"/>
                         <constraint firstAttribute="bottom" secondItem="gXU-1y-b5M" secondAttribute="bottom" constant="10" id="bXO-fJ-Lwk"/>
                         <constraint firstItem="gXU-1y-b5M" firstAttribute="leading" secondItem="dvZ-0c-TMi" secondAttribute="leading" constant="20" id="mvo-ir-QnY"/>
+                        <constraint firstItem="bKM-yc-oqm" firstAttribute="leading" secondItem="iI6-MR-KeW" secondAttribute="leading" id="v02-XJ-RCc"/>
                         <constraint firstAttribute="centerX" secondItem="iI6-MR-KeW" secondAttribute="centerX" id="vof-Gd-IFp"/>
                     </constraints>
                 </view>
@@ -70,15 +78,14 @@
                 <outlet property="contentView" destination="dvZ-0c-TMi" id="l4W-xx-PIG"/>
                 <outlet property="contentViewLeadingToSuperviewConstraint" destination="q68-L1-eGD" id="z31-Mz-ZKN"/>
                 <outlet property="contentViewTrailingToSuperviewConstraint" destination="gBi-Hb-Mr7" id="VZI-F3-zLF"/>
+                <outlet property="ibLoadingImg" destination="bKM-yc-oqm" id="j8f-EH-7cb"/>
                 <outlet property="statusLabel" destination="gXU-1y-b5M" id="3SM-0c-hjG"/>
                 <outlet property="statusLabelBottomToSuperViewConstraint" destination="bXO-fJ-Lwk" id="v84-sv-hIw"/>
                 <outlet property="statusLabelHeightConstraint" destination="V0y-U4-QII" id="Xbn-CE-kP0"/>
             </connections>
         </view>
     </objects>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
+    <resources>
+        <image name="Loading.gif" width="249" height="249"/>
+    </resources>
 </document>
