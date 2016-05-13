@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_NewsFeedViewController">
             <connections>
+                <outlet property="btnCurrentLocation" destination="Gi0-Kl-xNc" id="HyT-Qp-qm9"/>
                 <outlet property="btnLocation" destination="sKt-5r-f72" id="j5u-7D-Oo1"/>
                 <outlet property="constTabbarHeight" destination="6ml-ll-N3l" id="wsg-EK-TbM"/>
                 <outlet property="constTopScrollView" destination="0HG-Hu-44k" id="jOS-Ob-PYL"/>

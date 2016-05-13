@@ -779,16 +779,17 @@
             
             SLog(@"%@",dict[@"message"]);
             
-            switch (type) {
-                case ServerRequestTypeGetPromoCode:
-                case ServerRequestTypePostCheckUserRegistrationData:
-                    
-                    break;
-                    
-                default:
-                    [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
-                    break;
-            }
+                
+                switch (type) {
+                    case ServerRequestTypeGetPromoCode:
+                    case ServerRequestTypePostCheckUserRegistrationData:
+
+                        break;
+                        
+                    default:
+                        [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+                        break;
+                }
             
             //[TSMessage show];
             

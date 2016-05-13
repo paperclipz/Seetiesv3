@@ -56,6 +56,7 @@
 #import "CustomItemSource.h"
 
 #import "UITableView+emptyState.h"
+#import "UIButton+Activity.h"
 
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
@@ -84,6 +85,7 @@ static NSCache* heightCache = nil;
 
     
 }
+@property (weak, nonatomic) IBOutlet UIButton *btnCurrentLocation;
 /*IBOUTLET*/
 @property (weak, nonatomic) IBOutlet UIButton *btnLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -142,15 +144,18 @@ static NSCache* heightCache = nil;
     
     if ([SearchManager isDeviceGPSTurnedOn]) {
         
+        
         if (isLoadingLocation) {
             return;
         }
         
+        self.btnCurrentLocation.enabled = NO;
+
         isLoadingLocation = YES;
         
         [[SearchManager Instance]startSearchGPSLocation:^(CLLocation *location) {
             
-            [LoadingManager show];
+            self.btnCurrentLocation.enabled = NO;
 
             [self getCurrentLocationGoogleGeoCode:location];
         }];
@@ -533,7 +538,7 @@ static NSCache* heightCache = nil;
 
 -(void)initSelfView
 {
-    
+    [self.btnCurrentLocation useActivityIndicator:YES];
     self.automaticallyAdjustsScrollViewInsets = NO;
     constTopScrollView.constant = TopBarHeight;
 
@@ -1843,7 +1848,7 @@ static NSCache* heightCache = nil;
            
         }
         
-    }];
+    }Error:nil];
 }
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 //    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
@@ -2049,12 +2054,14 @@ static NSCache* heightCache = nil;
 #pragma mark - Location
 -(void)getCurrentLocationGoogleGeoCode:(CLLocation*)location
 {
-    
+    self.btnCurrentLocation.enabled = NO;
+
     [self.searchManager getGoogleGeoCode:location completionBlock:^(id object) {
         
         [LoadingManager hide];
 
-        
+        self.btnCurrentLocation.enabled = YES;
+
         NSDictionary* temp = [[NSDictionary alloc]initWithDictionary:object];
         NSArray* arrayLocations = [temp valueForKey:@"results"];
         
@@ -2088,6 +2095,10 @@ static NSCache* heightCache = nil;
             }];
             
         }
+    }Error:^{
+        
+        self.btnCurrentLocation.enabled = YES;
+
     }];
 }
 
