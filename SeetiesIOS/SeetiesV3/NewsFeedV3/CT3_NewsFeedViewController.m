@@ -1190,6 +1190,7 @@ static NSCache* heightCache = nil;
                     {
                         [self showReferralInvite];
                     }
+                        break;
                         
                     default:
                         [self showNewAnnouncementView:typeModel];
@@ -1211,6 +1212,7 @@ static NSCache* heightCache = nil;
             {
                 [self showReferralInvite];
             }
+                break;
             
             default:
                 break;
@@ -1279,6 +1281,7 @@ static NSCache* heightCache = nil;
                         dModel.post_id = aModel.relatedID;
                         [self showPostDetailView:dModel];
                     }
+                        break;
                         
                     case AnnouncementType_Promo:
                     {
