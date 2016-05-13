@@ -217,6 +217,7 @@
 		8A84C8D61C800A0C006A0D76 /* DealCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D51C800A0C006A0D76 /* DealCollectionModel.m */; };
 		8A84C8D91C8036FD006A0D76 /* SeShopGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A84C8D81C8036FD006A0D76 /* SeShopGroupModel.m */; };
 		8A87FDC31CE0650600CFA719 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A87FDC21CE0650600CFA719 /* UIView+Toast.m */; };
+		8A90E7F91CE584F500955248 /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A90E7F81CE584F500955248 /* UIViewController+Extension.m */; };
 		8A988FB91C29049800D0F0EF /* WMATweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A988FB81C29049800D0F0EF /* WMATweetView.m */; };
 		8A993CCE1C2A8113009359E2 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A993CCD1C2A8113009359E2 /* MapManager.m */; };
 		8A9ABA541CA52B890067FACA /* IntroCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9ABA521CA52B890067FACA /* IntroCoverView.m */; };
@@ -1323,7 +1324,6 @@
 		C75015FE1CD0A7640048C279 /* EditProfileV3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */; };
 		C75015FF1CD0A7640048C279 /* EditProfileV3ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */; };
 		C75016021CD0AC420048C279 /* GenericObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C75016011CD0AC420048C279 /* GenericObject.m */; };
-		C7B8E7CC1CE4691300588C7E /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B8E7CB1CE4691300588C7E /* UIViewController+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1689,6 +1689,8 @@
 		8A87FDC11CE0650600CFA719 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		8A87FDC21CE0650600CFA719 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		8A9026B81CBF915600B69415 /* CustomBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomBlock.h; sourceTree = "<group>"; };
+		8A90E7F71CE584F500955248 /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
+		8A90E7F81CE584F500955248 /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
 		8A988FB71C29049800D0F0EF /* WMATweetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMATweetView.h; sourceTree = "<group>"; };
 		8A988FB81C29049800D0F0EF /* WMATweetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMATweetView.m; sourceTree = "<group>"; };
 		8A993CCC1C2A8113009359E2 /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManager.h; sourceTree = "<group>"; };
@@ -3029,8 +3031,6 @@
 		C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditProfileV3ViewController.storyboard; sourceTree = "<group>"; };
 		C75016001CD0AC420048C279 /* GenericObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericObject.h; path = ../GenericObject.h; sourceTree = "<group>"; };
 		C75016011CD0AC420048C279 /* GenericObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericObject.m; path = ../GenericObject.m; sourceTree = "<group>"; };
-		C7B8E7CA1CE4691300588C7E /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
-		C7B8E7CB1CE4691300588C7E /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
 		CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3912,6 +3912,15 @@
 				8A9026B81CBF915600B69415 /* CustomBlock.h */,
 			);
 			path = CustomBlock;
+			sourceTree = "<group>";
+		};
+		8A90E7F61CE584F500955248 /* UIViewController+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A90E7F71CE584F500955248 /* UIViewController+Extension.h */,
+				8A90E7F81CE584F500955248 /* UIViewController+Extension.m */,
+			);
+			path = "UIViewController+Extension";
 			sourceTree = "<group>";
 		};
 		8A988FB61C29049800D0F0EF /* WMATweetView */ = {
@@ -5103,7 +5112,7 @@
 		8AB276431CC61FC700BD5EC8 /* CATEGORY */ = {
 			isa = PBXGroup;
 			children = (
-				C7B8E7C61CE4688F00588C7E /* UIViewController+Extension */,
+				8A90E7F61CE584F500955248 /* UIViewController+Extension */,
 				8AB276441CC61FC700BD5EC8 /* Categories */,
 				8AB2765B1CC61FC700BD5EC8 /* CustomFont.h */,
 				8AB2765C1CC61FC700BD5EC8 /* NSArray+Extension */,
@@ -6460,15 +6469,6 @@
 			name = FriendSuggestion;
 			sourceTree = "<group>";
 		};
-		C7B8E7C61CE4688F00588C7E /* UIViewController+Extension */ = {
-			isa = PBXGroup;
-			children = (
-				C7B8E7CA1CE4691300588C7E /* UIViewController+Extension.h */,
-				C7B8E7CB1CE4691300588C7E /* UIViewController+Extension.m */,
-			);
-			name = "UIViewController+Extension";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7711,7 +7711,7 @@
 				8A6BB4351BF0C338005AA1B3 /* UIViewController+TargetViewController.m in Sources */,
 				8AF920D81C731D6400BC041D /* CT3_AnnouncementViewController.m in Sources */,
 				8A5CFE1E1C7D8E53004E2CBA /* SelectCategoryViewController.m in Sources */,
-				C7B8E7CC1CE4691300588C7E /* UIViewController+Extension.m in Sources */,
+				8A90E7F91CE584F500955248 /* UIViewController+Extension.m in Sources */,
 				C24383F41C5B5BF100ACEBF8 /* DealDetailsViewController.m in Sources */,
 				8AC8F72E1BDA414E00DEF14A /* ProfilePageCollectionHeaderView.m in Sources */,
 				C206B7A91C90319C00786128 /* TermsViewController.m in Sources */,
