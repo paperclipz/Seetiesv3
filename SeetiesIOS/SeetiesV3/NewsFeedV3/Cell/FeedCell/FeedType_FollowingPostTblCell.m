@@ -15,6 +15,7 @@
     __weak IBOutlet UIImageView *ibImgProfilePadding;
     __weak IBOutlet NSLayoutConstraint *constTitleHeight;
 }
+
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgDistance;
 @property (nonatomic,strong)CTFeedTypeModel* newsFeedTypeModel;
 @property (weak, nonatomic) IBOutlet UIImageView *ibPostImageView;
@@ -34,9 +35,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UIButton *btnQuickCollect;
-
 @property (weak, nonatomic) IBOutlet UIImageView *ibCollectionImage;
 @end
+
 @implementation FeedType_FollowingPostTblCell
 
 /*
