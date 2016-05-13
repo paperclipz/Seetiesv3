@@ -351,7 +351,7 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
     } ];
 }
 
--(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock
+-(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock Error:(VoidBlock)erroBlock
 {
 
    // NSString* googleAPI = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=%@,%@&key=%@",,@"101.7000",GOOGLE_API_KEY];
@@ -372,6 +372,10 @@ typedef void (^HomeLocationBlock)(HomeLocationModel* model);
         [LoadingManager hide];
         
     } failure:^(id object) {
+        
+        if (erroBlock) {
+            erroBlock();
+        }
         [LoadingManager hide];
         
     } ];
