@@ -73,7 +73,7 @@
     @try {
         NSString* imageURL = shopModel.profile_photo[@"picture"];
         if (![Utils isStringNull:imageURL]) {
-            [self.ibOutletImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:^(UIImage *image) {
+            [self.ibOutletImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:^(UIImage *image) {
             }];
         }
         else{

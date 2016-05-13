@@ -110,13 +110,13 @@
     
     if (self.dealModel.cover_photo) {
         
-        [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.dealModel.cover_photo.imageURL] completed:nil];
+        [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.dealModel.cover_photo.imageURL] withPlaceHolder:[Utils getPlaceHolderImage] completed:nil];
     }
     else{
         
         @try {
             PhotoModel* pModel = self.dealModel.photos[0];
-            [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] completed:nil];
+            [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:pModel.imageURL] withPlaceHolder:[Utils getPlaceHolderImage] completed:nil];
 
         }
         @catch (NSException *exception) {

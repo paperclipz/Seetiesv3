@@ -150,6 +150,8 @@ static NSCache* heightCache = nil;
         
         [[SearchManager Instance]startSearchGPSLocation:^(CLLocation *location) {
             
+            [LoadingManager show];
+
             [self getCurrentLocationGoogleGeoCode:location];
         }];
         
@@ -2049,6 +2051,9 @@ static NSCache* heightCache = nil;
 {
     
     [self.searchManager getGoogleGeoCode:location completionBlock:^(id object) {
+        
+        [LoadingManager hide];
+
         
         NSDictionary* temp = [[NSDictionary alloc]initWithDictionary:object];
         NSArray* arrayLocations = [temp valueForKey:@"results"];
