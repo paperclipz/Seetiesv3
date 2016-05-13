@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIView *ibReferralView;
 @property (weak, nonatomic) IBOutlet UITextField *ibReferralCodeTxt;
 
+@property(nonatomic) BOOL isChecking;
+
 @end
 
 @implementation SignupPageViewController
@@ -86,6 +88,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
+    self.isChecking = NO;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -141,27 +144,31 @@
 
 #pragma mark - RequestServer
 -(void)requestServerToCheckUserRegistrationData:(NSString*)data forField:(NSString*)field{
-    if ([Utils isStringNull:data] || [Utils isStringNull:field]) {
+    if ([Utils isStringNull:data] || [Utils isStringNull:field] || self.isChecking) {
         return;
     }
     
+    self.isChecking = YES;
     [LoadingManager show];
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:@{@"field" : field,
                                                                                   @"value" : data
                                                                                   }];
 
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostCheckUserRegistrationData parameter:dict appendString:nil success:^(id object) {
-        
+        [LoadingManager hide];
+        self.isChecking = NO;
         self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
         
+        
     } failure:^(id object) {
+        [LoadingManager hide];
+        self.isChecking = NO;
         [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Your referral code is invalid! But you may continue and try again later.") cancelButtonTitle:LocalisedString(@"Continue") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             self.signUpClickBlock(self.txtUserName.text,self.txtPassword.text,self.txtEmail.text, self.ibReferralCodeTxt.text);
             
         }];
         
     }];
-    [LoadingManager hide];
 }
 
 @end

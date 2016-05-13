@@ -111,10 +111,12 @@
 
 #pragma mark - IBAction
 - (IBAction)btnInviteFriendsClicked:(id)sender {
-    CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
-    dataToPost.shareType = ShareTypeReferralInvite;
-    dataToPost.shareID = self.userProfile.referral_code;
-    [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+    if (![Utils isStringNull:self.userProfile.referral_code]) {
+        CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
+        dataToPost.shareType = ShareTypeReferralInvite;
+        dataToPost.shareID = self.userProfile.referral_code;
+        [self presentViewController:[UIActivityViewController ShowShareViewControllerOnTopOf:self WithDataToPost:dataToPost] animated:YES completion:nil];
+    }
 }
 
 - (IBAction)btnCampaignDescClicked:(id)sender {
@@ -133,9 +135,11 @@
 }
 
 - (IBAction)btnCopyReferralClicked:(id)sender {
-    UIPasteboard *pb = [UIPasteboard generalPasteboard];
-    [pb setString:self.userProfile.referral_code];
-    [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Code Copied") Type:TSMessageNotificationTypeSuccess];
+    if (![Utils isStringNull:self.userProfile.referral_code]) {
+        UIPasteboard *pb = [UIPasteboard generalPasteboard];
+        [pb setString:self.userProfile.referral_code];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Code Copied") Type:TSMessageNotificationTypeSuccess];
+    }
 }
 
 -(IBAction)backgroundViewDidTap{

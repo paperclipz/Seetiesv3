@@ -77,11 +77,11 @@
         
         NSString* imageUrl = shopModel.profile_photo[@"picture"];
         if (![Utils isStringNull:imageUrl]) {
-            [self.ibVoucherImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageUrl] completed:^(UIImage *image) {
+            [self.ibVoucherImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageUrl] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:^(UIImage *image) {
             }];
         }
         else{
-            [self.ibVoucherImg setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+            [self.ibVoucherImg setImage:[Utils getShopPlaceHolderImage]];
         }
         [Utils setRoundBorder:self.ibVoucherImg color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:2.5f];
     }

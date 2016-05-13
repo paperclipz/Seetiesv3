@@ -77,7 +77,7 @@
             }];
         }
         else{
-            [self.ibOutletImg setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+            [self.ibOutletImg setImage:[Utils getShopPlaceHolderImage]];
         }
         
         [Utils setRoundBorder:self.ibOutletImg color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:5.0f];

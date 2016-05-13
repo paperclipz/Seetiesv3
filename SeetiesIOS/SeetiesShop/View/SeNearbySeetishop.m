@@ -108,14 +108,8 @@
 //        }
         
         if (![shopModel.profile_photo isNull]) {
-            [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:ShowUserProfileImage];
             NSString *ImageData1 = [[NSString alloc]initWithFormat:@"%@",shopModel.profile_photo[@"picture"]];
-            if ([ImageData1 length] == 0) {
-                ShowUserProfileImage.image = [Utils getShopPlaceHolderImage];
-            }else{
-                NSURL *url_NearbySmall = [NSURL URLWithString:ImageData1];
-                [ShowUserProfileImage sd_setImageCroppedWithURL:url_NearbySmall completed:nil];
-            }
+            [ShowUserProfileImage sd_setImageCroppedWithURL:[NSURL URLWithString:ImageData1] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:nil];
         }else{
            ShowUserProfileImage.image = [Utils getShopPlaceHolderImage];
         }

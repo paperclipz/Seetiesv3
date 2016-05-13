@@ -382,10 +382,12 @@
     }
 
     isMiddleOfRegistering = YES;
+    [LoadingManager show];
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypeRegister parameter:dict appendString:nil success:^(id object) {
         
         isMiddleOfRegistering = NO;
+        [LoadingManager hide];
         
         NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:object];
         if ([dict[@"status"] isEqualToString:@"ok"]) {
@@ -405,6 +407,7 @@
     } failure:^(id object) {
         
         isMiddleOfRegistering = NO;
+        [LoadingManager hide];
 
     }];
     
