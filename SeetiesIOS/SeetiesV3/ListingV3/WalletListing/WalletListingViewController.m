@@ -291,7 +291,7 @@
             label.text = LocalisedString(@"No expiry");
         }
         else{
-            label.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": expiryModel.expiryDate}];
+            label.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": expiryModel.expiryDate?expiryModel.expiryDate:@""}];
         }
 
     } @catch (NSException *exception) {
