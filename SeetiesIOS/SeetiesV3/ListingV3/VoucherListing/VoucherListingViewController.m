@@ -901,13 +901,12 @@
     NSDictionary* dict = @{@"token" : [Utils getAppToken]};
     
     NSMutableDictionary* finalDict = [[NSMutableDictionary alloc]initWithDictionary:dict];
+    NSString* appendString;
 
     if (![Utils isStringNull:self.dealCollectionModel.deal_collection_id]) {
-        
         [finalDict setObject:self.dealCollectionModel.deal_collection_id forKey:@"deal_collection_id"];
+        appendString = [NSString stringWithFormat:@"%@",self.dealCollectionModel.deal_collection_id];
     }
-    
-    NSString* appendString = [NSString stringWithFormat:@"%@",self.dealCollectionModel.deal_collection_id];
 
     if (refferalID) {
         [finalDict setObject:refferalID forKey:@"referral_u_id"];

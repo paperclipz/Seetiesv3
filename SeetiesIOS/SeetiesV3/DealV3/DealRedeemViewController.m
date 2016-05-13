@@ -382,8 +382,8 @@
     [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
-    NSDictionary *voucherDict = @{@"deal_id": self.dealModel.dID,
-                                  @"voucher_id": self.dealModel.voucher_info.voucher_id,
+    NSDictionary *voucherDict = @{@"deal_id": self.dealModel.dID? self.dealModel.dID : @"",
+                                  @"voucher_id": self.dealModel.voucher_info.voucher_id? self.dealModel.voucher_info.voucher_id : @"",
                                   @"datetime": [formatter stringFromDate:[[NSDate alloc] init]],
                                   @"lat": @(userLocation.coordinate.latitude),
                                   @"lng": @(userLocation.coordinate.longitude)
