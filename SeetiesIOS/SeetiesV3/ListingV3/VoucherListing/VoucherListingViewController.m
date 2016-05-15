@@ -576,11 +576,10 @@
         _searchLocationViewController = [SearchLocationViewController new];
         
         __weak VoucherListingViewController *weakSelf = self;
-        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel *hModel, CountryModel *countryModel){
+        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel *hModel){
             weakSelf.locationModel = hModel;
-            weakSelf.locationModel.countryId = countryModel.country_id;
             
-            [Utils saveUserLocation:weakSelf.locationModel.locationName Longtitude:weakSelf.locationModel.longtitude Latitude:weakSelf.locationModel.latitude PlaceID:weakSelf.locationModel.place_id CountryID:countryModel.country_id SourceType:weakSelf.locationModel.type];
+            [Utils saveUserLocation:weakSelf.locationModel.locationName Longtitude:weakSelf.locationModel.longtitude Latitude:weakSelf.locationModel.latitude PlaceID:weakSelf.locationModel.place_id CountryID:weakSelf.locationModel.countryId SourceType:weakSelf.locationModel.type];
             
             weakSelf.ibUserLocationLbl.text = weakSelf.locationModel.locationName;
             [weakSelf.dealsArray removeAllObjects];

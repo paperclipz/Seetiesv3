@@ -13,7 +13,7 @@
 #import "SearchLocationCountryCell.h"
 #import "SearchLocationResultCell.h"
 
-typedef void (^HomeLocationRefreshBlock)(HomeLocationModel* model, CountryModel *countryModel);
+typedef void (^HomeLocationRefreshBlock)(HomeLocationModel* model);// include country ID inside already
 typedef void (^AreaLocationREfreshBlock)(PlaceModel* model, NSString* locationName);
 typedef void (^SearchLocationRefreshBlock)(RecommendationVenueModel* model, NSString* locationName);
 

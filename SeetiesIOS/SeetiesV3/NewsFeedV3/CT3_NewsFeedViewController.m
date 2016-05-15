@@ -69,6 +69,8 @@ static NSCache* heightCache = nil;
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BOOL isMiddleOfLoadingServer;
+    BOOL isMiddleOfLoadingHome;
+
     __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
     __weak IBOutlet UIImageView *ibHeaderBackgroundView;
     __weak IBOutlet NSLayoutConstraint *constTopScrollView;
@@ -282,13 +284,14 @@ static NSCache* heightCache = nil;
         {
             
             if (![model isEqual:weakSelf.currentHomeLocationModel]) {
-                weakSelf.currentHomeLocationModel = model;
-                weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
-                [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
+                
+                [weakSelf locationDidChange:model];
+                
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }
             else{
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+              
                 [weakSelf requestServerForHomeUpdate:weakSelf.currentHomeLocationModel];
             }
          
@@ -341,9 +344,8 @@ static NSCache* heightCache = nil;
         _voucherListingViewController.didSelectHomeLocationBlock = ^(HomeLocationModel* model)
         {
             if (![model isEqual:weakSelf.currentHomeLocationModel]) {
-                weakSelf.currentHomeLocationModel = model;
-                weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
-                [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
+               
+                [weakSelf locationDidChange:model];
 
             }
             else{
@@ -445,12 +447,12 @@ static NSCache* heightCache = nil;
         _searchLocationViewController = [SearchLocationViewController new];
         __weak typeof (self)weakself = self;
         
-        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model, CountryModel *countryModel)
+        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model)
         {
             
             isFirstLoad = YES;
 
-            [weakself locationDidChange:model Country:countryModel];
+            [weakself locationDidChange:model];
             
             [weakself.searchLocationViewController.navigationController popViewControllerAnimated:YES];
 
@@ -560,6 +562,7 @@ static NSCache* heightCache = nil;
     [self initTableViewDelegate];
     
     isMiddleOfLoadingServer = NO;
+    isMiddleOfLoadingHome = NO;
     
     [self initFooterView];
 }
@@ -1625,6 +1628,9 @@ static NSCache* heightCache = nil;
 -(void)requestServerForHome:(HomeLocationModel*)model
 {
     
+    if (isMiddleOfLoadingHome) {
+        return;
+    }
     NSDictionary* dict = @{@"timezone_offset" : [Utils getTimeZone],
                            @"type" : model.type?model.type:@"none",
                            @"lat" : model.latitude?model.latitude:@"",
@@ -1635,10 +1641,13 @@ static NSCache* heightCache = nil;
                            };
     [self.ibTableView showLoading];
 
+    isMiddleOfLoadingHome = YES;
+
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHome parameter:dict appendString:nil success:^(id object) {
 
         isFirstLoad = NO;
-
+        isMiddleOfLoadingHome = NO;
+        
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.homeModel = [[ConnectionManager dataManager]homeModel];
         
@@ -1709,6 +1718,8 @@ static NSCache* heightCache = nil;
         [self.ibTableView.pullToRefreshView stopAnimating];
         
         [self.ibTableView showEmptyState];
+
+        isMiddleOfLoadingHome = NO;
 
     }];
 }
@@ -2103,7 +2114,7 @@ static NSCache* heightCache = nil;
             [UIAlertView showWithTitle:[LanguageManager stringForKey:@"Are you in {!location name}?" withPlaceHolder:@{@"{!location name}":hModel.locationName}]  message:LocalisedString(@"Would you like to set this as your current location?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                 
                 if (buttonIndex == 1) {
-                    [self locationDidChange:hModel Country:appInfo.countries.current_country];
+                    [self locationDidChange:hModel];
                     
                 }
             }];
@@ -2115,25 +2126,6 @@ static NSCache* heightCache = nil;
 
     }];
 }
-
-//for current country location
--(void)locationDidChange:(HomeLocationModel*)homeModel Country:(CountryModel*)countryModel
-{
-
-        self.currentHomeLocationModel = homeModel;
-        self.currentHomeLocationModel.countryId = countryModel.country_id;
-        
-        [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.
-         longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:countryModel.country_id SourceType:self.currentHomeLocationModel.type];
-    
-    self.locationName = self.currentHomeLocationModel.locationName;
-    
-        [self reloadNewsFeed];
-    
-        [self requestServerForHome:self.currentHomeLocationModel];
-
-}
-
 
 //for updater
 -(void)locationDidChange:(HomeLocationModel*)model

@@ -326,8 +326,9 @@
         hModel.longtitude = pModel.longtitude;
         hModel.place_id = pModel.place_id;
         hModel.locationName = pModel.name;
+        hModel.countryId = countryModel.country_id;
         if (self.homeLocationRefreshBlock) {
-            self.homeLocationRefreshBlock(hModel, countryModel);
+            self.homeLocationRefreshBlock(hModel);
         }
     
     }
@@ -381,7 +382,7 @@
         hModel.address_components.administrative_area_level_1 = recommendationVenueModel.state;
         hModel.locationName = recommendationVenueModel.name;
         if (self.homeLocationRefreshBlock) {
-            self.homeLocationRefreshBlock(hModel, nil);
+            self.homeLocationRefreshBlock(hModel);
         }
         
     } failure:nil];
@@ -463,7 +464,7 @@
                 
                 if (buttonIndex == 1) {
                     if (self.homeLocationRefreshBlock) {
-                        self.homeLocationRefreshBlock(hModel, nil);
+                        self.homeLocationRefreshBlock(hModel);
                     }
                 }
             }];
