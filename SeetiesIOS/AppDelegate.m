@@ -58,7 +58,7 @@
 -(void)configureSetup
 {
     [[IQKeyboardManager sharedManager] setToolbarManageBehaviour:IQAutoToolbarByPosition];
-    [[IQKeyboardManager sharedManager] disableToolbarInViewControllerClass:[CT3_SearchListingViewController class]];
+   // [[IQKeyboardManager sharedManager] disableToolbarInViewControllerClass:[CT3_SearchListingViewController class]];
 
 
 //        #ifdef DEBUG

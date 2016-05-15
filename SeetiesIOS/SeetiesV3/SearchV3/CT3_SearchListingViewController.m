@@ -85,10 +85,11 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [IQKeyboardManager sharedManager].enable = false;
+  //  [IQKeyboardManager sharedManager].enable = false;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
     [self InitSelfView];
     
@@ -175,6 +176,9 @@
 
 -(void)InitSelfView{
 
+    [self registerForKeyboardNotifications];
+
+    
     self.arrViewControllers = @[self.shopListingTableViewController,self.collectionListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
     [self initSegmentedControlViewInView:self.ibSegmentedControlScrollView ContentView:self.ibSegmentedControlView ViewControllers:self.arrViewControllers];
     
@@ -1370,6 +1374,45 @@
     NSInteger page = scrollView.contentOffset.x / pageWidth;
     
     [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
+}
+
+#pragma mark - Keyboard ScrollView 
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.ibSearchTableView.contentInset = contentInsets;
+    self.ibSearchTableView.scrollIndicatorInsets = contentInsets;
+    
+//    // If active text field is hidden by keyboard, scroll it so it's visible
+//    // Your application might not need or want this behavior.
+//    CGRect aRect = self.view.frame;
+//    aRect.size.height -= kbSize.height;
+//    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
+//        CGPoint scrollPoint = CGPointMake(0.0, activeField.frame.origin.y-kbSize.height);
+//        [self.ibScrollView setContentOffset:scrollPoint animated:YES];
+//    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.ibSearchTableView.contentInset = contentInsets;
+    self.ibSearchTableView.scrollIndicatorInsets = contentInsets;
 }
 
 @end
