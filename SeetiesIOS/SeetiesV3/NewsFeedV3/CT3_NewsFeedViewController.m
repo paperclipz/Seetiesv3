@@ -280,10 +280,18 @@ static NSCache* heightCache = nil;
         __weak typeof (self)weakSelf = self;
         _searchQuickBrowseListingController.didSelectHomeLocationBlock = ^(HomeLocationModel* model)
         {
-            weakSelf.currentHomeLocationModel = model;
-            weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
-            [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            
+            if (![model isEqual:weakSelf.currentHomeLocationModel]) {
+                weakSelf.currentHomeLocationModel = model;
+                weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
+                [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }
+            else{
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                [weakSelf requestServerForHomeUpdate:weakSelf.currentHomeLocationModel];
+            }
+         
         };
         
     }
@@ -332,9 +340,15 @@ static NSCache* heightCache = nil;
         __weak typeof (self)weakSelf = self;
         _voucherListingViewController.didSelectHomeLocationBlock = ^(HomeLocationModel* model)
         {
-            weakSelf.currentHomeLocationModel = model;
-            weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
-            [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
+            if (![model isEqual:weakSelf.currentHomeLocationModel]) {
+                weakSelf.currentHomeLocationModel = model;
+                weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
+                [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
+
+            }
+            else{
+                [weakSelf requestServerForHomeUpdate:weakSelf.currentHomeLocationModel];
+            }
         };
     }
     
