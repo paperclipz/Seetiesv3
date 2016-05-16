@@ -48,10 +48,12 @@
 //        [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
 //        
 //    }
-   
-    [[SearchManager Instance]startSearchGPSLocation];
-    [[SearchManager Instance]startGetWifiLocation];
-
+    @try {
+        [[SearchManager Instance]startSearchGPSLocation];
+        [[SearchManager Instance]startGetWifiLocation];
+    } @catch (NSException *exception) {
+        
+    }
 
 }
 

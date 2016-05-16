@@ -393,29 +393,19 @@
         
     }
     
-    
     [self requestServerForUserCollection];
+    
     [self requestServerForUserPost];
-
     
     if ([uID isEqualToString:[Utils getUserID]]) {
-        [self requestServerForUserLikes];
         
+        [self requestServerForUserLikes];
         
         [self requestServerForMe];
 
-//        DataManager* dataManager = [ConnectionManager dataManager];
-//        if (dataManager.currentUserProfileModel) {
-//            self.userProfileModel = dataManager.currentUserProfileModel;
-//            [self assignData];
-//            
-//        }else
-//        {
-//            [self requestServerForUserInfo];
-//
-//        }
     }
     else{
+       
         [self requestServerForUserInfo];
 
     }

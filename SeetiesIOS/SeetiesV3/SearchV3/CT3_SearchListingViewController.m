@@ -883,6 +883,10 @@
     if(tableView == self.ibLocationTableView)
     {
         [self processDataForGoogleLocation:indexPath];
+        
+        self.ibLocationTableView.hidden = YES;
+        self.ibSearchTableView.hidden = YES;
+
 
     }
     else if(tableView == self.ibSearchTableView)
@@ -1029,7 +1033,7 @@
     NSDictionary* dict = @{@"placeid":placeID,@"key":GOOGLE_API_KEY};
     
     
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopDeal parameter:dict appendString:nil success:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGoogleSearchWithDetail parameter:dict appendString:nil success:^(id object) {
         
         SearchLocationDetailModel* googleSearchDetailModel = [[ConnectionManager dataManager] googleSearchDetailModel];
         
