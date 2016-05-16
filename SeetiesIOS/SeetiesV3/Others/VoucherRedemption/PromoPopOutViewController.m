@@ -403,7 +403,7 @@
             [self.ibEnterVerificationResendBtn setTitleColor:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1] forState:UIControlStateDisabled];
             if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
                 NSString *phoneNumber = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
-                self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." withPlaceHolder:@{@"{!contact number}": phoneNumber}];
+                self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." withPlaceHolder:@{@"{!contact number}": phoneNumber?phoneNumber:@""}];
             }
         }
             return self.ibEnterVerificationView;

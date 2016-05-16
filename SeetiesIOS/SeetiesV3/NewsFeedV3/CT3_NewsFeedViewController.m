@@ -2111,7 +2111,7 @@ static NSCache* heightCache = nil;
             
             isLoadingLocation = NO;
 
-            [UIAlertView showWithTitle:[LanguageManager stringForKey:@"Are you in {!location name}?" withPlaceHolder:@{@"{!location name}":hModel.locationName}]  message:LocalisedString(@"Would you like to set this as your current location?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            [UIAlertView showWithTitle:[LanguageManager stringForKey:@"Are you in {!location name}?" withPlaceHolder:@{@"{!location name}":hModel.locationName?hModel.locationName:@""}]  message:LocalisedString(@"Would you like to set this as your current location?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                 
                 if (buttonIndex == 1) {
                     [self locationDidChange:hModel];

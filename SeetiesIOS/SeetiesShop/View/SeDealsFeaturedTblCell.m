@@ -54,7 +54,7 @@
         
         if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT] || [self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]) {
             
-            self.lblDiscount.text = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage}];
+            self.lblDiscount.text = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage?self.dealModel.discount_percentage:@""}];
             self.lblDiscount.backgroundColor = SELECTED_GREEN;
         }
         else if([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE])
@@ -77,7 +77,7 @@
     //Check for discount/free tag
     if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT] || [self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]) {
         
-        self.lblDiscount.text = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage}];
+        self.lblDiscount.text = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage?self.dealModel.discount_percentage:@""}];
         self.lblDiscount.backgroundColor = SELECTED_GREEN;
     }
     else if([self.dealModel.deal_type isEqualToString:DEAL_TYPE_FREE])

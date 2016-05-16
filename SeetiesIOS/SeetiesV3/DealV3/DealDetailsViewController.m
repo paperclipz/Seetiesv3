@@ -618,7 +618,7 @@
         [dateFormatter setDateFormat:@"hh:mmaa"];
         NSString *time = [dateFormatter stringFromDate:redeemDate];
         
-        NSString *displayString = [LanguageManager stringForKey:@"Redeemed on {!date}, {!time}" withPlaceHolder:@{@"{!date}":date, @"{!time}":time}];
+        NSString *displayString = [LanguageManager stringForKey:@"Redeemed on {!date}, {!time}" withPlaceHolder:@{@"{!date}":date?date:@"", @"{!time}":time?time:@""}];
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:displayString];
         NSRange dateRange = [displayString rangeOfString:date];
         NSRange timeRange = [displayString rangeOfString:time];
@@ -679,7 +679,7 @@
                 NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.collection_expired_at];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 [dateFormatter setDateFormat:@"dd MMM yyyy"];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deal ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deal ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]?[dateFormatter stringFromDate:expiryDate]:@""}];
                 
             }
         }
@@ -752,7 +752,7 @@
         xOrigin += tagLbl.frame.size.width + spacing;
     }
     else if ([self.dealModel.deal_type isEqualToString:DEAL_TYPE_DISCOUNT] || [self.dealModel.deal_type isEqualToString:DEAL_TYPE_PACKAGE]) {
-        NSString *tag = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage}];
+        NSString *tag = [LanguageManager stringForKey:@"{!number}% off" withPlaceHolder:@{@"{!number}": self.dealModel.discount_percentage?self.dealModel.discount_percentage:@""}];
         CGSize lblSize = [tag sizeWithAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:fontSize]}];
         UILabel *tagLbl = [[UILabel alloc] initWithFrame:CGRectMake(xOrigin, yOrigin, lblSize.width+padding, tagHeight)];
         [tagLbl setFont:[UIFont boldSystemFontOfSize:fontSize]];
