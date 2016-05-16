@@ -194,7 +194,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.profileModel = [[DataManager Instance] getCurrentUserProfileModel];
-    self.ibProfileName.text = self.profileModel.username;
+    //self.ibProfileName.text = self.profileModel.name;
 
 }
 
@@ -273,12 +273,12 @@
         self.ibNotificationCountLbl.hidden = YES;
     }
     else{
-        if (![Utils isStringNull:self.profileModel.username]) {
-            self.ibProfileName.text = self.profileModel.username;
+        if (![Utils isStringNull:self.profileModel.name]) {
+            self.ibProfileName.text = self.profileModel.name;
             
         }
         else{
-            self.ibProfileName.text = self.profileModel.name;
+            self.ibProfileName.text = self.profileModel.username;
         }
         
         if (![Utils isStringNull:self.profileModel.profile_photo_images]) {

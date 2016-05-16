@@ -1366,7 +1366,7 @@
             if ([Utils isGuestMode]) {
                 
                 flag = true;
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == 1) {
                         [Utils showLogin];
@@ -1380,7 +1380,7 @@
             if ([Utils isGuestMode]) {
                 flag = true;
                 
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == 1) {
                         [Utils showLogin];
