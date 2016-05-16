@@ -44,13 +44,18 @@
 
 -(void)sd_setImageCroppedWithURL:(NSURL *)url withPlaceHolder:(UIImage*)placeholderImage completed:(ImageBlock)block
 {
-    
-    [self sd_setImageWithURL:url placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.image = [image imageCroppedAndScaledToSize:self.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
-        if (block) {
-            block(self.image);
-        }
-    }];
+    if (![Utils isStringNull:url.absoluteString]) {
+        [self sd_setImageWithURL:url placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            self.image = [image imageCroppedAndScaledToSize:self.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+            if (block) {
+                block(self.image);
+            }
+        }];
+    }
+    else{
+        self.image = placeholderImage;
+    }
+   
 
     
 }
