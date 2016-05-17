@@ -177,10 +177,6 @@
     [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
            [weakSelf.ibSegmentedControlScrollView scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
     }];
-    
-
-
-    
 }
 
 -(void)InitSelfView{

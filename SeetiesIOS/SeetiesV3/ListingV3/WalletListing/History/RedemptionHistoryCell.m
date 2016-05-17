@@ -82,16 +82,16 @@
     
     NSString *status = self.voucher.voucher_info.status;
     if ([status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
-        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"REDEEMED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"REDEEMED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]?[dateFormatter stringFromDate:historyDate]:@""}];
     }
     else if ([status isEqualToString:VOUCHER_STATUS_EXPIRED]){
-        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"EXPIRED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"EXPIRED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]?[dateFormatter stringFromDate:historyDate]:@""}];
     }
     else if ([status isEqualToString:VOUCHER_STATUS_DELETED]){
-        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"DELETED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"DELETED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]?[dateFormatter stringFromDate:historyDate]:@""}];
     }
     else if ([status isEqualToString:VOUCHER_STATUS_CANCELLED]){
-        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"CANCELLED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"CANCELLED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]?[dateFormatter stringFromDate:historyDate]:@""}];
     }
     else{
         self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:historyDate]] uppercaseString];

@@ -148,7 +148,7 @@
        
         @try {
             NSString* imageURL = shopModel.profile_photo[@"picture"];
-            [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:nil];
+            [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:nil];
             [Utils  setRoundBorder:self.ibShopImg color:OUTLINE_COLOR borderRadius:5.0f];
 
             PhotoModel *photo = self.dealModel.photos[0];
@@ -175,10 +175,10 @@
     [self.ibHowToRedeem setTitle:LocalisedString(@"How to Redeem") forState:UIControlStateNormal];
     
     self.ibHowToRedeemTitle.text = LocalisedString(@"Redeem in 3 simple steps");
-    self.ibFirstInstruction.text = LocalisedString(@"Approach a shop staff to place your order");
+    self.ibFirstInstruction.text = LocalisedString(@"Approach the shop personnel when you order.");
     self.ibSecondInstruction.text = LocalisedString(@"Flash the Redeem Voucher screen");
     self.ibThirdInstruction.text = LocalisedString(@"Swipe right to redeem!");
-    self.ibFooterInstruction.text = LocalisedString(@"Only one redemption per swipe");
+    self.ibFooterInstruction.text = LocalisedString(@"Limited to one redemption per swipe");
 }
 
 /*
