@@ -13,6 +13,7 @@
 
 @interface NewLandingViewController()<UITabBarControllerDelegate>
 {
+    
 }
 /*navigation controller*/
 @property (nonatomic)UINavigationController* firstViewController;
@@ -21,11 +22,6 @@
 @property (nonatomic, strong)IntroCoverView* introView;
 @property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic,strong)NSArray* arryViewController;
-
-// not using at the moment
-@property (weak, nonatomic) IBOutlet UIView *ibSplashView;
-@property (weak, nonatomic) IBOutlet UIImageView *ibLogo;
-@property (nonatomic, weak)IBOutlet YLImageView *loadingImage;
 
 @end
 
@@ -96,9 +92,6 @@
 
 -(void)requestForApiVersion:(VoidBlock)completionBlock{
     
-    if (self.loadingImage) {
-        self.loadingImage.image = [YLGIFImage imageNamed:@"Loading.gif"];
-    }
     
     [[ConnectionManager Instance]requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetApiVersion parameter:nil appendString:nil success:^(id object) {
         
@@ -108,10 +101,8 @@
             completionBlock();
         }
         // [self showIntroView];
-        self.loadingImage.image = nil;
         
     } failure:^(id object) {
-        self.loadingImage.image = nil;
 
 
     }];
