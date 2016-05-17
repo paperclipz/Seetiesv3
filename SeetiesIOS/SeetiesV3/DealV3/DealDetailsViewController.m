@@ -884,7 +884,7 @@
 }
 
 -(void)updateShopView{
-    self.ibShopTitle.text = [LanguageManager stringForKey:@"Participate outlet ({!number})" withPlaceHolder:@{@"{!number}": @(self.dealModel.shops.count)}];
+    self.ibShopTitle.text = [LanguageManager stringForKey:@"Participating outlets ({!number})" withPlaceHolder:@{@"{!number}": @(self.dealModel.shops.count)}];
     [self.ibShopSeeMoreBtn setTitle:LocalisedString(@"See more") forState:UIControlStateNormal];
     [self.ibShopTable reloadData];
     

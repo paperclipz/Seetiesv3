@@ -181,7 +181,7 @@
         
         case ShareTypeReferralInvite:
         {
-            message = [LanguageManager stringForKey:@"Hey you can use my referral code to sign up and get GOODIES! '{!referral_code}'.\n{!Seeties URL}" withPlaceHolder:@{@"{!referral_code}":self.shareID?self.shareID:@"", @"{!Seeties URL}":[self getShareLink:self.shareType]?[self getShareLink:self.shareType]:@""}];
+            message = [LanguageManager stringForKey:@"Hey you can use my referral code to sign up and get GOODIES! \n'{!referral_code}'.\n{!Seeties URL}" withPlaceHolder:@{@"{!referral_code}":self.shareID?self.shareID:@"", @"{!Seeties URL}":[self getShareLink:self.shareType]?[self getShareLink:self.shareType]:@""}];
         }
             break;
         case ShareTypeInvite:

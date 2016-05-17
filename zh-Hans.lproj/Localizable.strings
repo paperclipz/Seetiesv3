@@ -1444,7 +1444,7 @@
 "Sign Up with Seeties!" = "加入Seeties!";
 "Join Seeties to enjoy awesome deals around your city! " = "快來加入Seeties以獲取各種精選優惠吧!";
 //======CHANGE======//
-"Hey you can use my referral code to sign up and get GOODIES! '{!referral_code}'.\n{!Seeties URL}" = "好康来报到! 使用我的邀请码加入Seeties便可获取好康喔! - '{!referral_code}'.\n{!Seeties URL}";
+"Hey you can use my referral code to sign up and get GOODIES! \n'{!referral_code}'.\n{!Seeties URL}" = "好康来报到! 使用我的邀请码加入Seeties便可获取好康喔! \n'{!referral_code}'.\n{!Seeties URL}";
 "Sharing is caring!\nSign up with Seeties today.\n{!Seeties URL}" = "快来与我加入Seeties以发掘更多好康吧!\n{!Seeties URL}";
 //======CHANGE======//
 "Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "版本 {!version number}\n- 邀请好友, 索取好康\n- 系统整顿";
