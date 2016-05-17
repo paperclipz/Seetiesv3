@@ -489,7 +489,6 @@
 
 -(void)requestServerForCountry
 {
-    
     if (isMiddleOfRequestingCountry) {
         return;
     }
