@@ -252,6 +252,7 @@
     else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_REDEEMED]){
         [self.ibOverlayIcon setImage:[UIImage imageNamed:@"DealsRedeemedIcon.png"]];
         self.ibVoucherOverlayTitle.text = LocalisedString(@"Redeemed");
+        
     }
     else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_NONE]){
         if ([Utils isValidDateString:self.dealModel.collection_expired_at] && self.dealModel.collectionDaysLeft <= 0) {

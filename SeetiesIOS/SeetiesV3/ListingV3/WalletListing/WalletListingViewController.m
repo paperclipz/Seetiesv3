@@ -88,6 +88,7 @@
     
     [self.ibTableView addPullToRefreshWithActionHandler:^{
         self.ibTableView.tableFooterView = self.ibTableFooterView;
+        self.dealsModel = nil;
         [self requestServerForVoucherListing];
     }];
     
