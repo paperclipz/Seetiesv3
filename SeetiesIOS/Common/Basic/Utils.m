@@ -675,6 +675,7 @@
     return UUID;
 }
 
+//KEY_SYSTEM_LANG save server code exp "EN" , "IN"
 +(NSString*)getDeviceAppLanguageCode
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -704,9 +705,8 @@
         }else if([userLanguage isEqualToString:@"Thai"] || [userLanguage isEqualToString:@"th"] || [userLanguage isEqualToString:@"ภาษาไทย"] || [userLanguage isEqualToString:THAI_SERVER_NAME]){
             return THAI_CODE;
         }
-    
     }
-    return nil;
+    return ENGLISH_CODE;
     
 }
 
