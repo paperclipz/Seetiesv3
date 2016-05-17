@@ -76,12 +76,10 @@
     
     if (![Utils isArrayNull:self.dealModel.photos]) {
         PhotoModel *photoModel = [self.dealModel.photos objectAtIndex:0];
-        [self.ibVoucherImage sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel.imageURL] completed:^(UIImage *image) {
-            
-        }];
+        [self.ibVoucherImage sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel.imageURL] withPlaceHolder:[Utils getCoverPlaceHolderImage] completed:nil];
     }
     else{
-        [self.ibVoucherImage setImage:[UIImage imageNamed:@"SSCoverPhotoOverlay.png"]];
+        [self.ibVoucherImage setImage:[Utils getCoverPlaceHolderImage]];
     }
     
     SeShopDetailModel *shopModel = self.dealModel.shops[0];
@@ -188,7 +186,7 @@
             
         CASE (VOUCHER_STATUS_COLLECTED)
         {
-            if (self.dealModel.voucher_info.redeem_now) {
+            if ([self.dealModel isRedeemable]) {
                 [self setRedeemBtnEnabled:YES];
             }
             else{

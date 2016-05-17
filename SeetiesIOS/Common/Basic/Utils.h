@@ -179,8 +179,8 @@ typedef enum {
 +(BOOL)isValidDateString:(NSString*)dateString;
 +(BOOL)isDate:(NSDate*)currentDate betweenFirstDate:(NSDate*)firstDate andLastDate:(NSDate*)lastDate;
 
-+(BOOL)isRedeemable:(DealModel*)model;
 +(BOOL)isWithinOperationHour:(NSArray*)arrayDays;
++(BOOL)isWithinOperatingDate:(NSArray*)arrayDates;
 
 // ========================  Day ==========================
 
@@ -192,6 +192,7 @@ typedef enum {
 +(UIImage*)getPlaceHolderImage;
 +(UIImage*)getProfilePlaceHolderImage;
 +(UIImage*)getShopPlaceHolderImage;
++(UIImage*)getCoverPlaceHolderImage;
 
 // ========================  FONT ==========================
 +(UIFont*)defaultFont;

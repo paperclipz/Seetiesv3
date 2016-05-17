@@ -22,7 +22,7 @@
 
 typedef void (^HomeModelBlock)(HomeLocationModel* model);
 
-@interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate, FilterViewControllerDelegate, DealRedeemDelegate>
+@interface VoucherListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, VoucherCellDelegate, PromoPopOutDelegate, FilterViewControllerDelegate, DealRedeemDelegate, DealDetailsDelegate>
 @property(nonatomic,copy)HomeModelBlock didSelectHomeLocationBlock;
 
 //Init for Featured Deals

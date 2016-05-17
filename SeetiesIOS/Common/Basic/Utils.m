@@ -615,6 +615,11 @@
     return [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
 }
 
++(UIImage*)getCoverPlaceHolderImage
+{
+    return [UIImage imageNamed:@"SSCoverPhotoOverlay.png"];
+}
+
 +(NSURL*)getPrefixedURLFromString:(NSString*)url
 {
     NSString *myURLString = url;
@@ -914,38 +919,17 @@
     return YES;
 }
 
-+(BOOL)isRedeemable:(DealModel*)model
-{
-    BOOL isRedeemable = false;
-    
-    // loop through period whether it is within campaign period by day
-    
-    NSDate* expiredDate = [model.voucher_info.expired_at toDate];
-    
-    
-    for (int i = 0; i<model.periods_in_date.count; i++) {
-        NSDictionary* dictAvailability = model.periods_in_date[i];
++(BOOL)isWithinOperatingDate:(NSArray*)arrayDates{
+    for (NSDictionary *dateDict in arrayDates) {
+        NSDate* fromDate = [dateDict[@"from"] toDate];
+        NSDate* toDate = [dateDict[@"to"] toDate];
         
-        NSDate* fromDate = [dictAvailability[@"from"] toDate];
-        NSDate* toDate = [dictAvailability[@"to"] toDate];
-        
-        //            NSDate* fromDate = [@"2016-03-01 00:00:00" toDate];
-        //            NSDate* toDate = [@"2016-04-01 00:00:00" toDate];
-        //
-        if ([Utils date:expiredDate isBetweenDate:fromDate andDate:toDate]) {
-            
-            SLog(@"is in between");
+        if([Utils date:[NSDate date] isBetweenDate:fromDate andDate:toDate]){
             return YES;
         }
-        else{
-            SLog(@"NOT in between");
-            isRedeemable = false;
-        }
-        
     }
     
-    
-    return isRedeemable;
+    return NO;
 }
 
 +(BOOL)isWithinOperationHour:(NSArray*)arrayDays

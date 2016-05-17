@@ -116,7 +116,6 @@
 @property(nonatomic) BOOL hasRequestedPromo;
 @property(nonatomic) BOOL hasRedeemed;
 @property(nonatomic) BOOL isReferral;
-@property(nonatomic) DealManager *dealManager;
 @property(nonatomic) NSString *message;
 
 @end
@@ -508,14 +507,6 @@
     }
     
     return _popTip;
-}
-
--(DealManager *)dealManager{
-    if(!_dealManager)
-    {
-        _dealManager = [DealManager Instance];
-    }
-    return _dealManager;
 }
 
 #pragma mark - IBAction
@@ -953,7 +944,6 @@
         self.hasRedeemed = YES;
         [LoadingManager hide];
         self.isLoading = NO;
-        [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
         if (self.promoPopOutDelegate) {
             [self.promoPopOutDelegate promoHasBeenRedeemed:self.dealsModel];

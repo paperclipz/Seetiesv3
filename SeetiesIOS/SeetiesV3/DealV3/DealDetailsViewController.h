@@ -6,6 +6,10 @@
 //  Copyright © 2016 Stylar Network. All rights reserved.
 //
 
+@protocol DealDetailsDelegate <NSObject>
+-(void)dealUpdated:(DealModel*)dealModel;
+@end
+
 #import "CommonViewController.h"
 #import "DealDetailsAvailabilityCell.h"
 #import "PromoOutletCell.h"
@@ -27,6 +31,8 @@
 @end
 
 @interface DealDetailsViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, PromoPopOutDelegate, DealRedeemDelegate>
+
+@property id<DealDetailsDelegate> delegate;
 
 -(void)initDealModel:(DealModel *)dealModel;// set before push
 //For referral campaign

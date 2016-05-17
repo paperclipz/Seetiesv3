@@ -187,21 +187,16 @@
     [self.ibNearbyShopCollection registerNib:[UINib nibWithNibName:@"NearbyShopsCell" bundle:nil] forCellWithReuseIdentifier:@"NearbyShopsCell"];
     
     
-    __weak typeof (self)weakSelf = self;
-    
-    self.btnBackBlock = ^(id object)
-    {
-    
-        if (weakSelf.dealModelBlock) {
-            weakSelf.dealModelBlock(weakSelf.dealModel);
-        }
-
-    };
-    
-    
-    
-    
-    
+//    __weak typeof (self)weakSelf = self;
+//    
+//    self.btnBackBlock = ^(id object)
+//    {
+//    
+//        if (weakSelf.dealModelBlock) {
+//            weakSelf.dealModelBlock(weakSelf.dealModel);
+//        }
+//
+//    };
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -216,9 +211,11 @@
 
 -(void)setupView
 {
+    
+//    [LoadingManager show];
     [self initViewArray];
     [self initSelfView];
-    [LoadingManager show];
+    [self updateViews];
     if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
         [self requestServerForDealInfo];
     }
@@ -483,6 +480,7 @@
     [self updateTnCView];
     [self updateDealsView];
     [self updateNearbyShopView];
+    [self updateFooterView];
     [self updateViewFrame];
 }
 
@@ -974,7 +972,7 @@
         
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
-        if (self.dealModel.voucher_info.redeem_now) {
+        if ([self.dealModel isRedeemable]) {
             [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:239/255.0 green:83/255.0 blue:105/255.0 alpha:1]];
         }
         else{
@@ -1118,7 +1116,7 @@
         }
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
-        if (self.dealModel.voucher_info.redeem_now) {
+        if ([self.dealModel isRedeemable]) {
             self.dealRedeemViewController = nil;
             if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && self.referralID) {
                 [self.dealRedeemViewController initWithDealModel:self.dealModel referralID:self.referralID];
@@ -1160,7 +1158,7 @@
 }
 
 -(void)onDealRedeemed:(DealModel *)dealModel{
-    [self requestServerForVoucherInfo];
+    [self requestServerForDealInfo];
     
     self.redemptionHistoryViewController = nil;
     [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
@@ -1242,7 +1240,7 @@
     else if (tableView == self.ibDealsTable){
         DealModel *selectedDeal = self.dealsModel.arrDeals[indexPath.row];
         self.dealDetailsViewController = nil;
-        [self.dealDetailsViewController setDealModel:selectedDeal];
+        [self.dealDetailsViewController initDealModel:selectedDeal];
         [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
             [self.dealDetailsViewController setupView];
         }];
@@ -1295,6 +1293,7 @@
 }
 
 #pragma mark - RequestServer
+
 -(void)requestServerForDealInfo{
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:@{@"token":[Utils getAppToken],
@@ -1310,14 +1309,16 @@
 
         DealModel *model = [[ConnectionManager dataManager] dealModel];
         self.dealModel = model;
+        if (self.delegate) {
+            [self.delegate dealUpdated:self.dealModel];
+        }
+        
         [self updateViews];
-        [self updateFooterView];
         
         [self requestServerForDealRelevantDeals];
         
     } failure:^(id object) {
         [self updateViews];
-        [self updateFooterView];
 
     }];
 }
@@ -1336,14 +1337,15 @@
 
         DealModel *model = [[ConnectionManager dataManager] dealModel];
         self.dealModel = model;
+        if (self.delegate) {
+            [self.delegate dealUpdated:self.dealModel];
+        }
         [self updateViews];
-        [self updateFooterView];
         
         [self requestServerForDealRelevantDeals];
         
     } failure:^(id object) {
         [self updateViews];
-        [self updateFooterView];
 
     }];
 }
@@ -1377,11 +1379,14 @@
 
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         self.dealModel = dealModel;
-        [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
+        
+        if (self.delegate) {
+            [self.delegate dealUpdated:self.dealModel];
+        }
+        
         [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
         int walletCount = [self.dealManager getWalletCount];
         [self.dealManager setWalletCount:walletCount+1];
-        [self updateFooterView];
         [self updateViews];
         self.isProcessing = NO;
     } failure:^(id object) {

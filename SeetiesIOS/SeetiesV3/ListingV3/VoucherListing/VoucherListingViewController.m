@@ -104,7 +104,6 @@
             self.ibAltTitle.text = LocalisedString(@"Shop Deals");
             [self showFirstHeader:NO];
             [self showFirstFooter:YES];
-            [self.dealManager removeAllCollectedDeals];
             [self requestServerForShopDeal];
             break;
             
@@ -123,7 +122,6 @@
                 [self hideAllHeaders];
                 [self hideAllFooters];
             }
-            [self.dealManager removeAllCollectedDeals];
             [self requestServerForDealListing];
             break;
             
@@ -132,7 +130,6 @@
             self.ibTitle.text = LocalisedString(@"Deals of the day");
             [self showFirstHeader:YES];
             [self showFirstFooter:YES];
-            [self.dealManager removeAllCollectedDeals];
             [self requestServerForSuperDealListing];
             break;
             
@@ -141,7 +138,6 @@
             self.ibAltTitle.text = LocalisedString(@"Relevant Deals");
             [self showFirstHeader:NO];
             [self showFirstFooter:YES];
-            [self.dealManager removeAllCollectedDeals];
             [self requestServerForDealRelevantDeals];
             break;
             
@@ -531,6 +527,7 @@
 -(DealDetailsViewController*)dealDetailsViewController{
     if (!_dealDetailsViewController) {
         _dealDetailsViewController = [DealDetailsViewController new];
+        _dealDetailsViewController.delegate = self;
     }
     return _dealDetailsViewController;
 }
@@ -632,33 +629,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     VoucherCell *voucherCell = [tableView dequeueReusableCellWithIdentifier:@"VoucherCell"];
     voucherCell.voucherCellDelegate = self;
-    
-    
     voucherCell.constUpperContentHeight.constant = tableView.frame.size.width/2;
     
-    
-    if (self.dealViewType == 6) {
-        
+    if (![Utils isArrayNull:self.dealsArray]) {
         DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
-
-        [voucherCell initDealModel:deal dealCollectionModel:self.dealCollectionModel];
-
-    }
-    else{
-    
-        if (![Utils isArrayNull:self.dealsArray]) {
-            DealModel *deal = [self.dealsArray objectAtIndex:indexPath.row];
-            
-            if ([self.dealManager checkIfDealIsCollected:deal.dID]) {
-                deal.voucher_info.voucher_id = [self.dealManager getCollectedDealVoucherId:deal.dID];
-                [voucherCell initDealModel:deal];
-            }
-            else{
-                deal.voucher_info.voucher_id = nil;
-                [voucherCell initDealModel:deal];
-            }
-        }  
-
+        
+        if (self.dealViewType == 6) {
+            [voucherCell initDealModel:deal dealCollectionModel:self.dealCollectionModel];
+        }
+        else{
+            [voucherCell initDealModel:deal];
+        }
     }
     
     return voucherCell;
@@ -675,15 +656,15 @@
     }
     
     
-    __weak typeof (self)weakSelf = self;
-    self.dealDetailsViewController.dealModelBlock = ^(DealModel* model)
-    {
-        if (weakSelf.dealViewType == 6) {
-            [weakSelf requestServerForCollectionInfo:nil];
-        }
-        
-        [weakSelf.dealsArray replaceObjectAtIndex:indexPath.row withObject:model];
-    };
+//    __weak typeof (self)weakSelf = self;
+//    self.dealDetailsViewController.dealModelBlock = ^(DealModel* model)
+//    {
+//        if (weakSelf.dealViewType == 6) {
+//            [weakSelf requestServerForCollectionInfo:nil];
+//        }
+//        
+//        [weakSelf.dealsArray replaceObjectAtIndex:indexPath.row withObject:model];
+//    };
     
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         [self.dealDetailsViewController setupView];
@@ -812,7 +793,7 @@
         
         CASE(VOUCHER_STATUS_COLLECTED)
         {
-            if (dealModel.voucher_info.redeem_now) {
+            if ([dealModel isRedeemable]) {
                 self.dealRedeemViewController = nil;
                 if ([dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL] && refferalID) {
                     [self.dealRedeemViewController initWithDealModel:dealModel referralID:refferalID];
@@ -878,12 +859,24 @@
     [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
     
     if (self.dealViewType == 6) {
-        
         _dealsModel = nil;
         _dealsArray = nil;
         [self requestServerForCollectionInfo:^{
             [self requestServerForDealListing];
         }];
+    }
+    else{
+        [self requestServerForDealInfo:dealModel];
+    }
+}
+
+-(void)dealUpdated:(DealModel *)dealModel{
+    NSInteger index = [self.dealsArray indexOfObject:dealModel];
+    if (index != NSNotFound) {
+        [self.dealsArray replaceObjectAtIndex:index withObject:dealModel];
+        if (self.dealViewType == 6) {
+            [self requestServerForCollectionInfo:nil];
+        }
     }
 }
 
@@ -1000,7 +993,6 @@
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
         [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
-        [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
         
         self.isLoading = NO;
@@ -1037,7 +1029,7 @@
     NSMutableDictionary *finalDict = [[NSMutableDictionary alloc] init];
     @try {
         NSDictionary *fixedDict = @{@"token":[Utils getAppToken],
-                                    @"deal_collection_id" : self.dealCollectionModel.deal_collection_id,
+                                    @"deal_collection_id" : self.dealCollectionModel.deal_collection_id? self.dealCollectionModel.deal_collection_id : @"",
                                     @"offset":@(self.dealsModel.offset + self.dealsModel.limit),
                                     @"limit":@(ARRAY_LIST_SIZE),
                                     };
@@ -1077,7 +1069,6 @@
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
         [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
-        [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
         
         self.isLoading = NO;
@@ -1134,7 +1125,6 @@
         DealsModel* model = [[ConnectionManager dataManager]dealsModel];
         self.dealsModel = model;
         [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
-        [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
 
         self.isLoading = NO;
@@ -1181,7 +1171,6 @@
         DealsModel *deals = [[ConnectionManager dataManager]dealsModel];
         self.dealsModel = deals;
         [self.dealsArray addObjectsFromArray:self.dealsModel.arrDeals];
-        [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self.ibVoucherTable reloadData];
         
         self.isLoading = NO;
@@ -1234,10 +1223,14 @@
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostCollectDeals parameter:finalDict appendString:nil success:^(id object) {
 
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
-        model.voucher_info = dealModel.voucher_info;
-        model.total_available_vouchers = dealModel.total_available_vouchers;
-        
-        [self.dealManager setCollectedDeal:dealModel.dID withVoucherId:dealModel.voucher_info.voucher_id];
+        NSInteger index = [self.dealsArray indexOfObject:model];
+        if (index != NSNotFound) {
+            [self.dealsArray replaceObjectAtIndex:index withObject:dealModel];
+        }
+//        else{
+//            model.voucher_info = dealModel.voucher_info;
+//            model.total_available_vouchers = dealModel.total_available_vouchers;
+//        }
         
         [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
         [self RequestServerForVouchersCount];
@@ -1268,6 +1261,32 @@
         NSString *countString = count < 100? [NSString stringWithFormat:@"%d", count] : @"99+";
         self.ibWalletCountLbl.text = countString;
         [self.dealManager setWalletCount:count];
+    } failure:^(id object) {
+        
+    }];
+}
+
+-(void)requestServerForDealInfo:(DealModel*)dealModel{
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:@{@"token":[Utils getAppToken],
+                                                                                  @"deal_id": dealModel.dID}];
+    
+    if (refferalID) {
+        [dict setObject:refferalID forKey:@"referral_u_id"];
+    }
+    
+    NSString* appendString = dealModel.dID;
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetDealInfo parameter:dict appendString:appendString success:^(id object) {
+        
+        DealModel *model = [[ConnectionManager dataManager] dealModel];
+        NSInteger index = [self.dealsArray indexOfObject:dealModel];
+        if (index != NSNotFound) {
+            [self.dealsArray replaceObjectAtIndex:index withObject:model];
+        }
+        
+        [self.ibVoucherTable reloadData];
+        
     } failure:^(id object) {
         
     }];

@@ -17,7 +17,7 @@
 #import "DealExpiryDateModel.h"
 #import "SVPullToRefresh.h"
 
-@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate, DealRedeemDelegate, UIScrollViewDelegate, PromoPopOutDelegate>
+@interface WalletListingViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, WalletVoucherDelegate, DealRedeemDelegate, UIScrollViewDelegate, PromoPopOutDelegate, DealDetailsDelegate>
 
 
 @end
