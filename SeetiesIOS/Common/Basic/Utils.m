@@ -682,20 +682,22 @@
 
     if ([Utils isStringNull:userLanguage]) {
         userLanguage = [Utils getDeviceDefaultLanguageCode];
+        
+        return userLanguage;
     }
     
     if (userLanguage) {
         if ([userLanguage isEqualToString:@"English"] || [userLanguage isEqualToString:ENGLISH_SERVER_NAME]) {
             
             return ENGLISH_CODE;
-        }else if([userLanguage isEqualToString:@"Simplified Chinese"] || [userLanguage isEqualToString:@"简体中文"] || [userLanguage isEqualToString:CHINESE_SERVER_NAME]){
+        }else if([userLanguage isEqualToString:@"Simplified Chinese"] || [userLanguage isEqualToString:@"简体中文"] || [userLanguage isEqualToString:CHINESE_SERVER_NAME] || [userLanguage isEqualToString:CHINESE_SHORT_NAME]){
             return CHINESE_CODE;
 
-        }else if([userLanguage isEqualToString:@"Traditional Chinese"] || [userLanguage isEqualToString:@"繁體中文"] || [userLanguage isEqualToString:TAIWAN_SERVER_NAME]){
+        }else if([userLanguage isEqualToString:@"Traditional Chinese"] || [userLanguage isEqualToString:@"繁體中文"] || [userLanguage isEqualToString:TAIWAN_SERVER_NAME] || [userLanguage isEqualToString:TAIWAN_SHORT_NAME]){
 
             return TAIWAN_CODE;
             
-        }else if([userLanguage isEqualToString:@"Bahasa Indonesia"] || [userLanguage isEqualToString:INDONESIA_SERVER_NAME]){
+        }else if([userLanguage isEqualToString:@"Bahasa Indonesia"] || [userLanguage isEqualToString:INDONESIA_SERVER_NAME] || [userLanguage isEqualToString:INDONESIA_SHORT_NAME] ){
 
             return INDONESIA_CODE;
 
