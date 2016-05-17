@@ -113,8 +113,8 @@
     self.txtUserName.placeholder = LocalisedString(@"username/ email address");
     self.txtPassword.placeholder = LocalisedString(@"password");
     self.txtEmail.placeholder = LocalisedString(@"email address");
-    self.ibEnterReferralLbl.text = LocalisedString(@"Enter invite code");
-    self.ibReferralCodeTxt.placeholder = LocalisedString(@"Invite code (optional)");
+    self.ibEnterReferralLbl.text = LocalisedString(@"Enter referral code");
+    self.ibReferralCodeTxt.placeholder = LocalisedString(@"referral code (optional)");
 
     [self.btnSignup setTitle:LocalisedString(@"Submit") forState:UIControlStateNormal];
     self.lblSignUp.text = LocalisedString(@"Sign up");

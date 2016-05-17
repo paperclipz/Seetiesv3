@@ -1404,8 +1404,8 @@
 "Collect Now, Pay at Shop" = "Collect Now, Pay at Shop";
 "Everytime a friend signs up with your invite code, each of you will receive a reward. Collect your reward via your notification!" = "Dapatkan hadiah menarik untuk setiap kode referral yang digunakan temanmu saat mendaftar ke dalam Seeties. Ambil hadiahmu di notifikasi. ";
 "The reward is now yours. Redeem it via your notification." = "Hadiah ini kini jadi milikmu. Lihat dan redeem sekarang juga di notifikasi.";
-"Enter invite code" = "Masukkan kode referral";
-"Invite code (optional)" = "Kode referral (opsional)";
+"Enter referral code" = "Masukkan kode referral";
+"referral code (optional)" = "kode referral (opsional)";
 "Your referral code is invalid! But you may continue and try again later." = "Kode referral salah! Silakan lanjut dan coba masukkan beberapa saat lagi.";
 "Continue" = "Lanjutkan";
 "Get Rewards" = "Dapatkan Hadiah";
@@ -1424,7 +1424,7 @@
 "Share your promo code" = "Bagikan kode promo";
 "{!referral code}" = "{!referral code}";
 //======CHANGE======//
-"Share your promo code\n{!referral code}" = "Bagikan kode promo\n{!referral code}";
+"Share your referral code\n{!referral code}" = "Bagikan kode referral\n{!referral code}";
 //======CHANGE======//
 "Code Copied" = "Kode tersalin";
 "Give your friends a 1-for-1 deal and receive one yourself" = "Dapatkan hadiah langsung voucher Buy1 Free 1 untukmu dan temanmu";
@@ -1444,7 +1444,7 @@
 "Sign Up with Seeties!" = "";
 "Join Seeties to enjoy awesome deals around your city! " = "Gabung ke Seeties untuk menikmati penawaran menarik di kotamu! ";
 //======CHANGE======//
-"Hey, here is my invite code. Go nuts on FREE voucher! '{!referral_code}'.\n{!Seeties URL}" = "Hai, pakai kode referral aku yuk untuk dapetin voucher GRATIS di tempat-tempat hangout favorit kamu! '{!referral_code}'.\n{!Seeties URL}";
+"Hey you can use my referral code to sign up and get GOODIES! '{!referral_code}'.\n{!Seeties URL}" = "Hai, pakai kode referral aku yuk untuk dapetin voucher GRATIS di tempat-tempat hangout favorit kamu! '{!referral_code}'.\n{!Seeties URL}";
 "Sharing is caring!\nSign up with Seeties today.\n{!Seeties URL}" = "";
 //======CHANGE======//
 "Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "Versi {!version number}\n- Undang teman & dapatkan hadiah langsung\n- Fix bugs";

@@ -1404,8 +1404,8 @@
 
 "Everytime a friend signs up with your invite code, each of you will receive a reward. Collect your reward via your notification!" = "每当您的好友使用您的邀请码加入, 你们各自便可在“个人通知”内获取限量礼劵喔!";
 "The reward is now yours. Redeem it via your notification." = "限量礼劵已被分发, 赶快到\"个人通知“内领取吧!";
-"Enter invite code" = "输入邀请码";
-"Invite code (optional)" = "邀请码 (自选)";
+"Enter referral code" = "输入邀请码";
+"referral code (optional)" = "邀请码 (自选)";
 "Your referral code is invalid! But you may continue and try again later." = "哎呀, 邀请码无效, 请确认再试!";
 "Continue" = "好的";
 "Get Rewards" = "获取好康";
@@ -1424,7 +1424,7 @@
 "Share your promo code" = "分享个人邀请码";
 "{!referral code}" = "{!referral code}";
 //======CHANGE======//
-"Share your promo code\n{!referral code}" = "分享个人邀请码\n{!referral code}";
+"Share your referral code\n{!referral code}" = "分享个人邀请码\n{!referral code}";
 //======CHANGE======//
 "Code Copied" = "复制邀请码";
 "Give your friends a 1-for-1 deal and receive one yourself" = "";
@@ -1444,7 +1444,7 @@
 "Sign Up with Seeties!" = "加入Seeties!";
 "Join Seeties to enjoy awesome deals around your city! " = "快來加入Seeties以獲取各種精選優惠吧!";
 //======CHANGE======//
-"Hey, here is my invite code. Go nuts on FREE voucher! '{!referral_code}'.\n{!Seeties URL}" = "好康来报到! 使用我的邀请码加入Seeties便可获取好康喔! - '{!referral_code}'.\n{!Seeties URL}";
+"Hey you can use my referral code to sign up and get GOODIES! '{!referral_code}'.\n{!Seeties URL}" = "好康来报到! 使用我的邀请码加入Seeties便可获取好康喔! - '{!referral_code}'.\n{!Seeties URL}";
 "Sharing is caring!\nSign up with Seeties today.\n{!Seeties URL}" = "快来与我加入Seeties以发掘更多好康吧!\n{!Seeties URL}";
 //======CHANGE======//
 "Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "版本 {!version number}\n- 邀请好友, 索取好康\n- 系统整顿";

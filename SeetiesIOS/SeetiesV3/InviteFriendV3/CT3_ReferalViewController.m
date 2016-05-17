@@ -67,7 +67,7 @@
    
     if (![Utils isStringNull:self.userProfile.referral_code]) {
         self.userProfile.referral_code = [self.userProfile.referral_code uppercaseString];
-        NSString *refCode = [LanguageManager stringForKey:@"Share your promo code\n{!referral code}" withPlaceHolder:@{@"{!referral code}":self.userProfile.referral_code?self.userProfile.referral_code:@""}];
+        NSString *refCode = [LanguageManager stringForKey:@"Share your referral code\n{!referral code}" withPlaceHolder:@{@"{!referral code}":self.userProfile.referral_code?self.userProfile.referral_code:@""}];
         NSMutableAttributedString *attrRefCode = [[NSMutableAttributedString alloc] initWithString:refCode];
         NSRange refRange = [refCode rangeOfString:self.userProfile.referral_code];
         [attrRefCode beginEditing];
