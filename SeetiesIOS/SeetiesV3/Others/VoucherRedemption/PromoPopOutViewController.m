@@ -930,9 +930,10 @@
     }
 
     NSString *appendString = [NSString stringWithFormat:@"%@/redeem", self.enteredPromoCode];
-    NSDictionary *dict = @{@"promo_code": self.enteredPromoCode,
+   
+    NSDictionary *dict = @{@"promo_code": self.enteredPromoCode?self.enteredPromoCode:@"",
                            @"token": [Utils getAppToken],
-                           @"shop_id": self.selectedShop.seetishop_id
+                           @"shop_id": self.selectedShop.seetishop_id?self.selectedShop.seetishop_id:@""
                            };
     [LoadingManager show];
     self.isLoading = YES;

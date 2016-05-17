@@ -50,6 +50,7 @@
 		8A0035461C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035441C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m */; };
 		8A0035471C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */; };
 		8A0159CF1CB6741E00ED6D0F /* CustomEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0159CE1CB6741E00ED6D0F /* CustomEmptyView.m */; };
+		8A02BA9D1CE9DAA600CABDE3 /* newsfeed.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A02BA9C1CE9DAA600CABDE3 /* newsfeed.json */; };
 		8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */; };
 		8A03487A1C154F9C0015E606 /* SeetiesMoreInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */; };
 		8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */; };
@@ -1406,6 +1407,7 @@
 		8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealType_YourWalletTblCell.xib; sourceTree = "<group>"; };
 		8A0159CD1CB6741E00ED6D0F /* CustomEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEmptyView.h; sourceTree = "<group>"; };
 		8A0159CE1CB6741E00ED6D0F /* CustomEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEmptyView.m; sourceTree = "<group>"; };
+		8A02BA9C1CE9DAA600CABDE3 /* newsfeed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newsfeed.json; sourceTree = "<group>"; };
 		8A0348761C154F9C0015E606 /* SeetiesMoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesMoreInfoViewController.h; sourceTree = "<group>"; };
 		8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiesMoreInfoViewController.m; sourceTree = "<group>"; };
 		8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesMoreInfoViewController.xib; sourceTree = "<group>"; };
@@ -3259,6 +3261,14 @@
 				8AE478B81CC4E93F0053DB24 /* CustomEmptyView.xib */,
 			);
 			path = CustomEmptyView;
+			sourceTree = "<group>";
+		};
+		8A02BA991CE9D9B900CABDE3 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				8A02BA9C1CE9DAA600CABDE3 /* newsfeed.json */,
+			);
+			path = Json;
 			sourceTree = "<group>";
 		};
 		8A0F50B41C0C3E41002B1E22 /* Cell */ = {
@@ -5647,6 +5657,7 @@
 				8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */,
 				8AD6BA671B705DF20040437E /* Main.storyboard */,
 				8AFA514B1C47B4AB00E7920E /* SeetiesV3 */,
+				8A02BA991CE9D9B900CABDE3 /* Json */,
 				8AD6BAF41B706CF10040437E /* FRAMEWORK */,
 				8A114B871BE73F5C006AE3F0 /* COMMON */,
 				8AC7B5E41CE5C102000775CC /* CATEGORY */,
@@ -6715,6 +6726,7 @@
 				8AB0DA721CE1E528002D15C4 /* BlueLink@3x.png in Resources */,
 				8AB0DA661CE1E528002D15C4 /* NotificationBySeeties@3x.png in Resources */,
 				8AB0D8621CE1E528002D15C4 /* BlueTick@3x.png in Resources */,
+				8A02BA9D1CE9DAA600CABDE3 /* newsfeed.json in Resources */,
 				8AB0D9361CE1E528002D15C4 /* TH_TabbarMoreIcon_Active@3x.png in Resources */,
 				8AB0D9E51CE1E528002D15C4 /* ConnectionWeak@2x.png in Resources */,
 				8AB0D9251CE1E528002D15C4 /* EN_TabbarMoreIcon_Active@2x.png in Resources */,

@@ -715,7 +715,7 @@
                 NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.voucher_info.expired_at];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 [dateFormatter setDateFormat:@"dd MMM yyyy"];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expiry date: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expiry date: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]?[dateFormatter stringFromDate:expiredDate]:@""}];
             }
         }
         else{
@@ -1120,7 +1120,7 @@
 
 - (IBAction)footerBtnClicked:(id)sender {
     if ([Utils isGuestMode]) {
-        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
             if (buttonIndex == 1) {
                 [Utils showLogin];

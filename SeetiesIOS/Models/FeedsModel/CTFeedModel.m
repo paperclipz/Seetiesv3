@@ -109,9 +109,7 @@
                     [arrTemp addObject:model];
                     
                 }
-                
             }
-
             
         } @catch (NSException *exception) {
             

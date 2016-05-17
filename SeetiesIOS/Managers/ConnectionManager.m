@@ -106,8 +106,22 @@
     
 }
 
+-(NSString*)getLocalData:(ServerRequestType)type
+{
+    
+
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"newsfeed" ofType:@"json"];
+    NSData* data = [NSData dataWithContentsOfFile:filePath];
+    __autoreleasing NSError* error = nil;
+    id result = [NSJSONSerialization JSONObjectWithData:data
+                                                options:kNilOptions error:&error];
+    
+    return result;
+}
+
 -(void)requestServerWith:(AFNETWORK_TYPE)networkType serverRequestType:(ServerRequestType)serverType parameter:(NSDictionary*)parameter appendString:(NSString*)appendString success:(IDBlock)success failure:(IErrorBlock)failure
 {
+    
     if ([self validateBeforeRequest:serverType]) {
         if (failure) {
             failure(nil);
@@ -128,6 +142,22 @@
             fullURL = [self getFullURLwithType:serverType];
         }
         
+        
+        if (IS_SIMULATOR) {
+            
+            switch (serverType) {
+                case ServerRequestTypeGetNewsFeed:
+                    [self storeServerData:[self getLocalData:serverType] requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+
+                    return;
+                    break;
+                    
+                default:
+                    break;
+            }
+
+            
+        }
         
         switch (networkType) {
             case AFNETWORK_GET:
@@ -1366,7 +1396,7 @@
             if ([Utils isGuestMode]) {
                 
                 flag = true;
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == 1) {
                         [Utils showLogin];
@@ -1380,7 +1410,7 @@
             if ([Utils isGuestMode]) {
                 flag = true;
                 
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == 1) {
                         [Utils showLogin];

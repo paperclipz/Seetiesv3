@@ -48,11 +48,6 @@
 //        [[GAI sharedInstance] trackerWithTrackingId:@"UA-45737845-4"];
 //        
 //    }
-   
-    [[SearchManager Instance]startSearchGPSLocation];
-    [[SearchManager Instance]startGetWifiLocation];
-
-
 }
 
 -(void)configureSetup
@@ -349,7 +344,6 @@
     
   
 }
-
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {

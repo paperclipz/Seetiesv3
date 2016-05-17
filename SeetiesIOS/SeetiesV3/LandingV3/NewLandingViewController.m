@@ -19,15 +19,12 @@
 @property (nonatomic)UINavigationController* secondViewController;
 @property (nonatomic)UINavigationController* thirdViewController;
 @property (nonatomic, strong)IntroCoverView* introView;
-
-@property (weak, nonatomic) IBOutlet UIImageView *ibLogo;
-
-
+@property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic,strong)NSArray* arryViewController;
 
-@property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
-@property (strong, nonatomic) IBOutlet UIView *ibSplashView;
-
+// not using at the moment
+@property (weak, nonatomic) IBOutlet UIView *ibSplashView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibLogo;
 @property (nonatomic, weak)IBOutlet YLImageView *loadingImage;
 
 @end
@@ -42,9 +39,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //[self requestForApiVersion:nil];
     [self initSelfView];
     
+    @try {
+        [[SearchManager Instance]startSearchGPSLocation];
+        [[SearchManager Instance]startGetWifiLocation];
+
+    } @catch (NSException *exception) {
+        
+        [CrashlyticsKit setObjectValue:exception forKey:@"Location"];
+        
+    }
+    
+    //[self requestForApiVersion:nil];
+
 //    if (![Utils getIsDevelopment]) {
 //        
 //        [self requestForApiVersion:nil];
@@ -57,7 +65,7 @@
 //
 //        }];
 //    }
-    [self showAnimatedSplash];
+   // [self showAnimatedSplash];
 
 }
 
@@ -134,24 +142,26 @@
                           }];
     }
 }
--(void)showAnimatedSplash
-{
-    self.ibSplashView.frame = self.view.frame;
-    
-    [UIView animateWithDuration:1.0 animations:^{
-        
-        self.ibLogo.alpha = 0;
-        
-    }completion:^(BOOL finished) {
-        
-        [UIView animateWithDuration:1.0 animations:^{
-        
-            self.ibSplashView.alpha = 0;
-        }completion:^(BOOL finished) {
-            [self.ibSplashView removeFromSuperview];
-        }];
-    }];
-}
+//-(void)showAnimatedSplash
+//{
+//    
+//    [self.view addSubview:self.ibSplashView];
+//    self.ibSplashView.frame = self.view.frame;
+//    
+//    [UIView animateWithDuration:1.0 animations:^{
+//        
+//        self.ibLogo.alpha = 0;
+//        
+//    }completion:^(BOOL finished) {
+//        
+//        [UIView animateWithDuration:1.0 animations:^{
+//        
+//            self.ibSplashView.alpha = 0;
+//        }completion:^(BOOL finished) {
+//            [self.ibSplashView removeFromSuperview];
+//        }];
+//    }];
+//}
 
 -(UITabBarController*)tabBarController
 {
