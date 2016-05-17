@@ -1186,6 +1186,7 @@
 "You've got 15 minutes to redeem this deal after you swipe." = "右刷后你只有15分钟可领取此优惠哦!";
 "Redeemed on {!date}, {!time}" = "此优惠已在{!date},{!time}被领取";
 "{!date}, {!time}" = "";
+"Flash and swipe! Do you want to redeem your voucher now?" = "注意！你是否要现在领取优惠？";
 "Expires {!date}" = "截止于{!date}";
 "FEATURED" = "超值";
 "FREE" = "赠送";
@@ -1194,7 +1195,7 @@
 "Deal description" = "优惠内容";
 "Deal availability" = "领取详情";
 "This deal can only be redeemed at time as stated below:" = "此优惠劵只可在以下时间领取";
-"Participate outlet ({!number})" = "适用于 {!number}";
+"Participating outlets ({!number})" = "适用于 {!number}";
 "Terms & Conditions" = "附加条件";
 "Read the full T&Cs here" = "查阅详情";
 "{!number} deals here!" = "店家其他优惠 {!number}";
@@ -1208,7 +1209,7 @@
 "Select outlet to redeem from" = "选择领取地点";
 "Confirm" = "确认";
 "Select outlet" = "选择领取地点";
-"Redeemed on {!date}, {!time}" = "此优惠已在{!datetime}被领取";
+"Redeemed on {!date}, {!time}" = "此优惠已在{!date}, {!time}被领取";
 "Flash this screen to a staff and swipe to redeem this deal." = "右刷时请务必向店员出示此屏幕以便验证";
 "Search History" = "搜索记录";
 "Keyword Suggestions" = "热门搜索";
@@ -1443,7 +1444,7 @@
 "Sign Up with Seeties!" = "加入Seeties!";
 "Join Seeties to enjoy awesome deals around your city! " = "快來加入Seeties以獲取各種精選優惠吧!";
 //======CHANGE======//
-"Sharing is caring! Get an instant reward when you sign up with the invite code '{!referral_code}'.\n{!Seeties URL}" = "好康来报到! 使用我的邀请码加入Seeties便可获取好康喔! - '{!referral_code}'.\n{!Seeties URL}";
+"Hey, here is my invite code. Go nuts on FREE voucher! '{!referral_code}'.\n{!Seeties URL}" = "好康来报到! 使用我的邀请码加入Seeties便可获取好康喔! - '{!referral_code}'.\n{!Seeties URL}";
 "Sharing is caring!\nSign up with Seeties today.\n{!Seeties URL}" = "快来与我加入Seeties以发掘更多好康吧!\n{!Seeties URL}";
 //======CHANGE======//
 "Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "版本 {!version number}\n- 邀请好友, 索取好康\n- 系统整顿";

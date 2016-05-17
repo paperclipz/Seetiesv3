@@ -220,7 +220,7 @@
         if (activateDropEffect) {
             
             if ([self isNeedShowFirstTime]) {
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to redeem this voucher?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Flash and swipe! Do you want to redeem your voucher now?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:@[LocalisedString(@"Yeah!")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
                         [self requestServerToRedeemVoucher];
 //                        [self dropBottomView];

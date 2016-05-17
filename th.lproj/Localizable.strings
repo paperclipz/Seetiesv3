@@ -1195,7 +1195,7 @@
 "Deal description" = "รายละเอียด";
 "Deal availability" = "พร้อมใช้";
 "This deal can only be redeemed at time as stated below:" = "คุณแลกดีลนี้ได้ตามเวลาที่ระบุด้านล่าง:";
-"Participate outlet ({!number})" = "เบอร์ติดต่อ ({!number})";
+"Participating outlets ({!number})" = "เบอร์ติดต่อ ({!number})";
 "Terms & Conditions" = "ข้อตกลงและเงื่อนไข";
 "Read the full T&Cs here" = "อ่านข้อตกลงและเงื่อนไขฉบับเต็มที่นี่";
 "{!number} deals here!" = "{!number} ดีล!";

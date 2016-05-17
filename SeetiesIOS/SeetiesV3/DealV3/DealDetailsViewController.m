@@ -110,6 +110,7 @@
 @property(nonatomic) DealCollectionModel *dealCollectionModel;
 @property(nonatomic, assign) BOOL isProcessing;
 @property(nonatomic) DealManager *dealManager;
+@property(nonatomic) BOOL fromHistory;
 @property(nonatomic) NSMutableArray<SeShopDetailModel> *nearbyShopArray;
 @property(nonatomic) NSMutableArray<NSDictionary> *dealAvailabilityArray;
 @property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
@@ -216,12 +217,14 @@
     [self initViewArray];
     [self initSelfView];
     [self updateViews];
-    if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
-        [self requestServerForDealInfo];
-    }
-    else{
-        [self requestServerForVoucherInfo];
-        
+    if (!self.fromHistory) {
+        if ([Utils isStringNull:self.dealModel.voucher_info.voucher_id]) {
+            [self requestServerForDealInfo];
+        }
+        else{
+            [self requestServerForVoucherInfo];
+            
+        }
     }
 }
 
@@ -245,6 +248,10 @@
     _dealModel = dealModel;
     _referralID = referralId;
     _dealCollectionModel = dealCollectionModel;
+}
+
+-(void)setFromHistory:(BOOL)fromHistory{
+    _fromHistory = fromHistory;
 }
 
 -(void)initSelfView{
@@ -318,7 +325,7 @@
 #pragma mark - IBAction
 - (IBAction)shopSeeMoreBtnClicked:(id)sender {
     self.seetieShopListingViewController = nil;
-    self.seetieShopListingViewController.title = LocalisedString(@"Participate outlet");
+    self.seetieShopListingViewController.title = LocalisedString(@"Participating outlets");
     [self.navigationController pushViewController:self.seetieShopListingViewController animated:YES onCompletion:^{
         NSMutableArray *copyOfShopModel = [[NSMutableArray alloc] initWithArray:self.dealModel.shops];
         [self.seetieShopListingViewController initWithArray:copyOfShopModel];
@@ -553,6 +560,14 @@
             self.ibHeaderBlackShadeView.hidden = YES;
         }
     }
+    else if ([status isEqualToString:VOUCHER_STATUS_DELETED]){
+        [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsDeletedIcon.png"]];
+        self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Deleted");
+    }
+    else if ([status isEqualToString:VOUCHER_STATUS_CANCELLED]){
+        [self.ibHeaderBlackShadeIcon setImage:[UIImage imageNamed:@"DealsCancelledIcon.png"]];
+        self.ibHeaderBlackShadeStatus.text = LocalisedString(@"Cancelled");
+    }
     else{
         self.ibHeaderBlackShadeView.hidden = YES;
     }
@@ -597,10 +612,20 @@
         self.ibHeaderNormalExpiryView.hidden = NO;
         self.ibHeaderExpiryHeightConstraint.constant = 50;
         
-        NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.voucher_info.expired_at];
+        NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.voucher_info.expired_at];
         [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
         [dateFormatter setDateFormat:@"dd MMM yyyy"];
-        self.ibHeaderNormalExpiryLbl.text = [NSString stringWithFormat:@"%@ %@", LocalisedString(@"Expired on"), [dateFormatter stringFromDate:expiredDate]];
+        NSString *dateString = [dateFormatter stringFromDate:expiryDate];
+        
+        NSString *displayString = [LanguageManager stringForKey:@"Expired on {!date}" withPlaceHolder:@{@"{!date}":dateString?dateString:@""}];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:displayString];
+        NSRange dateRange = [displayString rangeOfString:dateString];
+        
+        [attrString beginEditing];
+        [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14.0f] range:dateRange];
+        [attrString addAttribute:NSForegroundColorAttributeName value:DEVICE_COLOR range:dateRange];
+        [attrString endEditing];
+        self.ibHeaderNormalExpiryLbl.attributedText = attrString;
     }
     else if ([self.dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_REDEEMED]){
         self.ibHeaderRedeemExpiryView.hidden = NO;
@@ -629,6 +654,46 @@
         [attrString endEditing];
         
         self.ibHeaderRedeemExpiryTitleLbl.attributedText = attrString;
+    }
+    else if ([status isEqualToString:VOUCHER_STATUS_DELETED]){
+        self.ibHeaderRedeemExpiryView.hidden = YES;
+        self.ibHeaderNormalExpiryView.hidden = NO;
+        self.ibHeaderExpiryHeightConstraint.constant = 50;
+        
+        NSDate *deletedDate = [dateFormatter dateFromString:self.dealModel.voucher_info.status_history_datetime];
+        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
+        NSString *dateString = [dateFormatter stringFromDate:deletedDate];
+        
+        NSString *displayString = [LanguageManager stringForKey:@"Deleted on {!date}" withPlaceHolder:@{@"{!date}":dateString?dateString:@""}];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:displayString];
+        NSRange dateRange = [displayString rangeOfString:dateString];
+        
+        [attrString beginEditing];
+        [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14.0f] range:dateRange];
+        [attrString addAttribute:NSForegroundColorAttributeName value:DEVICE_COLOR range:dateRange];
+        [attrString endEditing];
+        self.ibHeaderNormalExpiryLbl.attributedText = attrString;
+    }
+    else if ([status isEqualToString:VOUCHER_STATUS_CANCELLED]){
+        self.ibHeaderRedeemExpiryView.hidden = YES;
+        self.ibHeaderNormalExpiryView.hidden = NO;
+        self.ibHeaderExpiryHeightConstraint.constant = 50;
+        
+        NSDate *cancelledDate = [dateFormatter dateFromString:self.dealModel.voucher_info.status_history_datetime];
+        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
+        NSString *dateString = [dateFormatter stringFromDate:cancelledDate];
+        
+        NSString *displayString = [LanguageManager stringForKey:@"Cancelled on {!date}" withPlaceHolder:@{@"{!date}":dateString?dateString:@""}];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:displayString];
+        NSRange dateRange = [displayString rangeOfString:dateString];
+        
+        [attrString beginEditing];
+        [attrString addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14.0f] range:dateRange];
+        [attrString addAttribute:NSForegroundColorAttributeName value:DEVICE_COLOR range:dateRange];
+        [attrString endEditing];
+        self.ibHeaderNormalExpiryLbl.attributedText = attrString;
     }
     else if([status isEqualToString:VOUCHER_STATUS_COLLECTED]){
         self.ibHeaderRedeemExpiryView.hidden = YES;
@@ -952,7 +1017,7 @@
 -(void)updateFooterView{
     self.ibFooterView.hidden = NO;
     NSString *voucherStatus = self.dealModel.voucher_info.status;
-    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE] || [voucherStatus isEqualToString:VOUCHER_STATUS_DELETED]) {
+    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Collect this deal");
         
@@ -992,6 +1057,11 @@
         self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_CANCELLED]){
+        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
+        self.ibFooterTitle.text = LocalisedString(@"Collect this deal");
+    }
+    else if ([voucherStatus isEqualToString:VOUCHER_STATUS_DELETED]){
         [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Collect this deal");
@@ -1067,7 +1137,7 @@
     }
     
     NSString *voucherStatus = self.dealModel.voucher_info.status;
-    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE] || [voucherStatus isEqualToString:VOUCHER_STATUS_DELETED]) {
+    if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
         //Referral type specific checking
         if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
             if (self.dealCollectionModel && [self.dealCollectionModel isCampaignExpired]) {

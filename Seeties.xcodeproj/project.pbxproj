@@ -1308,6 +1308,10 @@
 		C294FD291C9817F200C455C8 /* FilterPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD281C9817F200C455C8 /* FilterPriceModel.m */; };
 		C294FD2C1C9819B500C455C8 /* FiltersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD2B1C9819B500C455C8 /* FiltersModel.m */; };
 		C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C295DCDA1C72C54300A1DED3 /* DealManager.m */; };
+		C2A536671CEB02E100D0914C /* DealsCancelledIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A536631CEB02E100D0914C /* DealsCancelledIcon@2x.png */; };
+		C2A536681CEB02E100D0914C /* DealsCancelledIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A536641CEB02E100D0914C /* DealsCancelledIcon@3x.png */; };
+		C2A536691CEB02E100D0914C /* DealsDeletedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A536651CEB02E100D0914C /* DealsDeletedIcon@2x.png */; };
+		C2A5366A1CEB02E100D0914C /* DealsDeletedIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A536661CEB02E100D0914C /* DealsDeletedIcon@3x.png */; };
 		C2A910101CCDFF31005D517B /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A910051CCDFF31005D517B /* PostsTableViewCell.m */; };
 		C2A910111CCDFF31005D517B /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A910061CCDFF31005D517B /* PostsTableViewCell.xib */; };
 		C2A910121CCDFF31005D517B /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A910081CCDFF31005D517B /* SearchLocationAreaCell.m */; };
@@ -3008,6 +3012,10 @@
 		C294FD2B1C9819B500C455C8 /* FiltersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiltersModel.m; path = Filter/FiltersModel.m; sourceTree = "<group>"; };
 		C295DCD91C72C54300A1DED3 /* DealManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealManager.h; sourceTree = "<group>"; };
 		C295DCDA1C72C54300A1DED3 /* DealManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealManager.m; sourceTree = "<group>"; };
+		C2A536631CEB02E100D0914C /* DealsCancelledIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsCancelledIcon@2x.png"; sourceTree = "<group>"; };
+		C2A536641CEB02E100D0914C /* DealsCancelledIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsCancelledIcon@3x.png"; sourceTree = "<group>"; };
+		C2A536651CEB02E100D0914C /* DealsDeletedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsDeletedIcon@2x.png"; sourceTree = "<group>"; };
+		C2A536661CEB02E100D0914C /* DealsDeletedIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsDeletedIcon@3x.png"; sourceTree = "<group>"; };
 		C2A910041CCDFF31005D517B /* PostsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsTableViewCell.h; sourceTree = "<group>"; };
 		C2A910051CCDFF31005D517B /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsTableViewCell.m; sourceTree = "<group>"; };
 		C2A910061CCDFF31005D517B /* PostsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
@@ -4081,6 +4089,10 @@
 		8AB0D5231CE1E527002D15C4 /* Deals */ = {
 			isa = PBXGroup;
 			children = (
+				C2A536631CEB02E100D0914C /* DealsCancelledIcon@2x.png */,
+				C2A536641CEB02E100D0914C /* DealsCancelledIcon@3x.png */,
+				C2A536651CEB02E100D0914C /* DealsDeletedIcon@2x.png */,
+				C2A536661CEB02E100D0914C /* DealsDeletedIcon@3x.png */,
 				8AB0D5241CE1E527002D15C4 /* DealRedeemCardDown.png */,
 				8AB0D5251CE1E527002D15C4 /* DealRedeemCardUp.png */,
 				8AB0D5261CE1E527002D15C4 /* DealsCollectIcon@2x.png */,
@@ -6630,6 +6642,7 @@
 				8AB0D89D1CE1E528002D15C4 /* MeVoucherWalletIcon@3x.png in Resources */,
 				0B40B3FC1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib in Resources */,
 				8AB0D9A91CE1E528002D15C4 /* Uncheck@2x.png in Resources */,
+				C2A536671CEB02E100D0914C /* DealsCancelledIcon@2x.png in Resources */,
 				8AB0D8501CE1E528002D15C4 /* DealsListingOverlay@3x.png in Resources */,
 				8A0F50C31C0C3F14002B1E22 /* SeShopDetailTableViewCell.xib in Resources */,
 				8AB0DA321CE1E528002D15C4 /* OtherLogo@3x.png in Resources */,
@@ -6933,6 +6946,7 @@
 				8AB0D9F81CE1E528002D15C4 /* CollectSimplifiedChineseBtn@3x.png in Resources */,
 				8AB0D9401CE1E528002D15C4 /* BgWalkHome2@3x.jpg in Resources */,
 				8AB0D9B01CE1E528002D15C4 /* CommentBox@3x.png in Resources */,
+				C2A5366A1CEB02E100D0914C /* DealsDeletedIcon@3x.png in Resources */,
 				8AB0D9641CE1E528002D15C4 /* EditHoursIcon@3x.png in Resources */,
 				8AB0D8671CE1E528002D15C4 /* GoIcon@2x.png in Resources */,
 				8AB0D8E61CE1E528002D15C4 /* SeetishopArtAndEntertainmentsIcon@2x.png in Resources */,
@@ -7015,6 +7029,7 @@
 				8AB0D8711CE1E528002D15C4 /* ShareToBuddiesIcon@2x.png in Resources */,
 				8AB0D9FB1CE1E528002D15C4 /* CollectTraditonalChineseBtn@2x.png in Resources */,
 				8AC8F74B1BDA414E00DEF14A /* EditCollectionTableViewCell.xib in Resources */,
+				C2A536681CEB02E100D0914C /* DealsCancelledIcon@3x.png in Resources */,
 				8AB0DA121CE1E528002D15C4 /* LikedIcon@3x.png in Resources */,
 				8AB0DA431CE1E528002D15C4 /* InviteBtnInactive@2x.png in Resources */,
 				8AB0D9701CE1E528002D15C4 /* Icon-76.png in Resources */,
@@ -7407,6 +7422,7 @@
 				8AE478B91CC4E93F0053DB24 /* CustomEmptyView.xib in Resources */,
 				0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */,
 				8AB0D8481CE1E528002D15C4 /* SwipeToRedeemSeetiesLogo@3x.png in Resources */,
+				C2A536691CEB02E100D0914C /* DealsDeletedIcon@2x.png in Resources */,
 				8AB0DA6B1CE1E528002D15C4 /* NotificationFollow@2x.png in Resources */,
 				C238E3341C4649AA00570A25 /* slider-default7-trackBackground@2x.png in Resources */,
 				8AB0D8941CE1E528002D15C4 /* MeCollectionIcon@3x.png in Resources */,
