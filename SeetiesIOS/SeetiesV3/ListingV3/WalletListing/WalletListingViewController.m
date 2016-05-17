@@ -44,7 +44,6 @@
 @property(nonatomic) NSMutableArray<DealExpiryDateModel> *voucherArray;
 @property(nonatomic) DealsModel *dealsModel;
 @property(nonatomic) BOOL isLoading;
-@property(nonatomic) DealManager *dealManager;
 @end
 
 @implementation WalletListingViewController
@@ -387,70 +386,6 @@
     [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
 }
 
--(void)redeemVoucherClicked:(DealModel*)deal{
-//    To do more checking whether voucher can be redeemed
-    
-    if (![Utils isPhoneNumberVerified]) {
-        [Utils showVerifyPhoneNumber:self];
-        return;
-    }
-
-    BOOL isRedeemable = false;
-    
-    if ([Utils isRedeemable:deal]) {
-        
-        if ([Utils isWithinOperationHour:deal.period]) {
-            
-            isRedeemable = true;
-            
-        }
-    }
-    
-    if (isRedeemable) {
-        self.dealRedeemViewController = nil;
-        [self.dealRedeemViewController initWithDealModel:deal];
-        self.dealRedeemViewController.dealRedeemDelegate = self;
-      //  self.dealRedeemViewController.isOffline = isOfflineData;
-        [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
-    }
-    else{
-        
-        self.promoPopOutViewController = nil;
-        [self.promoPopOutViewController setViewType:PopOutViewTypeError];
-        [self.promoPopOutViewController setDealModel:deal];
-        
-        STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
-        popupController.containerView.backgroundColor = [UIColor clearColor];
-        [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
-        [popupController presentInViewController:self];
-        [popupController setNavigationBarHidden:YES];
-    }
-
-}
-
--(void)onDealRedeemed:(DealModel *)dealModel{
-    if (dealModel.voucher_info.total_redeemable_count == 1) {
-        [self removeDealFromVoucherArray:dealModel];
-        
-        //comment : save wallet offline listing
-        //[DealExpiryDateModel saveWalletList:self.voucherArray];
-
-    }
-    
-    [self.ibTableView reloadData];
-    
-    self.redemptionHistoryViewController = nil;
-    
-    if ([ConnectionManager isNetworkAvailable]) {
-        [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
-
-    }
-    else{
-    
-        [self.dealRedeemViewController dismissViewControllerAnimated:YES completion:nil];
-    }
-}
-
 - (IBAction)emptyBtnClicked:(id)sender {
     HomeModel *homeModel = [[DataManager Instance] homeModel];
     if ([Utils isArrayNull:homeModel.featured_deals]) {
@@ -475,6 +410,66 @@
         [self.voucherListingViewController initWithLocation:locationModel];
         [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
         }];
+    }
+}
+
+#pragma mark - DelegateImplementation
+-(void)redeemVoucherClicked:(DealModel*)deal{
+    if (![Utils isPhoneNumberVerified]) {
+        [Utils showVerifyPhoneNumber:self];
+        return;
+    }
+    
+    if ([deal isRedeemable]) {
+        self.dealRedeemViewController = nil;
+        [self.dealRedeemViewController initWithDealModel:deal];
+        self.dealRedeemViewController.dealRedeemDelegate = self;
+        //  self.dealRedeemViewController.isOffline = isOfflineData;
+        [self presentViewController:self.dealRedeemViewController animated:YES completion:nil];
+    }
+    else{
+        
+        self.promoPopOutViewController = nil;
+        [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+        [self.promoPopOutViewController setDealModel:deal];
+        
+        STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+        popupController.containerView.backgroundColor = [UIColor clearColor];
+        [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+        [popupController presentInViewController:self];
+        [popupController setNavigationBarHidden:YES];
+    }
+
+}
+
+-(void)onDealRedeemed:(DealModel *)dealModel{
+    dealModel.voucher_info.total_redeemable_count--;
+    
+    if (dealModel.voucher_info.total_redeemable_count == 0) {
+        [self removeDealFromVoucherArray:dealModel];
+        
+        //comment : save wallet offline listing
+        //[DealExpiryDateModel saveWalletList:self.voucherArray];
+
+    }
+    else if (dealModel.voucher_info.total_redeemable_count > 0){
+        NSInteger index = [self.voucherArray indexOfObject:dealModel];
+        if (index != NSNotFound) {
+            [self.voucherArray replaceObjectAtIndex:index withObject:dealModel];
+        }
+    }
+    
+    [self.ibTableView reloadData];
+    
+    self.redemptionHistoryViewController = nil;
+    
+    if ([ConnectionManager isNetworkAvailable]) {
+        [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
+
+    }
+    else{
+    
+        [self.dealRedeemViewController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -514,27 +509,19 @@
     [self requestServerForVoucherListing];
 }
 
-/* ADJUST TABLEVIEW HEIGHT CODE
-- (void)adjustHeightOfFilterTable
-{
-    CGFloat height = self.ibFilterTable.contentSize.height;
-    CGFloat maxHeight = self.ibFilterTable.superview.frame.size.height - self.ibFilterTable.frame.origin.y;
+-(void)dealUpdated:(DealModel *)dealModel{
+    if ([dealModel.voucher_info.status isEqualToString:VOUCHER_STATUS_COLLECTED]) {
+        NSInteger index = [self.voucherArray indexOfObject:dealModel];
+        if (index != NSNotFound) {
+            [self.voucherArray replaceObjectAtIndex:index withObject:dealModel];
+        }
+    }
+    else{
+        [self removeDealFromVoucherArray:dealModel];
+    }
     
-    // if the height of the content is greater than the maxHeight of
-    // total space on the screen, limit the height to the size of the
-    // superview.
-    
-    if (height > maxHeight)
-        height = maxHeight;
-    
-    // now set the height constraint accordingly
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        self.ibFilterTableHeightConstraint.constant = height;
-        [self.view setNeedsUpdateConstraints];
-    }];
+    [self.ibTableView reloadData];
 }
- */
 
 #pragma mark - Declaration
 -(PromoPopOutViewController*)promoPopOutViewController{
@@ -555,15 +542,9 @@
 -(DealDetailsViewController *)dealDetailsViewController{
     if (!_dealDetailsViewController) {
         _dealDetailsViewController = [DealDetailsViewController new];
+        _dealDetailsViewController.delegate = self;
     }
     return _dealDetailsViewController;
-}
-
--(DealManager *)dealManager{
-    if (!_dealManager) {
-        _dealManager = [DealManager Instance];
-    }
-    return _dealManager;
 }
 
 -(NSMutableArray<DealExpiryDateModel> *)voucherArray{
@@ -604,7 +585,6 @@
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserVouchersList parameter:dict appendString:appendString success:^(id object) {
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
-        [self.dealManager setAllCollectedDeals:self.dealsModel];
         if (self.dealsModel.offset == 1) {
             [self.voucherArray removeAllObjects];
         }
@@ -659,7 +639,7 @@
         return;
     }
     
-    NSDictionary *dict = @{@"voucher_id":deal.voucher_info.voucher_id,
+    NSDictionary *dict = @{@"voucher_id":deal.voucher_info.voucher_id? deal.voucher_info.voucher_id : @"",
                            @"token": [Utils getAppToken]
                            };
     
@@ -676,7 +656,7 @@
         DealExpiryDateModel *expiryModel = self.voucherArray[indexPath.section];
         BOOL deleteRow = expiryModel.dealModelArray.count > 1? YES : NO;
         [self removeDealFromVoucherArray:deal];
-        [self.dealManager removeCollectedDeal:deal.dID];
+        
         if (deleteRow) {
             [self.ibTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         }

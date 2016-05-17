@@ -89,7 +89,7 @@
         SLog(@"profile_photo fail");
     }
     
-    if (self.dealModel.voucher_info.total_redeemable_count == -1) {
+    if (self.dealModel.voucher_info.total_redeemable_count < 0) {
         self.ibDealUsageLbl.text = LocalisedString(@"REUSABLE");
         [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:122/255.0f green:210/255.0f blue:26/255.0f alpha:1]];
     }
@@ -123,15 +123,9 @@
     
     [self.ibRedeemBtn setBackgroundColor:REDEEM_IN_ATIVE];
     [self.ibRedeemBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
-    if ([Utils isRedeemable:dealModel]) {
-        
-        if ([Utils isWithinOperationHour:dealModel.period]) {
-            
-            [self.ibRedeemBtn setBackgroundColor:REDEEM_ATIVE];
-
-        }
+    if ([self.dealModel isRedeemable]) {
+        [self.ibRedeemBtn setBackgroundColor:REDEEM_ATIVE];
     }
-    
     
     if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO] || [self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
         self.ibPromoLbl.hidden = NO;

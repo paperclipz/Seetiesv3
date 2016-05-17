@@ -220,7 +220,7 @@
         if (activateDropEffect) {
             
             if ([self isNeedShowFirstTime]) {
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to redeem this voucher") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to redeem this voucher?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
                         [self requestServerToRedeemVoucher];
 //                        [self dropBottomView];
@@ -412,10 +412,6 @@
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutRedeemVoucher parameter:finalDict appendString:nil success:^(id object) {
 
-        //Remove voucher from deal manager if it is 1 time use
-        if (self.dealModel.voucher_info.total_redeemable_count == 1) {
-            [self.dealManager removeCollectedDeal:self.dealModel.dID];
-        }
         if (self.dealRedeemDelegate) {
             [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
         }

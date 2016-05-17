@@ -232,6 +232,22 @@
     return @"";
 }
 
+-(BOOL)isRedeemable{
+    if ([Utils isWithinOperatingDate:self.periods_in_date]) {
+        if ([Utils isWithinOperationHour:self.period]) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return false;
+    }
+    
+    return NO;
+}
+
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc
     

@@ -72,7 +72,7 @@
 @property(nonatomic, strong) NSString *collection_expired_at;
 
 -(NSString*)getNextAvailableRedemptionDateString;
--(BOOL)hasRedeemExpiry;
+-(BOOL)isRedeemable;
 
 +(void)saveWalletList:(NSArray<DealModel>*)array;
 +(NSArray<DealModel>*)getWalletList;
