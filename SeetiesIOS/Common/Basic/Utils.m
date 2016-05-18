@@ -796,6 +796,16 @@
     [popOutController setNavigationBarHidden:YES];
 }
 
++(void)showChangeVerifiedPhoneNumber:(UIViewController*)viewController{
+    PromoPopOutViewController *popOut = [PromoPopOutViewController new];
+    [popOut setViewType:PopOutViewTypeChangeVerifiedPhone];
+    
+    STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:popOut];
+    popOutController.containerView.backgroundColor = [UIColor clearColor];
+    [popOutController setNavigationBarHidden:YES];
+    [popOutController presentInViewController:viewController];
+}
+
 +(NSString*)getTimeZone
 {
     //int utcTimeZone = (int)[[NSTimeZone localTimeZone] secondsFromGMT] / 3600;
