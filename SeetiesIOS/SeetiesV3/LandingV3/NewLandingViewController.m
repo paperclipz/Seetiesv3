@@ -549,7 +549,7 @@
     }
     else{
         
-        ProfileModel* userProfile = [[ConnectionManager dataManager]currentUserProfileModel];
+        ProfileModel* userProfile = [[ConnectionManager dataManager]getCurrentUserProfileModel];
         
         if ([Utils isStringNull:userProfile.contact_no]) {
             self.ct3_MoreViewController.tabBarItem.badgeValue = @"!";

@@ -154,7 +154,7 @@
         
         if ([Utils isPhoneNumberVerified]) {
             
-            ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
+            ProfileModel *profileModel = [[DataManager Instance] getCurrentUserProfileModel];
             cell.lblTitle.text = [LanguageManager stringForKey:@"Phone Number = {!phone number}" withPlaceHolder:@{@"{!phone number}": profileModel.contact_no?profileModel.contact_no:@""}];
             
             @try {
