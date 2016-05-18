@@ -25,6 +25,7 @@
 #import "FacebookModel.h"
 #import "UsersModel.h"
 #import "DealsModel.h"
+#import "TranslationModel.h"
 
 @class FacebookModel;
 @class  DraftsModel;
@@ -66,6 +67,8 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)CollectionModel* collectionModels;
 @property(nonatomic,strong)DraftModel* editPostModel;
 @property(nonatomic,strong)DraftModel* savedDraftModel;
+@property(nonatomic,strong)DraftModel* postDetailModel;
+@property(nonatomic,strong)TranslationModel* translationModel;
 
 @property(nonatomic,strong)TagModel* tagModel;
 

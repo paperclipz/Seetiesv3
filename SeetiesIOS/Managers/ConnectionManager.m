@@ -486,6 +486,8 @@
         case ServerRequestTypePostCreatePost:
         case ServerRequestTypePostDeletePost:
         case ServerRequestTypeGetPostInfo:
+        case ServerRequestTypeGetPostDetail:
+        case ServerRequeetTypeGetTranslatePost:
         case ServerRequestTypePostSaveDraft:
             str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
             
@@ -988,6 +990,15 @@
         }
             break;
             
+        case ServerRequestTypeGetPostDetail:
+        {
+            NSDictionary* dict = obj[@"data"];
+            
+            self.dataManager.postDetailModel = [[DraftModel alloc]initWithDictionary:dict error:nil];
+            
+        }
+            break;
+            
         case ServerRequestTypePostSaveDraft:
         {
             NSDictionary* dict = obj[@"data"];
@@ -1302,6 +1313,14 @@
         {
             NSDictionary *dict = obj[@"data"];
             self.dataManager.friendSuggestionModel = [[FriendSuggestionModel alloc] initWithDictionary:dict error:nil];
+            break;
+            
+        }
+            
+        case ServerRequeetTypeGetTranslatePost:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.translationModel = [[TranslationModel alloc] initWithDictionary:dict error:nil];
             break;
             
         }
