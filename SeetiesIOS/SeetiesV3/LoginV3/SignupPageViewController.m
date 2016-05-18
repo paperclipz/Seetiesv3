@@ -92,9 +92,13 @@
     // Do any additional setup after loading the view from its nib.
 }
 
--(void)initSelfView
+-(void)viewWillAppear:(BOOL)animated
 {
     [self changeLanguage];
+}
+
+-(void)initSelfView
+{
     [Utils setRoundBorder:self.ibContentUserName color:LINE_COLOR borderRadius:self.ibContentUserName.frame.size.height/2 borderWidth:1.0f];
     [Utils setRoundBorder:self.ibContentEmail color:LINE_COLOR borderRadius:self.ibContentEmail.frame.size.height/2 borderWidth:1.0f];
     [Utils setRoundBorder:self.ibContentPassword color:LINE_COLOR borderRadius:self.ibContentPassword.frame.size.height/2 borderWidth:1.0f];
@@ -115,9 +119,10 @@
     self.txtEmail.placeholder = LocalisedString(@"email address");
     self.ibEnterReferralLbl.text = LocalisedString(@"Enter referral code");
     self.ibReferralCodeTxt.placeholder = LocalisedString(@"referral code (optional)");
-
     [self.btnSignup setTitle:LocalisedString(@"Submit") forState:UIControlStateNormal];
-    self.lblSignUp.text = LocalisedString(@"Sign up");
+    
+    NSString* asd = LocalisedString(@"Sign up");
+    self.lblSignUp.text = asd;
 
 
 }

@@ -349,19 +349,19 @@
 #pragma mark - RequestServer
 -(void)requestServerToRedeemVoucher{
     
-//    if (![ConnectionManager isNetworkAvailable]) {
-//        [[OfflineManager Instance]addDealToRedeem:self.dealModel];
-//        
-//        [self dropBottomView];
-//
-//        if ([self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
-//            
-//            [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
-//        }
-//        //get the value only
-//                
-//        return;
-//    }
+    if (![ConnectionManager isNetworkAvailable]) {
+        [[OfflineManager Instance]addDealToRedeem:self.dealModel];
+        
+        [self dropBottomView];
+
+        if ([self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
+            
+            [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
+        }
+        //get the value only
+                
+        return;
+    }
     
     if (self.isRedeeming) {
         return;

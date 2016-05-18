@@ -30,6 +30,7 @@
 @property (nonatomic)CTWebViewController* webViewController;
 @property (nonatomic)SelectCategoryViewController* selectCategoryViewController;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIButton *btnSignup;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblContinueWith;
 @property (weak, nonatomic) IBOutlet UIButton *btnContinue;
@@ -467,8 +468,9 @@
     [self.lblFacebook setTitle:LocalisedString(@"Facebook") forState:UIControlStateNormal];
     [self.lblInstagram setTitle:LocalisedString(@"Instagram") forState:UIControlStateNormal];
     
-    [self.btnLogin setTitle:LocalisedString(@"Login") forState:UIControlStateNormal];
+    [self.btnLogin setTitle:LocalisedString(@"Log in") forState:UIControlStateNormal];
     [self.btnContinue setTitle:LocalisedString(@"Continue as guest") forState:UIControlStateNormal];
+    [self.btnSignup setTitle:LocalisedString(@"Sign up") forState:UIControlStateNormal];
 
     self.lblContinueWith.text = LocalisedString(@"Continue with");
 

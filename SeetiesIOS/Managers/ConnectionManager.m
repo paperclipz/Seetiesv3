@@ -868,7 +868,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:model.token forKey:TOKEN];
         [defaults setObject:model.uid forKey:USERID];
-        [defaults setObject:model.system_language.caption forKey:KEY_SYSTEM_LANG];
+        [defaults setObject:model.system_language.language_code forKey:KEY_SYSTEM_LANG];
         
         if (![Utils isArrayNull:model.languages]) {
             [defaults setObject:[model.languages[0] langID] forKey:KEY_LANGUAGE_ONE];

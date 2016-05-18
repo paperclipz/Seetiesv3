@@ -154,7 +154,7 @@
         
         if ([Utils isPhoneNumberVerified]) {
             
-            ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
+            ProfileModel *profileModel = [[DataManager Instance] getCurrentUserProfileModel];
             cell.lblTitle.text = [LanguageManager stringForKey:@"Phone Number = {!phone number}" withPlaceHolder:@{@"{!phone number}": profileModel.contact_no?profileModel.contact_no:@""}];
             
             @try {
@@ -379,7 +379,7 @@
         }
         else
         {
-            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log In", nil];//@"Notification Settings"
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log in", nil];//@"Notification Settings"
             
             NSArray *secondItemsArray;
             if ([ [ UIScreen mainScreen ] bounds ].size.height > 480) {

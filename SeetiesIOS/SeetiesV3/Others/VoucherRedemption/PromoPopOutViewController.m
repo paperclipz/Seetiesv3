@@ -143,6 +143,8 @@
     self.hasRequestedPromo = NO;
     self.hasRedeemed = NO;
     self.isReferral = NO;
+    self.ibPromoCodeText.autocorrectionType = UITextAutocorrectionTypeNo;
+    
     [self setMainViewToDisplay];
    
     // Do any additional setup after loading the view from its nib.
