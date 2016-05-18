@@ -415,7 +415,7 @@
         DataManager* manager = [ConnectionManager dataManager];
         manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
         
-        [[LanguageManager sharedLanguageManager]setLanguageCode:manager.currentUserProfileModel.system_language.language_code];
+        [LanguageManager setDeviceAppLanguage:manager.currentUserProfileModel.system_language.language_code];
         
     } failure:^(id object) {
         
@@ -578,7 +578,7 @@
     NSString* strActive3 = @"";
     NSString* inActive3 = @"";
     
-    NSString* deviceAppLanguageCode = [Utils getDeviceAppLanguageCode];
+    NSString* deviceAppLanguageCode = [LanguageManager getDeviceAppLanguageCode];
     
     if ([deviceAppLanguageCode isEqualToString:CHINESE_CODE]) {
         strActive1 = @"CN_TabbarHomeIcon_Active";

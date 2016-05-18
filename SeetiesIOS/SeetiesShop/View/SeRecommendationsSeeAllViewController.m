@@ -333,7 +333,7 @@
         heightcheck += resultHeight + 20;
         TempCountWhiteHeight += resultHeight + 20;
         
-        NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+        NSString* currentlangCode = [LanguageManager getDeviceAppLanguageCode];
         NSString *TestTitle;
         NSString *TestDetail;
         if (![model.arrPost isNull]) {
@@ -547,7 +547,7 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     DraftModel* model = self.arrPostListing[getbuttonIDN];
     
-    NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+    NSString* currentlangCode = [LanguageManager getDeviceAppLanguageCode];
     NSString *TestTitle;
     NSString *TestDetail;
     if (![model.arrPost isNull]) {

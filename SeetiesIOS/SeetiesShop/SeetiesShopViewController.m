@@ -523,7 +523,7 @@
     [UIView transitionWithView:self.btnShare duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
        
 
-        if ([self.seShopModel.language isEqualToString:[Utils getDeviceAppLanguageCode]]) {
+        if ([self.seShopModel.language isEqualToString:[LanguageManager getDeviceAppLanguageCode]]) {
             self.btnTranslateWidthConstraint.constant = 0;
 
         }
