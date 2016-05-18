@@ -181,6 +181,9 @@
 //                                return [NSString stringWithFormat:@"%@\n%@ - %@", displayDateString, openString, closeString];
                                 return [NSString stringWithFormat:@"%@\n%@", displayDateString, openString];
                             }
+                            else{
+                                continue;
+                            }
                         }
                         
                         NSString *displayDateString = [localDateFormatter stringFromDate:[utcDateTimeFormatter dateFromString:displayDateTimeString]];

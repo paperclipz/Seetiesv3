@@ -476,7 +476,6 @@
     self.ibMainContentHeightConstraint.constant = totalHeight;
     [self.view refreshConstraint];
     
-//    [self drawBorders];
 }
 
 -(void)updateViews{
@@ -1023,13 +1022,13 @@
         
         if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
             if (self.dealCollectionModel && ([self.dealCollectionModel isCampaignExpired] || [self.dealCollectionModel isExceedNumberOfCollectable])) {
-                [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+                [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
                 return;
             }
         }
         
         if (self.dealModel.total_available_vouchers == 0) {
-            [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+            [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         }
         else{
             [self.ibFooterView setBackgroundColor:DEVICE_COLOR];
@@ -1038,62 +1037,39 @@
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
         if ([self.dealModel isRedeemable]) {
-            [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:239/255.0 green:83/255.0 blue:105/255.0 alpha:1]];
+            [self.ibFooterView setBackgroundColor:BUTTON_REDEEM_ACTIVE_COLOR];
         }
         else{
-            [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+            [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         }
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
-        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_EXPIRED]){
-        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_CANCELLED]){
-        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Collect this deal");
     }
     else if ([voucherStatus isEqualToString:VOUCHER_STATUS_DELETED]){
-        [self.ibFooterView setBackgroundColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Collect this deal");
     }
     else{
         self.ibFooterView.hidden = YES;
-        [self.ibFooterView setBackgroundColor:[UIColor whiteColor]];
+        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         self.ibFooterTitle.text = @"";
     }
-}
-
--(void)drawBorders{
-    [self.ibHeaderContentView prefix_addLowerBorder:OUTLINE_COLOR];
-    
-    [self.ibDealDetailsContentView prefix_addUpperBorder:OUTLINE_COLOR];
-    [self.ibDealDetailsContentView prefix_addLowerBorder:OUTLINE_COLOR];
-    
-    [self.ibAvailabilityContentView prefix_addUpperBorder:OUTLINE_COLOR];
-    [self.ibAvailabilityContentView prefix_addLowerBorder:OUTLINE_COLOR];
-    
-    [self.ibShopContentView prefix_addUpperBorder:OUTLINE_COLOR];
-    [self.ibShopContentView prefix_addLowerBorder:OUTLINE_COLOR];
-    
-    [self.ibTnCContentView prefix_addUpperBorder:OUTLINE_COLOR];
-    [self.ibTnCContentView prefix_addLowerBorder:OUTLINE_COLOR];
-    
-    [self.ibDealsContentView prefix_addUpperBorder:OUTLINE_COLOR];
-    [self.ibDealsContentView prefix_addLowerBorder:OUTLINE_COLOR];
-    
-    [self.ibNearbyShopContentView prefix_addUpperBorder:OUTLINE_COLOR];
-    [self.ibNearbyShopContentView prefix_addLowerBorder:OUTLINE_COLOR];
-    
 }
 
 #pragma mark - Delegate

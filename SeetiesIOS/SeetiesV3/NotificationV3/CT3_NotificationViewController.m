@@ -254,6 +254,9 @@
                 [Utils showVerifyPhoneNumber:self];
 
             }
+            else{
+                [Utils showChangeVerifiedPhoneNumber:self];
+            }
 
         }
             break;

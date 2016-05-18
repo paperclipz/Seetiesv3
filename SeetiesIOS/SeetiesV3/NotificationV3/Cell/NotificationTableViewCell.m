@@ -47,6 +47,7 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+    self.selectedBackgroundView = nil;
 }
 
 -(void)initData:(NotificationModel*)model Type:(int)type

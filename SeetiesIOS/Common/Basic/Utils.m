@@ -738,6 +738,16 @@
     [popOutController setNavigationBarHidden:YES];
 }
 
++(void)showChangeVerifiedPhoneNumber:(UIViewController*)viewController{
+    PromoPopOutViewController *popOut = [PromoPopOutViewController new];
+    [popOut setViewType:PopOutViewTypeChangeVerifiedPhone];
+    
+    STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:popOut];
+    popOutController.containerView.backgroundColor = [UIColor clearColor];
+    [popOutController setNavigationBarHidden:YES];
+    [popOutController presentInViewController:viewController];
+}
+
 +(NSString*)getTimeZone
 {
     //int utcTimeZone = (int)[[NSTimeZone localTimeZone] secondsFromGMT] / 3600;
@@ -841,17 +851,23 @@
         
         
         int strFrom = [dictHour[@"open"] intValue];
+        int hourFrom = strFrom/100;
+        int minuteFrom = strFrom%100;
         NSDate *now = [NSDate date];
         NSCalendar *calendarFrom = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
         NSDateComponents *componentsFrom = [calendarFrom components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
-        [componentsFrom setHour:strFrom/100];
+        [componentsFrom setHour:hourFrom];
+        [componentsFrom setMinute:minuteFrom];
         NSDate *fromDateTime = [calendar dateFromComponents:componentsFrom];
         
         
         int strTo = [dictHour[@"close"] intValue];
+        int hourTo = strTo/100;
+        int minuteTo = strTo%100;
         NSCalendar *calendarTo = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
         NSDateComponents *componentsTo = [calendarTo components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
-        [componentsTo setHour:strTo/100];
+        [componentsTo setHour:hourTo];
+        [componentsTo setMinute:minuteTo];
         NSDate *toDateTime = [calendar dateFromComponents:componentsTo];
         
         if ([Utils date:now isBetweenDate:fromDateTime andDate:toDateTime]) {

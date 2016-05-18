@@ -274,14 +274,14 @@
 
 -(void)setCollectBtnEnabled:(BOOL)enabled{
     [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Collect") forState:UIControlStateNormal];
-    UIColor *btnColour = enabled? DEVICE_COLOR : [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1];
+    UIColor *btnColour = enabled? DEVICE_COLOR : BUTTON_DISABLED_COLOR;
     [self.ibVoucherCollectBtn setBackgroundColor:btnColour];
     [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"CollectIcon.png"] forState:UIControlStateNormal];
 }
 
 -(void)setRedeemBtnEnabled:(BOOL)enabled{
     [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
-    UIColor *btnColour = enabled? [UIColor colorWithRed:242/255.0 green:109/255.0 blue:125/255.0 alpha:1] : [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1];
+    UIColor *btnColour = enabled? BUTTON_REDEEM_ACTIVE_COLOR : BUTTON_DISABLED_COLOR;
     [self.ibVoucherCollectBtn setBackgroundColor:btnColour];
     [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
 }

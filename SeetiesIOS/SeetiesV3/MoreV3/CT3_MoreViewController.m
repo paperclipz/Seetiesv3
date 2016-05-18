@@ -11,7 +11,6 @@
 #import "FeedbackViewController.h"
 #import "CTWebViewController.h"
 #import "CT3_AcctSettingViewController.h"
-#import "PromoPopOutViewController.h"
 #import "IntroCoverView.h"
 #import "AppDelegate.h"
 //#import "DraftAndRecommendationDelegate.h"
@@ -33,7 +32,6 @@
 @property(nonatomic)FeedbackViewController* feedbackViewController;
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
-@property(nonatomic)PromoPopOutViewController* promoPopOutViewController;
 @property(nonatomic)IntroCoverView* introView;
 
 @end
@@ -242,15 +240,7 @@
                     
                     if ([Utils isPhoneNumberVerified]) {
                         
-                        _promoPopOutViewController = nil;
-                        
-                        [self.promoPopOutViewController setViewType:PopOutViewTypeChangeVerifiedPhone];
-                        
-                        
-                        STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
-                        popOutController.containerView.backgroundColor = [UIColor clearColor];
-                        [popOutController setNavigationBarHidden:YES];
-                        [popOutController presentInViewController:self];
+                        [Utils showChangeVerifiedPhoneNumber:self];
 
                     }
                     else{
@@ -339,15 +329,6 @@
 }
 
 #pragma mark - Declaration
-
--(PromoPopOutViewController*)promoPopOutViewController
-{
-    if (!_promoPopOutViewController) {
-        _promoPopOutViewController = [PromoPopOutViewController new];
-    }
-    
-    return _promoPopOutViewController;
-}
 
 -(CT3_AcctSettingViewController*)ct3_AcctSettingViewController
 {
