@@ -81,7 +81,7 @@
 }
 - (NSString *)getTranslationForKey:(NSString *)key {
     
-    NSString *languageCode = [[NSUserDefaults standardUserDefaults] stringForKey:KEY_SYSTEM_LANG];
+    NSString *languageCode = [LanguageManager getAppServerCode];
     NSString* localCode = [self convertCodeFromServerToLocal:languageCode];
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:localCode ofType:@"lproj"];
     NSBundle *languageBundle = [NSBundle bundleWithPath:bundlePath];
@@ -160,6 +160,24 @@
     
 }
 
++(NSString*)getAppServerCode
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* userLanguage = [defaults objectForKey:KEY_SYSTEM_LANG];
+
+    if ([Utils isStringNull:userLanguage]) {
+      
+        NSLocale *currentLocale = [NSLocale currentLocale];
+        
+        NSString* deviceLanguageCode = [currentLocale objectForKey:NSLocaleLanguageCode];
+        
+        NSString* serverLanguageCode = [LanguageManager convertLocalCodeToServer:deviceLanguageCode];
+        
+        userLanguage = serverLanguageCode;
+    }
+    
+    return userLanguage;
+}
 // language code is of server code
 +(void)setDeviceAppLanguage:(NSString*)languageCode
 {
@@ -181,5 +199,38 @@
     
 }
 
++(NSString*)convertLocalCodeToServer:(NSString*)localCode
+{
+    
+    if ([localCode isEqualToString:@"zh"])
+    {
+        return CHINESE_SERVER_NAME;
+        
+    }
+//    else if ([localCode isEqualToString:@"zh"])
+//    {
+//        return CHINESE_SERVER_NAME;
+//        
+//    }
+    else if ([localCode isEqualToString:@"id"])
+    {
+        return INDONESIA_SERVER_NAME;
+        
+    }
+    
+    else if ([localCode isEqualToString:@"th"])
+    {
+        return THAI_SERVER_NAME;
+    }
+//    else if ([localCode isEqualToString:@"ph"])
+//    {
+//        return FILIPINES_SERVER_NAME;
+//    }
+    else
+    {
+        return ENGLISH_SERVER_NAME;
+    }
+    
+}
 
 @end

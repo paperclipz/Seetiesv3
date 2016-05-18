@@ -268,6 +268,8 @@
     [Utils reloadAppView:YES];
     self.tabBarController.selectedIndex = 0;
     
+    [self reloadTabbar];
+    
     [TSMessage showNotificationInViewController:self.newsFeedViewController title:LocalisedString(@"system") subtitle:LocalisedString(@"Login Successfully") type:TSMessageNotificationTypeSuccess duration:1.0f canBeDismissedByUser:YES];
     
     /*send crashlytics user UID to track crashes*/

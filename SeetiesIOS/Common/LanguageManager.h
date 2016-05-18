@@ -26,4 +26,9 @@
 +(NSString*)getDeviceAppLanguageCode;
 +(NSString*)getDeviceDefaultLanguageCode;
 +(void)setDeviceAppLanguage:(NSString*)languageCode;
+
+// code are of server and local code not app code (app code refer to long string of numerics)
++(NSString*)getAppServerCode;
++(NSString*)convertLocalCodeToServer:(NSString*)localCode;
+
 @end

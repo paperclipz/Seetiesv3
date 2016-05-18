@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.m
 //  SeetiesIOS
@@ -79,18 +80,25 @@
 
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
     
+    NSString* key_system_lang = [userDefaults stringForKey:KEY_SYSTEM_LANG];
+
     // Check whether the language code has already been set.
-    if (![userDefaults stringForKey:KEY_SYSTEM_LANG]) {
+    if (!key_system_lang) {
         
         NSLog(@"No language set - trying to find the right setting for the device locale.");
         
         NSLocale *currentLocale = [NSLocale currentLocale];
         
+        NSString* localDeviceLanguageCode = [currentLocale objectForKey:NSLocaleLanguageCode];
+        
+        NSString* localServerLanguageCode = [LanguageManager convertLocalCodeToServer:localDeviceLanguageCode];
+
         NSString* langServerCode = ENGLISH_SERVER_NAME;
+        
         // Iterate through available localisations to find the matching one for the device locale.
         for (Locale *localisation in languageManager.availableLocales) {
             
-            if ([localisation.languageCode caseInsensitiveCompare:[currentLocale objectForKey:NSLocaleLanguageCode]] == NSOrderedSame) {
+            if ([localisation.languageCode caseInsensitiveCompare:localServerLanguageCode] == NSOrderedSame) {
                 
                 langServerCode = localisation.languageCode;
 
@@ -101,7 +109,7 @@
         [LanguageManager setDeviceAppLanguage:langServerCode];
     }
     
-    SLog(@"\n ========== Current Language : %@ ==========",[LanguageManager getDeviceAppLanguageCode]);
+    SLog(@"\n ========== Current Language : %@ ==========",[LanguageManager getAppServerCode]);
 
 }
 
