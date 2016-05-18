@@ -58,7 +58,7 @@
     self.ibHeaderTitle.text = LocalisedString(@"Invite Friends & Get Rewards");
     self.ibReferralDesc.text = LocalisedString(@"Tap to copy");
     
-    NSString *languageCode = [Utils getDeviceAppLanguageCode];
+    NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
     NSString *message = self.inviteFriendModel.message[languageCode]? self.inviteFriendModel.message[languageCode] : @"";
     self.ibCampaignDesc.text = LocalisedString(message);
     
@@ -123,7 +123,7 @@
     self.promoPopoutViewController = nil;
     [self.promoPopoutViewController setViewType:PopOutViewTypeMessage];
     [self.promoPopoutViewController setPopOutCondition:PopOutConditionChooseShopOnly];
-    NSString *languageCode = [Utils getDeviceAppLanguageCode];
+    NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
     NSString *message = self.inviteFriendModel.desc[languageCode]? self.inviteFriendModel.desc[languageCode] : @"";
     [self.promoPopoutViewController setMessage:message];
     

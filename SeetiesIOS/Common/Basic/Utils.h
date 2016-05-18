@@ -236,9 +236,6 @@ typedef enum {
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local;
 
-+(NSString*)getDeviceAppLanguageCode;
-+(NSString*)getDeviceDefaultLanguageCode;
-+(void)setDeviceAppLanguage:(NSString*)languageCode;
 +(NSString*)getUniqueDeviceIdentifier;
 
 #define ARRAY_LIST_SIZE 10.0f

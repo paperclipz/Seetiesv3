@@ -154,13 +154,13 @@
     CLLocation* location = [[SearchManager Instance]getAppLocation];
     
     
-    NSArray* arrLanguages = @[[Utils getDeviceAppLanguageCode]];
+    NSArray* arrLanguages = @[[LanguageManager getDeviceAppLanguageCode]];
     NSDictionary* dict;
     @try {
         
         dict = @{@"uid" : [Utils getUserID],
                                @"categories" : result,
-                               @"system_language" : [Utils getDeviceAppLanguageCode],
+                               @"system_language" : [LanguageManager getDeviceAppLanguageCode],
                                @"languages" :arrLanguages,
                                @"lat" : @(location.coordinate.latitude),
                                @"lng" : @(location.coordinate.longitude),

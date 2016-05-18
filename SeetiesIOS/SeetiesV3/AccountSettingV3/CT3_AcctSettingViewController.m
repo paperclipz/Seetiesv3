@@ -170,7 +170,7 @@
                 cell.lblTitle.text = LocalisedString(desc);
                 
                 
-                cell.lblDesc.text = [Utils getLanguageName:[Utils getDeviceAppLanguageCode]];
+                cell.lblDesc.text = [Utils getLanguageName:[LanguageManager getDeviceAppLanguageCode]];
             }
             @catch (NSException *exception) {
                 
@@ -425,7 +425,7 @@
                                                
                                                LanguageModel* lModel = models.languages[selectedIndex];
                                                
-                                               [Utils setDeviceAppLanguage:lModel.language_code];
+                                               [LanguageManager setDeviceAppLanguage:lModel.language_code];
                                                
                                                [self.ibTableView reloadData];
                                                
@@ -535,7 +535,7 @@
         
         dict = @{@"uid" : [Utils getUserID],
                  @"token":[Utils getAppToken],
-                 @"system_language" : [Utils getDeviceAppLanguageCode],
+                 @"system_language" : [LanguageManager getDeviceAppLanguageCode],
                  };
         
     }

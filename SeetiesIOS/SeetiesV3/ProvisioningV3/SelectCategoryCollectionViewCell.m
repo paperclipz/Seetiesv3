@@ -63,7 +63,7 @@
     self.categoryModel = model;
     [self setCustomSelected:self.categoryModel.isSelected];
     
-    NSString* defaultLangCode = [Utils getDeviceDefaultLanguageCode];
+    NSString* defaultLangCode = [LanguageManager getDeviceDefaultLanguageCode];
     self.lblTitle.text = model.single_line[defaultLangCode];
 
 }

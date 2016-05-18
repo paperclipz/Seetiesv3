@@ -20,7 +20,7 @@
 -(void)initData:(CTFeedTypeModel*)model
 {
     self.annModel = model.announcementData;
-    self.lblTitle.text = self.annModel.title[[Utils getDeviceAppLanguageCode]];
+    self.lblTitle.text = self.annModel.title[[LanguageManager getDeviceAppLanguageCode]];
 //    if(model.feedType == FeedType_Announcement_Campaign)
 //    {
 //        self.lblTitle.text = self.annModel.title[[Utils getDeviceAppLanguageCode]];

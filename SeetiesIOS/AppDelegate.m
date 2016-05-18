@@ -77,11 +77,7 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-    
     LanguageManager *languageManager = [LanguageManager sharedLanguageManager];
-    NSLog(@"===========  Language : %@  ===========", [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0]);
-    NSLog(@"===========  Region: %@  =========== ", [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]);
-    
     
     // Check whether the language code has already been set.
     if (![userDefaults stringForKey:KEY_SYSTEM_LANG]) {
@@ -90,59 +86,22 @@
         
         NSLocale *currentLocale = [NSLocale currentLocale];
         
+        NSString* langServerCode = ENGLISH_SERVER_NAME;
         // Iterate through available localisations to find the matching one for the device locale.
         for (Locale *localisation in languageManager.availableLocales) {
             
             if ([localisation.languageCode caseInsensitiveCompare:[currentLocale objectForKey:NSLocaleLanguageCode]] == NSOrderedSame) {
                 
-                [languageManager setLanguageWithLocale:localisation];
+                langServerCode = localisation.languageCode;
+
                 break;
             }
         }
         
-        // If the device locale doesn't match any of the available ones, just pick the first one.
-        if (![userDefaults stringForKey:KEY_SYSTEM_LANG]) {
-            //  NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-            NSString *language = [[NSString alloc]initWithFormat:@"%@",[[NSLocale preferredLanguages] objectAtIndex:0]];
-            NSLog(@"Get System language is %@",language);
-            // zh-Hans - Simplified Chinese
-            // zh-Hant - Traditional Chinese
-            // en - English
-            // th - Thai
-            // id - Bahasa Indonesia
-            NSInteger CheckSystemLanguage;
-            if ([language isEqualToString:@"en"]) {
-                CheckSystemLanguage = 0;
-                NSLog(@"language in here 0");
-            }else if([language isEqualToString:@"zh-Hans"]){
-                CheckSystemLanguage = 1;
-                NSLog(@"language in here 1");
-            }else if([language isEqualToString:@"zh-Hant"]){
-                CheckSystemLanguage = 2;
-                NSLog(@"language in here 2");
-            }else if([language isEqualToString:@"id"]){
-                CheckSystemLanguage = 3;
-                NSLog(@"language in here 3");
-            }else if([language isEqualToString:@"th"]){
-                CheckSystemLanguage = 4;
-                NSLog(@"language in here 4");
-            }else if([language isEqualToString:@"tl-PH"]){
-                CheckSystemLanguage = 5;
-                NSLog(@"language in here 5");
-            }else{
-                CheckSystemLanguage = 0;
-                NSLog(@"language in here 0");
-            }
-            
-            
-            NSLog(@"Couldn't find the right localisation - using default.");
-            [languageManager setLanguageWithLocale:languageManager.availableLocales[CheckSystemLanguage]];
-        }
+        [LanguageManager setDeviceAppLanguage:langServerCode];
     }
-    else {
-        NSLog(@"DEFAULTS_KEY_LANGUAGE_CODE = %@",KEY_SYSTEM_LANG);
-        NSLog(@"The language has already been set :)");
-    }
+    
+    SLog(@"\n ========== Current Language : %@ ==========",[LanguageManager getDeviceAppLanguageCode]);
 
 }
 

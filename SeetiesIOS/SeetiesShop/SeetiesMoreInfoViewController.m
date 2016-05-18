@@ -134,7 +134,7 @@
     BTranslation = NO;
     [self initTableViewDelegate];
     
-    if ([self.seShopModel.language isEqualToString:[Utils getDeviceAppLanguageCode]]) {
+    if ([self.seShopModel.language isEqualToString:[LanguageManager getDeviceAppLanguageCode]]) {
         self.btnTranslate.hidden = YES;
     }
     
