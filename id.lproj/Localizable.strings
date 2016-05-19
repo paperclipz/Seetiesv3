@@ -1148,7 +1148,7 @@
 "x-TIME-USE" = "x KALI PEMAKAIAN";
 "Expires in {!number} day(s)" = "Kadaluarsa dalam {!number} hari";
 "Redeem" = "Redeem";
-"Sorry! This voucher is not currently available for redemption." = "Maaf, untuk sementara voucher ini tidak dapat ditukarkan";
+"Sorry! This voucher is currently not available for redemption." = "Maaf, untuk sementara voucher ini tidak dapat ditukarkan";
 "This deal can only be redeemed on " = "Penawaran ini hanya dapat ditukarkan pada";
 "{!date}, {!time}" = "{!date}, {!time}";
 "Okay!" = "Oke!";
@@ -1444,7 +1444,7 @@
 "Sign Up with Seeties!" = "";
 "Join Seeties to enjoy awesome deals around your city! " = "Gabung ke Seeties untuk menikmati penawaran menarik di kotamu! ";
 //======CHANGE======//
-"Hey you can use my referral code to sign up and get GOODIES! \n'{!referral_code}'.\n{!Seeties URL}" = "Hai, pakai kode referral aku yuk untuk dapetin voucher GRATIS di tempat-tempat hangout favorit kamu! \n'{!referral_code}'.\n{!Seeties URL}";
+"Hey you can use my referral code to sign up and get GOODIES! \n'{!referral_code}'.\n{!Seeties URL}" = "Halo haloooo 😁✌ \nDaftar Seeties pakai kode referral aku yuk untuk dapetin voucher GRATIS di tempat-tempat hangout favorit kamu! \n'{!referral_code}'.\n{!Seeties URL}";
 "Sharing is caring!\nSign up with Seeties today.\n{!Seeties URL}" = "";
 //======CHANGE======//
 "Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "Versi {!version number}\n- Undang teman & dapatkan hadiah langsung\n- Fix bugs";

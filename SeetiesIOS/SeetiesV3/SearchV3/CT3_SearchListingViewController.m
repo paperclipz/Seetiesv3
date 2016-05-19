@@ -118,9 +118,6 @@
     self.ibSearchTableView.delegate = self;
     self.ibSearchTableView.dataSource = self;
     
-    [self formatShopFilter];
-    [self formatCollectionFilter];
-    [self formatPostFilter];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -195,6 +192,10 @@
     self.ibLocationText.text = self.locationName;
     [self.ibSearchContentView setSideCurveBorder];
     [self.ibLocationContentView setSideCurveBorder];
+    
+    [self formatShopFilter];
+    [self formatCollectionFilter];
+    [self formatPostFilter];
 
 //    CGRect frame = [Utils getDeviceScreenSize];
 //    [self.ibScrollView setWidth:frame.size.width];

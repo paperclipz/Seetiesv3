@@ -1148,7 +1148,7 @@
 "x-TIME-USE" = "x次性";
 "Expires in {!number} day(s)" = "即将在{!number}日后截止";
 "Redeem" = "领取";
-"Sorry! This voucher is not currently available for redemption." = "哎唷! 此优惠劵还不能被使用唷。";
+"Sorry! This voucher is currently not available for redemption." = "哎唷! 此优惠劵还不能被使用唷。";
 "This deal can only be redeemed on " = "你可在以下日期与时间使用此券喔";
 "{!date}, {!time}" = "{!date}, {!time}";
 "Okay!" = "好的, 知道了";
