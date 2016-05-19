@@ -1148,7 +1148,7 @@
 "x-TIME-USE" = "x KALI PEMAKAIAN";
 "Expires in {!number} day(s)" = "Kadaluarsa dalam {!number} hari";
 "Redeem" = "Redeem";
-"Sorry! This voucher is not currently available for redemption." = "Maaf, untuk sementara voucher ini tidak dapat ditukarkan";
+"Sorry! This voucher is currently not available for redemption." = "Maaf, untuk sementara voucher ini tidak dapat ditukarkan";
 "This deal can only be redeemed on " = "Penawaran ini hanya dapat ditukarkan pada";
 "{!date}, {!time}" = "{!date}, {!time}";
 "Okay!" = "Oke!";

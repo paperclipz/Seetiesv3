@@ -1149,7 +1149,7 @@
 "x-TIME-USE" = "ใช้ x ครั้ง";
 "Expires in {!number} day(s)" = "หมดอายุใน {!number} วัน";
 "Redeem" = "แลก";
-"Sorry! This voucher is not currently available for redemption." = "ขอโทษ! ขณะนี้ คุณไม่สามารถแลก voucher นี้ได้ ";
+"Sorry! This voucher is currently not available for redemption." = "ขอโทษ! ขณะนี้ คุณไม่สามารถแลก voucher นี้ได้ ";
 "This deal can only be redeemed on " = "คุณแลกดีลนี้ได้เมื่อ ";
 "{!date}, {!time}" = "{!date} {!time}";
 "Okay!" = "ok";

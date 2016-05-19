@@ -421,7 +421,7 @@
             
         case PopOutViewTypeError:
         {
-            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is not currently available for redemption.");
+            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is currently not available for redemption.");
             self.ibErrorDesc.text = LocalisedString(@"This deal can only be redeemed on ");
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             
