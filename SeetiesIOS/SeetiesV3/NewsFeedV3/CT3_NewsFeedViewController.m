@@ -57,6 +57,7 @@
 
 #import "UITableView+emptyState.h"
 #import "UIButton+Activity.h"
+#import "UIImageView+Extension.h"
 
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
@@ -84,7 +85,6 @@ static NSCache* heightCache = nil;
     BOOL isDealCollectionShown;
     
     BOOL isLoadingLocation;
-
     
 }
 @property (weak, nonatomic) IBOutlet UIButton *btnCurrentLocation;
@@ -506,7 +506,6 @@ static NSCache* heightCache = nil;
     lastUpdatedLocation = @"";
     
     update_location_method = @"";
-    
     
     [self initSelfView];
 
