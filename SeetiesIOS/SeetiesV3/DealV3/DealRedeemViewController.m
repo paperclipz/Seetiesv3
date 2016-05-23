@@ -412,7 +412,7 @@
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutRedeemVoucher parameter:finalDict appendString:nil success:^(id object) {
 
-        if (self.dealRedeemDelegate) {
+        if (self.dealRedeemDelegate && [self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
             [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
         }
         

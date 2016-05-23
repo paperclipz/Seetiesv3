@@ -604,7 +604,7 @@
             
         case PopOutViewTypeRedemptionSuccessful:
         {
-            if (self.promoPopOutDelegate) {
+            if (self.promoPopOutDelegate && [self.promoPopOutDelegate respondsToSelector:@selector(viewDealDetailsClicked:)]) {
                 [self.promoPopOutDelegate viewDealDetailsClicked:self.dealsModel];
             }
             [nextVC setViewType:PopOutViewTypeQuit];
@@ -623,7 +623,7 @@
             }
             
             if (self.popOutCondition == PopOutConditionChooseShopOnly) {
-                if (self.promoPopOutDelegate) {
+                if (self.promoPopOutDelegate && [self.promoPopOutDelegate respondsToSelector:@selector(chooseShopConfirmClicked:forShop:)]) {
                     [self.promoPopOutDelegate chooseShopConfirmClicked:self.dealModel forShop:self.selectedShop];
                     [nextVC setViewType:PopOutViewTypeQuit];
                 }
@@ -947,7 +947,7 @@
         [LoadingManager hide];
         self.isLoading = NO;
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
-        if (self.promoPopOutDelegate) {
+        if (self.promoPopOutDelegate && [self.promoPopOutDelegate respondsToSelector:@selector(promoHasBeenRedeemed:)]) {
             [self.promoPopOutDelegate promoHasBeenRedeemed:self.dealsModel];
         }
         

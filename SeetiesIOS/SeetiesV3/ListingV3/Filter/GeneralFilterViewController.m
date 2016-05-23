@@ -121,7 +121,7 @@
 
 #pragma mark - IBAction
 - (IBAction)applyFilterBtnClicked:(id)sender {
-    if (self.delegate) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(applyFilterClicked:)]) {
         [self.delegate applyFilterClicked:self.filtersModel];
     }
     [self dismissViewControllerAnimated:YES completion:^{

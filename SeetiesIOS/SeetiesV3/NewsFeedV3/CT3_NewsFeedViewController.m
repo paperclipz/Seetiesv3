@@ -234,6 +234,10 @@ static NSCache* heightCache = nil;
     }
 }
 
+-(void)promoHasBeenRedeemed:(DealsModel *)dealsModel{
+    [self.ibTableView reloadData];
+}
+
 #pragma mark - Declaration
 
 -(CT3_EnableLocationViewController*)enableLocationViewController

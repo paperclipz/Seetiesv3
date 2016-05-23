@@ -1355,7 +1355,7 @@
 
         DealModel *model = [[ConnectionManager dataManager] dealModel];
         self.dealModel = model;
-        if (self.delegate) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dealUpdated:)]) {
             [self.delegate dealUpdated:self.dealModel];
         }
         
@@ -1383,7 +1383,7 @@
 
         DealModel *model = [[ConnectionManager dataManager] dealModel];
         self.dealModel = model;
-        if (self.delegate) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dealUpdated:)]) {
             [self.delegate dealUpdated:self.dealModel];
         }
         [self updateViews];
@@ -1426,7 +1426,7 @@
         DealModel *dealModel = [[ConnectionManager dataManager] dealModel];
         self.dealModel = dealModel;
         
-        if (self.delegate) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(dealUpdated:)]) {
             [self.delegate dealUpdated:self.dealModel];
         }
         
