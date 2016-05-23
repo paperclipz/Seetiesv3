@@ -1434,100 +1434,100 @@
 //        [self.view addSubview:button];
 //    }
 }
--(IBAction)FBInvitesButton:(id)sender{
-    NSLog(@"FB Invites Button Click");
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *Getfbextendedtoken = [defaults objectForKey:@"fbextendedtoken"];
-    NSLog(@"Getfbextendedtoken is %@",Getfbextendedtoken);
-    
-    
-    if ([Getfbextendedtoken length] == 0 || Getfbextendedtoken == nil || [Getfbextendedtoken isEqualToString:@"(null)"]) {
-        NSLog(@"Open connect facebook");
-        [ShowActivity startAnimating];
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
-                                           allowLoginUI:YES
-                                      completionHandler:
-         ^(FBSession *session, FBSessionState state, NSError *error) {
-             
-             switch (state) {
-                 case FBSessionStateOpen:{
-                     [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-                         if (error) {
-                             
-                             NSLog(@"error:%@",error);
-                             
-                             
-                         }
-                         else
-                         {
-                             // retrive user's details at here as shown below
-                             NSLog(@"all information is %@",user);
-                             GetFB_ID = (NSString *)[user valueForKey:@"id"];
-                             
-                             [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
-                                 if (error) {
-                                     // Handle error
-                                 }else {
-                                     Name = [FBuser name];
-                                     NSString *userImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", GetFB_ID];
-                                     UserEmail = [user valueForKey:@"email"];
-                                     UserGender = [user valueForKey:@"gender"];
-                                     Userdob = [user valueForKey:@"birthday"];
-                                     UserName = [user valueForKey:@"last_name"];
-                                     UserName = [[NSString alloc]initWithFormat:@"%@%@",[user valueForKey:@"first_name"],[user valueForKey:@"last_name"]];
-                                     
-                                     NSLog(@"name is %@",Name);
-                                     NSLog(@"username is %@",UserName);
-                                     NSLog(@"Userid is %@",GetFB_ID);
-                                     NSLog(@"useremail is %@",UserEmail);
-                                     NSLog(@"usergender is %@",UserGender);
-                                     NSLog(@"userImageURL is %@",userImageURL);
-                                     NSLog(@"userdob is %@",Userdob);
-                                     NSLog(@"session is %@",session);
-                                     
-                                     GetFB_Token = [FBSession activeSession].accessTokenData.accessToken;
-                                     NSLog(@"GetToken is %@",GetFB_Token);
-                                     
-                                     [self UploadInformationToServer];
-                                     
-                                 }
-                             }];
-                             
-                         }
-                     }];
-                     break;
-                 }
-                 case FBSessionStateClosed:
-                 case FBSessionStateClosedLoginFailed:
-                     [FBSession.activeSession closeAndClearTokenInformation];
-                     break;
-                     
-                 default:
-                     break;
-             }
-             
-             // Retrieve the app delegate
-             AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-             // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
-             [appDelegate sessionStateChanged:session state:state error:error];
-             
-         }];
-    }else{
-        FBSDKAppInviteContent *InvitesContent =[[FBSDKAppInviteContent alloc] init];
-        InvitesContent.appLinkURL = [NSURL URLWithString:@"https://fb.me/805801229516491"];
-        //optionally set previewImageURL
-        //InvitesContent.previewImageURL = [NSURL URLWithString:@"https://www.mydomain.com/my_invite_image.jpg"];
-        
-        // present the dialog. Assumes self implements protocol `FBSDKAppInviteDialogDelegate`
-        [FBSDKAppInviteDialog showWithContent:InvitesContent
-                                     delegate:self];
-    }
-    
-
-    
-    
-}
+//-(IBAction)FBInvitesButton:(id)sender{
+//    NSLog(@"FB Invites Button Click");
+//    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *Getfbextendedtoken = [defaults objectForKey:@"fbextendedtoken"];
+//    NSLog(@"Getfbextendedtoken is %@",Getfbextendedtoken);
+//    
+//    
+//    if ([Getfbextendedtoken length] == 0 || Getfbextendedtoken == nil || [Getfbextendedtoken isEqualToString:@"(null)"]) {
+//        NSLog(@"Open connect facebook");
+//        [ShowActivity startAnimating];
+//        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
+//                                           allowLoginUI:YES
+//                                      completionHandler:
+//         ^(FBSession *session, FBSessionState state, NSError *error) {
+//             
+//             switch (state) {
+//                 case FBSessionStateOpen:{
+//                     [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+//                         if (error) {
+//                             
+//                             NSLog(@"error:%@",error);
+//                             
+//                             
+//                         }
+//                         else
+//                         {
+//                             // retrive user's details at here as shown below
+//                             NSLog(@"all information is %@",user);
+//                             GetFB_ID = (NSString *)[user valueForKey:@"id"];
+//                             
+//                             [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
+//                                 if (error) {
+//                                     // Handle error
+//                                 }else {
+//                                     Name = [FBuser name];
+//                                     NSString *userImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", GetFB_ID];
+//                                     UserEmail = [user valueForKey:@"email"];
+//                                     UserGender = [user valueForKey:@"gender"];
+//                                     Userdob = [user valueForKey:@"birthday"];
+//                                     UserName = [user valueForKey:@"last_name"];
+//                                     UserName = [[NSString alloc]initWithFormat:@"%@%@",[user valueForKey:@"first_name"],[user valueForKey:@"last_name"]];
+//                                     
+//                                     NSLog(@"name is %@",Name);
+//                                     NSLog(@"username is %@",UserName);
+//                                     NSLog(@"Userid is %@",GetFB_ID);
+//                                     NSLog(@"useremail is %@",UserEmail);
+//                                     NSLog(@"usergender is %@",UserGender);
+//                                     NSLog(@"userImageURL is %@",userImageURL);
+//                                     NSLog(@"userdob is %@",Userdob);
+//                                     NSLog(@"session is %@",session);
+//                                     
+//                                     GetFB_Token = [FBSession activeSession].accessTokenData.accessToken;
+//                                     NSLog(@"GetToken is %@",GetFB_Token);
+//                                     
+//                                     [self UploadInformationToServer];
+//                                     
+//                                 }
+//                             }];
+//                             
+//                         }
+//                     }];
+//                     break;
+//                 }
+//                 case FBSessionStateClosed:
+//                 case FBSessionStateClosedLoginFailed:
+//                     [FBSession.activeSession closeAndClearTokenInformation];
+//                     break;
+//                     
+//                 default:
+//                     break;
+//             }
+//             
+//             // Retrieve the app delegate
+//             AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+//             // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
+//             [appDelegate sessionStateChanged:session state:state error:error];
+//             
+//         }];
+//    }else{
+//        FBSDKAppInviteContent *InvitesContent =[[FBSDKAppInviteContent alloc] init];
+//        InvitesContent.appLinkURL = [NSURL URLWithString:@"https://fb.me/805801229516491"];
+//        //optionally set previewImageURL
+//        //InvitesContent.previewImageURL = [NSURL URLWithString:@"https://www.mydomain.com/my_invite_image.jpg"];
+//        
+//        // present the dialog. Assumes self implements protocol `FBSDKAppInviteDialogDelegate`
+//        [FBSDKAppInviteDialog showWithContent:InvitesContent
+//                                     delegate:self];
+//    }
+//    
+//
+//    
+//    
+//}
 - (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog didCompleteWithResults:(NSDictionary *)results{
     NSLog(@"appInviteDialog results is %@",results);
 }

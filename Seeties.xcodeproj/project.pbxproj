@@ -1099,18 +1099,11 @@
 		8AD6C1191B706CF30040437E /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE1C1B706CF30040437E /* pin@2x.png */; };
 		8AD6C11A1B706CF30040437E /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE1D1B706CF30040437E /* poweredByFoursquare_gray.png */; };
 		8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE1E1B706CF30040437E /* poweredByFoursquare_gray@2x.png */; };
-		8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22C1B7070A60040437E /* FacebookSDK.framework */; };
-		8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */; };
-		8AD6C2341B7070A60040437E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */; };
 		8AD6C2B11B7079AF0040437E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B01B7079AF0040437E /* Social.framework */; };
 		8AD6C2B31B7079B40040437E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B21B7079B40040437E /* Accounts.framework */; };
 		8AD6C2B51B7079FA0040437E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B41B7079FA0040437E /* AssetsLibrary.framework */; };
 		8AD6C2B71B707A130040437E /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B61B707A130040437E /* libstdc++.6.dylib */; };
 		8AD6C2B91B707A1B0040437E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B81B707A1B0040437E /* MobileCoreServices.framework */; };
-		8AD6C2BE1B707A470040437E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BA1B707A470040437E /* Parse.framework */; };
-		8AD6C2BF1B707A470040437E /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BB1B707A470040437E /* ParseCrashReporting.framework */; };
-		8AD6C2C01B707A470040437E /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BC1B707A470040437E /* ParseFacebookUtils.framework */; };
-		8AD6C2C11B707A470040437E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BD1B707A470040437E /* ParseUI.framework */; };
 		8AD6C2C31B707A5A0040437E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C21B707A5A0040437E /* libsqlite3.0.dylib */; };
 		8AD6C2C71B707A8C0040437E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C61B707A8C0040437E /* OpenGLES.framework */; };
 		8AD6C2C91B707AAF0040437E /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C81B707AAF0040437E /* libstdc++.dylib */; };
@@ -1325,7 +1318,8 @@
 		C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C157141C574BB6007608FC /* PromoPopOutViewController.m */; };
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
 		C2E6D7561CDA052C00B53BF4 /* InviteFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6D7551CDA052C00B53BF4 /* InviteFriendModel.m */; };
-		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
+		C7023C231CF2BFFD00A2DF04 /* FBLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */; };
 		C71B5E181CBE3BED00B4FA91 /* FriendSuggestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */; };
 		C75015FE1CD0A7640048C279 /* EditProfileV3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */; };
 		C75015FF1CD0A7640048C279 /* EditProfileV3ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */; };
@@ -2688,18 +2682,11 @@
 		8AD6BE1C1B706CF30040437E /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
 		8AD6BE1D1B706CF30040437E /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
 		8AD6BE1E1B706CF30040437E /* poweredByFoursquare_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poweredByFoursquare_gray@2x.png"; sourceTree = "<group>"; };
-		8AD6C22C1B7070A60040437E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = SeetiesIOS/framework/FacebookSDK.framework; sourceTree = "<group>"; };
-		8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = SeetiesIOS/framework/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = SeetiesIOS/framework/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		8AD6C2B01B7079AF0040437E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		8AD6C2B21B7079B40040437E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8AD6C2B41B7079FA0040437E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		8AD6C2B61B707A130040437E /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		8AD6C2B81B707A1B0040437E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		8AD6C2BA1B707A470040437E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = SeetiesIOS/framework/Parse.framework; sourceTree = "<group>"; };
-		8AD6C2BB1B707A470040437E /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = SeetiesIOS/framework/ParseCrashReporting.framework; sourceTree = "<group>"; };
-		8AD6C2BC1B707A470040437E /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = SeetiesIOS/framework/ParseFacebookUtils.framework; sourceTree = "<group>"; };
-		8AD6C2BD1B707A470040437E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = SeetiesIOS/framework/ParseUI.framework; sourceTree = "<group>"; };
 		8AD6C2C21B707A5A0040437E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		8AD6C2C61B707A8C0040437E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		8AD6C2C81B707AAF0040437E /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -3036,6 +3023,8 @@
 		C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoPopOutViewController.xib; sourceTree = "<group>"; };
 		C2E6D7541CDA052C00B53BF4 /* InviteFriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendModel.h; sourceTree = "<group>"; };
 		C2E6D7551CDA052C00B53BF4 /* InviteFriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendModel.m; sourceTree = "<group>"; };
+		C7023C211CF2BFFD00A2DF04 /* FBLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginManager.h; sourceTree = "<group>"; };
+		C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginManager.m; sourceTree = "<group>"; };
 		C71B5E161CBE3BED00B4FA91 /* FriendSuggestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSuggestionModel.h; sourceTree = "<group>"; };
 		C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSuggestionModel.m; sourceTree = "<group>"; };
 		C75015FA1CD0A7640048C279 /* EditProfileV3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV3ViewController.h; sourceTree = "<group>"; };
@@ -3062,18 +3051,11 @@
 				8AD6C2C91B707AAF0040437E /* libstdc++.dylib in Frameworks */,
 				8AD6C2C71B707A8C0040437E /* OpenGLES.framework in Frameworks */,
 				8AD6C2C31B707A5A0040437E /* libsqlite3.0.dylib in Frameworks */,
-				8AD6C2C01B707A470040437E /* ParseFacebookUtils.framework in Frameworks */,
 				8AD6C2B91B707A1B0040437E /* MobileCoreServices.framework in Frameworks */,
 				8AD6C2B71B707A130040437E /* libstdc++.6.dylib in Frameworks */,
 				8AD6C2B51B7079FA0040437E /* AssetsLibrary.framework in Frameworks */,
 				8AD6C2B31B7079B40040437E /* Accounts.framework in Frameworks */,
 				8AD6C2B11B7079AF0040437E /* Social.framework in Frameworks */,
-				8AD6C2C11B707A470040437E /* ParseUI.framework in Frameworks */,
-				8AD6C2341B7070A60040437E /* FBSDKShareKit.framework in Frameworks */,
-				8AD6C2BF1B707A470040437E /* ParseCrashReporting.framework in Frameworks */,
-				8AD6C2BE1B707A470040437E /* Parse.framework in Frameworks */,
-				8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */,
-				8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */,
 				C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3105,18 +3087,11 @@
 				8AD6C2C81B707AAF0040437E /* libstdc++.dylib */,
 				8AD6C2C61B707A8C0040437E /* OpenGLES.framework */,
 				8AD6C2C21B707A5A0040437E /* libsqlite3.0.dylib */,
-				8AD6C2BA1B707A470040437E /* Parse.framework */,
-				8AD6C2BB1B707A470040437E /* ParseCrashReporting.framework */,
-				8AD6C2BC1B707A470040437E /* ParseFacebookUtils.framework */,
-				8AD6C2BD1B707A470040437E /* ParseUI.framework */,
 				8AD6C2B81B707A1B0040437E /* MobileCoreServices.framework */,
 				8AD6C2B61B707A130040437E /* libstdc++.6.dylib */,
 				8AD6C2B41B7079FA0040437E /* AssetsLibrary.framework */,
 				8AD6C2B21B7079B40040437E /* Accounts.framework */,
 				8AD6C2B01B7079AF0040437E /* Social.framework */,
-				8AD6C22C1B7070A60040437E /* FacebookSDK.framework */,
-				8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */,
-				8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */,
 				0D9C815292A4ED6F2408E5E5 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -5764,6 +5739,8 @@
 				C295DCDA1C72C54300A1DED3 /* DealManager.m */,
 				8A142D421CDB61D700337DBF /* OfflineManager.h */,
 				8A142D431CDB61D700337DBF /* OfflineManager.m */,
+				C7023C211CF2BFFD00A2DF04 /* FBLoginManager.h */,
+				C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */,
 			);
 			name = MANAGER;
 			path = Managers;
@@ -7855,6 +7832,7 @@
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
 				8AEDBFAC1C2031BA000BD2FF /* RecommendationVenueModel.m in Sources */,
 				8ABA51F41C0FE7F000A3DC15 /* PhotoListViewController.m in Sources */,
+				C7023C231CF2BFFD00A2DF04 /* FBLoginManager.m in Sources */,
 				C294FD261C9815B500C455C8 /* FilterCategoryModel.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
 				8AC7B6711CE5C102000775CC /* UIView+Extension.m in Sources */,
@@ -8098,13 +8076,14 @@
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
+				FacebookID_SuffixName = dev;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8118,7 +8097,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8199,13 +8178,14 @@
 				Bundle_Name = Seeties;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
+				FacebookID_SuffixName = seeties;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8219,7 +8199,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = "Release Staging";
@@ -8350,6 +8330,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
+				FacebookID_SuffixName = dev;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8364,7 +8345,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 			};
 			name = Debug;
 		};
@@ -8384,6 +8365,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
+				FacebookID_SuffixName = seeties;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8398,7 +8380,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 			};
 			name = Release;
 		};

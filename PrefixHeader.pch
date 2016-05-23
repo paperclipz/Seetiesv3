@@ -80,7 +80,7 @@
 #endif
 //===============Social media=================
 
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
 
