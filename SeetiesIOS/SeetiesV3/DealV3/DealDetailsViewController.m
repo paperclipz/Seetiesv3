@@ -938,7 +938,7 @@
             CGRect rect = [formattedTerm boundingRectWithSize:CGSizeMake(self.ibTnCContent.frame.size.width-bulletPoint.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil];
             UILabel *tncLbl = [[UILabel alloc]initWithFrame:CGRectMake(bulletPoint.frame.size.width, yOrigin, ceilf(rect.size.width), ceilf(rect.size.height))];
             tncLbl.font = [UIFont systemFontOfSize:fontSize];
-            tncLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+            tncLbl.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1];
             tncLbl.numberOfLines = 0;
             tncLbl.text = formattedTerm;
             
