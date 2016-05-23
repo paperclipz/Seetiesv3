@@ -185,7 +185,7 @@
     NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
-                           @"uid":self.userID
+                           @"uid":self.userID?self.userID:@""
                            };
     
     [self.ibTableView showLoading];
