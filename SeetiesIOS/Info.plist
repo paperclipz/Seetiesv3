@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>FacebookUrlSchemeSuffix</key>
+	<string>$(FacebookID_SuffixName)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -31,7 +33,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb476862919076992</string>
+				<string>fb476862919076992$(FacebookID_SuffixName)</string>
 				<string>wxd930ea5d5a258f4f</string>
 			</array>
 		</dict>

@@ -28,6 +28,12 @@ pod 'IDMPhotoBrowser'
 pod 'YLGIFImage'
 pod 'AFNetworking', '~> 3.0'
 pod 'AMPopTip'
+pod 'Parse'
+
+#facebook SDK
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
 
 #================ Possible can be deleted =====================#
 #pod 'DBCamera', '~> 2.4'

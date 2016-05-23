@@ -18,12 +18,24 @@ PODS:
     - AFNetworking/NSURLSession
   - AMPopTip (1.0.0)
   - APParallaxHeader (0.1.6)
+  - Bolts (1.7.0):
+    - Bolts/AppLinks (= 1.7.0)
+    - Bolts/Tasks (= 1.7.0)
+  - Bolts/AppLinks (1.7.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.7.0)
   - BOString (0.10.0)
   - CLLocationManager-blocks (1.3.3)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - DACircularProgress (2.3.1)
   - Fabric (1.6.7)
+  - FBSDKCoreKit (4.11.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.11.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.11.0):
+    - FBSDKCoreKit
   - HexColors (2.3.0)
   - HMSegmentedControl (1.5.2)
   - IDMPhotoBrowser (1.8.4):
@@ -42,6 +54,8 @@ PODS:
   - MZAppearance (1.1.6)
   - NSDate+Calendar (0.0.8)
   - NSDate-Time-Ago (1.0.1)
+  - Parse (1.13.0):
+    - Bolts/Tasks (~> 1.6)
   - pop (1.0.9)
   - PureLayout (3.0.1)
   - SDWebImage (3.7.5):
@@ -65,6 +79,9 @@ DEPENDENCIES:
   - CLLocationManager-blocks
   - Crashlytics
   - Fabric
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
   - HMSegmentedControl
   - IDMPhotoBrowser
   - InstagramKit (~> 3.0)
@@ -75,6 +92,7 @@ DEPENDENCIES:
   - MZAppearance
   - NSDate+Calendar
   - NSDate-Time-Ago
+  - Parse
   - PureLayout
   - SDWebImage
   - STPopup
@@ -99,11 +117,15 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AMPopTip: e1cd96e10a64fb329d9cba8d6f8758d20987b079
   APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   BOString: b4c4df4f8a7f046c42a51c32629772dc2701fc47
   CLLocationManager-blocks: ae34b44992b3d26de10d27d51043a123444efb1b
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
+  FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
+  FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   IDMPhotoBrowser: b574fe3229754e701f32df271afbc4ac7e4e1997
@@ -115,6 +137,7 @@ SPEC CHECKSUMS:
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   NSDate+Calendar: 4aa9f6eb520bdbe7cfd82fbf6c7d35b9725c8188
   NSDate-Time-Ago: e9de167d0659ebe465c273e833e7b582f061fc41
+  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461

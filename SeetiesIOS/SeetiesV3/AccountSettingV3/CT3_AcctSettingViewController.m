@@ -12,6 +12,8 @@
 #import "ActionSheetPicker.h"
 #import "CTWebViewController.h"
 #import "ChangePasswordViewController.h"
+#import "FBLoginManager.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface CT3_AcctSettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic)CTWebViewController* webViewController;
@@ -560,50 +562,70 @@
 
 -(IBAction)requestServerForFacebookInfo{
     
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
-                                       allowLoginUI:YES
-                                  completionHandler:
-     ^(FBSession *session, FBSessionState state, NSError *error) {
-         
-         switch (state) {
-             case FBSessionStateOpen:{
-                 [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-                     if (error) {
-                         
-                         NSLog(@"error:%@",error);
-                         
-                     }
-                     else
-                     {                         
-                         NSLog(@"Facebook Return Result : %@",user);
-                         
-                         NSString* fb_user_id = (NSString *)[user valueForKey:@"id"];
-                         
-                         NSString* fb_token =[FBSession activeSession].accessTokenData.accessToken;
-                         
-                         if (![Utils isStringNull:fb_user_id]) {
-                             [self requestServerToUpdateUserInfoFacebook:fb_user_id facebookToken:fb_token];
-                         }
-                     }
-                 }];
-                 break;
-             }
-             case FBSessionStateClosed:
-                 [FBSession.activeSession closeAndClearTokenInformation];
-                 
-                 break;
-             case FBSessionStateClosedLoginFailed:
-                 
-                 [MessageManager showMessage:LocalisedString(@"sysem") SubTitle:LocalisedString(@"Cant Retrieve Data From Facebook") Type:TSMessageNotificationTypeError];
-                 break;
-                 
-             default:
-                 break;
-         }
-         
-         
-     }];
+//    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
+//                                       allowLoginUI:YES
+//                                  completionHandler:
+//     ^(FBSession *session, FBSessionState state, NSError *error) {
+//         
+//         switch (state) {
+//             case FBSessionStateOpen:{
+//                 [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+//                     if (error) {
+//                         
+//                         NSLog(@"error:%@",error);
+//                         
+//                     }
+//                     else
+//                     {                         
+//                         NSLog(@"Facebook Return Result : %@",user);
+//                         
+//                         NSString* fb_user_id = (NSString *)[user valueForKey:@"id"];
+//                         
+//                         NSString* fb_token =[FBSession activeSession].accessTokenData.accessToken;
+//                         
+//                         if (![Utils isStringNull:fb_user_id]) {
+//                             [self requestServerToUpdateUserInfoFacebook:fb_user_id facebookToken:fb_token];
+//                         }
+//                     }
+//                 }];
+//                 break;
+//             }
+//             case FBSessionStateClosed:
+//                 [FBSession.activeSession closeAndClearTokenInformation];
+//                 
+//                 break;
+//             case FBSessionStateClosedLoginFailed:
+//                 
+//                 [MessageManager showMessage:LocalisedString(@"sysem") SubTitle:LocalisedString(@"Cant Retrieve Data From Facebook") Type:TSMessageNotificationTypeError];
+//                 break;
+//                 
+//             default:
+//                 break;
+//         }
+//         
+//         
+//     }];
     
+    __weak typeof (self)weakSelf = self;
+    
+    [FBLoginManager performFacebookLogin:self completionBlock:^(FBSDKLoginManagerLoginResult *result) {
+        
+        if (result.isCancelled) {
+            weakSelf.isConnectedFacebook = NO;
+            [weakSelf.ibTableView reloadData];
+        }
+        else {
+            
+            [FBLoginManager performFacebookGraphRequest:^(NSDictionary *result) {
+                NSString* fb_user_id = (NSString *)[result valueForKey:@"id"];
+                NSString* fb_token = [[FBSDKAccessToken currentAccessToken] tokenString];
+                
+                if (![Utils isStringNull:fb_user_id]) {
+                    [weakSelf requestServerToUpdateUserInfoFacebook:fb_user_id facebookToken:fb_token];
+                }
+            }];
+        }
+    }];
 }
 
 -(void)requestServerToGetInstagramInfo
