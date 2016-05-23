@@ -663,7 +663,12 @@
             [self.ibTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         }
         else{
-            [self.ibTableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+            @try {
+                [self.ibTableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+
+            } @catch (NSException *exception) {
+                
+            }
         }
         [self.ibTableView endUpdates];
         [LoadingManager hide];
