@@ -919,6 +919,11 @@
         int count = 0;
         float fontSize = 15.0f;
         
+        //Clear all subviews before adding in new subview
+        for (UIView *subview in [self.ibTnCContent subviews]) {
+            [subview removeFromSuperview];
+        }
+        
         self.ibTnCContentHeightConstraint.constant = 0;
         NSDictionary *attr = @{NSFontAttributeName: [UIFont systemFontOfSize:fontSize]};
         for (NSString *term in self.dealModel.terms) {
@@ -1016,6 +1021,7 @@
 -(void)updateFooterView{
     self.ibFooterView.hidden = NO;
     NSString *voucherStatus = self.dealModel.voucher_info.status;
+    
     if ([voucherStatus isEqualToString:VOUCHER_STATUS_NONE]) {
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Collect this deal");

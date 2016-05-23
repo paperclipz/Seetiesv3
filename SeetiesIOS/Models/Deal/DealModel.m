@@ -209,8 +209,8 @@
 }
 
 -(BOOL)isRedeemable{
-    if ([Utils isWithinOperatingDate:self.periods_in_date]) {
-        if ([Utils isWithinOperationHour:self.period]) {
+    if ([self isWithinOperatingDate:self.periods_in_date]) {
+        if ([self isWithinOperationHour:self.period]) {
             return true;
         }
         else{
@@ -219,6 +219,64 @@
     }
     else{
         return false;
+    }
+    
+    return NO;
+}
+
+-(BOOL)isWithinOperatingDate:(NSArray*)arrayDates{
+    NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
+    [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [utcDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    for (NSDictionary *dateDict in arrayDates) {
+        NSDate* fromDate = [Utils isValidDateString:dateDict[@"from"]]? [utcDateFormatter dateFromString:dateDict[@"from"]] : nil;
+        NSDate* toDate = [Utils isValidDateString:dateDict[@"to"]]? [utcDateFormatter dateFromString:dateDict[@"to"]] : nil;
+        
+        if([Utils isDate:[NSDate date] betweenFirstDate:fromDate andLastDate:toDate]){
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(BOOL)isWithinOperationHour:(NSArray*)arrayDays
+{
+    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [calendar setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    
+    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:[NSDate date]];
+    NSInteger weekday = ([comps weekday] - 1);      //NSDateComponents Sunday=1 //Seeties Sunday=0
+    NSArray *arrHours = arrayDays[weekday];
+    
+    // loop through period date time to check available in operating hours
+    for (int i = 0; i<arrHours.count; i++) {
+        
+        NSDictionary* dictHour = arrHours[i];
+        
+        int strFrom = [dictHour[@"open"] intValue];
+        int hourFrom = strFrom/100;
+        int minuteFrom = strFrom%100;
+        NSDate *now = [NSDate date];
+        NSCalendar *calendarFrom = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+        NSDateComponents *componentsFrom = [calendarFrom components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+        [componentsFrom setHour:hourFrom];
+        [componentsFrom setMinute:minuteFrom];
+        NSDate *fromDateTime = [calendar dateFromComponents:componentsFrom];
+        
+        int strTo = [dictHour[@"close"] intValue];
+        int hourTo = strTo/100;
+        int minuteTo = strTo%100;
+        NSCalendar *calendarTo = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+        NSDateComponents *componentsTo = [calendarTo components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+        [componentsTo setHour:hourTo];
+        [componentsTo setMinute:minuteTo];
+        NSDate *toDateTime = [calendar dateFromComponents:componentsTo];
+        
+        if ([Utils date:now isBetweenDate:fromDateTime andDate:toDateTime]) {
+            return YES;
+        }
     }
     
     return NO;

@@ -180,11 +180,10 @@ typedef enum {
 +(NSString*)getTimeZone;
 +(NSInteger)numberOfDaysLeft:(NSDate*)date;
 +(BOOL)isValidDateString:(NSString*)dateString;
+//Compare date only (exclude time)
 +(BOOL)isDate:(NSDate*)currentDate betweenFirstDate:(NSDate*)firstDate andLastDate:(NSDate*)lastDate;
-
-+(BOOL)isWithinOperationHour:(NSArray*)arrayDays;
-+(BOOL)isWithinOperatingDate:(NSArray*)arrayDates;
-
+//Compare both date and time
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate;
 // ========================  Day ==========================
 
 #pragma mark - UI
