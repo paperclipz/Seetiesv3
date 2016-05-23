@@ -430,9 +430,9 @@
 "Oops! It seems like you've missed out your username / password."= "用戶名與密碼不能留白唷！";
 ""= "";
 ""= "";
-"Email Address"= "電子信箱";
-"Create your username"= "創建用戶名";
-"Password"= "密碼";
+"email address"= "電子信箱";
+"create your username"= "創建用戶名";
+"password"= "密碼";
 "Create"= "創建";
 "Yikes. Your password must be at least 8 characters."= "哎哎！ 密碼至少要8個字以上唷！";
 ""= "";

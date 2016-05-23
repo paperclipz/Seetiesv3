@@ -422,9 +422,9 @@
 "Oops! It seems like you've missed out your username / password."= "Oops! Kamu lupakan masukan nama dan kata sandi";
 ""= "";
 ""= "";
-"Email Address"= "Email";
-"Create your username"= "Buat nama pengguna";
-"Password"= "Buat kata sandi";
+"email address"= "alamat email";
+"create your username"= "buat username";
+"password"= "buat kata sandi";
 "Create"= "Daftar";
 "Yikes. Your password must be at least 8 characters."= "Kata kunci min 8 karakter";
 ""= "";

@@ -37,6 +37,17 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == self.lblUserName) {
+        [self.lblPassword becomeFirstResponder];
+    }
+    else if (textField == self.lblPassword){
+        [self btnLoginClicked:textField];
+    }
+    
+    return NO;
+}
+
 -(void)refreshView
 {
     self.lblUserName.text = @"";

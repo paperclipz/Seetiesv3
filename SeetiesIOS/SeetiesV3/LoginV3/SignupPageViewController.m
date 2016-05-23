@@ -114,12 +114,12 @@
 
 -(void)changeLanguage
 {
-    self.txtUserName.placeholder = LocalisedString(@"username/ email address");
+    self.txtUserName.placeholder = LocalisedString(@"create your username");
     self.txtPassword.placeholder = LocalisedString(@"password");
     self.txtEmail.placeholder = LocalisedString(@"email address");
     self.ibEnterReferralLbl.text = LocalisedString(@"Enter referral code");
     self.ibReferralCodeTxt.placeholder = LocalisedString(@"referral code (optional)");
-    [self.btnSignup setTitle:LocalisedString(@"Submit") forState:UIControlStateNormal];
+    [self.btnSignup setTitle:LocalisedString(@"Create") forState:UIControlStateNormal];
     
     NSString* asd = LocalisedString(@"Sign up");
     self.lblSignUp.text = asd;

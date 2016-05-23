@@ -371,9 +371,9 @@
         NSLog(@"Feed Json = %@",res);
         
         NSDictionary *resultData = [res valueForKey:@"data"];
-        
+        NSString *total_followingString;
         @try {
-            NSString *total_followingString = [[NSString alloc]initWithFormat:@"%@",[resultData objectForKey:@"total_follower"]];
+             total_followingString = [[NSString alloc]initWithFormat:@"%@",[resultData objectForKey:@"total_follower"]];
 
         } @catch (NSException *exception) {
             

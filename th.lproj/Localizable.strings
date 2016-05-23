@@ -424,9 +424,9 @@
 "Oops! It seems like you've missed out your username / password."= "แย่ละ! ดูท่าคุณจะลืมใส่ยูสเซอร์เนม/พาสเวิร์ดนะ";
 ""= "";
 ""= "";
-"Email Address"= "อีเมล";
-"Create your username"= "ยูสเซอร์เนม";
-"Password"= "พาสเวิร์ด";
+"email address"= "อีเมล";
+"create your username"= "ยูสเซอร์เนม";
+"password"= "พาสเวิร์ด";
 "Create"= "สร้าง";
 "Yikes. Your password must be at least 8 characters."= "พาสเวิร์ดต้องมีอย่างน้อย 8 ตัว";
 ""= "";
