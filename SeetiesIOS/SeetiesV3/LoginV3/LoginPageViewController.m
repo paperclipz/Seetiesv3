@@ -7,10 +7,10 @@
 //
 
 #import "LoginPageViewController.h"
-#import "ForgotPasswordViewController.h"
+#import "CT3_ForgotPasswordViewController.h"
 
 @interface LoginPageViewController ()
-@property(nonatomic)ForgotPasswordViewController* forgotPasswordViewController;
+@property(nonatomic)CT3_ForgotPasswordViewController* forgotPasswordViewController;
 
 @property (weak, nonatomic) IBOutlet UITextField *lblUserName;
 @property (weak, nonatomic) IBOutlet UITextField *lblPassword;
@@ -124,10 +124,10 @@
 
 #pragma mark - Declaration
 
--(ForgotPasswordViewController*)forgotPasswordViewController
+-(CT3_ForgotPasswordViewController*)forgotPasswordViewController
 {
     if (!_forgotPasswordViewController) {
-        _forgotPasswordViewController = [ForgotPasswordViewController new];
+        _forgotPasswordViewController = [CT3_ForgotPasswordViewController new];
     }
     
     return _forgotPasswordViewController;

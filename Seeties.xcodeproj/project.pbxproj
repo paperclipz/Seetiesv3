@@ -1252,6 +1252,8 @@
 		C22703021CBF932D00F9FBF3 /* PostFilterSortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703001CBF932D00F9FBF3 /* PostFilterSortCell.xib */; };
 		C22703061CBF949D00F9FBF3 /* PostFilterCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */; };
 		C22703071CBF949D00F9FBF3 /* PostFilterCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */; };
+		C22C35161CF427E7004092F6 /* CT3_ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22C35141CF427E7004092F6 /* CT3_ForgotPasswordViewController.m */; };
+		C22C35171CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22C35151CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
 		C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */; };
 		C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */; };
@@ -2933,6 +2935,9 @@
 		C22703031CBF949D00F9FBF3 /* PostFilterCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostFilterCategoryCell.h; sourceTree = "<group>"; };
 		C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostFilterCategoryCell.m; sourceTree = "<group>"; };
 		C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFilterCategoryCell.xib; sourceTree = "<group>"; };
+		C22C35131CF427E7004092F6 /* CT3_ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		C22C35141CF427E7004092F6 /* CT3_ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		C22C35151CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		C23042DF1C61F331001008CB /* DealsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsModel.h; sourceTree = "<group>"; };
 		C23042E01C61F331001008CB /* DealsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealsModel.m; sourceTree = "<group>"; };
 		C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
@@ -6167,6 +6172,7 @@
 		8AFA517D1C47B4AB00E7920E /* LoginV3 */ = {
 			isa = PBXGroup;
 			children = (
+				C22C35121CF4268A004092F6 /* ForgotPassword */,
 				8AFA517E1C47B4AB00E7920E /* CT3_LoginViewController.h */,
 				8AFA517F1C47B4AB00E7920E /* CT3_LoginViewController.m */,
 				8AFA51801C47B4AB00E7920E /* CT3_LoginViewController.xib */,
@@ -6346,6 +6352,16 @@
 				C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		C22C35121CF4268A004092F6 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				C22C35131CF427E7004092F6 /* CT3_ForgotPasswordViewController.h */,
+				C22C35141CF427E7004092F6 /* CT3_ForgotPasswordViewController.m */,
+				C22C35151CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib */,
+			);
+			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		C238E3051C4649AA00570A25 /* NMRangeSlider */ = {
@@ -7305,6 +7321,7 @@
 				8AD6C0D91B706CF30040437E /* PTellUsYourCityViewController.xib in Resources */,
 				8AB0DA1E1CE1E528002D15C4 /* ShareGoIcon@3x.png in Resources */,
 				8AB0D8AE1CE1E528002D15C4 /* MoreSignUpOrLogInIcon@3x.png in Resources */,
+				C22C35171CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib in Resources */,
 				8AB0D9BD1CE1E528002D15C4 /* BrushIcon@2x.png in Resources */,
 				8ABA7DED1C7421FC00FB41F4 /* NotificationTableViewCell.xib in Resources */,
 				8AB0DAF11CE1E528002D15C4 /* BackToTop@3x.png in Resources */,
@@ -7802,6 +7819,7 @@
 				8AFA51E71C47B4AB00E7920E /* SuggestionFeatureCVCell.m in Sources */,
 				8AD6C1161B706CF30040437E /* FSWebLogin.m in Sources */,
 				8A6BB4341BF0C338005AA1B3 /* MZTransition.m in Sources */,
+				C22C35161CF427E7004092F6 /* CT3_ForgotPasswordViewController.m in Sources */,
 				8AC7B66B1CE5C102000775CC /* UITableView+Extension.m in Sources */,
 				8AEDBFA81C2031BA000BD2FF /* ApiVersionModel.m in Sources */,
 				8A11D38B1CC886950023A7ED /* CustomItemSource.m in Sources */,
