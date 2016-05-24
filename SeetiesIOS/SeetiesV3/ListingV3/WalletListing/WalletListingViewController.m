@@ -58,14 +58,14 @@
     
     
     // upload offline deal data
-//    if ([ConnectionManager isNetworkAvailable]) {
-//        [[OfflineManager Instance]uploadDealToRedeem:^{
-//            
-//            self.dealsModel = nil;
-//            [self requestServerForVoucherListing];
-//            
-//        }];
-//    }
+    if ([ConnectionManager isNetworkAvailable]) {
+        [[OfflineManager Instance]uploadDealToRedeem:^{
+            
+            self.dealsModel = nil;
+            [self requestServerForVoucherListing];
+            
+        }];
+    }
     
     // Do any additional setup after loading the view from its nib.
     
@@ -88,6 +88,7 @@
     
     [self.ibTableView addPullToRefreshWithActionHandler:^{
         self.ibTableView.tableFooterView = self.ibTableFooterView;
+        self.dealsModel = nil;
         [self requestServerForVoucherListing];
     }];
     
@@ -449,7 +450,8 @@
         [self removeDealFromVoucherArray:dealModel];
         
         //comment : save wallet offline listing
-        //[DealExpiryDateModel saveWalletList:self.voucherArray];
+        //to refresh offline list
+        [DealExpiryDateModel saveWalletList:self.voucherArray];
 
     }
     else if (dealModel.voucher_info.total_redeemable_count > 0){
@@ -593,7 +595,7 @@
         
         
 //        //comment for offline mode
-//        [DealExpiryDateModel saveWalletList:self.voucherArray];
+        [DealExpiryDateModel saveWalletList:self.voucherArray];
         
         [self.ibTableView reloadData];
         [self.ibTableView.pullToRefreshView stopAnimating];
@@ -619,13 +621,13 @@
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.ibTableView.tableFooterView = nil;
         
-//        //comment for offline mode
-//
-//        if ([Utils isArrayNull:self.voucherArray]) {
-//            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
-//            [self.ibTableView reloadData];
-//
-//        }
+        //comment for offline mode
+
+        if ([Utils isArrayNull:self.voucherArray]) {
+            self.voucherArray = [[NSMutableArray<DealExpiryDateModel> alloc]initWithArray:[DealExpiryDateModel getWalletList]];
+            [self.ibTableView reloadData];
+
+        }
         
         if ([Utils isArrayNull:self.voucherArray]) {
             [self toggleEmptyView:YES];
@@ -661,7 +663,12 @@
             [self.ibTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         }
         else{
-            [self.ibTableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+            @try {
+                [self.ibTableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+
+            } @catch (NSException *exception) {
+                
+            }
         }
         [self.ibTableView endUpdates];
         [LoadingManager hide];

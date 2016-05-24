@@ -422,9 +422,9 @@
 "Oops! It seems like you've missed out your username / password."= "Oops! Kamu lupakan masukan nama dan kata sandi";
 ""= "";
 ""= "";
-"Email Address"= "Email";
-"Create your username"= "Buat nama pengguna";
-"Password"= "Buat kata sandi";
+"email address"= "alamat email";
+"create your username"= "buat username";
+"password"= "buat kata sandi";
 "Create"= "Daftar";
 "Yikes. Your password must be at least 8 characters."= "Kata kunci min 8 karakter";
 ""= "";
@@ -1148,7 +1148,7 @@
 "x-TIME-USE" = "x KALI PEMAKAIAN";
 "Expires in {!number} day(s)" = "Kadaluarsa dalam {!number} hari";
 "Redeem" = "Redeem";
-"Sorry! This voucher is not currently available for redemption." = "Maaf, untuk sementara voucher ini tidak dapat ditukarkan";
+"Sorry! This voucher is currently not available for redemption." = "Maaf, untuk sementara voucher ini tidak dapat ditukarkan";
 "This deal can only be redeemed on " = "Penawaran ini hanya dapat ditukarkan pada";
 "{!date}, {!time}" = "{!date}, {!time}";
 "Okay!" = "Oke!";
@@ -1186,6 +1186,7 @@
 "You've got 15 minutes to redeem this deal after you swipe." = "Batas waktu hingga 15 menit setelah swipe penawaran ini";
 "Redeemed on {!date}, {!time}" = "Redeem telah berhasil dilakukan pada ";
 "{!date}, {!time}" = "{!date}, {!time}";
+"Flash and swipe! Do you want to redeem your voucher now?" = "Tunjukkan dan swipe! Apakah kamu ingin redeem voucher ini sekarang?";
 "Expires {!date}" = "Kadaluarsa pada {!date}";
 "FEATURED" = "FEATURED";
 "FREE" = "GRATIS";
@@ -1194,7 +1195,7 @@
 "Deal description" = "Deskripsi";
 "Deal availability" = "Ketersediaan";
 "This deal can only be redeemed at time as stated below:" = "Redeem hanya dapat dilakukan sesuai dengan waktu berikut:";
-"Participate outlet ({!number})" = "Toko yang berpartisipasi ({!number})";
+"Participating outlets ({!number})" = "Toko yang berpartisipasi ({!number})";
 "Terms & Conditions" = "Syarat & Ketentuan";
 "Read the full T&Cs here" = "Baca seluruh S&K di sini";
 "{!number} deals here!" = "{!number} penawaran di sini!";
@@ -1403,8 +1404,8 @@
 "Collect Now, Pay at Shop" = "Collect Now, Pay at Shop";
 "Everytime a friend signs up with your invite code, each of you will receive a reward. Collect your reward via your notification!" = "Dapatkan hadiah menarik untuk setiap kode referral yang digunakan temanmu saat mendaftar ke dalam Seeties. Ambil hadiahmu di notifikasi. ";
 "The reward is now yours. Redeem it via your notification." = "Hadiah ini kini jadi milikmu. Lihat dan redeem sekarang juga di notifikasi.";
-"Enter invite code" = "Masukkan kode referral";
-"Invite code (optional)" = "Kode referral (opsional)";
+"Enter referral code" = "Masukkan kode referral";
+"referral code (optional)" = "kode referral (opsional)";
 "Your referral code is invalid! But you may continue and try again later." = "Kode referral salah! Silakan lanjut dan coba masukkan beberapa saat lagi.";
 "Continue" = "Lanjutkan";
 "Get Rewards" = "Dapatkan Hadiah";
@@ -1423,7 +1424,7 @@
 "Share your promo code" = "Bagikan kode promo";
 "{!referral code}" = "{!referral code}";
 //======CHANGE======//
-"Share your promo code\n{!referral code}" = "Bagikan kode promo\n{!referral code}";
+"Share your referral code\n{!referral code}" = "Bagikan kode referral\n{!referral code}";
 //======CHANGE======//
 "Code Copied" = "Kode tersalin";
 "Give your friends a 1-for-1 deal and receive one yourself" = "Dapatkan hadiah langsung voucher Buy1 Free 1 untukmu dan temanmu";
@@ -1443,7 +1444,7 @@
 "Sign Up with Seeties!" = "";
 "Join Seeties to enjoy awesome deals around your city! " = "Gabung ke Seeties untuk menikmati penawaran menarik di kotamu! ";
 //======CHANGE======//
-"Sharing is caring! Get an instant reward when you sign up with the invite code '{!referral_code}'.\n{!Seeties URL}" = "Berbagi itu indah. Dapatkan hadiah langsung saat mendaftar menggunakan kode referral '{!referral_code}'.\n{!Seeties URL}";
+"Hey you can use my referral code to sign up and get GOODIES! \n'{!referral_code}'.\n{!Seeties URL}" = "Halo haloooo 😁✌ \nDaftar Seeties pakai kode referral aku yuk untuk dapetin voucher GRATIS di tempat-tempat hangout favorit kamu! \n'{!referral_code}'.\n{!Seeties URL}";
 "Sharing is caring!\nSign up with Seeties today.\n{!Seeties URL}" = "";
 //======CHANGE======//
 "Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "Versi {!version number}\n- Undang teman & dapatkan hadiah langsung\n- Fix bugs";

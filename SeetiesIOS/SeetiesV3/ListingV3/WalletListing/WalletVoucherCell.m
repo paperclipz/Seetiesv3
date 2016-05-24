@@ -12,9 +12,6 @@
 #import "NSString+Extra.h"
 #import "AFNetworkReachabilityManager.h"
 
-#define REDEEM_ATIVE [UIColor colorWithRed:232/255.0f green:86/255.0f blue:99/255.f alpha:1]
-#define REDEEM_IN_ATIVE [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.f alpha:1]
-
 @interface WalletVoucherCell()
 {
 
@@ -121,10 +118,10 @@
         self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     }
     
-    [self.ibRedeemBtn setBackgroundColor:REDEEM_IN_ATIVE];
+    [self.ibRedeemBtn setBackgroundColor:BUTTON_DISABLED_COLOR];
     [self.ibRedeemBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
     if ([self.dealModel isRedeemable]) {
-        [self.ibRedeemBtn setBackgroundColor:REDEEM_ATIVE];
+        [self.ibRedeemBtn setBackgroundColor:BUTTON_REDEEM_ACTIVE_COLOR];
     }
     
     if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO] || [self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -51,7 +51,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGy-Uf-mib">
                     <rect key="frame" x="43" y="401" width="289" height="77"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKC-ir-Fsh">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKC-ir-Fsh">
                             <rect key="frame" x="20" y="38" width="249" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -317,22 +317,15 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeToRedeemBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="ODq-Hw-C5g" userLabel="bg image">
-                    <rect key="frame" x="0.0" y="50" width="320" height="518"/>
+                    <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6oN-ht-Kh6" userLabel="header">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Redeem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-OX-g48">
-                            <rect key="frame" x="96" y="15" width="128" height="21"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0d-qJ-cFY" userLabel="close btn">
-                            <rect key="frame" x="272" y="5" width="40" height="40"/>
+                            <rect key="frame" x="260" y="0.0" width="60" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="Y1k-MK-ylr"/>
-                                <constraint firstAttribute="height" constant="40" id="vw5-is-skX"/>
+                                <constraint firstAttribute="width" secondItem="h0d-qJ-cFY" secondAttribute="height" multiplier="1:1" id="GJ1-3W-7Yd"/>
                             </constraints>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <state key="normal" image="CloseIconGrey.png"/>
@@ -340,22 +333,29 @@
                                 <action selector="btnHowToRedeemCloseClicked:" destination="-1" eventType="touchUpInside" id="7Rb-Jg-sPh"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Redeem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-OX-g48">
+                            <rect key="frame" x="8" y="19" width="244" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="h0d-qJ-cFY" secondAttribute="trailing" constant="8" id="Iiw-2R-nk1"/>
-                        <constraint firstAttribute="height" constant="50" id="Jl3-Vq-lKl"/>
-                        <constraint firstItem="h0d-qJ-cFY" firstAttribute="centerY" secondItem="6oN-ht-Kh6" secondAttribute="centerY" id="VZ0-Hv-8fx"/>
+                        <constraint firstItem="QAX-OX-g48" firstAttribute="leading" secondItem="6oN-ht-Kh6" secondAttribute="leading" constant="8" id="Fg3-De-dzH"/>
+                        <constraint firstAttribute="trailing" secondItem="h0d-qJ-cFY" secondAttribute="trailing" id="Iiw-2R-nk1"/>
+                        <constraint firstAttribute="height" constant="60" id="Jl3-Vq-lKl"/>
+                        <constraint firstAttribute="bottom" secondItem="h0d-qJ-cFY" secondAttribute="bottom" id="U1y-r3-6cm"/>
                         <constraint firstItem="QAX-OX-g48" firstAttribute="centerY" secondItem="6oN-ht-Kh6" secondAttribute="centerY" id="Wjg-pm-mXb"/>
-                        <constraint firstItem="h0d-qJ-cFY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QAX-OX-g48" secondAttribute="trailing" constant="8" id="eox-ZK-BiV"/>
-                        <constraint firstItem="QAX-OX-g48" firstAttribute="centerX" secondItem="6oN-ht-Kh6" secondAttribute="centerX" id="yp0-YU-7Gv"/>
+                        <constraint firstItem="h0d-qJ-cFY" firstAttribute="leading" secondItem="QAX-OX-g48" secondAttribute="trailing" constant="8" id="eox-ZK-BiV"/>
+                        <constraint firstItem="h0d-qJ-cFY" firstAttribute="top" secondItem="6oN-ht-Kh6" secondAttribute="top" id="wbI-j9-w8r"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUu-Iw-0ZD" userLabel="first view">
-                    <rect key="frame" x="0.0" y="58" width="320" height="167"/>
+                    <rect key="frame" x="0.0" y="68" width="320" height="166.5"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HowToRedeem1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="CSs-d2-WPy" userLabel="first image" customClass="YLImageView">
-                            <rect key="frame" x="75" y="8" width="195" height="98"/>
+                            <rect key="frame" x="75" y="8" width="195" height="97.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="CSs-d2-WPy" secondAttribute="height" multiplier="2:1" id="pRG-Wa-69S"/>
                             </constraints>
@@ -372,7 +372,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you order" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEp-Ox-QE7" userLabel="first instruction">
-                            <rect key="frame" x="35" y="112" width="250" height="20"/>
+                            <rect key="frame" x="35" y="111.5" width="250" height="20"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -393,7 +393,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBI-cW-0RN" userLabel="second view">
-                    <rect key="frame" x="0.0" y="209" width="320" height="128"/>
+                    <rect key="frame" x="0.0" y="218.5" width="320" height="128"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXK-42-mBG" userLabel="second number">
                             <rect key="frame" x="125" y="53" width="30" height="30"/>
@@ -407,7 +407,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flash the redeem voucher screen" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbh-Yu-PDh" userLabel="second instruction">
-                            <rect key="frame" x="163" y="49" width="138" height="38"/>
+                            <rect key="frame" x="163" y="48" width="137.5" height="38.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -433,7 +433,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oI8-wg-HhM" userLabel="third view">
-                    <rect key="frame" x="0.0" y="345" width="320" height="99"/>
+                    <rect key="frame" x="0.0" y="354.5" width="320" height="99"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HowToRedeem3.gif" translatesAutoresizingMaskIntoConstraints="NO" id="xsJ-g9-SAT" userLabel="third image" customClass="YLImageView">
                             <rect key="frame" x="122" y="5" width="188" height="94"/>
@@ -453,7 +453,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe right to redeem in front of a shop personnel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1H2-3h-owz" userLabel="third instruction">
-                            <rect key="frame" x="9" y="-6" width="100" height="96"/>
+                            <rect key="frame" x="8.5" y="-6" width="100.5" height="95.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

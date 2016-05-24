@@ -234,6 +234,7 @@
     DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
     self.dealDetailsViewController = nil;
     [self.dealDetailsViewController initDealModel:voucher];
+    [self.dealDetailsViewController setFromHistory:YES];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         [self.dealDetailsViewController setupView];
     }];

@@ -143,6 +143,8 @@
     self.hasRequestedPromo = NO;
     self.hasRedeemed = NO;
     self.isReferral = NO;
+    self.ibPromoCodeText.autocorrectionType = UITextAutocorrectionTypeNo;
+    
     [self setMainViewToDisplay];
    
     // Do any additional setup after loading the view from its nib.
@@ -419,7 +421,7 @@
             
         case PopOutViewTypeError:
         {
-            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is not currently available for redemption.");
+            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is currently not available for redemption.");
             self.ibErrorDesc.text = LocalisedString(@"This deal can only be redeemed on ");
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             
@@ -602,7 +604,7 @@
             
         case PopOutViewTypeRedemptionSuccessful:
         {
-            if (self.promoPopOutDelegate) {
+            if (self.promoPopOutDelegate && [self.promoPopOutDelegate respondsToSelector:@selector(viewDealDetailsClicked:)]) {
                 [self.promoPopOutDelegate viewDealDetailsClicked:self.dealsModel];
             }
             [nextVC setViewType:PopOutViewTypeQuit];
@@ -621,7 +623,7 @@
             }
             
             if (self.popOutCondition == PopOutConditionChooseShopOnly) {
-                if (self.promoPopOutDelegate) {
+                if (self.promoPopOutDelegate && [self.promoPopOutDelegate respondsToSelector:@selector(chooseShopConfirmClicked:forShop:)]) {
                     [self.promoPopOutDelegate chooseShopConfirmClicked:self.dealModel forShop:self.selectedShop];
                     [nextVC setViewType:PopOutViewTypeQuit];
                 }
@@ -930,9 +932,10 @@
     }
 
     NSString *appendString = [NSString stringWithFormat:@"%@/redeem", self.enteredPromoCode];
-    NSDictionary *dict = @{@"promo_code": self.enteredPromoCode,
+   
+    NSDictionary *dict = @{@"promo_code": self.enteredPromoCode?self.enteredPromoCode:@"",
                            @"token": [Utils getAppToken],
-                           @"shop_id": self.selectedShop.seetishop_id
+                           @"shop_id": self.selectedShop.seetishop_id?self.selectedShop.seetishop_id:@""
                            };
     [LoadingManager show];
     self.isLoading = YES;
@@ -944,7 +947,7 @@
         [LoadingManager hide];
         self.isLoading = NO;
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
-        if (self.promoPopOutDelegate) {
+        if (self.promoPopOutDelegate && [self.promoPopOutDelegate respondsToSelector:@selector(promoHasBeenRedeemed:)]) {
             [self.promoPopOutDelegate promoHasBeenRedeemed:self.dealsModel];
         }
         

@@ -31,6 +31,7 @@
     __weak IBOutlet NSLayoutConstraint *followButtonConstraint;
     
     CGRect labelFrame;
+    
 }
 
 // =======  OUTLET   =======
@@ -67,6 +68,8 @@
 @property (nonatomic,strong)UIImageView* loadingImageView;
 @property (nonatomic,assign)ProfileViewType profileViewType;
 @property (nonatomic,strong)NSString* userID;
+
+
 // =======  MODEL   =======
 
 @end
@@ -390,29 +393,19 @@
         
     }
     
-    
-    
     [self requestServerForUserCollection];
+    
     [self requestServerForUserPost];
     
     if ([uID isEqualToString:[Utils getUserID]]) {
-        [self requestServerForUserLikes];
         
+        [self requestServerForUserLikes];
         
         [self requestServerForMe];
 
-//        DataManager* dataManager = [ConnectionManager dataManager];
-//        if (dataManager.currentUserProfileModel) {
-//            self.userProfileModel = dataManager.currentUserProfileModel;
-//            [self assignData];
-//            
-//        }else
-//        {
-//            [self requestServerForUserInfo];
-//
-//        }
     }
     else{
+       
         [self requestServerForUserInfo];
 
     }
@@ -471,16 +464,15 @@
     }
     
     // int collectionHeight = arrCollection.count>0?(int)([ProfilePageCollectionTableViewCell getHeight]*(arrCollection.count>3?3:arrCollection.count)):[ProfileNoItemTableViewCell getHeight];
-    
-    
-    
+
     
     self.ibTableView.frame = CGRectMake(self.ibTableView.frame.origin.x, self.ibTableView.frame.origin.y, self.ibTableView.frame.size.width,collectionHeight +postHeight + likeHeight + headerHeight + cellFooterHeight+ 5);
     
     self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y, self.ibContentView.frame.size.width, self.ibTableView.frame.origin.y +self.ibTableView.frame.size.height);
     
     self.ibScrollView.contentSize = CGSizeMake(self.ibScrollView.frame.size.width, self.ibContentView.frame.size.height- self.ibImgProfilePic.frame.size.height/2);
-    
+   // });
+
 }
 
 
@@ -905,7 +897,6 @@
     _editCollectionViewController = nil;
     [LoadingManager show];
     [self.editCollectionViewController initData:collID];
-    [LoadingManager show];
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 
@@ -1274,7 +1265,7 @@
         
         self.userProfileModel = [[ConnectionManager dataManager]userProfileModel];
     
-        [self assignData];
+        [self assignUserData];
         
     } failure:^(id object) {
         
@@ -1298,23 +1289,16 @@
 
         manager.currentUserProfileModel = self.userProfileModel;
         
-        [self assignData];
+        [self assignUserData];
 
         
     } failure:^(id object) {
         
         self.userProfileModel = [ProfileModel getUserProfile];
         
-        [self assignData];
+        [self assignUserData];
 
     }];
-}
-
-
--(void)assignData
-{
-    
-    [self assignUserData];
 }
 
 -(void)setParallaxView
@@ -1330,6 +1314,8 @@
 
 -(void)assignUserData
 {
+    SLog(@"assignUserData");
+
     self.btnLink.hidden = [self.userProfileModel.personal_link isNull]?YES:NO;
     [self setFollowButtonSelected:self.userProfileModel.following button:self.btnFollow];
     [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.profile_photo_images] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
@@ -1342,8 +1328,8 @@
         
     }];
     
-    self.lblUserName.text = self.userProfileModel.username;
-    self.lblUserName_Header.text = self.userProfileModel.username;
+    self.lblUserName.text = self.userProfileModel.name;
+    self.lblUserName_Header.text = self.userProfileModel.name;
     self.lblName.text = self.userProfileModel.name;
     NSString* strFollower = [NSString stringWithFormat:@"%d %@",self.userProfileModel.follower_count,LocalisedString(@"Followers")];
     NSString* strFollowing = [NSString stringWithFormat:@"%d %@",self.userProfileModel.following_count,LocalisedString(@"Followings")];
@@ -1377,7 +1363,7 @@
 
 -(void)assignCollectionData
 {
-    
+    SLog(@"assignCollectionData");
     
     @try {
         [arrCollection removeAllObjects];
@@ -1396,6 +1382,8 @@
 
 -(void)assignPostData
 {
+    SLog(@"assignPostData");
+
     arrPost = [[NSMutableArray alloc]initWithArray:self.userProfilePostModel.userPostData.posts];
     
     @try {
@@ -1411,6 +1399,8 @@
 
 -(void)assignLikesData
 {
+    SLog(@"assignLikesData");
+
     arrLikes = [[NSMutableArray alloc]initWithArray:self.userProfileLikeModel.userPostData.posts];
     
     [self.ibTableView reloadData];

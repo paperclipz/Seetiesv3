@@ -11,6 +11,9 @@
 #import "SignupPageViewController.h"
 #import "CTWebViewController.h"
 #import "SelectCategoryViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "FBLoginManager.h"
 
 @interface CT3_LoginViewController ()
 {
@@ -30,6 +33,7 @@
 @property (nonatomic)CTWebViewController* webViewController;
 @property (nonatomic)SelectCategoryViewController* selectCategoryViewController;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIButton *btnSignup;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblContinueWith;
 @property (weak, nonatomic) IBOutlet UIButton *btnContinue;
@@ -165,70 +169,87 @@
 -(IBAction)btnFacebookClicked:(id)sender{
     
     [self validateBeforeLogin];
+    
+    __weak typeof (self)weakSelf = self;
+    
+    [FBLoginManager performFacebookLogin:self completionBlock:^(FBSDKLoginManagerLoginResult *result) {
+       
+        if (result.isCancelled) {
+            return;
+        }
+        else {
+            [FBLoginManager performFacebookGraphRequest:^(FacebookModel *model) {
+                
+                [ConnectionManager dataManager].facebookLoginModel = model;
+                [weakSelf requestServerForFacebookLogin];
+            }];
+        }
+    }];
 
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
-                                       allowLoginUI:YES
-                                  completionHandler:
-     ^(FBSession *session, FBSessionState state, NSError *error) {
-         
-         switch (state) {
-             case FBSessionStateOpen:{
-                 [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-                     if (error) {
-                         
-                         NSLog(@"error:%@",error);
-                         
-                         
-                     }
-                     else
-                     {
-                         FacebookModel* model = [FacebookModel new];
-
-                         NSLog(@"Facebook Return Result : %@",user);
-
-                         NSString* fb_user_id = (NSString *)[user valueForKey:@"id"];
-                         [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
-                             if (error) {
-                                 // Handle error
-                             }else {
-                                 model.uID = fb_user_id;
-                                 model.name = [FBuser name];
-                                 model.userProfileImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", fb_user_id];
-                                 model.email = [user valueForKey:@"email"];
-                                 model.gender = [user valueForKey:@"gender"];
-                                 model.dob = [user valueForKey:@"birthday"];
-                                 model.userName = [user valueForKey:@"last_name"];
-                                 model.userFullName = [[NSString alloc]initWithFormat:@"%@%@",[user valueForKey:@"first_name"],[user valueForKey:@"last_name"]];
-                             
-                              //   NSLog(@"session is %@",session);
-                                 
-                                 model.fbToken = [FBSession activeSession].accessTokenData.accessToken;
-                                 [ConnectionManager dataManager].facebookLoginModel = model;
-                                 [self requestServerForFacebookLogin];
-                             }
-                         }];
-                         
-                     }
-                 }];
-                 break;
-             }
-             case FBSessionStateClosed:
-             case FBSessionStateClosedLoginFailed:
-                 [FBSession.activeSession closeAndClearTokenInformation];
-                 SLog(@"Facebook Login Failed");
-                 break;
-                 
-             default:
-                 break;
-         }
-         
-         // Retrieve the app delegate
-      //   AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-         // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
-       //  [appDelegate sessionStateChanged:session state:state error:error];
-         
-     }];
-    //    }
+    
+//    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
+//                                       allowLoginUI:YES
+//                                  completionHandler:
+//     ^(FBSession *session, FBSessionState state, NSError *error) {
+//         
+//         switch (state) {
+//             case FBSessionStateOpen:{
+//                 [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+//                     if (error) {
+//                         
+//                         NSLog(@"error:%@",error);
+//                         
+//                         
+//                     }
+//                     else
+//                     {
+//                         FacebookModel* model = [FacebookModel new];
+//
+//                         NSLog(@"Facebook Return Result : %@",user);
+//
+//                         NSString* fb_user_id = (NSString *)[user valueForKey:@"id"];
+//                         [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
+//                             if (error) {
+//                                 // Handle error
+//                             }else {
+//                                 model.uID = fb_user_id;
+//                                 model.name = [FBuser name];
+//                                 model.userProfileImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", fb_user_id];
+//                                 model.email = [user valueForKey:@"email"];
+//                                 model.gender = [user valueForKey:@"gender"];
+//                                 model.dob = [user valueForKey:@"birthday"];
+//                                 model.userName = [user valueForKey:@"last_name"];
+//                                 model.userFullName = [[NSString alloc]initWithFormat:@"%@%@",[user valueForKey:@"first_name"],[user valueForKey:@"last_name"]];
+//                             
+//                              //   NSLog(@"session is %@",session);
+//                                 
+//                                 model.fbToken = [FBSession activeSession].accessTokenData.accessToken;
+//                                 [ConnectionManager dataManager].facebookLoginModel = model;
+//                                 [self requestServerForFacebookLogin];
+//                             }
+//                         }];
+//                         
+//                     }
+//                 }];
+//                 break;
+//             }
+//             case FBSessionStateClosed:
+//             case FBSessionStateClosedLoginFailed:
+//                 [FBSession.activeSession closeAndClearTokenInformation];
+//                 SLog(@"Facebook Login Failed");
+//                 break;
+//                 
+//             default:
+//                 break;
+//         }
+//         
+//         // Retrieve the app delegate
+//      //   AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//         // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
+//       //  [appDelegate sessionStateChanged:session state:state error:error];
+//         
+//     }];
+//    //    }
     
 }
 #pragma mark - Declaration
@@ -467,8 +488,9 @@
     [self.lblFacebook setTitle:LocalisedString(@"Facebook") forState:UIControlStateNormal];
     [self.lblInstagram setTitle:LocalisedString(@"Instagram") forState:UIControlStateNormal];
     
-    [self.btnLogin setTitle:LocalisedString(@"Login") forState:UIControlStateNormal];
+    [self.btnLogin setTitle:LocalisedString(@"Log in") forState:UIControlStateNormal];
     [self.btnContinue setTitle:LocalisedString(@"Continue as guest") forState:UIControlStateNormal];
+    [self.btnSignup setTitle:LocalisedString(@"Sign up") forState:UIControlStateNormal];
 
     self.lblContinueWith.text = LocalisedString(@"Continue with");
 

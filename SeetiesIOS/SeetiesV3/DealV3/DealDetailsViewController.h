@@ -38,6 +38,7 @@
 //For referral campaign
 -(void)initDealModel:(DealModel *)dealModel withReferral:(NSString*)referralId withDealCollectionInfo:(DealCollectionModel*)dealCollectionModel;
 -(void)setupView;// on completion setup view
+-(void)setFromHistory:(BOOL)fromHistory;
 
 @property(nonatomic,copy)DealModelBlock dealModelBlock;
 @end

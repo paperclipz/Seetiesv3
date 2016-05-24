@@ -37,7 +37,7 @@
 
 -(void)initData:(AnnouncementModel*)model
 {
-    self.lblTitle.text = model.title[[Utils getDeviceAppLanguageCode]];
+    self.lblTitle.text = model.title[[LanguageManager getDeviceAppLanguageCode]];
     [self.ibWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:model.relatedID]]];
     
     

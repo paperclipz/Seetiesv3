@@ -118,9 +118,6 @@
     self.ibSearchTableView.delegate = self;
     self.ibSearchTableView.dataSource = self;
     
-    [self formatShopFilter];
-    [self formatCollectionFilter];
-    [self formatPostFilter];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -151,8 +148,8 @@
     
     NSString* fontName;
     
-    if ([[Utils getDeviceAppLanguageCode] isEqualToString:TAIWAN_CODE] ||
-        [[Utils getDeviceAppLanguageCode] isEqualToString:CHINESE_CODE]) {
+    if ([[LanguageManager getDeviceAppLanguageCode] isEqualToString:TAIWAN_SERVER_NAME] ||
+        [[LanguageManager getDeviceAppLanguageCode] isEqualToString:CHINESE_SERVER_NAME]) {
         fontName = @"PingFangTC-Regular";
     }
     else{
@@ -195,6 +192,10 @@
     self.ibLocationText.text = self.locationName;
     [self.ibSearchContentView setSideCurveBorder];
     [self.ibLocationContentView setSideCurveBorder];
+    
+    [self formatShopFilter];
+    [self formatCollectionFilter];
+    [self formatPostFilter];
 
 //    CGRect frame = [Utils getDeviceScreenSize];
 //    [self.ibScrollView setWidth:frame.size.width];
@@ -472,7 +473,7 @@
     AppInfoModel *appInfoModel = [[DataManager Instance] appInfoModel];
     for (CategoryModel *categoryModel in appInfoModel.categories) {
         FilterModel *filter = [[FilterModel alloc] init];
-        NSString *languageCode = [Utils getDeviceAppLanguageCode];
+        NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
         NSString *name = categoryModel.single_line[languageCode];
         filter.name = name? name : @"";
         filter.filterId = [NSString stringWithFormat:@"%d", categoryModel.category_id];
@@ -883,6 +884,10 @@
     if(tableView == self.ibLocationTableView)
     {
         [self processDataForGoogleLocation:indexPath];
+        
+        self.ibLocationTableView.hidden = YES;
+        self.ibSearchTableView.hidden = YES;
+
 
     }
     else if(tableView == self.ibSearchTableView)
@@ -1029,7 +1034,7 @@
     NSDictionary* dict = @{@"placeid":placeID,@"key":GOOGLE_API_KEY};
     
     
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopDeal parameter:dict appendString:nil success:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGoogleSearchWithDetail parameter:dict appendString:nil success:^(id object) {
         
         SearchLocationDetailModel* googleSearchDetailModel = [[ConnectionManager dataManager] googleSearchDetailModel];
         

@@ -8,15 +8,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedType_FollowingPostTblCell" rowHeight="915" id="2bn-Oz-Q3p" customClass="FeedType_FollowingPostTblCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="917"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedType_FollowingPostTblCell" rowHeight="600" id="2bn-Oz-Q3p" customClass="FeedType_FollowingPostTblCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="602"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2bn-Oz-Q3p" id="Fag-Oh-oTe">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="916.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="601.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fI7-dn-Cfe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="907"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="592"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qsX-lN-rVJ">
                                 <rect key="frame" x="0.0" y="-2" width="320" height="300"/>
@@ -51,7 +51,7 @@
                                 </constraints>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lqn-tn-h0b">
-                                <rect key="frame" x="0.0" y="803" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="488" width="320" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SfQ-Tj-zjd">
                                         <rect key="frame" x="8" y="5" width="40" height="51"/>
@@ -139,7 +139,7 @@
                                 </variation>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kno-AQ-Vft">
-                                <rect key="frame" x="0.0" y="863" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="548" width="320" height="44"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyN-sY-3ZN">
                                         <rect key="frame" x="266" y="0.0" width="46" height="44"/>
@@ -169,7 +169,7 @@
                                 </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="240" verticalCompressionResistancePriority="740" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tyn-WG-val">
-                                <rect key="frame" x="16" y="368" width="288" height="435"/>
+                                <rect key="frame" x="16" y="368" width="288" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Irg-Gg-7vK"/>
                                 </constraints>
@@ -346,7 +346,7 @@
                 <outlet property="lblTitle" destination="R1H-8m-Xfb" id="H4Y-Vo-bnc"/>
                 <outlet property="lblUsername" destination="RrY-uU-JJa" id="h8m-OT-GUk"/>
             </connections>
-            <point key="canvasLocation" x="530" y="943.5"/>
+            <point key="canvasLocation" x="530" y="786"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -675,62 +675,6 @@
     return UUID;
 }
 
-+(NSString*)getDeviceAppLanguageCode
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString* userLanguage = [defaults objectForKey:KEY_SYSTEM_LANG];
-
-    if ([Utils isStringNull:userLanguage]) {
-        userLanguage = [Utils getDeviceDefaultLanguageCode];
-    }
-    
-    if (userLanguage) {
-        if ([userLanguage isEqualToString:@"English"] || [userLanguage isEqualToString:ENGLISH_SERVER_NAME]) {
-            
-            return ENGLISH_CODE;
-        }else if([userLanguage isEqualToString:@"Simplified Chinese"] || [userLanguage isEqualToString:@"简体中文"] || [userLanguage isEqualToString:CHINESE_SERVER_NAME]){
-            return CHINESE_CODE;
-
-        }else if([userLanguage isEqualToString:@"Traditional Chinese"] || [userLanguage isEqualToString:@"繁體中文"] || [userLanguage isEqualToString:TAIWAN_SERVER_NAME]){
-
-            return TAIWAN_CODE;
-            
-        }else if([userLanguage isEqualToString:@"Bahasa Indonesia"] || [userLanguage isEqualToString:INDONESIA_SERVER_NAME]){
-
-            return INDONESIA_CODE;
-
-        }else if([userLanguage isEqualToString:@"Thai"] || [userLanguage isEqualToString:@"th"] || [userLanguage isEqualToString:@"ภาษาไทย"] || [userLanguage isEqualToString:THAI_SERVER_NAME]){
-            return THAI_CODE;
-        }
-    
-    }
-    return nil;
-    
-}
-
-+(void)setDeviceAppLanguage:(NSString*)languageCode
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    [defaults setObject:languageCode forKey:KEY_SYSTEM_LANG];
-    
-    [defaults synchronize];
-    
-    
-
-}
-
-/*get device language not app language*/
-+(NSString*)getDeviceDefaultLanguageCode
-{
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
- 
-    return  [Utils getLanguageCodeFromLocale:language];
-
-}
-
-
-
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local
 {
     NSString* strDistance;
@@ -794,6 +738,16 @@
     [popOutController setNavigationBarHidden:YES];
 }
 
++(void)showChangeVerifiedPhoneNumber:(UIViewController*)viewController{
+    PromoPopOutViewController *popOut = [PromoPopOutViewController new];
+    [popOut setViewType:PopOutViewTypeChangeVerifiedPhone];
+    
+    STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:popOut];
+    popOutController.containerView.backgroundColor = [UIColor clearColor];
+    [popOutController setNavigationBarHidden:YES];
+    [popOutController presentInViewController:viewController];
+}
+
 +(NSString*)getTimeZone
 {
     //int utcTimeZone = (int)[[NSTimeZone localTimeZone] secondsFromGMT] / 3600;
@@ -804,63 +758,7 @@
     NSString *localTimeZoneOffset = [localTimeZoneFormatter stringFromDate:[NSDate date]];
     
     return localTimeZoneOffset;
-//    NSString* strUTC;
-//    switch (utcTimeZone) {
-//        case 0:
-//            
-//            strUTC = @"";
-//            break;
-//            
-//        case 1:
-//            
-//            break;
-//            
-//        case 2:
-//            
-//            break;
-//            
-//        case 3:
-//            
-//            break;
-//        
-//            
-//        case 4:
-//            
-//            break;
-//            
-//        case 5:
-//            
-//            break;
-//            
-//        case 6:
-//            
-//            break;
-//        case 7:
-//            
-//            break;
-//
-//        default:
-//        case 8:
-//            
-//            break;
-//
-//        case 9:
-//            
-//            break;
-//
-//        case 10:
-//            
-//            break;
-//
-//        case 11:
-//            
-//            break;
-//
-//        case 12:
-//            
-//            break;
-//
-//    }
+
 
 }
 
@@ -881,6 +779,18 @@
 }
 
 +(BOOL)isDate:(NSDate*)currentDate betweenFirstDate:(NSDate*)firstDate andLastDate:(NSDate*)lastDate{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [calendar setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    
+    unsigned int dateFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    NSDateComponents *currentDateComp = [calendar components:dateFlags fromDate:currentDate];
+    NSDateComponents *firstDateComp = firstDate? [calendar components:dateFlags fromDate:firstDate] : nil;
+    NSDateComponents *lastDateComp = lastDate? [calendar components:dateFlags fromDate:lastDate] : nil;
+    
+    currentDate = [calendar dateFromComponents:currentDateComp];
+    firstDate = firstDateComp? [calendar dateFromComponents:firstDateComp] : nil;
+    lastDate = lastDateComp? [calendar dateFromComponents:lastDateComp] : nil;
+    
     if (!firstDate && !lastDate) {
         return YES;
     }
@@ -917,67 +827,6 @@
     }
     
     return YES;
-}
-
-+(BOOL)isWithinOperatingDate:(NSArray*)arrayDates{
-    for (NSDictionary *dateDict in arrayDates) {
-        NSDate* fromDate = [dateDict[@"from"] toDate];
-        NSDate* toDate = [dateDict[@"to"] toDate];
-        
-        if([Utils date:[NSDate date] isBetweenDate:fromDate andDate:toDate]){
-            return YES;
-        }
-    }
-    
-    return NO;
-}
-
-+(BOOL)isWithinOperationHour:(NSArray*)arrayDays
-{
-    
-    BOOL isOpen = false;
-    
-    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    [calendar setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    
-    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekday fromDate:[NSDate date]];
-    NSInteger weekday = ([comps weekday] - 1);      //NSDateComponents Sunday=1 //Seeties Sunday=0
-    NSArray *arrHours = arrayDays[weekday];
-    
-    
-    
-    // loop through period date time to check available in operating hours
-    for (int i = 0; i<arrHours.count; i++) {
-        
-        NSDictionary* dictHour = arrHours[i];
-        
-        
-        int strFrom = [dictHour[@"open"] intValue];
-        NSDate *now = [NSDate date];
-        NSCalendar *calendarFrom = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
-        NSDateComponents *componentsFrom = [calendarFrom components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
-        [componentsFrom setHour:strFrom/100];
-        NSDate *fromDateTime = [calendar dateFromComponents:componentsFrom];
-        
-        
-        int strTo = [dictHour[@"close"] intValue];
-        NSCalendar *calendarTo = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
-        NSDateComponents *componentsTo = [calendarTo components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
-        [componentsTo setHour:strTo/100];
-        NSDate *toDateTime = [calendar dateFromComponents:componentsTo];
-        
-        if ([Utils date:now isBetweenDate:fromDateTime andDate:toDateTime]) {
-            
-            SLog(@"is within time period");
-            
-            return YES;
-        }
-        else{
-            SLog(@"is NOT within time period");
-            isOpen = NO;
-        }
-    }
-    return isOpen;
 }
 
 + (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
