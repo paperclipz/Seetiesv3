@@ -616,12 +616,10 @@
         }
         else {
             
-            [FBLoginManager performFacebookGraphRequest:^(NSDictionary *result) {
-                NSString* fb_user_id = (NSString *)[result valueForKey:@"id"];
-                NSString* fb_token = [[FBSDKAccessToken currentAccessToken] tokenString];
+            [FBLoginManager performFacebookGraphRequest:^(FacebookModel *model) {
                 
-                if (![Utils isStringNull:fb_user_id]) {
-                    [weakSelf requestServerToUpdateUserInfoFacebook:fb_user_id facebookToken:fb_token];
+                if (![Utils isStringNull:model.uID]) {
+                    [weakSelf requestServerToUpdateUserInfoFacebook:model.uID facebookToken:model.fbToken];
                 }
             }];
         }

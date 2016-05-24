@@ -10,7 +10,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-typedef void (^FBGraphRequestHandler)(NSDictionary *result);
+typedef void (^FBGraphRequestHandler)(FacebookModel *modal);
 typedef void (^FBLoginHandler)(FBSDKLoginManagerLoginResult *result);
 
 @interface FBLoginManager : NSObject
