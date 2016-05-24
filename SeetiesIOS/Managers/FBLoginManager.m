@@ -39,12 +39,11 @@
              
              model.fbToken = [[FBSDKAccessToken currentAccessToken] tokenString];
              
-             [ConnectionManager dataManager].facebookLoginModel = model;
+//             [ConnectionManager dataManager].facebookLoginModel = model;
              
              if (completionBlock) {
-                 completionBlock(result);
+                 completionBlock(model);
              }
-//             [self requestServerForFacebookLogin];
          }
          else {
              NSLog(@"Process error");

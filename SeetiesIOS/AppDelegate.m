@@ -164,10 +164,6 @@
 //        //        [loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
 //    }
     
-    if ([FBSDKAccessToken currentAccessToken]) {
-        [FBLoginManager performFacebookGraphRequest:nil];
-    }
-    
     return YES;
 }
 
