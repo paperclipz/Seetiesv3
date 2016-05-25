@@ -70,6 +70,11 @@
 /*SeetiShop*/
 @property(nonatomic,strong)SeShopDetailModel* seetishop_info;
 
+//language
+@property(nonatomic,strong)NSArray* translatable_languages;
+
+//tags
+@property(nonatomic,strong)NSArray* tags;
 
 -(NSString*)getPostDescription;
 

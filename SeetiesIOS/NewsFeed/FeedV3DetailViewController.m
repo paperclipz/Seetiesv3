@@ -202,7 +202,7 @@
     
     //    if (self.postDetail.content_languages.count < 1) { return @""; }
     
-    NSString *userLanguageCode = [Utils getDeviceAppLanguageCode];
+    NSString *userLanguageCode = [LanguageManager getDeviceAppLanguageCode];
     
     for (NSString *code in self.postDetail.content_languages) {
         if ([code isEqualToString:userLanguageCode]) {
@@ -376,13 +376,16 @@
     [self.dataDictionary removeObjectForKey:@"translated_title"];
     [self.dataDictionary removeObjectForKey:@"translated_message"];
     
-    if (buttonIndex == TranslateText) {
-        [self GetTranslatedData];
-    }
-    else if (buttonIndex == ReadOrigin) {
-        [self.feedContentView reloadView];
-        [self reloadLayout];
-    }
+    
+    [self GetTranslatedData:buttonIndex];
+
+//    if (buttonIndex == TranslateText) {
+//        [self GetTranslatedData:buttonIndex];
+//    }
+//    else if (buttonIndex == ReadOrigin) {
+//        [self.feedContentView reloadView];
+//        [self reloadLayout];
+//    }
 }
 
 #pragma mark - API caller
@@ -420,6 +423,11 @@
         //like flag
         
         
+        //translatable languages
+        [self.dataDictionary setObject:self.postDetail.translatable_languages forKey:@"translatable_languages"];
+        
+        //Hash Tags
+        [self.dataDictionary setObject:self.postDetail.tags forKey:@"tags"];
         
         [self initializeView];
         [self.carousel reloadData];
@@ -431,18 +439,22 @@
     
 }
 
-- (void)GetTranslatedData {
+- (void)GetTranslatedData:(NSInteger)buttonIndex {
     
-    NSString *systemLanguageCheck = [Utils getDeviceAppLanguageCode];
-
+//    NSString *systemLanguageCheck = [LanguageManager getDeviceAppLanguageCode];
+    
+    [LoadingManager show];
+    
+    NSArray *translatableLanguage = self.dataDictionary[@"translatable_languages"];
+    
     NSDictionary *dict = @{@"token" : [Utils getAppToken],
-                           @"translate_language_code" : systemLanguageCheck ? systemLanguageCheck : [Utils getDeviceDefaultLanguageCode]};
+                           @"translate_language_code" : translatableLanguage[buttonIndex]};
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequeetTypeGetTranslatePost parameter:dict appendString:[NSString stringWithFormat:@"%@/translate", self.postID] success:^(id object) {
         
         TranslationModel *translationModel = [[ConnectionManager dataManager] translationModel];
         
-        NSString *currentPostLanguageCode =[self getLanguageCode];
+        NSString *currentPostLanguageCode = [self getLanguageCode];
         
         NSDictionary *content = translationModel.translations[currentPostLanguageCode];
         
@@ -454,8 +466,9 @@
             
             [self.feedContentView reloadView];
             [self reloadLayout];
+            
+            [LoadingManager hide];
         }
-        
 
     } failure:^(id object) {
 

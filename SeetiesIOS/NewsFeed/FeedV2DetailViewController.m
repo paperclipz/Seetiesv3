@@ -3876,13 +3876,13 @@
     [CommentView GetRealPostID:GetPostID];
     [CommentView GetWhatView:@"Like"];
 }
-//-(IBAction)FacebookButton:(id)sender{
-//    NSLog(@"Facebook Button Click");
-//    NSString *message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
-//    NSString *Description = [NSString stringWithFormat:@"%@",GetMessage];
-//    NSString *caption = [NSString stringWithFormat:@"SEETIES.ME"];
-//    
-//    // Check if the Facebook app is installed and we can present the share dialog
+-(IBAction)FacebookButton:(id)sender{
+    NSLog(@"Facebook Button Click");
+    NSString *message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+    NSString *Description = [NSString stringWithFormat:@"%@",GetMessage];
+    NSString *caption = [NSString stringWithFormat:@"SEETIES.ME"];
+    
+    // Check if the Facebook app is installed and we can present the share dialog
 //    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
 //    params.link = [NSURL URLWithString:message];
 //    
@@ -3945,7 +3945,7 @@
 //                                                      }
 //                                                  }];
 //    }
-//}
+}
 
 -(void)GetUnLikeData{
     NSString *GetExpertToken = [Utils getAppToken];
