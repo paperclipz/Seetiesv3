@@ -9,7 +9,7 @@
 #import <JSONModel/JSONModel.h>
 
 @interface InviteFriendModel : JSONModel
-@property(nonatomic,strong) NSString *title;
+@property(nonatomic,strong) NSDictionary *title;
 @property(nonatomic,strong) NSString *image;    //image url
 @property(nonatomic,strong) NSString *expired_at;    //yyyy-MM-dd HH:mm:ss
 @property(nonatomic,assign) BOOL display_expired_period;
