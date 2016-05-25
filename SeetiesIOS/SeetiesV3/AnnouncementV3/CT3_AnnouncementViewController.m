@@ -39,7 +39,7 @@
         [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:aModel.photo] completed:nil];
     }
     
-    self.txtDesc.text = aModel.desc[[Utils getDeviceAppLanguageCode]];
+    self.txtDesc.text = aModel.desc[[LanguageManager getDeviceAppLanguageCode]];
     
     NSString* iconImage;
     switch (model.feedType) {

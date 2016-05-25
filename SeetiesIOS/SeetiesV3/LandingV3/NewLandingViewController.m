@@ -13,22 +13,15 @@
 
 @interface NewLandingViewController()<UITabBarControllerDelegate>
 {
+    
 }
 /*navigation controller*/
 @property (nonatomic)UINavigationController* firstViewController;
 @property (nonatomic)UINavigationController* secondViewController;
 @property (nonatomic)UINavigationController* thirdViewController;
 @property (nonatomic, strong)IntroCoverView* introView;
-
-@property (weak, nonatomic) IBOutlet UIImageView *ibLogo;
-
-
-@property (nonatomic,strong)NSArray* arryViewController;
-
 @property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
-@property (strong, nonatomic) IBOutlet UIView *ibSplashView;
-
-@property (nonatomic, weak)IBOutlet YLImageView *loadingImage;
+@property (nonatomic,strong)NSArray* arryViewController;
 
 @end
 
@@ -42,9 +35,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //[self requestForApiVersion:nil];
     [self initSelfView];
     
+    @try {
+        [[SearchManager Instance]startSearchGPSLocation];
+        [[SearchManager Instance]startGetWifiLocation];
+
+    } @catch (NSException *exception) {
+        
+        [CrashlyticsKit setObjectValue:exception forKey:@"Location"];
+        
+    }
+    
+    //[self requestForApiVersion:nil];
+
 //    if (![Utils getIsDevelopment]) {
 //        
 //        [self requestForApiVersion:nil];
@@ -57,7 +61,7 @@
 //
 //        }];
 //    }
-    [self showAnimatedSplash];
+   // [self showAnimatedSplash];
 
 }
 
@@ -88,9 +92,6 @@
 
 -(void)requestForApiVersion:(VoidBlock)completionBlock{
     
-    if (self.loadingImage) {
-        self.loadingImage.image = [YLGIFImage imageNamed:@"Loading.gif"];
-    }
     
     [[ConnectionManager Instance]requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetApiVersion parameter:nil appendString:nil success:^(id object) {
         
@@ -100,10 +101,8 @@
             completionBlock();
         }
         // [self showIntroView];
-        self.loadingImage.image = nil;
         
     } failure:^(id object) {
-        self.loadingImage.image = nil;
 
 
     }];
@@ -134,24 +133,26 @@
                           }];
     }
 }
--(void)showAnimatedSplash
-{
-    self.ibSplashView.frame = self.view.frame;
-    
-    [UIView animateWithDuration:1.0 animations:^{
-        
-        self.ibLogo.alpha = 0;
-        
-    }completion:^(BOOL finished) {
-        
-        [UIView animateWithDuration:1.0 animations:^{
-        
-            self.ibSplashView.alpha = 0;
-        }completion:^(BOOL finished) {
-            [self.ibSplashView removeFromSuperview];
-        }];
-    }];
-}
+//-(void)showAnimatedSplash
+//{
+//    
+//    [self.view addSubview:self.ibSplashView];
+//    self.ibSplashView.frame = self.view.frame;
+//    
+//    [UIView animateWithDuration:1.0 animations:^{
+//        
+//        self.ibLogo.alpha = 0;
+//        
+//    }completion:^(BOOL finished) {
+//        
+//        [UIView animateWithDuration:1.0 animations:^{
+//        
+//            self.ibSplashView.alpha = 0;
+//        }completion:^(BOOL finished) {
+//            [self.ibSplashView removeFromSuperview];
+//        }];
+//    }];
+//}
 
 -(UITabBarController*)tabBarController
 {
@@ -266,6 +267,8 @@
     
     [Utils reloadAppView:YES];
     self.tabBarController.selectedIndex = 0;
+    
+    [self reloadTabbar];
     
     [TSMessage showNotificationInViewController:self.newsFeedViewController title:LocalisedString(@"system") subtitle:LocalisedString(@"Login Successfully") type:TSMessageNotificationTypeSuccess duration:1.0f canBeDismissedByUser:YES];
     
@@ -414,7 +417,7 @@
         DataManager* manager = [ConnectionManager dataManager];
         manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
         
-        [[LanguageManager sharedLanguageManager]setLanguageCode:manager.currentUserProfileModel.system_language.language_code];
+        [LanguageManager setDeviceAppLanguage:manager.currentUserProfileModel.system_language.language_code];
         
     } failure:^(id object) {
         
@@ -546,7 +549,7 @@
     }
     else{
         
-        ProfileModel* userProfile = [[ConnectionManager dataManager]currentUserProfileModel];
+        ProfileModel* userProfile = [[ConnectionManager dataManager]getCurrentUserProfileModel];
         
         if ([Utils isStringNull:userProfile.contact_no]) {
             self.ct3_MoreViewController.tabBarItem.badgeValue = @"!";
@@ -577,70 +580,53 @@
     NSString* strActive3 = @"";
     NSString* inActive3 = @"";
     
-    SWITCH ([Utils getDeviceAppLanguageCode]) {
-        
-        
-        CASE (CHINESE_CODE){
-            
-            strActive1 = @"CN_TabbarHomeIcon_Active";
-            inActive1 = @"CN_TabbarHomeIcon_Inactive";
-            strActive2 = @"CN_TabbarMeIcon_Active";
-            inActive2 = @"CN_TabbarMeIcon_Inactive";
-            strActive3 = @"CN_TabbarMoreIcon_Active";
-            inActive3 = @"CN_TabbarMoreIcon_Inactive";
-            
-            break;
-            
-        }
-        CASE (TAIWAN_CODE){
-            
-            strActive1 = @"TW_TabbarHomeIcon_Active";
-            inActive1 = @"TW_TabbarHomeIcon_Inactive";
-            strActive2 = @"CN_TabbarMeIcon_Active";
-            inActive2 = @"CN_TabbarMeIcon_Inactive";
-            strActive3 = @"CN_TabbarMoreIcon_Active";
-            inActive3 = @"CN_TabbarMoreIcon_Inactive";
-            
-            break;
-            
-        }
-        CASE (INDONESIA_CODE){
-            strActive1 = @"ID_TabbarHomeIcon_Active";
-            inActive1 = @"ID_TabbarHomeIcon_Inactive";
-            strActive2 = @"EN_TabbarMeIcon_Active";
-            inActive2 = @"EN_TabbarMeIcon_Inactive";
-            strActive3 = @"EN_TabbarMoreIcon_Active";
-            inActive3 = @"EN_TabbarMoreIcon_Inactive";
-            
-            break;
-            
-        }
-        
-        CASE (THAI_CODE){
-            strActive1 = @"TH_TabbarHomeIcon_Active";
-            inActive1 = @"TH_TabbarHomeIcon_Inactive";
-            strActive2 = @"TH_TabbarMeIcon_Active";
-            inActive2 = @"TH_TabbarMeIcon_Inactive";
-            strActive3 = @"TH_TabbarMoreIcon_Active";
-            inActive3 = @"TH_TabbarMoreIcon_Inactive";
-            break;
-            
-        }
-        
-        
-        DEFAULT
-        CASE (ENGLISH_CODE){
-            
-            strActive1 = @"EN_TabbarHomeIcon_Active";
-            inActive1 = @"EN_TabbarHomeIcon_Inactive";
-            strActive2 = @"EN_TabbarMeIcon_Active";
-            inActive2 = @"EN_TabbarMeIcon_Inactive";
-            strActive3 = @"EN_TabbarMoreIcon_Active";
-            inActive3 = @"EN_TabbarMoreIcon_Inactive";
-            break;
-            
-        }
-        
+    NSString* deviceAppLanguageCode = [LanguageManager getDeviceAppLanguageCode];
+    
+    if ([deviceAppLanguageCode isEqualToString:CHINESE_CODE]) {
+        strActive1 = @"CN_TabbarHomeIcon_Active";
+        inActive1 = @"CN_TabbarHomeIcon_Inactive";
+        strActive2 = @"CN_TabbarMeIcon_Active";
+        inActive2 = @"CN_TabbarMeIcon_Inactive";
+        strActive3 = @"CN_TabbarMoreIcon_Active";
+        inActive3 = @"CN_TabbarMoreIcon_Inactive";
+
+    }
+    
+    else if ([deviceAppLanguageCode isEqualToString:TAIWAN_CODE])
+    {
+        strActive1 = @"TW_TabbarHomeIcon_Active";
+        inActive1 = @"TW_TabbarHomeIcon_Inactive";
+        strActive2 = @"CN_TabbarMeIcon_Active";
+        inActive2 = @"CN_TabbarMeIcon_Inactive";
+        strActive3 = @"CN_TabbarMoreIcon_Active";
+        inActive3 = @"CN_TabbarMoreIcon_Inactive";
+
+    }
+    else if ([deviceAppLanguageCode isEqualToString:INDONESIA_CODE])
+    {
+        strActive1 = @"ID_TabbarHomeIcon_Active";
+        inActive1 = @"ID_TabbarHomeIcon_Inactive";
+        strActive2 = @"EN_TabbarMeIcon_Active";
+        inActive2 = @"EN_TabbarMeIcon_Inactive";
+        strActive3 = @"EN_TabbarMoreIcon_Active";
+        inActive3 = @"EN_TabbarMoreIcon_Inactive";
+    }
+    else if ([deviceAppLanguageCode isEqualToString:THAI_CODE])
+    {
+        strActive1 = @"TH_TabbarHomeIcon_Active";
+        inActive1 = @"TH_TabbarHomeIcon_Inactive";
+        strActive2 = @"TH_TabbarMeIcon_Active";
+        inActive2 = @"TH_TabbarMeIcon_Inactive";
+        strActive3 = @"TH_TabbarMoreIcon_Active";
+        inActive3 = @"TH_TabbarMoreIcon_Inactive";
+    }
+    else{
+        strActive1 = @"EN_TabbarHomeIcon_Active";
+        inActive1 = @"EN_TabbarHomeIcon_Inactive";
+        strActive2 = @"EN_TabbarMeIcon_Active";
+        inActive2 = @"EN_TabbarMeIcon_Inactive";
+        strActive3 = @"EN_TabbarMoreIcon_Active";
+        inActive3 = @"EN_TabbarMoreIcon_Inactive";
     }
     
     UITabBarItem *item1 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",inActive1]]

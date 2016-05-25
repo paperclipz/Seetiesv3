@@ -164,6 +164,9 @@ typedef enum {
 #define GREEN_STATUS [UIColor colorWithRed:122.0f/255.0 green:210.0f/255.0 blue:26.0f/255.0 alpha:1.0]
 #define GREY_APP_COLOR [UIColor colorWithRed:247.0/255.0 green:247.0/255.0 blue:247.0/255.0 alpha:1.0]
 
+#define BUTTON_DISABLED_COLOR [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0]
+#define BUTTON_REDEEM_ACTIVE_COLOR [UIColor colorWithRed:242.0/255.0f green:109.0/255.0f blue:125.0/255.f alpha:1.0]
+
 #define CustomFontName @"ProximaNovaSoft-Regular"
 #define CustomFontNameBold @"ProximaNovaSoft-Bold"
 #define REGULAR @"Regular"
@@ -177,11 +180,10 @@ typedef enum {
 +(NSString*)getTimeZone;
 +(NSInteger)numberOfDaysLeft:(NSDate*)date;
 +(BOOL)isValidDateString:(NSString*)dateString;
+//Compare date only (exclude time)
 +(BOOL)isDate:(NSDate*)currentDate betweenFirstDate:(NSDate*)firstDate andLastDate:(NSDate*)lastDate;
-
-+(BOOL)isWithinOperationHour:(NSArray*)arrayDays;
-+(BOOL)isWithinOperatingDate:(NSArray*)arrayDates;
-
+//Compare both date and time
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate;
 // ========================  Day ==========================
 
 #pragma mark - UI
@@ -236,9 +238,6 @@ typedef enum {
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local;
 
-+(NSString*)getDeviceAppLanguageCode;
-+(NSString*)getDeviceDefaultLanguageCode;
-+(void)setDeviceAppLanguage:(NSString*)languageCode;
 +(NSString*)getUniqueDeviceIdentifier;
 
 #define ARRAY_LIST_SIZE 10.0f
@@ -263,6 +262,7 @@ typedef enum {
 #pragma mark - LOGIN
 +(void)showLogin;
 +(void)showVerifyPhoneNumber:(UIViewController*)viewController;
++(void)showChangeVerifiedPhoneNumber:(UIViewController*)viewController;
 +(void)presentView:(UIViewController*)vc Completion:(NullBlock)completionBlock;
 
 

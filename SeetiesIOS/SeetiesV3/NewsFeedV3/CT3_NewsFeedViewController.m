@@ -57,6 +57,7 @@
 
 #import "UITableView+emptyState.h"
 #import "UIButton+Activity.h"
+#import "UIImageView+Extension.h"
 
 #import "FeedV3DetailViewController.h"
 
@@ -86,7 +87,6 @@ static NSCache* heightCache = nil;
     BOOL isDealCollectionShown;
     
     BOOL isLoadingLocation;
-
     
 }
 @property (weak, nonatomic) IBOutlet UIButton *btnCurrentLocation;
@@ -234,6 +234,10 @@ static NSCache* heightCache = nil;
         [self.voucherListingViewController initWithDealsModel:dealsModel];
         [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
     }
+}
+
+-(void)promoHasBeenRedeemed:(DealsModel *)dealsModel{
+    [self.ibTableView reloadData];
 }
 
 #pragma mark - Declaration
@@ -508,7 +512,6 @@ static NSCache* heightCache = nil;
     lastUpdatedLocation = @"";
     
     update_location_method = @"";
-    
     
     [self initSelfView];
 
@@ -1186,7 +1189,7 @@ static NSCache* heightCache = nil;
                     case AnnouncementType_Promo:
                     {
                         if ([Utils isGuestMode]) {
-                            [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                            [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                                 
                                 if (buttonIndex == 1) {
                                     [Utils showLogin];
@@ -1312,7 +1315,7 @@ static NSCache* heightCache = nil;
                     case AnnouncementType_Promo:
                     {
                         if ([Utils isGuestMode]) {
-                            [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                            [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                                 
                                 if (buttonIndex == 1) {
                                     [Utils showLogin];

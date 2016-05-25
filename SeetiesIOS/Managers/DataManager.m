@@ -250,6 +250,7 @@
     
 }
 
+// for offline mode
 -(ProfileModel*)getCurrentUserProfileModel
 {
     if (_currentUserProfileModel) {

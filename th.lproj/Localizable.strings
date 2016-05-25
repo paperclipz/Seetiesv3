@@ -424,9 +424,9 @@
 "Oops! It seems like you've missed out your username / password."= "แย่ละ! ดูท่าคุณจะลืมใส่ยูสเซอร์เนม/พาสเวิร์ดนะ";
 ""= "";
 ""= "";
-"Email Address"= "อีเมล";
-"Create your username"= "ยูสเซอร์เนม";
-"Password"= "พาสเวิร์ด";
+"email address"= "อีเมล";
+"create your username"= "ยูสเซอร์เนม";
+"password"= "พาสเวิร์ด";
 "Create"= "สร้าง";
 "Yikes. Your password must be at least 8 characters."= "พาสเวิร์ดต้องมีอย่างน้อย 8 ตัว";
 ""= "";
@@ -1149,7 +1149,7 @@
 "x-TIME-USE" = "ใช้ x ครั้ง";
 "Expires in {!number} day(s)" = "หมดอายุใน {!number} วัน";
 "Redeem" = "แลก";
-"Sorry! This voucher is not currently available for redemption." = "ขอโทษ! ขณะนี้ คุณไม่สามารถแลก voucher นี้ได้ ";
+"Sorry! This voucher is currently not available for redemption." = "ขอโทษ! ขณะนี้ คุณไม่สามารถแลก voucher นี้ได้ ";
 "This deal can only be redeemed on " = "คุณแลกดีลนี้ได้เมื่อ ";
 "{!date}, {!time}" = "{!date} {!time}";
 "Okay!" = "ok";
@@ -1195,7 +1195,7 @@
 "Deal description" = "รายละเอียด";
 "Deal availability" = "พร้อมใช้";
 "This deal can only be redeemed at time as stated below:" = "คุณแลกดีลนี้ได้ตามเวลาที่ระบุด้านล่าง:";
-"Participate outlet ({!number})" = "เบอร์ติดต่อ ({!number})";
+"Participating outlets ({!number})" = "เบอร์ติดต่อ ({!number})";
 "Terms & Conditions" = "ข้อตกลงและเงื่อนไข";
 "Read the full T&Cs here" = "อ่านข้อตกลงและเงื่อนไขฉบับเต็มที่นี่";
 "{!number} deals here!" = "{!number} ดีล!";

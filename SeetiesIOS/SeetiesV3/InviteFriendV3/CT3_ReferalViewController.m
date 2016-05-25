@@ -58,7 +58,7 @@
     self.ibHeaderTitle.text = LocalisedString(@"Invite Friends & Get Rewards");
     self.ibReferralDesc.text = LocalisedString(@"Tap to copy");
     
-    NSString *languageCode = [Utils getDeviceAppLanguageCode];
+    NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
     NSString *message = self.inviteFriendModel.message[languageCode]? self.inviteFriendModel.message[languageCode] : @"";
     self.ibCampaignDesc.text = LocalisedString(message);
     
@@ -67,7 +67,7 @@
    
     if (![Utils isStringNull:self.userProfile.referral_code]) {
         self.userProfile.referral_code = [self.userProfile.referral_code uppercaseString];
-        NSString *refCode = [LanguageManager stringForKey:@"Share your promo code\n{!referral code}" withPlaceHolder:@{@"{!referral code}":self.userProfile.referral_code?self.userProfile.referral_code:@""}];
+        NSString *refCode = [LanguageManager stringForKey:@"Share your referral code\n{!referral code}" withPlaceHolder:@{@"{!referral code}":self.userProfile.referral_code?self.userProfile.referral_code:@""}];
         NSMutableAttributedString *attrRefCode = [[NSMutableAttributedString alloc] initWithString:refCode];
         NSRange refRange = [refCode rangeOfString:self.userProfile.referral_code];
         [attrRefCode beginEditing];
@@ -123,7 +123,7 @@
     self.promoPopoutViewController = nil;
     [self.promoPopoutViewController setViewType:PopOutViewTypeMessage];
     [self.promoPopoutViewController setPopOutCondition:PopOutConditionChooseShopOnly];
-    NSString *languageCode = [Utils getDeviceAppLanguageCode];
+    NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
     NSString *message = self.inviteFriendModel.desc[languageCode]? self.inviteFriendModel.desc[languageCode] : @"";
     [self.promoPopoutViewController setMessage:message];
     

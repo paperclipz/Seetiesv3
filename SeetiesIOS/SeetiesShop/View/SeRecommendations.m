@@ -142,7 +142,7 @@
         
         Getheight += 40;
         
-        NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+        NSString* currentlangCode = [LanguageManager getDeviceAppLanguageCode];
         NSString *TestTitle;
         NSString *TestDetail;
         if (![model.arrPost isNull]) {

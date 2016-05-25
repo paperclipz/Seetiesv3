@@ -11,7 +11,6 @@
 #import "FeedbackViewController.h"
 #import "CTWebViewController.h"
 #import "CT3_AcctSettingViewController.h"
-#import "PromoPopOutViewController.h"
 #import "IntroCoverView.h"
 #import "AppDelegate.h"
 //#import "DraftAndRecommendationDelegate.h"
@@ -33,7 +32,6 @@
 @property(nonatomic)FeedbackViewController* feedbackViewController;
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
-@property(nonatomic)PromoPopOutViewController* promoPopOutViewController;
 @property(nonatomic)IntroCoverView* introView;
 
 @end
@@ -156,7 +154,7 @@
         
         if ([Utils isPhoneNumberVerified]) {
             
-            ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
+            ProfileModel *profileModel = [[DataManager Instance] getCurrentUserProfileModel];
             cell.lblTitle.text = [LanguageManager stringForKey:@"Phone Number = {!phone number}" withPlaceHolder:@{@"{!phone number}": profileModel.contact_no?profileModel.contact_no:@""}];
             
             @try {
@@ -242,15 +240,7 @@
                     
                     if ([Utils isPhoneNumberVerified]) {
                         
-                        _promoPopOutViewController = nil;
-                        
-                        [self.promoPopOutViewController setViewType:PopOutViewTypeChangeVerifiedPhone];
-                        
-                        
-                        STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
-                        popOutController.containerView.backgroundColor = [UIColor clearColor];
-                        [popOutController setNavigationBarHidden:YES];
-                        [popOutController presentInViewController:self];
+                        [Utils showChangeVerifiedPhoneNumber:self];
 
                     }
                     else{
@@ -340,15 +330,6 @@
 
 #pragma mark - Declaration
 
--(PromoPopOutViewController*)promoPopOutViewController
-{
-    if (!_promoPopOutViewController) {
-        _promoPopOutViewController = [PromoPopOutViewController new];
-    }
-    
-    return _promoPopOutViewController;
-}
-
 -(CT3_AcctSettingViewController*)ct3_AcctSettingViewController
 {
     if (!_ct3_AcctSettingViewController) {
@@ -398,7 +379,7 @@
         }
         else
         {
-            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log In", nil];//@"Notification Settings"
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log in", nil];//@"Notification Settings"
             
             NSArray *secondItemsArray;
             if ([ [ UIScreen mainScreen ] bounds ].size.height > 480) {

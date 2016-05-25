@@ -425,9 +425,9 @@
 "Oops! It seems like you've missed out your username / password."= "用户名与密码不能留白唷！";
 ""= "";
 ""= "";
-"Email Address"= "电邮";
-"Create your username"= "创建用户名";
-"Password"= "密码";
+"email address"= "电邮";
+"create your username"= "创建用户名";
+"password"= "密码";
 "Create"= "创建";
 "Yikes. Your password must be at least 8 characters."= "密码至少要8个字以上唷！";
 ""= "";
@@ -1148,7 +1148,7 @@
 "x-TIME-USE" = "x次性";
 "Expires in {!number} day(s)" = "即将在{!number}日后截止";
 "Redeem" = "领取";
-"Sorry! This voucher is not currently available for redemption." = "哎唷! 此优惠劵还不能被使用唷。";
+"Sorry! This voucher is currently not available for redemption." = "哎唷! 此优惠劵还不能被使用唷。";
 "This deal can only be redeemed on " = "你可在以下日期与时间使用此券喔";
 "{!date}, {!time}" = "{!date}, {!time}";
 "Okay!" = "好的, 知道了";
@@ -1186,6 +1186,7 @@
 "You've got 15 minutes to redeem this deal after you swipe." = "右刷后你只有15分钟可领取此优惠哦!";
 "Redeemed on {!date}, {!time}" = "此优惠已在{!date},{!time}被领取";
 "{!date}, {!time}" = "";
+"Flash and swipe! Do you want to redeem your voucher now?" = "注意！你是否要现在领取优惠？";
 "Expires {!date}" = "截止于{!date}";
 "FEATURED" = "超值";
 "FREE" = "赠送";
@@ -1194,7 +1195,7 @@
 "Deal description" = "优惠内容";
 "Deal availability" = "领取详情";
 "This deal can only be redeemed at time as stated below:" = "此优惠劵只可在以下时间领取";
-"Participate outlet ({!number})" = "适用于 {!number}";
+"Participating outlets ({!number})" = "适用于 {!number}";
 "Terms & Conditions" = "附加条件";
 "Read the full T&Cs here" = "查阅详情";
 "{!number} deals here!" = "店家其他优惠 {!number}";
@@ -1208,7 +1209,7 @@
 "Select outlet to redeem from" = "选择领取地点";
 "Confirm" = "确认";
 "Select outlet" = "选择领取地点";
-"Redeemed on {!date}, {!time}" = "此优惠已在{!datetime}被领取";
+"Redeemed on {!date}, {!time}" = "此优惠已在{!date}, {!time}被领取";
 "Flash this screen to a staff and swipe to redeem this deal." = "右刷时请务必向店员出示此屏幕以便验证";
 "Search History" = "搜索记录";
 "Keyword Suggestions" = "热门搜索";
@@ -1403,8 +1404,8 @@
 
 "Everytime a friend signs up with your invite code, each of you will receive a reward. Collect your reward via your notification!" = "每当您的好友使用您的邀请码加入, 你们各自便可在“个人通知”内获取限量礼劵喔!";
 "The reward is now yours. Redeem it via your notification." = "限量礼劵已被分发, 赶快到\"个人通知“内领取吧!";
-"Enter invite code" = "输入邀请码";
-"Invite code (optional)" = "邀请码 (自选)";
+"Enter referral code" = "输入邀请码";
+"referral code (optional)" = "邀请码 (自选)";
 "Your referral code is invalid! But you may continue and try again later." = "哎呀, 邀请码无效, 请确认再试!";
 "Continue" = "好的";
 "Get Rewards" = "获取好康";
@@ -1423,7 +1424,7 @@
 "Share your promo code" = "分享个人邀请码";
 "{!referral code}" = "{!referral code}";
 //======CHANGE======//
-"Share your promo code\n{!referral code}" = "分享个人邀请码\n{!referral code}";
+"Share your referral code\n{!referral code}" = "分享个人邀请码\n{!referral code}";
 //======CHANGE======//
 "Code Copied" = "复制邀请码";
 "Give your friends a 1-for-1 deal and receive one yourself" = "";
@@ -1443,7 +1444,7 @@
 "Sign Up with Seeties!" = "加入Seeties!";
 "Join Seeties to enjoy awesome deals around your city! " = "快來加入Seeties以獲取各種精選優惠吧!";
 //======CHANGE======//
-"Sharing is caring! Get an instant reward when you sign up with the invite code '{!referral_code}'.\n{!Seeties URL}" = "好康来报到! 使用我的邀请码加入Seeties便可获取好康喔! - '{!referral_code}'.\n{!Seeties URL}";
+"Hey you can use my referral code to sign up and get GOODIES! \n'{!referral_code}'.\n{!Seeties URL}" = "好康来报到! 使用我的邀请码加入Seeties便可获取好康喔! \n'{!referral_code}'.\n{!Seeties URL}";
 "Sharing is caring!\nSign up with Seeties today.\n{!Seeties URL}" = "快来与我加入Seeties以发掘更多好康吧!\n{!Seeties URL}";
 //======CHANGE======//
 "Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "版本 {!version number}\n- 邀请好友, 索取好康\n- 系统整顿";

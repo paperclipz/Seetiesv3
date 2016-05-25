@@ -48,14 +48,6 @@
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NaviDropDownIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="yku-iQ-LJM">
                             <rect key="frame" x="106" y="34" width="8" height="6"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomePinIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="QU9-SW-ZDw">
-                            <rect key="frame" x="10" y="27" width="20" height="20"/>
-                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="20" id="JBF-ub-iwo"/>
-                                <constraint firstAttribute="height" constant="20" id="TYR-XS-UXu"/>
-                            </constraints>
-                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKt-5r-f72">
                             <rect key="frame" x="38" y="22" width="63" height="30"/>
                             <constraints>
@@ -87,6 +79,19 @@
                                 <action selector="btnutoDetectClicked:" destination="-1" eventType="touchUpInside" id="5xt-oK-tzj"/>
                             </connections>
                         </button>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomePinIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="QU9-SW-ZDw">
+                            <rect key="frame" x="10" y="27" width="20" height="20"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="JBF-ub-iwo"/>
+                                <constraint firstAttribute="height" constant="20" id="TYR-XS-UXu"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="imageRenderingMode">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>

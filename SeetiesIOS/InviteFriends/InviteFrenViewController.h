@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import <MessageUI/MessageUI.h>
 #import "UrlDataClass.h"

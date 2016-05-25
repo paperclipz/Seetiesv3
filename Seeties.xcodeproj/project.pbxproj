@@ -50,6 +50,7 @@
 		8A0035461C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035441C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.m */; };
 		8A0035471C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */; };
 		8A0159CF1CB6741E00ED6D0F /* CustomEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0159CE1CB6741E00ED6D0F /* CustomEmptyView.m */; };
+		8A02BA9D1CE9DAA600CABDE3 /* newsfeed.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A02BA9C1CE9DAA600CABDE3 /* newsfeed.json */; };
 		8A0348791C154F9C0015E606 /* SeetiesMoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */; };
 		8A03487A1C154F9C0015E606 /* SeetiesMoreInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */; };
 		8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0F50B01C0C3B5B002B1E22 /* SeShopDetailView.m */; };
@@ -1096,18 +1097,11 @@
 		8AD6C1191B706CF30040437E /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE1C1B706CF30040437E /* pin@2x.png */; };
 		8AD6C11A1B706CF30040437E /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE1D1B706CF30040437E /* poweredByFoursquare_gray.png */; };
 		8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD6BE1E1B706CF30040437E /* poweredByFoursquare_gray@2x.png */; };
-		8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22C1B7070A60040437E /* FacebookSDK.framework */; };
-		8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */; };
-		8AD6C2341B7070A60040437E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */; };
 		8AD6C2B11B7079AF0040437E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B01B7079AF0040437E /* Social.framework */; };
 		8AD6C2B31B7079B40040437E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B21B7079B40040437E /* Accounts.framework */; };
 		8AD6C2B51B7079FA0040437E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B41B7079FA0040437E /* AssetsLibrary.framework */; };
 		8AD6C2B71B707A130040437E /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B61B707A130040437E /* libstdc++.6.dylib */; };
 		8AD6C2B91B707A1B0040437E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2B81B707A1B0040437E /* MobileCoreServices.framework */; };
-		8AD6C2BE1B707A470040437E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BA1B707A470040437E /* Parse.framework */; };
-		8AD6C2BF1B707A470040437E /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BB1B707A470040437E /* ParseCrashReporting.framework */; };
-		8AD6C2C01B707A470040437E /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BC1B707A470040437E /* ParseFacebookUtils.framework */; };
-		8AD6C2C11B707A470040437E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2BD1B707A470040437E /* ParseUI.framework */; };
 		8AD6C2C31B707A5A0040437E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C21B707A5A0040437E /* libsqlite3.0.dylib */; };
 		8AD6C2C71B707A8C0040437E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C61B707A8C0040437E /* OpenGLES.framework */; };
 		8AD6C2C91B707AAF0040437E /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C2C81B707AAF0040437E /* libstdc++.dylib */; };
@@ -1305,6 +1299,10 @@
 		C294FD291C9817F200C455C8 /* FilterPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD281C9817F200C455C8 /* FilterPriceModel.m */; };
 		C294FD2C1C9819B500C455C8 /* FiltersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C294FD2B1C9819B500C455C8 /* FiltersModel.m */; };
 		C295DCDB1C72C54300A1DED3 /* DealManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C295DCDA1C72C54300A1DED3 /* DealManager.m */; };
+		C2A536671CEB02E100D0914C /* DealsCancelledIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A536631CEB02E100D0914C /* DealsCancelledIcon@2x.png */; };
+		C2A536681CEB02E100D0914C /* DealsCancelledIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A536641CEB02E100D0914C /* DealsCancelledIcon@3x.png */; };
+		C2A536691CEB02E100D0914C /* DealsDeletedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A536651CEB02E100D0914C /* DealsDeletedIcon@2x.png */; };
+		C2A5366A1CEB02E100D0914C /* DealsDeletedIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A536661CEB02E100D0914C /* DealsDeletedIcon@3x.png */; };
 		C2A910101CCDFF31005D517B /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A910051CCDFF31005D517B /* PostsTableViewCell.m */; };
 		C2A910111CCDFF31005D517B /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A910061CCDFF31005D517B /* PostsTableViewCell.xib */; };
 		C2A910121CCDFF31005D517B /* SearchLocationAreaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A910081CCDFF31005D517B /* SearchLocationAreaCell.m */; };
@@ -1319,6 +1317,7 @@
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
 		C2E6D7561CDA052C00B53BF4 /* InviteFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6D7551CDA052C00B53BF4 /* InviteFriendModel.m */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
+		C7023C231CF2BFFD00A2DF04 /* FBLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */; };
 		C71B5E181CBE3BED00B4FA91 /* FriendSuggestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */; };
 		C75015FE1CD0A7640048C279 /* EditProfileV3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */; };
 		C75015FF1CD0A7640048C279 /* EditProfileV3ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */; };
@@ -1411,6 +1410,7 @@
 		8A0035451C4F7ABB002BD9A3 /* DealType_YourWalletTblCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealType_YourWalletTblCell.xib; sourceTree = "<group>"; };
 		8A0159CD1CB6741E00ED6D0F /* CustomEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomEmptyView.h; sourceTree = "<group>"; };
 		8A0159CE1CB6741E00ED6D0F /* CustomEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomEmptyView.m; sourceTree = "<group>"; };
+		8A02BA9C1CE9DAA600CABDE3 /* newsfeed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newsfeed.json; sourceTree = "<group>"; };
 		8A0348761C154F9C0015E606 /* SeetiesMoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeetiesMoreInfoViewController.h; sourceTree = "<group>"; };
 		8A0348771C154F9C0015E606 /* SeetiesMoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeetiesMoreInfoViewController.m; sourceTree = "<group>"; };
 		8A0348781C154F9C0015E606 /* SeetiesMoreInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeetiesMoreInfoViewController.xib; sourceTree = "<group>"; };
@@ -2689,18 +2689,11 @@
 		8AD6BE1C1B706CF30040437E /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
 		8AD6BE1D1B706CF30040437E /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
 		8AD6BE1E1B706CF30040437E /* poweredByFoursquare_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poweredByFoursquare_gray@2x.png"; sourceTree = "<group>"; };
-		8AD6C22C1B7070A60040437E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = SeetiesIOS/framework/FacebookSDK.framework; sourceTree = "<group>"; };
-		8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = SeetiesIOS/framework/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = SeetiesIOS/framework/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		8AD6C2B01B7079AF0040437E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		8AD6C2B21B7079B40040437E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8AD6C2B41B7079FA0040437E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		8AD6C2B61B707A130040437E /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		8AD6C2B81B707A1B0040437E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		8AD6C2BA1B707A470040437E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = SeetiesIOS/framework/Parse.framework; sourceTree = "<group>"; };
-		8AD6C2BB1B707A470040437E /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = SeetiesIOS/framework/ParseCrashReporting.framework; sourceTree = "<group>"; };
-		8AD6C2BC1B707A470040437E /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = SeetiesIOS/framework/ParseFacebookUtils.framework; sourceTree = "<group>"; };
-		8AD6C2BD1B707A470040437E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = SeetiesIOS/framework/ParseUI.framework; sourceTree = "<group>"; };
 		8AD6C2C21B707A5A0040437E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		8AD6C2C61B707A8C0040437E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		8AD6C2C81B707AAF0040437E /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -3013,6 +3006,10 @@
 		C294FD2B1C9819B500C455C8 /* FiltersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiltersModel.m; path = Filter/FiltersModel.m; sourceTree = "<group>"; };
 		C295DCD91C72C54300A1DED3 /* DealManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealManager.h; sourceTree = "<group>"; };
 		C295DCDA1C72C54300A1DED3 /* DealManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealManager.m; sourceTree = "<group>"; };
+		C2A536631CEB02E100D0914C /* DealsCancelledIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsCancelledIcon@2x.png"; sourceTree = "<group>"; };
+		C2A536641CEB02E100D0914C /* DealsCancelledIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsCancelledIcon@3x.png"; sourceTree = "<group>"; };
+		C2A536651CEB02E100D0914C /* DealsDeletedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsDeletedIcon@2x.png"; sourceTree = "<group>"; };
+		C2A536661CEB02E100D0914C /* DealsDeletedIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsDeletedIcon@3x.png"; sourceTree = "<group>"; };
 		C2A910041CCDFF31005D517B /* PostsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsTableViewCell.h; sourceTree = "<group>"; };
 		C2A910051CCDFF31005D517B /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsTableViewCell.m; sourceTree = "<group>"; };
 		C2A910061CCDFF31005D517B /* PostsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
@@ -3033,6 +3030,8 @@
 		C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoPopOutViewController.xib; sourceTree = "<group>"; };
 		C2E6D7541CDA052C00B53BF4 /* InviteFriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendModel.h; sourceTree = "<group>"; };
 		C2E6D7551CDA052C00B53BF4 /* InviteFriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendModel.m; sourceTree = "<group>"; };
+		C7023C211CF2BFFD00A2DF04 /* FBLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginManager.h; sourceTree = "<group>"; };
+		C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginManager.m; sourceTree = "<group>"; };
 		C71B5E161CBE3BED00B4FA91 /* FriendSuggestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSuggestionModel.h; sourceTree = "<group>"; };
 		C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSuggestionModel.m; sourceTree = "<group>"; };
 		C75015FA1CD0A7640048C279 /* EditProfileV3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV3ViewController.h; sourceTree = "<group>"; };
@@ -3076,18 +3075,11 @@
 				8AD6C2C91B707AAF0040437E /* libstdc++.dylib in Frameworks */,
 				8AD6C2C71B707A8C0040437E /* OpenGLES.framework in Frameworks */,
 				8AD6C2C31B707A5A0040437E /* libsqlite3.0.dylib in Frameworks */,
-				8AD6C2C01B707A470040437E /* ParseFacebookUtils.framework in Frameworks */,
 				8AD6C2B91B707A1B0040437E /* MobileCoreServices.framework in Frameworks */,
 				8AD6C2B71B707A130040437E /* libstdc++.6.dylib in Frameworks */,
 				8AD6C2B51B7079FA0040437E /* AssetsLibrary.framework in Frameworks */,
 				8AD6C2B31B7079B40040437E /* Accounts.framework in Frameworks */,
 				8AD6C2B11B7079AF0040437E /* Social.framework in Frameworks */,
-				8AD6C2C11B707A470040437E /* ParseUI.framework in Frameworks */,
-				8AD6C2341B7070A60040437E /* FBSDKShareKit.framework in Frameworks */,
-				8AD6C2BF1B707A470040437E /* ParseCrashReporting.framework in Frameworks */,
-				8AD6C2BE1B707A470040437E /* Parse.framework in Frameworks */,
-				8AD6C2321B7070A60040437E /* FacebookSDK.framework in Frameworks */,
-				8AD6C2331B7070A60040437E /* FBSDKCoreKit.framework in Frameworks */,
 				C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3119,18 +3111,11 @@
 				8AD6C2C81B707AAF0040437E /* libstdc++.dylib */,
 				8AD6C2C61B707A8C0040437E /* OpenGLES.framework */,
 				8AD6C2C21B707A5A0040437E /* libsqlite3.0.dylib */,
-				8AD6C2BA1B707A470040437E /* Parse.framework */,
-				8AD6C2BB1B707A470040437E /* ParseCrashReporting.framework */,
-				8AD6C2BC1B707A470040437E /* ParseFacebookUtils.framework */,
-				8AD6C2BD1B707A470040437E /* ParseUI.framework */,
 				8AD6C2B81B707A1B0040437E /* MobileCoreServices.framework */,
 				8AD6C2B61B707A130040437E /* libstdc++.6.dylib */,
 				8AD6C2B41B7079FA0040437E /* AssetsLibrary.framework */,
 				8AD6C2B21B7079B40040437E /* Accounts.framework */,
 				8AD6C2B01B7079AF0040437E /* Social.framework */,
-				8AD6C22C1B7070A60040437E /* FacebookSDK.framework */,
-				8AD6C22D1B7070A60040437E /* FBSDKCoreKit.framework */,
-				8AD6C22E1B7070A60040437E /* FBSDKShareKit.framework */,
 				0D9C815292A4ED6F2408E5E5 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -3275,6 +3260,14 @@
 				8AE478B81CC4E93F0053DB24 /* CustomEmptyView.xib */,
 			);
 			path = CustomEmptyView;
+			sourceTree = "<group>";
+		};
+		8A02BA991CE9D9B900CABDE3 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				8A02BA9C1CE9DAA600CABDE3 /* newsfeed.json */,
+			);
+			path = Json;
 			sourceTree = "<group>";
 		};
 		8A0F50B41C0C3E41002B1E22 /* Cell */ = {
@@ -4095,6 +4088,10 @@
 		8AB0D5231CE1E527002D15C4 /* Deals */ = {
 			isa = PBXGroup;
 			children = (
+				C2A536631CEB02E100D0914C /* DealsCancelledIcon@2x.png */,
+				C2A536641CEB02E100D0914C /* DealsCancelledIcon@3x.png */,
+				C2A536651CEB02E100D0914C /* DealsDeletedIcon@2x.png */,
+				C2A536661CEB02E100D0914C /* DealsDeletedIcon@3x.png */,
 				8AB0D5241CE1E527002D15C4 /* DealRedeemCardDown.png */,
 				8AB0D5251CE1E527002D15C4 /* DealRedeemCardUp.png */,
 				8AB0D5261CE1E527002D15C4 /* DealsCollectIcon@2x.png */,
@@ -5661,6 +5658,7 @@
 				8AC8F63B1BDA309D00DEF14A /* Default-568h@2x.png */,
 				8AD6BA671B705DF20040437E /* Main.storyboard */,
 				8AFA514B1C47B4AB00E7920E /* SeetiesV3 */,
+				8A02BA991CE9D9B900CABDE3 /* Json */,
 				8AD6BAF41B706CF10040437E /* FRAMEWORK */,
 				8A114B871BE73F5C006AE3F0 /* COMMON */,
 				8AC7B5E41CE5C102000775CC /* CATEGORY */,
@@ -5767,6 +5765,8 @@
 				C295DCDA1C72C54300A1DED3 /* DealManager.m */,
 				8A142D421CDB61D700337DBF /* OfflineManager.h */,
 				8A142D431CDB61D700337DBF /* OfflineManager.m */,
+				C7023C211CF2BFFD00A2DF04 /* FBLoginManager.h */,
+				C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */,
 			);
 			name = MANAGER;
 			path = Managers;
@@ -6658,6 +6658,7 @@
 				8AB0D89D1CE1E528002D15C4 /* MeVoucherWalletIcon@3x.png in Resources */,
 				0B40B3FC1C1FD2A7002D4ECB /* SeRecommendationsSeeAllViewController.xib in Resources */,
 				8AB0D9A91CE1E528002D15C4 /* Uncheck@2x.png in Resources */,
+				C2A536671CEB02E100D0914C /* DealsCancelledIcon@2x.png in Resources */,
 				8AB0D8501CE1E528002D15C4 /* DealsListingOverlay@3x.png in Resources */,
 				8A0F50C31C0C3F14002B1E22 /* SeShopDetailTableViewCell.xib in Resources */,
 				8AB0DA321CE1E528002D15C4 /* OtherLogo@3x.png in Resources */,
@@ -6741,6 +6742,7 @@
 				8AB0DA721CE1E528002D15C4 /* BlueLink@3x.png in Resources */,
 				8AB0DA661CE1E528002D15C4 /* NotificationBySeeties@3x.png in Resources */,
 				8AB0D8621CE1E528002D15C4 /* BlueTick@3x.png in Resources */,
+				8A02BA9D1CE9DAA600CABDE3 /* newsfeed.json in Resources */,
 				8AB0D9361CE1E528002D15C4 /* TH_TabbarMoreIcon_Active@3x.png in Resources */,
 				8AB0D9E51CE1E528002D15C4 /* ConnectionWeak@2x.png in Resources */,
 				8AB0D9251CE1E528002D15C4 /* EN_TabbarMoreIcon_Active@2x.png in Resources */,
@@ -6962,6 +6964,7 @@
 				8AB0D9F81CE1E528002D15C4 /* CollectSimplifiedChineseBtn@3x.png in Resources */,
 				8AB0D9401CE1E528002D15C4 /* BgWalkHome2@3x.jpg in Resources */,
 				8AB0D9B01CE1E528002D15C4 /* CommentBox@3x.png in Resources */,
+				C2A5366A1CEB02E100D0914C /* DealsDeletedIcon@3x.png in Resources */,
 				8AB0D9641CE1E528002D15C4 /* EditHoursIcon@3x.png in Resources */,
 				8AB0D8671CE1E528002D15C4 /* GoIcon@2x.png in Resources */,
 				8AB0D8E61CE1E528002D15C4 /* SeetishopArtAndEntertainmentsIcon@2x.png in Resources */,
@@ -7044,6 +7047,7 @@
 				8AB0D8711CE1E528002D15C4 /* ShareToBuddiesIcon@2x.png in Resources */,
 				8AB0D9FB1CE1E528002D15C4 /* CollectTraditonalChineseBtn@2x.png in Resources */,
 				8AC8F74B1BDA414E00DEF14A /* EditCollectionTableViewCell.xib in Resources */,
+				C2A536681CEB02E100D0914C /* DealsCancelledIcon@3x.png in Resources */,
 				8AB0DA121CE1E528002D15C4 /* LikedIcon@3x.png in Resources */,
 				8AB0DA431CE1E528002D15C4 /* InviteBtnInactive@2x.png in Resources */,
 				8AB0D9701CE1E528002D15C4 /* Icon-76.png in Resources */,
@@ -7437,6 +7441,7 @@
 				8AE478B91CC4E93F0053DB24 /* CustomEmptyView.xib in Resources */,
 				0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */,
 				8AB0D8481CE1E528002D15C4 /* SwipeToRedeemSeetiesLogo@3x.png in Resources */,
+				C2A536691CEB02E100D0914C /* DealsDeletedIcon@2x.png in Resources */,
 				8AB0DA6B1CE1E528002D15C4 /* NotificationFollow@2x.png in Resources */,
 				C238E3341C4649AA00570A25 /* slider-default7-trackBackground@2x.png in Resources */,
 				8AB0D8941CE1E528002D15C4 /* MeCollectionIcon@3x.png in Resources */,
@@ -7874,6 +7879,7 @@
 				8A34094F1B8AD267009B66C3 /* NYXImagesHelper.m in Sources */,
 				8AEDBFAC1C2031BA000BD2FF /* RecommendationVenueModel.m in Sources */,
 				8ABA51F41C0FE7F000A3DC15 /* PhotoListViewController.m in Sources */,
+				C7023C231CF2BFFD00A2DF04 /* FBLoginManager.m in Sources */,
 				C294FD261C9815B500C455C8 /* FilterCategoryModel.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
 				8AC7B6711CE5C102000775CC /* UIView+Extension.m in Sources */,
@@ -8125,6 +8131,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
+				FacebookID_SuffixName = dev;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8132,15 +8139,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
@@ -8235,6 +8233,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
+				FacebookID_SuffixName = seeties;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8242,15 +8241,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
@@ -8388,6 +8378,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
+				FacebookID_SuffixName = dev;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8395,15 +8386,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
@@ -8431,6 +8413,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
+				FacebookID_SuffixName = seeties;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8438,15 +8421,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
-					"$(PROJECT_DIR)/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/SeetiesIOS/Common/Library/GoogleAnalyticsServicesiOS_3.09",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",

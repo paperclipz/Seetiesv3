@@ -44,7 +44,7 @@
     self.backgroundColor = [UIColor clearColor];
     self.numberOfLines = numOfLine;
     self.textAlignment = NSTextAlignmentLeft;
-    self.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+    self.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
     self.font = [UIFont fontWithName:CustomFontName size:15];
     
 }

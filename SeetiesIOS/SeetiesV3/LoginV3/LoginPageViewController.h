@@ -9,7 +9,7 @@
 #import "CommonViewController.h"
 typedef void (^LoginBlock)(NSString* username,NSString* password);
 
-@interface LoginPageViewController : CommonViewController
+@interface LoginPageViewController : CommonViewController <UITextFieldDelegate>
 
 
 @property(nonatomic,copy)LoginBlock btnLoginClickedBlock;

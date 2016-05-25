@@ -7,7 +7,7 @@
 //
 
 #import "FeedContentView.h"
-
+#import "TLTagsControl.h"
 
 static int kConstantLeftPadding   = 15;
 static int kConstantTopPadding    = 15;
@@ -44,6 +44,7 @@ static int kConstantTopPadding    = 15;
         [self setupCaptionTitle];
         [self setupLocationPin];
         [self setupMessageLabel];
+    
         [self resizeToFitSubviewsHeight];
     }
     
@@ -122,17 +123,6 @@ static int kConstantTopPadding    = 15;
     _messageLabel = [[UILabel alloc] init];
     NSString *messageString = [self.dataDictionary objectForKey:@"message"];
     
-//    messageTextView.numberOfLines = 0;
-//    messageTextView.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-//    messageTextView.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f];
-//    
-//    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-//    paragraph.minimumLineHeight = 21.0f;
-//    paragraph.maximumLineHeight = 21.0f;
-//    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:messageString attributes:@{NSParagraphStyleAttributeName: paragraph}];
-//    
-//    messageTextView.attributedText = attributedString;
-    
     [_messageLabel setStandardText:messageString numberOfLine:0];
     
     _messageLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f];
@@ -142,6 +132,23 @@ static int kConstantTopPadding    = 15;
     _messageLabel.frame = labelFrame;
     
     [self addSubview:_messageLabel];
+    
+    self.currentPointY += kConstantTopPadding + _messageLabel.frame.size.height;
+}
+
+- (void)setupTagTextField {
+    
+    if (!self.dataDictionary[@"tags"]) {
+        return;
+    }
+    
+    TLTagsControl *tagControl = [[TLTagsControl alloc] initWithFrame:CGRectMake(kConstantLeftPadding, self.currentPointY + 5, CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, CGFLOAT_MAX) andTags:self.dataDictionary[@"tags"] withTagsControlMode:TLTagsControlModeList];
+    
+    tagControl.tagsBackgroundColor = [UIColor whiteColor];
+    tagControl.tagsDeleteButtonColor = TWO_ZERO_FOUR_COLOR;
+    tagControl.tagsTextColor = TWO_ZERO_FOUR_COLOR;
+
+    [self addSubview:tagControl];
 }
 
 - (void)reloadView {
@@ -165,21 +172,30 @@ static int kConstantTopPadding    = 15;
 - (void)translateButtonClicked:(id)sender {
     UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:nil message:@"Translation?" preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *translateButton = [UIAlertAction actionWithTitle:self.isTranslatedText ? LocalisedString(@"Read Original") : LocalisedString(@"English by Google Translate") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"tranlate!!");
+    int i = 0;
+
+    for (NSString *str in self.dataDictionary[@"translatable_languages"]) {
         
-        if ([self.delegate respondsToSelector:@selector(alertControllerClickedButtonAtIndex:)]) {
-            [self.delegate alertControllerClickedButtonAtIndex:self.isTranslatedText ?  ReadOrigin : TranslateText];
-        }
+        UIAlertAction *translateButton = [UIAlertAction actionWithTitle:[Utils getLanguageName:str] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"tranlate!!");
+            
+            if ([self.delegate respondsToSelector:@selector(alertControllerClickedButtonAtIndex:)]) {
+                [self.delegate alertControllerClickedButtonAtIndex:i];
+            }
+            
+            self.isTranslatedText = YES;
+        }];
         
-        self.isTranslatedText = !self.isTranslatedText;
-    }];
+        [alertViewController addAction:translateButton];
+        
+        i++;
+    }
     
     UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:LocalisedString(@"No thanks!") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         return;
     }];
     
-    [alertViewController addAction:translateButton];
+//    [alertViewController addAction:translateButton];
     [alertViewController addAction:cancelButton];
     
 //    UIAlertAction *cancelButton2 = [UIAlertAction actionWithTitle:LocalisedString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
