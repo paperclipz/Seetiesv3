@@ -235,7 +235,9 @@
         InviteFriendModel *inviteFriend = currentCountry.invite_friend_banner;
         [self.ibInviteIcon sd_setImageCroppedWithURL:[NSURL URLWithString:inviteFriend.image] completed:nil];
         
-        self.ibInviteLbl.text = LocalisedString(inviteFriend.title);
+        NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
+        NSString *title = inviteFriend.title[languageCode]? inviteFriend.title[languageCode] : @"";
+        self.ibInviteLbl.text = LocalisedString(title);
         self.ibInviteLbl.textColor = DEVICE_COLOR;
         self.ibInviteLbl.font = [UIFont boldSystemFontOfSize:15.0f];
     }

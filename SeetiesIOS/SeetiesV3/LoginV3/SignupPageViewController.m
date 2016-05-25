@@ -7,10 +7,8 @@
 //
 
 #import "SignupPageViewController.h"
-#import "ForgotPasswordViewController.h"
 
 @interface SignupPageViewController ()
-@property(nonatomic)ForgotPasswordViewController* forgotPasswordViewController;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
 @property (weak, nonatomic) IBOutlet UIView *ibContentUserName;
@@ -137,15 +135,6 @@
  }
  */
 #pragma mark - Declaration
-
--(ForgotPasswordViewController*)forgotPasswordViewController
-{
-    if (!_forgotPasswordViewController) {
-        _forgotPasswordViewController = [ForgotPasswordViewController new];
-    }
-    
-    return _forgotPasswordViewController;
-}
 
 #pragma mark - RequestServer
 -(void)requestServerToCheckUserRegistrationData:(NSString*)data forField:(NSString*)field{

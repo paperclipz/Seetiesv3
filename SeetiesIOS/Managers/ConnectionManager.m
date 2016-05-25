@@ -483,6 +483,10 @@
             
             break;
             
+        case ServerRequestTypePostForgotPassword:
+            str = [NSString stringWithFormat:@"%@/forgot-password", API_VERION_URL];
+            break;
+            
         case ServerRequestTypeGetNewsFeed:
             str = [NSString stringWithFormat:@"%@/feed/v2",API_VERION_URL];
             

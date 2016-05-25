@@ -35,8 +35,9 @@
         InviteFriendModel* model = [[[[[DataManager Instance] appInfoModel]countries]current_country]invite_friend_banner];
         
         if (model) {
-            
-            self.ibTitle.text = LocalisedString(model.title);
+            NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
+            NSString *title = model.title[languageCode]? model.title[languageCode] : @"";
+            self.ibTitle.text = LocalisedString(title);
             [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 
                 self.ibImageView.image = image;

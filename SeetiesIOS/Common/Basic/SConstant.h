@@ -21,6 +21,7 @@ typedef enum
     ServerRequestTypeRegister,
     ServerRequestTypeGetLogout,
     ServerRequestTypePostCheckUserRegistrationData,
+    ServerRequestTypePostForgotPassword,
     /*Login*/
 
     ServerRequestTypeGetNewsFeed,
