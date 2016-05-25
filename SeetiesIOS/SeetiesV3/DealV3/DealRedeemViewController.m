@@ -412,11 +412,29 @@
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutRedeemVoucher parameter:finalDict appendString:nil success:^(id object) {
 
-        if (self.dealRedeemDelegate && [self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
-            [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
+        NSArray *voucherArray = object[@"data"];
+        BOOL hasError = NO;
+        for (NSDictionary *voucherDict in voucherArray) {
+            BOOL isSuccess = voucherDict[@"success"];
+            
+            if (!isSuccess) {
+                hasError = YES;
+                NSString *errorMsg = voucherDict[@"error_message"]? voucherDict[@"error_message"] : @"";
+                
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(errorMsg) cancelButtonTitle:LocalisedString(@"Okay") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }];
+                break;
+            }
         }
         
-        [self dropBottomView];
+        if (!hasError) {
+            if (self.dealRedeemDelegate && [self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
+                [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
+            }
+            
+            [self dropBottomView];
+        }
         
         self.isRedeeming = NO;
         [LoadingManager hide];
