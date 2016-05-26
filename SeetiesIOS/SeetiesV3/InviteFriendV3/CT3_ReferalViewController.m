@@ -11,6 +11,7 @@
 @interface CT3_ReferalViewController ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contLeading;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *ibBackgroundImg;
 @property (weak, nonatomic) IBOutlet UIView *ibReferralCodeView;
 @property (weak, nonatomic) IBOutlet UILabel *ibReferralCode;
 @property (weak, nonatomic) IBOutlet UILabel *ibReferralDesc;
@@ -47,6 +48,13 @@
     
     [Utils setRoundBorder:self.ibReferralCodeView color:[UIColor whiteColor] borderRadius:8.0f borderWidth:2];
     [Utils setRoundBorder:self.ibInviteFriendsBtn color:[UIColor clearColor] borderRadius:self.ibInviteFriendsBtn.frame.size.height/2];
+    
+    if (![Utils isStringNull:self.inviteFriendModel.background_image]) {
+        [self.ibBackgroundImg sd_setImageWithURL:[NSURL URLWithString:self.inviteFriendModel.background_image] placeholderImage:[UIImage imageNamed:@"WhiteSeetiesLogo.png"]];
+    }
+    else{
+        [self.ibBackgroundImg setImage:[UIImage imageNamed:@"WhiteSeetiesLogo.png"]];
+    }
     
 }
 

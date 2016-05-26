@@ -580,7 +580,12 @@ static NSCache* heightCache = nil;
     self.ibTableView.estimatedRowHeight = [FeedType_FollowingPostTblCell getHeight];
     self.ibTableView.rowHeight = UITableViewAutomaticDimension;
     [self.ibTableView setupCustomEmptyView];
-    self.ibTableView.customEmptyStateView.emptyStateDesc.text = LocalisedString(@"No Internet Connection");
+    
+    [self.ibTableView handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+        
+        [self reloadData];
+    }];
+    // self.ibTableView.customEmptyStateView.emptyStateDesc.text = LocalisedString(@"No Internet Connection");
     
 
 }
@@ -1584,6 +1589,7 @@ static NSCache* heightCache = nil;
         isMiddleOfLoadingServer = YES;
         
         [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetNewsFeed parameter:dict appendString:nil success:^(id object) {
+           
             isMiddleOfLoadingServer = NO;
             isFirstLoad = NO;
             NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
@@ -1595,8 +1601,16 @@ static NSCache* heightCache = nil;
 //            [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
-            [self.ibTableView hideAll];
-            
+
+            if ([Utils isArrayNull:self.arrayNewsFeed]) {
+                [self.ibTableView showEmptyState];
+                
+            }
+            else{
+                [self.ibTableView hideAll];
+                
+            }
+
             
             // ========== Offline ========== //
           //  [OfflineManager saveNewsfeed:self.arrayNewsFeed];
@@ -1715,7 +1729,16 @@ static NSCache* heightCache = nil;
         
         [self.ibTableView reloadData];
 
-        [self.ibTableView hideAll];
+        if ([Utils isArrayNull:self.arrHomeDeal]) {
+            
+            [self.ibTableView showEmptyState];
+        }
+        else{
+            
+            [self.ibTableView hideAll];
+            
+        }
+
         // [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 
         //[self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
@@ -1728,8 +1751,16 @@ static NSCache* heightCache = nil;
 
         [self.ibTableView.pullToRefreshView stopAnimating];
         
-        [self.ibTableView showEmptyState];
-
+        if ([Utils isArrayNull:self.arrHomeDeal]) {
+         
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            
+            [self.ibTableView hideAll];
+            
+        }
         isMiddleOfLoadingHome = NO;
 
     }];

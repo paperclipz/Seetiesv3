@@ -19,6 +19,7 @@
     CGRect oldFrame;
     float activationDistance;
     BOOL activateDropEffect;
+    CGRect guideOriFrame;
 
 }
 @property (strong, nonatomic) IBOutlet UIView *ibGifContentView;
@@ -50,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibBottomDesc;
 @property (weak, nonatomic) IBOutlet UILabel *ibSwipeToRedeem;
 @property (weak, nonatomic) IBOutlet UIButton *ibHowToRedeem;
+@property (weak, nonatomic) IBOutlet UIImageView *ibGuideIndicatorImg;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHowToRedeemTopConstraint;
 
@@ -84,6 +86,19 @@
     [self changeLanguage];
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     
+    [UIView animateWithDuration:1.0 delay:2.0 options:0 animations:^{
+        self.ibGuideIndicatorImg.alpha = 1;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionRepeat|UIViewAnimationCurveEaseIn animations:^{
+            
+            CGFloat xPosition = self.ibSwipeBg.frame.origin.x + self.ibSwipeBg.frame.size.width - 20;
+            self.ibGuideIndicatorImg.frame = CGRectMake(xPosition, guideOriFrame.origin.y, guideOriFrame.size.width, guideOriFrame.size.height);
+            
+        } completion:^(BOOL finished) {
+            
+        }];
+    }];
+    
 }
 
 - (void)viewDidLoad {
@@ -111,6 +126,8 @@
     if (!shownRedeemTutorial) {
         [self btnIntroClicked:self.ibHowToRedeem];
     }
+    
+    guideOriFrame = self.ibGuideIndicatorImg.frame;
 }
 
 - (void)didReceiveMemoryWarning {
