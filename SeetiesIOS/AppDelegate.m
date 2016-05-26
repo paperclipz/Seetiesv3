@@ -16,7 +16,10 @@
 #import "AFHTTPSessionManager.h"
 #import "FBLoginManager.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "ACTReporter.h"
+
 #define FABRIC_API_KEY @"506d5ee5657719d0cbaa94569d3352125456f169"
+
 @interface AppDelegate ()
 
 @end
@@ -30,7 +33,6 @@
     // Uncomment and fill in with your Parse credentials:
     // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];
     // ****************************************************************************
-    
 
 
     [Parse setApplicationId:@"MMpGchSOutbiRC4KpHW47VLBFFQgv2jj5DIM4Qdi" clientKey:@"4kkfBL3btDWxoQN89WRBXVWYEUDZKD38XuzCakK7"];
@@ -39,6 +41,8 @@
                                  callbackURL:@"testapp123://foursquare"];
   
 
+    // ===== Google Conversion Tracking Code ===== //
+    [ACTConversionReporter reportWithConversionID:@"881569983" label:@"D1qLCIvA4mYQv-GupAM" value:@"0.00" isRepeatable:NO];
 //    if (!IS_SIMULATOR) {
 //        //Optional: automatically send uncaught exceptions to Google Analytics.
 //        [GAI sharedInstance].trackUncaughtExceptions = YES;
