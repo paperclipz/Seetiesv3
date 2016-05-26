@@ -15,4 +15,5 @@
 @property(nonatomic,assign) BOOL display_expired_period;
 @property(nonatomic,strong) NSDictionary *message;
 @property(nonatomic,strong) NSDictionary *desc;
+@property(nonnull, strong) NSString *background_image;  //background image url
 @end
