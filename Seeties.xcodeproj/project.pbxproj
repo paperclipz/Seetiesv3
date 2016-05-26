@@ -802,6 +802,8 @@
 		8A112B3B1CF69EC100399213 /* ShareViaLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1128581CF69EC100399213 /* ShareViaLine@3x.png */; };
 		8A112B3C1CF69EC100399213 /* ShareViaWhatsapp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1128591CF69EC100399213 /* ShareViaWhatsapp@2x.png */; };
 		8A112B3D1CF69EC100399213 /* ShareViaWhatsapp@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A11285A1CF69EC100399213 /* ShareViaWhatsapp@3x.png */; };
+		8A112B461CF6DC7500399213 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A112B441CF6DC7500399213 /* libGoogleConversionTracking.a */; };
+		8A112B471CF6DC7500399213 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8A112B451CF6DC7500399213 /* README.txt */; };
 		8A114C771BE73F5D006AE3F0 /* AUIAutoGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114B8E1BE73F5C006AE3F0 /* AUIAutoGrowingTextView.m */; };
 		8A114C781BE73F5D006AE3F0 /* SConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114B911BE73F5C006AE3F0 /* SConstant.m */; };
 		8A114C791BE73F5D006AE3F0 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A114B931BE73F5C006AE3F0 /* Utils.m */; };
@@ -2165,6 +2167,11 @@
 		8A1128581CF69EC100399213 /* ShareViaLine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareViaLine@3x.png"; sourceTree = "<group>"; };
 		8A1128591CF69EC100399213 /* ShareViaWhatsapp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareViaWhatsapp@2x.png"; sourceTree = "<group>"; };
 		8A11285A1CF69EC100399213 /* ShareViaWhatsapp@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShareViaWhatsapp@3x.png"; sourceTree = "<group>"; };
+		8A112B3F1CF6DC7500399213 /* ACTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTReporter.h; sourceTree = "<group>"; };
+		8A112B411CF6DC7500399213 /* GoogleConversionPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleConversionPing.h; sourceTree = "<group>"; };
+		8A112B431CF6DC7500399213 /* DCTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTReporter.h; sourceTree = "<group>"; };
+		8A112B441CF6DC7500399213 /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleConversionTracking.a; sourceTree = "<group>"; };
+		8A112B451CF6DC7500399213 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		8A114B8D1BE73F5C006AE3F0 /* AUIAutoGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUIAutoGrowingTextView.h; sourceTree = "<group>"; };
 		8A114B8E1BE73F5C006AE3F0 /* AUIAutoGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUIAutoGrowingTextView.m; sourceTree = "<group>"; };
 		8A114B901BE73F5C006AE3F0 /* SConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SConstant.h; sourceTree = "<group>"; };
@@ -3064,6 +3071,7 @@
 				8AD6C2C91B707AAF0040437E /* libstdc++.dylib in Frameworks */,
 				8AD6C2C71B707A8C0040437E /* OpenGLES.framework in Frameworks */,
 				8AD6C2C31B707A5A0040437E /* libsqlite3.0.dylib in Frameworks */,
+				8A112B461CF6DC7500399213 /* libGoogleConversionTracking.a in Frameworks */,
 				8AD6C2B91B707A1B0040437E /* MobileCoreServices.framework in Frameworks */,
 				8AD6C2B71B707A130040437E /* libstdc++.6.dylib in Frameworks */,
 				8AD6C2B51B7079FA0040437E /* AssetsLibrary.framework in Frameworks */,
@@ -4416,9 +4424,38 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
+		8A112B3E1CF6DC7500399213 /* GoogleConversionTrackingSDK-iOS-3.4.0 2 */ = {
+			isa = PBXGroup;
+			children = (
+				8A112B3F1CF6DC7500399213 /* ACTReporter.h */,
+				8A112B401CF6DC7500399213 /* Deprecated */,
+				8A112B421CF6DC7500399213 /* DoubleClick */,
+				8A112B441CF6DC7500399213 /* libGoogleConversionTracking.a */,
+				8A112B451CF6DC7500399213 /* README.txt */,
+			);
+			path = "GoogleConversionTrackingSDK-iOS-3.4.0 2";
+			sourceTree = "<group>";
+		};
+		8A112B401CF6DC7500399213 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				8A112B411CF6DC7500399213 /* GoogleConversionPing.h */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
+		8A112B421CF6DC7500399213 /* DoubleClick */ = {
+			isa = PBXGroup;
+			children = (
+				8A112B431CF6DC7500399213 /* DCTReporter.h */,
+			);
+			path = DoubleClick;
+			sourceTree = "<group>";
+		};
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
+				8A112B3E1CF6DC7500399213 /* GoogleConversionTrackingSDK-iOS-3.4.0 2 */,
 				8A87FDC01CE0650600CFA719 /* Toast */,
 				8A11D3921CC88DC80023A7ED /* AutoCoding */,
 				8A9026B61CBF906800B69415 /* CustomBlock */,
@@ -7115,6 +7152,7 @@
 				8A112A571CF69EC100399213 /* NearbyImg.png in Resources */,
 				8A112A831CF69EC100399213 /* InviteFacebookIcon@2x.png in Resources */,
 				8A1129B91CF69EC100399213 /* Icon-Small@3x.png in Resources */,
+				8A112B471CF6DC7500399213 /* README.txt in Resources */,
 				8A112AF61CF69EC100399213 /* ProfileFollowingIcon@3x.png in Resources */,
 				8A112AB71CF69EC100399213 /* BlueTime@2x.png in Resources */,
 				8A1129641CF69EC100399213 /* EN_TabbarMeIcon_Inactive@3x.png in Resources */,
@@ -8128,6 +8166,8 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
+					2,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
@@ -8230,6 +8270,8 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
+					2,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
@@ -8375,6 +8417,8 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
+					2,
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
@@ -8410,6 +8454,8 @@
 					"$(PROJECT_DIR)/SeetiesIOS/Common/SDKExport",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/WeChatSDK_1.5",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
+					2,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
