@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,6 +17,7 @@
                 <outlet property="ibFirstNumber" destination="VdU-do-Rmn" id="8zj-Vl-am4"/>
                 <outlet property="ibFooterInstruction" destination="fqx-ed-me2" id="zFe-Wk-gq4"/>
                 <outlet property="ibGifContentView" destination="NyM-yg-0uv" id="b82-Aq-rEJ"/>
+                <outlet property="ibGuideIndicatorImg" destination="kQJ-WD-d7j" id="aU8-WD-bNL"/>
                 <outlet property="ibHeaderTitle" destination="gSA-o2-hwg" id="5do-ox-Lil"/>
                 <outlet property="ibHowToRedeem" destination="WeQ-96-aWT" id="Cu7-1K-nR2"/>
                 <outlet property="ibHowToRedeemTitle" destination="QAX-OX-g48" id="rg0-SO-UuV"/>
@@ -117,7 +118,7 @@
                             <rect key="frame" x="3" y="68" width="313" height="157"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rl7-kF-Y0H">
-                                    <rect key="frame" x="0.0" y="0.0" width="313" height="157"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="313" height="156"/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
                             </subviews>
@@ -216,9 +217,18 @@
                                 <constraint firstItem="Ar0-rK-F4X" firstAttribute="leading" secondItem="LR4-8K-3va" secondAttribute="trailing" constant="8" id="u3t-T4-ibg"/>
                             </constraints>
                         </view>
+                        <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indicator_hand.png" translatesAutoresizingMaskIntoConstraints="NO" id="kQJ-WD-d7j" userLabel="guide finger">
+                            <rect key="frame" x="34" y="53" width="43" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="43" id="J2v-H8-7EM"/>
+                                <constraint firstAttribute="height" constant="43" id="bvJ-uy-X6d"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="kQJ-WD-d7j" firstAttribute="centerY" secondItem="DGd-Lh-xup" secondAttribute="centerY" constant="20" id="54h-Za-2WL"/>
+                        <constraint firstItem="kQJ-WD-d7j" firstAttribute="centerX" secondItem="DGd-Lh-xup" secondAttribute="centerX" constant="10" id="CIJ-T1-Iww"/>
                         <constraint firstAttribute="bottom" secondItem="bwF-Qu-mY0" secondAttribute="bottom" id="Db1-Vk-oNG"/>
                         <constraint firstItem="bwF-Qu-mY0" firstAttribute="leading" secondItem="FRX-IV-Orm" secondAttribute="leading" id="FKu-np-Bgf"/>
                         <constraint firstAttribute="width" secondItem="FRX-IV-Orm" secondAttribute="height" multiplier="3:1" id="RgJ-nT-5Ss"/>
@@ -519,5 +529,6 @@
         <image name="SwipeToRedeemBg.png" width="1242" height="2208"/>
         <image name="SwipeToRedeemRedeemIcon.png" width="22" height="20"/>
         <image name="SwipeToRedeemSwipeIcon.png" width="10" height="9"/>
+        <image name="indicator_hand.png" width="43" height="43"/>
     </resources>
 </document>

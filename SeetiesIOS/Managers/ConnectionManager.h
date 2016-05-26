@@ -28,8 +28,8 @@ typedef enum
 
 }AFNETWORK_TYPE;
 
-#define API_VERSION @"3.1"
-#define API_VERION_URL @"v3.1"
+#define API_VERSION @"3.2"
+#define API_VERION_URL @"v3.2"
 #define IS_SIMULATOR NO
 typedef void (^DraftModelBlock)(DraftModel* model);
 
