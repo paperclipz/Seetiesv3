@@ -1049,27 +1049,27 @@
             [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         }
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
+        self.ibFooterTitle.text = LocalisedString(@"Next");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
         [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
+        self.ibFooterTitle.text = LocalisedString(@"Redeemed");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_EXPIRED]){
         [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Redeem it now");
+        self.ibFooterTitle.text = LocalisedString(@"Expired");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_CANCELLED]){
         [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Collect this deal");
+        self.ibFooterTitle.text = LocalisedString(@"Cancelled");
     }
     else if ([voucherStatus isEqualToString:VOUCHER_STATUS_DELETED]){
         [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
-        self.ibFooterTitle.text = LocalisedString(@"Collect this deal");
+        self.ibFooterTitle.text = LocalisedString(@"Deleted");
     }
     else{
         self.ibFooterView.hidden = YES;

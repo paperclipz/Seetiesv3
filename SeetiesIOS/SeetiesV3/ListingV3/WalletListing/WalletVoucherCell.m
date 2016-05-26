@@ -119,7 +119,7 @@
     }
     
     [self.ibRedeemBtn setBackgroundColor:BUTTON_DISABLED_COLOR];
-    [self.ibRedeemBtn setTitle:LocalisedString(@"Redeem") forState:UIControlStateNormal];
+    [self.ibRedeemBtn setTitle:LocalisedString(@"Next") forState:UIControlStateNormal];
     if ([self.dealModel isRedeemable]) {
         [self.ibRedeemBtn setBackgroundColor:BUTTON_REDEEM_ACTIVE_COLOR];
     }
