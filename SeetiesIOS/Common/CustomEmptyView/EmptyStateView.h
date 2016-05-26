@@ -13,12 +13,18 @@
 @interface EmptyStateView : CommonView
 @property(nonatomic,weak) IBOutlet UIView* loadingView;
 @property(nonatomic,weak) IBOutlet UIView* noResultView;
+@property (weak, nonatomic) IBOutlet UIView *noInternetConnectionView;
+
 @property (nonatomic, weak)IBOutlet YLImageView *loadingImage;
 @property (weak, nonatomic) IBOutlet UILabel *emptyStateDesc;
 @property (weak, nonatomic) IBOutlet UILabel *emptyStateTitle;
 
+@property (copy, nonatomic) VoidBlock refreshClickedBlock;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnRefresh;
 -(void)showLoading;
 -(void)showEmptyState;
+-(void)showNoInternetConnection;
 -(void)hideAll;
 
 @end
