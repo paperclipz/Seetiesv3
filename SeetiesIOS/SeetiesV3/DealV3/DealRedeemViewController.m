@@ -68,7 +68,7 @@
     
     CGRect frame = [Utils getDeviceScreenSize];
     [self.view addSubview:self.ibGifContentView];
-    self.ibGifContentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    self.ibGifContentView.frame = CGRectMake(0, 0, 100, 100);
 }
 
 - (IBAction)btnHowToRedeemCloseClicked:(id)sender {
@@ -86,23 +86,50 @@
     [self changeLanguage];
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     
-    [UIView animateWithDuration:1.0 delay:2.0 options:0 animations:^{
-        self.ibGuideIndicatorImg.alpha = 1;
+   
+    [NSTimer scheduledTimerWithTimeInterval:2.0
+                                     target:self
+                                   selector:@selector(animateSwipe)
+                                   userInfo:nil
+                                    repeats:YES];
+    
+}
+
+-(void)animateSwipe
+{
+    
+    self.ibGuideIndicatorImg.alpha = 1;
+
+    [UIView animateWithDuration:0.8 animations:^{
+        
+        [self.ibGuideIndicatorImg setX:self.ibSwipeBg.frame.size.width - 20];
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionRepeat|UIViewAnimationCurveEaseIn animations:^{
+        
+        
+        [self.ibGuideIndicatorImg setX:20];
+
+        
+        [UIView animateWithDuration:0.8 animations:^{
             
-            CGFloat xPosition = self.ibSwipeBg.frame.origin.x + self.ibSwipeBg.frame.size.width - 20;
-            self.ibGuideIndicatorImg.frame = CGRectMake(xPosition, guideOriFrame.origin.y, guideOriFrame.size.width, guideOriFrame.size.height);
+            [self.ibGuideIndicatorImg setX:self.ibSwipeBg.frame.size.width - 20];
+
             
         } completion:^(BOOL finished) {
             
+            [self.ibGuideIndicatorImg setX:20];
+
         }];
+        
+        
+
     }];
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.ibGuideIndicatorImg.alpha = 0;
+    
     CGRect screenSize = [Utils getDeviceScreenSize];
     if (screenSize.size.height > 480) {
         self.ibTopConstraint.constant = 55;
@@ -128,6 +155,8 @@
     }
     
     guideOriFrame = self.ibGuideIndicatorImg.frame;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
