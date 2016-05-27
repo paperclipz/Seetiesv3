@@ -915,8 +915,25 @@
         self.hasRequestedPromo = NO;
         
         
-      
-        [self.popTip showText:[NSString stringWithFormat:@"%@",object] direction:AMPopTipDirectionUp maxWidth:self.ibEnterPromoView.frame.size.width inView:self.ibEnterPromoView fromFrame:self.ibPromoCodeText.frame duration:2.0f];
+        
+        
+        if ([ConnectionManager isNetworkAvailable]) {
+            
+            
+            [self.popTip showText:[NSString stringWithFormat:@"%@",object] direction:AMPopTipDirectionUp maxWidth:self.ibEnterPromoView.frame.size.width inView:self.ibEnterPromoView fromFrame:self.ibPromoCodeText.frame duration:2.0f];
+            
+        }
+        else{
+            
+            NSError* error = object;
+            
+            if (error) {
+                [self.popTip showText:[NSString stringWithFormat:@"%@",error.localizedDescription] direction:AMPopTipDirectionUp maxWidth:self.ibEnterPromoView.frame.size.width inView:self.ibEnterPromoView fromFrame:self.ibPromoCodeText.frame duration:2.0f];
+
+            }
+            
+        }
+        
 
     }];
 }
