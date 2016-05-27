@@ -166,12 +166,6 @@
                 <constraint firstItem="qdf-ag-GoF" firstAttribute="leading" secondItem="D3W-fW-bwZ" secondAttribute="leading" id="p8A-ZG-ZNf"/>
                 <constraint firstItem="9jT-ku-5rC" firstAttribute="top" secondItem="D3W-fW-bwZ" secondAttribute="top" id="sBc-es-k8S"/>
             </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="wY7-Hj-gK9"/>
-                    <exclude reference="qdf-ag-GoF"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="btnRefresh" destination="4ao-Y3-ocM" id="fIM-Ol-FDc"/>
                 <outlet property="emptyStateDesc" destination="0TH-Tt-bZF" id="2Ce-tM-Fcz"/>
