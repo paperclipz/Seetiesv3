@@ -283,7 +283,7 @@
     [self.ibVoucherCollectBtn setTitle:LocalisedString(@"Next") forState:UIControlStateNormal];
     UIColor *btnColour = enabled? BUTTON_REDEEM_ACTIVE_COLOR : BUTTON_DISABLED_COLOR;
     [self.ibVoucherCollectBtn setBackgroundColor:btnColour];
-    [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"RedeemIcon.png"] forState:UIControlStateNormal];
+    [self.ibVoucherCollectBtn setImage:[UIImage imageNamed:@"DealsNextIcon.png"] forState:UIControlStateNormal];
 }
 
 - (IBAction)collectRedeemBtnClicked:(id)sender {

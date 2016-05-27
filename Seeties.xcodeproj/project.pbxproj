@@ -299,10 +299,6 @@
 		8A1129461CF69EC100399213 /* SignUpReferralIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1126451CF69EC100399213 /* SignUpReferralIcon@2x.png */; };
 		8A1129471CF69EC100399213 /* SignUpReferralIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1126461CF69EC100399213 /* SignUpReferralIcon@3x.png */; };
 		8A1129481CF69EC100399213 /* Splash1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A1126481CF69EC100399213 /* Splash1.jpg */; };
-		8A1129491CF69EC100399213 /* Splash2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A1126491CF69EC100399213 /* Splash2.jpg */; };
-		8A11294A1CF69EC100399213 /* Splash3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264A1CF69EC100399213 /* Splash3.jpg */; };
-		8A11294B1CF69EC100399213 /* Splash4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264B1CF69EC100399213 /* Splash4.jpg */; };
-		8A11294C1CF69EC100399213 /* Splash5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264C1CF69EC100399213 /* Splash5.jpg */; };
 		8A11294D1CF69EC100399213 /* SplashOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264D1CF69EC100399213 /* SplashOverlay@2x.png */; };
 		8A11294E1CF69EC100399213 /* SplashOverlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264E1CF69EC100399213 /* SplashOverlay@3x.png */; };
 		8A11294F1CF69EC100399213 /* SplashSeetiesLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264F1CF69EC100399213 /* SplashSeetiesLogo.png */; };
@@ -1296,6 +1292,8 @@
 		C24384101C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */; };
 		C24547F31CF7EC3000A4F8B6 /* IndicatorHand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24547F11CF7EC3000A4F8B6 /* IndicatorHand@2x.png */; };
 		C24547F41CF7EC3000A4F8B6 /* IndicatorHand@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24547F21CF7EC3000A4F8B6 /* IndicatorHand@3x.png */; };
+		C24547F71CF848B800A4F8B6 /* DealsNextIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24547F51CF848B800A4F8B6 /* DealsNextIcon@2x.png */; };
+		C24547F81CF848B800A4F8B6 /* DealsNextIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24547F61CF848B800A4F8B6 /* DealsNextIcon@3x.png */; };
 		C2490A4A1C8450E800A43B3F /* SeShopsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2490A491C8450E800A43B3F /* SeShopsModel.m */; };
 		C251337C1CF70C53003E9887 /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C251337A1CF70C53003E9887 /* libGoogleConversionTracking.a */; };
 		C251337D1CF70C53003E9887 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C251337B1CF70C53003E9887 /* README.txt */; };
@@ -1664,10 +1662,6 @@
 		8A1126451CF69EC100399213 /* SignUpReferralIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignUpReferralIcon@2x.png"; sourceTree = "<group>"; };
 		8A1126461CF69EC100399213 /* SignUpReferralIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignUpReferralIcon@3x.png"; sourceTree = "<group>"; };
 		8A1126481CF69EC100399213 /* Splash1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash1.jpg; sourceTree = "<group>"; };
-		8A1126491CF69EC100399213 /* Splash2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash2.jpg; sourceTree = "<group>"; };
-		8A11264A1CF69EC100399213 /* Splash3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash3.jpg; sourceTree = "<group>"; };
-		8A11264B1CF69EC100399213 /* Splash4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash4.jpg; sourceTree = "<group>"; };
-		8A11264C1CF69EC100399213 /* Splash5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash5.jpg; sourceTree = "<group>"; };
 		8A11264D1CF69EC100399213 /* SplashOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashOverlay@2x.png"; sourceTree = "<group>"; };
 		8A11264E1CF69EC100399213 /* SplashOverlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashOverlay@3x.png"; sourceTree = "<group>"; };
 		8A11264F1CF69EC100399213 /* SplashSeetiesLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashSeetiesLogo.png; sourceTree = "<group>"; };
@@ -2992,6 +2986,8 @@
 		C24384081C5B781500ACEBF8 /* DealDetailsAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealDetailsAvailabilityCell.xib; sourceTree = "<group>"; };
 		C24547F11CF7EC3000A4F8B6 /* IndicatorHand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndicatorHand@2x.png"; sourceTree = "<group>"; };
 		C24547F21CF7EC3000A4F8B6 /* IndicatorHand@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IndicatorHand@3x.png"; sourceTree = "<group>"; };
+		C24547F51CF848B800A4F8B6 /* DealsNextIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsNextIcon@2x.png"; sourceTree = "<group>"; };
+		C24547F61CF848B800A4F8B6 /* DealsNextIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsNextIcon@3x.png"; sourceTree = "<group>"; };
 		C2490A481C8450E800A43B3F /* SeShopsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeShopsModel.h; sourceTree = "<group>"; };
 		C2490A491C8450E800A43B3F /* SeShopsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeShopsModel.m; sourceTree = "<group>"; };
 		C25133751CF70C53003E9887 /* ACTReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTReporter.h; sourceTree = "<group>"; };
@@ -3400,6 +3396,8 @@
 				8A11255D1CF69EC100399213 /* DealsDeletedIcon@3x.png */,
 				8A11255E1CF69EC100399213 /* DealsExpiredIcon@2x.png */,
 				8A11255F1CF69EC100399213 /* DealsExpiredIcon@3x.png */,
+				C24547F51CF848B800A4F8B6 /* DealsNextIcon@2x.png */,
+				C24547F61CF848B800A4F8B6 /* DealsNextIcon@3x.png */,
 				8A1125601CF69EC100399213 /* DealsPhotoOverlay@2x.png */,
 				8A1125611CF69EC100399213 /* DealsPhotoOverlay@3x.png */,
 				8A1125621CF69EC100399213 /* DealsRedeemedIcon@2x.png */,
@@ -3711,10 +3709,6 @@
 			isa = PBXGroup;
 			children = (
 				8A1126481CF69EC100399213 /* Splash1.jpg */,
-				8A1126491CF69EC100399213 /* Splash2.jpg */,
-				8A11264A1CF69EC100399213 /* Splash3.jpg */,
-				8A11264B1CF69EC100399213 /* Splash4.jpg */,
-				8A11264C1CF69EC100399213 /* Splash5.jpg */,
 				8A11264D1CF69EC100399213 /* SplashOverlay@2x.png */,
 				8A11264E1CF69EC100399213 /* SplashOverlay@3x.png */,
 				8A11264F1CF69EC100399213 /* SplashSeetiesLogo.png */,
@@ -6805,7 +6799,6 @@
 				8A112A701CF69EC100399213 /* OtherLogo@3x.png in Resources */,
 				8A11298E1CF69EC100399213 /* BgWalkWallet3@3x.jpg in Resources */,
 				8A1129CA1CF69EC100399213 /* CollectionFollowerIcon@3x.png in Resources */,
-				8A11294C1CF69EC100399213 /* Splash5.jpg in Resources */,
 				8A112B241CF69EC100399213 /* SSFeaturesIcon@2x.png in Resources */,
 				8A112B2D1CF69EC100399213 /* SSWhiteVerifiedIcon@3x.png in Resources */,
 				8A1128D81CF69EC100399213 /* MeInviteFriendsIcon@2x.png in Resources */,
@@ -6815,7 +6808,6 @@
 				8A1129901CF69EC100399213 /* WalkHome2.png in Resources */,
 				8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */,
 				8AFA51F81C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib in Resources */,
-				8A11294B1CF69EC100399213 /* Splash4.jpg in Resources */,
 				C2A910131CCDFF31005D517B /* SearchLocationAreaCell.xib in Resources */,
 				8A112B231CF69EC100399213 /* SSFacebookIcon@3x.png in Resources */,
 				8AD6C0C71B706CF30040437E /* NearByRecommtationViewController.xib in Resources */,
@@ -6900,7 +6892,6 @@
 				8A1129EF1CF69EC100399213 /* CommentBox@2x.png in Resources */,
 				8A112B3C1CF69EC100399213 /* ShareViaWhatsapp@2x.png in Resources */,
 				8A112B191CF69EC100399213 /* SSBlueVerifiedIcon@2x.png in Resources */,
-				8A11294A1CF69EC100399213 /* Splash3.jpg in Resources */,
 				8A9E06531CBF5A70000FB246 /* LICENSE in Resources */,
 				8A112A771CF69EC100399213 /* FacebookBtnActive@2x.png in Resources */,
 				8A1129691CF69EC100399213 /* ID_TabbarHomeIcon_Active@2x.png in Resources */,
@@ -6924,6 +6915,7 @@
 				8A112AA41CF69EC100399213 /* NotificationBySeeties@3x.png in Resources */,
 				8A112A021CF69EC100399213 /* CloseIcon@3x.png in Resources */,
 				8A1129461CF69EC100399213 /* SignUpReferralIcon@2x.png in Resources */,
+				C24547F81CF848B800A4F8B6 /* DealsNextIcon@3x.png in Resources */,
 				8A1128F91CF69EC100399213 /* NaviBackIcon@2x.png in Resources */,
 				C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */,
 				8AFA51E61C47B4AB00E7920E /* CollectionsCollectionViewCell.xib in Resources */,
@@ -7447,7 +7439,6 @@
 				8A11286B1CF69EC100399213 /* DealsExpiredIcon@2x.png in Resources */,
 				8A112AF11CF69EC100399213 /* ProfileExpand@2x.png in Resources */,
 				8A112AD91CF69EC100399213 /* EditProfileSmiley@2x.png in Resources */,
-				8A1129491CF69EC100399213 /* Splash2.jpg in Resources */,
 				0B6AEA6B1C47B7CF009B7D33 /* ConnectionsTabViewController.xib in Resources */,
 				8A1129431CF69EC100399213 /* SignUpNameIcon@3x.png in Resources */,
 				8A1128F71CF69EC100399213 /* MoreWriteARecommendationIcon@2x.png in Resources */,
@@ -7551,6 +7542,7 @@
 				8A112B271CF69EC100399213 /* SSGreyBackIcon@3x.png in Resources */,
 				8A112ACB1CF69EC100399213 /* PostViewIcon@2x.png in Resources */,
 				8A11285E1CF69EC100399213 /* RedeemIcon@3x.png in Resources */,
+				C24547F71CF848B800A4F8B6 /* DealsNextIcon@2x.png in Resources */,
 				8AC8F7471BDA414E00DEF14A /* EditCollectionDetailViewController.xib in Resources */,
 				8A1129AC1CF69EC100399213 /* Icon-60@2x.png in Resources */,
 				8A1128C21CF69EC100399213 /* HomeHangoutIcon@3x.png in Resources */,
