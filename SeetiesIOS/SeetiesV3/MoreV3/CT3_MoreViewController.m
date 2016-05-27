@@ -546,7 +546,7 @@
             break;
             
         }
-           CASE(@"Sign up or Log In")
+           CASE(@"Sign up or Log in")
         {
             imageName = @"MoreSignUpOrLogInIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];

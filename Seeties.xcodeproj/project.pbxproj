@@ -299,10 +299,6 @@
 		8A1129461CF69EC100399213 /* SignUpReferralIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1126451CF69EC100399213 /* SignUpReferralIcon@2x.png */; };
 		8A1129471CF69EC100399213 /* SignUpReferralIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A1126461CF69EC100399213 /* SignUpReferralIcon@3x.png */; };
 		8A1129481CF69EC100399213 /* Splash1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A1126481CF69EC100399213 /* Splash1.jpg */; };
-		8A1129491CF69EC100399213 /* Splash2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A1126491CF69EC100399213 /* Splash2.jpg */; };
-		8A11294A1CF69EC100399213 /* Splash3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264A1CF69EC100399213 /* Splash3.jpg */; };
-		8A11294B1CF69EC100399213 /* Splash4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264B1CF69EC100399213 /* Splash4.jpg */; };
-		8A11294C1CF69EC100399213 /* Splash5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264C1CF69EC100399213 /* Splash5.jpg */; };
 		8A11294D1CF69EC100399213 /* SplashOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264D1CF69EC100399213 /* SplashOverlay@2x.png */; };
 		8A11294E1CF69EC100399213 /* SplashOverlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264E1CF69EC100399213 /* SplashOverlay@3x.png */; };
 		8A11294F1CF69EC100399213 /* SplashSeetiesLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A11264F1CF69EC100399213 /* SplashSeetiesLogo.png */; };
@@ -1664,10 +1660,6 @@
 		8A1126451CF69EC100399213 /* SignUpReferralIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignUpReferralIcon@2x.png"; sourceTree = "<group>"; };
 		8A1126461CF69EC100399213 /* SignUpReferralIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SignUpReferralIcon@3x.png"; sourceTree = "<group>"; };
 		8A1126481CF69EC100399213 /* Splash1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash1.jpg; sourceTree = "<group>"; };
-		8A1126491CF69EC100399213 /* Splash2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash2.jpg; sourceTree = "<group>"; };
-		8A11264A1CF69EC100399213 /* Splash3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash3.jpg; sourceTree = "<group>"; };
-		8A11264B1CF69EC100399213 /* Splash4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash4.jpg; sourceTree = "<group>"; };
-		8A11264C1CF69EC100399213 /* Splash5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Splash5.jpg; sourceTree = "<group>"; };
 		8A11264D1CF69EC100399213 /* SplashOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashOverlay@2x.png"; sourceTree = "<group>"; };
 		8A11264E1CF69EC100399213 /* SplashOverlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashOverlay@3x.png"; sourceTree = "<group>"; };
 		8A11264F1CF69EC100399213 /* SplashSeetiesLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashSeetiesLogo.png; sourceTree = "<group>"; };
@@ -3711,10 +3703,6 @@
 			isa = PBXGroup;
 			children = (
 				8A1126481CF69EC100399213 /* Splash1.jpg */,
-				8A1126491CF69EC100399213 /* Splash2.jpg */,
-				8A11264A1CF69EC100399213 /* Splash3.jpg */,
-				8A11264B1CF69EC100399213 /* Splash4.jpg */,
-				8A11264C1CF69EC100399213 /* Splash5.jpg */,
 				8A11264D1CF69EC100399213 /* SplashOverlay@2x.png */,
 				8A11264E1CF69EC100399213 /* SplashOverlay@3x.png */,
 				8A11264F1CF69EC100399213 /* SplashSeetiesLogo.png */,
@@ -6805,7 +6793,6 @@
 				8A112A701CF69EC100399213 /* OtherLogo@3x.png in Resources */,
 				8A11298E1CF69EC100399213 /* BgWalkWallet3@3x.jpg in Resources */,
 				8A1129CA1CF69EC100399213 /* CollectionFollowerIcon@3x.png in Resources */,
-				8A11294C1CF69EC100399213 /* Splash5.jpg in Resources */,
 				8A112B241CF69EC100399213 /* SSFeaturesIcon@2x.png in Resources */,
 				8A112B2D1CF69EC100399213 /* SSWhiteVerifiedIcon@3x.png in Resources */,
 				8A1128D81CF69EC100399213 /* MeInviteFriendsIcon@2x.png in Resources */,
@@ -6815,7 +6802,6 @@
 				8A1129901CF69EC100399213 /* WalkHome2.png in Resources */,
 				8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */,
 				8AFA51F81C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib in Resources */,
-				8A11294B1CF69EC100399213 /* Splash4.jpg in Resources */,
 				C2A910131CCDFF31005D517B /* SearchLocationAreaCell.xib in Resources */,
 				8A112B231CF69EC100399213 /* SSFacebookIcon@3x.png in Resources */,
 				8AD6C0C71B706CF30040437E /* NearByRecommtationViewController.xib in Resources */,
@@ -6900,7 +6886,6 @@
 				8A1129EF1CF69EC100399213 /* CommentBox@2x.png in Resources */,
 				8A112B3C1CF69EC100399213 /* ShareViaWhatsapp@2x.png in Resources */,
 				8A112B191CF69EC100399213 /* SSBlueVerifiedIcon@2x.png in Resources */,
-				8A11294A1CF69EC100399213 /* Splash3.jpg in Resources */,
 				8A9E06531CBF5A70000FB246 /* LICENSE in Resources */,
 				8A112A771CF69EC100399213 /* FacebookBtnActive@2x.png in Resources */,
 				8A1129691CF69EC100399213 /* ID_TabbarHomeIcon_Active@2x.png in Resources */,
@@ -7447,7 +7432,6 @@
 				8A11286B1CF69EC100399213 /* DealsExpiredIcon@2x.png in Resources */,
 				8A112AF11CF69EC100399213 /* ProfileExpand@2x.png in Resources */,
 				8A112AD91CF69EC100399213 /* EditProfileSmiley@2x.png in Resources */,
-				8A1129491CF69EC100399213 /* Splash2.jpg in Resources */,
 				0B6AEA6B1C47B7CF009B7D33 /* ConnectionsTabViewController.xib in Resources */,
 				8A1129431CF69EC100399213 /* SignUpNameIcon@3x.png in Resources */,
 				8A1128F71CF69EC100399213 /* MoreWriteARecommendationIcon@2x.png in Resources */,
@@ -8148,7 +8132,7 @@
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8168,7 +8152,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
+				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -8249,7 +8233,7 @@
 				Bundle_Name = Seeties;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8269,7 +8253,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
+				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = "Release Staging";
