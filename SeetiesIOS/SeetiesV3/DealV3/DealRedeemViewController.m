@@ -19,7 +19,6 @@
     CGRect oldFrame;
     float activationDistance;
     BOOL activateDropEffect;
-    CGRect guideOriFrame;
 
 }
 @property (strong, nonatomic) IBOutlet UIView *ibGifContentView;
@@ -61,6 +60,7 @@
 @property(nonatomic) BOOL isRedeeming;
 @property(nonatomic) BOOL hasRedeemed;
 @property(nonatomic) NSUserDefaults *userDefault;
+@property(nonatomic) NSTimer *timer;
 @end
 
 @implementation DealRedeemViewController
@@ -68,7 +68,7 @@
     
     CGRect frame = [Utils getDeviceScreenSize];
     [self.view addSubview:self.ibGifContentView];
-    self.ibGifContentView.frame = CGRectMake(0, 0, 100, 100);
+    self.ibGifContentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
 }
 
 - (IBAction)btnHowToRedeemCloseClicked:(id)sender {
@@ -86,37 +86,40 @@
     [self changeLanguage];
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     
-   
-    [NSTimer scheduledTimerWithTimeInterval:2.0
-                                     target:self
-                                   selector:@selector(animateSwipe)
-                                   userInfo:nil
-                                    repeats:YES];
-    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.5
+                                                  target:self
+                                                selector:@selector(animateSwipe)
+                                                userInfo:nil
+                                                 repeats:YES];
+    [self.timer fire];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self stopSwipeAnimation];
 }
 
 -(void)animateSwipe
 {
     
-    self.ibGuideIndicatorImg.alpha = 1;
+    self.ibGuideIndicatorImg.hidden = NO;
 
-    [UIView animateWithDuration:0.8 animations:^{
+    [UIView animateWithDuration:1.5 animations:^{
         
         [self.ibGuideIndicatorImg setX:self.ibSwipeBg.frame.size.width - 20];
     } completion:^(BOOL finished) {
         
         
-        [self.ibGuideIndicatorImg setX:20];
+        [self.ibGuideIndicatorImg setX:30];
 
         
-        [UIView animateWithDuration:0.8 animations:^{
+        [UIView animateWithDuration:1.5 animations:^{
             
             [self.ibGuideIndicatorImg setX:self.ibSwipeBg.frame.size.width - 20];
 
             
         } completion:^(BOOL finished) {
             
-            [self.ibGuideIndicatorImg setX:20];
+            [self.ibGuideIndicatorImg setX:30];
 
         }];
         
@@ -125,10 +128,13 @@
     }];
 }
 
+-(void)stopSwipeAnimation{
+    [self.timer invalidate];
+    self.ibGuideIndicatorImg.hidden = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.ibGuideIndicatorImg.alpha = 0;
     
     CGRect screenSize = [Utils getDeviceScreenSize];
     if (screenSize.size.height > 480) {
@@ -153,9 +159,6 @@
     if (!shownRedeemTutorial) {
         [self btnIntroClicked:self.ibHowToRedeem];
     }
-    
-    guideOriFrame = self.ibGuideIndicatorImg.frame;
-    
     
 }
 
@@ -243,6 +246,8 @@
     if ([[touch.view class] isSubclassOfClass:[UIView class]]) {
         
         if (touch.view == self.ibSwipeView) {
+            [self stopSwipeAnimation];
+            
             dragging = YES;
             activateDropEffect = NO;
             oldX = touchLocation.x;
