@@ -469,10 +469,6 @@
         [self.navigationController pushViewController:self.redemptionHistoryViewController animated:YES];
 
     }
-    else{
-    
-        [self.dealRedeemViewController dismissViewControllerAnimated:YES completion:nil];
-    }
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{

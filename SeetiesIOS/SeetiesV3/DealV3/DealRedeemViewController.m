@@ -466,7 +466,7 @@
         NSArray *voucherArray = object[@"data"];
         BOOL hasError = NO;
         for (NSDictionary *voucherDict in voucherArray) {
-            BOOL isSuccess = voucherDict[@"success"];
+            BOOL isSuccess = [voucherDict[@"success"] boolValue];
             
             if (!isSuccess) {
                 hasError = YES;
