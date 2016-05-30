@@ -9,9 +9,9 @@
 #import "HowToRedeemViewController.h"
 #import "YLImageView.h"
 #import "YLGIFImage.h"
+#import "DealRedeemViewController.h"
 
 @interface HowToRedeemViewController ()
-@property (strong, nonatomic) IBOutlet UIView *ibGifContentView;
 @property (weak, nonatomic) IBOutlet UILabel *ibHowToRedeemTitle;
 @property (weak, nonatomic) IBOutlet YLImageView *ibFirstImage;
 @property (weak, nonatomic) IBOutlet UILabel *ibFirstNumber;
@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibThirdNumber;
 @property (weak, nonatomic) IBOutlet UILabel *ibThirdInstruction;
 @property (weak, nonatomic) IBOutlet UILabel *ibFooterInstruction;
+@property (weak, nonatomic) IBOutlet UIButton *ibNextBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHowToRedeemTopConstraint;
 
 @property(nonatomic) NSUserDefaults *userDefault;
@@ -49,6 +50,7 @@
     [self.ibFirstNumber setRoundedBorder];
     [self.ibSecondNumber setRoundedBorder];
     [self.ibThirdNumber setRoundedBorder];
+    [Utils setRoundBorder:self.ibNextBtn color:[UIColor clearColor] borderRadius:self.ibNextBtn.frame.size.height/2];
     
     self.ibFirstImage.image = [YLGIFImage imageNamed:@"HowToRedeem1.gif"];
     self.ibSecondImage.image = [YLGIFImage imageNamed:@"HowToRedeem2.gif"];
@@ -82,6 +84,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)btnNextClicked:(id)sender {
+    DealRedeemViewController *redeemVC = [DealRedeemViewController new];
+}
 
 #pragma mark - Declaration
 -(NSUserDefaults *)userDefault{
