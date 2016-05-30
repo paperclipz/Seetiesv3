@@ -18,6 +18,8 @@
     CGRect oldFrame;
     float activationDistance;
     BOOL activateDropEffect;
+    CGRect oldBottomViewFrame;
+
 
 }
 
@@ -52,6 +54,7 @@
 @end
 
 @implementation DealRedeemViewController
+
 - (IBAction)btnIntroClicked:(id)sender {
     self.howToRedeemViewController = nil;
 //    UINavigationController *newNavController = [[UINavigationController alloc] initWithRootViewController:self.howToRedeemViewController];
@@ -118,6 +121,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    oldBottomViewFrame = self.ibBottomView.frame;
     CGRect screenSize = [Utils getDeviceScreenSize];
     if (screenSize.size.height > 480) {
         self.ibTopConstraint.constant = 55;
@@ -293,6 +297,7 @@
         
     } completion:^(BOOL finished) {
         self.ibBottomView.hidden = YES;
+        [self.animator removeAllBehaviors];
     }];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -313,6 +318,21 @@
     [attrString endEditing];
     
     self.ibRedeemDateTime.attributedText = attrString;
+}
+
+-(void)resetBottomView
+{
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        
+        self.ibDescBorderView.alpha = 0;
+        self.ibBottomView.hidden = NO;
+        self.ibBottomView.frame = oldBottomViewFrame;
+        self.ibBottomView.transform = CGAffineTransformIdentity;
+        [self.ibBottomView refreshConstraint];
+
+    }];
+   
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
