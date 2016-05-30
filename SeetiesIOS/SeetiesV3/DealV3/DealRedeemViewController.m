@@ -7,9 +7,8 @@
 //
 
 #import "DealRedeemViewController.h"
-#import "YLImageView.h"
-#import "YLGIFImage.h"
 #import "DealExpiryDateModel.h"
+#import "HowToRedeemViewController.h";
 
 @interface DealRedeemViewController ()
 {
@@ -21,18 +20,6 @@
     BOOL activateDropEffect;
 
 }
-@property (strong, nonatomic) IBOutlet UIView *ibGifContentView;
-@property (weak, nonatomic) IBOutlet UILabel *ibHowToRedeemTitle;
-@property (weak, nonatomic) IBOutlet YLImageView *ibFirstImage;
-@property (weak, nonatomic) IBOutlet UILabel *ibFirstNumber;
-@property (weak, nonatomic) IBOutlet UILabel *ibFirstInstruction;
-@property (weak, nonatomic) IBOutlet YLImageView *ibSecondImage;
-@property (weak, nonatomic) IBOutlet UILabel *ibSecondNumber;
-@property (weak, nonatomic) IBOutlet UILabel *ibSecondInstruction;
-@property (weak, nonatomic) IBOutlet YLImageView *ibThirdImage;
-@property (weak, nonatomic) IBOutlet UILabel *ibThirdNumber;
-@property (weak, nonatomic) IBOutlet UILabel *ibThirdInstruction;
-@property (weak, nonatomic) IBOutlet UILabel *ibFooterInstruction;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgDeal;
 @property (weak, nonatomic) IBOutlet UIView *ibDescBorderView;
@@ -52,7 +39,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *ibHowToRedeem;
 @property (weak, nonatomic) IBOutlet UIImageView *ibGuideIndicatorImg;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHowToRedeemTopConstraint;
+
+@property(nonatomic) HowToRedeemViewController *howToRedeemViewController;
 
 @property(nonatomic) DealModel *dealModel;
 @property(nonatomic) NSString *referralID;
@@ -65,15 +53,9 @@
 
 @implementation DealRedeemViewController
 - (IBAction)btnIntroClicked:(id)sender {
-    
-    CGRect frame = [Utils getDeviceScreenSize];
-    [self.view addSubview:self.ibGifContentView];
-    self.ibGifContentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-}
-
-- (IBAction)btnHowToRedeemCloseClicked:(id)sender {
-    [self.ibGifContentView removeFromSuperview];
-    [self.userDefault setBool:YES forKey:@"ShownRedeemTutorial"];
+    self.howToRedeemViewController = nil;
+//    UINavigationController *newNavController = [[UINavigationController alloc] initWithRootViewController:self.howToRedeemViewController];
+    [self presentViewController:self.howToRedeemViewController animated:YES completion:nil];
 }
 
 - (IBAction)btnDirectionClicked:(id)sender {
@@ -139,11 +121,9 @@
     CGRect screenSize = [Utils getDeviceScreenSize];
     if (screenSize.size.height > 480) {
         self.ibTopConstraint.constant = 55;
-        self.ibHowToRedeemTopConstraint.constant = 60;
     }
     else{
         self.ibTopConstraint.constant = 10;
-        self.ibHowToRedeemTopConstraint.constant = 8;
     }
     [self.view refreshConstraint];
     
@@ -181,14 +161,6 @@
     [self.ibSwipeBg setSideCurveBorder];
     [self.ibSwipeBtn setSideCurveBorder];
     
-    [self.ibFirstNumber setRoundedBorder];
-    [self.ibSecondNumber setRoundedBorder];
-    [self.ibThirdNumber setRoundedBorder];
-    
-    self.ibFirstImage.image = [YLGIFImage imageNamed:@"HowToRedeem1.gif"];
-    self.ibSecondImage.image = [YLGIFImage imageNamed:@"HowToRedeem2.gif"];
-    self.ibThirdImage.image = [YLGIFImage imageNamed:@"HowToRedeem3.gif"];
-    
     if (self.dealModel) {
         SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
         self.ibShopTitle.text = shopModel.name;
@@ -223,11 +195,6 @@
     self.ibBottomDesc.text = [NSString stringWithFormat:@"%@", formattedStr];
     [self.ibHowToRedeem setTitle:LocalisedString(@"How to Redeem") forState:UIControlStateNormal];
     
-    self.ibHowToRedeemTitle.text = LocalisedString(@"Redeem in 3 simple steps");
-    self.ibFirstInstruction.text = LocalisedString(@"Approach the shop personnel when you order.");
-    self.ibSecondInstruction.text = LocalisedString(@"Flash the Redeem Voucher screen");
-    self.ibThirdInstruction.text = LocalisedString(@"Swipe right to redeem!");
-    self.ibFooterInstruction.text = LocalisedString(@"Limited to one redemption per swipe");
 }
 
 /*
@@ -395,6 +362,13 @@
     }
     
     return _userDefault;
+}
+
+-(HowToRedeemViewController *)howToRedeemViewController{
+    if (!_howToRedeemViewController) {
+        _howToRedeemViewController = [HowToRedeemViewController new];
+    }
+    return _howToRedeemViewController;
 }
 
 #pragma mark - RequestServer

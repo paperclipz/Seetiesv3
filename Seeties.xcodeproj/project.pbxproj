@@ -1254,6 +1254,8 @@
 		C22703021CBF932D00F9FBF3 /* PostFilterSortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703001CBF932D00F9FBF3 /* PostFilterSortCell.xib */; };
 		C22703061CBF949D00F9FBF3 /* PostFilterCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */; };
 		C22703071CBF949D00F9FBF3 /* PostFilterCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */; };
+		C22B7D011CFC0639006940DE /* HowToRedeemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22B7CFF1CFC0639006940DE /* HowToRedeemViewController.m */; };
+		C22B7D021CFC0639006940DE /* HowToRedeemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22B7D001CFC0639006940DE /* HowToRedeemViewController.xib */; };
 		C22C35161CF427E7004092F6 /* CT3_ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22C35141CF427E7004092F6 /* CT3_ForgotPasswordViewController.m */; };
 		C22C35171CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22C35151CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
@@ -2941,6 +2943,9 @@
 		C22703031CBF949D00F9FBF3 /* PostFilterCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostFilterCategoryCell.h; sourceTree = "<group>"; };
 		C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostFilterCategoryCell.m; sourceTree = "<group>"; };
 		C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFilterCategoryCell.xib; sourceTree = "<group>"; };
+		C22B7CFE1CFC0639006940DE /* HowToRedeemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToRedeemViewController.h; sourceTree = "<group>"; };
+		C22B7CFF1CFC0639006940DE /* HowToRedeemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToRedeemViewController.m; sourceTree = "<group>"; };
+		C22B7D001CFC0639006940DE /* HowToRedeemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowToRedeemViewController.xib; sourceTree = "<group>"; };
 		C22C35131CF427E7004092F6 /* CT3_ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		C22C35141CF427E7004092F6 /* CT3_ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		C22C35151CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_ForgotPasswordViewController.xib; sourceTree = "<group>"; };
@@ -6018,6 +6023,9 @@
 				C206B7A61C90319C00786128 /* TermsViewController.h */,
 				C206B7A71C90319C00786128 /* TermsViewController.m */,
 				C206B7A81C90319C00786128 /* TermsViewController.xib */,
+				C22B7CFE1CFC0639006940DE /* HowToRedeemViewController.h */,
+				C22B7CFF1CFC0639006940DE /* HowToRedeemViewController.m */,
+				C22B7D001CFC0639006940DE /* HowToRedeemViewController.xib */,
 			);
 			path = DealV3;
 			sourceTree = "<group>";
@@ -7061,6 +7069,7 @@
 				8A112A761CF69EC100399213 /* ConnectWithInstagram@3x.png in Resources */,
 				8A1128BD1CF69EC100399213 /* HomeFindShopsAndPlaces@2x.png in Resources */,
 				8A112A331CF69EC100399213 /* CollectionInFeedOverlay@2x.png in Resources */,
+				C22B7D021CFC0639006940DE /* HowToRedeemViewController.xib in Resources */,
 				8A1129061CF69EC100399213 /* NaviShareIcon@3x.png in Resources */,
 				8A1128661CF69EC100399213 /* DealsDealEndIcon@3x.png in Resources */,
 				8A112ACC1CF69EC100399213 /* PostViewIcon@3x.png in Resources */,
@@ -7866,6 +7875,7 @@
 				8AD6C1161B706CF30040437E /* FSWebLogin.m in Sources */,
 				8A6BB4341BF0C338005AA1B3 /* MZTransition.m in Sources */,
 				C22C35161CF427E7004092F6 /* CT3_ForgotPasswordViewController.m in Sources */,
+				C22B7D011CFC0639006940DE /* HowToRedeemViewController.m in Sources */,
 				8AC7B66B1CE5C102000775CC /* UITableView+Extension.m in Sources */,
 				8AEDBFA81C2031BA000BD2FF /* ApiVersionModel.m in Sources */,
 				8A11D38B1CC886950023A7ED /* CustomItemSource.m in Sources */,
