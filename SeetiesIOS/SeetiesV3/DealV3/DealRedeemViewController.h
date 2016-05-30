@@ -20,5 +20,5 @@
 //@property(nonatomic,assign)BOOL isOffline;
 -(void)initWithDealModel:(DealModel *)dealModel;
 -(void)initWithDealModel:(DealModel*)dealModel referralID:(NSString*)referralId;
--(void)initWithTutorialDealModel:(DealModel*)dealModel;
+-(void)initWithTutorial;
 @end

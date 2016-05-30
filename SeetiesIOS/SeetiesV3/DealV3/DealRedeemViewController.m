@@ -39,7 +39,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibBottomDesc;
 @property (weak, nonatomic) IBOutlet UILabel *ibSwipeToRedeem;
 @property (weak, nonatomic) IBOutlet UIButton *ibHowToRedeem;
+@property (weak, nonatomic) IBOutlet UIImageView *ibHowToRedeemLine;
 @property (weak, nonatomic) IBOutlet UIImageView *ibGuideIndicatorImg;
+@property (weak, nonatomic) IBOutlet UIButton *ibCloseBtn;
+@property (weak, nonatomic) IBOutlet UIButton *ibTutorialCloseBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTopConstraint;
 
 @property(nonatomic) HowToRedeemViewController *howToRedeemViewController;
@@ -58,13 +61,20 @@
 
 - (IBAction)btnIntroClicked:(id)sender {
     self.howToRedeemViewController = nil;
-//    UINavigationController *newNavController = [[UINavigationController alloc] initWithRootViewController:self.howToRedeemViewController];
-    [self presentViewController:self.howToRedeemViewController animated:YES completion:nil];
+    UINavigationController *newNavController = [[UINavigationController alloc] initWithRootViewController:self.howToRedeemViewController];
+    [self presentViewController:newNavController animated:YES completion:nil];
 }
 
 - (IBAction)btnDirectionClicked:(id)sender {
+    if (!self.dealModel) {
+        return;
+    }
     
     [[MapManager Instance]showMapOptions:self.view LocationLat:self.dealModel.voucher_info.shop_info.location.lat LocationLong:self.dealModel.voucher_info.shop_info.location.lng];
+}
+
+- (IBAction)btnTutorialCloseClicked:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -152,6 +162,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Init
 -(void)initWithDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
     _referralID = nil;
@@ -162,8 +174,7 @@
     _referralID = referralId;
 }
 
--(void)initWithTutorialDealModel:(DealModel*)dealModel{
-    _dealModel = dealModel;
+-(void)initWithTutorial{
     _isTutorial = YES;
 }
 
@@ -171,30 +182,49 @@
     [self.ibSwipeBg setSideCurveBorder];
     [self.ibSwipeBtn setSideCurveBorder];
     
-    if (self.dealModel) {
-        SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
-        self.ibShopTitle.text = shopModel.name;
-        self.ibShopAddress.text = shopModel.location.formatted_address;
+    
+    
+    if (self.isTutorial) {
+        self.ibShopTitle.text = LocalisedString(@"Testing");
+        self.ibShopAddress.text = LocalisedString(@"Wonderland");
+        [self.ibShopImg setImage:[UIImage imageNamed:@"SwipeToRedeemSeetiesLogo.png"]];
+        self.ibShopImg.backgroundColor = DEVICE_COLOR;
+        [Utils  setRoundBorder:self.ibShopImg color:OUTLINE_COLOR borderRadius:5.0f];
         
-       
-        @try {
-            NSString* imageURL = shopModel.profile_photo[@"picture"];
-            [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:nil];
-            [Utils  setRoundBorder:self.ibShopImg color:OUTLINE_COLOR borderRadius:5.0f];
-
-            PhotoModel *photo = self.dealModel.photos[0];
-            if (![Utils isStringNull:photo.imageURL]) {
-                [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
+        self.ibDealTitle.text = LocalisedString(@"Experience how to swipe to redeem now!");
+        [self.ibImgDeal setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+        
+        self.ibHowToRedeem.hidden = YES;
+        self.ibHowToRedeemLine.hidden = YES;
+        self.ibCloseBtn.hidden = YES;
+        
+    }
+    else{
+        if (self.dealModel) {
+            SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
+            self.ibShopTitle.text = shopModel.name;
+            self.ibShopAddress.text = shopModel.location.formatted_address;
+            
+            
+            @try {
+                NSString* imageURL = shopModel.profile_photo[@"picture"];
+                [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:nil];
+                [Utils  setRoundBorder:self.ibShopImg color:OUTLINE_COLOR borderRadius:5.0f];
+                
+                PhotoModel *photo = self.dealModel.photos[0];
+                if (![Utils isStringNull:photo.imageURL]) {
+                    [self.ibImgDeal sd_setImageCroppedWithURL:[NSURL URLWithString:photo.imageURL] completed:nil];
+                }
+                else{
+                    [self.ibImgDeal setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+                }
+                self.ibDealTitle.text = self.dealModel.title;
             }
-            else{
-                [self.ibImgDeal setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+            @catch (NSException *exception) {
+                SLog(@"assign profile_photo fail");
             }
-            self.ibDealTitle.text = self.dealModel.title;
+            
         }
-        @catch (NSException *exception) {
-            SLog(@"assign profile_photo fail");
-        }
-       
     }
 }
 
@@ -217,6 +247,7 @@
  }
  */
 
+#pragma mark - TouchAndAnimation
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:touch.view];
@@ -247,8 +278,9 @@
     if(touch.view == self.ibSwipeView){
         if (activateDropEffect) {
             
-            if (_isTutorial) {
+            if (self.isTutorial) {
                 [self dropBottomView];
+                self.ibTutorialCloseBtn.hidden = NO;
                 [UIAlertView showWithTitle:LocalisedString(@"Are you ready?") message:LocalisedString(@"Have you mastered how to swipe to redeem now?") cancelButtonTitle:LocalisedString(@"Maybe not!") otherButtonTitles:@[LocalisedString(@"Yes, sure !")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     switch (buttonIndex) {
                         case 0:
@@ -352,6 +384,8 @@
         self.ibBottomView.frame = oldBottomViewFrame;
         self.ibBottomView.transform = CGAffineTransformIdentity;
         [self.ibBottomView refreshConstraint];
+        
+        self.ibSwipeView.frame = oldFrame;
 
     }];
    

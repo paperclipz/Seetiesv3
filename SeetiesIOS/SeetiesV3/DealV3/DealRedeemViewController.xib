@@ -10,11 +10,13 @@
             <connections>
                 <outlet property="ibBottomDesc" destination="LSE-Hl-Y7Q" id="Mie-2Y-Ujw"/>
                 <outlet property="ibBottomView" destination="FRX-IV-Orm" id="ahs-Qx-1Fi"/>
+                <outlet property="ibCloseBtn" destination="pDY-W6-TMS" id="wtK-Xj-Cwr"/>
                 <outlet property="ibDealTitle" destination="NSW-gB-Hig" id="oSU-AR-CNO"/>
                 <outlet property="ibDescBorderView" destination="TGy-Uf-mib" id="fcu-Ya-lNF"/>
                 <outlet property="ibGuideIndicatorImg" destination="kQJ-WD-d7j" id="aU8-WD-bNL"/>
                 <outlet property="ibHeaderTitle" destination="gSA-o2-hwg" id="5do-ox-Lil"/>
                 <outlet property="ibHowToRedeem" destination="WeQ-96-aWT" id="Cu7-1K-nR2"/>
+                <outlet property="ibHowToRedeemLine" destination="eID-2a-vwh" id="hrI-xL-LNS"/>
                 <outlet property="ibImgDeal" destination="rl7-kF-Y0H" id="6xD-yk-Zz6"/>
                 <outlet property="ibRedeemDateTime" destination="fKC-ir-Fsh" id="Oor-si-8oP"/>
                 <outlet property="ibShopAddress" destination="c6E-GE-W0p" id="2Dn-yc-tce"/>
@@ -25,6 +27,7 @@
                 <outlet property="ibSwipeToRedeem" destination="Ar0-rK-F4X" id="kBj-HM-RiL"/>
                 <outlet property="ibSwipeView" destination="DGd-Lh-xup" id="VXc-9Q-x2r"/>
                 <outlet property="ibTopConstraint" destination="YKe-xz-1Rl" id="4tz-zP-vC5"/>
+                <outlet property="ibTutorialCloseBtn" destination="BUO-Pe-XnD" id="7Xw-Bg-73J"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -105,7 +108,7 @@
                             <rect key="frame" x="3" y="68" width="313" height="157"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rl7-kF-Y0H">
-                                    <rect key="frame" x="0.0" y="0.0" width="313" height="156.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="313" height="157"/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
                             </subviews>
@@ -274,7 +277,7 @@
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" image="CloseIcon.png"/>
                     <connections>
-                        <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="VN5-QD-tDn"/>
+                        <action selector="btnTutorialCloseClicked:" destination="-1" eventType="touchUpInside" id="Ier-jY-rFe"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must redeem in front of a shop personnel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSE-Hl-Y7Q">
