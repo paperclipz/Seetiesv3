@@ -41,11 +41,11 @@
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpn-1V-YOh" userLabel="next btn">
-                            <rect key="frame" x="504" y="14" width="80" height="33"/>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpn-1V-YOh" userLabel="next btn">
+                            <rect key="frame" x="544" y="14" width="40" height="33"/>
                             <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="80" id="Vxs-hO-WNs"/>
+                                <constraint firstAttribute="width" constant="40" id="Vxs-hO-WNs"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <state key="normal" title="Next">
@@ -55,22 +55,35 @@
                                 <action selector="btnNextClicked:" destination="-1" eventType="touchUpInside" id="zmu-Wz-ugo"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZC-HQ-uE6" userLabel="close btn">
+                            <rect key="frame" x="531" y="0.0" width="61" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="TZC-HQ-uE6" secondAttribute="height" multiplier="1:1" constant="1" id="Et2-4E-axr"/>
+                            </constraints>
+                            <state key="normal" image="CloseIconGrey.png"/>
+                            <connections>
+                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="IKH-rP-fGH"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="RWE-aj-hXe" firstAttribute="leading" secondItem="GhW-xM-Qmx" secondAttribute="leading" constant="16" id="9Vn-Fr-baV"/>
                         <constraint firstItem="Hpn-1V-YOh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RWE-aj-hXe" secondAttribute="trailing" constant="16" id="Ftx-NE-Qmh"/>
+                        <constraint firstAttribute="trailing" secondItem="TZC-HQ-uE6" secondAttribute="trailing" constant="8" id="I8t-gV-Esy"/>
                         <constraint firstItem="RWE-aj-hXe" firstAttribute="centerY" secondItem="GhW-xM-Qmx" secondAttribute="centerY" id="JJe-KB-VWQ"/>
                         <constraint firstItem="Hpn-1V-YOh" firstAttribute="centerY" secondItem="GhW-xM-Qmx" secondAttribute="centerY" id="PdF-a2-Mho"/>
                         <constraint firstAttribute="trailing" secondItem="Hpn-1V-YOh" secondAttribute="trailing" constant="16" id="bx6-Zq-TtP"/>
+                        <constraint firstItem="TZC-HQ-uE6" firstAttribute="top" secondItem="GhW-xM-Qmx" secondAttribute="top" id="nAf-GS-HdO"/>
                         <constraint firstAttribute="height" constant="60" id="qKK-zn-978"/>
+                        <constraint firstAttribute="bottom" secondItem="TZC-HQ-uE6" secondAttribute="bottom" id="udL-7p-P1B"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFM-hH-b3f" userLabel="first view">
                     <rect key="frame" x="0.0" y="68" width="600" height="312"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HowToRedeem1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="0fc-LV-Fbf" userLabel="first image" customClass="YLImageView">
-                            <rect key="frame" x="75" y="8" width="475" height="238"/>
+                            <rect key="frame" x="75" y="8" width="475" height="237.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="0fc-LV-Fbf" secondAttribute="height" multiplier="2:1" id="Sdt-hG-Hgf"/>
                             </constraints>
@@ -87,7 +100,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you order" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HU6-m7-lgi" userLabel="first instruction">
-                            <rect key="frame" x="35" y="252" width="530" height="20"/>
+                            <rect key="frame" x="35" y="251" width="530" height="20"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -224,6 +237,7 @@
         </view>
     </objects>
     <resources>
+        <image name="CloseIconGrey.png" width="15" height="15"/>
         <image name="HowToRedeem1.gif" width="438" height="249"/>
         <image name="HowToRedeem2.gif" width="229" height="319"/>
         <image name="HowToRedeem3.gif" width="323" height="190"/>
