@@ -197,7 +197,7 @@
     //Category
     FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
     catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    catCategory.categoryName = LocalisedString(@"Deals by Category");
+    catCategory.categoryName = LocalisedString(@"Category");
     catCategory.filterCategoryType = FilterTypeCat;
     
     for (QuickBrowseModel *quickBrowse in self.quickBrowseModels) {
@@ -330,7 +330,7 @@
     //Category
     FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
     catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    catCategory.categoryName = LocalisedString(@"Deals by Category");
+    catCategory.categoryName = LocalisedString(@"Category");
     catCategory.filterCategoryType = FilterTypeCat;
     
     for (QuickBrowseModel *quickBrowse in self.quickBrowseModels) {
@@ -525,12 +525,12 @@
         _searchLocationViewController = [SearchLocationViewController new];
         __weak typeof (self)weakself = self;
         
-        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model, CountryModel *countryModel)
+        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model)
         {
             
             weakself.homeLocationModel = model;
             
-            [Utils saveUserLocation:weakself.homeLocationModel.locationName Longtitude:weakself.homeLocationModel.longtitude Latitude:weakself.homeLocationModel.latitude PlaceID:model.place_id CountryID:countryModel.country_id SourceType:weakself.homeLocationModel.type];
+            [Utils saveUserLocation:weakself.homeLocationModel.locationName Longtitude:weakself.homeLocationModel.longtitude Latitude:weakself.homeLocationModel.latitude PlaceID:model.place_id CountryID:weakself.homeLocationModel.countryId SourceType:weakself.homeLocationModel.type];
             
             
             weakself.lblLocation.text = weakself.homeLocationModel.locationName;
@@ -570,7 +570,7 @@
 -(void)showDealDetailView:(DealModel*)model
 {
     _dealDetailsViewController = nil;
-        [self.dealDetailsViewController setDealModel:model];
+        [self.dealDetailsViewController initDealModel:model];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         
         [self.dealDetailsViewController setupView];

@@ -37,10 +37,11 @@
 
 @interface DealModel : JSONModel
 
+@property(nonatomic,strong)UIImage* testImage;
 @property(nonatomic,strong) NSString * dID;
 @property(nonatomic,strong) NSString *title;
 @property(nonatomic,strong) NSString *cover_title;
-@property(nonatomic,strong) NSString *expired_at;
+@property(nonatomic,strong) NSString *expired_at;   //Redemption expiry date
 @property(nonatomic,strong) NSString *deal_desc;
 @property(nonatomic,assign) NSInteger total_available_vouchers;
 @property(nonatomic,strong) NSString *deal_type;
@@ -58,8 +59,8 @@
 
 @property(nonatomic,strong) SeShopDetailModel* shop;//current usage in supedeal shop
 @property(nonatomic,strong) NSMutableArray<SeShopDetailModel> *available_shops;    //to display shops that have available vouchers
-@property(nonatomic,assign) NSInteger collectionDaysLeft;     //calculate number of days left from collection_periods_in_date //0 = no expiry
-@property(nonatomic,assign) NSInteger redemptionDaysLeft;     //calculate number of days left from expired_at //0 = no expiry
+@property(nonatomic,assign) NSInteger collectionDaysLeft;     //calculate number of days left from collection_periods_in_date
+@property(nonatomic,assign) NSInteger redemptionDaysLeft;     //calculate number of days left from expired_at
 
 @property(nonatomic, strong) SeShopGroupModel *shop_group_info;
 @property(nonatomic,assign) BOOL is_feature;
@@ -68,6 +69,12 @@
 @property(nonatomic, strong) NSArray *period;
 @property(nonatomic, strong) NSArray *periods_in_date;
 @property(nonatomic, strong) NSArray *collection_periods_in_date;
+@property(nonatomic, strong) NSString *collection_expired_at;
 
 -(NSString*)getNextAvailableRedemptionDateString;
+-(BOOL)isRedeemable;
+
++(void)saveWalletList:(NSArray<DealModel>*)array;
++(NSArray<DealModel>*)getWalletList;
+
 @end

@@ -266,7 +266,7 @@
     
     NSString* appendString = [NSString stringWithFormat:@"collections/%@",self.collectionID];
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetCollectionInfo parameter:dict appendString:appendString success:^(id object) {
         
         self.collectionModel = [[ConnectionManager dataManager] collectionModels];
         [self.arrPostList addObjectsFromArray:self.collectionModel.arrayPost];
@@ -274,7 +274,7 @@
         [self.ibTableView nextPage:self.collectionModel.total_page];
         [self.ibTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
     

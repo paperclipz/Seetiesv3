@@ -406,12 +406,13 @@ typedef enum{
     
     NSString* tagStr = tag;
     //[LoadingManager show];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetTagsSuggestion  param:nil appendString:tagStr completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetTagsSuggestion parameter:nil appendString:nil success:^(id object) {
         
         self.tagList =[[NSMutableArray alloc]initWithArray:[[[ConnectionManager dataManager] tagModel] arrayTag] ];
         [self.ibCollectionTagView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -435,7 +436,8 @@ typedef enum{
         [dict setObject:self.blueEditingTagControl.tags forKey:@"tags"];
     }
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostCreateCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostCreateCollection parameter:dict appendString:appendString success:^(id object) {
+
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:self];
         [self dismissViewControllerAnimated:YES completion:^{
             
@@ -446,7 +448,7 @@ typedef enum{
         }];
        
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 

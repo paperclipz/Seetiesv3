@@ -8,6 +8,7 @@
 #import "Utils.h"
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "DealModel.h"
 
 @implementation Utils
 
@@ -63,6 +64,8 @@
     [Utils reloadAppView:YES];
     [appdelegate.landingViewController showLoginView];
     
+    //Clear instagram webview cookie
+    [[InstagramEngine sharedEngine] logout];
 }
 
 +(void)reloadAppView:(BOOL)navigateToHome
@@ -96,6 +99,14 @@
     
     appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appdelegate.landingViewController.ct3MeViewController reloadData];
+}
+
++(void)reloadTabbar
+{
+    AppDelegate *appdelegate;
+    
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appdelegate.landingViewController reloadTabbar];
 }
 
 +(BOOL)isLogin
@@ -205,8 +216,19 @@
 }
 
 +(BOOL)isPhoneNumberVerified{
-    ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
+    
+    ProfileModel *profileModel = [[DataManager Instance] getCurrentUserProfileModel];
     return profileModel.phone_verified;
+}
+
++(BOOL)hasReferralCampaign{
+    CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+    if (!countries) {
+        return NO;
+    }
+    
+    CountryModel *currentCountry = countries.current_country;
+    return currentCountry.invite_friend_banner.message? YES : NO;
 }
 
 #pragma mark - Utilities
@@ -593,6 +615,11 @@
     return [UIImage imageNamed:@"SsDefaultDisplayPhoto.png"];
 }
 
++(UIImage*)getCoverPlaceHolderImage
+{
+    return [UIImage imageNamed:@"SSCoverPhotoOverlay.png"];
+}
+
 +(NSURL*)getPrefixedURLFromString:(NSString*)url
 {
     NSString *myURLString = url;
@@ -647,62 +674,6 @@
     
     return UUID;
 }
-
-+(NSString*)getDeviceAppLanguageCode
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString* userLanguage = [defaults objectForKey:KEY_SYSTEM_LANG];
-
-    if ([Utils isStringNull:userLanguage]) {
-        userLanguage = [Utils getDeviceDefaultLanguageCode];
-    }
-    
-    if (userLanguage) {
-        if ([userLanguage isEqualToString:@"English"] || [userLanguage isEqualToString:ENGLISH_SERVER_NAME]) {
-            
-            return ENGLISH_CODE;
-        }else if([userLanguage isEqualToString:@"Simplified Chinese"] || [userLanguage isEqualToString:@"简体中文"] || [userLanguage isEqualToString:CHINESE_SERVER_NAME]){
-            return CHINESE_CODE;
-
-        }else if([userLanguage isEqualToString:@"Traditional Chinese"] || [userLanguage isEqualToString:@"繁體中文"] || [userLanguage isEqualToString:TAIWAN_SERVER_NAME]){
-
-            return TAIWAN_CODE;
-            
-        }else if([userLanguage isEqualToString:@"Bahasa Indonesia"] || [userLanguage isEqualToString:INDONESIA_SERVER_NAME]){
-
-            return INDONESIA_CODE;
-
-        }else if([userLanguage isEqualToString:@"Thai"] || [userLanguage isEqualToString:@"th"] || [userLanguage isEqualToString:@"ภาษาไทย"] || [userLanguage isEqualToString:THAI_SERVER_NAME]){
-            return THAI_CODE;
-        }
-    
-    }
-    return nil;
-    
-}
-
-+(void)setDeviceAppLanguage:(NSString*)languageCode
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    [defaults setObject:languageCode forKey:KEY_SYSTEM_LANG];
-    
-    [defaults synchronize];
-    
-    
-
-}
-
-/*get device language not app language*/
-+(NSString*)getDeviceDefaultLanguageCode
-{
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
- 
-    return  [Utils getLanguageCodeFromLocale:language];
-
-}
-
-
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local
 {
@@ -767,6 +738,16 @@
     [popOutController setNavigationBarHidden:YES];
 }
 
++(void)showChangeVerifiedPhoneNumber:(UIViewController*)viewController{
+    PromoPopOutViewController *popOut = [PromoPopOutViewController new];
+    [popOut setViewType:PopOutViewTypeChangeVerifiedPhone];
+    
+    STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:popOut];
+    popOutController.containerView.backgroundColor = [UIColor clearColor];
+    [popOutController setNavigationBarHidden:YES];
+    [popOutController presentInViewController:viewController];
+}
+
 +(NSString*)getTimeZone
 {
     //int utcTimeZone = (int)[[NSTimeZone localTimeZone] secondsFromGMT] / 3600;
@@ -777,78 +758,39 @@
     NSString *localTimeZoneOffset = [localTimeZoneFormatter stringFromDate:[NSDate date]];
     
     return localTimeZoneOffset;
-//    NSString* strUTC;
-//    switch (utcTimeZone) {
-//        case 0:
-//            
-//            strUTC = @"";
-//            break;
-//            
-//        case 1:
-//            
-//            break;
-//            
-//        case 2:
-//            
-//            break;
-//            
-//        case 3:
-//            
-//            break;
-//        
-//            
-//        case 4:
-//            
-//            break;
-//            
-//        case 5:
-//            
-//            break;
-//            
-//        case 6:
-//            
-//            break;
-//        case 7:
-//            
-//            break;
-//
-//        default:
-//        case 8:
-//            
-//            break;
-//
-//        case 9:
-//            
-//            break;
-//
-//        case 10:
-//            
-//            break;
-//
-//        case 11:
-//            
-//            break;
-//
-//        case 12:
-//            
-//            break;
-//
-//    }
+
 
 }
 
 +(NSInteger)numberOfDaysLeft:(NSDate*)date{
     NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     [cal setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    NSDateComponents *fromDateComponent = [cal components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:[NSDate new]];
-    NSDateComponents *toDateComponent = [cal components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:date];
     
-    NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:[cal dateFromComponents:fromDateComponent] toDate:[cal dateFromComponents:toDateComponent] options:NSCalendarWrapComponents];
+    NSDateComponents *components = [cal components:NSCalendarUnitDay|NSCalendarUnitMinute fromDate:[NSDate new] toDate:date options:NSCalendarWrapComponents];
+    
+    if ([components day] == 0) {
+        //if same day, check for time expiry
+        if ([components minute] > 0) {
+            return [components day]+1;
+        }
+    }
     
     return [components day];
 }
 
 +(BOOL)isDate:(NSDate*)currentDate betweenFirstDate:(NSDate*)firstDate andLastDate:(NSDate*)lastDate{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [calendar setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    
+    unsigned int dateFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+    NSDateComponents *currentDateComp = [calendar components:dateFlags fromDate:currentDate];
+    NSDateComponents *firstDateComp = firstDate? [calendar components:dateFlags fromDate:firstDate] : nil;
+    NSDateComponents *lastDateComp = lastDate? [calendar components:dateFlags fromDate:lastDate] : nil;
+    
+    currentDate = [calendar dateFromComponents:currentDateComp];
+    firstDate = firstDateComp? [calendar dateFromComponents:firstDateComp] : nil;
+    lastDate = lastDateComp? [calendar dateFromComponents:lastDateComp] : nil;
+    
     if (!firstDate && !lastDate) {
         return YES;
     }
@@ -886,6 +828,18 @@
     
     return YES;
 }
+
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate
+{
+    if ([date compare:beginDate] == NSOrderedAscending)
+        return NO;
+    
+    if ([date compare:endDate] == NSOrderedDescending)
+        return NO;
+    
+    return YES;
+}
+
 
 #pragma mark - SYSTEM PREFERENCE
 
@@ -996,6 +950,55 @@
     }
     
    
+}
+
+#pragma mark - Notification
+
+
++(void)startNotification
+{
+    [NSTimer scheduledTimerWithTimeInterval:30.0
+                                     target:[Utils class]
+                                   selector:@selector(requestServerForNotificationCount)
+                                   userInfo:nil
+                                    repeats:YES];
+
+}
+
++(void)requestServerForNotificationCount
+{
+    
+    if ([Utils isGuestMode]) {
+        
+        return;
+    }
+    
+    NSString* token = [Utils getAppToken];
+    
+    NSDictionary* dict = @{@"token" : token?token:@""};
+    
+    if (![Utils isStringNull:token]) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetNotificationCount parameter:dict appendString:nil success:^(id object)
+         {
+             NSDictionary* returnDict = object[@"data"];
+             
+             @try {
+                 int notCount = [returnDict[@"total_new_notifications"] intValue];
+                 
+                 NSDictionary* dict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",notCount] forKey:@"NOTIFICATION_COUNT"];
+                 [[NSNotificationCenter defaultCenter]
+                  postNotificationName:@"UpdateNotification"
+                  object:nil userInfo:dict];
+             }
+             @catch (NSException *exception) {
+                 SLog(@"server count not found");
+             }
+             
+         } failure:^(id object) {
+             
+         }];
+    }
 }
 
 @end

@@ -39,7 +39,7 @@
 -(void)initData:(DraftModel*)model
 {
     
-    NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+    NSString* currentlangCode = [LanguageManager getDeviceAppLanguageCode];
     self.model = model;
     
     

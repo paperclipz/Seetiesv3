@@ -25,6 +25,11 @@
     // Initialization code
 }
 
+-(void)setCustomIndexPath:(NSIndexPath *)indexPath
+{
+    [self.ibImageView setCustomBackgroundColorForIndexPath:indexPath];
+}
+
 -(void)initSelfView
 {
     self.lblViewAll.textColor = [UIColor whiteColor];

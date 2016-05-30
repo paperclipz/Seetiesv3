@@ -7,13 +7,46 @@
 //
 
 #import "ProfileModel.h"
+#import "DealManager.h"
+#import "DealExpiryDateModel.h"
 
+
+#define KEY_USER_PROFILE @"Current_User_Profile"
 
 @interface ProfileModel()
 @property(nonatomic,strong)NSString* user_id;
 
 @end
 @implementation ProfileModel
+
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    
+    for (NSString *key in [self codableProperties])
+    {
+        
+        [encoder encodeObject:[self valueForKey:key] forKey:key];
+        
+    }
+    
+    
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        
+        
+        for (NSString *key in [self codableProperties])
+        {
+            [self setValue:[decoder decodeObjectForKey:key] forKey:key];
+            
+        }
+    }
+    
+    return self;
+}
 
 -(id)copyWithZone:(NSZone *)zone
 {
@@ -60,6 +93,59 @@
                                                        }];
 }
 
++(void)saveUserProfile:(ProfileModel*)model
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults removeObjectForKey:KEY_USER_PROFILE];
+    
+    if (model) {
+        
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:model];
+        [defaults setObject:encodedObject forKey:KEY_USER_PROFILE];
+        [defaults synchronize];
+        
+    }
+    else{
+        
+        SLog(@"%@",model);
+    }
+    
+}
+
++(ProfileModel*)getUserProfile
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData * data = [defaults objectForKey:KEY_USER_PROFILE];
+    
+    ProfileModel* model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    return model;
+}
+
++(int)getWalletCount
+{
+    if ([ConnectionManager isNetworkAvailable]) {
+        return [[DealManager Instance]getWalletCount];
+    }
+    else{
+        
+        int count = 0;
+        NSArray<DealExpiryDateModel *>* arrExpireData = [DealExpiryDateModel getWalletList];
+        
+        for (int i = 0; i<arrExpireData.count; i++)
+        {
+            DealExpiryDateModel* model = arrExpireData[i];
+            count += model.dealModelArray.count;
+            
+        }
+        
+        return count;    }
+
+}
+
+// ======================================================= Profile Post Model  ======================================================//
 
 @end
 

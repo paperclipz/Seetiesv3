@@ -20,7 +20,13 @@
 {
     
     if (!_newsFeedData) {
-        _newsFeedData = [[DraftModel alloc]initWithDictionary:_data error:nil];
+        
+        @try {
+            _newsFeedData = [[DraftModel alloc]initWithDictionary:_data error:nil];
+
+        } @catch (NSException *exception) {
+            
+        }
 
     }
     return _newsFeedData;
@@ -30,17 +36,29 @@
 {
     if (!_arrCollections) {
         
-        NSMutableArray* arrTemp = [NSMutableArray new];
+        NSMutableArray<CollectionModel>* arrTemp = [NSMutableArray<CollectionModel> new];
 
-        for (NSDictionary* key in _data)
-        {
-            CollectionModel* model = [[CollectionModel alloc]initWithDictionary:key error:nil];
-            
-            [arrTemp addObject:model];
         
+        @try {
+            for (NSDictionary* key in _data)
+            {
+                CollectionModel* model = [[CollectionModel alloc]initWithDictionary:key error:nil];
+                
+                if (model) {
+                    [arrTemp addObject:model];
+                }
+                
+            }
+
+        } @catch (NSException *exception) {
+            
         }
         
-        _arrCollections = [NSMutableArray arrayWithArray:arrTemp];
+        _arrCollections = [NSMutableArray<CollectionModel> arrayWithArray:arrTemp];
+    }
+    else{
+        _arrCollections = [NSMutableArray<CollectionModel> new];
+
     }
     
     return _arrCollections;
@@ -51,11 +69,18 @@
     if (!_arrSuggestedFeature) {
         
         NSMutableArray* arrTemp = [NSMutableArray new];
-        for (NSDictionary* key in _data)
-        {
-            ProfileModel* model = [[ProfileModel alloc]initWithDictionary:key error:nil];
-            
-            [arrTemp addObject:model];
+        
+        @try {
+            for (NSDictionary* key in _data)
+            {
+                ProfileModel* model = [[ProfileModel alloc]initWithDictionary:key error:nil];
+                
+                if (model) {
+                    [arrTemp addObject:model];
+                }
+                
+            }
+        } @catch (NSException *exception) {
             
         }
         
@@ -72,16 +97,24 @@
 {
     if (!_arrPosts) {
         
-        NSMutableArray* arrTemp = [NSMutableArray new];
-        for (NSDictionary* key in _data)
-        {
-            DraftModel* model = [[DraftModel alloc]initWithDictionary:key error:nil];
+        NSMutableArray<DraftModel>* arrTemp = [NSMutableArray<DraftModel> new];
+        
+        @try {
             
-            [arrTemp addObject:model];
+            for (NSDictionary* key in _data)
+            {
+                DraftModel* model = [[DraftModel alloc]initWithDictionary:key error:nil];
+                
+                if (model) {
+                    [arrTemp addObject:model];
+                    
+                }
+            }
+            
+        } @catch (NSException *exception) {
             
         }
-        
-        _arrPosts = [NSMutableArray arrayWithArray:arrTemp];
+        _arrPosts = [NSMutableArray<DraftModel> arrayWithArray:arrTemp];
         
     }
     
@@ -92,7 +125,16 @@
 {
     NSError* err = nil;
     if (!_followingCollectionData) {
-        _followingCollectionData = [[CollectionModel alloc]initWithDictionary:_data error:&err];
+        
+        if (_data) {
+            
+            @try {
+                _followingCollectionData = [[CollectionModel alloc]initWithDictionary:_data error:&err];
+
+            } @catch (NSException *exception) {
+                
+            } 
+        }
         
         SLog(@"%@",err);
     }
@@ -198,6 +240,33 @@
     
     return _feedType;
 }
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    
+    for (NSString *key in [self codableProperties])
+    {
+        
+        [encoder encodeObject:[self valueForKey:key] forKey:key];
+    }
+    
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        
+        
+        for (NSString *key in [self codableProperties])
+        {
+            [self setValue:[decoder decodeObjectForKey:key] forKey:key];
+            
+        }
+    }
+    
+    return self;
+}
+
 @end
 
 
@@ -206,5 +275,34 @@
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {
     return YES;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    
+    for (NSString *key in [self codableProperties])
+    {
+        
+        
+        [encoder encodeObject:[self valueForKey:key] forKey:key];
+        
+    }
+    
+    
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        
+        
+        for (NSString *key in [self codableProperties])
+        {
+            [self setValue:[decoder decodeObjectForKey:key] forKey:key];
+            
+        }
+    }
+    
+    return self;
 }
 @end

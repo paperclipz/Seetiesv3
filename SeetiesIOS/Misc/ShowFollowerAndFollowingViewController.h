@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AsyncImageView.h"
 #import "UrlDataClass.h"
-//#import "GAITrackedViewController.h"
 #import "ProfileViewController.h"
 @class ProfileViewController;
 @interface ShowFollowerAndFollowingViewController : UIViewController<UIScrollViewDelegate>

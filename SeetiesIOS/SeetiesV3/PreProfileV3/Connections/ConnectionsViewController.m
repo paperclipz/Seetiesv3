@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
 @property (weak, nonatomic) IBOutlet UIView *ibContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
 
 @end
 
@@ -36,7 +37,7 @@
 
     [self.ibContentView addSubview:self.cAPSPageMenu.view];
     
-    
+    self.ibHeaderTitle.text = LocalisedString(@"Connections");
 }
 - (IBAction)ConnectionsSegmentedControl:(UISegmentedControl *)sender
 {
@@ -91,7 +92,7 @@
         _FollowerConnectionsTabViewController = [ConnectionsTabViewController new];
         _FollowerConnectionsTabViewController.usersListingType = UsersListingTypeFollower;
         _FollowerConnectionsTabViewController.userID = self.userID;
-        _FollowerConnectionsTabViewController.title = LocalisedString(@"Follower");
+        _FollowerConnectionsTabViewController.title = LocalisedString(@"Followers");
         __weak typeof (self)weakSelf = self;
         
         _FollowerConnectionsTabViewController.didSelectUserRowBlock = ^(NSString* userid)

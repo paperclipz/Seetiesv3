@@ -14,8 +14,11 @@
 #import "FSConverter.h"
 #import "HomeLocationModel.h"
 
+@class CountryModel;
+
 typedef void (^LocationBlock)(CLLocation* location);
 typedef void (^HomeLocationBlock)(HomeLocationModel* model);
+typedef void (^HomeLocationCountryBlock)(HomeLocationModel* hModel,CountryModel* cModel);
 
 typedef void(^SearchManagerSuccessBlock)(CLLocation *currentLocation);
 typedef void(^SearchManagerFailBlock)(NSString *status);
@@ -43,7 +46,8 @@ typedef void(^SearchManagerFailBlock)(NSString *status);
 -(void)getSearchLocationFromGoogle:(CLLocation*)tempCurrentLocation Country:(NSString*)country input:(NSString*)textInput completionBlock:(IDBlock)completionBlock;
 
 -(void)getCoordinateFromGPSThenWifi:(SearchManagerSuccessBlock)successBlock errorBlock:(SearchManagerFailBlock)errorBlock;
--(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock;
+-(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation completionBlock:(IDBlock)completionBlock Error:(VoidBlock)erroBlock;
+
 -(void)getGoogleGeoCode:(CLLocation*)tempCurrentLocation Country:(NSString*)country completionBlock:(IDBlock)completionBlock;//for geocode with country filter
 
 @end

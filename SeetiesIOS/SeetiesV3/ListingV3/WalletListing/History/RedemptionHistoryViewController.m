@@ -233,7 +233,8 @@
     DealExpiryDateModel *expiryModel = [self.voucherArray objectAtIndex:indexPath.section];
     DealModel *voucher = [expiryModel.dealModelArray objectAtIndex:indexPath.row];
     self.dealDetailsViewController = nil;
-    [self.dealDetailsViewController setDealModel:voucher];
+    [self.dealDetailsViewController initDealModel:voucher];
+    [self.dealDetailsViewController setFromHistory:YES];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         [self.dealDetailsViewController setupView];
     }];
@@ -253,7 +254,8 @@
     
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersHistoryList param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserVouchersHistoryList parameter:dict appendString:appendString success:^(id object) {
+
         DealsModel *model = [[ConnectionManager dataManager] dealsModel];
         self.dealsModel = model;
         [self rearrangeVoucherList];
@@ -272,7 +274,7 @@
         else{
             [self toggleEmptyView:NO];
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isLoading = NO;
         self.ibHistoryTable.tableFooterView = nil;
         [self toggleEmptyView:YES];

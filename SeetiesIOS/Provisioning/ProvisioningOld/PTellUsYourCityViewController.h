@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "GAITrackedViewController.h"
+
 @interface PTellUsYourCityViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIScrollViewDelegate>{
     
     IBOutlet UIScrollView *MainScorll;

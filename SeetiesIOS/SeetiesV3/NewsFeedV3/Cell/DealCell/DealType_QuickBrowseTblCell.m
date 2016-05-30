@@ -68,8 +68,11 @@
     QuickBrowseCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"QuickBrowseCVCell" forIndexPath:indexPath];
     QuickBrowseModel* model = self.arrQuickBrowse[indexPath.row];
     cell.lblTitle.text = model.name;
+    
+    [cell setCustomIndexPath:indexPath];
     [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.backgroundImage] completed:nil];
-    [cell.ibImgLogo sd_setImageWithURL:[NSURL URLWithString:model.logoImage]];
+    [cell.ibImgLogo sd_setImageWithURL:[NSURL URLWithString:model.logoImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    }];
     
   
     return cell;

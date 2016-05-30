@@ -8,8 +8,14 @@
 
 #import "WalletVoucherCell.h"
 #import "TTTAttributedLabel.h"
+#import "NSDate+Calendar.h"
+#import "NSString+Extra.h"
+#import "AFNetworkReachabilityManager.h"
 
 @interface WalletVoucherCell()
+{
+
+}
 @property (weak, nonatomic) IBOutlet UIView *ibInnerContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibVoucherImg;
 @property (weak, nonatomic) IBOutlet UILabel *ibVoucherTitleLbl;
@@ -68,11 +74,11 @@
         
         NSString* imageUrl = shopModel.profile_photo[@"picture"];
         if (![Utils isStringNull:imageUrl]) {
-            [self.ibVoucherImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageUrl] completed:^(UIImage *image) {
+            [self.ibVoucherImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageUrl] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:^(UIImage *image) {
             }];
         }
         else{
-            [self.ibVoucherImg setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+            [self.ibVoucherImg setImage:[Utils getShopPlaceHolderImage]];
         }
         [Utils setRoundBorder:self.ibVoucherImg color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:2.5f];
     }
@@ -80,12 +86,12 @@
         SLog(@"profile_photo fail");
     }
     
-    if (self.dealModel.total_available_vouchers == -1) {
+    if (self.dealModel.voucher_info.total_redeemable_count < 0) {
         self.ibDealUsageLbl.text = LocalisedString(@"REUSABLE");
         [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:122/255.0f green:210/255.0f blue:26/255.0f alpha:1]];
     }
     else{
-        self.ibDealUsageLbl.text = LocalisedString(@"1-TIME-USE");
+        self.ibDealUsageLbl.text = [LanguageManager stringForKey:@"{!count}-TIME-USE" withPlaceHolder:@{@"{!count}":@(self.dealModel.voucher_info.total_redeemable_count)}];
         [self.ibDealUsageLbl setBackgroundColor:[UIColor colorWithRed:253/255.0f green:175/255.0f blue:23/255.0f alpha:1]];
     }
     self.ibDealUsageLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -104,7 +110,7 @@
         NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.expired_at];
         [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
         [dateFormatter setDateFormat:@"dd MMM yyyy"];
-        self.ibVoucherExpiryLbl.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]}];
+        self.ibVoucherExpiryLbl.text = [LanguageManager stringForKey:@"Expires {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]?[dateFormatter stringFromDate:expiryDate]:@""}];
         self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     }
     else{
@@ -112,23 +118,31 @@
         self.ibVoucherExpiryLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
     }
     
-    VoucherInfoModel *voucherModel = self.dealModel.voucher_info;
-    if (voucherModel.redeem_now) {
-        [self.ibRedeemBtn setBackgroundColor:[UIColor colorWithRed:232/255.0f green:86/255.0f blue:99/255.f alpha:1]];
-    }
-    else{
-        [self.ibRedeemBtn setBackgroundColor:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.f alpha:1]];
+    [self.ibRedeemBtn setBackgroundColor:BUTTON_DISABLED_COLOR];
+    [self.ibRedeemBtn setTitle:LocalisedString(@"Next") forState:UIControlStateNormal];
+    if ([self.dealModel isRedeemable]) {
+        [self.ibRedeemBtn setBackgroundColor:BUTTON_REDEEM_ACTIVE_COLOR];
     }
     
-    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO]) {
+    if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO] || [self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
         self.ibPromoLbl.hidden = NO;
+        if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_PROMO]) {
+            self.ibPromoLbl.text = LocalisedString(@"PROMO CODE");
+        }
+        else if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]){
+            self.ibPromoLbl.text = LocalisedString(@"REFERRAL");
+        }
+        self.ibPromoLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+        [Utils setRoundBorder:self.ibPromoLbl color:[UIColor clearColor] borderRadius:self.ibPromoLbl.frame.size.height/2];
     }
     else{
         self.ibPromoLbl.hidden = YES;
     }
-    self.ibPromoLbl.text = LocalisedString(@"PROMO CODE");
-    self.ibPromoLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-    [Utils setRoundBorder:self.ibPromoLbl color:[UIColor clearColor] borderRadius:self.ibPromoLbl.frame.size.height/2];
+    
+    // ========================= setup redeem active / in active ===========================//
+    
+    
+    
     
 }
 
@@ -137,5 +151,6 @@
         [self.walletVoucherDelegate redeemVoucherClicked:self.dealModel];
     }
 }
+
 
 @end

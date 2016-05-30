@@ -66,7 +66,6 @@
 @property (nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property (nonatomic,strong)SeRecommendationsSeeAllViewController* seRecommendationsSeeAllViewController;
 @property (nonatomic,strong)ProfileViewController* profileViewController;
-@property (nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property (nonatomic,strong)VoucherListingViewController* voucherListingViewController;
 @property (nonatomic)ReportProblemViewController* reportProblemViewController;
 
@@ -323,14 +322,6 @@
     
     return _seProfileView;
 }
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
-    }
-    
-    return _shareV2ViewController;
-}
 
 -(SeetiesShopViewController*)seetiesShopViewController
 {
@@ -454,10 +445,10 @@
             }
         };
     
-        _seShopDetailView.didSelectInformationAtRectBlock=^(UIView* fromView, CGRect rect)
-        {
-       
-        };
+//        _seShopDetailView.didSelectInformationAtRectBlock=^(UIView* fromView, CGRect rect)
+//        {
+//       
+//        };
         
         _seShopDetailView.didSelectMorePhotosBlock = ^(SeShopPhotoModel* model)
         {
@@ -532,7 +523,7 @@
     [UIView transitionWithView:self.btnShare duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
        
 
-        if ([self.seShopModel.language isEqualToString:[Utils getDeviceAppLanguageCode]]) {
+        if ([self.seShopModel.language isEqualToString:[LanguageManager getDeviceAppLanguageCode]]) {
             self.btnTranslateWidthConstraint.constant = 0;
 
         }
@@ -669,6 +660,13 @@
             // open nearby seetiShop
         
         };
+        
+        _seNearbySeetishop.viewDidFinishLoadBlock = ^(void)
+        {
+            [weakSelf rearrangeView];
+            
+        };
+
     
         
     }
@@ -681,7 +679,7 @@
 {
     
     _dealDetailsViewController = nil;
-    [self.dealDetailsViewController setDealModel:model];
+    [self.dealDetailsViewController initDealModel:model];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         [self.dealDetailsViewController setupView];
     }];
@@ -697,31 +695,7 @@
     }
 }
 -(void)showShareView:(SeShopDetailModel*)shopModel
-{
-//    _shareV2ViewController = nil;
-//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//    [naviVC setNavigationBarHidden:YES animated:NO];
-//    
-//    if (![Utils isStringNull:shopModel.seetishop_id]) {
-//        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeSeetiesShop shareID:shopModel.seetishop_id userID:@""];
-//
-//    }
-//    else{
-//        [self.shareV2ViewController share:@"" title:shopModel.name imagURL:@"" shareType:ShareTypeNonSeetiesShop shareID:self.placeID userID:@"" postID:self.postID];
-//
-//    }
-//    
-//    SLog(@"self.placeID == %@",self.placeID);
-//    SLog(@"self.postID == %@",self.postID);
-//    SLog(@"shopModel.seetishop_id == %@",shopModel.seetishop_id);
-//    
-//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//    [self presentViewController:formSheetController animated:YES completion:nil];
-    
-    
+{    
     //New Sharing Screen
     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
     

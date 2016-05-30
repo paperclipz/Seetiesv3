@@ -9,17 +9,14 @@
 #import "FeedV2DetailViewController.h"
 #import "FullImageViewController.h"
 #import "NSAttributedString+DVSTracking.h"
-#import <FacebookSDK/FacebookSDK.h>
+//#import <FacebookSDK/FacebookSDK.h>
 #import "CommentViewController.h"
 #import "LanguageManager.h"
 #import "Locale.h"
-#import "LocationFeedDetailViewController.h"
 #import "NearByRecommtationViewController.h"
 #import "NSString+ChangeAsciiString.h"
 #import "AddCollectionDataViewController.h"
-#import "LeveyTabBarController.h"
 #import "ReportViewController.h"
-#import "SearchDetailViewController.h"
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
 
@@ -396,7 +393,6 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -404,11 +400,9 @@
     //self.leveyTabBarController.tabBar.frame = CGRectMake(0, 300, 320, 100);
     
     // self.screenName = @"IOS Feed Detail Page";
-  //  self.screenName = @"IOS Feed Detail View V2";
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     ShowDownBarView.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
-    self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CHANGE_NOTIFICATION_HIDE" object:nil];
     
     
@@ -475,7 +469,6 @@
                          //   MainScroll.frame = CGRectMake(0, 0, screenWidth, screenHeight - 114);
                          // ShowbarView.frame = CGRectMake(0, 0, screenWidth, 64);
                          ShowDownBarView.frame = CGRectMake(0, screenHeight - 110, screenWidth, 60);
-                         self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight - 50, screenWidth, 50);
                      }
                      completion:^(BOOL finished) {
                      }];
@@ -3059,7 +3052,7 @@
         
         UIButton *ViewSeetishopButton = [[UIButton alloc]init];
         ViewSeetishopButton.frame = CGRectMake(0, GetMessageHeight + 1, screenWidth, 50);
-        [ViewSeetishopButton setTitle:LocalisedString(@"View shop") forState:UIControlStateNormal];
+        [ViewSeetishopButton setTitle:@"View Seetishop" forState:UIControlStateNormal];
         [ViewSeetishopButton setBackgroundColor:[UIColor clearColor]];
         [ViewSeetishopButton.titleLabel setFont:[UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15]];
         [ViewSeetishopButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
@@ -3883,76 +3876,76 @@
     [CommentView GetRealPostID:GetPostID];
     [CommentView GetWhatView:@"Like"];
 }
--(IBAction)FacebookButton:(id)sender{
-    NSLog(@"Facebook Button Click");
-    NSString *message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
-    NSString *Description = [NSString stringWithFormat:@"%@",GetMessage];
-    NSString *caption = [NSString stringWithFormat:@"SEETIES.ME"];
-    
-    // Check if the Facebook app is installed and we can present the share dialog
-    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
-    params.link = [NSURL URLWithString:message];
-    
-    
-    // If the Facebook app is installed and we can present the share dialog
-    if ([FBDialogs canPresentShareDialogWithParams:params]) {
-        
-        // Present share dialog
-        [FBDialogs presentShareDialogWithLink:params.link
-                                      handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-                                          if(error) {
-                                              // An error occurred, we need to handle the error
-                                              // See: https://developers.facebook.com/docs/ios/errors
-                                              NSLog(@"Error publishing story: %@", error.description);
-                                          } else {
-                                              // Success
-                                              NSLog(@"result %@", results);
-                                          }
-                                      }];
-        
-        // If the Facebook app is NOT installed and we can't present the share dialog
-    } else {
-        // FALLBACK: publish just a link using the Feed dialog
-        
-        // Put together the dialog parameters
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"", @"name",
-                                       caption, @"caption",
-                                       Description, @"description",
-                                       message, @"link",
-                                       @"", @"picture",
-                                       nil];
-        
-        // Show the feed dialog
-        [FBWebDialogs presentFeedDialogModallyWithSession:nil
-                                               parameters:params
-                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
-                                                      if (error) {
-                                                          // An error occurred, we need to handle the error
-                                                          // See: https://developers.facebook.com/docs/ios/errors
-                                                          NSLog(@"Error publishing story: %@", error.description);
-                                                      } else {
-                                                          if (result == FBWebDialogResultDialogNotCompleted) {
-                                                              // User canceled.
-                                                              NSLog(@"User cancelled.");
-                                                          } else {
-                                                              // Handle the publish feed callback
-                                                              NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
-                                                              
-                                                              if (![urlParams valueForKey:@"post_id"]) {
-                                                                  // User canceled.
-                                                                  NSLog(@"User cancelled.");
-                                                                  
-                                                              } else {
-                                                                  // User clicked the Share button
-                                                                  NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
-                                                                  NSLog(@"result %@", result);
-                                                              }
-                                                          }
-                                                      }
-                                                  }];
-    }
-}
+//-(IBAction)FacebookButton:(id)sender{
+//    NSLog(@"Facebook Button Click");
+//    NSString *message = [NSString stringWithFormat:@"https://seeties.me/post/%@",GetPostID];
+//    NSString *Description = [NSString stringWithFormat:@"%@",GetMessage];
+//    NSString *caption = [NSString stringWithFormat:@"SEETIES.ME"];
+//    
+//    // Check if the Facebook app is installed and we can present the share dialog
+//    FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+//    params.link = [NSURL URLWithString:message];
+//    
+//    
+//    // If the Facebook app is installed and we can present the share dialog
+//    if ([FBDialogs canPresentShareDialogWithParams:params]) {
+//        
+//        // Present share dialog
+//        [FBDialogs presentShareDialogWithLink:params.link
+//                                      handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+//                                          if(error) {
+//                                              // An error occurred, we need to handle the error
+//                                              // See: https://developers.facebook.com/docs/ios/errors
+//                                              NSLog(@"Error publishing story: %@", error.description);
+//                                          } else {
+//                                              // Success
+//                                              NSLog(@"result %@", results);
+//                                          }
+//                                      }];
+//        
+//        // If the Facebook app is NOT installed and we can't present the share dialog
+//    } else {
+//        // FALLBACK: publish just a link using the Feed dialog
+//        
+//        // Put together the dialog parameters
+//        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                       @"", @"name",
+//                                       caption, @"caption",
+//                                       Description, @"description",
+//                                       message, @"link",
+//                                       @"", @"picture",
+//                                       nil];
+//        
+//        // Show the feed dialog
+//        [FBWebDialogs presentFeedDialogModallyWithSession:nil
+//                                               parameters:params
+//                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+//                                                      if (error) {
+//                                                          // An error occurred, we need to handle the error
+//                                                          // See: https://developers.facebook.com/docs/ios/errors
+//                                                          NSLog(@"Error publishing story: %@", error.description);
+//                                                      } else {
+//                                                          if (result == FBWebDialogResultDialogNotCompleted) {
+//                                                              // User canceled.
+//                                                              NSLog(@"User cancelled.");
+//                                                          } else {
+//                                                              // Handle the publish feed callback
+//                                                              NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+//                                                              
+//                                                              if (![urlParams valueForKey:@"post_id"]) {
+//                                                                  // User canceled.
+//                                                                  NSLog(@"User cancelled.");
+//                                                                  
+//                                                              } else {
+//                                                                  // User clicked the Share button
+//                                                                  NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+//                                                                  NSLog(@"result %@", result);
+//                                                              }
+//                                                          }
+//                                                      }
+//                                                  }];
+//    }
+//}
 
 -(void)GetUnLikeData{
     NSString *GetExpertToken = [Utils getAppToken];
@@ -4050,11 +4043,18 @@
     
     if ([GetUserUid isEqualToString:[Utils getUserID]]) {
         //self
+//        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+//                                                                 delegate:self
+//                                                        cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
+//                                                   destructiveButtonTitle:nil
+//                                                        otherButtonTitles:CustomLocalisedString(@"Edit", nil),CustomLocalisedString(@"Delete", nil), nil];
+        
+        
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                                  delegate:self
                                                         cancelButtonTitle:CustomLocalisedString(@"SettingsPage_Cancel", nil)
                                                    destructiveButtonTitle:nil
-                                                        otherButtonTitles:CustomLocalisedString(@"Edit", nil),CustomLocalisedString(@"Delete", nil), nil];
+                                                        otherButtonTitles:CustomLocalisedString(@"Delete", nil), nil];
         
         [actionSheet showInView:self.view];
         
@@ -4085,68 +4085,68 @@
             NSString *caption = [NSString stringWithFormat:@"SEETIES.ME"];
             
             // Check if the Facebook app is installed and we can present the share dialog
-            FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
-            params.link = [NSURL URLWithString:message];
-            
-            
-            // If the Facebook app is installed and we can present the share dialog
-            if ([FBDialogs canPresentShareDialogWithParams:params]) {
-                
-                // Present share dialog
-                [FBDialogs presentShareDialogWithLink:params.link
-                                              handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
-                                                  if(error) {
-                                                      // An error occurred, we need to handle the error
-                                                      // See: https://developers.facebook.com/docs/ios/errors
-                                                      NSLog(@"Error publishing story: %@", error.description);
-                                                  } else {
-                                                      // Success
-                                                      NSLog(@"result %@", results);
-                                                  }
-                                              }];
-                
-                // If the Facebook app is NOT installed and we can't present the share dialog
-            } else {
-                // FALLBACK: publish just a link using the Feed dialog
-                
-                // Put together the dialog parameters
-                NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                               @"", @"name",
-                                               caption, @"caption",
-                                               Description, @"description",
-                                               message, @"link",
-                                               @"", @"picture",
-                                               nil];
-                
-                // Show the feed dialog
-                [FBWebDialogs presentFeedDialogModallyWithSession:nil
-                                                       parameters:params
-                                                          handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
-                                                              if (error) {
-                                                                  // An error occurred, we need to handle the error
-                                                                  // See: https://developers.facebook.com/docs/ios/errors
-                                                                  NSLog(@"Error publishing story: %@", error.description);
-                                                              } else {
-                                                                  if (result == FBWebDialogResultDialogNotCompleted) {
-                                                                      // User canceled.
-                                                                      NSLog(@"User cancelled.");
-                                                                  } else {
-                                                                      // Handle the publish feed callback
-                                                                      NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
-                                                                      
-                                                                      if (![urlParams valueForKey:@"post_id"]) {
-                                                                          // User canceled.
-                                                                          NSLog(@"User cancelled.");
-                                                                          
-                                                                      } else {
-                                                                          // User clicked the Share button
-                                                                          NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
-                                                                          NSLog(@"result %@", result);
-                                                                      }
-                                                                  }
-                                                              }
-                                                          }];
-            }
+//            FBLinkShareParams *params = [[FBLinkShareParams alloc] init];
+//            params.link = [NSURL URLWithString:message];
+//            
+//            
+//            // If the Facebook app is installed and we can present the share dialog
+//            if ([FBDialogs canPresentShareDialogWithParams:params]) {
+//                
+//                // Present share dialog
+//                [FBDialogs presentShareDialogWithLink:params.link
+//                                              handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+//                                                  if(error) {
+//                                                      // An error occurred, we need to handle the error
+//                                                      // See: https://developers.facebook.com/docs/ios/errors
+//                                                      NSLog(@"Error publishing story: %@", error.description);
+//                                                  } else {
+//                                                      // Success
+//                                                      NSLog(@"result %@", results);
+//                                                  }
+//                                              }];
+//                
+//                // If the Facebook app is NOT installed and we can't present the share dialog
+//            } else {
+//                // FALLBACK: publish just a link using the Feed dialog
+//                
+//                // Put together the dialog parameters
+//                NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                               @"", @"name",
+//                                               caption, @"caption",
+//                                               Description, @"description",
+//                                               message, @"link",
+//                                               @"", @"picture",
+//                                               nil];
+//                
+//                // Show the feed dialog
+//                [FBWebDialogs presentFeedDialogModallyWithSession:nil
+//                                                       parameters:params
+//                                                          handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+//                                                              if (error) {
+//                                                                  // An error occurred, we need to handle the error
+//                                                                  // See: https://developers.facebook.com/docs/ios/errors
+//                                                                  NSLog(@"Error publishing story: %@", error.description);
+//                                                              } else {
+//                                                                  if (result == FBWebDialogResultDialogNotCompleted) {
+//                                                                      // User canceled.
+//                                                                      NSLog(@"User cancelled.");
+//                                                                  } else {
+//                                                                      // Handle the publish feed callback
+//                                                                      NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+//                                                                      
+//                                                                      if (![urlParams valueForKey:@"post_id"]) {
+//                                                                          // User canceled.
+//                                                                          NSLog(@"User cancelled.");
+//                                                                          
+//                                                                      } else {
+//                                                                          // User clicked the Share button
+//                                                                          NSString *result = [NSString stringWithFormat: @"Posted story, id: %@", [urlParams valueForKey:@"post_id"]];
+//                                                                          NSLog(@"result %@", result);
+//                                                                      }
+//                                                                  }
+//                                                              }
+//                                                          }];
+//            }
         }
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"CopyLink", nil)]) {
             NSLog(@"Copy Link");
@@ -4167,7 +4167,7 @@
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"Edit", nil)]) {
             NSLog(@"Edit Click");
             [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
-            [self OpenEdit];
+           // [self OpenEdit];
         }
         if ([buttonTitle isEqualToString:CustomLocalisedString(@"Delete", nil)]) {
             NSLog(@"Delete Click");
@@ -4299,32 +4299,23 @@
     [self.navigationController pushViewController:reportViewController animated:YES];
 }
 
--(void)OpenEdit{
-    
-    _editPostViewController = nil;
-    [self.editPostViewController requestServerForPostInfo:GetPostID completionBLock:^{
-        
-        DraftModel* editPost = [[ConnectionManager dataManager] editPostModel];
-        
-        [self.editPostViewController initDataPostEdit:editPost];
-        
-        [self presentViewController:self.editPostViewController animated:YES completion:nil];
-        
-    }];
-    
-    
-}
+//-(void)OpenEdit{
+//    
+//    _editPostViewController = nil;
+//    [self.editPostViewController requestServerForPostInfo:GetPostID completionBLock:^{
+//        
+//        DraftModel* editPost = [[ConnectionManager dataManager] editPostModel];
+//        
+//        [self.editPostViewController initDataPostEdit:editPost];
+//        
+//        [self presentViewController:self.editPostViewController animated:YES completion:nil];
+//        
+//    }];
+//    
+//    
+//}
 
 #pragma mark - declaration
-
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
-    }
-    
-    return _shareV2ViewController;
-}
 
 -(ProfileViewController*)profileViewController
 {
@@ -4333,18 +4324,18 @@
     
     return _profileViewController;
 }
--(EditPostViewController*)editPostViewController
-{
-    if (!_editPostViewController) {
-        _editPostViewController = [EditPostViewController new];
-        _editPostViewController.editPostDoneBlock = ^(id object)
-        {
-            //FIXME: To Do write a refresh page for new feed details
-        };
-    }
-    
-    return _editPostViewController;
-}
+//-(EditPostViewController*)editPostViewController
+//{
+//    if (!_editPostViewController) {
+//        _editPostViewController = [EditPostViewController new];
+//        _editPostViewController.editPostDoneBlock = ^(id object)
+//        {
+//            //FIXME: To Do write a refresh page for new feed details
+//        };
+//    }
+//    
+//    return _editPostViewController;
+//}
 
 - (NSString *)documentsPathForFileName:(NSString *)name {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -4361,16 +4352,7 @@
 -(IBAction)OpenAddressButton:(id)sender{
     
     NSLog(@"Open address click");
-    //    LocationFeedDetailViewController *LocationFeedDetailView = [[LocationFeedDetailViewController alloc]init];
-    //    CATransition *transition = [CATransition animation];
-    //    transition.duration = 0.2;
-    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    //    transition.type = kCATransitionPush;
-    //    transition.subtype = kCATransitionFromRight;
-    //    [self.view.window.layer addAnimation:transition forKey:nil];
-    //    [self presentViewController:LocationFeedDetailView animated:NO completion:nil];
-    //    [LocationFeedDetailView GetLat:GetLat GetLong:GetLng GetFirstImage:[UrlArray objectAtIndex:0] GetTitle:GetPlaceName GetLocation:GetPlaceFormattedAddress ];
-    //    [LocationFeedDetailView GetLink:GetPlaceLink GetContact:GetContactNo GetOpeningHour:GetOpenNow GetPrice:GetExpense GetPeriods:GetPeriods];
+   
     NSLog(@"ViewSeetishopButtonOnClick and SeetishopID = %@",GetSeetishopID);
     NSLog(@"GetPostID is %@ and GetLocationPlaceId is %@",GetPostID,GetLocationPlaceId);
     self.seetiesShopViewController = nil;
@@ -4836,9 +4818,15 @@
     NSString *GetTagsString = [[NSString alloc]initWithFormat:@"#%@",[ArrHashTag objectAtIndex:getbuttonIDN]];
     NSLog(@"ArrHashTag is %@",GetTagsString);
     
-    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:SearchDetailView animated:YES];
-    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
+    
+    self.searchListingViewController = [CT3_SearchListingViewController new];
+    self.searchListingViewController.keyword = GetTagsString;
+    
+    [self.navigationController pushViewController:self.searchListingViewController animated:YES];
+    
+//    SearchDetailViewController *SearchDetailView = [[SearchDetailViewController alloc]initWithNibName:@"SearchDetailViewController" bundle:nil];
+//    [self.navigationController pushViewController:SearchDetailView animated:YES];
+//    [SearchDetailView GetSearchKeyword:GetTagsString Getlat:@"" GetLong:@"" GetLocationName:@"" GetCurrentLat:@"" GetCurrentLong:@""];
 }
 -(IBAction)BlogLinkButtonOnClick:(id)sender{
     if ([GetLink hasPrefix:@"http://"] || [GetLink hasPrefix:@"https://"]) {

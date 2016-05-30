@@ -14,6 +14,7 @@
                 <outlet property="ibEmptyStateView" destination="nBc-es-yJ3" id="JhL-3e-5Ce"/>
                 <outlet property="ibEmptyTitle" destination="bK1-0L-TUM" id="l6c-rW-dVF"/>
                 <outlet property="ibEmptyView" destination="IAP-L3-PYe" id="v3y-j1-whw"/>
+                <outlet property="ibEmptyWalletImgLeadingConstraint" destination="R2R-dz-1Ud" id="SNp-Zx-Bbp"/>
                 <outlet property="ibFooterBtn" destination="bRZ-GB-qwj" id="2WS-Lt-7Gy"/>
                 <outlet property="ibFooterLbl" destination="b41-zZ-lpA" id="t20-hM-Gq1"/>
                 <outlet property="ibLoadingImg" destination="FGd-fo-aNR" id="Toa-mp-Sii"/>
@@ -69,6 +70,13 @@
                             <state key="normal" image="WalletHistoryIcon.png"/>
                             <connections>
                                 <action selector="historyBtnClicked:" destination="-1" eventType="touchUpInside" id="boK-xn-bFa"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrv-wX-8zb">
+                            <rect key="frame" x="26" y="19" width="236" height="26"/>
+                            <state key="normal" title="upload offline deal"/>
+                            <connections>
+                                <action selector="btnUploadClicked:" destination="-1" eventType="touchUpInside" id="xaG-DD-az7"/>
                             </connections>
                         </button>
                     </subviews>
@@ -167,7 +175,7 @@
                     <exclude reference="Ct2-2B-Ejc"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="559" y="419"/>
+            <point key="canvasLocation" x="561" y="448"/>
         </view>
         <view contentMode="scaleToFill" id="nBc-es-yJ3">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -177,7 +185,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK1-0L-TUM" userLabel="title">
-                            <rect key="frame" x="15" y="640" width="570" height="21"/>
+                            <rect key="frame" x="15" y="596" width="570" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Ve8-ed-woq"/>
                             </constraints>
@@ -186,7 +194,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4l-sT-W1B" userLabel="desc">
-                            <rect key="frame" x="15" y="675" width="570" height="21"/>
+                            <rect key="frame" x="15" y="631" width="570" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="gAY-ay-Ez3"/>
                             </constraints>
@@ -195,7 +203,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNI-ml-W0d">
-                            <rect key="frame" x="45" y="710" width="510" height="42"/>
+                            <rect key="frame" x="45" y="666" width="510" height="42"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="185-wg-qL4"/>
                             </constraints>
@@ -208,7 +216,7 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="EmptyWalletImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="L5T-3u-f0m">
-                            <rect key="frame" x="75" y="60" width="450" height="550"/>
+                            <rect key="frame" x="75" y="16" width="450" height="550"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="160" id="1Mt-MF-kSl"/>
                                 <constraint firstAttribute="width" secondItem="L5T-3u-f0m" secondAttribute="height" multiplier="0.9:1.1" id="LR9-OP-fVg"/>
@@ -233,7 +241,7 @@
                         <constraint firstAttribute="bottom" secondItem="dNI-ml-W0d" secondAttribute="bottom" constant="20" id="ASP-QZ-ao4"/>
                         <constraint firstAttribute="width" constant="300" id="CRA-oi-cvG"/>
                         <constraint firstItem="Y4l-sT-W1B" firstAttribute="top" secondItem="bK1-0L-TUM" secondAttribute="bottom" constant="14" id="Chc-ws-VPE"/>
-                        <constraint firstItem="L5T-3u-f0m" firstAttribute="top" secondItem="IAP-L3-PYe" secondAttribute="top" constant="60" id="F0o-Mb-p2Q"/>
+                        <constraint firstItem="L5T-3u-f0m" firstAttribute="top" secondItem="IAP-L3-PYe" secondAttribute="top" constant="16" id="F0o-Mb-p2Q"/>
                         <constraint firstItem="Y4l-sT-W1B" firstAttribute="leading" secondItem="IAP-L3-PYe" secondAttribute="leading" constant="15" id="F7i-Zn-MK5"/>
                         <constraint firstItem="L5T-3u-f0m" firstAttribute="centerX" secondItem="IAP-L3-PYe" secondAttribute="centerX" constant="4.5" id="Izi-6w-xRZ"/>
                         <constraint firstAttribute="trailing" secondItem="L5T-3u-f0m" secondAttribute="trailing" constant="20" id="PyC-jo-rTt"/>
@@ -266,6 +274,7 @@
                             <exclude reference="9hP-qb-FvM"/>
                             <exclude reference="Izi-6w-xRZ"/>
                             <exclude reference="PyC-jo-rTt"/>
+                            <exclude reference="jYz-nh-TpM"/>
                             <exclude reference="sYY-ku-UYY"/>
                             <exclude reference="sqX-te-GVr"/>
                             <exclude reference="xSI-1g-qHn"/>

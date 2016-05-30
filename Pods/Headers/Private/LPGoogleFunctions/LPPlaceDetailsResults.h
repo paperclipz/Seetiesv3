@@ -1,1 +1,0 @@
-../../../LPGoogleFunctions/LPGoogleFunctions/LPGoogleObjects/LPPlaceDetailsResults.h

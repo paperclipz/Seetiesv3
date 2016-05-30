@@ -462,14 +462,42 @@
             self.didSelectDealBlock(model);
         }
     }
-    else
+    
+    else if(self.ibTableView == tableView)
     {
-        CGRect myRect = [tableView rectForRowAtIndexPath:indexPath];
         
-        if (self.didSelectInformationAtRectBlock) {
-            self.didSelectInformationAtRectBlock(tableView,myRect);
+        NSDictionary* dict = self.arrayList[indexPath.row];
+        
+        NSArray* keys = [dict allKeys];
+        
+        NSString* key = keys[0];
+        
+        if ([key isEqualToString:Phone_Number]) {
+           
+            [self callPhoneClicked:dict[key]];
+
         }
+        else
+        {
+            
+            NSString* urlString = dict[key];
+            if ([urlString hasPrefix:@"http://"] || [urlString hasPrefix:@"https://"])
+            {
+                [self routeToWebBrowser:urlString];
+            }
+        }
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     }
+    
+//    else
+//    {
+//        CGRect myRect = [tableView rectForRowAtIndexPath:indexPath];
+//        
+//        if (self.didSelectInformationAtRectBlock) {
+//            self.didSelectInformationAtRectBlock(tableView,myRect);
+//        }
+//    }
    
 }
 
@@ -547,6 +575,56 @@
     [self.btnSeeAll setTitle:LocalisedString(@"See all") forState:UIControlStateNormal];
 }
 
+#pragma mark - Show View
+
+-(void)callPhoneClicked:(NSString*)phoneNumber {
+    
+    NSMutableString * string = [phoneNumber mutableCopy];
+    [string replaceOccurrencesOfString:@" "
+                            withString:@""
+                               options:0
+                                 range:NSMakeRange(0, string.length)];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",string]]];
+}
+
+-(void)routeToWebBrowser:(NSString*)urlString
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+}
+#pragma mark - Initialization
+
+-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
+{
+    
+    self.seetiesID = seetiesID;
+    self.placeID = placeID;
+    self.postID = postID;
+    self.shoplat = [[SearchManager Instance]getAppLocation].coordinate.latitude;
+    self.shopLgn = [[SearchManager Instance]getAppLocation].coordinate.longitude;
+    
+    [Utils setRoundBorder:self.ibMapInfoView color:OUTLINE_COLOR borderRadius:5.0f];
+    
+    
+    CLLocation* location = [[SearchManager Instance]getAppLocation];
+    
+    _region.center.longitude = location.coordinate.longitude;
+    _region.center.latitude = location.coordinate.latitude;
+    
+    
+    [self.annotation setCoordinate:self.region.center];
+    
+    [self.ibMapView setRegion:self.region animated:YES];
+    
+    
+    [self requestServerForSeetiShopDetail];
+    
+    [self requestServerForShopDeal];
+    
+    [self requestServerForSeetiShopPhotos];
+    
+}
+
 #pragma mark - Server
 //-(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID  Latitude:(float)lat Longitude:(float)lng
 //{
@@ -581,36 +659,7 @@
 //    [self requestServerForSeetiShopDetail];
 //    [self requestServerForSeetiShopPhotos];
 //}
--(void)initData:(NSString*)seetiesID PlaceID:(NSString*)placeID PostID:(NSString*)postID
-{
-    
-    self.seetiesID = seetiesID;
-    self.placeID = placeID;
-    self.postID = postID;
-    self.shoplat = [[SearchManager Instance]getAppLocation].coordinate.latitude;
-    self.shopLgn = [[SearchManager Instance]getAppLocation].coordinate.longitude;
-    
-    [Utils setRoundBorder:self.ibMapInfoView color:OUTLINE_COLOR borderRadius:5.0f];
-    
-    
-    CLLocation* location = [[SearchManager Instance]getAppLocation];
-   
-    _region.center.longitude = location.coordinate.longitude;
-    _region.center.latitude = location.coordinate.latitude;
-    
-    
-    [self.annotation setCoordinate:self.region.center];
-    
-    [self.ibMapView setRegion:self.region animated:YES];
 
-
-    [self requestServerForSeetiShopDetail];
-
-    [self requestServerForShopDeal];
-    
-    [self requestServerForSeetiShopPhotos];
-    
-}
 
 -(void)requestServerForSeetiShopDetail
 {
@@ -647,12 +696,10 @@
     }
   
     
-    
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopDetail param:dict appendString:appendString completeHandler:^(id object) {
-
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopDetail parameter:dict appendString:appendString success:^(id object) {
         self.seShopModel = [[ConnectionManager dataManager] seShopDetailModel];
         self.arrayList = self.seShopModel.arrayInformation;
-       
+        
         
         [self setupViewWithData];
         [self.ibTableView reloadData];
@@ -660,9 +707,8 @@
         if (self.viewDidFinishLoadBlock) {
             self.viewDidFinishLoadBlock(self.seShopModel);
         }
-       //[self requestServerForShopDeal];
-    } errorBlock:^(id object) {
-        
+
+    } failure:^(id object) {
         
     }];
 }
@@ -685,7 +731,9 @@
     }
    
     NSString* appendString = [NSString stringWithFormat:@"%@/deals",self.seetiesID];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopDeal param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopDeal parameter:dict appendString:appendString success:^(id object) {
+
         
         DealsModel* model = [[ConnectionManager dataManager]dealsModel];
 
@@ -695,9 +743,10 @@
 
 
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
+     
 
 }
 
@@ -725,7 +774,8 @@
 
     }
 
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetiShopPhoto param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopPhoto parameter:dict appendString:appendString success:^(id object) {
+
         self.seShopPhotoModel = [[ConnectionManager dataManager]seShopPhotoModel];
         
 //        [UIView transitionWithView:self duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -743,7 +793,7 @@
         
         [self.ibCollectionView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];
@@ -762,7 +812,7 @@
     appendString = [NSString stringWithFormat:@"%@/translate",self.seetiesID];
     SLog(@"%@",appendString);
 
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopTranslation param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetoShopTranslation parameter:dict appendString:appendString success:^(id object) {
     
         NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
         NSArray* allKeys = [returnDict allKeys];
@@ -786,7 +836,7 @@
         isTranslated = YES;
         [self switchBwtweenLanguageTranslated];
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];

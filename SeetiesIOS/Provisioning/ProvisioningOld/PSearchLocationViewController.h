@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "GAITrackedViewController.h"
+
+@protocol searchLocationDelegate <NSObject>
+
+- (void)DidSelectLocation:(NSDictionary *)locationData;
+
+@end
+
 @interface PSearchLocationViewController : UIViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
     
     IBOutlet UITextField *SearchLocationField;
@@ -36,6 +42,11 @@
     NSInteger CheckTbl;
     
     NSString *GetPlaceID;
+    
+    NSMutableDictionary *address_dictionary; //new variable
 }
+
+@property (weak, nonatomic) id<searchLocationDelegate> delegate;
+
 -(IBAction)CurrentLocationButton:(id)sender;
 @end

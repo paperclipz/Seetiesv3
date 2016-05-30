@@ -20,6 +20,8 @@ typedef enum
     ServerRequestTypeLoginInstagram,
     ServerRequestTypeRegister,
     ServerRequestTypeGetLogout,
+    ServerRequestTypePostCheckUserRegistrationData,
+    ServerRequestTypePostForgotPassword,
     /*Login*/
 
     ServerRequestTypeGetNewsFeed,
@@ -27,7 +29,7 @@ typedef enum
     ServerRequestTypePostProvisioning,
     ServerRequestTypeGetLanguage,
     ServerRequestTypeGetCategory,
-   // ServerRequestTypeGetApiVersion,
+    ServerRequestTypeGetApiVersion,
     
     
     ServerRequestTypeGetExplore,
@@ -114,6 +116,7 @@ typedef enum
     ServerRequestTypeGetUserVouchersCount,
     ServerRequestTypePutRedeemVoucher,
     ServerRequestTypeGetUserVouchersHistoryList,
+    ServerRequestTypeGetDealCollectionInfo,
     
     /*Notifications*/
     ServerRequestTypeGetFollowingNotifictions,
@@ -145,9 +148,13 @@ typedef enum
     ServerRequestTypePostCollectionFriendSuggestion,
     ServerRequestTypePostSeetiesFriendSuggestion,
     ServerRequestTypePostNonSeetiesFriendSuggestion,
-    ServerRequestTypePostDealFriendSuggestion
+    ServerRequestTypePostDealFriendSuggestion,
     //** PostFriendSuggestion **//
 
+    //** EditProfile **//
+    ServerRequestTypePostUserProfile
+    //** EditProfile **//
+    
 }ServerRequestType;
 
 typedef enum
@@ -188,7 +195,9 @@ typedef enum
     AnnouncementType_User = 1,
     AnnouncementType_Post = 2,
     AnnouncementType_URL = 3,
-    AnnouncementType_NA = 4
+    AnnouncementType_Promo = 4,
+    AnnouncementType_Referral = 5,
+    AnnouncementType_NA = 6
     
 }AnnouncementType;
 
@@ -199,7 +208,8 @@ typedef enum
     DealType_SuperDeal = 3,
     DealType_Greeting = 4,
     DealType_QuickBrowse = 5,
-    DealType_Wallet = 6
+    DealType_Wallet = 6,
+    DealType_ReferFriends = 7,
     
 }DealType;
 
@@ -220,6 +230,8 @@ typedef enum
     NotificationType_None = 12,
     NotificationType_User = 13,
     NotificationType_DealShared = 14,
+    NotificationType_ReferralReward = 15,
+    NotificationType_Phone_Verification = 16,
     
 }NotificationType;
 
@@ -322,8 +334,8 @@ static BOOL IS_SIMULATOR = NO;
 #define DEVICE_TYPE 2
 
 //Share path
-#define kProductionBasePath @"https://seeties.me/"
-#define kDevelopmentBasePath @"https://itcave2.seeties.me/"
+#define PRODUCTION_BASE_PATH @"https://seeties.me/"
+#define DEVELOPMENT_BASE_PATH @"https://itcave2.seeties.me/"
 
 
 

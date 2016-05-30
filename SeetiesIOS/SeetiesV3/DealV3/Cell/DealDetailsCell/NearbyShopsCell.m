@@ -25,11 +25,11 @@
 -(void)setShopModel:(SeShopDetailModel *)shopModel{
     _shopModel = shopModel;
     
-    if (!self.shopModel.profile_photo[@"picture"]) {
-        [self.ibShopImage sd_setImageCroppedWithURL:[NSURL URLWithString:self.shopModel.profile_photo[@"picture"]] completed:nil];
+    if (![Utils isStringNull:self.shopModel.profile_photo[@"picture"]]) {
+        [self.ibShopImage sd_setImageCroppedWithURL:[NSURL URLWithString:self.shopModel.profile_photo[@"picture"]] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:nil];
     }
     else{
-        [self.ibShopImage setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+        [self.ibShopImage setImage:[Utils getShopPlaceHolderImage]];
     }
     
     [Utils setRoundBorder:self.ibShopImage color:OUTLINE_COLOR borderRadius:self.ibShopImage.frame.size.width/2];

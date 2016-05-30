@@ -37,6 +37,7 @@
 @class InstagramUser;
 @class SuggestedPlaceModel;
 @class FriendSuggestionModel;
+@class DealCollectionModel;
 
 typedef void(^BoolBlock) (BOOL isCollected);
 typedef void(^CompletionVoidBlock) (void);
@@ -96,6 +97,11 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)NotificationModels* followingNotificationModels;
 @property(nonatomic,strong)AppInfoModel* appInfoModel;
 
+
+/* ================================ Notification ================================ */
+@property(nonatomic,strong)DealCollectionModel* dealCollectionModel;
+
+
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;
 +(void)getCollectionFollowing:(NSString*)collectionID HasCollected:(BoolBlock)isCollected completion:(CompletionVoidBlock)completionBlock;//get collection is collected to show in view
@@ -111,4 +117,6 @@ typedef void(^CompletionVoidBlock) (void);
 +(BOOL)isUserFollowed:(NSString*)UserID isFollowing:(BOOL)isFollowing;
 
 +(void)setUserFollowing:(NSString*)UserID isFollowing:(BOOL)following;
+-(ProfileModel*)getCurrentUserProfileModel;
+
 @end

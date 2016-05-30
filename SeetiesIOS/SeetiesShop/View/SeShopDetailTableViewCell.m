@@ -19,6 +19,14 @@
     // Drawing code
 }
 */
+-(void)awakeFromNib
+{    
+    UIView *myBackView = [[UIView alloc] initWithFrame:self.frame];
+    myBackView.backgroundColor = [UIColor whiteColor];
+    self.selectedBackgroundView = myBackView;
+
+
+}
 
 +(int)getHeight
 {
@@ -30,6 +38,8 @@
 
     if (self) {
         [self setWidth:[Utils getDeviceScreenSize].size.width];
+
+       
     }
     
     return self;

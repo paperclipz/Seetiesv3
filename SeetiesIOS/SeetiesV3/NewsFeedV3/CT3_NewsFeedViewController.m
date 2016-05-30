@@ -16,6 +16,7 @@
 #import "FeedType_AbroadQualityPostTblCell.h"
 #import "FeedType_SuggestionFetureTblCell.h"
 #import "FeedType_FollowingCollectionTblCell.h"
+#import "DealType_ReferFriendTblCell.h"
 
 #import "AddCollectionDataViewController.h"
 #import "FeedV2DetailViewController.h"
@@ -24,12 +25,12 @@
 #import "InviteFrenViewController.h"
 #import "ProfileViewController.h"
 #import "CTWebViewController.h"
+#import "CT3_EnableLocationViewController.h"
 
 #import "DealType_mainTblCell.h"
 #import "DealType_QuickBrowseTblCell.h"
 #import "DealType_DealOTDTblCell.h"
 #import "DealType_YourWalletTblCell.h"
-#import "SearchViewV2Controller.h"
 #import "FeedType_headerTblCell.h"
 
 #import "AppDelegate.h"
@@ -47,11 +48,16 @@
 
 #import "SearchQuickBrowseListingController.h"
 #import "CT3_SearchListingViewController.h"
+#import "DealDetailsViewController.h"
+#import "CT3_ReferalViewController.h"
+#import "CT3_InviteFriendViewController.h"
 
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
 
 #import "UITableView+emptyState.h"
+#import "UIButton+Activity.h"
+#import "UIImageView+Extension.h"
 
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
@@ -64,6 +70,8 @@ static NSCache* heightCache = nil;
 @interface CT3_NewsFeedViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     BOOL isMiddleOfLoadingServer;
+    BOOL isMiddleOfLoadingHome;
+
     __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
     __weak IBOutlet UIImageView *ibHeaderBackgroundView;
     __weak IBOutlet NSLayoutConstraint *constTopScrollView;
@@ -75,9 +83,11 @@ static NSCache* heightCache = nil;
     NSString* update_location_method;
 
     BOOL isDealCollectionShown;
-
+    
+    BOOL isLoadingLocation;
     
 }
+@property (weak, nonatomic) IBOutlet UIButton *btnCurrentLocation;
 /*IBOUTLET*/
 @property (weak, nonatomic) IBOutlet UIButton *btnLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -102,14 +112,12 @@ static NSCache* heightCache = nil;
 
 /*Controller*/
 @property(nonatomic,strong)AddCollectionDataViewController* collectPostToCollectionVC;
-@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property(nonatomic,strong)FeedV2DetailViewController* feedV2DetailViewController;
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 @property(nonatomic,strong)CollectionViewController* displayCollectionViewController;
 @property(nonatomic,strong)InviteFrenViewController* inviteFrenViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic,strong)CTWebViewController* ctWebViewController;
-@property(nonatomic,strong)SearchViewV2Controller* searchViewV2Controller;
 @property(nonatomic,strong)VoucherListingViewController* voucherListingViewController;
 
 @property(nonatomic)DealRedeemViewController* dealRedeemViewController;
@@ -120,6 +128,12 @@ static NSCache* heightCache = nil;
 @property(nonatomic)SearchQuickBrowseListingController* searchQuickBrowseListingController;
 
 @property(nonatomic)CT3_SearchListingViewController* ct3_SearchListingViewController;
+@property(nonatomic)PromoPopOutViewController *promoPopoutViewController;
+@property(nonatomic)DealDetailsViewController *dealDetailsViewController;
+@property(nonatomic)CT3_ReferalViewController *referralViewController;
+@property(nonatomic)CT3_InviteFriendViewController *inviteFriendViewController;
+@property(nonatomic)CT3_EnableLocationViewController* enableLocationViewController;
+
 /*Controller*/
 
 @end
@@ -127,6 +141,35 @@ static NSCache* heightCache = nil;
 @implementation CT3_NewsFeedViewController
 
 #pragma mark -IBACTION
+
+- (IBAction)btnutoDetectClicked:(id)sender {
+    
+    if ([SearchManager isDeviceGPSTurnedOn]) {
+        
+        
+        if (isLoadingLocation) {
+            return;
+        }
+        
+        self.btnCurrentLocation.enabled = NO;
+
+        isLoadingLocation = YES;
+        
+        [[SearchManager Instance]startSearchGPSLocation:^(CLLocation *location) {
+            
+            self.btnCurrentLocation.enabled = NO;
+
+            [self getCurrentLocationGoogleGeoCode:location];
+        }];
+        
+//        [UIAlertView showWithTitle:LocalisedString(@"Couldn't get your location now") message:LocalisedString(@"try again later") cancelButtonTitle:LocalisedString(@"OK") otherButtonTitles:nil tapBlock:nil];
+    }
+    else{
+        
+        [self presentViewController:self.enableLocationViewController animated:YES completion:nil];
+    }
+}
+
 
 - (IBAction)btnSearchLocationClicked:(id)sender {
     
@@ -142,7 +185,7 @@ static NSCache* heightCache = nil;
 
 - (IBAction)btnGrabNowClicked:(id)sender {
     _voucherListingViewController = nil;
-    [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+    [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel];
     [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
     
 }
@@ -171,21 +214,40 @@ static NSCache* heightCache = nil;
 
 }
 
--(void)reloadNewsFeed
-{
-    self.newsFeedModels = nil;
-    
-    if (![Utils isArrayNull:self.arrayNewsFeed]) {
-        [self.arrayNewsFeed removeAllObjects];
-        [self.ibTableView reloadData];
+-(IBAction)backgroundViewDidTap{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - DelegateImplementation
+-(void)viewDealDetailsClicked:(DealsModel*)dealsModel{
+    if (dealsModel.arrDeals.count == 1) {
+        self.dealDetailsViewController = nil;
+        [self.dealDetailsViewController initDealModel:dealsModel.arrDeals[0]];
+        [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
+            [self.dealDetailsViewController setupView];
+        }];
     }
-    [heightCache removeAllObjects];
-    heightCache = nil;
-    heightCache = [NSCache new];
-    [self requestServerForNewsFeed:self.currentHomeLocationModel.latitude Longtitude:self.currentHomeLocationModel.longtitude];
+    else{
+        self.voucherListingViewController = nil;
+        [self.voucherListingViewController initWithDealsModel:dealsModel];
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
+}
+
+-(void)promoHasBeenRedeemed:(DealsModel *)dealsModel{
+    [self.ibTableView reloadData];
 }
 
 #pragma mark - Declaration
+
+-(CT3_EnableLocationViewController*)enableLocationViewController
+{
+    if (!_enableLocationViewController) {
+        _enableLocationViewController = [CT3_EnableLocationViewController new];
+    }
+    
+    return _enableLocationViewController;
+}
 
 -(DealManager *)dealManager{
     if(!_dealManager)
@@ -224,10 +286,19 @@ static NSCache* heightCache = nil;
         __weak typeof (self)weakSelf = self;
         _searchQuickBrowseListingController.didSelectHomeLocationBlock = ^(HomeLocationModel* model)
         {
-            weakSelf.currentHomeLocationModel = model;
-            weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
-            [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            
+            if (![model isEqual:weakSelf.currentHomeLocationModel]) {
+                
+                [weakSelf locationDidChange:model];
+                
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }
+            else{
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+              
+                [weakSelf requestServerForHomeUpdate:weakSelf.currentHomeLocationModel];
+            }
+         
         };
         
     }
@@ -276,22 +347,18 @@ static NSCache* heightCache = nil;
         __weak typeof (self)weakSelf = self;
         _voucherListingViewController.didSelectHomeLocationBlock = ^(HomeLocationModel* model)
         {
-            weakSelf.currentHomeLocationModel = model;
-            weakSelf.locationName = weakSelf.currentHomeLocationModel.locationName;
-            [weakSelf requestServerForHome:weakSelf.currentHomeLocationModel];
+            if (![model isEqual:weakSelf.currentHomeLocationModel]) {
+               
+                [weakSelf locationDidChange:model];
+
+            }
+            else{
+                [weakSelf requestServerForHomeUpdate:weakSelf.currentHomeLocationModel];
+            }
         };
     }
     
     return _voucherListingViewController;
-}
--
-(SearchViewV2Controller*)searchViewV2Controller
-{
-    if (!_searchViewV2Controller) {
-        _searchViewV2Controller = [SearchViewV2Controller new];
-    }
-    
-    return _searchViewV2Controller;
 }
 
 -(CTWebViewController*)ctWebViewController
@@ -346,13 +413,7 @@ static NSCache* heightCache = nil;
     
     return _feedV2DetailViewController;
 }
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [ShareV2ViewController new];
-    }
-    return _shareV2ViewController;
-}
+
 -(AddCollectionDataViewController*)collectPostToCollectionVC
 {
     if (!_collectPostToCollectionVC) {
@@ -390,19 +451,14 @@ static NSCache* heightCache = nil;
         _searchLocationViewController = [SearchLocationViewController new];
         __weak typeof (self)weakself = self;
         
-        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model, CountryModel *countryModel)
+        _searchLocationViewController.homeLocationRefreshBlock = ^(HomeLocationModel* model)
         {
+            
             isFirstLoad = YES;
 
-            weakself.currentHomeLocationModel = model;
-            weakself.currentHomeLocationModel.countryId = countryModel.country_id;
+            [weakself locationDidChange:model];
             
-            [Utils saveUserLocation:weakself.currentHomeLocationModel.locationName Longtitude:weakself.currentHomeLocationModel.longtitude Latitude:weakself.currentHomeLocationModel.latitude PlaceID:weakself.currentHomeLocationModel.place_id CountryID:countryModel.country_id SourceType:model.type];
-            weakself.locationName = weakself.currentHomeLocationModel.locationName;
             [weakself.searchLocationViewController.navigationController popViewControllerAnimated:YES];
-            
-            [weakself reloadNewsFeed];
-            [weakself requestServerForHome:model];
 
         };
     
@@ -411,10 +467,42 @@ static NSCache* heightCache = nil;
     return _searchLocationViewController;
 }
 
+-(PromoPopOutViewController *)promoPopoutViewController{
+    if (!_profileViewController) {
+        _promoPopoutViewController = [PromoPopOutViewController new];
+        _promoPopoutViewController.promoPopOutDelegate = self;
+    }
+    return _promoPopoutViewController;
+}
+
+-(DealDetailsViewController *)dealDetailsViewController{
+    if (!_dealDetailsViewController) {
+        _dealDetailsViewController = [DealDetailsViewController new];
+    }
+    return _dealDetailsViewController;
+}
+
+-(CT3_ReferalViewController *)referralViewController{
+    if (!_referralViewController) {
+        _referralViewController = [CT3_ReferalViewController new];
+    }
+    return _referralViewController;
+}
+
+-(CT3_InviteFriendViewController *)inviteFriendViewController{
+    if (!_inviteFriendViewController) {
+        _inviteFriendViewController = [CT3_InviteFriendViewController new];
+    }
+    return _inviteFriendViewController;
+}
+
 #pragma mark - DEFAULT
 - (void)viewDidLoad {
     
     isFirstLoad = YES;
+    
+    isLoadingLocation = NO;
+    
     [super viewDidLoad];
     
     lastUpdatedDateTime = @"";
@@ -423,10 +511,7 @@ static NSCache* heightCache = nil;
     
     update_location_method = @"";
     
-    
     [self initSelfView];
-
-    [self.ibTableView setupCustomEmptyView];
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -436,6 +521,7 @@ static NSCache* heightCache = nil;
     [super viewDidAppear:animated];
     
     [self.ibTableView showLoading];
+    
     
     if (self.needShowIntroView) {
         
@@ -452,16 +538,26 @@ static NSCache* heightCache = nil;
 
     if (!isFirstLoad) {
         [self requestServerForHomeUpdate:self.currentHomeLocationModel];
+        [self.ibTableView showEmptyState];
+
     }
+    
     
     if (![Utils isGuestMode]) {
         [self RequestServerForVouchersCount];
     }
+    
+//    @try {
+//        [self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
+//
+//    } @catch (NSException *exception) {
+//        
+//    }
 }
 
 -(void)initSelfView
 {
-    
+    [self.btnCurrentLocation useActivityIndicator:YES];
     self.automaticallyAdjustsScrollViewInsets = NO;
     constTopScrollView.constant = TopBarHeight;
 
@@ -469,6 +565,7 @@ static NSCache* heightCache = nil;
     [self initTableViewDelegate];
     
     isMiddleOfLoadingServer = NO;
+    isMiddleOfLoadingHome = NO;
     
     [self initFooterView];
 }
@@ -480,6 +577,14 @@ static NSCache* heightCache = nil;
     
     self.ibTableView.estimatedRowHeight = [FeedType_FollowingPostTblCell getHeight];
     self.ibTableView.rowHeight = UITableViewAutomaticDimension;
+    [self.ibTableView setupCustomEmptyView];
+    
+    [self.ibTableView handleControlEvent:UIControlEventTouchUpInside withBlock:^{
+        
+        [self reloadData];
+    }];
+    // self.ibTableView.customEmptyStateView.emptyStateDesc.text = LocalisedString(@"No Internet Connection");
+    
 
 }
 
@@ -557,7 +662,13 @@ static NSCache* heightCache = nil;
                 break;
             case DealType_Announcement:
             {
-                return [FeedType_CountryPromotionTblCell getHeight];
+                return UITableViewAutomaticDimension;
+            }
+                break;
+
+            case DealType_ReferFriends:
+            {
+                return [DealType_ReferFriendTblCell getHeight];
             }
                 break;
 
@@ -660,13 +771,12 @@ static NSCache* heightCache = nil;
                     cell = [[DealType_mainTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
                 }
                 
-
                 [cell initData:self.homeModel];
                  __weak typeof (self)weakSelf = self;
                 cell.didSelectDealCollectionBlock = ^(DealCollectionModel* model)
                 {
                     _voucherListingViewController = nil;
-                    [self.voucherListingViewController initData:model withLocation:weakSelf.currentHomeLocationModel quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+                    [self.voucherListingViewController initData:model withLocation:weakSelf.currentHomeLocationModel];
                    
                     [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
                         
@@ -723,7 +833,7 @@ static NSCache* heightCache = nil;
                 
                 if (self.homeModel) {
                     
-                    [cell initData:[[DealManager Instance] getWalletCount]];
+                    [cell initData];
 
                 }
                 return cell;
@@ -745,6 +855,22 @@ static NSCache* heightCache = nil;
             }
 
                 break;
+                
+            case DealType_ReferFriends:
+            {
+                static NSString *CellIdentifier = @"DealType_ReferFriendTblCell";
+                DealType_ReferFriendTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                if (cell == nil) {
+                    cell = [[DealType_ReferFriendTblCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                }
+                
+                [cell initData];
+                
+                return cell;
+                
+            }
+                
+                break;
         }
     }
     
@@ -754,9 +880,12 @@ static NSCache* heightCache = nil;
             /*Following Post*/
             static NSString *CellIdentifier = @"FeedType_headerTblCell";
             FeedType_headerTblCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
             if (cell == nil) {
                 cell = [[FeedType_headerTblCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
+            
+            [cell initData];
             [cell setUserInteractionEnabled:NO];
             return cell;
         }
@@ -805,24 +934,13 @@ static NSCache* heightCache = nil;
                 cell.btnPostShareClickedBlock = ^(void)
                 {
                     
-//                    _shareV2ViewController = nil;
-//                    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//                    [naviVC setNavigationBarHidden:YES animated:NO];
-                    
                     NSString* imageURL;
                     
                     if (![Utils isArrayNull:feedModel.arrPhotos]) {
                         PhotoModel* pModel = feedModel.arrPhotos[0];
                         imageURL = pModel.imageURL;
                     }
-                    
-//                    [self.shareV2ViewController share:@"" title:[feedModel getPostTitle] imagURL:imageURL shareType:ShareTypePost shareID:feedModel.post_id userID:feedModel.user_info.uid];
-//                    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//                    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//                    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//                    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//                    [self presentViewController:formSheetController animated:YES completion:nil];
-                    
+                   
                     //New Sharing Screen
                     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
                     
@@ -978,10 +1096,7 @@ static NSCache* heightCache = nil;
                 [cell initData:collModel];
                 cell.btnShareCollectionClickedBlock = ^(void)
                 {
-//                    _shareV2ViewController = nil;
-//                    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//                    [naviVC setNavigationBarHidden:YES animated:NO];
-                    
+                
                     NSString* imageURL;
                     if ([Utils isArrayNull:collModel.arrayFollowingCollectionPost]) {
                         
@@ -994,13 +1109,7 @@ static NSCache* heightCache = nil;
                         }
                     }
                     
-//                    [self.shareV2ViewController share:@"" title:typeModel.followingCollectionData.name imagURL:imageURL shareType:ShareTypeCollection shareID:collModel.collection_id userID:collModel.user_info.uid];
-//                    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//                    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//                    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//                    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//                    [self presentViewController:formSheetController animated:YES completion:nil];
-                    
+//
                     //New Sharing Screen
                     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
                     
@@ -1060,7 +1169,7 @@ static NSCache* heightCache = nil;
             case DealType_SuperDeal:
             {
                 _voucherListingViewController = nil;
-                [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel quickBrowseModel:[self.homeModel.quick_browse mutableCopy]];
+                [self.voucherListingViewController initWithLocation:self.currentHomeLocationModel];
                 [self.navigationController pushViewController:self.voucherListingViewController animated:YES onCompletion:^{
                     
                 }];
@@ -1078,8 +1187,47 @@ static NSCache* heightCache = nil;
                 CTFeedTypeModel* typeModel = [CTFeedTypeModel new];
                 typeModel.feedType = FeedType_Announcement;
                 typeModel.announcementData = self.homeModel.announcements[0];
-                [self showNewAnnouncementView:typeModel];
-
+                
+                switch (typeModel.announcementData.annType) {
+                    case AnnouncementType_Promo:
+                    {
+                        if ([Utils isGuestMode]) {
+                            [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                                
+                                if (buttonIndex == 1) {
+                                    [Utils showLogin];
+                                    
+                                }
+                            }];
+                            return;
+                        }
+                        
+                        if ([Utils isPhoneNumberVerified]) {
+                            self.promoPopoutViewController = nil;
+                            [self.promoPopoutViewController setViewType:PopOutViewTypeEnterPromo];
+                            
+                            STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopoutViewController];
+                            popupController.containerView.backgroundColor = [UIColor clearColor];
+                            [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                            [popupController presentInViewController:self];
+                            [popupController setNavigationBarHidden:YES];
+                        }
+                        else{
+                            [Utils showVerifyPhoneNumber:self];
+                        }
+                    }
+                        break;
+                        
+                    case AnnouncementType_Referral:
+                    {
+                        [self showReferralInvite];
+                    }
+                        break;
+                        
+                    default:
+                        [self showNewAnnouncementView:typeModel];
+                        break;
+                }
             }
                 break;
             
@@ -1091,6 +1239,12 @@ static NSCache* heightCache = nil;
 
             }
             break;
+                
+            case DealType_ReferFriends:
+            {
+                [self showReferralInvite];
+            }
+                break;
             
             default:
                 break;
@@ -1159,8 +1313,37 @@ static NSCache* heightCache = nil;
                         dModel.post_id = aModel.relatedID;
                         [self showPostDetailView:dModel];
                     }
-                        
                         break;
+                        
+                    case AnnouncementType_Promo:
+                    {
+                        if ([Utils isGuestMode]) {
+                            [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                                
+                                if (buttonIndex == 1) {
+                                    [Utils showLogin];
+                                    
+                                }
+                            }];
+                            return;
+                        }
+                        
+                        if ([Utils isPhoneNumberVerified]) {
+                            self.promoPopoutViewController = nil;
+                            [self.promoPopoutViewController setViewType:PopOutViewTypeEnterPromo];
+                            
+                            STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopoutViewController];
+                            popupController.containerView.backgroundColor = [UIColor clearColor];
+                            [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                            [popupController presentInViewController:self];
+                            [popupController setNavigationBarHidden:YES];
+                        }
+                        else{
+                            [Utils showVerifyPhoneNumber:self];
+                        }
+                    }
+                        break;
+                        
                     case AnnouncementType_NA:
                         
                         [self showNewAnnouncementView:feedTypeModel];
@@ -1255,8 +1438,13 @@ static NSCache* heightCache = nil;
 }
 -(void)showInvitefriendView
 {
-    _inviteFrenViewController  = nil;
-    [self.navigationController pushViewController:self.inviteFrenViewController animated:YES];
+    self.inviteFriendViewController = nil;
+    [self.navigationController pushViewController:self.inviteFriendViewController animated:YES];
+}
+
+-(void)showReferralInvite{
+    self.referralViewController = nil;
+    [self.navigationController pushViewController:self.referralViewController animated:YES];
 }
 
 -(void)showNewAnnouncementView:(CTFeedTypeModel*)model
@@ -1330,14 +1518,15 @@ static NSCache* heightCache = nil;
     NSDictionary *dict = @{@"token": [Utils getAppToken]};
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserVouchersCount parameter:dict appendString:appendString success:^(id object) {
+
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
         [self.dealManager setWalletCount:count];
         
         [self.ibTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1356,13 +1545,13 @@ static NSCache* heightCache = nil;
                            @"posts" : array,
                            };
     
-    [[ConnectionManager Instance]requestServerWithPut:ServerRequestTypePutCollectPost param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutCollectPost parameter:dict appendString:appendString success:^(id object) {
 
         model.collect = @"1";
         [TSMessage showNotificationInViewController:self title:LocalisedString(@"System") subtitle:LocalisedString(@"Successfully collected to default Collection") type:TSMessageNotificationTypeSuccess];
         [self.ibTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1390,21 +1579,63 @@ static NSCache* heightCache = nil;
         [self.ibTableView showLoading];
 
         isMiddleOfLoadingServer = YES;
-        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNewsFeed param:dict appendString:nil completeHandler:^(id object) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetNewsFeed parameter:dict appendString:nil success:^(id object) {
+           
             isMiddleOfLoadingServer = NO;
             isFirstLoad = NO;
             NewsFeedModels* model = [[ConnectionManager dataManager] newsFeedModels];
             self.newsFeedModels = model;
             [self.arrayNewsFeed addObjectsFromArray:model.items];
+            
+            
             [self.ibTableView reloadData];
 //            [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 
             [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
-            [self.ibTableView hideAll];
-        } errorBlock:^(id object) {
+
+            if ([Utils isArrayNull:self.arrayNewsFeed]) {
+                [self.ibTableView showEmptyState];
+                
+            }
+            else{
+                [self.ibTableView hideAll];
+                
+            }
+
+            
+            // ========== Offline ========== //
+          //  [OfflineManager saveNewsfeed:self.arrayNewsFeed];
+            // ========== Offline ========== //
+
+            
+        } failure:^(id object) {
+            
+            isFirstLoad = NO;
+
             [self.ibTableView.pullToRefreshView stopAnimating];
             isMiddleOfLoadingServer = NO;
-            [self.ibTableView hideAll];
+            
+            if ([Utils isArrayNull:self.arrayNewsFeed]) {
+                [self.ibTableView showEmptyState];
+
+            }
+            else{
+                [self.ibTableView hideAll];
+
+            }
+            
+//            // ========== Offline ========== //
+//
+//            if ([Utils isArrayNull:self.arrayNewsFeed]) {
+//                
+//                self.arrayNewsFeed =[OfflineManager getNewsFeed];
+//                
+//                [self.ibTableView reloadData];
+//
+//            }
+//            // ========== Offline ========== //
+
         }];
 
     }
@@ -1414,6 +1645,9 @@ static NSCache* heightCache = nil;
 -(void)requestServerForHome:(HomeLocationModel*)model
 {
     
+    if (isMiddleOfLoadingHome) {
+        return;
+    }
     NSDictionary* dict = @{@"timezone_offset" : [Utils getTimeZone],
                            @"type" : model.type?model.type:@"none",
                            @"lat" : model.latitude?model.latitude:@"",
@@ -1424,7 +1658,13 @@ static NSCache* heightCache = nil;
                            };
     [self.ibTableView showLoading];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHome param:dict appendString:nil completeHandler:^(id object) {
+    isMiddleOfLoadingHome = YES;
+
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHome parameter:dict appendString:nil success:^(id object) {
+
+        isFirstLoad = NO;
+        isMiddleOfLoadingHome = NO;
+        
         [self.ibTableView.pullToRefreshView stopAnimating];
         self.homeModel = [[ConnectionManager dataManager]homeModel];
         
@@ -1449,6 +1689,7 @@ static NSCache* heightCache = nil;
             constTopScrollView.constant = TopBarHeight;
         }
 
+        
         if (![Utils isArrayNull:self.homeModel.featured_deals]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_SuperDeal]];
             needToShowWallet = YES;
@@ -1461,6 +1702,12 @@ static NSCache* heightCache = nil;
             }
         }
         
+        if (![Utils isGuestMode]) {
+            if ([Utils hasReferralCampaign]) {
+                [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_ReferFriends]];
+            }
+        }
+        
         if (![Utils isArrayNull:self.homeModel.quick_browse]) {
             [self.arrHomeDeal addObject:[NSNumber numberWithInt:DealType_QuickBrowse]];
         }
@@ -1470,18 +1717,43 @@ static NSCache* heightCache = nil;
 
         }
         
+       
+        
         [self.ibTableView reloadData];
 
-        [self.ibTableView hideAll];
+        if ([Utils isArrayNull:self.arrHomeDeal]) {
+            
+            [self.ibTableView showEmptyState];
+        }
+        else{
+            
+            [self.ibTableView hideAll];
+            
+        }
+
         // [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 
         //[self.ibTableView reloadSectionDU:0 withRowAnimation:UITableViewRowAnimationNone];
         
        // [self.ibTableView reloadData];
   
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
+        
+        isFirstLoad = NO;
+
         [self.ibTableView.pullToRefreshView stopAnimating];
-        [self.ibTableView showEmptyState];
+        
+        if ([Utils isArrayNull:self.arrHomeDeal]) {
+         
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            
+            [self.ibTableView hideAll];
+            
+        }
+        isMiddleOfLoadingHome = NO;
 
     }];
 }
@@ -1503,7 +1775,8 @@ static NSCache* heightCache = nil;
                            
                            };
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeUpdater param:dict appendString:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHomeUpdater parameter:dict appendString:nil success:^(id object) {
+
         
         NSDictionary* returnDict = object[@"data"];
         
@@ -1531,7 +1804,7 @@ static NSCache* heightCache = nil;
         [self processUpdater:type];
 
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1544,12 +1817,7 @@ static NSCache* heightCache = nil;
         {
             [self getGoogleGeoCode:^(HomeLocationModel *model) {
                 
-                        self.currentHomeLocationModel = model;
-                        
-                        [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
-                        self.locationName = self.currentHomeLocationModel.locationName;
-                        [self reloadNewsFeed];
-                        [self requestServerForHome:model];
+                [self locationDidChange:model];
                 
             }];
         
@@ -1565,13 +1833,8 @@ static NSCache* heightCache = nil;
                     
                     if (buttonIndex == 1) {
                         
-                        self.currentHomeLocationModel = model;
+                        [self locationDidChange:model];
                         
-                        [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
-                        self.locationName = self.currentHomeLocationModel.locationName;
-                        [self reloadNewsFeed];
-                        [self requestServerForHome:model];
-                                                
                     }
                     else{
                         
@@ -1637,15 +1900,6 @@ static NSCache* heightCache = nil;
             hModel.address_components.administrative_area_level_1 = model.state;
             hModel.address_components.political = model.political;
             hModel.locationName = model.locationName;
-
-//            if (![Utils isStringNull:model.subLocality]) {
-//                hModel.locationName = model.locationName;
-//
-//            }
-//            else{
-//                hModel.locationName = model.subLocality_lvl_1;
-//
-//            }
             
             if (completionBlock) {
                 completionBlock(hModel);
@@ -1653,7 +1907,7 @@ static NSCache* heightCache = nil;
            
         }
         
-    }];
+    }Error:nil];
 }
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 //    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
@@ -1671,6 +1925,7 @@ static NSCache* heightCache = nil;
 //    }
 //}
 
+#pragma mark - View Method
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // UITableView only moves in one direction, y axis
@@ -1732,39 +1987,23 @@ static NSCache* heightCache = nil;
    
 }
 
+#pragma mark - Reload
 
--(BOOL)validateLocalLocation
+-(void)reloadNewsFeed
 {
+    self.newsFeedModels = nil;
     
-    NSDictionary* dict = [Utils getSavedUserLocation];
-    
-    
-    @try {
-        if (dict) {
-            
-            NSString* latitude = dict[KEY_LATITUDE];
-            NSString* location = dict[KEY_LOCATION];
-            
-            if (![Utils isStringNull:location]) {
-                return YES;
-            }
-            else if(![Utils isStringNull:latitude])
-            {
-                return YES;
-                
-            }
-            
-        }
-
+    if (![Utils isArrayNull:self.arrayNewsFeed]) {
+        [self.arrayNewsFeed removeAllObjects];
+        [self.ibTableView reloadData];
     }
-    @catch (NSException *exception) {
-        return NO;
-
-    }
-    
-    return NO;
-    
+    [heightCache removeAllObjects];
+    heightCache = nil;
+    heightCache = [NSCache new];
+    [self requestServerForNewsFeed:self.currentHomeLocationModel.latitude Longtitude:self.currentHomeLocationModel.longtitude];
 }
+
+
 -(void)reloadData
 {
     
@@ -1797,7 +2036,6 @@ static NSCache* heightCache = nil;
         
         NSDictionary* dict = [Utils getSavedUserLocation];
         
-        
         HomeLocationModel* model = [HomeLocationModel new];
         model.type = @"none";
         model.latitude = dict[KEY_LATITUDE];
@@ -1822,7 +2060,6 @@ static NSCache* heightCache = nil;
         NSDictionary* dict = [Utils getSavedUserLocation];
         
         
-        
         HomeLocationModel* model = [HomeLocationModel new];
         model.type = @"none";
         model.latitude = dict[KEY_LATITUDE];
@@ -1838,6 +2075,101 @@ static NSCache* heightCache = nil;
 
     }
 
+}
+
+#pragma mark - Validation
+-(BOOL)validateLocalLocation
+{
+    
+    NSDictionary* dict = [Utils getSavedUserLocation];
+    
+    
+    @try {
+        if (dict) {
+            
+            NSString* latitude = dict[KEY_LATITUDE];
+            NSString* location = dict[KEY_LOCATION];
+            
+            if (![Utils isStringNull:location]) {
+                return YES;
+            }
+            else if(![Utils isStringNull:latitude])
+            {
+                return YES;
+                
+            }
+            
+        }
+        
+    }
+    @catch (NSException *exception) {
+        return NO;
+        
+    }
+    
+    return NO;
+    
+}
+#pragma mark - Location
+-(void)getCurrentLocationGoogleGeoCode:(CLLocation*)location
+{
+    self.btnCurrentLocation.enabled = NO;
+
+    [self.searchManager getGoogleGeoCode:location completionBlock:^(id object) {
+        
+        [LoadingManager hide];
+
+        self.btnCurrentLocation.enabled = YES;
+
+        NSDictionary* temp = [[NSDictionary alloc]initWithDictionary:object];
+        NSArray* arrayLocations = [temp valueForKey:@"results"];
+        
+        if (![Utils isArrayNull:arrayLocations]) {
+            NSDictionary* tempLocation = arrayLocations[0];
+            
+            SearchLocationDetailModel* model = [[SearchLocationDetailModel alloc]initWithDictionary:tempLocation error:nil];
+            [model process];
+            
+            HomeLocationModel* hModel = [HomeLocationModel new];
+            hModel.timezone = @"";
+            hModel.type = Type_Current;
+            hModel.latitude = model.lat;
+            hModel.longtitude = model.lng;
+            hModel.place_id = @"";
+            
+            
+            AppInfoModel* appInfo = [[ConnectionManager dataManager]appInfoModel];
+            hModel.locationName = [model locationNameWithCustomKey:appInfo.countries.current_country.place_display_fields];
+            hModel.countryId = appInfo.countries.current_country.country_id;
+            
+            
+            isLoadingLocation = NO;
+
+            [UIAlertView showWithTitle:[LanguageManager stringForKey:@"Are you in {!location name}?" withPlaceHolder:@{@"{!location name}":hModel.locationName?hModel.locationName:@""}]  message:LocalisedString(@"Would you like to set this as your current location?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                
+                if (buttonIndex == 1) {
+                    [self locationDidChange:hModel];
+                    
+                }
+            }];
+            
+        }
+    }Error:^{
+        
+        self.btnCurrentLocation.enabled = YES;
+
+    }];
+}
+
+//for updater
+-(void)locationDidChange:(HomeLocationModel*)model
+{
+    self.currentHomeLocationModel = model;
+    
+    [Utils saveUserLocation:self.currentHomeLocationModel.locationName Longtitude:self.currentHomeLocationModel.longtitude Latitude:self.currentHomeLocationModel.latitude PlaceID:self.currentHomeLocationModel.place_id CountryID:self.currentHomeLocationModel.countryId SourceType:self.currentHomeLocationModel.type];
+    self.locationName = self.currentHomeLocationModel.locationName;
+    [self reloadNewsFeed];
+    [self requestServerForHome:model];
 }
 
 @end

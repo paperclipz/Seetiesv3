@@ -60,6 +60,7 @@
         
         [self.ibShopStatusLbl setSideCurveBorder];
     }
+    [self layoutIfNeeded];
 }
 
 -(void)setShopModel:(SeShopDetailModel *)shopModel{
@@ -72,11 +73,11 @@
     @try {
         NSString* imageURL = shopModel.profile_photo[@"picture"];
         if (![Utils isStringNull:imageURL]) {
-            [self.ibOutletImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:^(UIImage *image) {
+            [self.ibOutletImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:^(UIImage *image) {
             }];
         }
         else{
-            [self.ibOutletImg setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+            [self.ibOutletImg setImage:[Utils getShopPlaceHolderImage]];
         }
         
         [Utils setRoundBorder:self.ibOutletImg color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:5.0f];

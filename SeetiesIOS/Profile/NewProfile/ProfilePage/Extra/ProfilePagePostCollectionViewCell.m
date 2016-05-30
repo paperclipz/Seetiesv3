@@ -37,4 +37,10 @@
     [Utils setRoundBorder:self color:[UIColor clearColor] borderRadius:5.0f];
     
 }
+
+-(void)setCustomIndexPath:(NSIndexPath *)indexPath
+{
+    [self.ibImageView setCustomBackgroundColorForIndexPath:indexPath];
+}
+
 @end

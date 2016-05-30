@@ -134,9 +134,7 @@
     BTranslation = NO;
     [self initTableViewDelegate];
     
-    self.btnTranslate.hidden = [Utils isStringNull:self.seShopModel.seetishop_id];
-    
-    if ([self.seShopModel.language isEqualToString:[Utils getDeviceAppLanguageCode]]) {
+    if ([self.seShopModel.language isEqualToString:[LanguageManager getDeviceAppLanguageCode]]) {
         self.btnTranslate.hidden = YES;
     }
     
@@ -497,8 +495,6 @@
     self.seShopModel = shopModel;
     self.seetiesID = self.seShopModel.seetishop_id;
     self.placeID = self.seShopModel.location.place_id;
-    
-
 }
 
 - (IBAction)btnTranslationClicked:(id)sender{
@@ -535,11 +531,12 @@
     
     appendString = [NSString stringWithFormat:@"%@/translate",self.seetiesID];
     
-    
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopTranslation param:dict appendString:appendString completeHandler:^(id object) {
-        
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetoShopTranslation parameter:dict appendString:appendString success:^(id object)
+    {
+
+
         [self triggerLanguageChanged:[[NSDictionary alloc]initWithDictionary:object[@"data"]]];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];

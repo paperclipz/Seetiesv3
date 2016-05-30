@@ -11,8 +11,6 @@
 typedef void (^DidSelectCollectionRowBlock)(CollectionModel* model);
 @interface CollectionListingTabViewController : CommonViewController <UITableViewDataSource,UITableViewDelegate>
 
-//@property(nonatomic,strong)ShareViewController* shareViewController;
-@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property(nonatomic,copy)DidSelectCollectionRowBlock didSelectEdiCollectionRowBlock;
 @property(nonatomic,copy)DidSelectCollectionRowBlock didSelectDisplayCollectionRowBlock;
 

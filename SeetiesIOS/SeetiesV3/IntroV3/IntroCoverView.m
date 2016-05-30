@@ -8,9 +8,11 @@
 
 #import "IntroCoverView.h"
 
+#define walkthrough_key @"walkthrough"
 @interface IntroCoverView()
 {
     int currentPage;
+    NSBundleResourceRequest* request;
 }
 @property (nonatomic, strong) NSArray *backgroundViews;
 
@@ -76,6 +78,13 @@
 -(void)initDataAll
 {
     
+    self.arrBackgroundHome = @[@"BgWalkLanding.jpg",@"BgWalkHome1.jpg",@"BgWalkHome2.jpg",@"BgWalkHome3.jpg",@"BgWalkHome4.jpg",@"BgWalkHome5.jpg"];
+    self.arrBackgroundWallet = @[@"BgWalkWallet1.jpg",@"BgWalkWallet2.jpg",@"BgWalkWallet3.jpg"];
+    
+    
+    [LoadingManager hide];
+    
+    [self setupView];
     self.arrBackGroundImages = nil;
     self.arrCoverViews = nil;
     NSMutableArray* arraybackground = [[NSMutableArray alloc]initWithArray:self.arrBackgroundHome];
@@ -90,18 +99,9 @@
 
 }
 
--(void)initSelfView
-{
-    [self changeLanguage];
-    
-    [self.btnNext setSideCurveBorder];
-    self.ibScrollView.delegate = self;
-  
-    self.arrBackgroundHome = @[@"BgWalkLanding.jpg",@"BgWalkHome1.jpg",@"BgWalkHome2.jpg",@"BgWalkHome3.jpg",@"BgWalkHome4.jpg",@"BgWalkHome5.jpg"];
-    self.arrBackgroundWallet = @[@"BgWalkWallet1.jpg",@"BgWalkWallet2.jpg",@"BgWalkWallet3.jpg"];
-}
 
--(void)changeLanguage{
+-(void)setupView
+{
     [self.btnNext setTitle:LocalisedString(@"Let's Get Started") forState:UIControlStateNormal];
     [self.btnSkipThis setTitle:LocalisedString(@"Skip this") forState:UIControlStateNormal];
     
@@ -123,6 +123,20 @@
     self.ibView7Desc.text = LocalisedString(@"Once you've collected a deal, be sure to redeem it before it expires. Don't let a good deal go to waste!");
     self.ibView8Title.text = LocalisedString(@"Voucher Types of Use");
     self.ibView8Desc.text = [NSString stringWithFormat:@"\u2022%@\n\n\u2022%@", LocalisedString(@"This voucher can only be used once."), LocalisedString(@"This voucher can be used multiple times.")];
+}
+
+-(void)initSelfView
+{
+    [self changeLanguage];
+    
+    [self.btnNext setSideCurveBorder];
+    self.ibScrollView.delegate = self;
+  
+   }
+
+-(void)changeLanguage{
+   
+    
 }
 
 -(void)loadCoverViews
@@ -157,20 +171,7 @@
     
     self.backgroundViews = [[tmpArray reverseObjectEnumerator] allObjects];
 }
-//
-//-(void)loadBackgroundImages
-//{
-//    CGRect frame = [Utils getDeviceScreenSize];
-//   
-//    self.backgroundViews = [NSMutableArray new];
-//        for (int i = self.arrBackGroundImages.count; i> 0; i--) {
-//    
-//            UIImageView* imageView = [[UIImageView alloc]initWithFrame:frame];
-//            imageView.image = [UIImage imageNamed:self.arrBackGroundImages[i-1]];
-//            [self.ibContentView addSubview:imageView];
-//            [self.backgroundViews addObject:imageView];
-//        }
-//}
+
 
 #pragma mark - UIScrollViewDelegate
 

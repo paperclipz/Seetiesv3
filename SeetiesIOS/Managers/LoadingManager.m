@@ -8,7 +8,9 @@
 
 #import "LoadingManager.h"
 
-@implementation LoadingManager
+@implementation LoadingManager{
+    NSString *statusMessage;
+}
 
 + (id)Instance {
     
@@ -23,9 +25,15 @@
 - (id)init {
     if (self = [super init]) {
         [self setupBaseKVNProgressUI];
+        statusMessage = [NSString stringWithFormat:@"%@\n%@", LocalisedString(@"Collect Now"), LocalisedString(@"Pay Later")];
     }
     return self;
 }
+
++(NSString*)statusMessage{
+    return [NSString stringWithFormat:@"%@\n%@", LocalisedString(@"Collect Now"), LocalisedString(@"Pay Later")];
+}
+
 - (void)setupBaseKVNProgressUI
 {
     // See the documentation of all appearance propoerties
@@ -44,7 +52,7 @@
 
 + (void)show
 {
-    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Hang on. It's loading!"),
+    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: [self statusMessage],
                                       KVNProgressViewParameterBackgroundType: @(KVNProgressBackgroundTypeSolid),
                                       KVNProgressViewParameterFullScreen: @([[LoadingManager Instance] isFullScreen])}];
     
@@ -65,7 +73,7 @@
 }
 - (void)showWithSolidBackground
 {
-    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Hang on. It's loading!"),
+    [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus:statusMessage,
                                       KVNProgressViewParameterBackgroundType: @(KVNProgressBackgroundTypeSolid),
                                       KVNProgressViewParameterFullScreen: @([self isFullScreen])}];
     
@@ -75,10 +83,10 @@
 - (void)showWithStatus
 {
     if ([self isFullScreen]) {
-        [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: LocalisedString(@"Hang on. It's loading!"),
+        [KVNProgress showWithParameters:@{KVNProgressViewParameterStatus: statusMessage,
                                           KVNProgressViewParameterFullScreen: @(YES)}];
     } else {
-        [KVNProgress showWithStatus:LocalisedString(@"Hang on. It's loading!")];
+        [KVNProgress showWithStatus: statusMessage];
     }
     
    

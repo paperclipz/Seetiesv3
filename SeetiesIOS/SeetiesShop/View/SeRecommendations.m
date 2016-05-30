@@ -142,7 +142,7 @@
         
         Getheight += 40;
         
-        NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+        NSString* currentlangCode = [LanguageManager getDeviceAppLanguageCode];
         NSString *TestTitle;
         NSString *TestDetail;
         if (![model.arrPost isNull]) {
@@ -308,7 +308,8 @@
         
     }
 
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopRecommendations param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetoShopRecommendations parameter:dict appendString:appendString success:^(id object) {
+
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
         self.arrPostListing = nil;
         [self.arrPostListing addObjectsFromArray:self.userProfilePostModel.userPostData.posts];
@@ -331,7 +332,7 @@
         }
         
         self.ShowRecommendationsText.text = [NSString stringWithFormat:@"%@ (%d)", LocalisedString(@"Recommendations"), self.userProfilePostModel.userPostData.total_posts];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];

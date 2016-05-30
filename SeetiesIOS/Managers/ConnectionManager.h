@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DataManager.h"
-#import "AFHTTPRequestOperationManager.h"
+//#import "AFHTTPRequestOperationManager.h"
 
 /*Before deploy check :
  1. api version
@@ -16,8 +16,20 @@
  3. change server path to live or dev
  */
 
-#define API_VERSION @"3.0"
-#define API_VERION_URL @"v3.0"
+
+typedef enum
+{
+    AFNETWORK_GET = 1,
+    AFNETWORK_POST = 2,
+    AFNETWORK_DELETE = 3,
+    AFNETWORK_PUT = 4,
+    AFNETWORK_CUSTOM_GET = 5,
+    AFNETWORK_CUSTOM_POST = 6,
+
+}AFNETWORK_TYPE;
+
+#define API_VERSION @"3.2"
+#define API_VERION_URL @"v3.2"
 #define IS_SIMULATOR NO
 typedef void (^DraftModelBlock)(DraftModel* model);
 
@@ -32,23 +44,17 @@ typedef void (^IErrorBlock)(id object);
 @property(nonatomic,strong)NSString* subPath;
 
 +(NSString*)getServerPath;
++(BOOL)isNetworkAvailable;
 
 +(id)Instance;
 +(DataManager*)dataManager;
-@property(strong,nonatomic)AFHTTPRequestOperationManager* manager;
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type;
 
+-(void)requestServerWith:(AFNETWORK_TYPE)networkType serverRequestType:(ServerRequestType)serverType parameter:(NSDictionary*)parameter appendString:(NSString*)appendString success:(IDBlock)success failure:(IErrorBlock)failure;
 
--(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock;
--(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock;
 
--(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error;
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock;
 
--(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock;
--(void)requestServerWithDelete:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error;
-
--(void)requestServerWithPut:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error;
 
 
 /*for app specific info request only*/

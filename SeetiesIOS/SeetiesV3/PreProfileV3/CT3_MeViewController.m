@@ -8,6 +8,8 @@
 
 #import "CT3_MeViewController.h"
 #import "CT3_NotificationViewController.h"
+#import "CT3_ReferalViewController.h"
+#import "OfflineManager.h"
 
 @interface CT3_MeViewController ()
 {
@@ -26,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibCollectionTitleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibCollectionCountLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibInviteLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *ibInviteIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibPromoLbl;
 @property (weak, nonatomic) IBOutlet UIView *ibProfileView;
 @property (weak, nonatomic) IBOutlet UIView *ibWalletView;
@@ -45,9 +48,12 @@
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property(nonatomic, strong)WalletListingViewController *walletListingViewController;
 @property(nonatomic, strong)CollectionListingViewController *collectionListingViewController;
-@property(nonatomic)InviteFrenViewController *inviteFriendViewController;
 @property(nonatomic)PromoPopOutViewController *promoCodeViewController;
 @property(nonatomic)VoucherListingViewController * voucherListingViewController;
+@property(nonatomic)CT3_InviteFriendViewController *ct3InviteFriendViewController;
+@property(nonatomic)CT3_ReferalViewController *ct3referalViewController;
+
+
 @property (weak, nonatomic) IBOutlet UIView *ibHeaderView;
 
 @property (strong, nonatomic) IBOutlet UIView *ibGuestView;
@@ -67,8 +73,23 @@
 
 - (IBAction)btnTestClicked:(id)sender {
 
-    _ct3_notificationViewController = nil;
-    [self.navigationController pushViewController:self.ct3_notificationViewController animated:YES];
+    if ([ConnectionManager isNetworkAvailable]) {
+        
+        SLog(@"network available");
+
+    }
+    
+    else
+    {
+    
+        SLog(@"network not available");
+    }
+    
+    
+    return;
+    _ct3referalViewController = nil;
+    
+    [self.navigationController pushViewController:self.ct3referalViewController animated:YES];
 }
 
 - (IBAction)btnWalletListingClicked:(id)sender {
@@ -107,7 +128,15 @@
 }
 
 - (IBAction)btnInviteClicked:(id)sender {
-    [self.navigationController pushViewController:self.inviteFriendViewController animated:YES];
+    if ([Utils hasReferralCampaign]) {
+        self.ct3referalViewController = nil;
+        [self.navigationController pushViewController:self.ct3referalViewController animated:YES];
+    }
+    else{
+        self.ct3InviteFriendViewController = nil;
+        [self.navigationController pushViewController:self.ct3InviteFriendViewController animated:YES];
+    }
+    
 }
 
 - (IBAction)btnPromoClicked:(id)sender {
@@ -134,7 +163,7 @@
 -(void)viewDealDetailsClicked:(DealsModel *)dealsModel{
     if (dealsModel.arrDeals.count == 1) {
         self.dealDetailsViewController = nil;
-        [self.dealDetailsViewController setDealModel:dealsModel.arrDeals[0]];
+        [self.dealDetailsViewController initDealModel:dealsModel.arrDeals[0]];
         [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
             [self.dealDetailsViewController setupView];
         }];
@@ -164,8 +193,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.profileModel = [[DataManager Instance] currentUserProfileModel];
-    self.ibProfileName.text = self.profileModel.username;
+    self.profileModel = [[DataManager Instance] getCurrentUserProfileModel];
+    //self.ibProfileName.text = self.profileModel.name;
 
 }
 
@@ -200,6 +229,26 @@
     [Utils setRoundBorder:self.ibWalletView color:[UIColor clearColor] borderRadius:5.0f];
     [Utils setRoundBorder:self.ibCollectionView color:[UIColor clearColor] borderRadius:5.0f];
     
+    if ([Utils hasReferralCampaign]) {
+        CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+        CountryModel *currentCountry = countries.current_country;
+        InviteFriendModel *inviteFriend = currentCountry.invite_friend_banner;
+        [self.ibInviteIcon sd_setImageCroppedWithURL:[NSURL URLWithString:inviteFriend.image] completed:nil];
+        
+        NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
+        NSString *title = inviteFriend.title[languageCode]? inviteFriend.title[languageCode] : @"";
+        self.ibInviteLbl.text = LocalisedString(title);
+        self.ibInviteLbl.textColor = DEVICE_COLOR;
+        self.ibInviteLbl.font = [UIFont boldSystemFontOfSize:15.0f];
+    }
+    else{
+        [self.ibInviteIcon setImage:[UIImage imageNamed:@"MeInviteFriendsIcon.png"]];
+        
+        self.ibInviteLbl.text = LocalisedString(@"Invite your buddies");
+        self.ibInviteLbl.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+        self.ibInviteLbl.font = [UIFont systemFontOfSize:15.0f];
+    }
+    
     [self.ibInviteFriendsView prefix_addUpperBorder:OUTLINE_COLOR];
     [self.ibInviteFriendsView prefix_addLowerBorder:OUTLINE_COLOR];
     
@@ -220,25 +269,32 @@
 
     [self reloadData];
     self.ibGuestView.hidden = ![Utils isGuestMode];
-    
+
     if ([Utils isGuestMode]) {
         self.btnNotification.hidden = YES;
         self.ibNotificationCountLbl.hidden = YES;
     }
     else{
-        if (![Utils isStringNull:self.profileModel.username]) {
-            self.ibProfileName.text = self.profileModel.username;
+        if (![Utils isStringNull:self.profileModel.name]) {
+            self.ibProfileName.text = self.profileModel.name;
             
         }
         else{
-            self.ibProfileName.text = self.profileModel.name;
+            self.ibProfileName.text = self.profileModel.username;
         }
         
         if (![Utils isStringNull:self.profileModel.profile_photo_images]) {
-            [self.ibProfileImg sd_setImageCroppedWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images] completed:nil];
+            [self.ibProfileImg sd_setImageCroppedWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images] withPlaceHolder:[Utils getProfilePlaceHolderImage] completed:^(UIImage *image) {
+                
+                if (!image) {
+                    [self.ibProfileImg setImage:[Utils getProfilePlaceHolderImage]];
+
+                }
+
+            }];
         }
         else{
-            [self.ibProfileImg setImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
+            [self.ibProfileImg setImage:[Utils getProfilePlaceHolderImage]];
         }
         
         [self setNotificationCount:notification_Count];
@@ -248,7 +304,9 @@
         [self requestServerForUserCollection];
     }
     
-  
+    self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @([[DealManager Instance] getWalletCount])}];
+
+    
 }
 
 -(void)changeLanguage{
@@ -256,7 +314,6 @@
     self.ibViewProfileLbl.text = LocalisedString(@"View Profile");
     self.ibWalletTitleLbl.text = LocalisedString(@"Voucher Wallet");
     self.ibCollectionTitleLbl.text = LocalisedString(@"Collection");
-    self.ibInviteLbl.text = LocalisedString(@"Invite your buddies");
     self.ibPromoLbl.text = LocalisedString(@"Enter a promo code");
     
     self.ibGuestViewTitle.text = LocalisedString(@"Join us to enjoy more exciting features!");
@@ -266,6 +323,14 @@
 
 #pragma mark Declaration
 
+-(CT3_ReferalViewController*)ct3referalViewController
+{
+    if (!_ct3referalViewController) {
+        _ct3referalViewController = [CT3_ReferalViewController new];
+    }
+    
+    return _ct3referalViewController;
+}
 -(CT3_NotificationViewController*)ct3_notificationViewController
 {
     if (!_ct3_notificationViewController) {
@@ -295,17 +360,11 @@
     return _collectionListingViewController;
 }
 
--(InviteFrenViewController*)inviteFriendViewController{
-    if (!_inviteFriendViewController) {
-        _inviteFriendViewController = [InviteFrenViewController new];
-    }
-    return _inviteFriendViewController;
-}
-
 -(PromoPopOutViewController*)promoCodeViewController{
     if (!_promoCodeViewController) {
         _promoCodeViewController = [PromoPopOutViewController new];
         _promoCodeViewController.promoPopOutDelegate = self;
+        
     }
     return _promoCodeViewController;
 }
@@ -324,9 +383,16 @@
     return _voucherListingViewController;
 }
 
+-(CT3_InviteFriendViewController *)ct3InviteFriendViewController{
+    if (!_ct3InviteFriendViewController) {
+        _ct3InviteFriendViewController = [CT3_InviteFriendViewController new];
+    }
+    return _ct3InviteFriendViewController;
+}
+
 -(void)reloadData
 {
-    ProfileModel* model = [[DataManager Instance] currentUserProfileModel];
+    ProfileModel* model = [[DataManager Instance] getCurrentUserProfileModel];
     self.profileModel = model;
 }
 
@@ -347,12 +413,20 @@
     NSDictionary *dict = @{@"token": [Utils getAppToken]};
     NSString *appendString = [NSString stringWithFormat:@"%@/vouchers/count", [Utils getUserID]];
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetUserVouchersCount param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserVouchersCount parameter:dict appendString:appendString success:^(id object) {
+
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
-        self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @(count)}];
-    } errorBlock:^(id object) {
         
+        [[DealManager Instance] setWalletCount:count];
+        
+        self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @(count)}];
+    } failure:^(id object) {
+        
+        int count = [ProfileModel getWalletCount];
+
+        self.ibWalletCountLbl.text = [LanguageManager stringForKey:@"{!number} Voucher(s)" withPlaceHolder:@{@"{!number}" : @(count)}];
+
     }];
 }
 
@@ -372,12 +446,13 @@
     @catch (NSException *exception) {
     }
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserCollections parameter:dict appendString:appendString success:^(id object) {
+
         NSDictionary *dict = object[@"data"];
         NSInteger collectionCount = [dict[@"total_result"] integerValue];
         self.ibCollectionCountLbl.text = [LanguageManager stringForKey:@"{!number} Collection(s)" withPlaceHolder:@{@"{!number}" : @(collectionCount)}];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }

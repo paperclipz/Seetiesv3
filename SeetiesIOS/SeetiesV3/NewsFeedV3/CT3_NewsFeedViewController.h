@@ -7,9 +7,9 @@
 //
 
 #import "CommonViewController.h"
+#import "PromoPopOutViewController.h"
 
-
-@interface CT3_NewsFeedViewController : BaseViewController
+@interface CT3_NewsFeedViewController : BaseViewController <PromoPopOutDelegate>
 
 
 @property(nonatomic,copy)VoidBlock btnLoginClickedBlock;

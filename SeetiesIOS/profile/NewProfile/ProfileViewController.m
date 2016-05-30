@@ -19,6 +19,7 @@
 #import "ConnectionsViewController.h"
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
+#import "EditProfileV3ViewController.h"
 
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 {
@@ -30,6 +31,7 @@
     __weak IBOutlet NSLayoutConstraint *followButtonConstraint;
     
     CGRect labelFrame;
+    
 }
 
 // =======  OUTLET   =======
@@ -66,6 +68,8 @@
 @property (nonatomic,strong)UIImageView* loadingImageView;
 @property (nonatomic,assign)ProfileViewType profileViewType;
 @property (nonatomic,strong)NSString* userID;
+
+
 // =======  MODEL   =======
 
 @end
@@ -158,32 +162,42 @@
     [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
 }
 
-- (IBAction)btnSearchClicked:(id)sender {
-    
-    _searchViewV2Controller = nil;
-    [self.navigationController pushViewController:self.searchViewV2Controller animated:NO];
-    
-}
+//- (IBAction)btnSearchClicked:(id)sender {
+//    
+//    _searchViewV2Controller = nil;
+//    [self.navigationController pushViewController:self.searchViewV2Controller animated:NO];
+//    
+//}
 
 - (IBAction)btnEditProfileClicked:(id)sender {
     
-    _editProfileV2ViewController = nil;
-    [self.editProfileV2ViewController initData:self.userProfileModel];
-    [self.navigationController pushViewController:self.editProfileV2ViewController animated:YES];
+//    _editProfileV2ViewController = nil;
+//    [self.editProfileV2ViewController initData:self.userProfileModel];
+//    [self.navigationController pushViewController:self.editProfileV2ViewController animated:YES];
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"EditProfileV3ViewController" bundle:nil];
+    UINavigationController *nav = [sb instantiateViewControllerWithIdentifier:@"EditProfileV3ViewControllerNav"];
+    EditProfileV3ViewController *editProfileVC = (EditProfileV3ViewController *)nav.topViewController;
+    editProfileVC.userProfileData = self.userProfileModel;
+    
+//    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentViewController:vc animated:YES completion:NULL];
+    
+//    EditProfileV3ViewController *vc = [[EditProfileV3ViewController alloc] init];
+    
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (IBAction)btnShareClicked:(id)sender {
-    
-//    _shareV2ViewController = nil;
-//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//    [naviVC setNavigationBarHidden:YES animated:NO];
-//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//    [self.shareV2ViewController share:@"" title:self.userProfileModel.username imagURL:self.userProfileModel.profile_photo_images shareType:ShareTypePostUser shareID:self.userProfileModel.username userID:@""];
-//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//    [self presentViewController:formSheetController animated:YES completion:nil];
     
     //New Sharing Screen
     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
@@ -216,6 +230,13 @@
     [self registerNotification];
     
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    if (self.userID && ![self.userID isEqualToString:@""]) {
+        [self requestServerForUserInfo];
+    }
 }
 
 -(void)registerNotification
@@ -372,26 +393,19 @@
         
     }
     
-    
-    
     [self requestServerForUserCollection];
+    
     [self requestServerForUserPost];
     
     if ([uID isEqualToString:[Utils getUserID]]) {
+        
         [self requestServerForUserLikes];
         
-        DataManager* dataManager = [ConnectionManager dataManager];
-        if (dataManager.currentUserProfileModel) {
-            self.userProfileModel = dataManager.currentUserProfileModel;
-            [self assignData];
-            
-        }else
-        {
-            [self requestServerForUserInfo];
+        [self requestServerForMe];
 
-        }
     }
     else{
+       
         [self requestServerForUserInfo];
 
     }
@@ -450,16 +464,15 @@
     }
     
     // int collectionHeight = arrCollection.count>0?(int)([ProfilePageCollectionTableViewCell getHeight]*(arrCollection.count>3?3:arrCollection.count)):[ProfileNoItemTableViewCell getHeight];
-    
-    
-    
+
     
     self.ibTableView.frame = CGRectMake(self.ibTableView.frame.origin.x, self.ibTableView.frame.origin.y, self.ibTableView.frame.size.width,collectionHeight +postHeight + likeHeight + headerHeight + cellFooterHeight+ 5);
     
     self.ibContentView.frame = CGRectMake(self.ibContentView.frame.origin.x, self.ibContentView.frame.origin.y, self.ibContentView.frame.size.width, self.ibTableView.frame.origin.y +self.ibTableView.frame.size.height);
     
     self.ibScrollView.contentSize = CGSizeMake(self.ibScrollView.frame.size.width, self.ibContentView.frame.size.height- self.ibImgProfilePic.frame.size.height/2);
-    
+   // });
+
 }
 
 
@@ -884,7 +897,6 @@
     _editCollectionViewController = nil;
     [LoadingManager show];
     [self.editCollectionViewController initData:collID];
-    [LoadingManager show];
     [self.navigationController pushViewController:self.editCollectionViewController animated:YES];
 }
 
@@ -925,15 +937,6 @@
     }
     
     return _feedV2DetailViewController;
-}
-
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
-    }
-    
-    return _shareV2ViewController;
 }
 
 -(UIImageView*)loadingImageView
@@ -978,14 +981,14 @@
     return _connectionsViewController;
 }
 
--(SearchViewV2Controller*)searchViewV2Controller
-{
-    if (!_searchViewV2Controller) {
-        _searchViewV2Controller = [SearchViewV2Controller new];
-    }
-    
-    return _searchViewV2Controller;
-}
+//-(SearchViewV2Controller*)searchViewV2Controller
+//{
+//    if (!_searchViewV2Controller) {
+//        _searchViewV2Controller = [SearchViewV2Controller new];
+//    }
+//    
+//    return _searchViewV2Controller;
+//}
 -(EditProfileV2ViewController*)editProfileV2ViewController
 {
     if (!_editProfileV2ViewController) {
@@ -1094,8 +1097,8 @@
     
     if (!colModel.following) {
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
-            
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
+
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -1109,7 +1112,7 @@
                 SLog(@"error");
             }
             [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
     }
@@ -1123,7 +1126,7 @@
             } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
                 
                 
-                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+                [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
                     
                     NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
                     BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -1135,7 +1138,7 @@
                     @catch (NSException *exception) {
                         SLog(@"error");
                     }                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
-                } errorBlock:^(id object) {
+                } failure:^(id object) {
                 }];
                 
             }
@@ -1155,7 +1158,8 @@
     [LoadingManager show];
     if (!isFollowing) {
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowUser param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             
@@ -1163,21 +1167,22 @@
             self.userProfileModel.following = following;
             [self setFollowButtonSelected:following button:self.btnFollow];
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
         
     }
     else{
         
-        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowUser param:dict appendString:appendString completeHandler:^(id object) {
+        
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypePostFollowUser parameter:dict appendString:appendString success:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
             BOOL following = [[returnDict objectForKey:@"data.following"] boolValue];
             self.userProfileModel.following = following;
             [self setFollowButtonSelected:following button:self.btnFollow];
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
         }];
     }
     
@@ -1193,12 +1198,12 @@
     
     [LoadingManager show];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserLikes param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserLikes parameter:dict appendString:appendString success:^(id object) {
         
         self.userProfileLikeModel = [[ConnectionManager dataManager]userProfileLikeModel];
         [self assignLikesData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1213,13 +1218,13 @@
     
     [LoadingManager show];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserPosts param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserPosts parameter:dict appendString:appendString success:^(id object) {
         
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
 
         [self assignPostData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1237,12 +1242,12 @@
     
     [LoadingManager show];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserCollections parameter:dict appendString:appendString success:^(id object) {
         
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
         [self assignCollectionData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1256,21 +1261,44 @@
                            };
     [LoadingManager show];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserInfo parameter:dict appendString:appendString success:^(id object) {
         
         self.userProfileModel = [[ConnectionManager dataManager]userProfileModel];
-        [self assignData];
+    
+        [self assignUserData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
 
-
--(void)assignData
+-(void)requestServerForMe
 {
+    NSString* appendString = [NSString stringWithFormat:@"%@",@"me"];
     
-    [self assignUserData];
+    NSDictionary* dict = @{@"uid":@"me",
+                           @"token":[Utils getAppToken]
+                           };
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserInfo parameter:dict appendString:appendString success:^(id object) {
+        
+        
+        DataManager* manager = [ConnectionManager dataManager];
+        
+        self.userProfileModel = [[ConnectionManager dataManager]userProfileModel];
+
+        manager.currentUserProfileModel = self.userProfileModel;
+        
+        [self assignUserData];
+
+        
+    } failure:^(id object) {
+        
+        self.userProfileModel = [ProfileModel getUserProfile];
+        
+        [self assignUserData];
+
+    }];
 }
 
 -(void)setParallaxView
@@ -1286,6 +1314,8 @@
 
 -(void)assignUserData
 {
+    SLog(@"assignUserData");
+
     self.btnLink.hidden = [self.userProfileModel.personal_link isNull]?YES:NO;
     [self setFollowButtonSelected:self.userProfileModel.following button:self.btnFollow];
     [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.profile_photo_images] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
@@ -1298,8 +1328,8 @@
         
     }];
     
-    self.lblUserName.text = self.userProfileModel.username;
-    self.lblUserName_Header.text = self.userProfileModel.username;
+    self.lblUserName.text = self.userProfileModel.name;
+    self.lblUserName_Header.text = self.userProfileModel.name;
     self.lblName.text = self.userProfileModel.name;
     NSString* strFollower = [NSString stringWithFormat:@"%d %@",self.userProfileModel.follower_count,LocalisedString(@"Followers")];
     NSString* strFollowing = [NSString stringWithFormat:@"%d %@",self.userProfileModel.following_count,LocalisedString(@"Followings")];
@@ -1333,7 +1363,7 @@
 
 -(void)assignCollectionData
 {
-    
+    SLog(@"assignCollectionData");
     
     @try {
         [arrCollection removeAllObjects];
@@ -1352,6 +1382,8 @@
 
 -(void)assignPostData
 {
+    SLog(@"assignPostData");
+
     arrPost = [[NSMutableArray alloc]initWithArray:self.userProfilePostModel.userPostData.posts];
     
     @try {
@@ -1367,6 +1399,8 @@
 
 -(void)assignLikesData
 {
+    SLog(@"assignLikesData");
+
     arrLikes = [[NSMutableArray alloc]initWithArray:self.userProfileLikeModel.userPostData.posts];
     
     [self.ibTableView reloadData];

@@ -7,11 +7,16 @@
 //
 
 #import "DealManager.h"
+#import "DealExpiryDateModel.h"
 
 @interface DealManager()
+
 @property (nonatomic) NSMutableDictionary *dealsDict;
 @property (nonatomic) NSUserDefaults *userDefaults;
 @property (nonatomic) int walletCount;
+
+@property(nonatomic) BOOL isLoading;
+
 @end
 
 /*
@@ -81,11 +86,36 @@
 }
 
 -(int)getWalletCount{
+    
+    
     return self.walletCount;
+
+//    if ([ConnectionManager isNetworkAvailable])
+//    {
+//        return self.walletCount;
+//
+//    }
+//    else{
+//        
+//        
+//        int count = 0;
+//        NSArray<DealExpiryDateModel *>* arrExpireData = [DealExpiryDateModel getWalletList];
+//        
+//        for (int i = 0; i<arrExpireData.count; i++)
+//        {
+//            DealExpiryDateModel* model = arrExpireData[i];
+//            count += model.dealModelArray.count;
+//            
+//        }
+//        
+//        return count;
+//    }
 }
 
 -(void)setWalletCount:(int)count{
     _walletCount = count;
 }
+
+
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AsyncImageView.h"
-//#import "GAITrackedViewController.h"
+
 @interface FullImageViewController : UIViewController<UIScrollViewDelegate>
 -(void)GetAllImageArray:(NSMutableArray *)AllImageArray GetIDN:(NSInteger)ImageIdn GetAllCaptionArray:(NSMutableArray *)AllCaptionArray;
 -(void)GetImageString:(NSString *)ImageString;

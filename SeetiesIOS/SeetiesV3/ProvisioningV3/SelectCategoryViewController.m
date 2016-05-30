@@ -40,6 +40,9 @@
     [super viewDidLoad];
     [self initSelfView];
     
+    self.navigationController.interactivePopGestureRecognizer.enabled = false;
+
+    
     [[ConnectionManager Instance]requestServerForAppInfo:^(id object) {
         
         @try {
@@ -151,13 +154,13 @@
     CLLocation* location = [[SearchManager Instance]getAppLocation];
     
     
-    NSArray* arrLanguages = @[[Utils getDeviceAppLanguageCode]];
+    NSArray* arrLanguages = @[[LanguageManager getDeviceAppLanguageCode]];
     NSDictionary* dict;
     @try {
         
         dict = @{@"uid" : [Utils getUserID],
                                @"categories" : result,
-                               @"system_language" : [Utils getDeviceAppLanguageCode],
+                               @"system_language" : [LanguageManager getDeviceAppLanguageCode],
                                @"languages" :arrLanguages,
                                @"lat" : @(location.coordinate.latitude),
                                @"lng" : @(location.coordinate.longitude),
@@ -170,13 +173,13 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@/provisioning",[Utils getUserID]];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostProvisioning param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostProvisioning parameter:dict appendString:appendString success:^(id object) {
        
         if (self.didFinishProvisioningBlock) {
             self.didFinishProvisioningBlock();
         }
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
     

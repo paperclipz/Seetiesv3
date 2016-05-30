@@ -11,6 +11,35 @@
 @property(nonatomic,strong)NSString* type;//user post N/A url
 @end
 @implementation AnnouncementModel
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    
+    for (NSString *key in [self codableProperties])
+    {
+        
+        [encoder encodeObject:[self valueForKey:key] forKey:key];
+        
+    }
+    
+    
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        
+        
+        for (NSString *key in [self codableProperties])
+        {
+            [self setValue:[decoder decodeObjectForKey:key] forKey:key];
+            
+        }
+    }
+    
+    return self;
+}
+
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
@@ -45,6 +74,16 @@
         CASE (@"post"){
             return AnnouncementType_Post;
             break;
+        }
+        
+        CASE(@"promo_code")
+        {
+            return AnnouncementType_Promo;
+        }
+        
+        CASE(@"referral")
+        {
+            return AnnouncementType_Referral;
         }
   
         DEFAULT

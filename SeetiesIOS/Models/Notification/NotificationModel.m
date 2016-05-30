@@ -103,7 +103,18 @@
             break;
             
         }
+        
+        CASE (@"referral_reward"){
+            _notType = NotificationType_ReferralReward;
+            break;
+            
+        }
 
+        CASE (@"phone_verification"){
+            _notType = NotificationType_Phone_Verification;
+            break;
+            
+        }
         
         DEFAULT
         {

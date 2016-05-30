@@ -17,10 +17,18 @@
 @property (nonatomic, copy) NSArray *availableLocales;
 
 + (LanguageManager *)sharedLanguageManager;
-- (void)setLanguageWithLocale:(Locale *)locale;
-- (Locale *)getSelectedLocale;
+//- (void)setLanguageWithLocale:(Locale *)locale;
 - (NSString *)getTranslationForKey:(NSString *)key;
-- (void)setLanguageCode:(NSString*)code;
-+(NSString*)stringForKey:(NSString*)key withPlaceHolder:(NSDictionary*)dict;
++(NSString*)stringForKey:(NSString*)cKey withPlaceHolder:(NSDictionary*)dict;
+
+
+
++(NSString*)getDeviceAppLanguageCode;
++(NSString*)getDeviceDefaultLanguageCode;
++(void)setDeviceAppLanguage:(NSString*)languageCode;
+
+// code are of server and local code not app code (app code refer to long string of numerics)
++(NSString*)getAppServerCode;
++(NSString*)convertLocalCodeToServer:(NSString*)localCode;
 
 @end

@@ -8,11 +8,16 @@
 
 #import "ConnectionManager.h"
 #import "NSArray+JSON.h"
-#import <StoreKit/StoreKit.h>
+#import "AFNetworking.h"
+#import "AFHTTPSessionManager.h"
 
-@interface ConnectionManager()<SKStoreProductViewControllerDelegate>
+@interface ConnectionManager()
+{
+    BOOL isForceUpdatePrompt;
+}
+
 @property (strong, nonatomic) DataManager *dataManager;
-@property(nonatomic)SKStoreProductViewController* skStoreProductViewController;
+@property(strong,nonatomic)AFHTTPSessionManager* manager;
 
 @end
 
@@ -32,10 +37,21 @@
     return [[ConnectionManager Instance] dataManager];
 }
 
+
++(BOOL)isNetworkAvailable
+{
+    
+   BOOL isReachable = [AFNetworkReachabilityManager sharedManager].reachable;
+
+    
+    return isReachable;
+}
+
 -(id)init
 {
     self = [super init];//set default dev
     
+    isForceUpdatePrompt = NO;
     
     if ([Utils isAppProductionBuild]) {
         self.serverPath = SERVER_PATH_LIVE;
@@ -73,233 +89,253 @@
     
 }
 
--(AFHTTPRequestOperationManager*)manager
+-(AFHTTPSessionManager*)manager
 {
-    if(!_manager)
-    {
-        _manager = [AFHTTPRequestOperationManager manager];
+ 
+    if (!_manager) {
+        _manager = [AFHTTPSessionManager manager];
+    
         _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        
-        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
         _manager.securityPolicy.allowInvalidCertificates = YES;
         _manager.securityPolicy.validatesDomainName = NO;
-          _manager.responseSerializer =[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
-        
+        _manager.responseSerializer =[AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
+        _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/html",@"text/plain",nil];
     }
     
     return _manager;
     
 }
 
--(void)requestServerWithPost:(bool)isPost customURL:(NSString*)url requestType:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
+-(NSString*)getLocalData:(ServerRequestType)type
 {
     
-    NSLog(@"\n\n ===== Request Server ===== : %@ \n\n Request Json : %@",url,[dict bv_jsonStringWithPrettyPrint:YES]);
+
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"newsfeed" ofType:@"json"];
+    NSData* data = [NSData dataWithContentsOfFile:filePath];
+    __autoreleasing NSError* error = nil;
+    id result = [NSJSONSerialization JSONObjectWithData:data
+                                                options:kNilOptions error:&error];
     
-    if ([self validateBeforeRequest:type]) {
-        
-        if (error) {
-            error(nil);
+    return result;
+}
+
+-(void)requestServerWith:(AFNETWORK_TYPE)networkType serverRequestType:(ServerRequestType)serverType parameter:(NSDictionary*)parameter appendString:(NSString*)appendString success:(IDBlock)success failure:(IErrorBlock)failure
+{
+    
+    if ([self validateBeforeRequest:serverType]) {
+        if (failure) {
+            failure(nil);
         }
         return;
-    }
-    
-    if(isPost)
-    {
-        [self.manager POST:url parameters:dict
-                   success:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             
-             [self storeServerData:responseObject requestType:type withURL:url completionBlock:completeBlock errorBlock:error];
-             
-             [LoadingManager hide];
-             
-             
-         }
-                   failure:
-         ^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", error);
-             [LoadingManager hide];
-             
-         }];
-        
     }
     else{
         
-        [self.manager GET:url parameters:dict
-                  success:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             
-             [self storeServerData:responseObject requestType:type withURL:url completionBlock:completeBlock errorBlock:error];
-             
-             
-             [LoadingManager hide];
-             
-             
-         }
-                  failure:
-         ^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", operation);
-             [self showErrorHandling:operation Error:error];
+        NSString* fullURL;
+        NSString* strNetworkType;
 
-             [LoadingManager hide];
-             
-         }];
-        
-    }
-    
-}
-
-
-
--(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
-{
-    if ([self validateBeforeRequest:type]) {
-        
-        if (errorBlock) {
-            errorBlock(nil);
+        if (appendString) {
+            fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:serverType],appendString];
+            
         }
-        return;
-    }
-    NSString* fullURL = [self getFullURLwithType:type];
-    
-    SLog(@"\n\n ===== [REQUEST SERVER WITH POST][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
-    
-    
-    [self.manager POST:fullURL parameters:dict
-               success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
-         
-         [LoadingManager hide];
-     }
-               failure:
-     ^(AFHTTPRequestOperation *operation, NSError *error) {
-         NSLog(@"\n\n  Error: %@", error);
-         
-         if (errorBlock) {
-             errorBlock(error);
-         }
-         
-         [self showErrorHandling:operation Error:error];
-
-         
-         [LoadingManager hide];
-
-     }];
-    
-    
-}
-
-
--(void)requestServerWithGet:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
-{
-    
-    if ([self validateBeforeRequest:type]) {
-        
-        if (errorBlock) {
-            errorBlock(nil);
-        }
-        return;
-    }
-    
-    NSString* fullURL;
-    
-    if (appendString) {
-        fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
-        
-    }
-    else
-    {
-        fullURL = [self getFullURLwithType:type];
-    }
-    
-    if (IS_SIMULATOR && type == ServerRequestTypeGetNewsFeed) {
-        [self storeServerData:[self getJsonForType:type] requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
-        
-        if (completeBlock) {
-            completeBlock(nil);
-        }
-        return;
-    }
-    
-    
-    SLog(@"\n\n ===== [REQUEST SERVER WITH GET][URL] : %@ \n [REQUEST JSON] : %@\n\n",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
-    
-    [self.manager GET:fullURL parameters:dict
-              success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
-         
-         [LoadingManager hide];
-         
-     }
-              failure:
-     ^(AFHTTPRequestOperation *operation, NSError *error) {
-         
-         if (errorBlock) {
-             errorBlock(error);
-         }
-         NSLog(@"\n\n Error: %@", error);
-
-         [self showErrorHandling:operation Error:error];
-
-         [LoadingManager hide];
-     }];
-    
-}
--(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
-{
-    
-    if ([self validateBeforeRequest:type]) {
-        
-        if (errorBlock) {
-            errorBlock(nil);
-        }
-        return;
-    }
-    
-    [LoadingManager show];
-    
-    NSString* fullURL;
-    if (appendString) {
-        
-        fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
-        
-    }
-    
-    else{
-        
-        fullURL = [self getFullURLwithType:type];
-    }
-    
-    SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
-    
-    [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-        
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        // NSDictionary* resDict = [[NSDictionary alloc]initWithDictionary:responseObject];
-        
-        [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
-        
-        
-        [LoadingManager hide];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        if (errorBlock) {
-            errorBlock(error);
+        else
+        {
+            fullURL = [self getFullURLwithType:serverType];
         }
         
-        [LoadingManager hide];
         
-        [self showErrorHandling:operation Error:error];
+        if (IS_SIMULATOR) {
+            
+            switch (serverType) {
+                case ServerRequestTypeGetNewsFeed:
+                    [self storeServerData:[self getLocalData:serverType] requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
 
-        NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
-    }];
-    
+                    return;
+                    break;
+                    
+                default:
+                    break;
+            }
+
+            
+        }
+        
+        switch (networkType) {
+            case AFNETWORK_GET:
+            {
+                strNetworkType = @"GET";
+                [self.manager GET:fullURL parameters:parameter progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+                    NSLog(@"JSON: %@", responseObject);
+                    
+                  
+                    [self storeServerData:responseObject requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+
+                    [LoadingManager hide];
+
+                    
+                } failure:^(NSURLSessionTask *operation, NSError *error) {
+                    NSLog(@"Error: %@", error);
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+     
+                    [self showErrorHandling:operation Error:error];
+                    [LoadingManager hide];
+                }];
+            }
+                break;
+                
+            case AFNETWORK_POST:
+            {
+                strNetworkType = @"POST";
+                [self.manager POST:fullURL parameters:parameter constructingBodyWithBlock:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+                    
+                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    
+                    NSLog(@"JSON: %@", responseObject);
+                    
+                    [self storeServerData:responseObject requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+                    
+                    [LoadingManager hide];
+
+                    
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                   
+                    NSLog(@"Error: %@", error);
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                    [self showErrorHandling:task Error:error];
+
+                    [LoadingManager hide];
+                }];
+
+            }
+                break;
+                
+            case AFNETWORK_DELETE:
+            {
+                strNetworkType = @"DELETE";
+                [self.manager DELETE:fullURL parameters:parameter success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    
+                    NSLog(@"JSON: %@", responseObject);
+                    
+                    [self storeServerData:responseObject requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+                    
+                    [LoadingManager hide];
+
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    
+                    NSLog(@"Error: %@", error);
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                    [self showErrorHandling:task Error:error];
+
+                    [LoadingManager hide];
+                }];
+            }
+                break;
+                
+            case AFNETWORK_PUT:
+            {
+                strNetworkType = @"PUT";
+                
+                [self.manager PUT:fullURL parameters:parameter success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    
+                    NSLog(@"JSON: %@", responseObject);
+                    
+                    [self storeServerData:responseObject requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+                    
+                    [LoadingManager hide];
+
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                   
+                    NSLog(@"Error: %@", error);
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                    [self showErrorHandling:task Error:error];
+
+                    [LoadingManager hide];
+
+                }];
+            }
+                break;
+                
+            case AFNETWORK_CUSTOM_GET:
+            {
+                
+                fullURL = appendString;
+
+                [self.manager GET:fullURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+                    NSLog(@"JSON: %@", responseObject);
+                    
+                    
+                    [self storeServerData:responseObject requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+                    
+                    [LoadingManager hide];
+                    
+                    
+                } failure:^(NSURLSessionTask *operation, NSError *error) {
+                    NSLog(@"Error: %@", error);
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                    [self showErrorHandling:operation Error:error];
+
+                    [LoadingManager hide];
+                    
+                }];
+
+                strNetworkType = @"CUSTOM_GET";
+                
+            }
+                break;
+                
+            case AFNETWORK_CUSTOM_POST:
+            {
+                
+                fullURL = appendString;
+                
+                [self.manager POST:fullURL parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+                    NSLog(@"JSON: %@", responseObject);
+                    
+                    
+                    [self storeServerData:responseObject requestType:serverType withURL:fullURL completionBlock:success errorBlock:failure];
+                    
+                    [LoadingManager hide];
+                    
+                    
+                } failure:^(NSURLSessionTask *operation, NSError *error) {
+                    NSLog(@"Error: %@", error);
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                    
+                    [self showErrorHandling:operation Error:error];
+
+                    [LoadingManager hide];
+                }];
+
+                strNetworkType = @"CUSTOM_POST";
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        SLog(@"\n\n ===== [REQUEST SERVER WITH %@][URL] : %@ \n [REQUEST JSON] : %@\n\n",strNetworkType,fullURL,[parameter bv_jsonStringWithPrettyPrint:YES]);
+
+       
+    }
 }
 
 -(void)requestServerWithPost:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString meta:(NSArray*)arrMeta completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)errorBlock
@@ -328,151 +364,92 @@
     
     SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
     
-    AFHTTPRequestOperation *op = [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        //do not put image inside parameters dictionary BUT append it
-        
-        for (int i = 0; i<arrMeta.count; i++) {
-            
-            PhotoModel* model = arrMeta[i];
-            [formData appendPartWithFormData:[[@(i+1)stringValue]  dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
-            [formData appendPartWithFormData:[model.caption?model.caption:@"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][caption]",i]];
-            
-            if(model.photo_id)
-            {
-                [formData appendPartWithFormData:[model.photo_id dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][photo_id]",i]];
-                
-            }
-            else{
-                
-                NSData *imageData = UIImageJPEGRepresentation(model.image,0.5);
-                if (imageData) {
-                    [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"photos[%d]",i] fileName:@"photo.jpg" mimeType:@"image/jpeg"];
-                }
-                
-                
-            }
-            
+        for (PhotoModel *photo in arrMeta) {
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(photo.image, 0.5) name:photo.photo_id fileName:@"uploadphoto" mimeType:@"image/jpeg"];
         }
         
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        NSLog(@"%lli", uploadProgress.completedUnitCount / uploadProgress.totalUnitCount * 100);
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
-        
-        [LoadingManager hide];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        if (errorBlock) {
-           
-            @try {
-                errorBlock(error);
 
-            }
-            @catch (NSException *exception) {
-                
-            }
-           
-        }
-        [self showErrorHandling:operation Error:error];
+        [LoadingManager hide];
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 
         [LoadingManager hide];
         
-        NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
-    }];
-    
-    
-    
-    [op setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
+//        NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
         
     }];
     
-    [op start];
+//    AFHTTPRequestOperation *op = [self.manager POST:fullURL parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        
+//        //do not put image inside parameters dictionary BUT append it
+//        
+//        for (int i = 0; i<arrMeta.count; i++) {
+//            
+//            PhotoModel* model = arrMeta[i];
+//            [formData appendPartWithFormData:[[@(i+1)stringValue]  dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][position]",i]];
+//            [formData appendPartWithFormData:[model.caption?model.caption:@"" dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][caption]",i]];
+//            
+//            if(model.photo_id)
+//            {
+//                [formData appendPartWithFormData:[model.photo_id dataUsingEncoding:NSUTF8StringEncoding] name:[NSString stringWithFormat:@"photos_meta[%d][photo_id]",i]];
+//                
+//            }
+//            else{
+//                
+//                NSData *imageData = UIImageJPEGRepresentation(model.image,0.5);
+//                if (imageData) {
+//                    [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"photos[%d]",i] fileName:@"photo.jpg" mimeType:@"image/jpeg"];
+//                }
+//                
+//                
+//            }
+//            
+//        }
+//        
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:errorBlock];
+//        
+//        [LoadingManager hide];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        if (errorBlock) {
+//           
+//            @try {
+//                errorBlock(error);
+//
+//            }
+//            @catch (NSException *exception) {
+//                
+//            }
+//           
+//        }
+//        [self showErrorHandling:operation Error:error];
+//
+//        [LoadingManager hide];
+//        
+//        NSLog(@"\n\n  Error: %@ ***** %@", operation.responseString, error);
+//    }];
+//    
+//    
+//    
+//    [op setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+//        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
+//        
+//    }];
+//    
+//    [op start];
 }
 
-
--(void)requestServerWithDelete:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
-{
-    
-    if ([self validateBeforeRequest:type]) {
-        
-        if (error) {
-            error(nil);
-        }
-        return;
-    }
-    
-    NSString* fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
-    
-    NSLog(@"\n\n ===== Request Server DELETE ===== : %@ \n\n Request Json : %@",fullURL,dict);
-    
-    [self.manager DELETE:fullURL parameters:dict
-                 success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         
-         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:error];
-         
-         
-         [LoadingManager hide];
-         
-     }
-                 failure:
-     ^(AFHTTPRequestOperation *operation, NSError *error) {
-         
-         [self showErrorHandling:operation Error:error];
-         NSLog(@"Error: %@ ***** %@", operation.responseString, error);
-         [LoadingManager hide];
-         
-     }];
-}
-
--(void)requestServerWithPut:(ServerRequestType)type param:(NSDictionary*)dict appendString:(NSString*)appendString completeHandler:(IDBlock)completeBlock errorBlock:(IErrorBlock)error
-{
-    if ([self validateBeforeRequest:type]) {
-        
-        if (error) {
-            error(nil);
-        }
-        return;
-    }
-    
-    NSString* fullURL;
-    
-    if (appendString) {
-        fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:type],appendString];
-        
-    }
-    else
-    {
-        fullURL = [self getFullURLwithType:type];
-    }
-    
-    SLog(@"\n\n ===== Request Server ===== : %@ \n\n request Json : %@",fullURL,[dict bv_jsonStringWithPrettyPrint:YES]);
-    
-    
-    [self.manager PUT:fullURL parameters:dict
-              success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         
-         [self storeServerData:responseObject requestType:type withURL:fullURL completionBlock:completeBlock errorBlock:error];
-         
-     }
-              failure:
-     ^(AFHTTPRequestOperation *operation, NSError *error) {
-         
-         NSLog(@"\n\n Error: %@", error);
-         [self showErrorHandling:operation Error:error];
-         [LoadingManager hide];
-         
-     }];
-    
-}
-
-//-(void)processApiversion
-//{
-//    [Utils setIsDevelopment:!self.dataManager.apiVersionModel.production];
-//}
 
 #pragma mark - SEETIES URL
 -(NSString*)getFullURLwithType:(ServerRequestType)type
@@ -501,6 +478,15 @@
             
             break;
             
+        case ServerRequestTypePostCheckUserRegistrationData:
+            str = [NSString stringWithFormat:@"%@/register/check",API_VERION_URL];
+            
+            break;
+            
+        case ServerRequestTypePostForgotPassword:
+            str = [NSString stringWithFormat:@"%@/forgot-password", API_VERION_URL];
+            break;
+            
         case ServerRequestTypeGetNewsFeed:
             str = [NSString stringWithFormat:@"%@/feed/v2",API_VERION_URL];
             
@@ -520,12 +506,12 @@
             str = [NSString stringWithFormat:@"%@/system/update/category",API_VERION_URL];
             
             break;
-//        case ServerRequestTypeGetApiVersion:
-//            
-//            str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
-//            return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
-//            
-//            break;
+        case ServerRequestTypeGetApiVersion:
+            
+            str = [NSString stringWithFormat:@"%@/system/apiversion?device_type=2",API_VERION_URL];
+           // return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
+            
+            break;
         case ServerRequestTypeGetExplore:
             str = [NSString stringWithFormat:@"%@/explore",API_VERION_URL];
             
@@ -585,7 +571,8 @@
         case ServerRequestTypeUserFollower:
         case ServerRequestTypeUserFollowing:
         case ServerRequestTypePostProvisioning:
-        case  ServerRequestTypePostUpdateUser:
+        case ServerRequestTypePostUpdateUser:
+        case ServerRequestTypePostUserProfile:
         default:
             str = API_VERION_URL;
             break;
@@ -634,6 +621,8 @@
             break;
             
         case ServerRequestTypeGetDealCollectionDeals:
+        case ServerRequestTypeGetDealCollectionInfo:
+
             str = [NSString stringWithFormat:@"%@/deal-collections", API_VERION_URL];
 
             break;
@@ -718,6 +707,15 @@
         case ServerRequestTypePostDealFriendSuggestion:
             str = [NSString stringWithFormat:@"%@/deals", API_VERION_URL];
             break;
+            
+        case ServerRequestTypeGoogleSearchWithDetail:
+            
+            return GOOGLE_PLACE_DETAILS_API;
+            break;
+        case ServerRequestTypeGoogleSearch:
+            
+            return GOOGLE_PLACE_AUTOCOMPLETE_API;
+            break;
         
     }
     
@@ -727,7 +725,7 @@
 
 -(BOOL)isNeedRelogin:(NSDictionary*)obj
 {
-    
+    return NO;
     @try {
         NSDictionary* dict = [[NSDictionary alloc]initWithDictionary:obj];
         
@@ -785,17 +783,16 @@
 -(void)storeServerData:(id)obj requestType:(ServerRequestType)type withURL:(NSString*)url completionBlock:(IDBlock)completionBlock errorBlock:(IDBlock)errorBlock
 {
     
-    
     NSLog(@"\n\n\n [SUCCESS RESPONSE RESULT URL : %@] \n%@ \n\n\n", url,[obj bv_jsonStringWithPrettyPrint:YES]);
     
     
-    if ([self isNeedRelogin:obj]) {
-        
-        SLog(@"change to dev");
-        [self saveProductionSetting:obj];
-      
-        return;
-    }
+//    if ([self isNeedRelogin:obj]) {
+//        
+//        SLog(@"change to dev");
+//        [self saveProductionSetting:obj];
+//      
+//        return;
+//    }
     
     
     [self saveProductionSetting:obj];
@@ -816,7 +813,18 @@
             
             SLog(@"%@",dict[@"message"]);
             
-            [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+                
+                switch (type) {
+                    case ServerRequestTypeGetPromoCode:
+                    case ServerRequestTypePostCheckUserRegistrationData:
+
+                        break;
+                        
+                    default:
+                        [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+                        break;
+                }
+            
             //[TSMessage show];
             
             hasError = YES;
@@ -864,7 +872,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:model.token forKey:TOKEN];
         [defaults setObject:model.uid forKey:USERID];
-        [defaults setObject:model.system_language.caption forKey:KEY_SYSTEM_LANG];
+        [defaults setObject:model.system_language.language_code forKey:KEY_SYSTEM_LANG];
         
         if (![Utils isArrayNull:model.languages]) {
             [defaults setObject:[model.languages[0] langID] forKey:KEY_LANGUAGE_ONE];
@@ -922,12 +930,11 @@
             
             break;
             
-//        case ServerRequestTypeGetApiVersion:
-//        {
-//            self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:nil];
-//            
-//           // [self processApiversion];
-//        }
+        case ServerRequestTypeGetApiVersion:
+        {
+            self.dataManager.apiVersionModel = [[ApiVersionModel alloc]initWithDictionary:obj error:&error];
+            
+        }
             break;
             
         case ServerRequestTypeGetNewsFeed:
@@ -1202,6 +1209,17 @@
         }
             break;
             
+        case ServerRequestTypeGetDealCollectionInfo:
+        {
+            NSDictionary *dict = obj[@"data"];
+            
+            self.dataManager.dealCollectionModel = [[DealCollectionModel alloc]initWithDictionary:dict error:nil];
+            
+        }
+            
+            break;
+            
+            
         case ServerRequestTypePostCollectDeals:
         case ServerRequestTypeDeleteVoucher:
         case ServerRequestTypeGetVoucherInfo:
@@ -1348,15 +1366,16 @@
 
 -(void)requestServerForAppInfo:(IDBlock)completionBlock FailBlock:(IErrorBlock)errorBlock
 {
-    
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetAllAppInfo param:nil appendString:nil completeHandler:^(id object) {
+ 
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetAllAppInfo parameter:nil appendString:nil success:^(id object) {
+
         
         if(completionBlock)
         {
             completionBlock(object);
         }
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         if(errorBlock)
         {
@@ -1381,7 +1400,7 @@
             if ([Utils isGuestMode]) {
                 
                 flag = true;
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == 1) {
                         [Utils showLogin];
@@ -1395,7 +1414,7 @@
             if ([Utils isGuestMode]) {
                 flag = true;
                 
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == 1) {
                         [Utils showLogin];
@@ -1418,10 +1437,11 @@
 
 #pragma mark  - ERROR handling
 
--(void)showErrorHandling:(AFHTTPRequestOperation*)operation Error:(NSError*)error
+-(void)showErrorHandling:(NSURLSessionTask*)task Error:(NSError*)error
 {
+    NSHTTPURLResponse* response = (NSHTTPURLResponse*)task.response;
     
-    if([operation.response statusCode] == 503)
+    if ([response statusCode] == 503)
     {
         // Use the appropriate key to get the error data
         NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
@@ -1439,27 +1459,28 @@
             
             [Utils showLogin];
 
-            [UIAlertView showWithTitle:LocalisedString(@"system") message:message cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            [UIAlertView showWithTitle:message message:@"" cancelButtonTitle:@"OK" otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                 
                 
             }];
         }
-        else if ([code isEqualToString:@"seeties.apiversion.message"]) {
+        else if ([code isEqualToString:@"seeties.apiversion.message"] && !isForceUpdatePrompt) {
          
             
             [Utils showLogin];
-            [UIAlertView showWithTitle:LocalisedString(@"system") message:message cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            isForceUpdatePrompt = YES;
+            
+            [UIAlertView showWithTitle:message message:@"" cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                 
                 if (buttonIndex == 0) {//cancel
                     
+                    isForceUpdatePrompt = NO;
+                    
                 }else if(buttonIndex == 1)//route to app store
                 {
-                    _skStoreProductViewController = nil;
-                    
-                    
-                    [Utils presentView:self.skStoreProductViewController Completion:^{
-                        
-                    }];
+                    isForceUpdatePrompt = NO;
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/my/app/seeties-explore-best-places/id956400552?mt=8"]];
                     
                    // }];
                     
@@ -1468,22 +1489,12 @@
             }];
         }
     }
-    
-}
+    else if([response statusCode] == 401)
+    {
+        [Utils showLogin];
 
--(SKStoreProductViewController *)skStoreProductViewController{
-    if (!_skStoreProductViewController) {
-        _skStoreProductViewController = [SKStoreProductViewController new];
-        _skStoreProductViewController.delegate = self;
-        NSDictionary *parameters = @{ SKStoreProductParameterITunesItemIdentifier:[NSNumber numberWithInteger:ITUNES_ITEM_IDENTIFIER] };
-        [_skStoreProductViewController loadProductWithParameters:parameters completionBlock:nil];
     }
-    return _skStoreProductViewController;
-}
-
-- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
-    [viewController dismissViewControllerAnimated:YES completion:nil];
-    [LoadingManager hide];
+    
 }
 
 @end

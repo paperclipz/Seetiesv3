@@ -7,8 +7,8 @@
 //
 
 #import "DealRedeemViewController.h"
-#import "YLImageView.h"
-#import "YLGIFImage.h"
+#import "DealExpiryDateModel.h"
+#import "HowToRedeemViewController.h";
 
 @interface DealRedeemViewController ()
 {
@@ -18,20 +18,10 @@
     CGRect oldFrame;
     float activationDistance;
     BOOL activateDropEffect;
+    CGRect oldBottomViewFrame;
+
 
 }
-@property (strong, nonatomic) IBOutlet UIView *ibGifContentView;
-@property (weak, nonatomic) IBOutlet UILabel *ibHowToRedeemTitle;
-@property (weak, nonatomic) IBOutlet YLImageView *ibFirstImage;
-@property (weak, nonatomic) IBOutlet UILabel *ibFirstNumber;
-@property (weak, nonatomic) IBOutlet UILabel *ibFirstInstruction;
-@property (weak, nonatomic) IBOutlet YLImageView *ibSecondImage;
-@property (weak, nonatomic) IBOutlet UILabel *ibSecondNumber;
-@property (weak, nonatomic) IBOutlet UILabel *ibSecondInstruction;
-@property (weak, nonatomic) IBOutlet YLImageView *ibThirdImage;
-@property (weak, nonatomic) IBOutlet UILabel *ibThirdNumber;
-@property (weak, nonatomic) IBOutlet UILabel *ibThirdInstruction;
-@property (weak, nonatomic) IBOutlet UILabel *ibFooterInstruction;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgDeal;
 @property (weak, nonatomic) IBOutlet UIView *ibDescBorderView;
@@ -49,30 +39,30 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibBottomDesc;
 @property (weak, nonatomic) IBOutlet UILabel *ibSwipeToRedeem;
 @property (weak, nonatomic) IBOutlet UIButton *ibHowToRedeem;
+@property (weak, nonatomic) IBOutlet UIImageView *ibGuideIndicatorImg;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibHowToRedeemTopConstraint;
+
+@property(nonatomic) HowToRedeemViewController *howToRedeemViewController;
 
 @property(nonatomic) DealModel *dealModel;
+@property(nonatomic) NSString *referralID;
 @property(nonatomic) DealManager *dealManager;
 @property(nonatomic) BOOL isRedeeming;
 @property(nonatomic) BOOL hasRedeemed;
 @property(nonatomic) NSUserDefaults *userDefault;
+@property(nonatomic) NSTimer *timer;
 @end
 
 @implementation DealRedeemViewController
-- (IBAction)btnIntroClicked:(id)sender {
-    
-    CGRect frame = [Utils getDeviceScreenSize];
-    [self.view addSubview:self.ibGifContentView];
-    self.ibGifContentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-}
 
-- (IBAction)btnHowToRedeemCloseClicked:(id)sender {
-    [self.ibGifContentView removeFromSuperview];
-    [self.userDefault setBool:YES forKey:@"ShownRedeemTutorial"];
+- (IBAction)btnIntroClicked:(id)sender {
+    self.howToRedeemViewController = nil;
+//    UINavigationController *newNavController = [[UINavigationController alloc] initWithRootViewController:self.howToRedeemViewController];
+    [self presentViewController:self.howToRedeemViewController animated:YES completion:nil];
 }
 
 - (IBAction)btnDirectionClicked:(id)sender {
+    
     [[MapManager Instance]showMapOptions:self.view LocationLat:self.dealModel.voucher_info.shop_info.location.lat LocationLong:self.dealModel.voucher_info.shop_info.location.lng];
 }
 
@@ -81,18 +71,63 @@
     [self changeLanguage];
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.5
+                                                  target:self
+                                                selector:@selector(animateSwipe)
+                                                userInfo:nil
+                                                 repeats:YES];
+    [self.timer fire];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self stopSwipeAnimation];
+}
+
+-(void)animateSwipe
+{
+    
+    self.ibGuideIndicatorImg.hidden = NO;
+
+    [UIView animateWithDuration:1.5 animations:^{
+        
+        [self.ibGuideIndicatorImg setX:self.ibSwipeBg.frame.size.width - 20];
+    } completion:^(BOOL finished) {
+        
+        
+        [self.ibGuideIndicatorImg setX:30];
+
+        
+        [UIView animateWithDuration:1.5 animations:^{
+            
+            [self.ibGuideIndicatorImg setX:self.ibSwipeBg.frame.size.width - 20];
+
+            
+        } completion:^(BOOL finished) {
+            
+            [self.ibGuideIndicatorImg setX:30];
+
+        }];
+        
+        
+
+    }];
+}
+
+-(void)stopSwipeAnimation{
+    [self.timer invalidate];
+    self.ibGuideIndicatorImg.hidden = YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    oldBottomViewFrame = self.ibBottomView.frame;
     CGRect screenSize = [Utils getDeviceScreenSize];
     if (screenSize.size.height > 480) {
         self.ibTopConstraint.constant = 55;
-        self.ibHowToRedeemTopConstraint.constant = 60;
     }
     else{
         self.ibTopConstraint.constant = 10;
-        self.ibHowToRedeemTopConstraint.constant = 8;
     }
     [self.view refreshConstraint];
     
@@ -108,6 +143,7 @@
     if (!shownRedeemTutorial) {
         [self btnIntroClicked:self.ibHowToRedeem];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,21 +151,19 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)setDealModel:(DealModel *)dealModel{
+-(void)initWithDealModel:(DealModel *)dealModel{
     _dealModel = dealModel;
+    _referralID = nil;
+}
+
+-(void)initWithDealModel:(DealModel *)dealModel referralID:(NSString *)referralId{
+    _dealModel = dealModel;
+    _referralID = referralId;
 }
 
 -(void)initSelfView{
     [self.ibSwipeBg setSideCurveBorder];
     [self.ibSwipeBtn setSideCurveBorder];
-    
-    [self.ibFirstNumber setRoundedBorder];
-    [self.ibSecondNumber setRoundedBorder];
-    [self.ibThirdNumber setRoundedBorder];
-    
-    self.ibFirstImage.image = [YLGIFImage imageNamed:@"HowToRedeem1.gif"];
-    self.ibSecondImage.image = [YLGIFImage imageNamed:@"HowToRedeem2.gif"];
-    self.ibThirdImage.image = [YLGIFImage imageNamed:@"HowToRedeem3.gif"];
     
     if (self.dealModel) {
         SeShopDetailModel *shopModel = self.dealModel.voucher_info.shop_info;
@@ -139,7 +173,7 @@
        
         @try {
             NSString* imageURL = shopModel.profile_photo[@"picture"];
-            [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:nil];
+            [self.ibShopImg sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:nil];
             [Utils  setRoundBorder:self.ibShopImg color:OUTLINE_COLOR borderRadius:5.0f];
 
             PhotoModel *photo = self.dealModel.photos[0];
@@ -165,11 +199,6 @@
     self.ibBottomDesc.text = [NSString stringWithFormat:@"%@", formattedStr];
     [self.ibHowToRedeem setTitle:LocalisedString(@"How to Redeem") forState:UIControlStateNormal];
     
-    self.ibHowToRedeemTitle.text = LocalisedString(@"Redeem in 3 simple steps");
-    self.ibFirstInstruction.text = LocalisedString(@"Approach a shop staff to place your order");
-    self.ibSecondInstruction.text = LocalisedString(@"Flash the Redeem Voucher screen");
-    self.ibThirdInstruction.text = LocalisedString(@"Swipe right to redeem!");
-    self.ibFooterInstruction.text = LocalisedString(@"Only one redemption per swipe");
 }
 
 /*
@@ -188,6 +217,8 @@
     if ([[touch.view class] isSubclassOfClass:[UIView class]]) {
         
         if (touch.view == self.ibSwipeView) {
+            [self stopSwipeAnimation];
+            
             dragging = YES;
             activateDropEffect = NO;
             oldX = touchLocation.x;
@@ -211,7 +242,7 @@
         if (activateDropEffect) {
             
             if ([self isNeedShowFirstTime]) {
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to redeem this voucher") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Flash and swipe! Do you want to redeem your voucher now?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:@[LocalisedString(@"Yeah!")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
                         [self requestServerToRedeemVoucher];
 //                        [self dropBottomView];
@@ -266,6 +297,7 @@
         
     } completion:^(BOOL finished) {
         self.ibBottomView.hidden = YES;
+        [self.animator removeAllBehaviors];
     }];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -286,6 +318,21 @@
     [attrString endEditing];
     
     self.ibRedeemDateTime.attributedText = attrString;
+}
+
+-(void)resetBottomView
+{
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        
+        self.ibDescBorderView.alpha = 0;
+        self.ibBottomView.hidden = NO;
+        self.ibBottomView.frame = oldBottomViewFrame;
+        self.ibBottomView.transform = CGAffineTransformIdentity;
+        [self.ibBottomView refreshConstraint];
+
+    }];
+   
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -329,17 +376,44 @@
 }
 
 -(NSUserDefaults *)userDefault{
+    
     if (!_userDefault) {
         _userDefault = [NSUserDefaults standardUserDefaults];
     }
+    
     return _userDefault;
+}
+
+-(HowToRedeemViewController *)howToRedeemViewController{
+    if (!_howToRedeemViewController) {
+        _howToRedeemViewController = [HowToRedeemViewController new];
+    }
+    return _howToRedeemViewController;
 }
 
 #pragma mark - RequestServer
 -(void)requestServerToRedeemVoucher{
-    if (self.isRedeeming) {
+    
+    if (![ConnectionManager isNetworkAvailable]) {
+        [[OfflineManager Instance]addDealToRedeem:self.dealModel];
+        
+        [self dropBottomView];
+
+        if ([self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
+            
+            [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
+        }
+        //get the value only
+                
         return;
     }
+    
+    if (self.isRedeeming) {
+        return;
+    
+    }
+    
+    
     
     self.isRedeeming = YES;
     
@@ -353,8 +427,8 @@
     [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
-    NSDictionary *voucherDict = @{@"deal_id": self.dealModel.dID,
-                                  @"voucher_id": self.dealModel.voucher_info.voucher_id,
+    NSDictionary *voucherDict = @{@"deal_id": self.dealModel.dID? self.dealModel.dID : @"",
+                                  @"voucher_id": self.dealModel.voucher_info.voucher_id? self.dealModel.voucher_info.voucher_id : @"",
                                   @"datetime": [formatter stringFromDate:[[NSDate alloc] init]],
                                   @"lat": @(userLocation.coordinate.latitude),
                                   @"lng": @(userLocation.coordinate.longitude)
@@ -375,23 +449,42 @@
 
     }
     
+    if (self.referralID) {
+        [finalDict setObject:self.referralID forKey:@"referral_u_id"];
+    }
+    
     [LoadingManager show];
     
-    [[ConnectionManager Instance] requestServerWithPut:ServerRequestTypePutRedeemVoucher param:finalDict appendString:nil completeHandler:^(id object) {
-        //Remove voucher from deal manager if it is not reusable
-        if (self.dealModel.total_available_vouchers != -1) {
-            [self.dealManager removeCollectedDeal:self.dealModel.dID];
-        }
-        if (self.dealRedeemDelegate) {
-            [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutRedeemVoucher parameter:finalDict appendString:nil success:^(id object) {
+
+        NSArray *voucherArray = object[@"data"];
+        BOOL hasError = NO;
+        for (NSDictionary *voucherDict in voucherArray) {
+            BOOL isSuccess = [voucherDict[@"success"] boolValue];
+            
+            if (!isSuccess) {
+                hasError = YES;
+                NSString *errorMsg = voucherDict[@"error_message"]? voucherDict[@"error_message"] : @"";
+                
+                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(errorMsg) cancelButtonTitle:LocalisedString(@"Okay") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }];
+                break;
+            }
         }
         
-        [self dropBottomView];
+        if (!hasError) {
+            if (self.dealRedeemDelegate && [self.dealRedeemDelegate respondsToSelector:@selector(onDealRedeemed:)]) {
+                [self.dealRedeemDelegate onDealRedeemed:self.dealModel];
+            }
+            
+            [self dropBottomView];
+        }
         
         self.isRedeeming = NO;
         [LoadingManager hide];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isRedeeming = NO;
         [LoadingManager hide];
     }];

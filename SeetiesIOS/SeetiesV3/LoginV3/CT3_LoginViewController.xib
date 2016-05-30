@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="btnContinue" destination="hz3-yB-gbd" id="P4x-uJ-fpC"/>
                 <outlet property="btnLogin" destination="oL5-oP-BVN" id="4h6-w9-NYH"/>
+                <outlet property="btnSignup" destination="Q1X-vP-vhI" id="PPx-0V-cUI"/>
                 <outlet property="ibImageView" destination="jdf-nV-fNL" id="wuo-Tj-fjL"/>
                 <outlet property="lblContinueWith" destination="7rR-Qc-xUn" id="SJk-Wz-aWv"/>
                 <outlet property="lblFacebook" destination="vcG-kC-xi2" id="rvv-T7-FOL"/>

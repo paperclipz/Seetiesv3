@@ -8,6 +8,8 @@
 
 #import "PSearchLocationViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Utils.h"
+
 @interface PSearchLocationViewController ()<CLLocationManagerDelegate>
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
@@ -21,12 +23,12 @@
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
-    BarImage.frame = CGRectMake(0, 0, screenWidth, 121);
-    tblview.frame = CGRectMake(0, 154, screenWidth, screenHeight - 154);
-    ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
-    SearchBar.frame = CGRectMake(0, 61, screenWidth, 53);
-    SearchLocationField.frame = CGRectMake(49, 66, screenWidth - 49 - 25, 44);
-    LineButton.frame = CGRectMake(0, 153, screenWidth, 1);
+    BarImage.frame = CGRectMake(0, 0, screenWidth, 66);
+    tblview.frame = CGRectMake(0, 92, screenWidth, screenHeight - 92 - 64);
+//    ShowTitle.frame = CGRectMake(15, 20, screenWidth - 30, 44);
+    SearchBar.frame = CGRectMake(0, 5, screenWidth, 53);
+    SearchLocationField.frame = CGRectMake(49, 10, screenWidth - 49 - 25, 44);
+    LineButton.frame = CGRectMake(0, 66, screenWidth, 1);
     SearchLocationField.delegate = self;
     
     CheckTbl = 0;
@@ -51,29 +53,41 @@
             }
         }
     }
+    
+    self.title = @"SUGGESTIONS";
+    
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"BackIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed:)];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+    
     [self.locationManager startUpdatingLocation];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-  //  self.screenName = @"IOS Provisioning Search Location";
 }
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+
+- (void)backButtonPressed:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(IBAction)BackButton:(id)sender{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.2;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    //[self presentViewController:ListingDetail animated:NO completion:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
-}
+//-(IBAction)BackButton:(id)sender{
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.2;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    //[self presentViewController:ListingDetail animated:NO completion:nil];
+//    [self dismissViewControllerAnimated:NO completion:nil];
+//}
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     NSLog(@"work here?");
     [SearchLocationField resignFirstResponder];
@@ -292,6 +306,7 @@
         LongArray = [[NSMutableArray alloc]init];
         
         address_componentsArray = [[NSMutableArray alloc]init];
+        address_dictionary = [NSMutableDictionary new];
         
         NSDictionary *geometryData = [GetresultsData valueForKey:@"geometry"];
         NSLog(@"geometryData ===== %@",geometryData);
@@ -309,12 +324,14 @@
             NSDictionary *address_componentsData = [dict valueForKey:@"address_components"];
             NSLog(@"address_componentsData is %@",address_componentsData);
              NSMutableArray *testarray = [[NSMutableArray alloc]init];
+            NSMutableDictionary *addressDict = [NSMutableDictionary new];
             for (NSDictionary *dict in address_componentsData) {
                 if([[dict objectForKey:@"types"] containsObject:@"country"])
                 {
                     NSLog(@"country : %@ ",[dict objectForKey:@"long_name"]);
                     NSString *FullString = [[NSString alloc]initWithFormat:@"\n   \"country\":\"%@\"",[dict objectForKey:@"long_name"]];
                     [testarray addObject:FullString];
+                    [addressDict setObject:[dict objectForKey:@"long_name"] forKey:@"country"];
                   //  break;
                 }
                 if([[dict objectForKey:@"types"] containsObject:@"route"])
@@ -322,6 +339,8 @@
                     NSLog(@"route : %@ ",[dict objectForKey:@"long_name"]);
                     NSString *FullString = [[NSString alloc]initWithFormat:@"\n   \"route\":\"%@\"",[dict objectForKey:@"long_name"]];
                     [testarray addObject:FullString];
+                    [addressDict setObject:[dict objectForKey:@"long_name"] forKey:@"route"];
+
                   //  break;
                 }
                 if([[dict objectForKey:@"types"] containsObject:@"administrative_area_level_1"])
@@ -329,6 +348,7 @@
                     NSLog(@"administrative_area_level_1 : %@ ",[dict objectForKey:@"long_name"]);
                     NSString *FullString = [[NSString alloc]initWithFormat:@"\n   \"administrative_area_level_1\":\"%@\"",[dict objectForKey:@"long_name"]];
                     [testarray addObject:FullString];
+                    [addressDict setObject:[dict objectForKey:@"long_name"] forKey:@"administrative_area_level_1"];
                     //  break;
                 }
                 if([[dict objectForKey:@"types"] containsObject:@"locality"])
@@ -336,6 +356,7 @@
                     NSLog(@"locality : %@ ",[dict objectForKey:@"long_name"]);
                     NSString *FullString = [[NSString alloc]initWithFormat:@"\n   \"locality\":\"%@\"",[dict objectForKey:@"long_name"]];
                     [testarray addObject:FullString];
+                    [addressDict setObject:[dict objectForKey:@"long_name"] forKey:@"locality"];
                     //  break;
                 }
                 
@@ -343,6 +364,7 @@
             NSLog(@"testarray is %@",testarray);
             NSString * result = [testarray componentsJoinedByString:@","];
            [address_componentsArray addObject:result];
+            [address_dictionary addEntriesFromDictionary:addressDict];
         }
         NSLog(@"address_componentsArray is %@",address_componentsArray);
         NSString *Getlat;
@@ -390,12 +412,17 @@
             NSDictionary *address_componentsData = [GetresultsData valueForKey:@"address_components"];
             NSLog(@"address_componentsData is %@",address_componentsData);
             NSMutableArray *testarray = [[NSMutableArray alloc]init];
+        
+            NSMutableDictionary *addressDict = [NSMutableDictionary new];
+        
             for (NSDictionary *dict in address_componentsData) {
                 if([[dict objectForKey:@"types"] containsObject:@"country"])
                 {
                     NSLog(@"country : %@ ",[dict objectForKey:@"long_name"]);
                     NSString *FullString = [[NSString alloc]initWithFormat:@"\n   \"country\":\"%@\"",[dict objectForKey:@"long_name"]];
                     [testarray addObject:FullString];
+                    
+                    [addressDict setObject:[dict objectForKey:@"long_name"] forKey:@"country"];
                     //  break;
                 }
                 if([[dict objectForKey:@"types"] containsObject:@"route"])
@@ -403,6 +430,8 @@
                     NSLog(@"route : %@ ",[dict objectForKey:@"long_name"]);
                     NSString *FullString = [[NSString alloc]initWithFormat:@"\n   \"route\":\"%@\"",[dict objectForKey:@"long_name"]];
                     [testarray addObject:FullString];
+                    
+                    [addressDict setObject:[dict objectForKey:@"long_name"] forKey:@"route"];
                     //  break;
                 }
                 if([[dict objectForKey:@"types"] containsObject:@"administrative_area_level_1"])
@@ -410,6 +439,9 @@
                     NSLog(@"administrative_area_level_1 : %@ ",[dict objectForKey:@"long_name"]);
                     NSString *FullString = [[NSString alloc]initWithFormat:@"\n   \"administrative_area_level_1\":\"%@\"",[dict objectForKey:@"long_name"]];
                     [testarray addObject:FullString];
+                    
+                    [addressDict setObject:[dict objectForKey:@"long_name"] forKey:@"administrative_area_level_1"];
+
                     //  break;
                 }
                 if([[dict objectForKey:@"types"] containsObject:@"locality"])
@@ -417,6 +449,8 @@
                     NSLog(@"locality : %@ ",[dict objectForKey:@"long_name"]);
                     NSString *FullString = [[NSString alloc]initWithFormat:@"\n   \"locality\":\"%@\"",[dict objectForKey:@"long_name"]];
                     [testarray addObject:FullString];
+                    
+                    [addressDict setObject:[dict objectForKey:@"long_name"] forKey:@"locality"];
                     //  break;
                 }
                 
@@ -440,24 +474,38 @@
         NSString * str = [SplitArray componentsJoinedByString:@","];
         NSLog(@"str is %@",str);
         
-        NSString *CreateJsonString = [[NSString alloc]initWithFormat:@"{\n  \"address_components\":\n  {%@\n  },\n  \"formatted_address\": \"%@\",\n  \"lat\": \"%@\",\n  \"lng\": \"%@\",\n  \"place_id\": \"%@\",\n  \"reference\": \"%@\",\n  \"type\": 2\n}",str,formattedaddressData,Getlat,Getlng,Getplace_id,Getreference];
-        NSLog(@"CreateJsonString is %@",CreateJsonString);
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:formattedaddressData forKey:@"Provisioning_LocationName"];
-        [defaults setObject:CreateJsonString forKey:@"Provisioning_FullJson"];
-        [defaults synchronize];
-        
-        
-        CATransition *transition = [CATransition animation];
-        transition.duration = 0.2;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromLeft;
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        //[self presentViewController:ListingDetail animated:NO completion:nil];
-        [self dismissViewControllerAnimated:NO completion:nil];
+//        NSString *CreateJsonString = [[NSString alloc]initWithFormat:@"{\n  \"address_components\":\n  {%@\n  },\n  \"formatted_address\": \"%@\",\n  \"lat\": \"%@\",\n  \"lng\": \"%@\",\n  \"place_id\": \"%@\",\n  \"reference\": \"%@\",\n  \"type\": 2\n}",str,formattedaddressData,Getlat,Getlng,Getplace_id,Getreference];
+//        NSLog(@"CreateJsonString is %@",CreateJsonString);
+//        
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setObject:formattedaddressData forKey:@"Provisioning_LocationName"];
+//        [defaults setObject:CreateJsonString forKey:@"Provisioning_FullJson"];
+//        [defaults synchronize];
+//        
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.2;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromLeft;
+//        [self.view.window.layer addAnimation:transition forKey:nil];
+//        //[self presentViewController:ListingDetail animated:NO completion:nil];
+//        [self dismissViewControllerAnimated:NO completion:nil];
 
+        
+        NSDictionary *dict = @{@"address_components" : addressDict,
+                               @"formatted_address" : formattedaddressData,
+                               @"lat" : Getlat,
+                               @"lng" : Getlng,
+                               @"place_id" : Getplace_id,
+                               @"reference" : Getreference,
+                               @"type" : @(2)};
+        
+    
+        if ([self.delegate respondsToSelector:@selector(DidSelectLocation:)]) {
+            [self.delegate DidSelectLocation:dict];
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
     
@@ -538,23 +586,37 @@
             NSString * str = [SplitArray componentsJoinedByString:@","];
             NSLog(@"str is %@",str);
             
-            NSString *CreateJsonString = [[NSString alloc]initWithFormat:@"{\n  \"address_components\":\n  {%@\n  },\n  \"formatted_address\": \"%@\",\n  \"lat\": \"%@\",\n  \"lng\": \"%@\",\n  \"type\": 2\n}",str,tempName,templat,templng];
-            NSLog(@"CreateJsonString is %@",CreateJsonString);
+//            NSString *CreateJsonString = [[NSString alloc]initWithFormat:@"{\n  \"address_components\":\n  {%@\n  },\n  \"formatted_address\": \"%@\",\n  \"lat\": \"%@\",\n  \"lng\": \"%@\",\n  \"type\": 2\n}",str,tempName,templat,templng];
+//            NSLog(@"CreateJsonString is %@",CreateJsonString);
+//            
+//            
+//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//            [defaults setObject:tempName forKey:@"Provisioning_LocationName"];
+//            [defaults setObject:CreateJsonString forKey:@"Provisioning_FullJson"];
+//            [defaults synchronize];
+//            
+//            CATransition *transition = [CATransition animation];
+//            transition.duration = 0.2;
+//            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//            transition.type = kCATransitionPush;
+//            transition.subtype = kCATransitionFromLeft;
+//            [self.view.window.layer addAnimation:transition forKey:nil];
+//            //[self presentViewController:ListingDetail animated:NO completion:nil];
+//            [self dismissViewControllerAnimated:NO completion:nil];
+            
+            NSDictionary *dict = @{@"address_components" : address_dictionary,
+                                   @"formatted_address" : tempName,
+                                   @"lat" : templat,
+                                   @"lng" : templng,
+                                   @"type" : @(2)};
             
             
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:tempName forKey:@"Provisioning_LocationName"];
-            [defaults setObject:CreateJsonString forKey:@"Provisioning_FullJson"];
-            [defaults synchronize];
+            if ([self.delegate respondsToSelector:@selector(DidSelectLocation:)]) {
+                [self.delegate DidSelectLocation:dict];
+            }
             
-            CATransition *transition = [CATransition animation];
-            transition.duration = 0.2;
-            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            transition.type = kCATransitionPush;
-            transition.subtype = kCATransitionFromLeft;
-            [self.view.window.layer addAnimation:transition forKey:nil];
-            //[self presentViewController:ListingDetail animated:NO completion:nil];
-            [self dismissViewControllerAnimated:NO completion:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+
         }
         
         

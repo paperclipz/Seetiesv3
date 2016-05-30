@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -39,24 +39,24 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1C-Zb-vlG" userLabel="right view">
-                                <rect key="frame" x="410" y="8" width="70" height="62"/>
+                                <rect key="frame" x="440" y="8" width="40" height="62"/>
                                 <subviews>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueTick.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yg2-Go-FAN" userLabel="check icon">
-                                        <rect key="frame" x="20" y="16" width="30" height="30"/>
+                                        <rect key="frame" x="5" y="16" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Z6k-85-yeU"/>
                                             <constraint firstAttribute="width" constant="30" id="bjs-fa-98b"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GoIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="L8U-m8-BTJ" userLabel="arrow icon">
-                                        <rect key="frame" x="40" y="11" width="30" height="40"/>
+                                        <rect key="frame" x="10" y="11" width="30" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="6lV-c6-HNn"/>
                                             <constraint firstAttribute="width" constant="30" id="pGu-z4-i6T"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CLOSED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0k-og-3lq">
-                                        <rect key="frame" x="8" y="22" width="54" height="18"/>
+                                        <rect key="frame" x="8" y="22" width="24" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="ydE-xv-xyF"/>
                                         </constraints>
@@ -69,7 +69,7 @@
                                     <constraint firstItem="L8U-m8-BTJ" firstAttribute="centerY" secondItem="m1C-Zb-vlG" secondAttribute="centerY" id="AcW-6F-055"/>
                                     <constraint firstItem="G0k-og-3lq" firstAttribute="centerX" secondItem="m1C-Zb-vlG" secondAttribute="centerX" id="DYK-wk-PxW"/>
                                     <constraint firstItem="G0k-og-3lq" firstAttribute="leading" secondItem="m1C-Zb-vlG" secondAttribute="leading" constant="8" id="No0-pr-JKA"/>
-                                    <constraint firstAttribute="width" constant="70" id="Rc8-0Z-Z5P"/>
+                                    <constraint firstAttribute="width" constant="40" id="Rc8-0Z-Z5P"/>
                                     <constraint firstItem="G0k-og-3lq" firstAttribute="centerY" secondItem="m1C-Zb-vlG" secondAttribute="centerY" id="YiC-TD-lRq"/>
                                     <constraint firstAttribute="trailing" secondItem="G0k-og-3lq" secondAttribute="trailing" constant="8" id="bf9-yW-ZGo"/>
                                     <constraint firstItem="Yg2-Go-FAN" firstAttribute="centerY" secondItem="m1C-Zb-vlG" secondAttribute="centerY" id="jrv-nO-MiS"/>
@@ -102,13 +102,13 @@
                             <constraint firstItem="NXJ-tU-sw8" firstAttribute="leading" secondItem="JCR-Zu-csV" secondAttribute="trailing" constant="8" id="UoX-nU-t4z"/>
                             <constraint firstItem="NXJ-tU-sw8" firstAttribute="centerY" secondItem="JCR-Zu-csV" secondAttribute="centerY" id="VyE-Dm-phZ"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7wj-9w-PtH" secondAttribute="bottom" constant="16" id="emf-az-imm"/>
-                            <constraint firstItem="m1C-Zb-vlG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7wj-9w-PtH" secondAttribute="trailing" constant="8" id="fOI-XS-sDW"/>
+                            <constraint firstItem="m1C-Zb-vlG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7wj-9w-PtH" secondAttribute="trailing" constant="2" id="fOI-XS-sDW"/>
                             <constraint firstAttribute="bottom" secondItem="m1C-Zb-vlG" secondAttribute="bottom" constant="8" id="g9t-9c-cwa"/>
                             <constraint firstItem="m1C-Zb-vlG" firstAttribute="top" secondItem="IwM-Bq-GiU" secondAttribute="top" constant="8" id="mjc-T4-MVb"/>
                             <constraint firstItem="JCR-Zu-csV" firstAttribute="leading" secondItem="K6D-zC-qUx" secondAttribute="trailing" constant="8" id="o2S-XZ-d7N"/>
                             <constraint firstAttribute="trailing" secondItem="m1C-Zb-vlG" secondAttribute="trailing" id="o9h-4b-xJ9"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="71" id="uFh-br-7e2"/>
-                            <constraint firstItem="m1C-Zb-vlG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NXJ-tU-sw8" secondAttribute="trailing" constant="8" id="xsH-Kx-SPY"/>
+                            <constraint firstItem="m1C-Zb-vlG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NXJ-tU-sw8" secondAttribute="trailing" constant="2" id="xsH-Kx-SPY"/>
                             <constraint firstItem="zri-ly-21j" firstAttribute="top" secondItem="JCR-Zu-csV" secondAttribute="bottom" id="y0g-uR-Lpe"/>
                         </constraints>
                     </view>

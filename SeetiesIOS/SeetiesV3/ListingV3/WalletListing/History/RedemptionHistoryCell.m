@@ -61,11 +61,11 @@
     @try {
         NSString* imageURL = shopModel.profile_photo[@"picture"];
         if (![Utils isStringNull:imageURL]) {
-            [self.ibDealImage sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] completed:^(UIImage *image) {
+            [self.ibDealImage sd_setImageCroppedWithURL:[NSURL URLWithString:imageURL] withPlaceHolder:[Utils getShopPlaceHolderImage] completed:^(UIImage *image) {
             }];
         }
         else{
-            [self.ibDealImage setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+            [self.ibDealImage setImage:[Utils getShopPlaceHolderImage]];
         }
         [Utils setRoundBorder:self.ibDealImage color:[UIColor colorWithRed:238/255.0f green:238/255.0f blue:238/255.0f alpha:1] borderRadius:2.5f];
     }
@@ -82,16 +82,16 @@
     
     NSString *status = self.voucher.voucher_info.status;
     if ([status isEqualToString:VOUCHER_STATUS_REDEEMED]) {
-        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"REDEEMED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"REDEEMED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]?[dateFormatter stringFromDate:historyDate]:@""}];
     }
     else if ([status isEqualToString:VOUCHER_STATUS_EXPIRED]){
-        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"EXPIRED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"EXPIRED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]?[dateFormatter stringFromDate:historyDate]:@""}];
     }
     else if ([status isEqualToString:VOUCHER_STATUS_DELETED]){
-        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"DELETED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"DELETED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]?[dateFormatter stringFromDate:historyDate]:@""}];
     }
     else if ([status isEqualToString:VOUCHER_STATUS_CANCELLED]){
-        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"CANCELLED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]}];
+        self.ibRedemptionDateLbl.text = [LanguageManager stringForKey:@"CANCELLED ON {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:historyDate]?[dateFormatter stringFromDate:historyDate]:@""}];
     }
     else{
         self.ibRedemptionDateLbl.text = [[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:historyDate]] uppercaseString];

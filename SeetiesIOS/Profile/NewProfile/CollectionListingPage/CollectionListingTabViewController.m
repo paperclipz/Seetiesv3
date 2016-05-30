@@ -110,14 +110,6 @@
 
 #pragma mark - Declaration
 
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [ShareV2ViewController new];
-    }
-    
-    return _shareV2ViewController;
-}
 -(NSMutableArray*)arrCollections
 {
     if(!_arrCollections)
@@ -157,16 +149,6 @@
     
     cell.btnShareClicked = ^(void)
     {
-//        _shareV2ViewController = nil;
-//        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//        [naviVC setNavigationBarHidden:YES animated:NO];
-//        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:weakModel.collection_id userID:weakModel.user_info.uid];
-//        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//        [self presentViewController:formSheetController animated:YES completion:nil];
-        
         //New Sharing Screen
         CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
         
@@ -203,11 +185,12 @@
     NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
-                           @"uid":self.userID
+                           @"uid":self.userID?self.userID:@""
                            };
     
     [self.ibTableView showLoading];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserCollections param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserCollections parameter:dict appendString:appendString success:^(id object) {
         
         isMiddleOfCallingServer = false;
         self.userCollectionsModel = [[ConnectionManager dataManager]userCollectionsModel];
@@ -228,7 +211,7 @@
         }
 
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         isMiddleOfCallingServer = false;
         [self.ibTableView hideAll];
 
@@ -251,7 +234,7 @@
                            };
     [self.ibTableView showLoading];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserFollowingCollections param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserFollowingCollections parameter:dict appendString:appendString success:^(id object) {
         
         isMiddleOfCallingServer = false;
         self.userCollectionsModel = [[ConnectionManager dataManager]userFollowingCollectionsModel];
@@ -268,7 +251,7 @@
             [self.ibTableView hideAll];
             
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         isMiddleOfCallingServer = false;
         [self.ibTableView hideAll];
 
@@ -291,7 +274,7 @@
     
     [self.ibTableView showLoading];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserSuggestedCollections param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserSuggestedCollections parameter:dict appendString:appendString success:^(id object) {
         
         isMiddleOfCallingServer = false;
         self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
@@ -308,7 +291,7 @@
             [self.ibTableView hideAll];
             
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         isMiddleOfCallingServer = false;
         [self.ibTableView hideAll];
 
@@ -330,7 +313,7 @@
     
     [self.ibTableView showLoading];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserSuggestedCollections param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserSuggestedCollections parameter:dict appendString:appendString success:^(id object) {
         
         isMiddleOfCallingServer = false;
         self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
@@ -346,7 +329,7 @@
             [self.ibTableView hideAll];
             
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         isMiddleOfCallingServer = false;
         [self.ibTableView hideAll];
 
@@ -366,7 +349,7 @@
             if (![DataManager isCollectionFollowed:colModel.collection_id isFollowing:colModel.following]) {
                 
                 
-                [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+                [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
                     
                     NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
                     BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -377,22 +360,22 @@
                     
                     [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
                     
-                } errorBlock:^(id object) {
+                } failure:^(id object) {
                     
                 }];
                 
             }
             else{// TO UNFOLLOW
                 
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are You Sure You Want To Unfollow") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:[NSString stringWithFormat:@"%@ %@",LocalisedString(@"Are You Sure You Want To Unfollow"),colModel.name] message:nil style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"YES"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == [alertView cancelButtonIndex]) {
                         NSLog(@"Cancelled");
                         
                     } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
                         
-                        
-                        [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+                        [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
+
                             
                             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
                             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -404,7 +387,7 @@
                             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
                             
                             
-                        } errorBlock:^(id object) {
+                        } failure:^(id object) {
                         }];
 
                         
@@ -425,10 +408,11 @@
                            @"user_ids":self.userID
                            };
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostShareCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostShareCollection parameter:dict appendString:appendString success:^(id object) {
+
         
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 
@@ -450,7 +434,7 @@
     
     [self.ibTableView showLoading];
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetSeetiShopCollection param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetiShopCollection parameter:dict appendString:appendString success:^(id object) {
         isMiddleOfCallingServer = false;
         self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
@@ -465,7 +449,7 @@
             [self.ibTableView hideAll];
             
         }
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         isMiddleOfCallingServer = false;
         [self.ibTableView hideAll];
 

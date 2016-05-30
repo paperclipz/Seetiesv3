@@ -12,10 +12,57 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9jT-ku-5rC">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OfflineImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="va6-Mu-jOw">
+                            <rect key="frame" x="243" y="173" width="115" height="115"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ao-Y3-ocM">
+                            <rect key="frame" x="240" y="335" width="120" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="LzV-Ht-3Ao"/>
+                                <constraint firstAttribute="height" constant="40" id="qmD-jH-ruf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Tap to refresh">
+                                <color key="titleColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" red="0.58823529411764708" green="0.87058823529411766" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uh oh. We sense a weak connection and can't refresh." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rm-67-nSd">
+                            <rect key="frame" x="50" y="288" width="500" height="42"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="42" id="Mxs-n9-1Gi"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="1Rm-67-nSd" firstAttribute="leading" secondItem="va6-Mu-jOw" secondAttribute="leading" id="1K3-i8-pxf"/>
+                        <constraint firstItem="va6-Mu-jOw" firstAttribute="centerX" secondItem="9jT-ku-5rC" secondAttribute="centerX" id="Eim-YQ-i9Q"/>
+                        <constraint firstAttribute="trailing" secondItem="1Rm-67-nSd" secondAttribute="trailing" constant="50" id="T1J-cR-sd5"/>
+                        <constraint firstItem="4ao-Y3-ocM" firstAttribute="centerX" secondItem="1Rm-67-nSd" secondAttribute="centerX" id="Tzq-OM-nAD"/>
+                        <constraint firstItem="4ao-Y3-ocM" firstAttribute="top" secondItem="1Rm-67-nSd" secondAttribute="bottom" constant="5" id="Xyp-1q-Vms"/>
+                        <constraint firstItem="1Rm-67-nSd" firstAttribute="top" secondItem="va6-Mu-jOw" secondAttribute="bottom" id="ef9-2L-7jq"/>
+                        <constraint firstItem="va6-Mu-jOw" firstAttribute="centerY" secondItem="9jT-ku-5rC" secondAttribute="centerY" constant="-70" id="x42-be-FCR"/>
+                        <constraint firstItem="1Rm-67-nSd" firstAttribute="leading" secondItem="9jT-ku-5rC" secondAttribute="leading" constant="50" id="xtj-yh-28H"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="1K3-i8-pxf"/>
+                        </mask>
+                    </variation>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wY7-Hj-gK9" userLabel="loading view">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collect Now Pay Later" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOr-zg-4bO" userLabel="loading txt">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collect Now Collect At Shop" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOr-zg-4bO" userLabel="loading txt">
                             <rect key="frame" x="250" y="325" width="100" height="41"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="U1o-FT-ubt"/>
@@ -113,13 +160,21 @@
                 <constraint firstAttribute="trailing" secondItem="wY7-Hj-gK9" secondAttribute="trailing" id="VeG-iM-9M4"/>
                 <constraint firstAttribute="bottom" secondItem="qdf-ag-GoF" secondAttribute="bottom" id="WHg-pN-Ivl"/>
                 <constraint firstItem="wY7-Hj-gK9" firstAttribute="top" secondItem="D3W-fW-bwZ" secondAttribute="top" id="aqJ-96-Flx"/>
+                <constraint firstAttribute="bottom" secondItem="9jT-ku-5rC" secondAttribute="bottom" id="gGu-oH-UxD"/>
+                <constraint firstAttribute="trailing" secondItem="9jT-ku-5rC" secondAttribute="trailing" id="iFb-SI-tqX"/>
+                <constraint firstItem="9jT-ku-5rC" firstAttribute="leading" secondItem="D3W-fW-bwZ" secondAttribute="leading" id="iYW-ME-3jO"/>
                 <constraint firstItem="qdf-ag-GoF" firstAttribute="leading" secondItem="D3W-fW-bwZ" secondAttribute="leading" id="p8A-ZG-ZNf"/>
+                <constraint firstItem="9jT-ku-5rC" firstAttribute="top" secondItem="D3W-fW-bwZ" secondAttribute="top" id="sBc-es-k8S"/>
             </constraints>
             <connections>
+                <outlet property="btnRefresh" destination="4ao-Y3-ocM" id="fIM-Ol-FDc"/>
                 <outlet property="emptyStateDesc" destination="0TH-Tt-bZF" id="2Ce-tM-Fcz"/>
                 <outlet property="emptyStateTitle" destination="RAr-0a-ng6" id="nPU-8q-VYN"/>
+                <outlet property="lblLoading" destination="zOr-zg-4bO" id="nVN-cM-z3l"/>
+                <outlet property="lblNoInternet" destination="1Rm-67-nSd" id="tJy-eT-PPK"/>
                 <outlet property="loadingImage" destination="Y8Y-1p-yr1" id="aUI-L0-QlV"/>
                 <outlet property="loadingView" destination="wY7-Hj-gK9" id="tng-cZ-Ilx"/>
+                <outlet property="noInternetConnectionView" destination="9jT-ku-5rC" id="iPG-nM-3HJ"/>
                 <outlet property="noResultView" destination="qdf-ag-GoF" id="Mqn-sg-VYU"/>
             </connections>
             <point key="canvasLocation" x="1382" y="338"/>
@@ -128,5 +183,6 @@
     <resources>
         <image name="EmptyStateImg.png" width="288" height="288"/>
         <image name="Loading.gif" width="249" height="249"/>
+        <image name="OfflineImg.png" width="115" height="115"/>
     </resources>
 </document>

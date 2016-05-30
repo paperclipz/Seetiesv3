@@ -8,6 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 
+@class DealCollectionModel;
 @protocol ProfileModel
 @end
 
@@ -27,6 +28,11 @@
 
 @property(nonatomic,strong)CollectionModel* collectionInfo;
 
+//for referral notification usage
+@property(nonatomic,strong)DealCollectionModel* deal_collection;
+@property(nonatomic,strong)NSString* referral_u_id;
+
+
 //for following notification
 @property(nonatomic,strong)NSDictionary* followCollectionInfo;
 @property(nonatomic,strong)NSArray<ProfileModel>* arrFollowingUsers;
@@ -36,4 +42,14 @@
 //for collection Notification
 @property(nonatomic,strong)NSArray<CollectionModel>* arrCollections;
 
+//for type seeties || action collection
+@property(nonatomic,strong)NSString* collection_id;
+//for type seeties || action seetishop
+@property(nonatomic,strong)NSString* seetishop_id;
+//for type seeties || action url
+@property(nonatomic,strong)NSString* url;
+//for type seeties || action deal ID
+@property(nonatomic,strong)NSString* deal_id;
+//for type seeties || action deal collection ID
+@property(nonatomic,strong)NSString* deal_collection_id;
 @end

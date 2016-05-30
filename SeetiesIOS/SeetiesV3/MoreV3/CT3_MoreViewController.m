@@ -8,15 +8,14 @@
 
 #import "CT3_MoreViewController.h"
 #import "SettingsTableViewCell.h"
-#import "RecommendationViewController.h"
-#import "DoImagePickerController.h"
-#import "DraftAndRecommendationDelegate.h"
 #import "FeedbackViewController.h"
 #import "CTWebViewController.h"
 #import "CT3_AcctSettingViewController.h"
-#import "PromoPopOutViewController.h"
 #import "IntroCoverView.h"
 #import "AppDelegate.h"
+//#import "DraftAndRecommendationDelegate.h"
+//#import "DoImagePickerController.h"
+//#import "RecommendationViewController.h"
 
 @interface CT3_MoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -27,13 +26,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblVersion;
 
 
-@property (nonatomic,strong)RecommendationViewController* recommendationViewController;
-@property (nonatomic,strong)DoImagePickerController* imagePickerViewController;
-@property(nonatomic)DraftAndRecommendationDelegate* recommendDelegate;
+//@property (nonatomic,strong)RecommendationViewController* recommendationViewController;
+//@property (nonatomic,strong)DoImagePickerController* imagePickerViewController;
+//@property(nonatomic)DraftAndRecommendationDelegate* recommendDelegate;
 @property(nonatomic)FeedbackViewController* feedbackViewController;
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
-@property(nonatomic)PromoPopOutViewController* promoPopOutViewController;
 @property(nonatomic)IntroCoverView* introView;
 
 @end
@@ -57,7 +55,6 @@
     
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -65,11 +62,20 @@
 
 -(void)initSelfView{
     
+    
     @try {
         NSString * version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
         NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
         
-        self.lblVersion.text = [NSString stringWithFormat:@"app Version : %@ app Build : %@",version,build];
+
+        if ([Utils isAppProductionBuild]) {
+            self.lblVersion.text = [NSString stringWithFormat:@"app Version : %@ app Build : %@",version,build];
+
+        }
+        else{
+            self.lblVersion.text = [NSString stringWithFormat:@"app Version : %@ app Build : %@ DEV",version,build];
+
+        }
 
     }
     @catch (NSException *exception) {
@@ -80,7 +86,7 @@
     self.ibTableView.dataSource = self;
     [self.ibTableView registerClass:[SettingsTableViewCell class] forCellReuseIdentifier:@"SettingsTableViewCell"];
     
-    self.recommendDelegate = [DraftAndRecommendationDelegate new];
+    //self.recommendDelegate = [DraftAndRecommendationDelegate new];
    
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -106,7 +112,7 @@
         }
         else
         {
-            title.text = LocalisedString(@"Shortcut");
+            title.text = LocalisedString(@"");
         }
     }
     if(section == 1)
@@ -120,7 +126,20 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 44;
+
+    if ([Utils isGuestMode]) {
+        return 44;
+
+    }
+    else{
+        if (section == 0) {
+            return 0;
+        }
+        else{
+            return 44;
+
+        }
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -135,8 +154,8 @@
         
         if ([Utils isPhoneNumberVerified]) {
             
-            ProfileModel *profileModel = [[DataManager Instance] currentUserProfileModel];
-            cell.lblTitle.text = [LanguageManager stringForKey:@"Phone Number = {!phone number}" withPlaceHolder:@{@"{!phone number}": profileModel.contact_no}];
+            ProfileModel *profileModel = [[DataManager Instance] getCurrentUserProfileModel];
+            cell.lblTitle.text = [LanguageManager stringForKey:@"Phone Number = {!phone number}" withPlaceHolder:@{@"{!phone number}": profileModel.contact_no?profileModel.contact_no:@""}];
             
             @try {
                 cell.ibImageView.image = [self getIconImage:@"Verified"];
@@ -189,22 +208,22 @@
                 
                 [Utils showLogin];
             }
-            else
-            {
-                switch (indexPath.row) {
-                
-                    case 0://recommend
-                        [self gotoRecommendationPage];
-                        break;
-                    case 1://draft
-                        [self gotoDraftPage];
-                        break;
-                        
-                    default:
-                        break;
-                }
-
-            }
+//            else
+//            {
+//                switch (indexPath.row) {
+//                
+//                    case 0://recommend
+//                        [self gotoRecommendationPage];
+//                        break;
+//                    case 1://draft
+//                        [self gotoDraftPage];
+//                        break;
+//                        
+//                    default:
+//                        break;
+//                }
+//
+//            }
             
             
             break;
@@ -221,15 +240,7 @@
                     
                     if ([Utils isPhoneNumberVerified]) {
                         
-                        _promoPopOutViewController = nil;
-                        
-                        [self.promoPopOutViewController setViewType:PopOutViewTypeChangeVerifiedPhone];
-                        
-                        
-                        STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
-                        popOutController.containerView.backgroundColor = [UIColor clearColor];
-                        [popOutController setNavigationBarHidden:YES];
-                        [popOutController presentInViewController:self];
+                        [Utils showChangeVerifiedPhoneNumber:self];
 
                     }
                     else{
@@ -319,15 +330,6 @@
 
 #pragma mark - Declaration
 
--(PromoPopOutViewController*)promoPopOutViewController
-{
-    if (!_promoPopOutViewController) {
-        _promoPopOutViewController = [PromoPopOutViewController new];
-    }
-    
-    return _promoPopOutViewController;
-}
-
 -(CT3_AcctSettingViewController*)ct3_AcctSettingViewController
 {
     if (!_ct3_AcctSettingViewController) {
@@ -358,8 +360,9 @@
     if (!_arrData) {
         
         if (![Utils isGuestMode]) {
-            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
-           
+           // NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Write a Recommendation",@"Drafts", nil];//@"Notification Settings"
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects: nil];//@"Notification Settings"
+
             NSArray *secondItemsArray;
             if ([ [ UIScreen mainScreen ] bounds ].size.height > 480) {
                 secondItemsArray = [[NSArray alloc] initWithObjects:@"Verify your phone number",@"Account Settings",@"Tour Seeties App", @"Rate Us",@"About Us",@"Speak to Us", nil];
@@ -376,7 +379,7 @@
         }
         else
         {
-            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log In", nil];//@"Notification Settings"
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log in", nil];//@"Notification Settings"
             
             NSArray *secondItemsArray;
             if ([ [ UIScreen mainScreen ] bounds ].size.height > 480) {
@@ -397,18 +400,18 @@
     return _arrData;
 }
 
--(RecommendationViewController*)recommendationViewController
-{
-    if (!_recommendationViewController) {
-        _recommendationViewController = [RecommendationViewController new];
-    }
-    
-    return _recommendationViewController;
-}
+//-(RecommendationViewController*)recommendationViewController
+//{
+//    if (!_recommendationViewController) {
+//        _recommendationViewController = [RecommendationViewController new];
+//    }
+//    
+//    return _recommendationViewController;
+//}
 
 -(void)gotoDraftPage
 {
-    [self.recommendDelegate showDraftView:self];
+   // [self.recommendDelegate showDraftView:self];
     // go to draft
 }
 
@@ -419,14 +422,14 @@
 //    [self presentViewController:nav animated:YES completion:nil];
 //    [self.recommendationViewController initData:2 sender:nav];
     
-    [self.recommendDelegate showRecommendationView:self];
+   // [self.recommendDelegate showRecommendationView:self];
 
 }
 
 -(void)logout
 {
     
-    [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to sign out of Seeties?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Maybe not..") otherButtonTitles:@[@"Yeah!!"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+    [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Are you sure you want to sign out of Seeties?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Maybe not..") otherButtonTitles:@[LocalisedString(@"Yeah!!")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
         
         if (buttonIndex == 0) {
             
@@ -449,7 +452,8 @@
                            };
     
     [LoadingManager show];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetLogout param:dict appendString:nil completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetLogout parameter:dict appendString:nil success:^(id object) {
         
         [LoadingManager hide];
 
@@ -457,7 +461,7 @@
 //        _arrData = nil;
 //        [self.ibTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
 
     }];
@@ -542,7 +546,7 @@
             break;
             
         }
-           CASE(@"Sign up or Log In")
+           CASE(@"Sign up or Log in")
         {
             imageName = @"MoreSignUpOrLogInIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];

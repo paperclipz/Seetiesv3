@@ -19,4 +19,8 @@
 -(void)hideAll;
 
 -(void)setupCustomEmptyView;
+
+- (void)handleControlEvent:(UIControlEvents)event withBlock:(VoidBlock)block;
+- (void)callBlock:(id)sender;
+
 @end

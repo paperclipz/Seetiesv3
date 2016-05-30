@@ -7,10 +7,10 @@
 //
 
 #import "LoginPageViewController.h"
-#import "ForgotPasswordViewController.h"
+#import "CT3_ForgotPasswordViewController.h"
 
 @interface LoginPageViewController ()
-@property(nonatomic)ForgotPasswordViewController* forgotPasswordViewController;
+@property(nonatomic)CT3_ForgotPasswordViewController* forgotPasswordViewController;
 
 @property (weak, nonatomic) IBOutlet UITextField *lblUserName;
 @property (weak, nonatomic) IBOutlet UITextField *lblPassword;
@@ -35,6 +35,17 @@
 
         }
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == self.lblUserName) {
+        [self.lblPassword becomeFirstResponder];
+    }
+    else if (textField == self.lblPassword){
+        [self btnLoginClicked:textField];
+    }
+    
+    return NO;
 }
 
 -(void)refreshView
@@ -91,9 +102,9 @@
     self.lblUserName.placeholder = LocalisedString(@"username/ email address");
     self.lblPassword.placeholder = LocalisedString(@"password");
 
-    self.lblTitle.text = LocalisedString(@"Log In");
-    [self.btnLogin setTitle:LocalisedString(@"Log In") forState:UIControlStateNormal];
-    [self.btnForgetPassword setTitle:LocalisedString(@"Forget password?") forState:UIControlStateNormal];
+    self.lblTitle.text = LocalisedString(@"Log in");
+    [self.btnLogin setTitle:LocalisedString(@"Log in") forState:UIControlStateNormal];
+    [self.btnForgetPassword setTitle:LocalisedString(@"ForgotPassword") forState:UIControlStateNormal];
 
 }
 - (void)didReceiveMemoryWarning {
@@ -113,10 +124,10 @@
 
 #pragma mark - Declaration
 
--(ForgotPasswordViewController*)forgotPasswordViewController
+-(CT3_ForgotPasswordViewController*)forgotPasswordViewController
 {
     if (!_forgotPasswordViewController) {
-        _forgotPasswordViewController = [ForgotPasswordViewController new];
+        _forgotPasswordViewController = [CT3_ForgotPasswordViewController new];
     }
     
     return _forgotPasswordViewController;

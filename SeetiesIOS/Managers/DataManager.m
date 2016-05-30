@@ -211,7 +211,6 @@
 
 }
 
-
 +(BOOL)isUserFollowed:(NSString*)UserID isFollowing:(BOOL)isFollowing
 {
     
@@ -228,9 +227,7 @@
     
     return isCollected;
     
-    
 }
-
 
 +(void)setUserFollowing:(NSString*)UserID isFollowing:(BOOL)following
 {
@@ -249,7 +246,22 @@
      postNotificationName:@"updatePhoneVerification"
      object:self];
     
+    [ProfileModel saveUserProfile:model];
+    
 }
 
+// for offline mode
+-(ProfileModel*)getCurrentUserProfileModel
+{
+    if (_currentUserProfileModel) {
+        return _currentUserProfileModel;
+    }
+    else{
+        
+        return [ProfileModel getUserProfile];
 
+    }
+    
+    return _currentUserProfileModel;
+}
 @end

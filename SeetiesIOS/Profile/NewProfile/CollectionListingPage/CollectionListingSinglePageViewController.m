@@ -16,7 +16,6 @@
 @interface CollectionListingSinglePageViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
 @property(nonatomic)NSMutableArray* arrCollections;
-@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
 
@@ -87,17 +86,7 @@
     
     cell.btnShareClicked = ^(void)
     {
-//        _shareV2ViewController = nil;
-//        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//        [naviVC setNavigationBarHidden:YES animated:NO];
-//        [self.shareV2ViewController share:@"" title:weakModel.postDesc imagURL:@"" shareType:ShareTypeCollection shareID:weakModel.collection_id userID:weakModel.user_info.uid];
-//        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//        [self presentViewController:formSheetController animated:YES completion:nil];
-        
-        //New Sharing Screen
+
         CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
         
         dataToPost.title = weakModel.postDesc;
@@ -127,15 +116,6 @@
     return _collectionViewController;
 }
 
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [ShareV2ViewController new];
-    }
-    
-    return _shareV2ViewController;
-}
-
 -(EditCollectionViewController*)editCollectionViewController
 {
     if (!_editCollectionViewController) {
@@ -161,7 +141,7 @@
     if (![DataManager isCollectionFollowed:colModel.collection_id isFollowing:colModel.following]) {
         
         
-        [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostFollowCollection param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
             
             NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object[@"data"]];
             BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -172,7 +152,7 @@
             
             [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
             
-        } errorBlock:^(id object) {
+        } failure:^(id object) {
             
         }];
         
@@ -186,8 +166,7 @@
                 
             } else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:LocalisedString(@"YES")]) {
                 
-                
-                [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypePostFollowCollection param:dict appendString:appendString completeHandler:^(id object) {
+                [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypePostFollowCollection parameter:dict appendString:appendString success:^(id object) {
                     
                     NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
                     BOOL following = [[returnDict objectForKey:@"following"] boolValue];
@@ -199,7 +178,7 @@
                     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
                     
                     
-                } errorBlock:^(id object) {
+                } failure:^(id object) {
                 }];
                 
                 

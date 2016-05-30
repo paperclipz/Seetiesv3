@@ -16,7 +16,6 @@
 #import "DealDetailsViewController.h"
 #import "CAPSPageMenu.h"
 #import "HMSegmentedControl.h"
-#import "Masonry.h"
 
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
@@ -86,10 +85,11 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [IQKeyboardManager sharedManager].enable = false;
+  //  [IQKeyboardManager sharedManager].enable = false;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
     [self InitSelfView];
     
@@ -118,9 +118,6 @@
     self.ibSearchTableView.delegate = self;
     self.ibSearchTableView.dataSource = self;
     
-    [self formatShopFilter];
-    [self formatCollectionFilter];
-    [self formatPostFilter];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -149,11 +146,20 @@
     view.contentSize = CGSizeMake(frame.size.width*arryViewControllers.count , view.frame.size.height);
     
     
+    NSString* fontName;
+    
+    if ([[LanguageManager getDeviceAppLanguageCode] isEqualToString:TAIWAN_SERVER_NAME] ||
+        [[LanguageManager getDeviceAppLanguageCode] isEqualToString:CHINESE_SERVER_NAME]) {
+        fontName = @"PingFangTC-Regular";
+    }
+    else{
+        fontName = CustomFontNameBold;
+    }
     self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
     self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : TEXT_GRAY_COLOR,
-                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+                                                  NSFontAttributeName : [UIFont fontWithName:fontName size:14.0f]};
     self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : ONE_ZERO_TWO_COLOR,
-                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+                                                  NSFontAttributeName : [UIFont fontWithName:fontName size:14.0f]};
 
     self.segmentedControl.sectionTitles = arrTitles;
     self.segmentedControl.selectedSegmentIndex = 0;
@@ -168,14 +174,13 @@
     [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
            [weakSelf.ibSegmentedControlScrollView scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
     }];
-    
-
-
-    
 }
 
 -(void)InitSelfView{
 
+    [self registerForKeyboardNotifications];
+
+    
     self.arrViewControllers = @[self.shopListingTableViewController,self.collectionListingTableViewController,self.PostsListingTableViewController,self.SeetizensListingTableViewController];
     [self initSegmentedControlViewInView:self.ibSegmentedControlScrollView ContentView:self.ibSegmentedControlView ViewControllers:self.arrViewControllers];
     
@@ -187,6 +192,10 @@
     self.ibLocationText.text = self.locationName;
     [self.ibSearchContentView setSideCurveBorder];
     [self.ibLocationContentView setSideCurveBorder];
+    
+    [self formatShopFilter];
+    [self formatCollectionFilter];
+    [self formatPostFilter];
 
 //    CGRect frame = [Utils getDeviceScreenSize];
 //    [self.ibScrollView setWidth:frame.size.width];
@@ -268,7 +277,7 @@
     //Category
     FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
     catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    catCategory.categoryName = LocalisedString(@"Deals by Category");
+    catCategory.categoryName = LocalisedString(@"Category");
     catCategory.filterCategoryType = FilterTypeCat;
     
     HomeModel *homeModel = [[DataManager Instance] homeModel];
@@ -374,7 +383,7 @@
     //Category
     FilterCategoryModel *catCategory = [[FilterCategoryModel alloc] init];
     catCategory.filtersArray = [[NSMutableArray<FilterModel> alloc] init];
-    catCategory.categoryName = LocalisedString(@"Deals by Category");
+    catCategory.categoryName = LocalisedString(@"Category");
     catCategory.filterCategoryType = FilterTypeCat;
     
     HomeModel *homeModel = [[DataManager Instance] homeModel];
@@ -464,7 +473,7 @@
     AppInfoModel *appInfoModel = [[DataManager Instance] appInfoModel];
     for (CategoryModel *categoryModel in appInfoModel.categories) {
         FilterModel *filter = [[FilterModel alloc] init];
-        NSString *languageCode = [Utils getDeviceAppLanguageCode];
+        NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
         NSString *name = categoryModel.single_line[languageCode];
         filter.name = name? name : @"";
         filter.filterId = [NSString stringWithFormat:@"%d", categoryModel.category_id];
@@ -875,6 +884,10 @@
     if(tableView == self.ibLocationTableView)
     {
         [self processDataForGoogleLocation:indexPath];
+        
+        self.ibLocationTableView.hidden = YES;
+        self.ibSearchTableView.hidden = YES;
+
 
     }
     else if(tableView == self.ibSearchTableView)
@@ -970,7 +983,8 @@
     NSString *tagStr = [tag stringByReplacingOccurrencesOfString:@" " withString:@""];
 
     //[LoadingManager show];
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetTagsSuggestion  param:dict appendString:tagStr completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetTagsSuggestion parameter:dict appendString:tagStr success:^(id object) {
         
         self.arrSimpleTagList =[[NSMutableArray alloc]initWithArray:[[[ConnectionManager dataManager] tagModel] arrayTag] ];
         
@@ -978,7 +992,7 @@
 
         [self.ibSearchTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -1019,7 +1033,8 @@
     
     NSDictionary* dict = @{@"placeid":placeID,@"key":GOOGLE_API_KEY};
     
-    [[ConnectionManager Instance] requestServerWithPost:NO customURL:GOOGLE_PLACE_DETAILS_API requestType:ServerRequestTypeGoogleSearchWithDetail param:dict completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGoogleSearchWithDetail parameter:dict appendString:nil success:^(id object) {
         
         SearchLocationDetailModel* googleSearchDetailModel = [[ConnectionManager dataManager] googleSearchDetailModel];
         
@@ -1047,8 +1062,9 @@
 //            self.didSelectOnLocationBlock(recommendationVenueModel);
 //        }
         
-    } errorBlock:nil];
+    } failure:^(id object) {
     
+    }];
 }
 
 #pragma mark - Show View
@@ -1057,7 +1073,7 @@
 {
     _dealDetailsViewController = nil;
     
-    [self.dealDetailsViewController setDealModel:model];
+    [self.dealDetailsViewController initDealModel:model];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         
         [self.dealDetailsViewController setupView];
@@ -1368,6 +1384,45 @@
     NSInteger page = scrollView.contentOffset.x / pageWidth;
     
     [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
+}
+
+#pragma mark - Keyboard ScrollView 
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.ibSearchTableView.contentInset = contentInsets;
+    self.ibSearchTableView.scrollIndicatorInsets = contentInsets;
+    
+//    // If active text field is hidden by keyboard, scroll it so it's visible
+//    // Your application might not need or want this behavior.
+//    CGRect aRect = self.view.frame;
+//    aRect.size.height -= kbSize.height;
+//    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
+//        CGPoint scrollPoint = CGPointMake(0.0, activeField.frame.origin.y-kbSize.height);
+//        [self.ibScrollView setContentOffset:scrollPoint animated:YES];
+//    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.ibSearchTableView.contentInset = contentInsets;
+    self.ibSearchTableView.scrollIndicatorInsets = contentInsets;
 }
 
 @end

@@ -12,6 +12,8 @@
 #import "ActionSheetPicker.h"
 #import "CTWebViewController.h"
 #import "ChangePasswordViewController.h"
+#import "FBLoginManager.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface CT3_AcctSettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic)CTWebViewController* webViewController;
@@ -55,7 +57,7 @@
     self.ibTableView.delegate = self;
     self.ibTableView.dataSource = self;
     
-    self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
+    self.profileModel = [[ConnectionManager dataManager]getCurrentUserProfileModel];
     
     if ([Utils isStringNull:self.profileModel.fb_id]) {
         
@@ -170,7 +172,7 @@
                 cell.lblTitle.text = LocalisedString(desc);
                 
                 
-                cell.lblDesc.text = [Utils getLanguageName:[Utils getDeviceAppLanguageCode]];
+                cell.lblDesc.text = [Utils getLanguageName:[LanguageManager getDeviceAppLanguageCode]];
             }
             @catch (NSException *exception) {
                 
@@ -198,7 +200,7 @@
                    
                     cell.lblDesc.text = @"";
 
-                    ProfileModel*pModel = [[ConnectionManager dataManager] currentUserProfileModel];
+                    ProfileModel*pModel = [[ConnectionManager dataManager] getCurrentUserProfileModel];
                     cell.lblDesc.text = pModel.email;
                 }
                 else if(indexPath.row == 1)//change password
@@ -425,7 +427,7 @@
                                                
                                                LanguageModel* lModel = models.languages[selectedIndex];
                                                
-                                               [Utils setDeviceAppLanguage:lModel.language_code];
+                                               [LanguageManager setDeviceAppLanguage:lModel.language_code];
                                                
                                                [self.ibTableView reloadData];
                                                
@@ -477,11 +479,12 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUpdateUser parameter:dict appendString:appendString success:^(id object) {
         
-        self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
+        self.profileModel = [[ConnectionManager dataManager]getCurrentUserProfileModel];
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         self.isConnectedFacebook = NO;
         [self.ibTableView reloadData];
@@ -510,12 +513,14 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUpdateUser parameter:dict appendString:appendString success:^(id object) {
+
         
-        self.profileModel = [[ConnectionManager dataManager]currentUserProfileModel];
+        self.profileModel = [[ConnectionManager dataManager]getCurrentUserProfileModel];
         
        
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.isConnectedInstagram = NO;
         [self.ibTableView reloadData];
 
@@ -532,7 +537,7 @@
         
         dict = @{@"uid" : [Utils getUserID],
                  @"token":[Utils getAppToken],
-                 @"system_language" : [Utils getDeviceAppLanguageCode],
+                 @"system_language" : [LanguageManager getDeviceAppLanguageCode],
                  };
         
     }
@@ -542,13 +547,14 @@
     
     NSString* appendString = [NSString stringWithFormat:@"%@",[Utils getUserID]];
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostUpdateUser param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUpdateUser parameter:dict appendString:appendString success:^(id object) {
         
         [self.ibTableView reloadData];
         
         [Utils reloadAppView:NO];
+        [Utils reloadTabbar];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
     
@@ -556,50 +562,68 @@
 
 -(IBAction)requestServerForFacebookInfo{
     
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
-                                       allowLoginUI:YES
-                                  completionHandler:
-     ^(FBSession *session, FBSessionState state, NSError *error) {
-         
-         switch (state) {
-             case FBSessionStateOpen:{
-                 [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-                     if (error) {
-                         
-                         NSLog(@"error:%@",error);
-                         
-                     }
-                     else
-                     {                         
-                         NSLog(@"Facebook Return Result : %@",user);
-                         
-                         NSString* fb_user_id = (NSString *)[user valueForKey:@"id"];
-                         
-                         NSString* fb_token =[FBSession activeSession].accessTokenData.accessToken;
-                         
-                         if (![Utils isStringNull:fb_user_id]) {
-                             [self requestServerToUpdateUserInfoFacebook:fb_user_id facebookToken:fb_token];
-                         }
-                     }
-                 }];
-                 break;
-             }
-             case FBSessionStateClosed:
-                 [FBSession.activeSession closeAndClearTokenInformation];
-                 
-                 break;
-             case FBSessionStateClosedLoginFailed:
-                 
-                 [MessageManager showMessage:LocalisedString(@"sysem") SubTitle:LocalisedString(@"Cant Retrieve Data From Facebook") Type:TSMessageNotificationTypeError];
-                 break;
-                 
-             default:
-                 break;
-         }
-         
-         
-     }];
+//    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email", @"user_friends",@"user_birthday"]
+//                                       allowLoginUI:YES
+//                                  completionHandler:
+//     ^(FBSession *session, FBSessionState state, NSError *error) {
+//         
+//         switch (state) {
+//             case FBSessionStateOpen:{
+//                 [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+//                     if (error) {
+//                         
+//                         NSLog(@"error:%@",error);
+//                         
+//                     }
+//                     else
+//                     {                         
+//                         NSLog(@"Facebook Return Result : %@",user);
+//                         
+//                         NSString* fb_user_id = (NSString *)[user valueForKey:@"id"];
+//                         
+//                         NSString* fb_token =[FBSession activeSession].accessTokenData.accessToken;
+//                         
+//                         if (![Utils isStringNull:fb_user_id]) {
+//                             [self requestServerToUpdateUserInfoFacebook:fb_user_id facebookToken:fb_token];
+//                         }
+//                     }
+//                 }];
+//                 break;
+//             }
+//             case FBSessionStateClosed:
+//                 [FBSession.activeSession closeAndClearTokenInformation];
+//                 
+//                 break;
+//             case FBSessionStateClosedLoginFailed:
+//                 
+//                 [MessageManager showMessage:LocalisedString(@"sysem") SubTitle:LocalisedString(@"Cant Retrieve Data From Facebook") Type:TSMessageNotificationTypeError];
+//                 break;
+//                 
+//             default:
+//                 break;
+//         }
+//         
+//         
+//     }];
     
+    __weak typeof (self)weakSelf = self;
+    
+    [FBLoginManager performFacebookLogin:self completionBlock:^(FBSDKLoginManagerLoginResult *result) {
+        
+        if (result.isCancelled) {
+            weakSelf.isConnectedFacebook = NO;
+            [weakSelf.ibTableView reloadData];
+        }
+        else {
+            
+            [FBLoginManager performFacebookGraphRequest:^(FacebookModel *model) {
+                
+                if (![Utils isStringNull:model.uID]) {
+                    [weakSelf requestServerToUpdateUserInfoFacebook:model.uID facebookToken:model.fbToken];
+                }
+            }];
+        }
+    }];
 }
 
 -(void)requestServerToGetInstagramInfo

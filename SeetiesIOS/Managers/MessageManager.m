@@ -9,12 +9,8 @@
 #import "MessageManager.h"
 #import "AppDelegate.h"
 #import "UIWindow+Extra.h"
-#import "CT3_LoadingViewController.h"
+#import "UIView+Toast.h"
 
-@interface CT3_LoadingViewController ()
-
-@property(nonatomic)CT3_LoadingViewController* loadingViewController;
-@end
 @implementation MessageManager
 
 +(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type
@@ -22,10 +18,11 @@
 
     UIViewController* controller = [UIWindow topMostController];
     
-  //  CT3_LoadingViewController* loading = [CT3_LoadingViewController new];
-  //  [[[[UIApplication sharedApplication] delegate] window] addSubview:loading.view];
-    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle type:type];
-
+    if (controller.navigationController) {
+        controller = controller.navigationController;
+    }
+    
+    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle image:nil type:type duration:TSMessageNotificationDurationAutomatic callback:nil buttonTitle:nil buttonCallback:nil atPosition:[controller isKindOfClass:[UINavigationController class]] ?  TSMessageNotificationPositionNavBarOverlay : TSMessageNotificationPositionTop canBeDismissedByUser:YES];
 }
 
 +(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack
@@ -47,4 +44,26 @@
     [UIAlertView showWithTitle:title message:subtitle cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:nil];
 }
 
+
++(void)showToastMessage:(NSString*)title InView:(UIView*)view
+{
+    
+    if ([Utils isStringNull:title]) {
+        return;
+    }
+    CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
+    
+    // this is just one of many style options
+    style.messageColor = [UIColor whiteColor];
+    
+    style.messageFont = [UIFont fontWithName:CustomFontNameBold size:10];
+    style.cornerRadius = 12;
+    
+    // present the toast with the new style
+    [view makeToast:LocalisedString(title)
+                duration:3.0
+                position:CSToastPositionBottom
+                   style:style];
+
+}
 @end

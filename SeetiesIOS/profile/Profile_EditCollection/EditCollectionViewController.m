@@ -251,12 +251,13 @@
     NSString* appendString = [NSString stringWithFormat:@"%@/Collections",[Utils getUserID]];
     [LoadingManager showWithTitle:@"updating"];
 
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypePostCreateCollection param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypePostCreateCollection parameter:dict appendString:appendString success:^(id object) {
+
         [LoadingManager hide];
 
         [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
 
     }];
@@ -308,14 +309,15 @@
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],self.collectionModel.collection_id];
     [LoadingManager show];
 
-    [[ConnectionManager Instance] requestServerWithPut:ServerRequestTypePostCreateCollection param:finalDict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePostCreateCollection parameter:finalDict appendString:appendString success:^(id object) {
+
         
         [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Success Saved Collections" type:TSMessageNotificationTypeSuccess];
         [LoadingManager hide];
         
          [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
 
     }];
@@ -378,7 +380,8 @@
     NSString* appendString = [NSString stringWithFormat:@"collections/%@",collectionID];
     
     //[LoadingManager show];
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetCollectionInfo param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetCollectionInfo parameter:dict appendString:appendString success:^(id object) {
         
         if (successBlock) {
             successBlock(nil);
@@ -387,7 +390,7 @@
         isMiddleOfRequesting = NO;
 
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [LoadingManager hide];
         isMiddleOfRequesting = NO;
 
@@ -405,10 +408,11 @@
     NSString* appendString = [NSString stringWithFormat:@"%@/collections/%@",[Utils getUserID],collectionID];
     
     [LoadingManager show];
-    [[ConnectionManager Instance] requestServerWithDelete:ServerRequestTypeDeleteCollection param:dict appendString:appendString completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypeDeleteCollection parameter:dict appendString:appendString success:^(id object) {
         [self successFullyDeletedCollection];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
 
     }];

@@ -12,6 +12,7 @@
 #import "ProfileModel.h"
 typedef void (^ProfileModelBlock)(ProfileModel *model);
 typedef void (^NotificationModelBlock)(NotificationModel *model);
+typedef void (^DealModelBlock)(DealModel *model);
 
 
 #endif /* CustomBlock_h */

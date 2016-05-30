@@ -10,9 +10,10 @@
 #import "WalletListingViewController.h"
 #import "ProfileViewController.h"
 #import "CollectionListingViewController.h"
-#import "InviteFrenViewController.h"
 #import "PromoPopOutViewController.h"
 #import "STPopup.h"
+#import "CT3_InviteFriendViewController.h"
+#import "CT3_ReferalViewController.h"
 
 @interface CT3_MeViewController : BaseViewController <PromoPopOutDelegate>
 

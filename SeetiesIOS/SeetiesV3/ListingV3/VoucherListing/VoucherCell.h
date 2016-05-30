@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DealModel.h"
+#import "DealCollectionModel.h"
 
 @protocol VoucherCellDelegate <NSObject>
 
@@ -17,7 +18,10 @@
 
 @interface VoucherCell : CommonTableViewCell
 @property id<VoucherCellDelegate> voucherCellDelegate;
--(void)setDealModel:(DealModel*)dealModel;
+//For normal deal listing
+-(void)initDealModel:(DealModel*)dealModel;
+//For referral deal listing
+-(void)initDealModel:(DealModel*)dealModel dealCollectionModel:(DealCollectionModel*)dealCollectionModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constUpperContentHeight;
 
 @end

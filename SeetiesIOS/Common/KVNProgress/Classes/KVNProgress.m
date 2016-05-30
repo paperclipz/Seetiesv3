@@ -13,6 +13,8 @@
 
 #import "UIImage+KVNImageEffects.h"
 #import "UIImage+KVNEmpty.h"
+#import "YLImageView.h"
+#import "YLGIFImage.h"
 
 typedef NS_ENUM(NSUInteger, KVNProgressStyle) {
 	KVNProgressStyleHidden,
@@ -59,6 +61,7 @@ static CGFloat const KVNMotionEffectRelativeValue = 10.0f;
 @property (nonatomic, weak) IBOutlet UIView *circleProgressView;
 @property (nonatomic, weak) IBOutlet UILabel *statusLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet YLImageView *ibLoadingImg;
 
 @property (nonatomic, strong) CAShapeLayer *checkmarkLayer;
 @property (nonatomic, strong) CAShapeLayer *crossLayer;
@@ -434,6 +437,8 @@ static CGFloat const KVNMotionEffectRelativeValue = 10.0f;
 
 - (void)setupCircleProgressView
 {
+    self.ibLoadingImg.image = [YLGIFImage imageNamed:@"Loading.gif"];
+    self.circleProgressView.hidden = YES;
 	// Constraints
 	self.circleProgressViewWidthConstraint.constant = self.circleSize;
 	self.circleProgressViewHeightConstraint.constant = self.circleSize;
@@ -646,6 +651,17 @@ static CGFloat const KVNMotionEffectRelativeValue = 10.0f;
 			self.contentViewLeadingToSuperviewConstraint.constant = leadingAndTrailingConstraint;
 			self.contentViewTrailingToSuperviewConstraint.constant = leadingAndTrailingConstraint;
 		}
+//        else{
+//            CGRect statusRect = [self.status boundingRectWithSize:CGSizeMake(self.statusLabel.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: _statusFont} context:nil];
+//            CGFloat contentViewHeight = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//            
+//            if(statusRect.size.width <= contentViewHeight){
+//                CGFloat screenSize = CGRectGetWidth([UIScreen mainScreen].bounds);
+//                CGFloat leadingAndTrailingConstraint = (screenSize - contentViewHeight) / 2.0f;
+//                self.contentViewLeadingToSuperviewConstraint.constant = leadingAndTrailingConstraint;
+//                self.contentViewTrailingToSuperviewConstraint.constant = leadingAndTrailingConstraint;
+//            }
+//        }
 		
 		self.backgroundImageView.image = [UIImage emptyImage];
 		self.backgroundImageView.backgroundColor = [UIColor colorWithWhite:0.0f

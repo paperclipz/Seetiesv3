@@ -16,8 +16,10 @@
 #import "CollectionViewController.h"
 #import "CollectionListingSinglePageViewController.h"
 #import "DealDetailsViewController.h"
+#import "CTWebViewController.h"
+#import "VoucherListingViewController.h"
 
-@interface CT3_NotificationViewController () 
+@interface CT3_NotificationViewController ()
 @property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
 @property (nonatomic, strong) NotificationTableViewController *followingTableViewController;
 @property (nonatomic, strong) NotificationTableViewController *notificationTableViewController;
@@ -34,10 +36,18 @@
 @property (nonatomic, strong) CollectionViewController *collectionViewController;
 @property(nonatomic)CollectionListingSinglePageViewController* collectionListingVC;
 @property(nonatomic)DealDetailsViewController* dealDetailsViewController;
+@property(nonatomic)CTWebViewController* ctWebViewController;
+@property(nonatomic)VoucherListingViewController* voucherListingViewController;
 
 @end
 
 @implementation CT3_NotificationViewController
+
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [Utils requestServerForNotificationCount];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,6 +83,24 @@
 }
 
 #pragma mark - Declaration
+
+-(VoucherListingViewController*)voucherListingViewController
+{
+    if (!_voucherListingViewController) {
+        _voucherListingViewController = [VoucherListingViewController new];
+    }
+    
+    return _voucherListingViewController;
+}
+
+-(CTWebViewController*)ctWebViewController
+{
+    if (!_ctWebViewController) {
+        _ctWebViewController = [CTWebViewController new];
+    }
+    
+    return _ctWebViewController;
+}
 
 -(DealDetailsViewController*)dealDetailsViewController
 {
@@ -151,7 +179,6 @@
     return _cAPSPageMenu;
 }
 
-
 -(NotificationTableViewController*)followingTableViewController
 {
     if (!_followingTableViewController) {
@@ -221,6 +248,19 @@
 //        return;
 //    }
     switch (model.notType) {
+        case NotificationType_Phone_Verification:
+        {
+            if (![Utils isPhoneNumberVerified]) {
+                [Utils showVerifyPhoneNumber:self];
+
+            }
+            else{
+                [Utils showChangeVerifiedPhoneNumber:self];
+            }
+
+        }
+            break;
+            
         case NotificationType_Mention:
         case NotificationType_Comment:
         case NotificationType_PostShared:
@@ -269,7 +309,10 @@
                
             }
             else{
+                
+                
                 [self showCollectionView:model.collectionInfo userID:model.collectionInfo.user_info.uid];
+                
 
             }
 
@@ -279,6 +322,14 @@
             [self showSeetiShopView:model.seetishop];
             
             break;
+            
+            
+        case NotificationType_ReferralReward:
+            
+            [self showVoucherListingReferralView:model.deal_collection.deal_collection_id ReferralID:model.referral_u_id];
+            
+            break;
+
             
         case NotificationType_Seeties:
         {
@@ -293,6 +344,36 @@
                 [self showPostDetailView:model.post_id];
 
             }
+            else if ([model.action isEqualToString:@"collection"]) {
+                
+                CollectionModel* cModel = [CollectionModel new];
+                cModel.collection_id = model.collection_id;
+                [self showCollectionView:cModel userID:model.uid];
+            }
+            else if ([model.action isEqualToString:@"seetishop"]) {
+                
+                SeShopDetailModel* sModel = [SeShopDetailModel new];
+                sModel.seetishop_id = model.seetishop_id;
+                [self showSeetiShopView:sModel];
+            }
+            else if ([model.action isEqualToString:@"url"]) {
+                
+                [self showWebViewWithURL:model.url];
+            }
+            
+            else if ([model.action isEqualToString:@"deal"]) {
+                
+                DealModel* dModel = [DealModel new];
+                dModel.dID = model.deal_id;
+                [self showDealDetailView:dModel];
+            }
+            else if ([model.action isEqualToString:@"deal_collection"]) {
+                
+             
+                [self showVoucherListingView:model.deal_collection_id];
+            }
+            
+            
         }
             break;
 
@@ -415,11 +496,52 @@
 {
     _dealDetailsViewController = nil;
     
-    [self.dealDetailsViewController setDealModel:model];
+    [self.dealDetailsViewController initDealModel:model];
     [self.navigationController pushViewController:self.dealDetailsViewController animated:YES onCompletion:^{
         
         [self.dealDetailsViewController setupView];
     }];
+}
+
+-(void)showWebViewWithURL:(NSString*)url
+{
+    if (![Utils isStringNull:url]) {
+        
+        _ctWebViewController = nil;
+        [self.navigationController pushViewController:self.ctWebViewController animated:YES onCompletion:^{
+            [self.ctWebViewController initDataWithURL:url andTitle:@""];
+        }];
+    }
+    
+}
+
+-(void)showVoucherListingView:(NSString*)dealCollectionID
+{
+    if (![Utils isStringNull:dealCollectionID]) {
+        
+        DealCollectionModel* cModel = [DealCollectionModel new];
+        cModel.deal_collection_id = dealCollectionID;
+        
+        _voucherListingViewController = nil;
+        [self.voucherListingViewController initData:cModel withLocation:nil];
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
+}
+
+-(void)showVoucherListingReferralView:(NSString*)dealCollectionID ReferralID:(NSString*)refID
+{
+    if (![Utils isStringNull:dealCollectionID]) {
+        
+     
+        DealCollectionModel* cModel = [DealCollectionModel new];
+        cModel.deal_collection_id = dealCollectionID;
+        
+        _voucherListingViewController = nil;
+        
+        [self.voucherListingViewController initWithDealCollectionModel:cModel ReferralID:refID];
+        
+        [self.navigationController pushViewController:self.voucherListingViewController animated:YES];
+    }
 }
 
 @end

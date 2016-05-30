@@ -9,7 +9,7 @@
 #import "PostListingViewController.h"
 #import "PostListingTableViewCell.h"
 #import "ListingHeaderView.h"
-#import "DraftAndRecommendationDelegate.h"
+//#import "DraftAndRecommendationDelegate.h"
 
 @interface PostListingViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -25,13 +25,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
 
-@property(nonatomic,strong)DraftAndRecommendationDelegate* recommendDelegate;
+//@property(nonatomic,strong)DraftAndRecommendationDelegate* recommendDelegate;
 @end
 
 @implementation PostListingViewController
 - (IBAction)btnAddMoreClicked:(id)sender {
 
-    [self.recommendDelegate showRecommendationView:self];
+//    [self.recommendDelegate showRecommendationView:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -80,15 +80,15 @@
 
 #pragma mark - Declaration
 
--(DraftAndRecommendationDelegate*)recommendDelegate
-{
-    
-    if (!_recommendDelegate) {
-        _recommendDelegate = [DraftAndRecommendationDelegate new];
-    }
-    
-    return _recommendDelegate;
-}
+//-(DraftAndRecommendationDelegate*)recommendDelegate
+//{
+//    
+//    if (!_recommendDelegate) {
+//        _recommendDelegate = [DraftAndRecommendationDelegate new];
+//    }
+//    
+//    return _recommendDelegate;
+//}
 
 -(FeedV2DetailViewController*)feedV2DetailViewController
 {
@@ -211,8 +211,10 @@
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken]
                            };
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserPosts param:dict appendString:appendString completeHandler:^(id object) {
-        
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserPosts parameter:dict appendString:appendString success:^(id object) {
+
+
         isMiddleOfCallingServer = false;
         
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
@@ -222,7 +224,7 @@
         self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userProfilePostModel.userPostData.total_posts,LocalisedString(@"Posts")];
         [self.ibTableView reloadData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         isMiddleOfCallingServer = false;
 
     }];

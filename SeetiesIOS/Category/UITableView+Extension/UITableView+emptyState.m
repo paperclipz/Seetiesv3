@@ -9,10 +9,26 @@
 #import "UITableView+emptyState.h"
 static const NSString *MAIN_VIEW_KEY = @"mainview";
 
+static const NSString *REFRESH_BLOCK = @"refreshblock";
+
 @implementation UITableView(EmptyState)
 
 
 @dynamic customEmptyStateView;
+
+- (void)handleControlEvent:(UIControlEvents)event withBlock:(VoidBlock)block {
+    
+    objc_setAssociatedObject(self, &REFRESH_BLOCK, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self.customEmptyStateView.btnRefresh addTarget:self action:@selector(callBlock:) forControlEvents:event];
+    
+}
+
+- (void)callBlock:(id)sender {
+    VoidBlock block = (VoidBlock)objc_getAssociatedObject(self, &REFRESH_BLOCK);
+    if (block) block();
+}
+
+
 - (EmptyStateView *)customEmptyStateView;
 {
     return objc_getAssociatedObject(self, &MAIN_VIEW_KEY);
@@ -31,45 +47,27 @@ static const NSString *MAIN_VIEW_KEY = @"mainview";
     self.customEmptyStateView.emptyStateDesc.text = LocalisedString(@"There's nothing 'ere, yet.");
     self.customEmptyStateView.emptyStateTitle.text = LocalisedString(@"Oops...");
     self.backgroundView = self.customEmptyStateView;
+    
+
 }
 
 -(void)showLoading
 {
-    @try {
-        
-        self.customEmptyStateView.loadingView.hidden = NO;
-        self.customEmptyStateView.noResultView.hidden = YES;
-        if (self.customEmptyStateView.loadingImage) {
-            self.customEmptyStateView.loadingImage.image = [YLGIFImage imageNamed:@"Loading.gif"];
-        }
-        
-    } @catch (NSException *exception) {
-        
-    }
-    
+    [self.customEmptyStateView showLoading];
 }
 
 -(void)showEmptyState
 {
-    @try {
-        self.customEmptyStateView.loadingView.hidden = YES;
-        self.customEmptyStateView.noResultView.hidden = NO;
-    } @catch (NSException *exception) {
-        
-    }
-    
+    [self.customEmptyStateView showEmptyState];
 }
 
 -(void)hideAll
 {
-    @try {
-        self.customEmptyStateView.loadingView.hidden = YES;
-        self.customEmptyStateView.noResultView.hidden = YES;
-        self.backgroundView = nil;
-        
-    } @catch (NSException *exception) {
-        
-    }
+    
+    [self.customEmptyStateView hideAll];
+    
+    self.backgroundView = nil;
+  
 }
 
 @end

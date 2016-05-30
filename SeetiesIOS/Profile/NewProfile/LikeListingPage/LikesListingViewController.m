@@ -183,7 +183,7 @@
                            @"token":[Utils getAppToken]
                            };
 
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserLikes param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserLikes parameter:dict appendString:appendString success:^(id object) {
         
         self.profileLikeModel = [[ConnectionManager dataManager]userProfileLikeModel];
         
@@ -197,7 +197,7 @@
         
         isMiddleOfCallingServer = false;
 
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         isMiddleOfCallingServer = false;
 
     }];

@@ -42,7 +42,7 @@
                                 <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="cUD-g1-FhX"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-V4-tyK">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-V4-tyK">
                             <rect key="frame" x="270" y="12" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="RdY-PB-dNl"/>

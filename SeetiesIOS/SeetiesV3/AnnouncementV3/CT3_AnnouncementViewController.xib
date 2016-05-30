@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CT3_AnnouncementViewController">
@@ -18,6 +19,25 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NlE-Gq-bip">
+                    <rect key="frame" x="0.0" y="64" width="320" height="160"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="NlE-Gq-bip" secondAttribute="height" multiplier="2:1" id="9ap-0g-VJq"/>
+                        <constraint firstAttribute="height" constant="240" id="vSg-0R-Ma3"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="vSg-0R-Ma3"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Sl-Nl-bEF">
+                    <rect key="frame" x="240" y="189" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="1Zg-6D-7uc"/>
+                        <constraint firstAttribute="height" constant="70" id="rho-yP-X3p"/>
+                    </constraints>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2k6-rM-ci1">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
@@ -64,21 +84,8 @@
                         <constraint firstAttribute="trailing" secondItem="qVs-9S-D88" secondAttribute="trailing" id="xwa-cc-nrX"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NlE-Gq-bip">
-                    <rect key="frame" x="0.0" y="65" width="320" height="240"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="240" id="vSg-0R-Ma3"/>
-                    </constraints>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Sl-Nl-bEF">
-                    <rect key="frame" x="240" y="270" width="70" height="70"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="70" id="1Zg-6D-7uc"/>
-                        <constraint firstAttribute="height" constant="70" id="rho-yP-X3p"/>
-                    </constraints>
-                </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJ8-sw-mI3">
-                    <rect key="frame" x="16" y="335" width="288" height="233"/>
+                    <rect key="frame" x="16" y="254" width="288" height="314"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -97,7 +104,7 @@
                 <constraint firstItem="1Sl-Nl-bEF" firstAttribute="bottom" secondItem="NlE-Gq-bip" secondAttribute="bottom" constant="35" id="Szs-2U-WwT"/>
                 <constraint firstItem="DJ8-sw-mI3" firstAttribute="top" secondItem="NlE-Gq-bip" secondAttribute="bottom" constant="30" id="Utu-lZ-9uB"/>
                 <constraint firstAttribute="trailing" secondItem="2k6-rM-ci1" secondAttribute="trailing" id="V20-JD-pAo"/>
-                <constraint firstItem="NlE-Gq-bip" firstAttribute="top" secondItem="2k6-rM-ci1" secondAttribute="bottom" constant="1" id="b92-Dh-OLG"/>
+                <constraint firstItem="NlE-Gq-bip" firstAttribute="top" secondItem="2k6-rM-ci1" secondAttribute="bottom" id="b92-Dh-OLG"/>
                 <constraint firstItem="NlE-Gq-bip" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tQr-s1-y7o"/>
                 <constraint firstAttribute="bottom" secondItem="DJ8-sw-mI3" secondAttribute="bottom" id="u9d-WM-Lxk"/>
             </constraints>

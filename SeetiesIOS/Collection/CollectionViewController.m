@@ -8,10 +8,8 @@
 
 #import "CollectionViewController.h"
 #import "FeedV2DetailViewController.h"
-#import "SearchDetailViewController.h"
 #import "AddCollectionDataViewController.h"
 #import "CT3_SearchListingViewController.h"
-
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
 
@@ -946,7 +944,7 @@
         if ([GetFollowing isEqualToString:@"0"]) {
             
             if ([Utils isGuestMode]) {
-                [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login First") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == 1) {
                         [Utils showLogin];
@@ -990,15 +988,6 @@
     }
     
     return _searchListingViewController;
-}
-
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
-    }
-    
-    return _shareV2ViewController;
 }
 
 -(EditCollectionViewController*)editCollectionViewController
@@ -1520,27 +1509,7 @@
     if ([GetIsPrivate isEqualToString:@"true"]) {
         [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
     }else{
-//        ShareViewController *ShareView = [[ShareViewController alloc]init];
-//        [self presentViewController:ShareView animated:YES completion:nil];
-//        [ShareView GetCollectionID:GetID GetCollectionTitle:GetTitle];
         
-//        _shareV2ViewController = nil;
-//        UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//        [naviVC setNavigationBarHidden:YES animated:NO];
-//        [self.shareV2ViewController share:@"" title:GetTitle imagURL:@"" shareType:ShareTypeCollection shareID:GetID userID:GetMainUserID];
-//        MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//        formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//        formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//        [self presentViewController:formSheetController animated:YES completion:nil];
-
-        
-//        NSDictionary *dataToPost = @{@"title":GetTitle,
-//                                     @"shareID":GetID,
-//                                     @"userID":GetMainUserID,
-//                                     @"shareType":@(ShareTypeCollection)};
-        
-        //New Sharing Screen
         CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
         
         dataToPost.title = GetTitle;

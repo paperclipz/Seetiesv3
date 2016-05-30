@@ -7,11 +7,17 @@
 //
 
 #import "PromoPopOutViewController.h"
+#import "UIView+Toast.h"
+#import "AMPopTip.h"
 
-@interface PromoPopOutViewController (){
+@interface PromoPopOutViewController ()
+{
     NSCharacterSet *alphaNumericSet;
     NSCharacterSet *numericSet;
 }
+
+@property (nonatomic, strong) AMPopTip *popTip;
+
 @property (strong, nonatomic) IBOutlet UIView *ibEnterPromoView;
 @property (weak, nonatomic) IBOutlet UITextField *ibPromoCodeText;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitleLbl;
@@ -84,11 +90,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibThankYouDesc;
 @property (weak, nonatomic) IBOutlet UIButton *ibThankYouOkBtn;
 
+@property (strong, nonatomic) IBOutlet UIView *ibMessageView;
+@property (weak, nonatomic) IBOutlet UIView *ibMessageContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibMessageLbl;
+@property (weak, nonatomic) IBOutlet UIButton *ibMessageOkBtn;
+
+@property (strong, nonatomic) IBOutlet UIView *ibReferralSuccessfulView;
+@property (weak, nonatomic) IBOutlet UIView *ibReferralSuccessfulContentView;
+@property (weak, nonatomic) IBOutlet UILabel *ibReferralSuccessfulTitle;
+@property (weak, nonatomic) IBOutlet UILabel *ibReferralSuccessfulDesc;
+@property (weak, nonatomic) IBOutlet UIButton *ibReferralSuccessfulOkBtn;
+
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
 @property(nonatomic) NSArray<SeShopDetailModel> *shopArray;
-@property(nonatomic) NSArray<CountryModel> *countryArray;
-@property(nonatomic) NSMutableArray *countryCodeArray;
 @property(nonatomic) NSString *selectedCountryCode;
 @property(nonatomic) NSString *enteredPhoneNumber;
 @property(nonatomic) NSString *enteredPromoCode;
@@ -100,7 +115,8 @@
 @property(nonatomic) BOOL hasRequestedTotp;
 @property(nonatomic) BOOL hasRequestedPromo;
 @property(nonatomic) BOOL hasRedeemed;
-@property(nonatomic) DealManager *dealManager;
+@property(nonatomic) BOOL isReferral;
+@property(nonatomic) NSString *message;
 
 @end
 
@@ -126,6 +142,9 @@
     self.hasRequestedTotp = NO;
     self.hasRequestedPromo = NO;
     self.hasRedeemed = NO;
+    self.isReferral = NO;
+    self.ibPromoCodeText.autocorrectionType = UITextAutocorrectionTypeNo;
+    
     [self setMainViewToDisplay];
    
     // Do any additional setup after loading the view from its nib.
@@ -209,6 +228,10 @@
 
 -(void)setSelectedShop:(SeShopDetailModel *)selectedShop{
     _selectedShop = selectedShop;
+}
+
+-(void)setMessage:(NSString *)message{
+    _message = message;
 }
 
 -(void)setMainViewToDisplay{
@@ -324,7 +347,7 @@
             [self.ibChangeVerifiedPhoneBtn setTitle:LocalisedString(@"Change Phone Number") forState:UIControlStateNormal];
             
             [self.ibChangeVerifiedPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
-            ProfileModel* model = [[ConnectionManager dataManager]currentUserProfileModel];
+            ProfileModel* model = [[ConnectionManager dataManager]getCurrentUserProfileModel];
             
             if (![Utils isStringNull:model.contact_no]) {
                 self.ibChangeVerifiedPhoneNumberLbl.text = [NSString stringWithFormat:@"+%@", model.contact_no];
@@ -343,14 +366,13 @@
             self.ibEnterPhoneTitle.text = LocalisedString(@"Enter Phone Number");
             self.ibEnterPhoneDesc.text = LocalisedString(@"Please verify your phone number to collect the voucher.");
             self.ibEnterPhoneCountryCodeLbl.text = LocalisedString(@"Select Country Code");
-            self.ibEnterPhoneTxtField.placeholder = LocalisedString(@"eg. 01x xxx xxxx");
+            self.ibEnterPhoneTxtField.placeholder = LocalisedString(@"eg. 1x xxx xxxx");
             [self.ibEnterPhoneConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
             
             self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, 470);
             [self.ibEnterPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibEnterPhoneTxtField color:[UIColor clearColor] borderRadius:self.ibEnterPhoneTxtField.frame.size.height/2];
             [Utils setRoundBorder:self.ibEnterPhoneCountryCodeView color:DEVICE_COLOR borderRadius:self.ibEnterPhoneCountryCodeView.frame.size.height/2];
-            [self requestServerToGetHomeCountry];
         }
             return self.ibEnterPhoneView;
             
@@ -382,7 +404,7 @@
             [self.ibEnterVerificationResendBtn setTitleColor:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1] forState:UIControlStateDisabled];
             if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
                 NSString *phoneNumber = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
-                self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." withPlaceHolder:@{@"{!contact number}": phoneNumber}];
+                self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." withPlaceHolder:@{@"{!contact number}": phoneNumber?phoneNumber:@""}];
             }
         }
             return self.ibEnterVerificationView;
@@ -399,7 +421,7 @@
             
         case PopOutViewTypeError:
         {
-            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is not currently available for redemption.");
+            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is currently not available for redemption.");
             self.ibErrorDesc.text = LocalisedString(@"This deal can only be redeemed on ");
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             
@@ -423,8 +445,32 @@
             self.ibThankYouTitle.text = LocalisedString(@"Thank you for your suggestion!");
             self.ibThankYouDesc.text = LocalisedString(@"We'll get back to you soonest possible with an email update on your suggested place.");
             [self.ibThankYouOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            [Utils setRoundBorder:self.ibThankYouContentView color:[UIColor clearColor] borderRadius:8.0f];
         }
             return self.ibThankYouView;
+            
+        case PopOutViewTypeMessage:
+        {
+            self.ibMessageLbl.text = LocalisedString(self.message);
+            [self.ibMessageOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            
+            CGRect messageRect = [self.message boundingRectWithSize:CGSizeMake(self.ibMessageLbl.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0f]} context:nil];
+            
+            CGFloat contentHeight = messageRect.size.height + self.ibMessageOkBtn.frame.size.height + 60 + 32;
+            self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, contentHeight);
+            [Utils setRoundBorder:self.ibMessageContentView color:[UIColor clearColor] borderRadius:8.0f];
+        }
+            return self.ibMessageView;
+            
+        case PopOutViewTypeReferralSuccessful:
+        {
+            self.ibReferralSuccessfulTitle.text = LocalisedString(@"Yay!");
+            self.ibReferralSuccessfulDesc.text = LocalisedString(@"Collect your reward via your notification.");
+            [self.ibReferralSuccessfulOkBtn setTitle:LocalisedString(@"Okay") forState:UIControlStateNormal];
+            
+            [Utils setRoundBorder:self.ibReferralSuccessfulContentView color:[UIColor clearColor] borderRadius:8.0f];
+        }
+            return self.ibReferralSuccessfulView;
             
         default:
         {
@@ -434,53 +480,69 @@
     }
 }
 
--(void)formatCountryCodeArray{
-    if (![Utils isArrayNull:self.countryArray]) {
-        for (CountryModel *country in self.countryArray) {
+-(NSMutableArray*)getFormattedCountriesCode{
+    CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+    if (!countries || [Utils isArrayNull:countries.countries]) {
+        return nil;
+    }
+    
+    NSMutableArray *tempArr = [[NSMutableArray alloc] init];
+    for (CountryModel *country in countries.countries) {
+        if (country.home_filter_display) {
             NSString *formattedCountryCode = [NSString stringWithFormat:@"%@ (%@)", country.name, country.phone_country_code];
-            [self.countryCodeArray addObject:formattedCountryCode];
+            [tempArr addObject:formattedCountryCode];
         }
     }
+    return tempArr;
 }
 
 #pragma mark - Declaration
--(NSArray<CountryModel> *)countryArray{
-    if (!_countryArray) {
-        _countryArray = [[NSArray<CountryModel> alloc] init];
-    }
-    return _countryArray;
-}
 
--(NSMutableArray *)countryCodeArray{
-    if (!_countryCodeArray) {
-        _countryCodeArray = [[NSMutableArray alloc] init];
+-(AMPopTip*)popTip
+{
+    if (!_popTip) {
+        _popTip = [AMPopTip popTip];
+        _popTip.shouldDismissOnTap = YES;
+        _popTip.offset = -15;
+        _popTip.edgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
+        _popTip.popoverColor = SELECTED_RED;
     }
-    return _countryCodeArray;
-}
-
--(DealManager *)dealManager{
-    if(!_dealManager)
-    {
-        _dealManager = [DealManager Instance];
-    }
-    return _dealManager;
+    
+    return _popTip;
 }
 
 #pragma mark - IBAction
 
 - (IBAction)selectCountryCodeBtnClicked:(id)sender {
-    [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
-                                            rows:self.countryCodeArray
-                                initialSelection:0
-                                doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                    
-                                    CountryModel *country = self.countryArray[selectedIndex];
-                                    self.selectedCountryCode = [country.phone_country_code substringFromIndex:1];
-                                    self.ibEnterPhoneCountryCodeLbl.text = self.countryCodeArray[selectedIndex];
-                                    
-    } cancelBlock:^(ActionSheetStringPicker *picker) {
+    
+    NSArray *formattedCountriesCode;
+
+    @try {
+        formattedCountriesCode = [self getFormattedCountriesCode];
         
-    } origin:sender];
+    } @catch (NSException *exception) {
+        
+    }
+    
+    if (formattedCountriesCode) {
+        
+        CountriesModel *countriesModel = [[DataManager Instance] appInfoModel].countries;
+        [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
+                                                rows:formattedCountriesCode? formattedCountriesCode : [NSArray new]
+                                    initialSelection:0
+                                           doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                               
+                                               CountryModel *countryModel = countriesModel.countries[selectedIndex];
+                                               NSString *countryCode = countryModel.phone_country_code;
+                                               self.selectedCountryCode = [countryCode substringFromIndex:1];
+                                               self.ibEnterPhoneCountryCodeLbl.text = formattedCountriesCode[selectedIndex];
+                                               
+                                           } cancelBlock:^(ActionSheetStringPicker *picker) {
+                                               
+                                           } origin:sender];
+
+    }
+    
 }
 
 - (IBAction)resendCodeBtnClicked:(id)sender {
@@ -502,6 +564,12 @@
         case PopOutViewTypeEnterPromo:
         {
             if (self.hasRequestedPromo) {
+                if (self.isReferral) {
+                    [Utils requestServerForNotificationCount];
+                    [nextVC setViewType:PopOutViewTypeReferralSuccessful];
+                    break;
+                }
+                
                 [nextVC setDealsModel:self.dealsModel];
                 [nextVC setEnteredPromoCode:self.enteredPromoCode];
                 nextVC.promoPopOutDelegate = self.promoPopOutDelegate;
@@ -536,7 +604,7 @@
             
         case PopOutViewTypeRedemptionSuccessful:
         {
-            if (self.promoPopOutDelegate) {
+            if (self.promoPopOutDelegate && [self.promoPopOutDelegate respondsToSelector:@selector(viewDealDetailsClicked:)]) {
                 [self.promoPopOutDelegate viewDealDetailsClicked:self.dealsModel];
             }
             [nextVC setViewType:PopOutViewTypeQuit];
@@ -555,7 +623,7 @@
             }
             
             if (self.popOutCondition == PopOutConditionChooseShopOnly) {
-                if (self.promoPopOutDelegate) {
+                if (self.promoPopOutDelegate && [self.promoPopOutDelegate respondsToSelector:@selector(chooseShopConfirmClicked:forShop:)]) {
                     [self.promoPopOutDelegate chooseShopConfirmClicked:self.dealModel forShop:self.selectedShop];
                     [nextVC setViewType:PopOutViewTypeQuit];
                 }
@@ -651,6 +719,22 @@
         }
             break;
             
+        case PopOutViewTypeMessage:
+        {
+            if (YES) {
+                [nextVC setViewType:PopOutViewTypeQuit];
+            }
+        }
+            break;
+            
+        case PopOutViewTypeReferralSuccessful:
+        {
+            if (YES) {
+                [nextVC setViewType:PopOutViewTypeQuit];
+            }
+        }
+            break;
+            
         case PopOutViewTypeQuit:
         {
             if (YES) {
@@ -660,7 +744,7 @@
             break;
 
         default:
-            [nextVC setViewType:PopOutViewTypeEnterPromo];
+            [nextVC setViewType:PopOutViewTypeQuit];
 
             break;
     }
@@ -743,7 +827,8 @@
     [LoadingManager show];
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostTOTP param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostTOTP parameter:dict appendString:nil success:^(id object) {
+
         self.hasRequestedTotp = YES;
         [LoadingManager hide];
         self.isLoading = NO;
@@ -751,7 +836,7 @@
             [self buttonSubmitClicked:self.ibEnterPhoneConfirmBtn];
         }
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         self.hasRequestedTotp = NO;
         self.isLoading = NO;
         [LoadingManager hide];
@@ -769,13 +854,14 @@
     [LoadingManager show];
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostVerifyTOTP param:dict completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostVerifyTOTP parameter:dict appendString:nil success:^(id object) {
+
         self.isVerified = YES;
         [LoadingManager hide];
         self.isLoading = NO;
         [self buttonSubmitClicked:self.ibConfirmPhoneBtn];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
         self.ibEnterVerificationTxtField.backgroundColor = [UIColor whiteColor];
         self.ibEnterVerificationTxtField.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
@@ -784,28 +870,16 @@
         self.isVerified = NO;
         self.isLoading = NO;
         [LoadingManager hide];
-    }];
-}
-
--(void)requestServerToGetHomeCountry{
-    ProfileModel *profile = [[DataManager Instance] currentUserProfileModel];
-    NSString *langCode = profile.system_language.language_code;
-    NSDictionary *dict = @{@"language_code": langCode
-                           };
-    [LoadingManager show];
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetHomeCountry param:dict appendString:nil completeHandler:^(id object) {
-        CountriesModel *countriesModel = [[ConnectionManager dataManager] countriesModel];
-        self.countryArray = countriesModel.countries;
-        [self.countryCodeArray removeAllObjects];
-        [self formatCountryCodeArray];
-        [LoadingManager hide];
-    } errorBlock:^(id object) {
-        [LoadingManager hide];
+        
     }];
 }
 
 -(void)requestServerToGetPromoCode{
     if (self.isLoading) {
+        return;
+    }
+    
+    if ([Utils isStringNull:self.enteredPromoCode]) {
         return;
     }
     
@@ -816,22 +890,51 @@
     [LoadingManager show];
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetPromoCode param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetPromoCode parameter:dict appendString:appendString success:^(id object) {
         self.dealsModel = [[ConnectionManager dataManager] dealsModel];
         self.hasRequestedPromo = YES;
         [LoadingManager hide];
         self.isLoading = NO;
+        
+        @try {
+            NSDictionary *dict = object[@"data"];
+            NSString *type = dict[@"type"];
+            
+            self.isReferral = [type isEqualToString:VOUCHER_TYPE_REFERRAL];
+        } @catch (NSException *exception) {
+            self.isReferral = NO;
+        }
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];
-        [MessageManager showMessageInPopOut:LocalisedString(@"system") subtitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.")];
-//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"The promo code entered is invalid. Please check and try again.") Type:TSMessageNotificationTypeError];
         [LoadingManager hide];
         self.isLoading = NO;
         self.hasRequestedPromo = NO;
+        
+        
+        
+        
+        if ([ConnectionManager isNetworkAvailable]) {
+            
+            
+            [self.popTip showText:[NSString stringWithFormat:@"%@",object] direction:AMPopTipDirectionUp maxWidth:self.ibEnterPromoView.frame.size.width inView:self.ibEnterPromoView fromFrame:self.ibPromoCodeText.frame duration:2.0f];
+            
+        }
+        else{
+            
+            NSError* error = object;
+            
+            if (error) {
+                [self.popTip showText:[NSString stringWithFormat:@"%@",error.localizedDescription] direction:AMPopTipDirectionUp maxWidth:self.ibEnterPromoView.frame.size.width inView:self.ibEnterPromoView fromFrame:self.ibPromoCodeText.frame duration:2.0f];
+
+            }
+            
+        }
+        
+
     }];
 }
 
@@ -840,26 +943,32 @@
         return;
     }
     
+    if([Utils isStringNull:self.enteredPromoCode])
+    {
+        return;
+    }
+
     NSString *appendString = [NSString stringWithFormat:@"%@/redeem", self.enteredPromoCode];
-    NSDictionary *dict = @{@"promo_code": self.enteredPromoCode,
+   
+    NSDictionary *dict = @{@"promo_code": self.enteredPromoCode?self.enteredPromoCode:@"",
                            @"token": [Utils getAppToken],
-                           @"shop_id": self.selectedShop.seetishop_id
+                           @"shop_id": self.selectedShop.seetishop_id?self.selectedShop.seetishop_id:@""
                            };
     [LoadingManager show];
     self.isLoading = YES;
     
-    [[ConnectionManager Instance] requestServerWithPost:ServerRequestTypePostRedeemPromoCode param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostRedeemPromoCode parameter:dict appendString:appendString success:^(id object) {
+
         self.dealsModel = [[ConnectionManager dataManager] dealsModel];
         self.hasRedeemed = YES;
         [LoadingManager hide];
         self.isLoading = NO;
-        [self.dealManager setAllCollectedDeals:self.dealsModel];
         [self buttonSubmitClicked:self.ibEnterPromoSubmitBtn];
-        if (self.promoPopOutDelegate) {
+        if (self.promoPopOutDelegate && [self.promoPopOutDelegate respondsToSelector:@selector(promoHasBeenRedeemed:)]) {
             [self.promoPopOutDelegate promoHasBeenRedeemed:self.dealsModel];
         }
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         [Utils setRoundBorder:self.ibPromoCodeText color:[UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         self.ibPromoCodeText.backgroundColor = [UIColor whiteColor];
         self.ibPromoCodeText.textColor = [UIColor colorWithRed:254/255.0f green:106/255.0f blue:106/255.0f alpha:1];

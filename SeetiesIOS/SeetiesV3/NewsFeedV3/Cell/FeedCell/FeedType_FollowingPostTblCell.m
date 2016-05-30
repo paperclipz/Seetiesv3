@@ -15,6 +15,7 @@
     __weak IBOutlet UIImageView *ibImgProfilePadding;
     __weak IBOutlet NSLayoutConstraint *constTitleHeight;
 }
+
 @property (weak, nonatomic) IBOutlet UIImageView *ibImgDistance;
 @property (nonatomic,strong)CTFeedTypeModel* newsFeedTypeModel;
 @property (weak, nonatomic) IBOutlet UIImageView *ibPostImageView;
@@ -34,9 +35,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UIButton *btnQuickCollect;
-
 @property (weak, nonatomic) IBOutlet UIImageView *ibCollectionImage;
 @end
+
 @implementation FeedType_FollowingPostTblCell
 
 /*
@@ -74,14 +75,51 @@
 
 - (IBAction)btnLikeClicked:(id)sender {
     
+  
+    
+    
     if (self.btnLike.selected) {
         [self requestServerToUnlikePost];
 
     }
     else{
         [self requestServerToLikePost];
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            self.btnLike.layer.transform = CATransform3DMakeScale(0.6, 0.6, 1.0);
+        }completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:0.1
+                                  delay:0.0
+                 usingSpringWithDamping:0.8
+                  initialSpringVelocity:1.0
+                                options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^
+             {
+                 self.btnLike.layer.transform = CATransform3DMakeScale(1.1, 1.1, 1.0);
+             }
+                             completion:^(BOOL finished) {
+                                 
+                                 [UIView animateWithDuration:0.1
+                                                       delay:0.0
+                                      usingSpringWithDamping:0.3
+                                       initialSpringVelocity:1.0
+                                                     options:UIViewAnimationOptionCurveEaseInOut
+                                                  animations:^
+                                  {
+                                      self.btnLike.layer.transform = CATransform3DIdentity;
+                                  }
+                                                  completion:nil];
+                             }];
+        }];
+
 
     }
+}
+-(void)awakeFromNib
+{
+    self.ibPostImageView.backgroundColor = TWO_ZERO_FOUR_COLOR;
+
 }
 
 -(void)initSelfView
@@ -251,7 +289,8 @@
                            @"post_id" : self.newsFeedTypeModel.newsFeedData.post_id,
                            };
     
-    [[ConnectionManager Instance]requestServerWithPost:ServerRequestTypePostLikeAPost param:dict appendString:appendString meta:nil completeHandler:^(id object) {
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostLikeAPost parameter:dict appendString:appendString success:^(id object) {
       
         NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
         
@@ -260,7 +299,7 @@
         [DataManager setPostLikes:self.newsFeedTypeModel.newsFeedData.post_id isLiked:isLiked];
         [self refreshData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -286,7 +325,8 @@
                            @"post_id" : self.newsFeedTypeModel.newsFeedData.post_id,
                            };
     
-    [[ConnectionManager Instance]requestServerWithDelete:ServerRequestTypeDeleteLikeAPost param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_DELETE serverRequestType:ServerRequestTypeDeleteLikeAPost parameter:dict appendString:appendString success:^(id object) {
+
         NSDictionary* returnDict = [[NSDictionary alloc]initWithDictionary:object];
         
         
@@ -294,7 +334,7 @@
         [DataManager setPostLikes:self.newsFeedTypeModel.newsFeedData.post_id isLiked:isLiked];
         [self refreshData];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }

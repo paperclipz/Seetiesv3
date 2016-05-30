@@ -80,7 +80,7 @@
     
     @try {
         
-        NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+        NSString* currentlangCode = [LanguageManager getDeviceAppLanguageCode];
 
        
         if (![Utils isArrayNull:self.model.arrCustomPost]) {

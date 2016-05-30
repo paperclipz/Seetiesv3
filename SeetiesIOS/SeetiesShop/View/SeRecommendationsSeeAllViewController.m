@@ -45,7 +45,6 @@
 
 @property (nonatomic,strong)FeedV2DetailViewController* PostDetailViewController;
 @property(nonatomic,strong)ProfileViewController* profileViewController;
-@property(nonatomic,strong)ShareV2ViewController* shareV2ViewController;
 @end
 
 @implementation SeRecommendationsSeeAllViewController
@@ -96,9 +95,7 @@
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
+
 -(IBAction)BackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -142,14 +139,15 @@
         
     }
     
-    [[ConnectionManager Instance] requestServerWithGet:ServerRequestTypeGetSeetoShopRecommendations param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetSeetoShopRecommendations parameter:dict appendString:appendString success:^(id object) {
+
         self.userProfilePostModel = [[ConnectionManager dataManager]userProfilePostModel];
         self.arrPostListing = nil;
         [self.arrPostListing addObjectsFromArray:self.userProfilePostModel.userPostData.posts];
 
         [self InitRecommendationView];
         [ShowActivity stopAnimating];
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
         
     }];
@@ -335,7 +333,7 @@
         heightcheck += resultHeight + 20;
         TempCountWhiteHeight += resultHeight + 20;
         
-        NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+        NSString* currentlangCode = [LanguageManager getDeviceAppLanguageCode];
         NSString *TestTitle;
         NSString *TestDetail;
         if (![model.arrPost isNull]) {
@@ -549,7 +547,7 @@
     NSInteger getbuttonIDN = ((UIControl *) sender).tag;
     DraftModel* model = self.arrPostListing[getbuttonIDN];
     
-    NSString* currentlangCode = [Utils getLanguageCodeFromLocale:[[LanguageManager sharedLanguageManager]getSelectedLocale].languageCode];
+    NSString* currentlangCode = [LanguageManager getDeviceAppLanguageCode];
     NSString *TestTitle;
     NSString *TestDetail;
     if (![model.arrPost isNull]) {
@@ -570,16 +568,6 @@
         TestDetail = postModel.message;
     }
     PhotoModel* photoModel = model.arrPhotos[0];
-    
-//    _shareV2ViewController = nil;
-//    UINavigationController* naviVC = [[UINavigationController alloc]initWithRootViewController:self.shareV2ViewController];
-//    [naviVC setNavigationBarHidden:YES animated:NO];
-//    [self.shareV2ViewController share:@"" title:TestTitle imagURL:photoModel.imageURL shareType:ShareTypePost shareID:model.post_id userID:@""];
-//    MZFormSheetPresentationViewController *formSheetController = [[MZFormSheetPresentationViewController alloc] initWithContentViewController:naviVC];
-//    formSheetController.presentationController.contentViewSize = [Utils getDeviceScreenSize].size;
-//    formSheetController.presentationController.shouldDismissOnBackgroundViewTap = YES;
-//    formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyleSlideFromBottom;
-//    [self presentViewController:formSheetController animated:YES completion:nil];
     
     //New Sharing Screen
     CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
@@ -639,14 +627,7 @@
     
     return _profileViewController;
 }
--(ShareV2ViewController*)shareV2ViewController
-{
-    if (!_shareV2ViewController) {
-        _shareV2ViewController = [[ShareV2ViewController alloc]initWithNibName:@"ShareV2ViewController" bundle:nil];
-    }
-    
-    return _shareV2ViewController;
-}
+
 -(void)GetUnLikeData{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GetExpertToken = [defaults objectForKey:@"ExpertToken"];

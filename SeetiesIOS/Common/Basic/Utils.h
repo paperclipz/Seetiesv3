@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class DealModel;
 @interface Utils : NSObject
 #define MaxDistance 30000
 
@@ -21,6 +22,19 @@
 
 typedef void(^ButtonBlock) (id sender);
 typedef void(^NullBlock) (void);
+
+typedef enum
+{
+    ShareTypePost,
+    ShareTypeCollection,
+    ShareTypePostUser,
+    ShareTypeSeetiesShop,
+    ShareTypeNonSeetiesShop,
+    ShareTypeDeal,
+    ShareTypeInvite,
+    ShareTypeReferralInvite
+} ShareType;
+
 
 typedef enum
 {
@@ -118,11 +132,13 @@ typedef enum {
 +(void)reloadAppView:(BOOL)navigateToHome;
 +(void)reloadProfileView;
 +(void)reloadHomeView:(int)type;
++(void)reloadTabbar;
 
 +(NSData*)getParseToken;
 +(void)setParseToken:(NSData*)data;
 +(void)registerParseAfterLogin:(NSString*)userID;
 +(BOOL)isPhoneNumberVerified;
++(BOOL)hasReferralCampaign;
 
 #define UIColorFromRGB(r,g,b,a)  [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define DEFAULT_BORDER_RADIUS 5.0f
@@ -138,7 +154,7 @@ typedef enum {
 
 #define SELECTED_GREEN [UIColor colorWithRed:156.0f/255.0 green:204.0f/255.0 blue:101.0f/255.0 alpha:1.0]
 #define SELECTED_RED [UIColor colorWithRed:226.0/255.0 green:60.0/255.0 blue:78.0/255.0 alpha:1.0]
-#define SELECTED_YELLOW [UIColor colorWithRed:250.0/255.0 green:221.0/255.0 blue:78.0/96.0 alpha:1.0]
+#define SELECTED_YELLOW [UIColor colorWithRed:250.0/255.0 green:221.0/255.0 blue:96.0/255.0 alpha:1.0]
 
 #define LINE_COLOR [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0]
 #define ERROR_COLOR [UIColor colorWithRed:239.0/255.0 green:94.0/255.0 blue:65.0/255.0 alpha:1.0]
@@ -147,6 +163,9 @@ typedef enum {
 
 #define GREEN_STATUS [UIColor colorWithRed:122.0f/255.0 green:210.0f/255.0 blue:26.0f/255.0 alpha:1.0]
 #define GREY_APP_COLOR [UIColor colorWithRed:247.0/255.0 green:247.0/255.0 blue:247.0/255.0 alpha:1.0]
+
+#define BUTTON_DISABLED_COLOR [UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1.0]
+#define BUTTON_REDEEM_ACTIVE_COLOR [UIColor colorWithRed:242.0/255.0f green:109.0/255.0f blue:125.0/255.f alpha:1.0]
 
 #define CustomFontName @"ProximaNovaSoft-Regular"
 #define CustomFontNameBold @"ProximaNovaSoft-Bold"
@@ -161,8 +180,10 @@ typedef enum {
 +(NSString*)getTimeZone;
 +(NSInteger)numberOfDaysLeft:(NSDate*)date;
 +(BOOL)isValidDateString:(NSString*)dateString;
+//Compare date only (exclude time)
 +(BOOL)isDate:(NSDate*)currentDate betweenFirstDate:(NSDate*)firstDate andLastDate:(NSDate*)lastDate;
-
+//Compare both date and time
++ (BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)beginDate andDate:(NSDate*)endDate;
 // ========================  Day ==========================
 
 #pragma mark - UI
@@ -173,6 +194,7 @@ typedef enum {
 +(UIImage*)getPlaceHolderImage;
 +(UIImage*)getProfilePlaceHolderImage;
 +(UIImage*)getShopPlaceHolderImage;
++(UIImage*)getCoverPlaceHolderImage;
 
 // ========================  FONT ==========================
 +(UIFont*)defaultFont;
@@ -216,9 +238,6 @@ typedef enum {
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local;
 
-+(NSString*)getDeviceAppLanguageCode;
-+(NSString*)getDeviceDefaultLanguageCode;
-+(void)setDeviceAppLanguage:(NSString*)languageCode;
 +(NSString*)getUniqueDeviceIdentifier;
 
 #define ARRAY_LIST_SIZE 10.0f
@@ -243,6 +262,7 @@ typedef enum {
 #pragma mark - LOGIN
 +(void)showLogin;
 +(void)showVerifyPhoneNumber:(UIViewController*)viewController;
++(void)showChangeVerifiedPhoneNumber:(UIViewController*)viewController;
 +(void)presentView:(UIViewController*)vc Completion:(NullBlock)completionBlock;
 
 
@@ -290,5 +310,9 @@ typedef enum {
 #define TAIWAN_STR @"简体中文"
 #define CHINESE_STR @"繁體中文 "
 #define CHINESE_CENTRAL @"中文 "
+
+#pragma mark - NOTIFICATION
++(void)startNotification;
++(void)requestServerForNotificationCount;
 
 @end

@@ -35,40 +35,17 @@ static const NSString *MAIN_VIEW_KEY = @"mainview";
 
 -(void)showLoading
 {
-    @try {
-        
-        self.customEmptyStateView.loadingView.hidden = NO;
-        self.customEmptyStateView.noResultView.hidden = YES;
-        if (self.customEmptyStateView.loadingImage) {
-            self.customEmptyStateView.loadingImage.image = [YLGIFImage imageNamed:@"Loading.gif"];
-        }
-        
-    } @catch (NSException *exception) {
-        
-    }
-    
+    [self.customEmptyStateView showLoading];
 }
 
 -(void)showEmptyState
 {
-    @try {
-        self.customEmptyStateView.loadingView.hidden = YES;
-        self.customEmptyStateView.noResultView.hidden = NO;
-    } @catch (NSException *exception) {
-        
-    }
-    
+    [self.customEmptyStateView showEmptyState];
 }
 
 -(void)hideAll
 {
-    @try {
-        self.customEmptyStateView.loadingView.hidden = YES;
-        self.customEmptyStateView.noResultView.hidden = YES;
-        
-    } @catch (NSException *exception) {
-        
-    }
+    [self.customEmptyStateView hideAll];
 }
 
 @end

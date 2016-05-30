@@ -9,32 +9,23 @@
 #import "NewLandingViewController.h"
 #import "UITabBar+Extension.h"
 #import "IntroCoverView.h"
-#import "SKSplashView.h"
-#import "SKSplashIcon.h"
-#import "Masonry.h"
 
 
 @interface NewLandingViewController()<UITabBarControllerDelegate>
 {
+    
 }
 /*navigation controller*/
 @property (nonatomic)UINavigationController* firstViewController;
 @property (nonatomic)UINavigationController* secondViewController;
 @property (nonatomic)UINavigationController* thirdViewController;
 @property (nonatomic, strong)IntroCoverView* introView;
-
-@property (weak, nonatomic) IBOutlet UIImageView *ibLogo;
-
-
-@property (nonatomic,strong)NSArray* arryViewController;
-
 @property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
-@property (strong, nonatomic) IBOutlet UIView *ibSplashView;
+@property (nonatomic,strong)NSArray* arryViewController;
 
 @end
 
 @implementation NewLandingViewController
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -44,60 +35,124 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self initSelfView];
     
+    @try {
+        [[SearchManager Instance]startSearchGPSLocation];
+        [[SearchManager Instance]startGetWifiLocation];
+
+    } @catch (NSException *exception) {
+        
+        [CrashlyticsKit setObjectValue:exception forKey:@"Location"];
+        
+    }
+    
+    //[self requestForApiVersion:nil];
+
+//    if (![Utils getIsDevelopment]) {
+//        
+//        [self requestForApiVersion:nil];
+//        [self initSelfView];
+//
+//    }
+//    else{
+//        [self requestForApiVersion:^{
+//            [self initSelfView];
+//
+//        }];
+//    }
+   // [self showAnimatedSplash];
+
+}
+
+-(void)initSelfView
+{
     [self.view addSubview:self.tabBarController.view];
-    [NSTimer scheduledTimerWithTimeInterval:30.0
-                                     target:self
-                                   selector:@selector(requestServerForNotificationCount)
-                                   userInfo:nil
-                                    repeats:YES];
     
+    [self changeLanguage];
     
     [self requestServerForLanguageList];
+    
     [self registerNotification];
+    
     if (![Utils checkUserIsLogin]) {
+        
         [Utils showLogin];
     }
     else{
-        [self requestServerForNotificationCount];
+        [Utils startNotification];
+        
         [self requestServerForUserInfo];
+        
         [Utils reloadAppView:YES];
     }
     
     [self requestServerForCountry];
-    
-   // [self showIntroView];
-    [self showAnimatedSplash];
-
 }
 
--(void)showAnimatedSplash
+-(void)requestForApiVersion:(VoidBlock)completionBlock{
+    
+    
+    [[ConnectionManager Instance]requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetApiVersion parameter:nil appendString:nil success:^(id object) {
+        
+        [self processAPIVersion];
+        
+        if (completionBlock) {
+            completionBlock();
+        }
+        // [self showIntroView];
+        
+    } failure:^(id object) {
+
+
+    }];
+    
+}
+
+#pragma mark -  connection processing
+
+-(void)processAPIVersion
 {
     
-    UIView *superview = self.view;
-    UIView *view1 = self.ibSplashView;
-    view1.translatesAutoresizingMaskIntoConstraints = NO;
-    [superview addSubview:view1];
-    UIEdgeInsets padding = UIEdgeInsetsMake(0, 0, 0, 0);
-
-    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(superview).with.insets(padding);
-    }];
+    ApiVersionModel* model =[[ConnectionManager dataManager] apiVersionModel] ;
     
-    [UIView animateWithDuration:1.0 animations:^{
+    
+    //[Utils setIsDevelopment:!model.production];
+    //Check version if same then proceed, if not same then promp error and also proceed to landing
+    if (![model.version isEqualToString:API_VERSION]) {
         
-        self.ibLogo.alpha = 0;
-        
-    }completion:^(BOOL finished) {
-        
-        [UIView animateWithDuration:1.0 animations:^{
-        
-            self.ibSplashView.alpha = 0;
-        }completion:^(BOOL finished) {
-            [self.ibSplashView removeFromSuperview];
-        }];
-    }];
+        [UIAlertView showWithTitle:model.title
+                           message:model.message
+                 cancelButtonTitle:@"OK"
+                 otherButtonTitles:nil
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              if (buttonIndex == [alertView cancelButtonIndex]) {
+                                  NSString *iTunesLink = @"https://itunes.apple.com/app/seeties-mobile-citypass-for/id956400552?mt=8";
+                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+                              }
+                          }];
+    }
 }
+//-(void)showAnimatedSplash
+//{
+//    
+//    [self.view addSubview:self.ibSplashView];
+//    self.ibSplashView.frame = self.view.frame;
+//    
+//    [UIView animateWithDuration:1.0 animations:^{
+//        
+//        self.ibLogo.alpha = 0;
+//        
+//    }completion:^(BOOL finished) {
+//        
+//        [UIView animateWithDuration:1.0 animations:^{
+//        
+//            self.ibSplashView.alpha = 0;
+//        }completion:^(BOOL finished) {
+//            [self.ibSplashView removeFromSuperview];
+//        }];
+//    }];
+//}
 
 -(UITabBarController*)tabBarController
 {
@@ -138,11 +193,6 @@
     [self.newsFeedViewController reloadData];
 
 }
-
--(void)initSelfView
-{
-   // [self.view addSubview:self.leveyTabBarController.view];
-   }
 
 #pragma mark - Declaration
 
@@ -218,6 +268,8 @@
     [Utils reloadAppView:YES];
     self.tabBarController.selectedIndex = 0;
     
+    [self reloadTabbar];
+    
     [TSMessage showNotificationInViewController:self.newsFeedViewController title:LocalisedString(@"system") subtitle:LocalisedString(@"Login Successfully") type:TSMessageNotificationTypeSuccess duration:1.0f canBeDismissedByUser:YES];
     
     /*send crashlytics user UID to track crashes*/
@@ -225,34 +277,7 @@
     [CrashlyticsKit setUserIdentifier:model.uid];
     
     [self requestServerForUserInfo];
-
-}
-
--(LeveyTabBarController*)leveyTabBarController
-{
-    
-    if(!_leveyTabBarController)
-    {
-        
-        _firstViewController = [[UINavigationController alloc]initWithRootViewController:self.newsFeedViewController];
-        _firstViewController.navigationBar.hidden = YES;
-        _secondViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3MeViewController];
-        _secondViewController.navigationBar.hidden = YES;
-        _thirdViewController = [[UINavigationController alloc]initWithRootViewController:self.ct3_MoreViewController];
-        _thirdViewController.navigationBar.hidden = YES;
-
-
-        NSArray *arrViewControllers  = [NSArray arrayWithObjects:self.firstViewController,
-                                        self.secondViewController,self.thirdViewController, nil];
-        
-        _leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:arrViewControllers imageArray:[self arrTabImages]];
-        [_leveyTabBarController.tabBar setTintColor:[UIColor colorWithRed:51.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0]];
-        [_leveyTabBarController setTabBarTransparent:YES];
-        _leveyTabBarController.delegate = self;
-        
-    }
-    
-    return _leveyTabBarController;
+    [Utils requestServerForNotificationCount];
 }
 
 -(ProfileViewController*)profileViewController
@@ -340,18 +365,6 @@
     return imgArr;
 }
 
-- (BOOL)tabBarController:(LeveyTabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController atIndex:(NSInteger)index
-{
-    
-//    if (index == 1)
-//    {
-//        [self.profileViewController requestAllDataWithType:ProfileViewTypeOwn UserID:[Utils getUserID]];
-//    }
-    
-    return YES;
-}
-
-
 #pragma mark - Show View
 
 -(void)showLoginView
@@ -379,12 +392,11 @@
 {
     NSDictionary* dict = @{@"language_code":ENGLISH_CODE};
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetHomeCountry param:dict appendString:nil completeHandler:^(id object) {
-        
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetHomeCountry parameter:dict appendString:nil success:^(id object) {
         
         SLog(@"[COUNTRY CODE RETRIEVED]");
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -398,16 +410,16 @@
                            @"token":[Utils getAppToken]
                            };
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetUserInfo param:dict appendString:appendString completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserInfo parameter:dict appendString:appendString success:^(id object) {
         
         [Utils reloadProfileView];
         
         DataManager* manager = [ConnectionManager dataManager];
         manager.currentUserProfileModel = [[ConnectionManager dataManager]userProfileModel];
         
-        [[LanguageManager sharedLanguageManager]setLanguageCode:manager.currentUserProfileModel.system_language.language_code];
+        [LanguageManager setDeviceAppLanguage:manager.currentUserProfileModel.system_language.language_code];
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
 }
@@ -415,9 +427,10 @@
 -(void)requestServerForLanguageList{
     
     
-    [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetAllAppInfo param:nil appendString:nil completeHandler:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetAllAppInfo parameter:nil appendString:nil success:^(id object) {
+
         
-    } errorBlock:^(id object) {
+    } failure:^(id object) {
         
     }];
     
@@ -434,10 +447,10 @@
 
 -(void)registerNotification
 {
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(updateNotificationCount:)
-//                                                 name:@"UpdateNotification"
-//                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateNotification:)
+                                                 name:@"UpdateNotification"
+                                               object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateNotification:)
@@ -455,12 +468,22 @@
     if ([[notification name] isEqualToString:@"UpdateNotification"])
     {
     
-    
         if (![Utils isGuestMode]) {
             
             @try {
                 NSDictionary* dict = notification.userInfo;
-                self.ct3MeViewController.tabBarItem.badgeValue = [dict objectForKey:@"NOTIFICATION_COUNT"];
+                
+                int notificationCount = [[dict objectForKey:@"NOTIFICATION_COUNT"] intValue];
+                
+                if (notificationCount == 0) {
+                    
+                    self.ct3MeViewController.tabBarItem.badgeValue = nil;
+                }
+                else{
+                    
+                    self.ct3MeViewController.tabBarItem.badgeValue = [dict objectForKey:@"NOTIFICATION_COUNT"];
+
+                }
             }
             @catch (NSException *exception) {
                 
@@ -475,36 +498,6 @@
     else if([[notification name] isEqualToString:@"updatePhoneVerification"])
     {
         [self reloadBadgeView];
-    }
-}
--(void)requestServerForNotificationCount
-{
-    
-    NSString* token = [Utils getAppToken];
-    
-    NSDictionary* dict = @{@"token" : token?token:@""};
-    
-    if (![Utils isStringNull:token]) {
-        
-        [[ConnectionManager Instance]requestServerWithGet:ServerRequestTypeGetNotificationCount param:dict appendString:nil completeHandler:^(id object) {
-            
-            NSDictionary* returnDict = object[@"data"];
-            
-            @try {
-                int notCount = [returnDict[@"total_new_notifications"] intValue];
-                
-                NSDictionary* dict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%d",notCount] forKey:@"NOTIFICATION_COUNT"];
-                [[NSNotificationCenter defaultCenter]
-                 postNotificationName:@"UpdateNotification"
-                 object:nil userInfo:dict];
-            }
-            @catch (NSException *exception) {
-                SLog(@"server count not found");
-            }
-            
-        } errorBlock:^(id object) {
-            
-        }];
     }
 }
 
@@ -544,7 +537,6 @@
         }];
     };
     
-    
 }
 
 -(void)reloadBadgeView
@@ -557,7 +549,7 @@
     }
     else{
         
-        ProfileModel* userProfile = [[ConnectionManager dataManager]currentUserProfileModel];
+        ProfileModel* userProfile = [[ConnectionManager dataManager]getCurrentUserProfileModel];
         
         if ([Utils isStringNull:userProfile.contact_no]) {
             self.ct3_MoreViewController.tabBarItem.badgeValue = @"!";
@@ -569,6 +561,99 @@
         }
 
     }
+
+}
+
+-(void)reloadTabbar
+{
+    [self changeLanguage];
+}
+
+-(void)changeLanguage
+{
+    NSString* strActive1 = @"";
+    NSString* inActive1 = @"";
+    
+    NSString* strActive2 = @"";
+    NSString* inActive2 = @"";
+    
+    NSString* strActive3 = @"";
+    NSString* inActive3 = @"";
+    
+    NSString* deviceAppLanguageCode = [LanguageManager getDeviceAppLanguageCode];
+    
+    if ([deviceAppLanguageCode isEqualToString:CHINESE_CODE]) {
+        strActive1 = @"CN_TabbarHomeIcon_Active";
+        inActive1 = @"CN_TabbarHomeIcon_Inactive";
+        strActive2 = @"CN_TabbarMeIcon_Active";
+        inActive2 = @"CN_TabbarMeIcon_Inactive";
+        strActive3 = @"CN_TabbarMoreIcon_Active";
+        inActive3 = @"CN_TabbarMoreIcon_Inactive";
+
+    }
+    
+    else if ([deviceAppLanguageCode isEqualToString:TAIWAN_CODE])
+    {
+        strActive1 = @"TW_TabbarHomeIcon_Active";
+        inActive1 = @"TW_TabbarHomeIcon_Inactive";
+        strActive2 = @"CN_TabbarMeIcon_Active";
+        inActive2 = @"CN_TabbarMeIcon_Inactive";
+        strActive3 = @"CN_TabbarMoreIcon_Active";
+        inActive3 = @"CN_TabbarMoreIcon_Inactive";
+
+    }
+    else if ([deviceAppLanguageCode isEqualToString:INDONESIA_CODE])
+    {
+        strActive1 = @"ID_TabbarHomeIcon_Active";
+        inActive1 = @"ID_TabbarHomeIcon_Inactive";
+        strActive2 = @"EN_TabbarMeIcon_Active";
+        inActive2 = @"EN_TabbarMeIcon_Inactive";
+        strActive3 = @"EN_TabbarMoreIcon_Active";
+        inActive3 = @"EN_TabbarMoreIcon_Inactive";
+    }
+    else if ([deviceAppLanguageCode isEqualToString:THAI_CODE])
+    {
+        strActive1 = @"TH_TabbarHomeIcon_Active";
+        inActive1 = @"TH_TabbarHomeIcon_Inactive";
+        strActive2 = @"TH_TabbarMeIcon_Active";
+        inActive2 = @"TH_TabbarMeIcon_Inactive";
+        strActive3 = @"TH_TabbarMoreIcon_Active";
+        inActive3 = @"TH_TabbarMoreIcon_Inactive";
+    }
+    else{
+        strActive1 = @"EN_TabbarHomeIcon_Active";
+        inActive1 = @"EN_TabbarHomeIcon_Inactive";
+        strActive2 = @"EN_TabbarMeIcon_Active";
+        inActive2 = @"EN_TabbarMeIcon_Inactive";
+        strActive3 = @"EN_TabbarMoreIcon_Active";
+        inActive3 = @"EN_TabbarMoreIcon_Inactive";
+    }
+    
+    UITabBarItem *item1 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",inActive1]]
+                                                                        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strActive1]]];
+    _newsFeedViewController.tabBarItem = item1;
+    
+    UITabBarItem *item2 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",inActive2]]
+                                                                        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strActive2]]];
+    
+    
+    _ct3MeViewController.tabBarItem = item2;
+    
+    UITabBarItem *item3 = [[UITabBarItem alloc]initWithTitle:nil image:[[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",inActive3]]
+                                                                        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strActive3]]];
+    
+    
+    _ct3_MoreViewController.tabBarItem = item3;
+    
+    
+    _newsFeedViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+    _newsFeedViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -1.0f, -7, 1);
+    
+    _ct3_MoreViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -5);
+    _ct3_MoreViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -1.0f, -7, 1);
+    
+    _ct3MeViewController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, 0);
+    _ct3MeViewController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, -2.0f, -7, 2);
 
 }
 

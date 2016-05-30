@@ -27,15 +27,13 @@
     // Configure the view for the selected state
 }
 
--(void)initSelfView
-{
+-(void)initData{
     [self changeLanguage];
-
 }
 
 -(void)changeLanguage
 {
-    self.lblTitle.text = LocalisedString(@"Other User Recommendations");
+    self.lblTitle.text = LocalisedString(@"User Recommendations");
     self.lblDesc.text = LocalisedString(@"See what's around you");
 
 }
