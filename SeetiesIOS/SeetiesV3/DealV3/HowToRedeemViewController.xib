@@ -14,6 +14,7 @@
                 <outlet property="ibFooterInstruction" destination="pGM-p5-WQ7" id="J1t-LH-O4V"/>
                 <outlet property="ibHowToRedeemTitle" destination="RWE-aj-hXe" id="K12-0z-yhA"/>
                 <outlet property="ibHowToRedeemTopConstraint" destination="WiU-4r-vT4" id="Ggc-R0-RBZ"/>
+                <outlet property="ibNextBtn" destination="Hpn-1V-YOh" id="qZl-U3-2dT"/>
                 <outlet property="ibSecondImage" destination="E9l-RA-PjT" id="nLd-H8-llr"/>
                 <outlet property="ibSecondInstruction" destination="Www-Hy-mOU" id="MLo-iM-03S"/>
                 <outlet property="ibSecondNumber" destination="xZi-B8-Naz" id="Rwa-y2-IRh"/>
@@ -34,32 +35,34 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GhW-xM-Qmx" userLabel="header">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOS-xw-pnn" userLabel="close btn">
-                            <rect key="frame" x="540" y="0.0" width="60" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="JOS-xw-pnn" secondAttribute="height" multiplier="1:1" id="Qge-Xl-Jr2"/>
-                            </constraints>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <state key="normal" image="CloseIconGrey.png"/>
-                            <connections>
-                                <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="Xi8-sO-tcf"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Redeem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWE-aj-hXe">
-                            <rect key="frame" x="8" y="19" width="524" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Redeem" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWE-aj-hXe">
+                            <rect key="frame" x="16" y="19" width="129" height="21"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpn-1V-YOh" userLabel="next btn">
+                            <rect key="frame" x="504" y="14" width="80" height="33"/>
+                            <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="Vxs-hO-WNs"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <state key="normal" title="Next">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnNextClicked:" destination="-1" eventType="touchUpInside" id="zmu-Wz-ugo"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="JOS-xw-pnn" firstAttribute="top" secondItem="GhW-xM-Qmx" secondAttribute="top" id="42p-8r-VAj"/>
-                        <constraint firstAttribute="trailing" secondItem="JOS-xw-pnn" secondAttribute="trailing" id="7PY-P7-qRP"/>
-                        <constraint firstAttribute="bottom" secondItem="JOS-xw-pnn" secondAttribute="bottom" id="8ue-NF-q73"/>
-                        <constraint firstItem="RWE-aj-hXe" firstAttribute="leading" secondItem="GhW-xM-Qmx" secondAttribute="leading" constant="8" id="9Vn-Fr-baV"/>
-                        <constraint firstItem="JOS-xw-pnn" firstAttribute="leading" secondItem="RWE-aj-hXe" secondAttribute="trailing" constant="8" id="Dta-5z-pWj"/>
+                        <constraint firstItem="RWE-aj-hXe" firstAttribute="leading" secondItem="GhW-xM-Qmx" secondAttribute="leading" constant="16" id="9Vn-Fr-baV"/>
+                        <constraint firstItem="Hpn-1V-YOh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RWE-aj-hXe" secondAttribute="trailing" constant="16" id="Ftx-NE-Qmh"/>
                         <constraint firstItem="RWE-aj-hXe" firstAttribute="centerY" secondItem="GhW-xM-Qmx" secondAttribute="centerY" id="JJe-KB-VWQ"/>
+                        <constraint firstItem="Hpn-1V-YOh" firstAttribute="centerY" secondItem="GhW-xM-Qmx" secondAttribute="centerY" id="PdF-a2-Mho"/>
+                        <constraint firstAttribute="trailing" secondItem="Hpn-1V-YOh" secondAttribute="trailing" constant="16" id="bx6-Zq-TtP"/>
                         <constraint firstAttribute="height" constant="60" id="qKK-zn-978"/>
                     </constraints>
                 </view>
@@ -221,7 +224,6 @@
         </view>
     </objects>
     <resources>
-        <image name="CloseIconGrey.png" width="15" height="15"/>
         <image name="HowToRedeem1.gif" width="438" height="249"/>
         <image name="HowToRedeem2.gif" width="229" height="319"/>
         <image name="HowToRedeem3.gif" width="323" height="190"/>

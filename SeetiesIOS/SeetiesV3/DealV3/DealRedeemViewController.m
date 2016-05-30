@@ -8,7 +8,7 @@
 
 #import "DealRedeemViewController.h"
 #import "DealExpiryDateModel.h"
-#import "HowToRedeemViewController.h";
+#import "HowToRedeemViewController.h"
 
 @interface DealRedeemViewController ()
 {
@@ -51,6 +51,7 @@
 @property(nonatomic) BOOL hasRedeemed;
 @property(nonatomic) NSUserDefaults *userDefault;
 @property(nonatomic) NSTimer *timer;
+@property(nonatomic) BOOL isTutorial;
 @end
 
 @implementation DealRedeemViewController
@@ -161,6 +162,11 @@
     _referralID = referralId;
 }
 
+-(void)initWithTutorialDealModel:(DealModel*)dealModel{
+    _dealModel = dealModel;
+    _isTutorial = YES;
+}
+
 -(void)initSelfView{
     [self.ibSwipeBg setSideCurveBorder];
     [self.ibSwipeBtn setSideCurveBorder];
@@ -193,7 +199,7 @@
 }
 
 -(void)changeLanguage{
-    self.ibHeaderTitle.text = LocalisedString(@"Redeem Voucher");
+    self.ibHeaderTitle.text = self.isTutorial? LocalisedString(@"Try to swipe to redeem!") : LocalisedString(@"Redeem Voucher");
     self.ibSwipeToRedeem.text = LocalisedString(@"Swipe to redeem");
     NSString *formattedStr = LocalisedString(@"Voucher redemptions must be made in front of shop staff");
     self.ibBottomDesc.text = [NSString stringWithFormat:@"%@", formattedStr];
@@ -241,11 +247,28 @@
     if(touch.view == self.ibSwipeView){
         if (activateDropEffect) {
             
+            if (_isTutorial) {
+                [self dropBottomView];
+                [UIAlertView showWithTitle:LocalisedString(@"Are you ready?") message:LocalisedString(@"Have you mastered how to swipe to redeem now?") cancelButtonTitle:LocalisedString(@"Maybe not!") otherButtonTitles:@[LocalisedString(@"Yes, sure !")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                    switch (buttonIndex) {
+                        case 0:
+                            [self resetBottomView];
+                            break;
+                            
+                        case 1:
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                            break;
+                        default:
+                            break;
+                    }
+                }];
+                return;
+            }
+            
             if ([self isNeedShowFirstTime]) {
                 [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Flash and swipe! Do you want to redeem your voucher now?") style:UIAlertViewStyleDefault cancelButtonTitle:LocalisedString(@"Maybe not.") otherButtonTitles:@[LocalisedString(@"Yeah!")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
                         [self requestServerToRedeemVoucher];
-//                        [self dropBottomView];
                     }
                     else if (buttonIndex == 0){
                         [UIView animateWithDuration:0.5 animations:^{
@@ -258,7 +281,6 @@
             else
             {
                 [self requestServerToRedeemVoucher];
-//                [self dropBottomView];
 
             }
             

@@ -105,7 +105,7 @@
                             <rect key="frame" x="3" y="68" width="313" height="157"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rl7-kF-Y0H">
-                                    <rect key="frame" x="0.0" y="0.0" width="313" height="157"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="313" height="156.5"/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
                             </subviews>
@@ -119,7 +119,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSW-gB-Hig">
-                            <rect key="frame" x="15" y="235" width="289" height="69"/>
+                            <rect key="frame" x="15" y="234" width="289" height="70"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -155,10 +155,10 @@
                     <rect key="frame" x="28" y="386" width="319" height="107"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealRedeemCardDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="bwF-Qu-mY0">
-                            <rect key="frame" x="0.0" y="0.0" width="319" height="107"/>
+                            <rect key="frame" x="0.0" y="0.0" width="319" height="106"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsS-C4-sNW" userLabel="swipe bg">
-                            <rect key="frame" x="20" y="26" width="279" height="55"/>
+                            <rect key="frame" x="20" y="25" width="279" height="55"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeToRedeemSwipeIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="LR4-8K-3va">
                                     <rect key="frame" x="55" y="15" width="25" height="25"/>
@@ -205,7 +205,7 @@
                             </constraints>
                         </view>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IndicatorHand.png" translatesAutoresizingMaskIntoConstraints="NO" id="kQJ-WD-d7j" userLabel="guide finger">
-                            <rect key="frame" x="34" y="53" width="43" height="43"/>
+                            <rect key="frame" x="34" y="52" width="43" height="43"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="43" id="J2v-H8-7EM"/>
                                 <constraint firstAttribute="height" constant="43" id="bvJ-uy-X6d"/>
@@ -265,8 +265,20 @@
                         <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="vor-PK-bkB"/>
                     </connections>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUO-Pe-XnD" userLabel="tutorial close button">
+                    <rect key="frame" x="319" y="16" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ESY-dL-lCv"/>
+                        <constraint firstAttribute="width" constant="40" id="y1L-Py-vAe"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" image="CloseIcon.png"/>
+                    <connections>
+                        <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="VN5-QD-tDn"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must redeem in front of a shop personnel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSE-Hl-Y7Q">
-                    <rect key="frame" x="43" y="501" width="289" height="36"/>
+                    <rect key="frame" x="43" y="500" width="289" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -290,6 +302,7 @@
                 <constraint firstItem="TGy-Uf-mib" firstAttribute="height" secondItem="FRX-IV-Orm" secondAttribute="height" constant="-30" id="TNH-LH-PxA"/>
                 <constraint firstItem="LSE-Hl-Y7Q" firstAttribute="top" secondItem="FRX-IV-Orm" secondAttribute="bottom" constant="8" id="Tgu-Zi-Njd"/>
                 <constraint firstItem="pDY-W6-TMS" firstAttribute="leading" secondItem="6yp-Fc-qax" secondAttribute="leading" id="WVb-Fm-bm1"/>
+                <constraint firstAttribute="trailing" secondItem="BUO-Pe-XnD" secondAttribute="trailing" constant="16" id="Wmi-TZ-3gY"/>
                 <constraint firstItem="pDY-W6-TMS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="YKe-xz-1Rl"/>
                 <constraint firstAttribute="trailing" secondItem="FRX-IV-Orm" secondAttribute="trailing" constant="28" id="Z8S-Mg-LZg"/>
                 <constraint firstItem="6yp-Fc-qax" firstAttribute="top" secondItem="pDY-W6-TMS" secondAttribute="bottom" id="ZHI-8l-Qdb"/>
@@ -303,6 +316,7 @@
                 <constraint firstItem="6yp-Fc-qax" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="lX2-Vd-vC8"/>
                 <constraint firstItem="6yp-Fc-qax" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pUC-hP-WGl"/>
                 <constraint firstAttribute="trailing" secondItem="ORX-Vq-Sxe" secondAttribute="trailing" id="rcR-0R-upG"/>
+                <constraint firstItem="BUO-Pe-XnD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="wGk-TE-d5r"/>
                 <constraint firstAttribute="bottom" secondItem="WeQ-96-aWT" secondAttribute="bottom" constant="19" id="xEW-Ai-Ezj"/>
                 <constraint firstItem="gSA-o2-hwg" firstAttribute="centerY" secondItem="pDY-W6-TMS" secondAttribute="centerY" id="xbL-bC-ALj"/>
             </constraints>
