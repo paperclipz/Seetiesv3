@@ -1328,7 +1328,7 @@
         
     }];
     
-    self.lblUserName.text = self.userProfileModel.name;
+    self.lblUserName.text = self.userProfileModel.username;
     self.lblUserName_Header.text = self.userProfileModel.name;
     self.lblName.text = self.userProfileModel.name;
     NSString* strFollower = [NSString stringWithFormat:@"%d %@",self.userProfileModel.follower_count,LocalisedString(@"Followers")];
