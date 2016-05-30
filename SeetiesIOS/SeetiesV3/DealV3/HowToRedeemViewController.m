@@ -34,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationController.navigationBar.hidden = YES;
     [self initSelfView];
     
     CGRect screenSize = [Utils getDeviceScreenSize];
@@ -87,6 +88,8 @@
 
 - (IBAction)btnNextClicked:(id)sender {
     DealRedeemViewController *redeemVC = [DealRedeemViewController new];
+    [redeemVC initWithTutorial];
+    [self.navigationController pushViewController:redeemVC animated:YES];
 }
 
 #pragma mark - Declaration
