@@ -32,13 +32,15 @@
 -(void)initData
 {
     @try {
-        InviteFriendModel* model = [[[[[DataManager Instance] appInfoModel]countries]current_country]invite_friend_banner];
         
-        if (model) {
+        AppInfoModel* model = [[DataManager Instance] appInfoModel];
+        InviteFriendModel* iModel = model.countries.current_country.invite_friend_banner;
+        
+        if (iModel) {
             NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
-            NSString *title = model.title[languageCode]? model.title[languageCode] : @"";
+            NSString *title = iModel.title[languageCode]? iModel.title[languageCode] : @"";
             self.ibTitle.text = LocalisedString(title);
-            [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:model.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:iModel.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 
                 self.ibImageView.image = image;
             }];
