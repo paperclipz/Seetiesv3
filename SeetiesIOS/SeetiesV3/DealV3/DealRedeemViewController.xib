@@ -284,13 +284,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFg-g9-mNu">
-                    <rect key="frame" x="164" y="21" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="btntestClicked:" destination="-1" eventType="touchUpInside" id="oOL-6X-pOo"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -366,47 +359,6 @@
                         <constraint firstItem="QAX-OX-g48" firstAttribute="centerY" secondItem="6oN-ht-Kh6" secondAttribute="centerY" id="Wjg-pm-mXb"/>
                         <constraint firstItem="h0d-qJ-cFY" firstAttribute="leading" secondItem="QAX-OX-g48" secondAttribute="trailing" constant="8" id="eox-ZK-BiV"/>
                         <constraint firstItem="h0d-qJ-cFY" firstAttribute="top" secondItem="6oN-ht-Kh6" secondAttribute="top" id="wbI-j9-w8r"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUu-Iw-0ZD" userLabel="first view">
-                    <rect key="frame" x="0.0" y="68" width="320" height="167"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HowToRedeem1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="CSs-d2-WPy" userLabel="first image" customClass="YLImageView">
-                            <rect key="frame" x="75" y="8" width="195" height="98"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="CSs-d2-WPy" secondAttribute="height" multiplier="2:1" id="pRG-Wa-69S"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdU-do-Rmn" userLabel="first number">
-                            <rect key="frame" x="75" y="17" width="30" height="30"/>
-                            <color key="backgroundColor" red="0.30588235294117649" green="0.15686274509803921" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="1R9-jG-bqu"/>
-                                <constraint firstAttribute="height" constant="30" id="Ibf-4C-WRe"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you order" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEp-Ox-QE7" userLabel="first instruction">
-                            <rect key="frame" x="35" y="112" width="250" height="20"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SEp-Ox-QE7" secondAttribute="bottom" constant="6" id="1b7-P5-nmL"/>
-                        <constraint firstItem="VdU-do-Rmn" firstAttribute="centerY" secondItem="CSs-d2-WPy" secondAttribute="centerY" constant="-25" id="2Bx-Gb-9kZ"/>
-                        <constraint firstAttribute="width" secondItem="lUu-Iw-0ZD" secondAttribute="height" multiplier="1:0.52" id="2UO-EL-FA3"/>
-                        <constraint firstItem="CSs-d2-WPy" firstAttribute="leading" secondItem="lUu-Iw-0ZD" secondAttribute="leading" constant="75" id="LlH-UA-Zdg"/>
-                        <constraint firstAttribute="trailing" secondItem="CSs-d2-WPy" secondAttribute="trailing" constant="50" id="NUR-PL-ote"/>
-                        <constraint firstItem="SEp-Ox-QE7" firstAttribute="leading" secondItem="lUu-Iw-0ZD" secondAttribute="leading" constant="35" id="SbK-MU-1Js"/>
-                        <constraint firstAttribute="trailing" secondItem="SEp-Ox-QE7" secondAttribute="trailing" constant="35" id="Zle-rg-fii"/>
-                        <constraint firstItem="VdU-do-Rmn" firstAttribute="leading" secondItem="CSs-d2-WPy" secondAttribute="leading" id="eE8-yD-gra"/>
-                        <constraint firstItem="CSs-d2-WPy" firstAttribute="top" secondItem="lUu-Iw-0ZD" secondAttribute="top" constant="8" id="n3n-9s-yut"/>
-                        <constraint firstItem="SEp-Ox-QE7" firstAttribute="top" secondItem="CSs-d2-WPy" secondAttribute="bottom" constant="6" id="r2n-2m-BZw"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBI-cW-0RN" userLabel="second view">
@@ -498,6 +450,47 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUu-Iw-0ZD" userLabel="first view">
+                    <rect key="frame" x="0.0" y="68" width="320" height="167"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HowToRedeem1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="CSs-d2-WPy" userLabel="first image" customClass="YLImageView">
+                            <rect key="frame" x="75" y="8" width="195" height="98"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="CSs-d2-WPy" secondAttribute="height" multiplier="2:1" id="pRG-Wa-69S"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdU-do-Rmn" userLabel="first number">
+                            <rect key="frame" x="75" y="17" width="30" height="30"/>
+                            <color key="backgroundColor" red="0.30588235294117649" green="0.15686274509803921" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="1R9-jG-bqu"/>
+                                <constraint firstAttribute="height" constant="30" id="Ibf-4C-WRe"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you order" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEp-Ox-QE7" userLabel="first instruction">
+                            <rect key="frame" x="35" y="112" width="250" height="20"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SEp-Ox-QE7" secondAttribute="bottom" constant="6" id="1b7-P5-nmL"/>
+                        <constraint firstItem="VdU-do-Rmn" firstAttribute="centerY" secondItem="CSs-d2-WPy" secondAttribute="centerY" constant="-25" id="2Bx-Gb-9kZ"/>
+                        <constraint firstAttribute="width" secondItem="lUu-Iw-0ZD" secondAttribute="height" multiplier="1:0.52" id="2UO-EL-FA3"/>
+                        <constraint firstItem="CSs-d2-WPy" firstAttribute="leading" secondItem="lUu-Iw-0ZD" secondAttribute="leading" constant="75" id="LlH-UA-Zdg"/>
+                        <constraint firstAttribute="trailing" secondItem="CSs-d2-WPy" secondAttribute="trailing" constant="50" id="NUR-PL-ote"/>
+                        <constraint firstItem="SEp-Ox-QE7" firstAttribute="leading" secondItem="lUu-Iw-0ZD" secondAttribute="leading" constant="35" id="SbK-MU-1Js"/>
+                        <constraint firstAttribute="trailing" secondItem="SEp-Ox-QE7" secondAttribute="trailing" constant="35" id="Zle-rg-fii"/>
+                        <constraint firstItem="VdU-do-Rmn" firstAttribute="leading" secondItem="CSs-d2-WPy" secondAttribute="leading" id="eE8-yD-gra"/>
+                        <constraint firstItem="CSs-d2-WPy" firstAttribute="top" secondItem="lUu-Iw-0ZD" secondAttribute="top" constant="8" id="n3n-9s-yut"/>
+                        <constraint firstItem="SEp-Ox-QE7" firstAttribute="top" secondItem="CSs-d2-WPy" secondAttribute="bottom" constant="6" id="r2n-2m-BZw"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>

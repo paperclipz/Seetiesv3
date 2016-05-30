@@ -66,11 +66,6 @@
 @end
 
 @implementation DealRedeemViewController
-- (IBAction)btntestClicked:(id)sender {
-   
-    [self resetBottomView];
-}
-
 
 - (IBAction)btnIntroClicked:(id)sender {
     
