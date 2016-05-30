@@ -1168,15 +1168,17 @@
         case ServerRequestTypeGetHomeCountry:
         {
             
-            
+            NSError *error;
+
             NSDictionary* dict = obj[@"countries"];
             
             @try {
-                self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:nil];
+                self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:&error];
                 [self.dataManager.countriesModel processShouldDisplay];
 
             } @catch (NSException *exception) {
                 
+                SLog(@"error");
             }
             
         }
