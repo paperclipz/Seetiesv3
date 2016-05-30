@@ -50,14 +50,20 @@
     BOOL warning = [[defaults objectForKey:FIRST_TIME_SHOW_DEAL_WARNING] boolValue];
 
     NSData* data = [Utils getParseToken];
+
+    BOOL isProduction = [Utils getIsDevelopment];
+
     [defaults synchronize];
     
+    
+    // set back nsdictionary data
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 
     [defaults setBool:walkthrough forKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH];
     [defaults setBool:warning forKey:FIRST_TIME_SHOW_DEAL_WARNING];
     [Utils setParseToken:data];
+    [Utils setIsDevelopment:isProduction];
     AppDelegate *appdelegate;
     
     appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -222,7 +228,9 @@
 }
 
 +(BOOL)hasReferralCampaign{
-    CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+    
+    DataManager* manager = [ConnectionManager dataManager];
+    CountriesModel *countries = manager.appInfoModel.countries;
     if (!countries) {
         return NO;
     }

@@ -1167,10 +1167,18 @@
             break;
         case ServerRequestTypeGetHomeCountry:
         {
+            
+            
             NSDictionary* dict = obj[@"countries"];
             
-            self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:nil];
-            [self.dataManager.countriesModel processShouldDisplay];
+            @try {
+                self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:nil];
+                [self.dataManager.countriesModel processShouldDisplay];
+
+            } @catch (NSException *exception) {
+                
+            }
+            
         }
             break;
             
@@ -1269,16 +1277,16 @@
             break;
             
         case ServerRequestTypeGetAllAppInfo:
-            
+        {
             self.dataManager.appInfoModel = [[AppInfoModel alloc]initWithDictionary:obj error:nil];
             
             if (self.dataManager.appInfoModel.languages) {
                 
                 self.dataManager.languageModels = [LanguageModels new];
-                self.dataManager.languageModels .languages = self.dataManager.appInfoModel.languages;
+                self.dataManager.languageModels.languages = self.dataManager.appInfoModel.languages;
 
             }
-
+        }
             break;
             //        case ServerRequestTypePostProvisioning:
             //
