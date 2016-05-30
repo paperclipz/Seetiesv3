@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -50,10 +50,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGy-Uf-mib">
-                    <rect key="frame" x="43" y="401" width="289" height="76.5"/>
+                    <rect key="frame" x="43" y="401" width="289" height="77"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKC-ir-Fsh">
-                            <rect key="frame" x="20" y="37.5" width="249" height="0.0"/>
+                            <rect key="frame" x="20" y="38" width="249" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -165,13 +165,13 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FRX-IV-Orm" userLabel="BottomView">
-                    <rect key="frame" x="28" y="386" width="319" height="106.5"/>
+                    <rect key="frame" x="28" y="386" width="319" height="107"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealRedeemCardDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="bwF-Qu-mY0">
-                            <rect key="frame" x="0.0" y="0.0" width="319" height="106.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="319" height="107"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsS-C4-sNW" userLabel="swipe bg">
-                            <rect key="frame" x="20" y="25.5" width="279" height="55"/>
+                            <rect key="frame" x="20" y="26" width="279" height="55"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeToRedeemSwipeIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="LR4-8K-3va">
                                     <rect key="frame" x="55" y="15" width="25" height="25"/>
@@ -218,7 +218,7 @@
                             </constraints>
                         </view>
                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IndicatorHand.png" translatesAutoresizingMaskIntoConstraints="NO" id="kQJ-WD-d7j" userLabel="guide finger">
-                            <rect key="frame" x="34" y="52.5" width="43" height="43"/>
+                            <rect key="frame" x="34" y="53" width="43" height="43"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="43" id="J2v-H8-7EM"/>
                                 <constraint firstAttribute="height" constant="43" id="bvJ-uy-X6d"/>
@@ -279,11 +279,18 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must redeem in front of a shop personnel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSE-Hl-Y7Q">
-                    <rect key="frame" x="43" y="500.5" width="289" height="36"/>
+                    <rect key="frame" x="43" y="501" width="289" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFg-g9-mNu">
+                    <rect key="frame" x="164" y="21" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="btntestClicked:" destination="-1" eventType="touchUpInside" id="oOL-6X-pOo"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
