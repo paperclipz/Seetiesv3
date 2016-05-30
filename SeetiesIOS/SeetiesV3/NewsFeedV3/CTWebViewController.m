@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.lblTitle.text = self.title;
     self.ibWebView.delegate = self;
     self.instagramEngine = [InstagramEngine sharedEngine];
