@@ -50,10 +50,10 @@
     [Utils setRoundBorder:self.ibInviteFriendsBtn color:[UIColor clearColor] borderRadius:self.ibInviteFriendsBtn.frame.size.height/2];
     
     if (![Utils isStringNull:self.inviteFriendModel.background_image]) {
-        [self.ibBackgroundImg sd_setImageWithURL:[NSURL URLWithString:self.inviteFriendModel.background_image] placeholderImage:[UIImage imageNamed:@"WhiteSeetiesLogo.png"]];
+        [self.ibBackgroundImg sd_setImageWithURL:[NSURL URLWithString:self.inviteFriendModel.background_image] placeholderImage:[UIImage imageNamed:@"ReferDefaultImg.png"]];
     }
     else{
-        [self.ibBackgroundImg setImage:[UIImage imageNamed:@"WhiteSeetiesLogo.png"]];
+        [self.ibBackgroundImg setImage:[UIImage imageNamed:@"ReferDefaultImg.png"]];
     }
     
 }
