@@ -100,6 +100,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibReportLbl;
 
 @property (weak, nonatomic) IBOutlet UIView *ibFooterView;
+@property (weak, nonatomic) IBOutlet UIView *ibInnerFooterView;
 @property (weak, nonatomic) IBOutlet UILabel *ibFooterTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ibFooterIcon;
 
@@ -473,7 +474,7 @@
         totalHeight += view.frame.size.height;
     }
     
-    self.ibMainContentHeightConstraint.constant = totalHeight;
+    self.ibMainContentHeightConstraint.constant = totalHeight + self.ibFooterView.frame.size.height/2;
     [self.view refreshConstraint];
     
 }
@@ -1028,54 +1029,56 @@
         
         if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
             if (self.dealCollectionModel && ([self.dealCollectionModel isCampaignExpired] || [self.dealCollectionModel isExceedNumberOfCollectable])) {
-                [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+                [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
                 return;
             }
         }
         
         if (self.dealModel.total_available_vouchers == 0) {
-            [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+            [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         }
         else{
-            [self.ibFooterView setBackgroundColor:DEVICE_COLOR];
+            [self.ibInnerFooterView setBackgroundColor:DEVICE_COLOR];
         }
         
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
         if ([self.dealModel isRedeemable]) {
-            [self.ibFooterView setBackgroundColor:BUTTON_REDEEM_ACTIVE_COLOR];
+            [self.ibInnerFooterView setBackgroundColor:BUTTON_REDEEM_ACTIVE_COLOR];
         }
         else{
-            [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+            [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         }
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsNextIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Next");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsRedeemedIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Redeemed");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_EXPIRED]){
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsExpiredIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Expired");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_CANCELLED]){
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsCancelledIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Cancelled");
     }
     else if ([voucherStatus isEqualToString:VOUCHER_STATUS_DELETED]){
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsDeletedIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Deleted");
     }
     else{
         self.ibFooterView.hidden = YES;
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         self.ibFooterTitle.text = @"";
     }
+    
+    [Utils setRoundBorder:self.ibInnerFooterView color:[UIColor clearColor] borderRadius:5.0f];
 }
 
 #pragma mark - Delegate
