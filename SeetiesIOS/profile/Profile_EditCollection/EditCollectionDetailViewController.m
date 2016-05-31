@@ -186,6 +186,9 @@ typedef enum{
     _blueEditingTagControl.tagsTextColor = TWO_ZERO_FOUR_COLOR;
     
     
+    UITextField *tagTextField = _blueEditingTagControl.getCurrentTextField;
+    tagTextField.font = [UIFont systemFontOfSize:15];
+    
     [_blueEditingTagControl reloadTagSubviews];
    
     __weak typeof (self)weakSelf = self;
