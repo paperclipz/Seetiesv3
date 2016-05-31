@@ -1254,6 +1254,8 @@
 		C22703021CBF932D00F9FBF3 /* PostFilterSortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703001CBF932D00F9FBF3 /* PostFilterSortCell.xib */; };
 		C22703061CBF949D00F9FBF3 /* PostFilterCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */; };
 		C22703071CBF949D00F9FBF3 /* PostFilterCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */; };
+		C22903871CFD9D2C00070F29 /* ReferDefaultImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22903851CFD9D2C00070F29 /* ReferDefaultImg@2x.png */; };
+		C22903881CFD9D2C00070F29 /* ReferDefaultImg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22903861CFD9D2C00070F29 /* ReferDefaultImg@3x.png */; };
 		C22B7D011CFC0639006940DE /* HowToRedeemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22B7CFF1CFC0639006940DE /* HowToRedeemViewController.m */; };
 		C22B7D021CFC0639006940DE /* HowToRedeemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22B7D001CFC0639006940DE /* HowToRedeemViewController.xib */; };
 		C22B7D051CFC4F38006940DE /* DealsFloatingBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22B7D031CFC4F38006940DE /* DealsFloatingBar@2x.png */; };
@@ -2945,6 +2947,8 @@
 		C22703031CBF949D00F9FBF3 /* PostFilterCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostFilterCategoryCell.h; sourceTree = "<group>"; };
 		C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostFilterCategoryCell.m; sourceTree = "<group>"; };
 		C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFilterCategoryCell.xib; sourceTree = "<group>"; };
+		C22903851CFD9D2C00070F29 /* ReferDefaultImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReferDefaultImg@2x.png"; sourceTree = "<group>"; };
+		C22903861CFD9D2C00070F29 /* ReferDefaultImg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReferDefaultImg@3x.png"; sourceTree = "<group>"; };
 		C22B7CFE1CFC0639006940DE /* HowToRedeemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToRedeemViewController.h; sourceTree = "<group>"; };
 		C22B7CFF1CFC0639006940DE /* HowToRedeemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToRedeemViewController.m; sourceTree = "<group>"; };
 		C22B7D001CFC0639006940DE /* HowToRedeemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowToRedeemViewController.xib; sourceTree = "<group>"; };
@@ -3644,6 +3648,8 @@
 			children = (
 				8A1126131CF69EC100399213 /* ImgNoticeReward.jpg */,
 				8A1126141CF69EC100399213 /* ImgNoticeVerify.jpg */,
+				C22903851CFD9D2C00070F29 /* ReferDefaultImg@2x.png */,
+				C22903861CFD9D2C00070F29 /* ReferDefaultImg@3x.png */,
 				8A1126151CF69EC100399213 /* ReferCampaignSend@2x.png */,
 				8A1126161CF69EC100399213 /* ReferCampaignSend@3x.png */,
 				8A1126171CF69EC100399213 /* ReferCampaignVisual@2x.png */,
@@ -6849,6 +6855,7 @@
 				C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */,
 				8A114CBE1BE73F5D006AE3F0 /* toolbarbg@2x.png in Resources */,
 				8A1129871CF69EC100399213 /* BgWalkLanding@2x.jpg in Resources */,
+				C22903881CFD9D2C00070F29 /* ReferDefaultImg@3x.png in Resources */,
 				8A1128C01CF69EC100399213 /* HomeGoIcon@3x.png in Resources */,
 				8A1129EA1CF69EC100399213 /* Uncheck@3x.png in Resources */,
 				8A1129391CF69EC100399213 /* SeetishopVerifiedIcon@3x.png in Resources */,
@@ -7084,6 +7091,7 @@
 				8A1128FC1CF69EC100399213 /* NaviCloseIcon@3x.png in Resources */,
 				8A112AC81CF69EC100399213 /* PostLocationIcon@3x.png in Resources */,
 				8A1128E21CF69EC100399213 /* MoreAccountSettingsIcon@3x.png in Resources */,
+				C22903871CFD9D2C00070F29 /* ReferDefaultImg@2x.png in Resources */,
 				8A112A551CF69EC100399213 /* NearbyIcon@2x.png in Resources */,
 				8A112A341CF69EC100399213 /* CollectionInFeedOverlay@3x.png in Resources */,
 				8A112AB01CF69EC100399213 /* BlueLink@3x.png in Resources */,
