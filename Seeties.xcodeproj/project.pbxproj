@@ -1256,6 +1256,8 @@
 		C22703071CBF949D00F9FBF3 /* PostFilterCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */; };
 		C22B7D011CFC0639006940DE /* HowToRedeemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22B7CFF1CFC0639006940DE /* HowToRedeemViewController.m */; };
 		C22B7D021CFC0639006940DE /* HowToRedeemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22B7D001CFC0639006940DE /* HowToRedeemViewController.xib */; };
+		C22B7D051CFC4F38006940DE /* DealsFloatingBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22B7D031CFC4F38006940DE /* DealsFloatingBar@2x.png */; };
+		C22B7D061CFC4F38006940DE /* DealsFloatingBar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22B7D041CFC4F38006940DE /* DealsFloatingBar@3x.png */; };
 		C22C35161CF427E7004092F6 /* CT3_ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22C35141CF427E7004092F6 /* CT3_ForgotPasswordViewController.m */; };
 		C22C35171CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22C35151CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
@@ -2946,6 +2948,8 @@
 		C22B7CFE1CFC0639006940DE /* HowToRedeemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToRedeemViewController.h; sourceTree = "<group>"; };
 		C22B7CFF1CFC0639006940DE /* HowToRedeemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToRedeemViewController.m; sourceTree = "<group>"; };
 		C22B7D001CFC0639006940DE /* HowToRedeemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowToRedeemViewController.xib; sourceTree = "<group>"; };
+		C22B7D031CFC4F38006940DE /* DealsFloatingBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsFloatingBar@2x.png"; sourceTree = "<group>"; };
+		C22B7D041CFC4F38006940DE /* DealsFloatingBar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DealsFloatingBar@3x.png"; sourceTree = "<group>"; };
 		C22C35131CF427E7004092F6 /* CT3_ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_ForgotPasswordViewController.h; sourceTree = "<group>"; };
 		C22C35141CF427E7004092F6 /* CT3_ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		C22C35151CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_ForgotPasswordViewController.xib; sourceTree = "<group>"; };
@@ -3394,6 +3398,8 @@
 				8A1125561CF69EC100399213 /* DealsCollectIcon@2x.png */,
 				8A1125571CF69EC100399213 /* DealsCollectIcon@3x.png */,
 				8A1125581CF69EC100399213 /* DealsDealEndIcon@2x.png */,
+				C22B7D031CFC4F38006940DE /* DealsFloatingBar@2x.png */,
+				C22B7D041CFC4F38006940DE /* DealsFloatingBar@3x.png */,
 				8A1125591CF69EC100399213 /* DealsDealEndIcon@3x.png */,
 				8A11255A1CF69EC100399213 /* DealsDealEndIconRed@2x.png */,
 				8A11255B1CF69EC100399213 /* DealsDealEndIconRed@3x.png */,
@@ -6734,6 +6740,7 @@
 				8A11293C1CF69EC100399213 /* SelectLocationAutoDetectIconDeactivated@2x.png in Resources */,
 				8A11299C1CF69EC100399213 /* WalletHistoryIcon@3x.png in Resources */,
 				8A1128ED1CF69EC100399213 /* MoreSignUpOrLogInIcon@2x.png in Resources */,
+				C22B7D061CFC4F38006940DE /* DealsFloatingBar@3x.png in Resources */,
 				8A11286E1CF69EC100399213 /* DealsPhotoOverlay@3x.png in Resources */,
 				8A1128C61CF69EC100399213 /* HomePinIcon@3x.png in Resources */,
 				8A1128B61CF69EC100399213 /* HomeAutoDetectIcon@3x.png in Resources */,
@@ -6918,6 +6925,7 @@
 				8A1128611CF69EC100399213 /* DealsCancelledIcon@2x.png in Resources */,
 				8A112B031CF69EC100399213 /* AutoComplete@2x.png in Resources */,
 				8A112AD11CF69EC100399213 /* AddPostBtn@2x.png in Resources */,
+				C22B7D051CFC4F38006940DE /* DealsFloatingBar@2x.png in Resources */,
 				8A1129591CF69EC100399213 /* CN_TabbarMoreIcon_Active@2x.png in Resources */,
 				8A1128CE1CF69EC100399213 /* HomeVoucherWalletIcon@3x.png in Resources */,
 				8A112AA41CF69EC100399213 /* NotificationBySeeties@3x.png in Resources */,
@@ -8170,7 +8178,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
+				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
