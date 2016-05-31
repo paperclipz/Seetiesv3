@@ -12,6 +12,10 @@
 
 
 @interface NotificationTableViewCell()<UICollectionViewDataSource,UICollectionViewDelegate>
+{
+
+    __weak IBOutlet NSLayoutConstraint *constCollectionViewHeight;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *ibImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UILabel *lblTime;
@@ -32,9 +36,9 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    [self.ibImageView setRoundedBorder];
+    //[self.ibImageView setRoundedBorder];
+    [Utils setRoundBorder:self.ibImageView color:OUTLINE_COLOR borderRadius:self.ibImageView.frame.size.height/2 borderWidth:1.0f];
 }
-
 
 -(void)initSelfView
 {
@@ -60,13 +64,19 @@
     if (type == 2) {
         
         self.ibCollectionView.hidden = YES;
+        constCollectionViewHeight.constant = 0;
     }else
     {
         if (model.arrPosts.count == 0) {
             self.ibCollectionView.hidden = YES;
+            constCollectionViewHeight.constant = 0;
 
         }
-        self.ibCollectionView.hidden = NO;
+        else{
+            constCollectionViewHeight.constant = 94;
+            self.ibCollectionView.hidden = NO;
+
+        }
 
     }
     
@@ -79,9 +89,7 @@
 
     }
     
-    NSString* message = [model.notificationMessage stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>",
-                                                    @"ProximaNovaSoft-Regular",
-                                                    15]];
+    NSString* message = [model.notificationMessage stringByAppendingString:[NSString stringWithFormat:@"<style>body{font-family: '%@'; font-size:%dpx; color:#666666;}</style>", @"ProximaNovaSoft-Regular", 15]];
     NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[message dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     self.lblDescription.attributedText = attrStr;
     
