@@ -42,7 +42,7 @@
 
 -(void)layoutSubviews
 {
-    [Utils setRoundBorder:self.ibContentView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:BORDER_WIDTH];
+    [Utils setRoundBorder:self.ibContentView color:TWO_ZERO_FOUR_COLOR borderRadius:0.0f borderWidth:BORDER_WIDTH];
     [Utils setRoundBorder:self.ibImageView color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:BORDER_WIDTH];
     [Utils setRoundBorder:self.txtDescription color:TWO_ZERO_FOUR_COLOR borderRadius:5.0f borderWidth:BORDER_WIDTH];
 
