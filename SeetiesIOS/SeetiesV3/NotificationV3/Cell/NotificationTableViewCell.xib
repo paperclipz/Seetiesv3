@@ -12,13 +12,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="291"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="291"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="290.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAz-JC-ICj" userLabel="inner content view">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="286"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seeties.png" translatesAutoresizingMaskIntoConstraints="NO" id="dGP-Ml-hgQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultProfilePic.png" translatesAutoresizingMaskIntoConstraints="NO" id="dGP-Ml-hgQ">
                                 <rect key="frame" x="16" y="8" width="40" height="40"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -69,18 +69,18 @@
                                 <color key="textColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An6-7y-gMY">
-                                <rect key="frame" x="16" y="8" width="40" height="40"/>
-                                <connections>
-                                    <action selector="btnProfileClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="d4f-Nb-Usb"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f65-AU-0cb">
                                 <rect key="frame" x="64" y="8" width="240" height="145"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An6-7y-gMY">
+                                <rect key="frame" x="16" y="8" width="40" height="40"/>
+                                <connections>
+                                    <action selector="btnProfileClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="d4f-Nb-Usb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -148,6 +148,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="seeties.png" width="300" height="300"/>
+        <image name="DefaultProfilePic.png" width="83" height="83"/>
     </resources>
 </document>
