@@ -346,11 +346,9 @@
     [self.animator addBehavior:itemBehaviour];
     
     [UIView animateWithDuration:1.0f animations:^{
-        
         self.ibDescBorderView.alpha = 1;
         
     } completion:^(BOOL finished) {
-        self.ibBottomView.hidden = YES;
         [self.animator removeAllBehaviors];
     }];
     
@@ -376,11 +374,11 @@
 
 -(void)resetBottomView
 {
+    [self.animator removeAllBehaviors];
     
     [UIView animateWithDuration:1.0 animations:^{
         
         self.ibDescBorderView.alpha = 0;
-        self.ibBottomView.hidden = NO;
         self.ibBottomView.frame = oldBottomViewFrame;
         self.ibBottomView.transform = CGAffineTransformIdentity;
         [self.ibBottomView refreshConstraint];
