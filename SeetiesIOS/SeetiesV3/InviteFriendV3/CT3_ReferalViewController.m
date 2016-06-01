@@ -13,10 +13,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ibBackgroundImg;
 @property (weak, nonatomic) IBOutlet UIView *ibReferralCodeView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibReferralCodeViewtConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *ibReferralCode;
 @property (weak, nonatomic) IBOutlet UILabel *ibReferralDesc;
+
 @property (weak, nonatomic) IBOutlet UILabel *ibCampaignExpiry;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibCampaignExpiryConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *ibCampaignDesc;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ibCampaignDescConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *ibInviteFriendsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *ibReferralDetailsBtn;
 
@@ -44,6 +48,8 @@
         SLog(@"iphone6+");
     }
     
+    self.ibReferralCodeViewtConstraint.constant = (frame.size.height <= 480)?60:88;
+    
     // Do any additional setup after loading the view from its nib.
     
     [Utils setRoundBorder:self.ibReferralCodeView color:[UIColor whiteColor] borderRadius:8.0f borderWidth:2];
@@ -66,9 +72,12 @@
     self.ibHeaderTitle.text = LocalisedString(@"Invite Friends & Get Rewards");
     self.ibReferralDesc.text = LocalisedString(@"Tap to copy");
     
+    
     NSString *languageCode = [LanguageManager getDeviceAppLanguageCode];
     NSString *message = self.inviteFriendModel.message[languageCode]? self.inviteFriendModel.message[languageCode] : @"";
     self.ibCampaignDesc.text = LocalisedString(message);
+    [self.ibCampaignDesc sizeToFit];
+    self.ibCampaignDescConstraint.constant = self.ibCampaignDesc.frame.size.height;
     
     [self.ibInviteFriendsBtn setTitle:LocalisedString(@"Invite Friends") forState:UIControlStateNormal];
     [self.ibReferralDetailsBtn setTitle:LocalisedString(@"Details") forState:UIControlStateNormal];
@@ -94,10 +103,12 @@
         NSInteger daysLeft = [Utils numberOfDaysLeft:expiryDate];
         self.ibCampaignExpiry.text = [LanguageManager stringForKey:@"Promo ends in {!days} days - don't wait!" withPlaceHolder:@{@"{!days}": @(daysLeft)}];
         self.ibCampaignExpiry.hidden = NO;
+        self.ibCampaignExpiryConstraint.constant = 20;
     }
     else{
         self.ibCampaignExpiry.text = @"";
         self.ibCampaignExpiry.hidden = YES;
+        self.ibCampaignExpiryConstraint.constant = 0;
     }
    
 }
