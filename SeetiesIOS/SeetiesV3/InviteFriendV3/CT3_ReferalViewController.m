@@ -9,7 +9,6 @@
 #import "CT3_ReferalViewController.h"
 
 @interface CT3_ReferalViewController ()
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contLeading;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ibBackgroundImg;
 @property (weak, nonatomic) IBOutlet UIView *ibReferralCodeView;
@@ -35,18 +34,6 @@
     [super viewDidLoad];
     
     CGRect frame = [Utils getDeviceScreenSize];
-    if (frame.size.height <= 480) {
-        self.contLeading.constant = 104;
-        SLog(@"iphone4");
-    }
-    else if (frame.size.height <= 667){
-        self.contLeading.constant = 74;
-        SLog(@"iphone5/6");
-    }
-    else{
-        self.contLeading.constant = 64;
-        SLog(@"iphone6+");
-    }
     
     self.ibReferralCodeViewtConstraint.constant = (frame.size.height <= 480)?60:88;
     
