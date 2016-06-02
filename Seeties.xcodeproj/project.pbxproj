@@ -1254,6 +1254,8 @@
 		C22703021CBF932D00F9FBF3 /* PostFilterSortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703001CBF932D00F9FBF3 /* PostFilterSortCell.xib */; };
 		C22703061CBF949D00F9FBF3 /* PostFilterCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */; };
 		C22703071CBF949D00F9FBF3 /* PostFilterCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */; };
+		C22903831CFD80FE00070F29 /* CT3_FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22903811CFD80FE00070F29 /* CT3_FeedbackViewController.m */; };
+		C22903841CFD80FE00070F29 /* CT3_FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22903821CFD80FE00070F29 /* CT3_FeedbackViewController.xib */; };
 		C22903871CFD9D2C00070F29 /* ReferDefaultImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22903851CFD9D2C00070F29 /* ReferDefaultImg@2x.png */; };
 		C22903881CFD9D2C00070F29 /* ReferDefaultImg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22903861CFD9D2C00070F29 /* ReferDefaultImg@3x.png */; };
 		C22B7D011CFC0639006940DE /* HowToRedeemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22B7CFF1CFC0639006940DE /* HowToRedeemViewController.m */; };
@@ -2947,6 +2949,9 @@
 		C22703031CBF949D00F9FBF3 /* PostFilterCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostFilterCategoryCell.h; sourceTree = "<group>"; };
 		C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostFilterCategoryCell.m; sourceTree = "<group>"; };
 		C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFilterCategoryCell.xib; sourceTree = "<group>"; };
+		C22903801CFD80FE00070F29 /* CT3_FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_FeedbackViewController.h; sourceTree = "<group>"; };
+		C22903811CFD80FE00070F29 /* CT3_FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_FeedbackViewController.m; sourceTree = "<group>"; };
+		C22903821CFD80FE00070F29 /* CT3_FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_FeedbackViewController.xib; sourceTree = "<group>"; };
 		C22903851CFD9D2C00070F29 /* ReferDefaultImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReferDefaultImg@2x.png"; sourceTree = "<group>"; };
 		C22903861CFD9D2C00070F29 /* ReferDefaultImg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReferDefaultImg@3x.png"; sourceTree = "<group>"; };
 		C22B7CFE1CFC0639006940DE /* HowToRedeemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToRedeemViewController.h; sourceTree = "<group>"; };
@@ -3153,6 +3158,7 @@
 		0B6AEA7D1C48E4EB009B7D33 /* MoreV3 */ = {
 			isa = PBXGroup;
 			children = (
+				C229037F1CFD80DA00070F29 /* FeedbackV3 */,
 				0B6AEA7E1C48E502009B7D33 /* CT3_MoreViewController.h */,
 				0B6AEA7F1C48E502009B7D33 /* CT3_MoreViewController.m */,
 				0B6AEA801C48E502009B7D33 /* CT3_MoreViewController.xib */,
@@ -6389,6 +6395,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		C229037F1CFD80DA00070F29 /* FeedbackV3 */ = {
+			isa = PBXGroup;
+			children = (
+				C22903801CFD80FE00070F29 /* CT3_FeedbackViewController.h */,
+				C22903811CFD80FE00070F29 /* CT3_FeedbackViewController.m */,
+				C22903821CFD80FE00070F29 /* CT3_FeedbackViewController.xib */,
+			);
+			path = FeedbackV3;
+			sourceTree = "<group>";
+		};
 		C22C35121CF4268A004092F6 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -7501,6 +7517,7 @@
 				8A1129161CF69EC100399213 /* VerifyPhoneNumberImg.png in Resources */,
 				8A11290E1CF69EC100399213 /* MeGuestModeImg.png in Resources */,
 				8A1129341CF69EC100399213 /* SeetishopPhotoIcon@2x.png in Resources */,
+				C22903841CFD80FE00070F29 /* CT3_FeedbackViewController.xib in Resources */,
 				8A112A061CF69EC100399213 /* LocationBtn@3x.png in Resources */,
 				8A1128BA1CF69EC100399213 /* HomeDealsOfTheDayOverlay@3x.png in Resources */,
 				8A112B0F1CF69EC100399213 /* TimeIcon@2x.png in Resources */,
@@ -8051,6 +8068,7 @@
 				8A114CB21BE73F5D006AE3F0 /* LLARingSpinnerView.m in Sources */,
 				8A9ABA541CA52B890067FACA /* IntroCoverView.m in Sources */,
 				C2C157161C574BB6007608FC /* PromoPopOutViewController.m in Sources */,
+				C22903831CFD80FE00070F29 /* CT3_FeedbackViewController.m in Sources */,
 				8AC8F7381BDA414E00DEF14A /* ProfileCollectionViewController.m in Sources */,
 				8AC7B6671CE5C102000775CC /* UINavigationViewController+Extra.m in Sources */,
 				C266761C1C6483030021B6B0 /* RedemptionHistoryViewController.m in Sources */,

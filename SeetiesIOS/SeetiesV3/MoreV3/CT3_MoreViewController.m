@@ -8,7 +8,7 @@
 
 #import "CT3_MoreViewController.h"
 #import "SettingsTableViewCell.h"
-#import "FeedbackViewController.h"
+#import "CT3_FeedbackViewController.h"
 #import "CTWebViewController.h"
 #import "CT3_AcctSettingViewController.h"
 #import "IntroCoverView.h"
@@ -29,7 +29,7 @@
 //@property (nonatomic,strong)RecommendationViewController* recommendationViewController;
 //@property (nonatomic,strong)DoImagePickerController* imagePickerViewController;
 //@property(nonatomic)DraftAndRecommendationDelegate* recommendDelegate;
-@property(nonatomic)FeedbackViewController* feedbackViewController;
+@property(nonatomic)CT3_FeedbackViewController* feedbackViewController;
 @property(nonatomic)CTWebViewController* ctWebViewController;
 @property(nonatomic)CT3_AcctSettingViewController* ct3_AcctSettingViewController;
 @property(nonatomic)IntroCoverView* introView;
@@ -271,6 +271,9 @@
                 }
                 CASE (@"Speak to Us")
                 {
+                    if ([self.feedbackViewController toResetPage]) {
+                        self.feedbackViewController = nil;
+                    }
                     
                     [self.navigationController pushViewController:self.feedbackViewController animated:YES];
                     break;
@@ -346,10 +349,10 @@
     return _ctWebViewController;
 }
 
--(FeedbackViewController*)feedbackViewController
+-(CT3_FeedbackViewController*)feedbackViewController
 {
     if (!_feedbackViewController) {
-        _feedbackViewController = [FeedbackViewController new];
+        _feedbackViewController = [CT3_FeedbackViewController new];
     }
     
     return _feedbackViewController;
