@@ -154,8 +154,13 @@ typedef enum
     //** PostFriendSuggestion **//
 
     //** EditProfile **//
-    ServerRequestTypePostUserProfile
+    ServerRequestTypePostUserProfile,
     //** EditProfile **//
+    
+    //** PostDetail **//
+    ServerRequestTypeGetPostLikes,
+    ServerRequestTypeGetPostComments
+    //** PostDetail **//
     
 }ServerRequestType;
 

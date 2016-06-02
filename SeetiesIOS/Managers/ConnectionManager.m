@@ -522,6 +522,7 @@
         case ServerRequestTypeGetPostInfo:
         case ServerRequestTypeGetPostDetail:
         case ServerRequeetTypeGetTranslatePost:
+        case ServerRequestTypeGetPostComments:
         case ServerRequestTypePostSaveDraft:
             str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
             
@@ -578,7 +579,7 @@
         default:
             str = API_VERION_URL;
             break;
-            
+        case ServerRequestTypeGetPostLikes:
         case ServerRequestTypePostLikeAPost:
         case ServerRequestTypeDeleteLikeAPost:
             str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
@@ -718,7 +719,7 @@
             
             return GOOGLE_PLACE_AUTOCOMPLETE_API;
             break;
-        
+
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
@@ -1356,6 +1357,22 @@
             NSDictionary *dict = obj[@"data"];
             self.dataManager.translationModel = [[TranslationModel alloc] initWithDictionary:dict error:nil];
             break;
+            
+        }
+            
+        case ServerRequestTypeGetPostLikes:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.postDetailLikeModel = [[PostDetailLikeModel alloc] initWithDictionary:dict error:nil];
+            break;
+        }
+            
+        case ServerRequestTypeGetPostComments:
+        {
+            NSDictionary *dict = obj[@"data"];
+            self.dataManager.postDetailCommentModel = [[PostDetailCommentModel alloc] initWithDictionary:dict error:nil];
+            break;
+
             
         }
             

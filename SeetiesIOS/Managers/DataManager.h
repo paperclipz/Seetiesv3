@@ -26,6 +26,7 @@
 #import "UsersModel.h"
 #import "DealsModel.h"
 #import "TranslationModel.h"
+#import "PostDetailModel.h"
 
 @class FacebookModel;
 @class  DraftsModel;
@@ -104,6 +105,10 @@ typedef void(^CompletionVoidBlock) (void);
 /* ================================ Notification ================================ */
 @property(nonatomic,strong)DealCollectionModel* dealCollectionModel;
 
+/* ============================== Post Detail ============================ */
+
+@property(nonatomic,strong)PostDetailLikeModel *postDetailLikeModel;
+@property(nonatomic,strong)PostDetailCommentModel *postDetailCommentModel;
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;

@@ -7,15 +7,23 @@
 //
 
 #import "FeedContentView.h"
-#import "TLTagsControl.h"
+#import "AsyncImageView.h"
 
 static int kConstantLeftPadding   = 15;
 static int kConstantTopPadding    = 15;
 
-@interface FeedContentView ()
+@interface FeedContentView () <TLTagsControlDelegate, UIGestureRecognizerDelegate>
 
+@property (strong, nonatomic) UIButton *translateButton;
 @property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UIImageView *locationPinImage;
+@property (strong, nonatomic) UILabel *locationPinLabel;
 @property (strong, nonatomic) UILabel *messageLabel;
+@property (strong, nonatomic) TLTagsControl *tagsLabel;
+@property (strong, nonatomic) AsyncImageView *profileImageView;
+@property (strong, nonatomic) UILabel *usernameLabel;
+@property (strong, nonatomic) UIButton *followButton;
+@property (strong, nonatomic) UIView *bottomEmptyView;
 
 @property (assign, nonatomic) CGFloat currentPointY;
 @property (assign, nonatomic) BOOL isTranslatedText;
@@ -44,45 +52,43 @@ static int kConstantTopPadding    = 15;
         [self setupCaptionTitle];
         [self setupLocationPin];
         [self setupMessageLabel];
-    
+        [self setupTagTextField];
+        [self setupProfilePictureImageView];
+        [self setupFollowingButton];
+        [self setupBottomEmptyView];
+        
         [self resizeToFitSubviewsHeight];
     }
     
     return self;
 }
 
-- (void)layoutSubviews {
-    
-
-}
-
 - (void)setupTranslationButton {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.translateButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    //    [button setFrame:[self getViewFrameWithWidth:(CGRectGetWidth(self.frame) - 15 * 2) height:40 BesideView:nil]];
+    [self.translateButton setFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, 40)];
     
-    [button setFrame:CGRectMake(kConstantLeftPadding, kConstantTopPadding, CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, 40)];
+    self.translateButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    [self.translateButton setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
+    [self.translateButton setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
+    [self.translateButton setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
+    [self.translateButton addTarget:self action:@selector(translateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    self.translateButton.tintColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f];
+    [Utils setRoundBorder:self.translateButton color:TWO_ZERO_FOUR_COLOR borderRadius:self.translateButton.frame.size.height/2 borderWidth:1.0f];
     
-    button.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-    [button setImage:[UIImage imageNamed:@"TranslateArrow.png"] forState:UIControlStateNormal];
-    [button setTitle:LocalisedString(@"Translate") forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(translateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    button.tintColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f];
-    [Utils setRoundBorder:button color:TWO_ZERO_FOUR_COLOR borderRadius:button.frame.size.height/2 borderWidth:1.0f];
+//    self.currentPointY += self.translateButton.frame.size.height + kConstantTopPadding;
     
-    self.currentPointY += button.frame.size.height + kConstantTopPadding;
-    
-    [self addSubview:button];
+    [self addSubview:self.translateButton];
 }
 
 - (void)setupCaptionTitle {
     
-    if (![self.dataDictionary objectForKey:@"title"]) { return; }
+    if (![self.dataDictionary objectForKey:@"title"]) {
+        self.currentPointY += 10;
+        return;
+    }
     
-    //    UILabel *titleLabel = [[UILabel alloc] initWithFrame:[self getViewFrameWithWidth:(CGRectGetWidth(self.view.frame) - kConstantLeftPadding * 2) height:25 BesideView:nil]];
-    
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kConstantLeftPadding + 3, self.currentPointY + kConstantTopPadding, (CGRectGetWidth(self.frame) - kConstantLeftPadding * 2), 25)];
+    _titleLabel = [[UILabel alloc] init];
     
     _titleLabel.numberOfLines = 0;
     _titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
@@ -91,28 +97,28 @@ static int kConstantTopPadding    = 15;
     
     _titleLabel.text = [self.dataDictionary objectForKey:@"title"];
     
-    self.currentPointY += kConstantTopPadding + _titleLabel.frame.size.height;
+//    self.currentPointY += kConstantTopPadding + _titleLabel.frame.size.height;
     
     [self addSubview:_titleLabel];
 }
 
 - (void)setupLocationPin {
     
-    UIImageView *locationPinImage = [[UIImageView alloc]init];
-    locationPinImage.image = [UIImage imageNamed:@"LocationpinIcon.png"];
-    locationPinImage.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 18, 18);
-    [self addSubview:locationPinImage];
+    self.locationPinImage = [[UIImageView alloc]init];
+    self.locationPinImage.image = [UIImage imageNamed:@"LocationpinIcon.png"];
+//    self.locationPinImage.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 18, 18);
+    [self addSubview:self.locationPinImage];
     
-    UILabel *locationPinLabel = [[UILabel alloc] init];
-    locationPinLabel.frame = CGRectMake(kConstantLeftPadding + locationPinImage.frame.size.width + 5, self.currentPointY, CGRectGetWidth(self.frame) - (kConstantLeftPadding * 3) - 18, 20);
-    locationPinLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-    locationPinLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-    locationPinLabel.backgroundColor = [UIColor clearColor];
-    locationPinLabel.text = [self.dataDictionary objectForKey:@"place_name"];
+    self.locationPinLabel = [[UILabel alloc] init];
+//    self.locationPinLabel.frame = CGRectMake(kConstantLeftPadding + self.locationPinImage.frame.size.width + 5, self.currentPointY, CGRectGetWidth(self.frame) - (kConstantLeftPadding * 3) - 18, 20);
+    self.locationPinLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+    self.locationPinLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+    self.locationPinLabel.backgroundColor = [UIColor clearColor];
+    self.locationPinLabel.text = [self.dataDictionary objectForKey:@"place_name"];
     
-    [self addSubview:locationPinLabel];
+    [self addSubview:self.locationPinLabel];
     
-    self.currentPointY += kConstantTopPadding + locationPinImage.frame.size.height;
+//    self.currentPointY += kConstantTopPadding + self.locationPinImage.frame.size.height;
     
 }
 
@@ -121,50 +127,204 @@ static int kConstantTopPadding    = 15;
     if (![self.dataDictionary objectForKey:@"message"]) { return; }
     
     _messageLabel = [[UILabel alloc] init];
-    NSString *messageString = [self.dataDictionary objectForKey:@"message"];
-    
-    [_messageLabel setStandardText:messageString numberOfLine:0];
+//    NSString *messageString = [[self.dataDictionary objectForKey:@"message"] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
     _messageLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f];
-
-    CGRect labelFrame = CGRectMake(kConstantLeftPadding, self.currentPointY + 5, 0, 0);
-    labelFrame.size = [_messageLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, CGFLOAT_MAX)];
-    _messageLabel.frame = labelFrame;
     
     [self addSubview:_messageLabel];
     
-    self.currentPointY += kConstantTopPadding + _messageLabel.frame.size.height;
+//    self.currentPointY += kConstantTopPadding + _messageLabel.frame.size.height;
 }
 
 - (void)setupTagTextField {
     
-    if (!self.dataDictionary[@"tags"]) {
+    if (!self.dataDictionary[@"tags"] || [self.dataDictionary[@"tags"] isEqualToString:@""]) {
         return;
     }
     
-    TLTagsControl *tagControl = [[TLTagsControl alloc] initWithFrame:CGRectMake(kConstantLeftPadding, self.currentPointY + 5, CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, CGFLOAT_MAX) andTags:self.dataDictionary[@"tags"] withTagsControlMode:TLTagsControlModeList];
+    NSString *rawTags = self.dataDictionary[@"tags"];
     
-    tagControl.tagsBackgroundColor = [UIColor whiteColor];
-    tagControl.tagsDeleteButtonColor = TWO_ZERO_FOUR_COLOR;
-    tagControl.tagsTextColor = TWO_ZERO_FOUR_COLOR;
+    NSString *tagString = [[rawTags stringByReplacingOccurrencesOfString:@"#[tag:" withString:@""] stringByReplacingOccurrencesOfString:@"]" withString:@""];
 
-    [self addSubview:tagControl];
+    NSArray *tags = [tagString componentsSeparatedByString:@","];
+    
+    if (tags.count < 1) { return; }
+    
+//    self.tagsLabel = [[TLTagsControl alloc] initWithFrame:CGRectMake(kConstantLeftPadding, 0, 0, 0)];
+    
+    self.tagsLabel = [[TLTagsControl alloc] initWithFrame:CGRectMake(kConstantLeftPadding, self.currentPointY, CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, 30) andTags:tags withTagsControlMode:TLTagsControlModeList];
+    
+    self.tagsLabel.tapDelegate = self;
+    self.tagsLabel.tagsBackgroundColor = [UIColor whiteColor];
+    self.tagsLabel.tagsDeleteButtonColor = TWO_ZERO_FOUR_COLOR;
+    self.tagsLabel.tagsTextColor = TWO_ZERO_FOUR_COLOR;
+    
+    [self.tagsLabel reloadTagSubviews];
+    
+    [self addSubview:self.tagsLabel];
+    
+    self.currentPointY += kConstantTopPadding + self.tagsLabel.frame.size.height;
+}
+
+- (void)setupProfilePictureImageView {
+    
+    self.profileImageView = [[AsyncImageView alloc] init];
+//    userProfileImage.frame = CGRectMake(kConstantLeftPadding, self.currentPointY + 20, 38, 38);
+
+    self.profileImageView.layer.backgroundColor = [[UIColor clearColor] CGColor];
+
+    [Utils setRoundBorder:self.profileImageView color:[UIColor whiteColor] borderRadius:19 borderWidth:.0f];
+
+    [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:self.dataDictionary[@"profile_pic"]] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(profileButtonClicked:)];
+    [tapRecognizer setNumberOfTapsRequired:1];
+    [tapRecognizer setDelegate:self];
+    [self.profileImageView setUserInteractionEnabled:YES];
+    [self.profileImageView addGestureRecognizer:tapRecognizer];
+    
+    [self addSubview:self.profileImageView];
+    
+    self.usernameLabel = [[UILabel alloc] init];
+    
+    self.usernameLabel.text = self.dataDictionary[@"username"];
+    self.usernameLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    self.usernameLabel.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
+    [self addSubview:self.usernameLabel];
+}
+
+- (void)setupFollowingButton {
+    
+    self.followButton = [[UIButton alloc] init];
+    self.followButton.frame = CGRectMake(0, 0, 120, 40);
+    
+    [self.followButton addTarget:self action:@selector(followButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self addSubview:self.followButton];
+}
+
+- (void)setupBottomEmptyView {
+    
+    //for alignment purpose
+    self.bottomEmptyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    
+    [self addSubview:self.bottomEmptyView];
 }
 
 - (void)reloadView {
     
-    self.titleLabel.text = [self.dataDictionary objectForKey:@"translated_title"] ? [self.dataDictionary objectForKey:@"translated_title"] : [self.dataDictionary objectForKey:@"title"];
+    self.currentPointY = 0;
     
-    [self.messageLabel setStandardText:[self.dataDictionary objectForKey:@"translated_message"] ? [self.dataDictionary objectForKey:@"translated_message"] : [self.dataDictionary objectForKey:@"message"] numberOfLine:0];
+    [self updateTranslateButtonFrame];
+    [self updateTitleFrame];
+    [self updateLocationPin];
+    [self updateMessageLabelFrame];
+    [self updateTagLabelFrame];
+    [self updateProfileViewFrame];
+    [self updateFollowingButtonFrame];
+    [self updateBottomEmptyView];
+    
+    [self resizeToFitSubviewsHeight];
+}
+
+
+#pragma mark - set frame method 
+
+- (void)updateTranslateButtonFrame {
+    [self.translateButton setFrame:CGRectMake(kConstantLeftPadding, kConstantTopPadding, CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, 40)];
+    
+    self.currentPointY += self.translateButton.frame.size.height + kConstantTopPadding;
+
+}
+
+- (void)updateTitleFrame {
+    
+    if (!self.titleLabel || ![self.dataDictionary objectForKey:@"title"]) {
+        self.currentPointY += 10;
+        
+    }
+    else {
+        self.titleLabel.text = [self.dataDictionary objectForKey:@"translated_title"] ? [self.dataDictionary objectForKey:@"translated_title"] : [self.dataDictionary objectForKey:@"title"];
+        self.titleLabel.frame = CGRectMake(kConstantLeftPadding + 3, self.currentPointY + kConstantTopPadding, (CGRectGetWidth(self.frame) - kConstantLeftPadding * 2), 25);
+        self.currentPointY += kConstantTopPadding + _titleLabel.frame.size.height;
+    }
+}
+
+- (void)updateLocationPin {
+    
+    self.locationPinImage.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 18, 18);
+
+    self.locationPinLabel.frame = CGRectMake(kConstantLeftPadding + self.locationPinImage.frame.size.width + 5, self.currentPointY, CGRectGetWidth(self.frame) - (kConstantLeftPadding * 3) - 18, 20);
+
+    self.currentPointY += kConstantTopPadding + self.locationPinImage.frame.size.height;
+
+}
+
+- (void)updateMessageLabelFrame {
+    NSString *messageString = [self.dataDictionary objectForKey:@"translated_message"] ? [self.dataDictionary objectForKey:@"translated_message"] : [self.dataDictionary objectForKey:@"message"];
+    
+    [self.messageLabel setStandardText:[messageString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]] numberOfLine:0];
     
     self.messageLabel.textColor = [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f  blue:153.0f/255.0f  alpha:1.0f];
     
+    [self.messageLabel setFrame:CGRectMake(kConstantLeftPadding, self.currentPointY, 0, 0)];
+
     CGRect newRect = self.messageLabel.frame;
-    
+
     newRect.size = [self.messageLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, CGFLOAT_MAX)];
     self.messageLabel.frame = newRect;
     
-    [self resizeToFitSubviewsHeight];
+    self.currentPointY =  CGRectGetMaxY(newRect) + kConstantTopPadding;
+
+}
+
+- (void)updateTagLabelFrame {
+    
+    if (self.tagsLabel) {
+        self.tagsLabel.frame = CGRectMake(kConstantLeftPadding, self.currentPointY + 5, CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, 30);
+        [self.tagsLabel reloadTagSubviews];
+        
+        self.currentPointY += kConstantTopPadding + self.tagsLabel.frame.size.height + 15;
+    }
+
+}
+
+- (void)updateProfileViewFrame {
+
+    self.profileImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY , 38, 38);
+    self.usernameLabel.frame = CGRectMake(CGRectGetMaxX(self.profileImageView.frame) + 10, self.currentPointY , 100, 38);
+    
+}
+
+- (void)updateFollowingButtonFrame {
+    
+    BOOL following = [self.dataDictionary[@"following"] boolValue];
+    
+    if (!following) {
+        [self.followButton setTitle:LocalisedString(@"Follow_") forState:UIControlStateNormal];
+        [self.followButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.followButton setImage:[UIImage imageNamed:@"ProfileFollowIcon.png"] forState:UIControlStateNormal];
+        [self.followButton setBackgroundImage:[UIImage imageNamed:@"FollowBtn.png"] forState:UIControlStateNormal];
+    }
+    else {
+        [self.followButton setTitle:LocalisedString(@"Following_") forState:UIControlStateNormal];
+        [self.followButton setTitleColor:[UIColor colorWithRed:156.0f/255.0f green:204.0f/255.0f blue:101.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [self.followButton setImage:[UIImage imageNamed:@"ProfileFollowingIcon.png"] forState:UIControlStateNormal];
+        [self.followButton setBackgroundImage:[UIImage imageNamed:@"FollowingBtn.png"] forState:UIControlStateNormal];
+    }
+    
+    self.followButton.frame = CGRectMake(CGRectGetWidth(self.frame) - 120 - 15, self.currentPointY, 120, 40);
+    self.followButton.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    self.followButton.titleEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    self.followButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:14];
+    self.followButton.backgroundColor = [UIColor clearColor];
+
+    self.currentPointY += self.followButton.frame.size.height;
+}
+
+- (void)updateBottomEmptyView {
+    
+    self.bottomEmptyView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, 15);
 }
 
 #pragma mark - button Event
@@ -195,18 +355,35 @@ static int kConstantTopPadding    = 15;
         return;
     }];
     
-//    [alertViewController addAction:translateButton];
     [alertViewController addAction:cancelButton];
-    
-//    UIAlertAction *cancelButton2 = [UIAlertAction actionWithTitle:LocalisedString(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//        return;
-//    }];
-//
-//    [alertViewController addAction:cancelButton2];
 
     [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alertViewController animated:YES completion:nil];
 }
 
+- (void)followButtonClicked:(id)sender {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(FollowingButtonClicked:)]) {
+        [self.delegate FollowingButtonClicked:sender];
+    }
+}
 
+
+#pragma mark - TLTagsControlDelegate
+
+- (void)tagsControl:(TLTagsControl *)tagsControl tappedAtIndex:(NSInteger)index {
+ 
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tagsLabel:tappedAtIndex:)]) {
+        [self.delegate tagsLabel:tagsControl tappedAtIndex:index];
+    }
+}
+
+
+- (void)profileButtonClicked:(id)sender {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(profileButtonClicked:)]) {
+        [self.delegate profileButtonClicked:sender];
+    }
+    
+}
 
 @end

@@ -7,20 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef enum
-{
-    TranslateText,
-    ReadOrigin
-} AlertButtonType;
+#import "TLTagsControl.h"
 
 @protocol FeedContentViewDelegate <NSObject>
 
 - (void)alertControllerClickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)tagsLabel:(TLTagsControl *)tagsLabel tappedAtIndex:(NSInteger)index;
+- (void)profileButtonClicked:(id)sender;
+- (void)FollowingButtonClicked:(id)sender;
 
 @end
 
-@interface FeedContentView : UIView
+@interface FeedContentView : UIView 
 
 @property (strong, nonatomic) NSDictionary *dataDictionary;
 @property (weak, nonatomic) id<FeedContentViewDelegate> delegate;
