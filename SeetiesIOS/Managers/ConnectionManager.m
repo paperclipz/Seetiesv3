@@ -719,6 +719,11 @@
             
             return GOOGLE_PLACE_AUTOCOMPLETE_API;
             break;
+            
+        case ServerRequestTypePostRegisterPushNotification:
+            str = [NSString stringWithFormat:@"%@/push-notifications/register",API_VERION_URL];
+            
+            break;
 
     }
     

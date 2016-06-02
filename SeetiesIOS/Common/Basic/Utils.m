@@ -670,8 +670,11 @@
 
 +(NSString*)getUniqueDeviceIdentifier
 {
-    NSString *UUID = [[NSUUID UUID] UUIDString];
     
+    //NSString *UUID = [[NSUUID UUID] UUIDString];
+    
+    NSString *UUID = [UIDevice currentDevice].identifierForVendor.UUIDString;
+
     return UUID;
 }
 

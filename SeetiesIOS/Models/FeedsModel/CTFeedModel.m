@@ -56,10 +56,10 @@
         
         _arrCollections = [NSMutableArray<CollectionModel> arrayWithArray:arrTemp];
     }
-    else{
-        _arrCollections = [NSMutableArray<CollectionModel> new];
-
-    }
+//    else{
+//        _arrCollections = [NSMutableArray<CollectionModel> new];
+//
+//    }
     
     return _arrCollections;
 }
