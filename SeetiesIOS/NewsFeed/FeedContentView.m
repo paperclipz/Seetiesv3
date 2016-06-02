@@ -274,7 +274,7 @@ static int kConstantTopPadding    = 15;
     newRect.size = [self.messageLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, CGFLOAT_MAX)];
     self.messageLabel.frame = newRect;
     
-    self.currentPointY =  CGRectGetMaxY(newRect) + kConstantTopPadding;
+    self.currentPointY +=  CGRectGetHeight(newRect) + kConstantTopPadding;
 
 }
 

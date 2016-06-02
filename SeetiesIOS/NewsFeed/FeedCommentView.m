@@ -14,6 +14,8 @@ static int kConstantTopPadding    = 15;
 
 @interface FeedCommentView () <TTTAttributedLabelDelegate>
 
+@property (strong, nonatomic) UIView *grayView;
+
 @property (strong, nonatomic) UIImageView *likesImageView;
 @property (strong, nonatomic) TTTAttributedLabel *tttLabel;
 
@@ -30,14 +32,6 @@ static int kConstantTopPadding    = 15;
 @end
 
 @implementation FeedCommentView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 - (id)initWithFrame:(CGRect)frame withDataDictionary:(NSDictionary *)dataDictionary{
     
@@ -62,13 +56,13 @@ static int kConstantTopPadding    = 15;
 
 - (void)setupTopGrayView {
     
-    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 1)];
+    self.grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 1)];
     
-    grayView.backgroundColor = OUTLINE_COLOR;
+    self.grayView.backgroundColor = OUTLINE_COLOR;
     
-    [self addSubview:grayView];
+    [self addSubview:self.grayView];
     
-    self.currentPointY += grayView.frame.size.height + kConstantTopPadding + 5;
+    self.currentPointY += self.grayView.frame.size.height + kConstantTopPadding + 5;
 }
 
 - (void)setupLikesSection {
@@ -78,16 +72,14 @@ static int kConstantTopPadding    = 15;
     //image
     self.likesImageView = [[UIImageView alloc]init];
     self.likesImageView.image = [UIImage imageNamed:@"PostLikeIcon.png"];
-    self.likesImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 35, 35);
+
     [self addSubview:self.likesImageView];
 
     //label
-    self.tttLabel = [[TTTAttributedLabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.likesImageView.frame) + kConstantLeftPadding, self.currentPointY, CGRectGetWidth(self.frame) - CGRectGetMaxX(self.likesImageView.frame) - kConstantLeftPadding, 35)];
+    self.tttLabel = [[TTTAttributedLabel alloc]initWithFrame:CGRectZero];
     self.tttLabel.delegate = self;
     
     [self addSubview:self.tttLabel];
-    
-    self.currentPointY += self.likesImageView.frame.size.width + 10;
 }
 
 - (NSString *)formatLikeLabelText {
@@ -131,17 +123,22 @@ static int kConstantTopPadding    = 15;
     NSString *formattedString;
     GenericObject *obj;
     
-    if ([self.linkArray count] == 1) {
-        
-        obj = [self.linkArray objectAtIndex:0];
+    obj = [self.linkArray objectAtIndex:0];
+
+    if (totalLike == 1) {
         
         formattedString = [NSString stringWithFormat:@"%@ like this.", LocalisedString(obj.text)];
     }
-    else if ([self.linkArray count] == 2) {
+    else if (totalLike == 2) {
         
-        obj = [self.linkArray objectAtIndex:0];
-
+        GenericObject *secondUser = [self.linkArray objectAtIndex:1];
+        
+        formattedString = [NSString stringWithFormat:@"%@ %@ %@ %@", LocalisedString(obj.text), LocalisedString(@"likeText_and"), secondUser.text, LocalisedString(@"likeText_1")];
+    }
+    else if (totalLike > 2) {
+        
         formattedString = [NSString stringWithFormat:@"%@ %@ %i %@", LocalisedString(obj.text), LocalisedString(@"likeText_and"), totalLike - 1, LocalisedString(@"likeText_andOther")];
+
     }
     else {
         formattedString = @"";
@@ -158,17 +155,12 @@ static int kConstantTopPadding    = 15;
     
     self.collectionImageView = [[UIImageView alloc]init];
     self.collectionImageView.image = [UIImage imageNamed:@"PostCollectedIcon.png"];
-    self.collectionImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 35, 35);
+ 
     [self addSubview:self.collectionImageView];
     
-//    NSString *TempCountString = [[NSString alloc]initWithFormat:@"Collected in %@ %@",TotalCollectionCount,LocalisedString(@"Collections")];
-    
     self.collectionLabel = [[UILabel alloc]init];
-    self.collectionLabel.frame = CGRectMake(CGRectGetMaxX(self.collectionImageView.frame) + kConstantLeftPadding, self.currentPointY, CGRectGetWidth(self.frame) - 69, 40);
-//    ShowCollectionText.text = TempCountString;
     self.collectionLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
     self.collectionLabel.backgroundColor = [UIColor clearColor];
-//    self.collectionLabel.textColor = [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0f];
     
     [self addSubview:self.collectionLabel];
 
@@ -176,35 +168,56 @@ static int kConstantTopPadding    = 15;
 
 - (void)setupCommentSection {
     
-    self.commentImageView = [[UIImageView alloc]init];
-    self.commentImageView.image = [UIImage imageNamed:@"PostCommentIcon.png"];
-    self.commentImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY + 2, 35, 35);
-    [self addSubview:self.commentImageView];
-
+    NSArray *allComments = self.dataDictionary[@"comments"];
     
+    if (allComments && [allComments count] > 0) {
+     
+        self.commentImageView = [[UIImageView alloc]init];
+        self.commentImageView.image = [UIImage imageNamed:@"PostCommentIcon.png"];
+        self.commentImageView.frame = CGRectZero;
+        [self addSubview:self.commentImageView];
+        
+        self.commentTTTLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
+        self.commentTTTLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
+        self.commentTTTLabel.delegate = self;
+        
+        [self addSubview:self.commentTTTLabel];
+        
+        //    self.commentTTTLabel = [TEXT_GRAY_COLOR CGColor];
+    }
 }
 
 - (void)reloadView {
     
     self.currentPointY = 0;
-
+    
+    [self updateGrayView];
     [self updateLikeSection];
     [self updateCollectionSection];
+    [self updateCommentSection];
     
     [self resizeToFitSubviewsHeight];
 }
 
+- (void)updateGrayView {
+    
+    self.currentPointY += self.grayView.frame.size.height + kConstantTopPadding + 5;
+}
+
 - (void)updateLikeSection {
+    
+    if (!self.likesImageView) { return; }
+    
+    self.likesImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 35, 35);
+    
     NSString *labelText = [self formatLikeLabelText];
-    
-    self.tttLabel.text = labelText;
-    //    NSRange r = [labelText rangeOfString:@"Learn more"];
-    //    NSRange r2 = [labelText rangeOfString:@"link"];
-    
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] };
     
+    self.tttLabel.text = labelText;
+    self.tttLabel.frame = CGRectMake(CGRectGetMaxX(self.likesImageView.frame) + kConstantLeftPadding, self.currentPointY, CGRectGetWidth(self.frame) - CGRectGetMaxX(self.likesImageView.frame) - kConstantLeftPadding, 35);
     self.tttLabel.activeLinkAttributes = attributes;
     self.tttLabel.linkAttributes = attributes;
+    self.tttLabel.inactiveLinkAttributes = attributes;
     self.tttLabel.userInteractionEnabled=YES;
     
     NSMutableArray *activeLinkArray = [self.linkArray copy];
@@ -251,18 +264,35 @@ static int kConstantTopPadding    = 15;
     
     [self.tttLabel setNeedsDisplay];
     
-    self.currentPointY += self.tttLabel.frame.size.height + kConstantTopPadding;
+    self.currentPointY += self.tttLabel.frame.size.height + 10;
 }
 
 - (void)updateCollectionSection {
     
+    if (!self.collectionImageView) { return; }
+    
     int totalNumber = [self.dataDictionary[@"collection_count"] integerValue];
     
-    NSString *str = [[NSString alloc] initWithFormat:@"Collected in %i %@", totalNumber, LocalisedString(@"Collections")];
+    self.collectionImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 35, 35);
 
+    
+    NSString *str = [[NSString alloc] initWithFormat:@"Collected in %i %@", totalNumber, LocalisedString(@"Collections")];
+    
     self.collectionLabel.text = str;
+    self.collectionLabel.frame = CGRectMake(CGRectGetMaxX(self.collectionImageView.frame) + kConstantLeftPadding, self.currentPointY, CGRectGetWidth(self.frame) - 69, 35);
     
     self.currentPointY += self.collectionImageView.frame.size.height + 10;
+}
+
+- (void)updateCommentSection {
+    
+    if (!self.commentImageView) { return; }
+    
+    self.commentImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 35, 35);
+    
+//    self.commentTTTLabel.text = @"asdfsaf\n testing!! \n asdfajskldf";
+//    
+//    [self.commentTTTLabel sizeToFit];
 }
 
 #pragma mark - TTTAttributedLabelDelegate
