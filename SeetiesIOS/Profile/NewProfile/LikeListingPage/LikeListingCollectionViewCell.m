@@ -27,7 +27,7 @@
 
 -(void)setNoRoundBorder
 {
-    [Utils setRoundBorder:self.ibImageView color:[UIColor clearColor] borderRadius:0];
+    [Utils setRoundBorder:self.ibImageView color:LINE_COLOR borderRadius:0];
 
 }
 -(void)initData:(PhotoModel*)model
