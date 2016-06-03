@@ -24,7 +24,6 @@
 
 @end
 
-
 @implementation AppDelegate
 
 -(void)registrationForApi
@@ -315,10 +314,25 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
-    
     [Utils setParseToken:deviceToken];
-    
-  
+
+//    SLog(@"%@",[deviceToken description]);
+//    
+//    NSDictionary* dict = @{@"token" :@"",
+//                         @"device_id" : [Utils getUniqueDeviceIdentifier],
+//                           @"device_token" : [deviceToken description],
+//                         };
+//    
+//    [MessageManager showMessage:[NSString stringWithFormat:@"device_id : %@",[Utils getUniqueDeviceIdentifier]] SubTitle:[NSString stringWithFormat:@"device_token : %@",[deviceToken description]] Type:TSMessageNotificationTypeMessage];
+//    
+//    
+//    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostRegisterPushNotification parameter:dict appendString:nil success:^(id object) {
+//
+//        NSLog(@"%@",object);
+//        
+//    } failure:^(id object) {
+//        
+//    }];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -332,7 +346,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
     
-    
+    SLog(@"didReceiveRemoteNotification : %@",[userInfo description]);
 //    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];

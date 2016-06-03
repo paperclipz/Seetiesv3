@@ -28,7 +28,7 @@
                                 <constraint firstAttribute="height" constant="44" id="RCe-05-Vsu"/>
                                 <constraint firstAttribute="height" constant="44" id="vh5-Pa-gwX"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">

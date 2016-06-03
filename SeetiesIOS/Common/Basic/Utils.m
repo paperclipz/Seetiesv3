@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "DealModel.h"
-
+#import <SSKeychain/SSKeychain.h>
 @implementation Utils
 
 +(BOOL)isGuestMode
@@ -673,9 +673,33 @@
     
     //NSString *UUID = [[NSUUID UUID] UUIDString];
     
-    NSString *UUID = [UIDevice currentDevice].identifierForVendor.UUIDString;
+    //NSString *UUID = [UIDevice currentDevice].identifierForVendor.UUIDString;
+    
+    // return UUID;
 
-    return UUID;
+    NSString *appName;
+    
+    if ([Utils isAppProductionBuild]) {
+        appName = @"Seeties";
+    }
+    else
+    {
+        appName = @"Dev";
+
+    }
+    
+    NSString *strApplicationUUID = [SSKeychain passwordForService:appName account:@"SeetiesAccount"];
+    
+    if (strApplicationUUID == nil)
+    {
+        strApplicationUUID  = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        
+        [SSKeychain setPassword:strApplicationUUID forService:appName account:@"SeetiesAccount"];
+    }
+    
+    return strApplicationUUID;
+    
+ 
 }
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local

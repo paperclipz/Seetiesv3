@@ -35,6 +35,7 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 
+pod 'SSKeychain'
 #================ Possible can be deleted =====================#
 #pod 'DBCamera', '~> 2.4'
 pod 'PureLayout'

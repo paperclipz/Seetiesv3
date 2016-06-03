@@ -22,11 +22,24 @@
 #import "UIActivityViewController+Extension.h"
 #import "FeedCommentView.h"
 #import "CommentViewController.h"
+#import "FeedType_CollectionSuggestedTblCell.h"
 
 //static int kConstantLeftPadding   = 15;
 //static int kConstantTopPadding    = 15;
 
 @interface FeedV3DetailViewController () <iCarouselDataSource, iCarouselDelegate, UIScrollViewDelegate, FeedContentViewDelegate, IDMPhotoBrowserDelegate, FeedCommentViewDelegate>
+{
+    BOOL isMiddleOfCallingServer;
+}
+
+/*Feed Details All Views*/
+@property(nonatomic,strong)FeedType_CollectionSuggestedTblCell* feedType_CollectionSuggestedTblCell;
+@property (strong, nonatomic) FeedContentView *feedContentView;
+@property (strong, nonatomic) FeedCommentView *feedCommentView;
+/*Feed Details All Views*/
+
+@property(nonatomic,strong)CollectionsModel* userCollectionsModel;
+@property(nonatomic,strong)NSMutableArray<CollectionModel>* arrCollections;
 
 //bottom view 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -49,8 +62,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
-@property (strong, nonatomic) FeedContentView *feedContentView;
-@property (strong, nonatomic) FeedCommentView *feedCommentView;
+
 
 @property (strong, nonatomic) EmptyStateView *loadingView;
 
@@ -63,6 +75,9 @@
 
 @property (strong, nonatomic) IDMPhotoBrowser *photoBrowser;
 @property (strong, nonatomic) NSMutableArray *imageArray;
+
+/*Controllers*/
+@property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
 
 @end
 
@@ -104,6 +119,26 @@
     //[self.bottomView.bottomAnchor constraintEqualToAnchor:self.bottomLayoutGuide.bottomAnchor constant:30];
     self.bottomView.hidden = NO;
 
+}
+
+#pragma mark - Declaration
+
+-(CollectionListingViewController*)collectionListingViewController
+{
+    if (!_collectionListingViewController) {
+        _collectionListingViewController = [CollectionListingViewController new];
+    }
+    
+    return _collectionListingViewController;
+}
+
+-(NSMutableArray<CollectionModel>*)arrCollections
+{
+    if(!_arrCollections)
+    {
+        _arrCollections = [NSMutableArray<CollectionModel> new];
+    }
+    return _arrCollections;
 }
 
 #pragma mark - private method
@@ -622,6 +657,39 @@
     
 }
 
+-(void)requestServerForSuggestedCollection
+{
+    SLog(@"requestServerForSuggestedCollection");
+ 
+    isMiddleOfCallingServer = true;
+    
+    NSString* userID = self.postDetail.user_info.uid;
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/suggestions",userID];
+    
+    NSDictionary* dict = @{@"limit":@(ARRAY_LIST_SIZE),
+                           @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
+                           @"token":[Utils getAppToken],
+                           };
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserSuggestedCollections parameter:dict appendString:appendString success:^(id object) {
+        
+        isMiddleOfCallingServer = false;
+        self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
+        
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
+        
+        [self getAllCollectionData];
+       // self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
+       // [self.ibTableView reloadData];
+        
+        
+    } failure:^(id object) {
+        isMiddleOfCallingServer = false;
+        
+    }];
+}
+
 - (void)GetTranslatedData:(NSInteger)buttonIndex {
     
     [LoadingManager show];
@@ -726,12 +794,26 @@
 //        self.likeButton.selected = [self.dataDictionary[@"like"] boolValue];
         
         [self initializeCommentSection];
+        [self requestServerForSuggestedCollection];
 
         
     } failure:^(id object) {
         
     }];
 
+}
+
+-(void)getAllCollectionData
+{
+    self.feedType_CollectionSuggestedTblCell = [[FeedType_CollectionSuggestedTblCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    [self.contentView addSubview:self.feedType_CollectionSuggestedTblCell];
+    [self.feedType_CollectionSuggestedTblCell adjustToScreenWidth];
+    [self.feedType_CollectionSuggestedTblCell setY:self.feedCommentView.frame.size.height + self.feedCommentView.frame.origin.y];
+    [self.contentView resizeToFitSubviewsHeight];
+    [self.view resizeToFitSubviewsHeight];
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.contentView.frame));
+    
+    [self.feedType_CollectionSuggestedTblCell initData:self.arrCollections];
 }
 
 @end
