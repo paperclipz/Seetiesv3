@@ -130,7 +130,7 @@
             self.ibPromoLbl.text = LocalisedString(@"PROMO CODE");
         }
         else if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]){
-            self.ibPromoLbl.text = LocalisedString(@"REFERRAL");
+            self.ibPromoLbl.text = LocalisedString(@"REWARD");
         }
         self.ibPromoLbl.textInsets = UIEdgeInsetsMake(0, 10, 0, 10);
         [Utils setRoundBorder:self.ibPromoLbl color:[UIColor clearColor] borderRadius:self.ibPromoLbl.frame.size.height/2];

@@ -1453,7 +1453,33 @@
 "Email" = "Email";
 "Feedback" = "Tanggapan";
 "Include Screenshot" = "Masukan screenshot";
-"REFERRAL" = "REFERRAL";
+"REWARD" = "REWARD";
+"Share via" = "Dibagikan via";
+"Open with" = "Buka dengan";
+"Deals ends in {!days} days" = "Penawaran akan berakhir dalam {!days} hari";
+"Deals ends: {!date}" = "Penawaran berakhir: {!date}";
+"Voucher ends in {!days} days" = "Voucher akan berakhir dalam {!days} hari";
+"Voucher ends: {!date}" = "Voucher berakhir: {!date} ";
+"Are you sure you've registered?" = "Yakin sudah mendaftar?";
+"Check your email." = "Cek email sekarang!";
+"Your post has been successfully posted." = "Postingan telah berhasil dipublikasikan";
+"Enable your GPS to improve your location" = "Aktifkan GPS untuk meningkatkan daya akurasi lokasi";
+"Go to Settings" = "Lihat Pengaturan";
+"Next" = "Lanjut";
+"Great!" = "Selamat!";
+"You have collected your first voucher! Would you like to know how to redeem it?" = "Kamu baru saja mengumpulkan voucher pertamamu! Ingin tahu bagaimana cara redeem vouchernya?";
+"Yes" = "Ya";
+"No" = "Tidak";
+"Play!" = "Coba sekarang!";
+"Seeties.me" = "Seeties.me";
+"Wonderland" = "Wonderland";
+"Demonstration on voucher redeem." = "Demo untuk redeem vouher";
+"Sample" = "Sampel";
+"Experience the swipe to redeem" = "Rasakan sendiri cara swipe to redeem";
+"Are you ready?" = "Sudah siap?";
+"All set to swipe and redeem?" = "Sudah lancar melakukan swipe to redeem?";
+"Try Again" = "Coba Lagi";
+"Redeem now" = "Redeem Sekarang";
 
 
 

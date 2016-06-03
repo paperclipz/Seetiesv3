@@ -185,14 +185,29 @@
     
     
     if (self.isTutorial) {
-        self.ibShopTitle.text = LocalisedString(@"Testing");
+        self.ibShopTitle.text = LocalisedString(@"Seeties.me");
         self.ibShopAddress.text = LocalisedString(@"Wonderland");
         [self.ibShopImg setImage:[UIImage imageNamed:@"SwipeToRedeemSeetiesLogo.png"]];
         self.ibShopImg.backgroundColor = DEVICE_COLOR;
         [Utils  setRoundBorder:self.ibShopImg color:OUTLINE_COLOR borderRadius:5.0f];
         
-        self.ibDealTitle.text = LocalisedString(@"Experience how to swipe to redeem now!");
-        [self.ibImgDeal setImage:[UIImage imageNamed:@"SsDefaultDisplayPhoto.png"]];
+        self.ibDealTitle.text = LocalisedString(@"Experience the swipe to redeem");
+        NSString *appLanguageCode = [LanguageManager getDeviceAppLanguageCode];
+        if ([appLanguageCode isEqualToString:ENGLISH_CODE]) {
+            [self.ibImgDeal setImage:[UIImage imageNamed:@"SampleImgEn.jpg"]];
+        }
+        else if ([appLanguageCode isEqualToString:INDONESIA_CODE]){
+            [self.ibImgDeal setImage:[UIImage imageNamed:@"SampleImgIn.jpg"]];
+        }
+        else if ([appLanguageCode isEqualToString:CHINESE_CODE]){
+            [self.ibImgDeal setImage:[UIImage imageNamed:@"SampleImgSc.jpg"]];
+        }
+        else if ([appLanguageCode isEqualToString:TAIWAN_CODE]){
+            [self.ibImgDeal setImage:[UIImage imageNamed:@"SampleImgTw.jpg"]];
+        }
+        else{
+            [self.ibImgDeal setImage:[UIImage imageNamed:@"SampleImgEn.jpg"]];
+        }
         
         self.ibHowToRedeem.hidden = YES;
         self.ibHowToRedeemLine.hidden = YES;
@@ -229,7 +244,7 @@
 }
 
 -(void)changeLanguage{
-    self.ibHeaderTitle.text = self.isTutorial? LocalisedString(@"Try to swipe to redeem!") : LocalisedString(@"Redeem Voucher");
+    self.ibHeaderTitle.text = self.isTutorial? LocalisedString(@"Demonstration on voucher redeem.") : LocalisedString(@"Redeem Voucher");
     self.ibSwipeToRedeem.text = LocalisedString(@"Swipe to redeem");
     NSString *formattedStr = LocalisedString(@"Voucher redemptions must be made in front of shop staff");
     self.ibBottomDesc.text = [NSString stringWithFormat:@"%@", formattedStr];
@@ -281,7 +296,7 @@
             if (self.isTutorial) {
                 [self dropBottomView];
                 self.ibTutorialCloseBtn.hidden = NO;
-                [UIAlertView showWithTitle:LocalisedString(@"Are you ready?") message:LocalisedString(@"Have you mastered how to swipe to redeem now?") cancelButtonTitle:LocalisedString(@"Maybe not!") otherButtonTitles:@[LocalisedString(@"Yes, sure !")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Are you ready?") message:LocalisedString(@"All set to swipe and redeem?") cancelButtonTitle:LocalisedString(@"Try Again") otherButtonTitles:@[LocalisedString(@"Redeem now")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     switch (buttonIndex) {
                         case 0:
                             [self resetBottomView];

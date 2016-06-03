@@ -1456,7 +1456,33 @@
 "Email" = "電郵";
 "Feedback" = "您的意見";
 "Include Screenshot" = "附加截圖";
-"REFERRAL" = "邀請回饋";
+"REWARD" = "邀請回饋";
+"Share via" = "分享到";
+"Open with" = "使用";
+"Deals ends in {!days} days" = "還剩{!days}日";
+"Deals ends: {!date}" = "優惠截止於{!date}";
+"Voucher ends in {!days} days" = "還剩{!date}日";
+"Voucher ends: {!date}" = "優惠劵截止於{!date}";
+"Are you sure you've registered?" = "確定你曾加入Seeties?";
+"Check your email." = "請查看電郵";
+"Your post has been successfully posted." = "貼文已成功發表";
+"Enable your GPS to improve your location" = "請啟動手機定位功能以尋獲準確位置";
+"Go to Settings" = "啟動定位功能";
+"Next" = "下一步";
+"Great!" = "太棒了!";
+"You have collected your first voucher! Would you like to know how to redeem it?" = "您已成功收藏一張優惠劵喔! 想不想知道領取方式呢?";
+"Yes" = "去看看";
+"No" = "下次吧";
+"Play!" = "練習領取";
+"Seeties.me" = "Seeties.me";
+"Wonderland" = "Seeties樂園";
+"Demonstration on voucher redeem." = "這是一張練習優惠劵";
+"Sample" = "優惠劵樣品";
+"Experience the swipe to redeem" = "練習領取方式";
+"Are you ready?" = "準備好了沒";
+"All set to swipe and redeem?" = "是不是迫不及待想領取優惠劵了呢?";
+"Try Again" = "再試試";
+"Redeem now" = "立即領取";
 
 
 

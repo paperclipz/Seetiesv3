@@ -41,11 +41,11 @@
                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpn-1V-YOh" userLabel="next btn">
-                            <rect key="frame" x="544" y="14" width="40" height="33"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpn-1V-YOh" userLabel="next btn">
+                            <rect key="frame" x="504" y="14" width="80" height="33"/>
                             <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="Vxs-hO-WNs"/>
+                                <constraint firstAttribute="width" constant="80" id="Vxs-hO-WNs"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <state key="normal" title="Next">
@@ -55,7 +55,7 @@
                                 <action selector="btnNextClicked:" destination="-1" eventType="touchUpInside" id="zmu-Wz-ugo"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZC-HQ-uE6" userLabel="close btn">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZC-HQ-uE6" userLabel="close btn">
                             <rect key="frame" x="531" y="0.0" width="61" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="TZC-HQ-uE6" secondAttribute="height" multiplier="1:1" constant="1" id="Et2-4E-axr"/>
