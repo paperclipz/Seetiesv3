@@ -160,6 +160,7 @@ typedef enum
     //** PostDetail **//
     ServerRequestTypeGetPostLikes,
     ServerRequestTypeGetPostComments,
+    ServerRequestTypeGetPostCollectSuggestion,
     //** PostDetail **//
     
     /*register notification*/

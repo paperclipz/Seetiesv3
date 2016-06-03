@@ -70,6 +70,13 @@
         case CollectionListingTypeSeetiesShop:
             [self requestServerForSeetiesCollection];
             break;
+            
+        case CollectionListingTypePostSuggestion:
+            [self requestServerForPostSuggestedCollection];
+            break;
+
+            
+            
     }
 
 }
@@ -298,6 +305,46 @@
     }];
 }
 
+-(void)requestServerForPostSuggestedCollection
+{
+    isMiddleOfCallingServer = true;
+    
+    //need to input token for own profile private collection, no token is get other people public collection
+    NSString* appendString = [NSString stringWithFormat:@"%@/collect_suggestions",self.postID];
+    
+    NSDictionary* dict = @{@"limit":@(ARRAY_LIST_SIZE),
+                           @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
+                           @"token":[Utils getAppToken],
+                           @"post_id" : self.postID?self.postID:@"",
+
+                           };
+    
+    [self.ibTableView showLoading];
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetPostCollectSuggestion parameter:dict appendString:appendString success:^(id object) {
+        
+        isMiddleOfCallingServer = false;
+        self.userCollectionsModel = [[ConnectionManager dataManager]postCollectionsModel];
+        
+        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
+        [self.ibTableView reloadData];
+        
+        if ([Utils isArrayNull:self.arrCollections]) {
+            [self.ibTableView showEmptyState];
+            
+        }
+        else{
+            [self.ibTableView hideAll];
+            
+        }
+    } failure:^(id object) {
+        isMiddleOfCallingServer = false;
+        [self.ibTableView hideAll];
+        
+    }];
+}
+
 -(void)requestServerForTrendingCollection
 {
     SLog(@"requestServerForTrendingCollection");
@@ -508,6 +555,15 @@
                     if(![Utils isStringNull:self.userCollectionsModel.next])
                     {
                         [self requestServerForSeetiesCollection];
+                    }
+                    
+                }
+            
+                else if(self.collectionListingType == CollectionListingTypePostSuggestion)
+                {
+                    if(![Utils isStringNull:self.userCollectionsModel.next])
+                    {
+                        [self requestServerForPostSuggestedCollection];
                     }
                     
                 }

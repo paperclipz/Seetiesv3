@@ -78,6 +78,7 @@ typedef void(^CompletionVoidBlock) (void);
 // /  ================================== model for "ME" from proifle page. has additional follow and following ===================================== ///
 @property(nonatomic,strong)ProfileModel* currentUserProfileModel;//
 
+@property(nonatomic,strong)CollectionsModel* postCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userFollowingCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userSuggestedCollectionsModel;

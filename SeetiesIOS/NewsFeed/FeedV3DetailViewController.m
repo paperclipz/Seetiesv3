@@ -38,7 +38,7 @@
 @property (strong, nonatomic) FeedCommentView *feedCommentView;
 /*Feed Details All Views*/
 
-@property(nonatomic,strong)CollectionsModel* userCollectionsModel;
+@property(nonatomic,strong)CollectionsModel* postCollectionsModel;
 @property(nonatomic,strong)NSMutableArray<CollectionModel>* arrCollections;
 
 //bottom view 
@@ -118,6 +118,7 @@
     
     //[self.bottomView.bottomAnchor constraintEqualToAnchor:self.bottomLayoutGuide.bottomAnchor constant:30];
     self.bottomView.hidden = NO;
+    [self.feedType_CollectionSuggestedTblCell reloadData];
 
 }
 
@@ -657,31 +658,30 @@
     
 }
 
--(void)requestServerForSuggestedCollection
+-(void)requestServerForPostSuggestedCollection
 {
     SLog(@"requestServerForSuggestedCollection");
  
     isMiddleOfCallingServer = true;
     
-    NSString* userID = self.postDetail.user_info.uid;
+    NSString* postID = self.postDetail.post_id;
     //need to input token for own profile private collection, no token is get other people public collection
-    NSString* appendString = [NSString stringWithFormat:@"%@/collections/suggestions",userID];
+    NSString* appendString = [NSString stringWithFormat:@"%@/collect_suggestions",postID];
     
     NSDictionary* dict = @{@"limit":@(ARRAY_LIST_SIZE),
-                           @"offset":@(self.userCollectionsModel.offset + self.userCollectionsModel.limit),
+                           @"offset":@(self.postCollectionsModel.offset + self.postCollectionsModel.limit),
                            @"token":[Utils getAppToken],
+                           @"post_id" : postID,
                            };
     
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetUserSuggestedCollections parameter:dict appendString:appendString success:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetPostCollectSuggestion parameter:dict appendString:appendString success:^(id object) {
         
         isMiddleOfCallingServer = false;
-        self.userCollectionsModel = [[ConnectionManager dataManager]userSuggestedCollectionsModel];
+        self.postCollectionsModel = [[ConnectionManager dataManager]postCollectionsModel];
         
-        [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
+        [self.arrCollections addObjectsFromArray:self.postCollectionsModel.arrSuggestedCollection];
         
         [self getAllCollectionData];
-       // self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
-       // [self.ibTableView reloadData];
         
         
     } failure:^(id object) {
@@ -794,7 +794,7 @@
 //        self.likeButton.selected = [self.dataDictionary[@"like"] boolValue];
         
         [self initializeCommentSection];
-        [self requestServerForSuggestedCollection];
+        [self requestServerForPostSuggestedCollection];
 
         
     } failure:^(id object) {
@@ -814,6 +814,23 @@
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.contentView.frame));
     
     [self.feedType_CollectionSuggestedTblCell initData:self.arrCollections];
+    
+    __weak typeof(self)weakSelf = self;
+    
+    self.feedType_CollectionSuggestedTblCell.btnSeeAllSuggestedCollectionClickBlock = ^(void)
+    {
+        [weakSelf showCollectionListingView];
+    };
+}
+
+-(void)showCollectionListingView
+{
+    
+    _collectionListingViewController = nil;
+    
+    [self.collectionListingViewController setTypePostSuggestion:self.postID];
+    
+    [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
 }
 
 @end

@@ -26,6 +26,12 @@
     // Drawing code
 }
 */
+
+-(void)reloadData
+{
+    [self.ibCollectionView reloadData];
+}
+
 - (IBAction)btnSeeAllClicked:(id)sender {
     
     if (self.btnSeeAllSuggestedCollectionClickBlock) {

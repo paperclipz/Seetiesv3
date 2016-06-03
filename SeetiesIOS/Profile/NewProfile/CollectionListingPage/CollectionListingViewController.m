@@ -22,6 +22,7 @@
 @property(nonatomic,assign)int viewPage;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
 @property (strong, nonatomic)EditCollectionDetailViewController *collectionDetailController;
+@property (strong, nonatomic) NSString* postID;
 
 @end
 
@@ -81,6 +82,13 @@
 {
     [self setType:type ProfileModel:model NumberOfPage:page];
     self.collectionListingType = collType;
+}
+
+-(void)setTypePostSuggestion:(NSString*)postID
+{
+    self.collectionListingType = CollectionListingTypePostSuggestion;
+    self.viewPage = 1;
+    self.postID = postID;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -146,6 +154,11 @@
         self.lblTitle.text = LocalisedString(@"SeetiShop Collections");
 
     }
+    else if(self.collectionListingType == CollectionListingTypePostSuggestion)
+    {
+        self.lblTitle.text = LocalisedString(@"Collections");
+
+    }
     else
     {
         if ([self.profileModel.uid isEqualToString:[Utils getUserID]]) {
@@ -206,6 +219,8 @@
         _myCollectionListingViewController.collectionListingType = self.collectionListingType == CollectionListingTypeMyOwn?CollectionListingTypeMyOwn:self.collectionListingType;
         
         _myCollectionListingViewController.userID = self.profileModel.uid;
+        _myCollectionListingViewController.postID = self.postID;
+
         __weak typeof (self)weakSelf = self;
         _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(CollectionModel* model)
         {
@@ -230,6 +245,8 @@
         _followingCollectionListingViewController.profileType = ProfileViewTypeOthers;
         _followingCollectionListingViewController.collectionListingType = CollectionListingTypeFollowing;
         _followingCollectionListingViewController.userID = self.profileModel.uid;
+        _followingCollectionListingViewController.postID = self.postID;
+
         __weak typeof (self)weakSelf = self;
         
         _followingCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(CollectionModel* model)

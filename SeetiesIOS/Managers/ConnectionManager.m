@@ -582,6 +582,8 @@
         case ServerRequestTypeGetPostLikes:
         case ServerRequestTypePostLikeAPost:
         case ServerRequestTypeDeleteLikeAPost:
+        case ServerRequestTypeGetPostCollectSuggestion:
+
             str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
             break;
         case ServerRequestTypeSearchPosts:
@@ -724,7 +726,6 @@
             str = [NSString stringWithFormat:@"%@/push-notifications/register",API_VERION_URL];
             
             break;
-
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
@@ -1378,6 +1379,18 @@
             self.dataManager.postDetailCommentModel = [[PostDetailCommentModel alloc] initWithDictionary:dict error:nil];
             break;
 
+            
+        }
+            
+        case ServerRequestTypeGetPostCollectSuggestion:
+        {
+            NSDictionary* dict = obj[@"data"];
+            self.dataManager.postCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:&error];
+
+//            NSDictionary *dict = obj[@"data"];
+//            self.dataManager.postDetailCommentModel = [[PostDetailCommentModel alloc] initWithDictionary:dict error:nil];
+            break;
+            
             
         }
             
