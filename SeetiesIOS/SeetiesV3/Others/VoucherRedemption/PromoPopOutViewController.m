@@ -395,7 +395,7 @@
             self.ibEnterVerificationTitle.text = LocalisedString(@"Enter Verification Code");
             [self.ibEnterVerificationResendBtn setTitle:LocalisedString(@"Resend Code") forState:UIControlStateNormal];
             [self.ibEnterVerificationConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
-            self.ibEnterVerificationTxtField.placeholder = LocalisedString(@"Enter 7-digit verification code");
+            self.ibEnterVerificationTxtField.placeholder = LocalisedString(@"Enter verification code");
             
             [self.ibEnterVerificationContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor clearColor] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
@@ -404,7 +404,7 @@
             [self.ibEnterVerificationResendBtn setTitleColor:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1] forState:UIControlStateDisabled];
             if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
                 NSString *phoneNumber = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
-                self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." withPlaceHolder:@{@"{!contact number}": phoneNumber?phoneNumber:@""}];
+                self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the verification code that was sent to {!contact number}" withPlaceHolder:@{@"{!contact number}": phoneNumber?phoneNumber:@""}];
             }
         }
             return self.ibEnterVerificationView;
