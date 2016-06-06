@@ -12,6 +12,7 @@
 @protocol FeedCommentViewDelegate <NSObject>
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didClickedLink:(NSURL *)url;
+- (void)allActivitiesButtonDidClicked:(id)sender;
 
 @end
 

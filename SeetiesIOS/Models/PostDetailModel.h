@@ -56,6 +56,6 @@
 @property (strong, nonatomic) NSString *comment_id;
 @property (strong, nonatomic) NSString *post_id;
 @property (strong, nonatomic) NSString *message;
-@property (strong, nonatomic) UsersModel *user;
+@property (strong, nonatomic) UserModel *author_info;
 
 @end

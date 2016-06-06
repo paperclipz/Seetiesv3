@@ -1,1 +1,0 @@
-../../../MGInstagram/MGInstagram/MGInstagram.h

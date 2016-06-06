@@ -1,5 +1,7 @@
 platform :ios, '8.0'
 
+target 'Seeties' do
+
 pod 'TTTAttributedLabel'
 use_frameworks!
 pod 'JSONModel'
@@ -53,3 +55,5 @@ pod 'PureLayout'
 #pod 'pop', '~> 1.0'
 #pod 'GoogleMaps'
 #pod 'LPGoogleFunctions'
+
+end

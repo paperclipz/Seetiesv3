@@ -68,6 +68,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary *dataDictionary;
 @property (strong, nonatomic) NSMutableDictionary *userLikeDataDictionary;
+@property (strong, nonatomic) NSMutableDictionary *userCommentDataDictionary;
 @property (strong, nonatomic) DraftModel *postDetail;
 
 @property (assign, nonatomic) BOOL isTranslatedText;
@@ -541,9 +542,9 @@
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didClickedLink:(NSURL *)url {
     
+    NSString *userID = url.host;
+    
     if ([url.scheme isEqualToString:@"like"]) {
-        
-        NSString *userID = url.host;
         
         if (userID && ![userID isEqualToString:@""]) {
             [self openProfileWithUserID:userID];
@@ -560,8 +561,20 @@
     }
     else if ([url.scheme isEqualToString:@"comment"]) {
         
+        [self openProfileWithUserID:userID];
     }
     
+}
+
+- (void)allActivitiesButtonDidClicked:(id)sender {
+    
+    CommentViewController *CommentView = [[CommentViewController alloc]init];
+
+    [self presentViewController:CommentView animated:YES completion:nil];
+//    [CommentView GetCommentIDArray:CommentIDArray GetPostIDArray:PostIDArray GetMessageArray:MessageArray GetUser_Comment_uidArray:User_Comment_uidArray GetUser_Comment_nameArray:User_Comment_nameArray GetUser_Comment_usernameArray:User_Comment_usernameArray GetUser_Comment_photoArray:User_Comment_photoArray];
+    [CommentView GetRealPostID:self.postID];
+    [CommentView GetWhatView:@"Comment"];
+
 }
 
 
@@ -786,12 +799,20 @@
     
     [[ConnectionManager Instance] requestServerWith:type serverRequestType:ServerRequestTypeGetPostComments parameter:dict appendString:appendString success:^(id object) {
         
-        NSDictionary *data = [[NSDictionary alloc]initWithDictionary:object];
+//        self.userLikeDataDictionary = [NSMutableDictionary new];
+        
+//        NSDictionary *data = [[NSDictionary alloc]initWithDictionary:object];
         
 //        [self.dataDictionary removeObjectForKey:@"like"];
 //        [self.dataDictionary setObject:data[@"data"][@"like"] forKey:@"like"];
 //        
 //        self.likeButton.selected = [self.dataDictionary[@"like"] boolValue];
+        
+        PostDetailCommentModel *model = [[ConnectionManager dataManager] postDetailCommentModel];
+        
+        [self.userLikeDataDictionary setObject:model.comments forKey:@"comments"];
+        
+        
         
         [self initializeCommentSection];
         [self requestServerForPostSuggestedCollection];

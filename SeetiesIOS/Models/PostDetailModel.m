@@ -27,9 +27,19 @@
 
 @implementation PostDetailCommentModel
 
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
 @end
 
 @implementation CommentDetailModel
+
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
 
 @end
 
