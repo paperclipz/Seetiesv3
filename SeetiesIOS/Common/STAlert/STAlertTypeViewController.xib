@@ -3,11 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="STAlertTypeViewController">
             <connections>
                 <outlet property="errorView" destination="JJT-AY-hgt" id="pPN-q7-N6o"/>
+                <outlet property="popoverView" destination="vYH-cN-7Bn" id="YRr-0U-82j"/>
                 <outlet property="successView" destination="i5M-Pr-FkT" id="0Ec-Dl-7Rn"/>
                 <outlet property="testView" destination="iTg-ET-C8D" id="REb-Hl-LyZ"/>
                 <outlet property="view" destination="DGI-eQ-1HO" id="WzD-qv-KmF"/>
@@ -102,6 +104,46 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="448" y="572"/>
+        </view>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="vYH-cN-7Bn">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahK-xj-xBI">
+                    <rect key="frame" x="10" y="10" width="580" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailingMargin" secondItem="ahK-xj-xBI" secondAttribute="trailing" id="2cC-Sj-Yo2"/>
+                <constraint firstAttribute="bottom" secondItem="ahK-xj-xBI" secondAttribute="bottom" constant="10" id="6hh-hW-fDT"/>
+                <constraint firstAttribute="bottomMargin" secondItem="ahK-xj-xBI" secondAttribute="bottom" id="FJ0-ML-qd7"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="top" secondItem="vYH-cN-7Bn" secondAttribute="top" id="NqY-DH-2wR"/>
+                <constraint firstAttribute="bottom" secondItem="ahK-xj-xBI" secondAttribute="bottom" id="UG0-yx-Wza"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="top" secondItem="vYH-cN-7Bn" secondAttribute="top" constant="10" id="V3U-BO-AOB"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="leading" secondItem="vYH-cN-7Bn" secondAttribute="leading" constant="10" id="Ze1-cP-fUb"/>
+                <constraint firstAttribute="trailing" secondItem="ahK-xj-xBI" secondAttribute="trailing" constant="10" id="mBg-ju-Sp7"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="top" secondItem="vYH-cN-7Bn" secondAttribute="topMargin" id="oQT-vL-FGw"/>
+                <constraint firstAttribute="trailing" secondItem="ahK-xj-xBI" secondAttribute="trailing" constant="10" id="qH8-gP-JTh"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="leading" secondItem="vYH-cN-7Bn" secondAttribute="leadingMargin" id="u7u-bp-kql"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="2cC-Sj-Yo2"/>
+                    <exclude reference="FJ0-ML-qd7"/>
+                    <exclude reference="NqY-DH-2wR"/>
+                    <exclude reference="UG0-yx-Wza"/>
+                    <exclude reference="mBg-ju-Sp7"/>
+                    <exclude reference="oQT-vL-FGw"/>
+                    <exclude reference="u7u-bp-kql"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="448" y="701"/>
         </view>
     </objects>
     <resources>

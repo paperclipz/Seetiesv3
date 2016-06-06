@@ -21,6 +21,10 @@
     [STAlertController presentSTAlertType:type stAlertDisplayType:displayType message:message];
 }
 
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom{
+    [STAlertController popoverErroMessage:message target:target popFrom:popFrom];
+}
+
 //+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type
 //{
 //

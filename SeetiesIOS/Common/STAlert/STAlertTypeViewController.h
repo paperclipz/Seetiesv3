@@ -11,14 +11,18 @@
 
 @interface STAlertTypeViewController : UIViewController
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-stAlertType:(STAlertType)stAlertType
-stAlertDisplayType:(STAlertDisplayType)stAlertDisplayType
- message:(NSString *)message
-     duration:(NSTimeInterval)duration
- showDuration:(NSTimeInterval)showDuration
-      topView:(UIViewController *)topView
+         stAlertType:(STAlertType)stAlertType
+  stAlertDisplayType:(STAlertDisplayType)stAlertDisplayType
+             message:(NSString *)message
+            duration:(NSTimeInterval)duration
+        showDuration:(NSTimeInterval)showDuration
+             topView:(UIViewController *)topView
             tapClose:(TapClose)tapClose
  onlyCurrentViewShow:(BOOL)onlyCurrentViewShow;
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+         stAlertType:(STAlertType)stAlertType
+             message:(NSString *)message;
 
 @property(assign, nonatomic)int oriHeight;
 @property(assign, nonatomic)STAlertType stAlertType;

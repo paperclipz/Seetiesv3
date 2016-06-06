@@ -13,12 +13,37 @@
 @property (strong, nonatomic) IBOutlet UIView *successView;
 @property (strong, nonatomic) IBOutlet UIView *errorView;
 @property (strong, nonatomic) IBOutlet UIView *testView;
+@property (strong, nonatomic) IBOutlet UIView *popoverView;
 
+//for popover only
+@property(strong, nonatomic)NSTimer *timer;
 @end
 
 @implementation STAlertTypeViewController
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil stAlertType:(STAlertType)stAlertType stAlertDisplayType:(STAlertDisplayType)stAlertDisplayType message:(NSString *)message duration:(NSTimeInterval)duration showDuration:(NSTimeInterval)showDuration topView:(UIViewController *)topView tapClose:(TapClose)tapClose  onlyCurrentViewShow:(BOOL)onlyCurrentViewShow{
+-(id)initWithNibName:(NSString *)nibNameOrNil
+              bundle:(NSBundle *)nibBundleOrNil
+         stAlertType:(STAlertType)stAlertType
+             message:(NSString *)message{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self) {
+        self.stAlertType = stAlertType;
+        self.message = message;
+    }
+    return self;
+}
+
+-(id)initWithNibName:(NSString *)nibNameOrNil
+              bundle:(NSBundle *)nibBundleOrNil
+         stAlertType:(STAlertType)stAlertType
+  stAlertDisplayType:(STAlertDisplayType)stAlertDisplayType
+             message:(NSString *)message
+            duration:(NSTimeInterval)duration
+        showDuration:(NSTimeInterval)showDuration
+             topView:(UIViewController *)topView
+            tapClose:(TapClose)tapClose
+ onlyCurrentViewShow:(BOOL)onlyCurrentViewShow{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
@@ -54,17 +79,50 @@
     rect.size.width = [[UIScreen mainScreen] bounds].size.width;
     self.view.frame = rect;
     self.oriHeight = self.view.frame.size.height;
+    
+}
 
+-(void)setupPopoverDisplayType{
+    self.view = self.popoverView;
+    
+    UILabel *label = [self.view viewWithTag:1];
+    label.text = self.message;
+    
+    CGRect rect = label.frame;
+    rect.size.width = self.preferredContentSize.width;
+    label.frame = rect;
+    [label sizeToFit];
+    
+    rect = self.view.frame;
+    rect.size.width = label.frame.size.width+20;
+    rect.size.height = label.frame.size.height+20;
+    self.view.frame = rect;
+    
+    self.preferredContentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+    
+    self.oriHeight = self.view.frame.size.height;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setupDisplayType];
-    [self setupTouchEvent];
     
-    UILabel *label = [self.view viewWithTag:1];
-    label.text = self.message;
+    
+    
+    if(self.stAlertType != STAlertPopover){
+        [self setupTouchEvent];
+        [self setupDisplayType];
+        
+        UILabel *label = [self.view viewWithTag:1];
+        label.text = self.message;
+    }else{
+        [self setupPopoverDisplayType];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(dismissPopover) userInfo:nil repeats:NO];
+    }
+}
+
+-(void)dismissPopover{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)setupTouchEvent{
@@ -81,14 +139,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 - (void)fadeMeOut
 {
     [[STAlertController instance] performSelectorOnMainThread:@selector(fadeOutNotification:) withObject:self waitUntilDone:NO];

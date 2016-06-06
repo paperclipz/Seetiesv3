@@ -16,6 +16,7 @@
 //replace to
 +(void)showMessage:(NSString*)message Type:(STAlertType)type;
 +(void)showMessage:(NSString*)message Type:(STAlertType)type displayType:(STAlertDisplayType)displayType;
++(void)popoverErrorMessage:(NSString*)message target:(id)target popFrom:(id)popFrom;
 // no used
 //disable by zack
 //+(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack;

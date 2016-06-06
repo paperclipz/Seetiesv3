@@ -13,6 +13,7 @@
 typedef NS_ENUM(NSInteger, STAlertType) {
     STAlertSuccess,
     STAlertError,
+    STAlertPopover,
 };
 typedef NS_ENUM(NSInteger, STAlertDisplayType) {
     
@@ -29,6 +30,8 @@ typedef void (^TapClose)();
 
 + (STAlertController *)instance;
 
+///// popover only
++(void)popoverErroMessage:(NSString *)message target:(id)target popFrom:(id)popFrom;
 /////
 +(void)presentSTAlertType:(STAlertType)stAlertType stAlertDisplayType:(STAlertDisplayType)stAlertDisplayType message:(NSString *)message;
 +(void)presentSTAlertType:(STAlertType)stAlertType stAlertDisplayType:(STAlertDisplayType)stAlertDisplayType message:(NSString *)message tapClose:(TapClose)tapClose;

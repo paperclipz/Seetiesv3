@@ -14,7 +14,7 @@
 #define defaultshowDuration 3
 
 
-@interface STAlertController ()
+@interface STAlertController ()<UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *messages;
 @property(strong, nonatomic)STAlertTypeViewController *showView;
 @property(assign, nonatomic)Boolean isShowing;
@@ -33,6 +33,38 @@
     return sharedInstance;
 }
 
+///// popover only
++(void)popoverErroMessage:(NSString *)message target:(id)target popFrom:(id)popFrom{
+    STAlertTypeViewController *controller = [[STAlertTypeViewController alloc]
+                                    initWithNibName:@"STAlertTypeViewController"
+                                             bundle:nil
+                                        stAlertType:STAlertPopover
+                                            message:message];
+    
+    controller.preferredContentSize = CGSizeMake([popFrom frame].size.width, 50);
+    controller.view.clipsToBounds = YES;
+    // present the controller
+    // on iPad, this will be a Popover
+    // on iPhone, this will be an action sheet
+    controller.modalPresentationStyle = UIModalPresentationPopover;
+    
+    // configure the Popover presentation controller
+    UIPopoverPresentationController *popController = [controller popoverPresentationController];
+    
+    popController.permittedArrowDirections = UIPopoverArrowDirectionDown;
+    popController.delegate = [self instance];
+    popController.backgroundColor = controller.view.backgroundColor;
+    
+    // in case we don't have a bar button as reference
+    popController.sourceView = [target view];
+    popController.sourceRect = [popFrom frame];
+    popController.canOverlapSourceViewRect = NO;
+    [target presentViewController:controller animated:YES completion:nil];
+}
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
+    
+    return UIModalPresentationNone;
+}
 
 /////
 +(void)presentSTAlertType:(STAlertType)stAlertType stAlertDisplayType:(STAlertDisplayType)stAlertDisplayType message:(NSString *)message{
