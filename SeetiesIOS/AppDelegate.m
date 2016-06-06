@@ -29,6 +29,9 @@
 
 -(void)registrationForApi
 {
+    
+   // [FIRApp configure];
+
     // ****************************************************************************
     // Uncomment and fill in with your Parse credentials:
     // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];

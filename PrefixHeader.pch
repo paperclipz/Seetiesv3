@@ -82,7 +82,7 @@
 
 //#import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
-
+//#import <Firebase/Firebase.h>
 
 //check whether it uses simulator 
 #if TARGET_IPHONE_SIMULATOR
