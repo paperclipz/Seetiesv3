@@ -42,6 +42,7 @@
                                             message:message];
     
     controller.preferredContentSize = CGSizeMake([popFrom frame].size.width, 50);
+    
     controller.view.clipsToBounds = YES;
     // present the controller
     // on iPad, this will be a Popover
@@ -50,17 +51,23 @@
     
     // configure the Popover presentation controller
     UIPopoverPresentationController *popController = [controller popoverPresentationController];
-    
     popController.permittedArrowDirections = UIPopoverArrowDirectionDown;
     popController.delegate = [self instance];
     popController.backgroundColor = controller.view.backgroundColor;
     
     // in case we don't have a bar button as reference
     popController.sourceView = [target view];
-    popController.sourceRect = [popFrom frame];
+    popController.sourceRect = [[self instance] getViewRect:popFrom target:target];
     popController.canOverlapSourceViewRect = NO;
     [target presentViewController:controller animated:YES completion:nil];
 }
+
+-(CGRect)getViewRect:(UIView *)view target:(id)target{
+    CGPoint viewPoint = [view convertPoint:view.bounds.origin toView:[target view]];
+    return CGRectMake(viewPoint.x, viewPoint.y, view.frame.size.width, view.frame.size.height);
+    
+}
+
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
     
     return UIModalPresentationNone;
