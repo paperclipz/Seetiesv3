@@ -515,6 +515,10 @@
 
 - (IBAction)selectCountryCodeBtnClicked:(id)sender {
     
+    if ([self.ibEnterPhoneTxtField isFirstResponder]) {
+        [self.ibEnterPhoneTxtField resignFirstResponder];
+    }
+    
     NSArray *formattedCountriesCode;
 
     @try {

@@ -87,15 +87,17 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 52.0f;
+    return 44.0f;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    DealHeaderView* view = [DealHeaderView initializeCustomView];
-    view.backgroundColor = GREY_APP_COLOR;
-    view.btnSeeMore.hidden = YES;
-    [view.btnDeals setTitleColor:TEXT_GRAY_COLOR forState:UIControlStateNormal];
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.ibTableView.frame.size.width, 44)];
+    header.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 15, header.frame.size.width, 21)];
+    [label setFont:[UIFont boldSystemFontOfSize:13]];
+    label.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+    
     NSString* title;
     
     switch (section) {
@@ -116,9 +118,9 @@
             break;
     }
     
-    [view.btnDeals setTitle:LocalisedString(title) forState:UIControlStateNormal];
-    
-    return view;
+    label.text = title;
+    [header addSubview:label];
+    return header;
 }
 
 #pragma mark - TableView Delegate
