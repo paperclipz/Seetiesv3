@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "UIWindow+Extra.h"
 #import "UIView+Toast.h"
+#import "AMPopTip.h"
 
 @implementation MessageManager
 
@@ -22,7 +23,19 @@
 }
 
 +(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom{
-    [STAlertController popoverErroMessage:message target:target popFrom:popFrom];
+//    [STAlertController popoverErroMessage:message target:target popFrom:popFrom];
+    
+    AMPopTip *popTip = [AMPopTip popTip];
+    popTip.shouldDismissOnTap = YES;
+    popTip.popoverColor = [UIColor colorWithRed:226.0/255.0 green:60.0/255.0 blue:78.0/255.0 alpha:1.0];
+    
+    [popTip showText:message direction:AMPopTipDirectionUp maxWidth:[popFrom frame].size.width inView:[target view] fromFrame:[self getViewRect:popFrom target:target] duration:2.0f];
+}
+
++(CGRect)getViewRect:(UIView *)view target:(id)target{
+    CGPoint viewPoint = [view convertPoint:view.bounds.origin toView:[target view]];
+    return CGRectMake(viewPoint.x, viewPoint.y, view.frame.size.width, view.frame.size.height);
+    
 }
 
 //+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type
