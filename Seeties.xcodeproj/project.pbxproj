@@ -1265,6 +1265,10 @@
 		C22C35161CF427E7004092F6 /* CT3_ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22C35141CF427E7004092F6 /* CT3_ForgotPasswordViewController.m */; };
 		C22C35171CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22C35151CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib */; };
 		C23042E11C61F331001008CB /* DealsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C23042E01C61F331001008CB /* DealsModel.m */; };
+		C231DEE91D055C4800A68E54 /* AlertErrorIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C231DEE51D055C4800A68E54 /* AlertErrorIcon@2x.png */; };
+		C231DEEA1D055C4800A68E54 /* AlertErrorIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C231DEE61D055C4800A68E54 /* AlertErrorIcon@3x.png */; };
+		C231DEEB1D055C4800A68E54 /* AlertTickIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C231DEE71D055C4800A68E54 /* AlertTickIcon@2x.png */; };
+		C231DEEC1D055C4800A68E54 /* AlertTickIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C231DEE81D055C4800A68E54 /* AlertTickIcon@3x.png */; };
 		C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */; };
 		C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */; };
 		C238E3271C4649AA00570A25 /* slider-default-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3091C4649AA00570A25 /* slider-default-handle.png */; };
@@ -2972,6 +2976,10 @@
 		C22C35151CF427E7004092F6 /* CT3_ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		C23042DF1C61F331001008CB /* DealsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealsModel.h; sourceTree = "<group>"; };
 		C23042E01C61F331001008CB /* DealsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealsModel.m; sourceTree = "<group>"; };
+		C231DEE51D055C4800A68E54 /* AlertErrorIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertErrorIcon@2x.png"; sourceTree = "<group>"; };
+		C231DEE61D055C4800A68E54 /* AlertErrorIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertErrorIcon@3x.png"; sourceTree = "<group>"; };
+		C231DEE71D055C4800A68E54 /* AlertTickIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertTickIcon@2x.png"; sourceTree = "<group>"; };
+		C231DEE81D055C4800A68E54 /* AlertTickIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertTickIcon@3x.png"; sourceTree = "<group>"; };
 		C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
 		C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted@2x.png"; sourceTree = "<group>"; };
 		C238E3091C4649AA00570A25 /* slider-default-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle.png"; sourceTree = "<group>"; };
@@ -3506,6 +3514,10 @@
 		8A11258C1CF69EC100399213 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				C231DEE51D055C4800A68E54 /* AlertErrorIcon@2x.png */,
+				C231DEE61D055C4800A68E54 /* AlertErrorIcon@3x.png */,
+				C231DEE71D055C4800A68E54 /* AlertTickIcon@2x.png */,
+				C231DEE81D055C4800A68E54 /* AlertTickIcon@3x.png */,
 				C24547F11CF7EC3000A4F8B6 /* IndicatorHand@2x.png */,
 				C24547F21CF7EC3000A4F8B6 /* IndicatorHand@3x.png */,
 				8A11258D1CF69EC100399213 /* AddedFriendIcon@2x.png */,
@@ -6996,6 +7008,7 @@
 				8A1128DA1CF69EC100399213 /* MeNotificationIcon@2x.png in Resources */,
 				8A1128BE1CF69EC100399213 /* HomeFindShopsAndPlaces@3x.png in Resources */,
 				8A112AE41CF69EC100399213 /* NewCollectionsIcon@3x.png in Resources */,
+				C231DEEB1D055C4800A68E54 /* AlertTickIcon@2x.png in Resources */,
 				8A6CCEEA1C1982D500BCD54E /* SeetiShopListingViewController.xib in Resources */,
 				8A112AF21CF69EC100399213 /* ProfileExpand@3x.png in Resources */,
 				8A112A0A1CF69EC100399213 /* StarRecommendationBtn@3x.png in Resources */,
@@ -7062,6 +7075,7 @@
 				8AD6C0DB1B706CF30040437E /* PTnCViewController.xib in Resources */,
 				8AFA52021C47B4AB00E7920E /* CT3_NewsFeedViewController.xib in Resources */,
 				8A1129421CF69EC100399213 /* SignUpNameIcon@2x.png in Resources */,
+				C231DEEA1D055C4800A68E54 /* AlertErrorIcon@3x.png in Resources */,
 				8A112A4A1CF69EC100399213 /* FollowIcon@3x.png in Resources */,
 				8A11296E1CF69EC100399213 /* TH_TabbarHomeIcon_Active@3x.png in Resources */,
 				8AC8F7251BDA414E00DEF14A /* CollectionListingViewController.xib in Resources */,
@@ -7168,6 +7182,7 @@
 				8A112B2E1CF69EC100399213 /* BackToTop@2x.png in Resources */,
 				C238E33B1C4649AA00570A25 /* slider-metal-track.png in Resources */,
 				8AFA51E41C47B4AB00E7920E /* AbroadQualityPostCVCell.xib in Resources */,
+				C231DEE91D055C4800A68E54 /* AlertErrorIcon@2x.png in Resources */,
 				8A1129BC1CF69EC100399213 /* iTunesArtwork@2x.png in Resources */,
 				8A112ABA1CF69EC100399213 /* ChangePlaceIcon@3x.png in Resources */,
 				8A112B201CF69EC100399213 /* SSDefaultLogo@2x.png in Resources */,
@@ -7329,6 +7344,7 @@
 				8A1129D31CF69EC100399213 /* DeleteCollection@2x.png in Resources */,
 				8A112B291CF69EC100399213 /* SSGreyTranslateIcon@3x.png in Resources */,
 				8A1129631CF69EC100399213 /* EN_TabbarMeIcon_Inactive@2x.png in Resources */,
+				C231DEEC1D055C4800A68E54 /* AlertTickIcon@3x.png in Resources */,
 				8A1128761CF69EC100399213 /* DealsVoucherExpireIcon@3x.png in Resources */,
 				8A112A3F1CF69EC100399213 /* FeedCloseBtn@2x.png in Resources */,
 				8A11290A1CF69EC100399213 /* EmptyStateImg.png in Resources */,
