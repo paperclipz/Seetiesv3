@@ -1534,7 +1534,7 @@ static NSCache* heightCache = nil;
 -(void)requestServerForQuickCollection:(DraftModel*)model
 {
     
-    NSDictionary* dictPost =  @{@"id": model.post_id};
+    NSDictionary* dictPost =  @{@"id": model.post_id?model.post_id:@""};
 
     
     NSArray* array = @[dictPost];
@@ -1764,13 +1764,13 @@ static NSCache* heightCache = nil;
     
     CLLocation* location  = [[SearchManager Instance]getAppLocation];
     
-    NSDictionary* dict = @{@"lat" : model.latitude,
-                           @"lng" : model.longtitude,
-                           @"place_id" : model.place_id,
+    NSDictionary* dict = @{@"lat" : model.latitude?model.latitude:@"",
+                           @"lng" : model.longtitude?model.longtitude:@"",
+                           @"place_id" : model.place_id?model.place_id:@"",
                            @"current_lat" : @(location.coordinate.latitude),
                            @"current_lng" : @(location.coordinate.longitude),
-                           @"last_updated" : lastUpdatedDateTime,
-                           @"last_location_updated" : lastUpdatedLocation,
+                           @"last_updated" : lastUpdatedDateTime?lastUpdatedDateTime:@"",
+                           @"last_location_updated" : lastUpdatedLocation?lastUpdatedLocation:@"",
                            @"token" : [Utils getAppToken],
                            @"type" : model.type?model.type:@"",
                            

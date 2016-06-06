@@ -55,6 +55,7 @@
 @property(nonatomic) NSUserDefaults *userDefault;
 @property(nonatomic) NSTimer *timer;
 @property(nonatomic) BOOL isTutorial;
+@property(nonatomic) BOOL isResetting;
 @end
 
 @implementation DealRedeemViewController
@@ -365,6 +366,10 @@
         
     } completion:^(BOOL finished) {
         [self.animator removeAllBehaviors];
+        
+        if (!self.isResetting) {
+            self.ibBottomView.hidden = YES;
+        }
     }];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -389,7 +394,9 @@
 
 -(void)resetBottomView
 {
+    self.isResetting = YES;
     [self.animator removeAllBehaviors];
+    self.ibBottomView.hidden = NO;
     
     [UIView animateWithDuration:1.0 animations:^{
         
@@ -400,6 +407,8 @@
         
         self.ibSwipeView.frame = oldFrame;
 
+    } completion:^(BOOL finished) {
+        self.isResetting = NO;
     }];
    
 }

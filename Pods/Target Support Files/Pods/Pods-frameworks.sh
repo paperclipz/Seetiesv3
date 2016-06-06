@@ -83,7 +83,7 @@ strip_invalid_archs() {
 }
 
 
-if [[ "$CONFIGURATION" == "Debug" ]]; then
+if [[ "$CONFIGURATION" == "Development-SandBox" ]]; then
   install_framework "Pods/A3ParallaxScrollView.framework"
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/AMPopTip.framework"
@@ -118,7 +118,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/YLGIFImage.framework"
   install_framework "Pods/pop.framework"
 fi
-if [[ "$CONFIGURATION" == "Debug Staging" ]]; then
+if [[ "$CONFIGURATION" == "Development-Release" ]]; then
   install_framework "Pods/A3ParallaxScrollView.framework"
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/AMPopTip.framework"
@@ -153,7 +153,7 @@ if [[ "$CONFIGURATION" == "Debug Staging" ]]; then
   install_framework "Pods/YLGIFImage.framework"
   install_framework "Pods/pop.framework"
 fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
+if [[ "$CONFIGURATION" == "Production-Release" ]]; then
   install_framework "Pods/A3ParallaxScrollView.framework"
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/AMPopTip.framework"
@@ -188,7 +188,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/YLGIFImage.framework"
   install_framework "Pods/pop.framework"
 fi
-if [[ "$CONFIGURATION" == "Release Staging" ]]; then
+if [[ "$CONFIGURATION" == "Production-SandBox" ]]; then
   install_framework "Pods/A3ParallaxScrollView.framework"
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/AMPopTip.framework"
