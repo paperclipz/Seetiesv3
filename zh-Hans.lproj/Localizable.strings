@@ -1397,7 +1397,7 @@
 "Announcement" = "公告";
 "Seeties is all about deals and places - discover and collect awesome deals from your favourite shops to eat, play and hangout. \n{Seeties URL}  " = "Seeties 囊括了无数的精选优惠。快来收藏你所喜爱的优惠劵与发掘吃喝玩乐新店家吧!\n{Seeties URL}";
 "Check out my profile on Seeties! \n{Profile URL} " = "我在Seeties创建了个人主页喔, 快来看看吧!\n{Profile URL}";
-"Oops… verification code must be 7 digits" = "哎唷... 验证码只能是7位数喔!";
+"Oops... verification code must be 4 digits" = "哎唷... 验证码只能是4位数喔!";
 "Collect Now" = "努力";
 "Pay Later" = "加载中";
 "Collect Now, Pay at Shop" = "努力加载中...";
