@@ -220,7 +220,8 @@
     NSLog(@"SetPublic === %@",SetPublic);
     
     if ([NameTextView.text isEqualToString:LocalisedString(@"eg: Top 10 coffee hideouts in KL, Best spas in Bangkok")] || [NameTextView.text isEqualToString:@""] || [NameTextView.text length] == 0) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 1 characters" type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 1 characters" type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:@"Collection name must be at least 1 characters" Type:STAlertError];
     }else{
         [self CreateNewCollection];
     }
@@ -367,10 +368,12 @@
         NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
         
         if ([statusString isEqualToString:@"ok"]) {
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
+//            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:@"Success Create New Collections" Type:STAlertSuccess];
             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
+//            [TSMessage showNotificationInViewController:self title:@"" subtitle:MessageString type:TSMessageNotificationTypeError];
+            [MessageManager showMessage:MessageString Type:STAlertError];
         }
         
         [ShowActivity stopAnimating];

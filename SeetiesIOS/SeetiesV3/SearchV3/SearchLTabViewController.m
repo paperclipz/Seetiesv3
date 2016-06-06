@@ -900,7 +900,8 @@
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutCollectPost parameter:dict appendString:appendString success:^(id object) {
         
         model.collect = @"1";
-        [MessageManager showMessage:LocalisedString(@"System") SubTitle:LocalisedString(@"Successfully collected to default Collection") Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"System") SubTitle:LocalisedString(@"Successfully collected to default Collection") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Successfully collected to default Collection") Type:STAlertSuccess];
 
         [self.ibTableView reloadData];
         
@@ -930,7 +931,8 @@
             [self.ibTableView reloadData];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
             
-            [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
+//            [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:LocalisedString(SUCCESSFUL_COLLECTED) Type:STAlertSuccess];
             
         } failure:^(id object) {
             

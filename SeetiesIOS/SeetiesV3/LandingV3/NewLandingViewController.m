@@ -270,7 +270,8 @@
     
     [self reloadTabbar];
     
-    [TSMessage showNotificationInViewController:self.newsFeedViewController title:LocalisedString(@"system") subtitle:LocalisedString(@"Login Successfully") type:TSMessageNotificationTypeSuccess duration:1.0f canBeDismissedByUser:YES];
+//    [TSMessage showNotificationInViewController:self.newsFeedViewController title:LocalisedString(@"system") subtitle:LocalisedString(@"Login Successfully") type:TSMessageNotificationTypeSuccess duration:1.0f canBeDismissedByUser:YES];
+    [MessageManager showMessage:LocalisedString(@"Login Successfully") Type:STAlertSuccess];
     
     /*send crashlytics user UID to track crashes*/
     ProfileModel* model = [[ConnectionManager dataManager]userLoginProfileModel];

@@ -1907,7 +1907,8 @@
    
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = message;
-    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+//    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+    [MessageManager showMessage:@"Success Copy Link" Type:STAlertSuccess];
 }
 -(ProfileViewController*)profileViewController
 {

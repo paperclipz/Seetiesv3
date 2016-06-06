@@ -13,32 +13,41 @@
 
 @implementation MessageManager
 
-+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type
-{
-
-    UIViewController* controller = [UIWindow topMostController];
++(void)showMessage:(NSString *)message Type:(STAlertType)type{
     
-    if (controller.navigationController) {
-        controller = controller.navigationController;
-    }
-    
-    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle image:nil type:type duration:TSMessageNotificationDurationAutomatic callback:nil buttonTitle:nil buttonCallback:nil atPosition:[controller isKindOfClass:[UINavigationController class]] ?  TSMessageNotificationPositionNavBarOverlay : TSMessageNotificationPositionTop canBeDismissedByUser:YES];
+    [STAlertController presentSTAlertType:type stAlertDisplayType:STAlertDisplayTypeOverlayNavBar message:message];
 }
 
-+(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack
-{
-    UIViewController* controller = [UIWindow topMostController];
-    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle image:nil type:type duration:1.0 callback:^{
-        
-        if (callBack) {
-            callBack();
-        }
-        
-    } buttonTitle:nil buttonCallback:^{
-     
-        
-    } atPosition:TSMessageNotificationPositionTop canBeDismissedByUser:YES];
-}
+//+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type
+//{
+//
+//    UIViewController* controller = [UIWindow topMostController];
+//    
+////    if (controller.navigationController) {
+////        controller = controller.navigationController;
+////    }
+//    
+//    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle image:nil type:type duration:TSMessageNotificationDurationAutomatic callback:nil buttonTitle:nil buttonCallback:nil atPosition:[controller.parentViewController isKindOfClass:[UINavigationController class]] ?  TSMessageNotificationPositionNavBarOverlay : TSMessageNotificationPositionTop canBeDismissedByUser:YES];
+//   
+//
+//}
+
+// no used
+//disable by zack
+//+(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack
+//{
+//    UIViewController* controller = [UIWindow topMostController];
+//    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle image:nil type:type duration:1.0 callback:^{
+//
+//        if (callBack) {
+//            callBack();
+//        }
+//
+//    } buttonTitle:nil buttonCallback:^{
+//
+//
+//    } atPosition:TSMessageNotificationPositionTop canBeDismissedByUser:YES];
+//}
 
 +(void)showMessageInPopOut:(NSString*)title subtitle:(NSString*)subtitle{
     [UIAlertView showWithTitle:title message:subtitle cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:nil];

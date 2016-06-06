@@ -1111,7 +1111,8 @@
             @catch (NSException *exception) {
                 SLog(@"error");
             }
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+//            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:@"Success follow this collection" Type:STAlertSuccess];
         } failure:^(id object) {
             
         }];
@@ -1137,7 +1138,9 @@
                     }
                     @catch (NSException *exception) {
                         SLog(@"error");
-                    }                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                    }
+//                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                    [MessageManager showMessage:@"Success unfollow this collection" Type:STAlertSuccess];
                 } failure:^(id object) {
                 }];
                 

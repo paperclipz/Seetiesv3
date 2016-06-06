@@ -946,7 +946,8 @@
             
         } errorBlock:^(NSString *status) {
             
-            [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"No Internet Connection" type:TSMessageNotificationTypeWarning];
+//            [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"No Internet Connection" type:TSMessageNotificationTypeWarning];
+            [MessageManager showMessage:@"No Internet Connection" Type:STAlertError];
             [LoadingManager hide];
         }];
     }

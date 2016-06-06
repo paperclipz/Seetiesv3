@@ -225,14 +225,16 @@
         NSLog(@"statusString is %@",statusString);
         
         if ([statusString isEqualToString:@"ok"]) {
-            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Success add to Collections") Type:TSMessageNotificationTypeSuccess];
+//            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Success add to Collections") Type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:LocalisedString(@"Success add to Collections") Type:STAlertSuccess];
             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
             
             NSString *MessageString = [[NSString alloc]initWithFormat:@"%@",[res objectForKey:@"message"]];
 
-            [MessageManager showMessage:LocalisedString(@"system") SubTitle:MessageString Type:TSMessageNotificationTypeError];
-
+//            [MessageManager showMessage:LocalisedString(@"system") SubTitle:MessageString Type:TSMessageNotificationTypeError];
+            
+            [MessageManager showMessage:MessageString Type:STAlertError];
         }
     }
     

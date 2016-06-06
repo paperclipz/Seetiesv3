@@ -7,10 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STAlertController.h"
 
 @interface MessageManager : NSObject
-+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type;
-+(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack;
+
+//replace
+//+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type;
+//replace to
++(void)showMessage:(NSString*)message Type:(STAlertType)type;
+// no used
+//disable by zack
+//+(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack;
 +(void)showMessageInPopOut:(NSString*)title subtitle:(NSString*)subtitle;
 
 +(void)showToastMessage:(NSString*)title InView:(UIView*)view;

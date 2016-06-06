@@ -145,7 +145,8 @@
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:requestType parameter:dict appendString:appendString success:^(id object) {
         
-        [MessageManager showMessage:LocalisedString(@"Successfully share to friend") SubTitle:nil Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"Successfully share to friend") SubTitle:nil Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Successfully share to friend") Type:STAlertSuccess];
         
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
         
@@ -153,7 +154,8 @@
     
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
         
-        [MessageManager showMessage:LocalisedString(@"Fail to share to friend") SubTitle:nil Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"Fail to share to friend") SubTitle:nil Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Fail to share to friend") Type:STAlertError];
 
     }];
     

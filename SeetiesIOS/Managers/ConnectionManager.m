@@ -826,7 +826,8 @@
                         break;
                         
                     default:
-                        [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+//                        [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+                        [MessageManager showMessage:dict[@"message"] Type:STAlertError];
                         break;
                 }
             

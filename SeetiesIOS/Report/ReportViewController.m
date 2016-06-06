@@ -251,9 +251,11 @@ if ([DescriptionText.text length] == 0) {
         
         if ([statusString isEqualToString:@"ok"]) {
            // [self dismissViewControllerAnimated:NO completion:nil];
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success submit."  type:TSMessageNotificationTypeSuccess];
+//            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success submit."  type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:@"Success submit." Type:STAlertSuccess];
         }else{
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:GetMessage  type:TSMessageNotificationTypeError];
+//            [TSMessage showNotificationInViewController:self title:@"" subtitle:GetMessage  type:TSMessageNotificationTypeError];
+            [MessageManager showMessage:GetMessage Type:STAlertError];
         }
     }
     [ShowActivity stopAnimating];

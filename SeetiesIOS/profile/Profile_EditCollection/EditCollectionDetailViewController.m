@@ -58,7 +58,8 @@ typedef enum{
 - (IBAction)btnDoneClicked:(id)sender {
     
     if ([self.txtName.text isEqualToString:@""]) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 6 characters" type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 6 characters" type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:@"Collection name must be at least 6 characters" Type:STAlertError];
     }else{
         switch (self.pageType) {
             case PageTypeCreateCollection:

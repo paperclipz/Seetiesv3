@@ -261,7 +261,8 @@
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostReportShop parameter:dict appendString:appendString success:^(id object) {
         
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Report successfully") Type:STAlertSuccess];
         
         [self.navigationController popViewControllerAnimated:YES];
 
@@ -287,7 +288,8 @@
         
         [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostReportDeal parameter:dict appendString:appendString success:^(id object) {
 
-            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+//            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:LocalisedString(@"Report successfully") Type:STAlertSuccess];
 
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -315,7 +317,8 @@
         
         [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostReportPost parameter:dict appendString:appendString success:^(id object) {
 
-            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+//            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:LocalisedString(@"Report successfully") Type:STAlertSuccess];
             
             [self.navigationController popViewControllerAnimated:YES];
             

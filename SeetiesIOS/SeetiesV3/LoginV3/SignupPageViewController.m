@@ -59,24 +59,28 @@
     
     if (self.txtPassword.text.length <7) {
         
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Password should be more than 8 character") type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Password should be more than 8 character") type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Password should be more than 8 character") Type:STAlertError];
         
         return false;
     }
     else if(self.txtUserName.text.length<=1)
     {
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Username should be more than 1 character") type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Username should be more than 1 character") type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Username should be more than 1 character") Type:STAlertError];
 
         return false;
         
     }
     else if(![Utils validateEmail:self.txtEmail.text])
     {
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Not valid email address") type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Not valid email address") type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Not valid email address") Type:STAlertError];
         return NO;
     }
     else if (self.ibReferralCodeTxt.text.length > 0 && self.ibReferralCodeTxt.text.length != 10){
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Referral code should be exactly 10 characters") type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Referral code should be exactly 10 characters") type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Referral code should be exactly 10 characters") Type:STAlertError];
         
         return NO;
     }
