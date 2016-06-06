@@ -1397,7 +1397,7 @@
 "Announcement" = "ประกาศ";
 "Seeties is all about deals and places - discover and collect awesome deals from your favourite shops to eat, play and hangout. \n{Seeties URL}  " = "Seeties แอพรวมดีลและรีวิวน่าสนใจ ให้คุณหาและเก็บดีลโดนๆ จากร้านโปรด ไม่ว่าจะอยากชิม ชิล หรือช็อป {Seeties URL}  ";
 "Check out my profile on Seeties! \n{Profile URL} " = "ดูโปรไฟล์ของฉันบน Seeties ที่ {Profile URL} ";
-"Oops… verification code must be 7 digits" = "";
+"Oops... verification code must be 4 digits" = "อุปส์! รหัสยืนยันต้องมี 4 หลัก";
 "Collect Now" = "เก็บก่อน";
 "Pay Later" = "ใช้ทีหลัง";
 "Collect Now, Pay at Shop" = "เก็บก่อน ใช้ทีหลัง";

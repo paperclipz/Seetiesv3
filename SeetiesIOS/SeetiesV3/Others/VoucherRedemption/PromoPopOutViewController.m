@@ -496,6 +496,20 @@
     return tempArr;
 }
 
+-(BOOL)checkVerificationCode:(NSString*)verificationCode{
+    if ([Utils isStringNull:verificationCode]) {
+        [self.popTip showText:LocalisedString(@"Oops... verification code must be 4 digits") direction:AMPopTipDirectionUp maxWidth:self.ibEnterVerificationView.frame.size.width inView:self.ibEnterVerificationView fromFrame:self.ibEnterVerificationTxtField.frame duration:2.0f];
+        return NO;
+    }
+    
+    if (verificationCode.length < 4) {
+        [self.popTip showText:LocalisedString(@"Oops... verification code must be 4 digits") direction:AMPopTipDirectionUp maxWidth:self.ibEnterVerificationView.frame.size.width inView:self.ibEnterVerificationView fromFrame:self.ibEnterVerificationTxtField.frame duration:2.0f];
+        return NO;
+    }
+    
+    return YES;
+}
+
 #pragma mark - Declaration
 
 -(AMPopTip*)popTip
@@ -691,7 +705,7 @@
                 [nextVC setViewType:PopOutViewTypeVerified];
             }
             else{
-                if (![Utils isStringNull:self.ibEnterVerificationTxtField.text]) {
+                if ([self checkVerificationCode:self.ibEnterVerificationTxtField.text]) {
                     [self requestServerToVerifyTotp];
                 }
                 

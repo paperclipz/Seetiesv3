@@ -1397,7 +1397,7 @@
 "Announcement" = "Announcement";
 "Seeties is all about deals and places - discover and collect awesome deals from your favourite shops to eat, play and hangout. \n{Seeties URL}  " = "Seeties menjadikan hidup di kota lebih seru. Temukan berbagai penawaran dan rekomendasi menarik dari tempat-tempat favoritmu mulai dari tempat makan, main, dan nongkrong.\n{Seeties URL}  ";
 "Check out my profile on Seeties! \n{Profile URL} " = "";
-"Oops… verification code must be 7 digits" = "";
+"Oops... verification code must be 4 digits" = "Ups... kode verifikasi hanya terdiri dari 4 digit";
 "Collect Now" = "Collect Now";
 "Pay Later" = "Pay at Shop";
 
