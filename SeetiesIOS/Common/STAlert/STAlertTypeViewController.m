@@ -104,8 +104,8 @@
         if(self.stAlertDisplayType == STAlertDisplayTypeOverlayTabBar)
             type = @"OVERLAY BOTTOM";
         self.didTapCloseBlock(type);
-        [self fadeMeOut];
     }
+    [self fadeMeOut];
 }
 
 -(UIColor*)colorWithHexString:(NSString*)hex
