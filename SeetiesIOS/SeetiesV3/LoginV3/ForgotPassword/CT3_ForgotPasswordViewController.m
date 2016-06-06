@@ -84,14 +84,14 @@
         [LoadingManager hide];
         self.isRequesting = NO;
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"You should get an email soon.") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Check your email.") Type:TSMessageNotificationTypeSuccess];
         
     } failure:^(id object) {
         
         [LoadingManager hide];
         self.isRequesting = NO;
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please try again") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Are you sure you've registered?") Type:TSMessageNotificationTypeError];
         
     }];
 }

@@ -512,6 +512,11 @@
            // return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
             
             break;
+        
+        case ServerRequestTypePostLogFeedback:
+            str = [NSString stringWithFormat:@"%@/system/feedback", API_VERION_URL];
+            break;
+            
         case ServerRequestTypeGetExplore:
             str = [NSString stringWithFormat:@"%@/explore",API_VERION_URL];
             

@@ -25,6 +25,7 @@
 #import "TermsViewController.h"
 #import "PromoPopOutViewController.h"
 #import "ReportProblemViewController.h"
+#import "HowToRedeemViewController.h"
 
 @protocol NSDictionary
 

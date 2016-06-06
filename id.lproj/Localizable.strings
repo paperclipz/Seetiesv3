@@ -1228,8 +1228,8 @@
 "eg. 1x xxx xxxx" = "cth. 8xx xxx xxxx";
 "Confirm" = "Konfirmasi";
 "Enter Verification Code" = "Masukan kode verifikasi";
-"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "Mohon masukan 7 digit kode verifikasi yang terkirim ke {!contact number}. Kode akan hangus dalam waktu 30 menit.";
-"Enter 7-digit verification code" = "Masukan 7-digit kode verifikasi";
+"Please enter the verification code that was sent to {!contact number}" = "Mohon masukkan kode verifikasi yang terkirim ke {!contact number}.";
+"Enter verification code" = "Masukkan kode verifikasi";
 "Resend Code" = "Kirim ulang kode";
 "Confirm" = "Konfirmasi";
 "The verification code entered is invalid. Please check and try again." = "Kode verifikasi salah. Mohon periksa ulang dan coba kembali.";
@@ -1408,7 +1408,7 @@
 "referral code (optional)" = "kode referral (opsional)";
 "Your referral code is invalid! But you may continue and try again later." = "Kode referral salah! Silakan lanjut dan coba masukkan beberapa saat lagi.";
 "Continue" = "Lanjutkan";
-"Get Rewards" = "Dapatkan Hadiah";
+"Get Rewards" = "Takjil Hemat dan Rame";
 "Enter your promo code" = "Masukkan kode promo";
 "Yay!" = "Yay!";
 "Collect your reward via your notification." = "Ambil hadiahmu di notifikasi";
@@ -1420,7 +1420,7 @@
 "Invite Friends" = "Undang Teman";
 "The More, The Merrier" = "Makin Banyak, Makin Seru!";
 "Invite friends to join Seeties, and share exciting deals together!" = "Undang teman untuk bergabung ke Seeties dan bagikan berbagai penawaran menarik bersama-sama!";
-"Invite Friends & Get Rewards" = "Dapatkan Hadiah Langsung";
+"Invite Friends & Get Rewards" = "Takjil Hemat dan Rame";
 "Share your promo code" = "Bagikan kode promo";
 "{!referral code}" = "{!referral code}";
 //======CHANGE======//
@@ -1430,7 +1430,7 @@
 "Give your friends a 1-for-1 deal and receive one yourself" = "Dapatkan hadiah langsung voucher Buy1 Free 1 untukmu dan temanmu";
 "Details" = "Rincian";
 "Give your friends a super value deal and receive one yourself!" = "Dapatkan hadiah langsung voucher super deals untukmu dan temanmu";
-"Invite Friends" = "Undang Teman";
+"Invite Friends" = "Berbagi Takjil Hemat";
 "Promo ends in {!days} days - don't wait!" = "Promo berakhir dalam {!days} hari - ambil sekarang!";
 "Every time a friend signs up with your invite code, both of you receive a reward. Collect your reward in your notification!\n\nAlso stand a chance to win daily prizes:\n- Pertamina gasoline voucher IDR 50.000\n- Jersey Euro Cup 2016\n\n*Terms and conditions apply." = "Ada hadiah menarik untuk setiap kode referral yang digunakan temanmu saat mendaftar ke dalam Seeties. Ambil hadiahmu di notifikasi. \n\nDapatkan juga kesempatan memenangkan hadiah harian:\n- Voucher bensin IDR 50.000 Pertamina\n- Jersey Euro Cup 2016\n\n*Syarat & ketentuan berlaku";
 "Every time a friend signs up with your invite code, both of you receive a reward each. Terms and conditions apply." = "Ada hadiah menarik untuk setiap kode referral yang digunakan temanmu saat mendaftar ke dalam Seeties. Syarat dan ketentuan berlaku.";
@@ -1453,7 +1453,33 @@
 "Email" = "Email";
 "Feedback" = "Tanggapan";
 "Include Screenshot" = "Masukan screenshot";
-"REFERRAL" = "REFERRAL";
+"REWARD" = "REWARD";
+"Share via" = "Dibagikan via";
+"Open with" = "Buka dengan";
+"Deals ends in {!days} days" = "Penawaran akan berakhir dalam {!days} hari";
+"Deals ends: {!date}" = "Penawaran berakhir: {!date}";
+"Voucher ends in {!days} days" = "Voucher akan berakhir dalam {!days} hari";
+"Voucher ends: {!date}" = "Voucher berakhir: {!date} ";
+"Are you sure you've registered?" = "Yakin sudah mendaftar?";
+"Check your email." = "Cek email sekarang!";
+"Your post has been successfully posted." = "Postingan telah berhasil dipublikasikan";
+"Enable your GPS to improve your location" = "Aktifkan GPS untuk meningkatkan daya akurasi lokasi";
+"Go to Settings" = "Lihat Pengaturan";
+"Next" = "Lanjut";
+"Great!" = "Selamat!";
+"You have collected your first voucher! Would you like to know how to redeem it?" = "Kamu baru saja mengumpulkan voucher pertamamu! Ingin tahu bagaimana cara redeem vouchernya?";
+"Yes" = "Ya";
+"No" = "Tidak";
+"Play!" = "Coba sekarang!";
+"Seeties.me" = "Seeties.me";
+"Wonderland" = "Wonderland";
+"Demonstration on voucher redeem." = "Demo untuk redeem vouher";
+"Sample" = "Sampel";
+"Experience the swipe to redeem" = "Rasakan sendiri cara swipe to redeem";
+"Are you ready?" = "Sudah siap?";
+"All set to swipe and redeem?" = "Sudah lancar melakukan swipe to redeem?";
+"Try Again" = "Coba Lagi";
+"Redeem now" = "Redeem Sekarang";
 
 
 

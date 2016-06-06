@@ -114,6 +114,8 @@
 @property(nonatomic) BOOL fromHistory;
 @property(nonatomic) NSMutableArray<SeShopDetailModel> *nearbyShopArray;
 @property(nonatomic) NSMutableArray<NSDictionary> *dealAvailabilityArray;
+@property(nonatomic) NSUserDefaults *userDefaults;
+
 @property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic) DealRedeemViewController *dealRedeemViewController;
 @property(nonatomic) SeetiesShopViewController *seetiesShopViewController;
@@ -124,6 +126,7 @@
 @property(nonatomic) ReportProblemViewController *reportProblemViewController;
 @property(nonatomic) PhotoViewController *photoViewController;
 @property(nonatomic) RedemptionHistoryViewController *redemptionHistoryViewController;
+@property(nonatomic) HowToRedeemViewController *howToRedeemViewController;
 
 @end
 
@@ -464,6 +467,20 @@
     return _redemptionHistoryViewController;
 }
 
+-(HowToRedeemViewController *)howToRedeemViewController{
+    if (!_howToRedeemViewController) {
+        _howToRedeemViewController = [HowToRedeemViewController new];
+    }
+    return _howToRedeemViewController;
+}
+
+-(NSUserDefaults *)userDefaults{
+    if (!_userDefaults) {
+        _userDefaults = [NSUserDefaults standardUserDefaults];
+    }
+    return _userDefaults;
+}
+
 #pragma mark - UpdateView
 -(void)updateViewFrame{
     float yAxis = self.ibMainContentView.frame.origin.y;
@@ -591,7 +608,7 @@
                 NSInteger numberOfDaysLeft = self.dealModel.redemptionDaysLeft;
                 if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0){
                     [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsVoucherExpireIconRed.png"]];
-                    self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expires in {!day} day(s)" withPlaceHolder:@{@"{!day}": @(numberOfDaysLeft)}];
+                    self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher ends in {!days} days" withPlaceHolder:@{@"{!days}": @(numberOfDaysLeft)}];
                     self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.0f alpha:1];
                     self.ibHeaderNormalExpiryLbl.font = [UIFont boldSystemFontOfSize:14.0f];
                 }
@@ -599,7 +616,7 @@
                     NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
                     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                     [dateFormatter setDateFormat:@"dd MMM yyyy"];
-                    self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expiry date: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]?[dateFormatter stringFromDate:expiredDate]:@""}];
+                    self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]?[dateFormatter stringFromDate:expiredDate]:@""}];
                 }
             }
             else{
@@ -707,7 +724,7 @@
             NSInteger numberOfDaysLeft = self.dealModel.redemptionDaysLeft;
             if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0){
                 [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsVoucherExpireIconRed.png"]];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expires in {!day} day(s)" withPlaceHolder:@{@"{!day}": @(numberOfDaysLeft)}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher ends in {!days} days" withPlaceHolder:@{@"{!days}": @(numberOfDaysLeft)}];
                 self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.0f alpha:1];
                 self.ibHeaderNormalExpiryLbl.font = [UIFont boldSystemFontOfSize:14.0f];
             }
@@ -715,7 +732,7 @@
                 NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.voucher_info.expired_at];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 [dateFormatter setDateFormat:@"dd MMM yyyy"];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expiry date: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]?[dateFormatter stringFromDate:expiredDate]:@""}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]?[dateFormatter stringFromDate:expiredDate]:@""}];
             }
         }
         else{
@@ -734,7 +751,7 @@
             NSInteger numberOfDaysLeft = self.dealModel.collectionDaysLeft;
             if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0){
                 [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsDealEndIconRed.png"]];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deal ends in {!day} day(s)" withPlaceHolder:@{@"{!day}": @(numberOfDaysLeft)}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deals ends in {!days} days" withPlaceHolder:@{@"{!days}": @(numberOfDaysLeft)}];
                 self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.0f alpha:1];
                 self.ibHeaderNormalExpiryLbl.font = [UIFont boldSystemFontOfSize:14.0f];
             }
@@ -742,7 +759,7 @@
                 NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.collection_expired_at];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 [dateFormatter setDateFormat:@"dd MMM yyyy"];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deal ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]?[dateFormatter stringFromDate:expiryDate]:@""}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deals ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]?[dateFormatter stringFromDate:expiryDate]:@""}];
                 
             }
         }
@@ -1444,6 +1461,19 @@
         [self.dealManager setWalletCount:walletCount+1];
         [self updateViews];
         self.isProcessing = NO;
+        
+        BOOL shownFirstCollectMsg = [self.userDefaults boolForKey:@"ShownFirstCollectMessage"];
+        if (!shownFirstCollectMsg) {
+            [UIAlertView showWithTitle:LocalisedString(@"Great!") message:LocalisedString(@"You have collected your first voucher! Would you like to know how to redeem it?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    self.howToRedeemViewController = nil;
+                    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.howToRedeemViewController];
+                    [self presentViewController:navController animated:YES completion:nil];
+                }
+            }];
+            [self.userDefaults setBool:YES forKey:@"ShownFirstCollectMessage"];
+        }
+        
     } failure:^(id object) {
         self.isProcessing = NO;
     }];

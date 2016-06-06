@@ -69,6 +69,7 @@
     self.ibSecondInstruction.text = LocalisedString(@"Flash the Redeem Voucher screen");
     self.ibThirdInstruction.text = LocalisedString(@"Swipe right to redeem!");
     self.ibFooterInstruction.text = LocalisedString(@"Limited to one redemption per swipe");
+    [self.ibNextBtn setTitle:LocalisedString(@"Play!") forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -30,6 +30,7 @@ typedef enum
     ServerRequestTypeGetLanguage,
     ServerRequestTypeGetCategory,
     ServerRequestTypeGetApiVersion,
+    ServerRequestTypePostLogFeedback,
     
     
     ServerRequestTypeGetExplore,

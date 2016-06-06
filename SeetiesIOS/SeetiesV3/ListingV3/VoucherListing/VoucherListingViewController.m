@@ -29,6 +29,7 @@
 @property (nonatomic) NSString *shopID;
 @property (nonatomic) NSString *dealId;
 @property (nonatomic,assign) int dealViewType;// 1 == seetiesshop id
+@property (nonatomic) NSUserDefaults *userDefaults;
 
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitle;
@@ -68,6 +69,7 @@
 @property (nonatomic) SearchLocationViewController *searchLocationViewController;
 @property (nonatomic) CT3_SearchListingViewController *ct3_SearchListingViewController;
 @property (nonatomic) RedemptionHistoryViewController *redemptionHistoryViewController;
+@property (nonatomic) HowToRedeemViewController *howtoRedeemViewController;
 
 @end
 
@@ -602,6 +604,21 @@
         _redemptionHistoryViewController = [RedemptionHistoryViewController new];
     }
     return _redemptionHistoryViewController;
+}
+
+-(NSUserDefaults *)userDefaults{
+    if (!_userDefaults) {
+        _userDefaults = [NSUserDefaults standardUserDefaults];
+    }
+    
+    return _userDefaults;
+}
+
+-(HowToRedeemViewController *)howtoRedeemViewController{
+    if (!_howtoRedeemViewController) {
+        _howtoRedeemViewController = [HowToRedeemViewController new];
+    }
+    return _howtoRedeemViewController;
 }
 
 #pragma mark - TableView
@@ -1242,6 +1259,18 @@
                 [self.ibVoucherTable reloadData];
 
             }];
+        }
+        
+        BOOL shownFirstCollectMsg = [self.userDefaults boolForKey:@"ShownFirstCollectMessage"];
+        if (!shownFirstCollectMsg) {
+            [UIAlertView showWithTitle:LocalisedString(@"Great!") message:LocalisedString(@"You have collected your first voucher! Would you like to know how to redeem it?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    self.howtoRedeemViewController = nil;
+                    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.howtoRedeemViewController];
+                    [self presentViewController:navController animated:YES completion:nil];
+                }
+            }];
+            [self.userDefaults setBool:YES forKey:@"ShownFirstCollectMessage"];
         }
         
     } failure:^(id object) {
