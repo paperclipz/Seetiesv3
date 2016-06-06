@@ -70,13 +70,15 @@
     
     if (self.lblPassword.text.length <7) {
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Password should be more than 8 character") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Password should be more than 8 character") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Password should be more than 8 character") Type:STAlertError];
         
         return false;
     }
     else if(self.lblUserName.text.length<=1)
     {
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username should be more than 1 character") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username should be more than 1 character") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Username should be more than 1 character") Type:STAlertError];
         return false;
 
     }

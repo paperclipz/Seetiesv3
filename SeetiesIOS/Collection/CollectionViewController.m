@@ -632,9 +632,11 @@
         
         if ([statusString isEqualToString:@"ok"]) {
             if (CheckShowMessage == 0) {
-                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+//                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+                [MessageManager showMessage:@"Success add to Collections" Type:STAlertSuccess];
             }else{
-                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Delete Posts" type:TSMessageNotificationTypeSuccess];
+//                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Delete Posts" type:TSMessageNotificationTypeSuccess];
+                [MessageManager showMessage:@"Success Delete Posts" Type:STAlertSuccess];
             }
             
         }
@@ -653,12 +655,14 @@
         
         if ([statusString isEqualToString:@"ok"]) {
             if ([GetFollowing isEqualToString:@"0"]) {
-                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+//                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+                [MessageManager showMessage:@"Success follow this collection" Type:STAlertSuccess];
                 GetFollowing = @"1";
                 
                 [DataManager setCollectionFollowing:GetID isFollowing:YES];
             }else{
-                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+//                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                [MessageManager showMessage:@"Success unfollow this collection" Type:STAlertSuccess];
                 GetFollowing = @"0";
                 [DataManager setCollectionFollowing:GetID isFollowing:NO];
 
@@ -1507,7 +1511,8 @@
 -(IBAction)ShareButtonOnClick:(id)sender{
     
     if ([GetIsPrivate isEqualToString:@"true"]) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:@"your collection is set to private." Type:STAlertError];
     }else{
         
         CustomItemSource *dataToPost = [[CustomItemSource alloc] init];
@@ -1525,13 +1530,15 @@
 }
 -(IBAction)ShareLinkButtonOnClick:(id)sender{
     if ([GetIsPrivate isEqualToString:@"true"]) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"your collection is set to private." type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:@"your collection is set to private." Type:STAlertError];
     }else{
         NSString *message = [NSString stringWithFormat:@"https://seeties.me/collections/%@",GetID];
         
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = message;
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Copy Link" type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:@"Success Copy Link" Type:STAlertSuccess];
     }
 
 }

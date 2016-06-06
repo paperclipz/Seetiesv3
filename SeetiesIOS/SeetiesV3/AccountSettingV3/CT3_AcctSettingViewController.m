@@ -486,7 +486,8 @@
 -(BOOL)validateEmail:(NSString *)email
 {
     if ([Utils isStringNull:email]) {
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Email cannot be empty.") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Email cannot be empty.") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Email cannot be empty.") Type:STAlertError];
         return NO;
     }
     
@@ -497,7 +498,8 @@
     BOOL validEmail = [emailTest evaluateWithObject:email];
 
     if (!validEmail) {
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please enter correct email id") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please enter correct email id") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Please enter correct email id") Type:STAlertError];
     }
     
     return validEmail;

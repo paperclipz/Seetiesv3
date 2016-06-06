@@ -1456,7 +1456,8 @@
             [self.delegate dealUpdated:self.dealModel];
         }
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Collected in Voucher Wallet") Type:STAlertSuccess];
         int walletCount = [self.dealManager getWalletCount];
         [self.dealManager setWalletCount:walletCount+1];
         [self updateViews];

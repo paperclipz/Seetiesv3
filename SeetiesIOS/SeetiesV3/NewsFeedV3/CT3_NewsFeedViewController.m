@@ -1548,7 +1548,8 @@ static NSCache* heightCache = nil;
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutCollectPost parameter:dict appendString:appendString success:^(id object) {
 
         model.collect = @"1";
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"System") subtitle:LocalisedString(@"Successfully collected to default Collection") type:TSMessageNotificationTypeSuccess];
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"System") subtitle:LocalisedString(@"Successfully collected to default Collection") type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Successfully collected to default Collection") Type:STAlertSuccess];
         [self.ibTableView reloadData];
         
     } failure:^(id object) {

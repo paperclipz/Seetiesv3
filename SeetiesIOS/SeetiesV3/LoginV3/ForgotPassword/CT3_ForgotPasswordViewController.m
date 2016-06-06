@@ -65,7 +65,8 @@
         [self requestServerForResetPassword];
     }
     else{
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username / email cannot be empty") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username / email cannot be empty") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Username / email cannot be empty") Type:STAlertError];
     }
 }
 
@@ -84,14 +85,16 @@
         [LoadingManager hide];
         self.isRequesting = NO;
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Check your email.") Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Check your email.") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Check your email.") Type:STAlertSuccess];
         
     } failure:^(id object) {
         
         [LoadingManager hide];
         self.isRequesting = NO;
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Are you sure you've registered?") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Are you sure you've registered?") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Are you sure you've registered?") Type:STAlertError];
         
     }];
 }

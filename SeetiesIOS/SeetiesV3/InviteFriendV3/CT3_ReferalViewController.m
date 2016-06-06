@@ -144,7 +144,8 @@
     if (![Utils isStringNull:self.userProfile.referral_code]) {
         UIPasteboard *pb = [UIPasteboard generalPasteboard];
         [pb setString:self.userProfile.referral_code];
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Code Copied") Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Code Copied") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Code Copied") Type:STAlertSuccess];
     }
 }
 

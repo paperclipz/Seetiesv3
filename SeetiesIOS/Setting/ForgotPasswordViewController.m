@@ -68,7 +68,8 @@
     
     
     if ([InputText.text length] == 0) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Username / email cannot be nil" type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Username / email cannot be nil" type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:@"Username / email cannot be nil" Type:STAlertError];
     }else{
         [self sendDataToServer];
     }
@@ -168,15 +169,18 @@
 //        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Please try again" message:GetMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 //        
 //        [alert show];
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Please try again" type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Please try again" type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:@"Please try again" Type:STAlertError];
     }else{
         if ([GetStatus isEqualToString:@"ok"]) {
 //            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:@"You should get an email soon." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 //            
 //            [alert show];
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"You should get an email soon."  type:TSMessageNotificationTypeSuccess];
+//            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"You should get an email soon."  type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:@"You should get an email soon." Type:STAlertSuccess];
         }else{
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:GetMessage  type:TSMessageNotificationTypeError];
+//            [TSMessage showNotificationInViewController:self title:@"" subtitle:GetMessage  type:TSMessageNotificationTypeError];
+            [MessageManager showMessage:GetMessage Type:STAlertError];
         }
         
     }

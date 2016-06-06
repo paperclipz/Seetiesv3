@@ -20,7 +20,8 @@
 - (IBAction)btnDoneClicked:(id)sender {
     
     if (![self processSelectedCategory]) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:LocalisedString(@"PleaseSelectatleast1category") type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:LocalisedString(@"PleaseSelectatleast1category") type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"PleaseSelectatleast1category") Type:STAlertError];
     }else{
         [self requestServerToUpdateUserInfo:self.arrCategories];
     }

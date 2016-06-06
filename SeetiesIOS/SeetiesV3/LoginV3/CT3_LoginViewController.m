@@ -420,7 +420,8 @@
         else{
         
             SLog(@"error : %@",dict[@"message"]);
-            [TSMessage showNotificationInViewController:self.navigationController title:LocalisedString(@"system") subtitle:dict[@"message"] type:TSMessageNotificationTypeError];
+//            [TSMessage showNotificationInViewController:self.navigationController title:LocalisedString(@"system") subtitle:dict[@"message"] type:TSMessageNotificationTyperror];
+            [MessageManager showMessage:dict[@"message"] Type:STAlertError];
          //   [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
             
         }
