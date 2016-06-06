@@ -8160,7 +8160,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		8A2E234A1CCF4A4B00693C65 /* Debug Staging */ = {
+		8A2FC4FF1D053064005C0DBE /* Development-SandBox */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -8182,16 +8182,11 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = "STAGING=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -8200,30 +8195,31 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
+				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
 				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
 			};
-			name = "Debug Staging";
+			name = "Development-SandBox";
 		};
-		8A2E234B1CCF4A4B00693C65 /* Debug Staging */ = {
+		8A2FC5001D053064005C0DBE /* Development-SandBox */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */;
+			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
-				FacebookID_SuffixName = dev;
+				FacebookID_SuffixName = seeties;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8236,15 +8232,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "cb707510-f37a-49c7-8970-51691d557207";
+				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = "Debug Staging";
+			name = "Development-SandBox";
 		};
-		8A2E234C1CCF4A4B00693C65 /* Debug Staging */ = {
+		8A2FC5011D053064005C0DBE /* Development-SandBox */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */;
+			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -8253,19 +8248,15 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = SeetiesIOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = Seeties;
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seeties.app/Seeties";
 			};
-			name = "Debug Staging";
+			name = "Development-SandBox";
 		};
-		8A2E234D1CCF4A5100693C65 /* Release Staging */ = {
+		8A2FC5021D0530A6005C0DBE /* Production-Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -8306,9 +8297,9 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "Release Staging";
+			name = "Production-Release";
 		};
-		8A2E234E1CCF4A5100693C65 /* Release Staging */ = {
+		8A2FC5031D0530A6005C0DBE /* Production-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
 			buildSettings = {
@@ -8335,14 +8326,14 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
 				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
-			name = "Release Staging";
+			name = "Production-Release";
 		};
-		8A2E234F1CCF4A5100693C65 /* Release Staging */ = {
+		8A2FC5041D0530A6005C0DBE /* Production-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
 			buildSettings = {
@@ -8359,56 +8350,9 @@
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seeties.app/Seeties";
 			};
-			name = "Release Staging";
+			name = "Production-Release";
 		};
-		8AD6BA7B1B705DF30040437E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_MODULE_DEBUGGING = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		8AD6BA7C1B705DF30040437E /* Release */ = {
+		8A2FC5051D0533A9005C0DBE /* Development-Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -8434,8 +8378,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "STAGING=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -8446,57 +8389,23 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
+				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Development-Release";
 		};
-		8AD6BA7E1B705DF30040437E /* Debug */ = {
+		8A2FC5061D0533A9005C0DBE /* Development-Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */;
+			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				Bundle_Name = Dev;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
-					"$(PROJECT_DIR)/SeetiesIOS/framework",
-				);
-				FacebookID_SuffixName = dev;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
-				INFOPLIST_FILE = SeetiesIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/SeetiesIOS/framework",
-					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
-			};
-			name = Debug;
-		};
-		8AD6BA7F1B705DF30040437E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				Bundle_Name = Seeties;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reiner Lee (EFSLZ63588)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Reiner Lee (EFSLZ63588)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
@@ -8513,37 +8422,14 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
 				);
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "3e478e2e-9271-4112-9143-727a3550b0cc";
+				PROVISIONING_PROFILE = "e2c46f7a-b60c-40ba-867e-26fb6a1c57a8";
+				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
-			name = Release;
+			name = "Development-Release";
 		};
-		8AD6BA811B705DF30040437E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAB2B54F0EC79309593A3C4C /* Pods.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SeetiesIOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seeties.app/Seeties";
-			};
-			name = Debug;
-		};
-		8AD6BA821B705DF30040437E /* Release */ = {
+		8A2FC5071D0533A9005C0DBE /* Development-Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
 			buildSettings = {
@@ -8560,7 +8446,103 @@
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seeties.app/Seeties";
 			};
-			name = Release;
+			name = "Development-Release";
+		};
+		8A2FC50B1D053454005C0DBE /* Production-SandBox */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULE_DEBUGGING = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "STAGING=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Production-SandBox";
+		};
+		8A2FC50C1D053454005C0DBE /* Production-SandBox */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				Bundle_Name = Seeties;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: StylarNetwork Sdn Bhd (22DQJTA32H)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/Library",
+					"$(PROJECT_DIR)/SeetiesIOS/framework",
+				);
+				FacebookID_SuffixName = seeties;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
+				INFOPLIST_FILE = SeetiesIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SeetiesIOS/framework",
+					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_NAME = Seeties;
+				PROVISIONING_PROFILE = "1b8b1a95-f4f6-4dec-b41e-2b0897f4f490";
+				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
+			};
+			name = "Production-SandBox";
+		};
+		8A2FC50D1D053454005C0DBE /* Production-SandBox */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SeetiesIOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = Seeties;
+				PROVISIONING_PROFILE = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seeties.app/Seeties";
+			};
+			name = "Production-SandBox";
 		};
 /* End XCBuildConfiguration section */
 
@@ -8568,35 +8550,35 @@
 		8AD6BA551B705DF20040437E /* Build configuration list for PBXProject "Seeties" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8AD6BA7B1B705DF30040437E /* Debug */,
-				8A2E234A1CCF4A4B00693C65 /* Debug Staging */,
-				8AD6BA7C1B705DF30040437E /* Release */,
-				8A2E234D1CCF4A5100693C65 /* Release Staging */,
+				8A2FC4FF1D053064005C0DBE /* Development-SandBox */,
+				8A2FC5051D0533A9005C0DBE /* Development-Release */,
+				8A2FC5021D0530A6005C0DBE /* Production-Release */,
+				8A2FC50B1D053454005C0DBE /* Production-SandBox */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Production-Release";
 		};
 		8AD6BA7D1B705DF30040437E /* Build configuration list for PBXNativeTarget "Seeties" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8AD6BA7E1B705DF30040437E /* Debug */,
-				8A2E234B1CCF4A4B00693C65 /* Debug Staging */,
-				8AD6BA7F1B705DF30040437E /* Release */,
-				8A2E234E1CCF4A5100693C65 /* Release Staging */,
+				8A2FC5001D053064005C0DBE /* Development-SandBox */,
+				8A2FC5061D0533A9005C0DBE /* Development-Release */,
+				8A2FC5031D0530A6005C0DBE /* Production-Release */,
+				8A2FC50C1D053454005C0DBE /* Production-SandBox */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Production-Release";
 		};
 		8AD6BA801B705DF30040437E /* Build configuration list for PBXNativeTarget "SeetiesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8AD6BA811B705DF30040437E /* Debug */,
-				8A2E234C1CCF4A4B00693C65 /* Debug Staging */,
-				8AD6BA821B705DF30040437E /* Release */,
-				8A2E234F1CCF4A5100693C65 /* Release Staging */,
+				8A2FC5011D053064005C0DBE /* Development-SandBox */,
+				8A2FC5071D0533A9005C0DBE /* Development-Release */,
+				8A2FC5041D0530A6005C0DBE /* Production-Release */,
+				8A2FC50D1D053454005C0DBE /* Production-SandBox */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Production-Release";
 		};
 /* End XCConfigurationList section */
 	};
