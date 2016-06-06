@@ -14,8 +14,11 @@
 @implementation MessageManager
 
 +(void)showMessage:(NSString *)message Type:(STAlertType)type{
-    
-    [STAlertController presentSTAlertType:type stAlertDisplayType:STAlertDisplayTypeOverlayNavBar message:message];
+    [self showMessage:message Type:type displayType:STAlertDisplayTypeOverlayNavBar];
+}
+
++(void)showMessage:(NSString*)message Type:(STAlertType)type displayType:(STAlertDisplayType)displayType{
+    [STAlertController presentSTAlertType:type stAlertDisplayType:displayType message:message];
 }
 
 //+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type

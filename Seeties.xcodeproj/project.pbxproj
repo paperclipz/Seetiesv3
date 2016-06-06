@@ -35,6 +35,9 @@
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
 		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
+		66C97A3D1D055E2600498F3D /* STAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C97A391D055E2600498F3D /* STAlertController.m */; };
+		66C97A3E1D055E2600498F3D /* STAlertTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C97A3B1D055E2600498F3D /* STAlertTypeViewController.m */; };
+		66C97A3F1D055E2600498F3D /* STAlertTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C97A3C1D055E2600498F3D /* STAlertTypeViewController.xib */; };
 		8A0035261C4E2F51002BD9A3 /* CTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */; };
 		8A0035271C4E2F51002BD9A3 /* CTWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */; };
 		8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00352A1C4F4BD6002BD9A3 /* DealType_mainTblCell.m */; };
@@ -1269,9 +1272,6 @@
 		C231DEEA1D055C4800A68E54 /* AlertErrorIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C231DEE61D055C4800A68E54 /* AlertErrorIcon@3x.png */; };
 		C231DEEB1D055C4800A68E54 /* AlertTickIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C231DEE71D055C4800A68E54 /* AlertTickIcon@2x.png */; };
 		C231DEEC1D055C4800A68E54 /* AlertTickIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C231DEE81D055C4800A68E54 /* AlertTickIcon@3x.png */; };
-		C231DEF31D0564AE00A68E54 /* STAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C231DEEF1D0564AE00A68E54 /* STAlertController.m */; };
-		C231DEF41D0564AE00A68E54 /* STAlertTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C231DEF11D0564AE00A68E54 /* STAlertTypeViewController.m */; };
-		C231DEF51D0564AE00A68E54 /* STAlertTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C231DEF21D0564AE00A68E54 /* STAlertTypeViewController.xib */; };
 		C238E3251C4649AA00570A25 /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */; };
 		C238E3261C4649AA00570A25 /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */; };
 		C238E3271C4649AA00570A25 /* slider-default-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = C238E3091C4649AA00570A25 /* slider-default-handle.png */; };
@@ -1407,6 +1407,11 @@
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
 		0D9C815292A4ED6F2408E5E5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66C97A381D055E2600498F3D /* STAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertController.h; sourceTree = "<group>"; };
+		66C97A391D055E2600498F3D /* STAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertController.m; sourceTree = "<group>"; };
+		66C97A3A1D055E2600498F3D /* STAlertTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertTypeViewController.h; sourceTree = "<group>"; };
+		66C97A3B1D055E2600498F3D /* STAlertTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertTypeViewController.m; sourceTree = "<group>"; };
+		66C97A3C1D055E2600498F3D /* STAlertTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAlertTypeViewController.xib; sourceTree = "<group>"; };
 		8A0035231C4E2F51002BD9A3 /* CTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTWebViewController.h; sourceTree = "<group>"; };
 		8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTWebViewController.m; sourceTree = "<group>"; };
 		8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTWebViewController.xib; sourceTree = "<group>"; };
@@ -2983,11 +2988,6 @@
 		C231DEE61D055C4800A68E54 /* AlertErrorIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertErrorIcon@3x.png"; sourceTree = "<group>"; };
 		C231DEE71D055C4800A68E54 /* AlertTickIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertTickIcon@2x.png"; sourceTree = "<group>"; };
 		C231DEE81D055C4800A68E54 /* AlertTickIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlertTickIcon@3x.png"; sourceTree = "<group>"; };
-		C231DEEE1D0564AE00A68E54 /* STAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertController.h; sourceTree = "<group>"; };
-		C231DEEF1D0564AE00A68E54 /* STAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertController.m; sourceTree = "<group>"; };
-		C231DEF01D0564AE00A68E54 /* STAlertTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertTypeViewController.h; sourceTree = "<group>"; };
-		C231DEF11D0564AE00A68E54 /* STAlertTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertTypeViewController.m; sourceTree = "<group>"; };
-		C231DEF21D0564AE00A68E54 /* STAlertTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAlertTypeViewController.xib; sourceTree = "<group>"; };
 		C238E3071C4649AA00570A25 /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
 		C238E3081C4649AA00570A25 /* slider-default-handle-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted@2x.png"; sourceTree = "<group>"; };
 		C238E3091C4649AA00570A25 /* slider-default-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle.png"; sourceTree = "<group>"; };
@@ -3252,6 +3252,18 @@
 				A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		66C97A371D055E2600498F3D /* STAlert */ = {
+			isa = PBXGroup;
+			children = (
+				66C97A381D055E2600498F3D /* STAlertController.h */,
+				66C97A391D055E2600498F3D /* STAlertController.m */,
+				66C97A3A1D055E2600498F3D /* STAlertTypeViewController.h */,
+				66C97A3B1D055E2600498F3D /* STAlertTypeViewController.m */,
+				66C97A3C1D055E2600498F3D /* STAlertTypeViewController.xib */,
+			);
+			path = STAlert;
 			sourceTree = "<group>";
 		};
 		8A0035281C4F2D81002BD9A3 /* DealCell */ = {
@@ -4488,7 +4500,7 @@
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
-				C231DEED1D0564AE00A68E54 /* STAlert */,
+				66C97A371D055E2600498F3D /* STAlert */,
 				C25133741CF70C53003E9887 /* GoogleConversionTrackingSDK-iOS-3.4.0 */,
 				8A87FDC01CE0650600CFA719 /* Toast */,
 				8A11D3921CC88DC80023A7ED /* AutoCoding */,
@@ -6460,18 +6472,6 @@
 			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
-		C231DEED1D0564AE00A68E54 /* STAlert */ = {
-			isa = PBXGroup;
-			children = (
-				C231DEEE1D0564AE00A68E54 /* STAlertController.h */,
-				C231DEEF1D0564AE00A68E54 /* STAlertController.m */,
-				C231DEF01D0564AE00A68E54 /* STAlertTypeViewController.h */,
-				C231DEF11D0564AE00A68E54 /* STAlertTypeViewController.m */,
-				C231DEF21D0564AE00A68E54 /* STAlertTypeViewController.xib */,
-			);
-			path = STAlert;
-			sourceTree = "<group>";
-		};
 		C238E3051C4649AA00570A25 /* NMRangeSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -6850,7 +6850,7 @@
 				8A1128E81CF69EC100399213 /* MoreFeedbackIcon@3x.png in Resources */,
 				8A112A311CF69EC100399213 /* CollectIndoBtn@2x.png in Resources */,
 				8A0F50B31C0C3B71002B1E22 /* SeShopDetailView.xib in Resources */,
-				C231DEF51D0564AE00A68E54 /* STAlertTypeViewController.xib in Resources */,
+				66C97A3F1D055E2600498F3D /* STAlertTypeViewController.xib in Resources */,
 				8A112B211CF69EC100399213 /* SSDefaultLogo@3x.png in Resources */,
 				8A114CA61BE73F5D006AE3F0 /* PEPhotoCropEditor.bundle in Resources */,
 				8A112A0E1CF69EC100399213 /* ArrowBtn@3x.png in Resources */,
@@ -8013,7 +8013,7 @@
 				C294FD261C9815B500C455C8 /* FilterCategoryModel.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
 				8AC7B6711CE5C102000775CC /* UIView+Extension.m in Sources */,
-				C231DEF31D0564AE00A68E54 /* STAlertController.m in Sources */,
+				66C97A3D1D055E2600498F3D /* STAlertController.m in Sources */,
 				8A9E06541CBF5A70000FB246 /* README.md in Sources */,
 				8AF33A3D1C3F67F5000A2021 /* CTFeedModel.m in Sources */,
 				8A6BB42B1BF0C338005AA1B3 /* MZBlurEffectAdapter.m in Sources */,
@@ -8058,7 +8058,7 @@
 				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,
 				8A114CD31BE73F5D006AE3F0 /* BaseViewController.m in Sources */,
 				8A9E065D1CBF5A70000FB246 /* UIPopoverController+Block.m in Sources */,
-				C231DEF41D0564AE00A68E54 /* STAlertTypeViewController.m in Sources */,
+				66C97A3E1D055E2600498F3D /* STAlertTypeViewController.m in Sources */,
 				8A0035411C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m in Sources */,
 				8A11D36D1CC7561F0023A7ED /* CT3_ReferalViewController.m in Sources */,
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,

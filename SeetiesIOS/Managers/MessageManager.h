@@ -15,6 +15,7 @@
 //+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type;
 //replace to
 +(void)showMessage:(NSString*)message Type:(STAlertType)type;
++(void)showMessage:(NSString*)message Type:(STAlertType)type displayType:(STAlertDisplayType)displayType;
 // no used
 //disable by zack
 //+(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack;
