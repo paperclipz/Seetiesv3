@@ -83,7 +83,7 @@
     
     float cellSize = frame.size.width - 20;
     
-    return CGSizeMake(cellSize, 460);
+    return CGSizeMake(cellSize, 465);
 }
 
 @end
