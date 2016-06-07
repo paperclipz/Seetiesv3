@@ -14,6 +14,7 @@
 
 @implementation MessageManager
 
+//only use STAlertSuccess, STAlertError
 +(void)showMessage:(NSString *)message Type:(STAlertType)type{
     [self showMessage:message Type:type displayType:STAlertDisplayTypeOverlayNavBar];
 }
@@ -22,26 +23,28 @@
     [STAlertController presentSTAlertType:type stAlertDisplayType:displayType message:message];
 }
 
-+(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom{
+//popover
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(UIView *)popFrom{
     [self popoverErrorMessage:message target:target popFrom:popFrom direction:AMPopTipDirectionUp duration:2.0f];
 }
 
-+(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom direction:(AMPopTipDirection)direction{
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(UIView *)popFrom direction:(AMPopTipDirection)direction{
     [self popoverErrorMessage:message target:target popFrom:popFrom direction:direction duration:2.0f];
 }
 
-+(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom duration:(NSTimeInterval)duration{
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(UIView *)popFrom duration:(NSTimeInterval)duration{
     [self popoverErrorMessage:message target:target popFrom:popFrom direction:AMPopTipDirectionUp duration:duration];
 }
 
-+(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom direction:(AMPopTipDirection)direction duration:(NSTimeInterval)duration{
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(UIView *)popFrom direction:(AMPopTipDirection)direction duration:(NSTimeInterval)duration{
     AMPopTip *popTip = [AMPopTip popTip];
     popTip.shouldDismissOnTap = YES;
-    popTip.popoverColor = SELECTED_RED;
+    popTip.popoverColor = [UIColor colorWithRed:247.0/255.0 green:75.0/255.0 blue:75.0/255.0 alpha:1.0];
     
     [popTip showText:message direction:direction maxWidth:[popFrom frame].size.width inView:[target view] fromFrame:[self getViewRect:popFrom target:target] duration:duration];
 }
 
+//get view actual location
 +(CGRect)getViewRect:(UIView *)view target:(id)target{
     CGPoint viewPoint = [view convertPoint:view.bounds.origin toView:[target view]];
     return CGRectMake(viewPoint.x, viewPoint.y, view.frame.size.width, view.frame.size.height);

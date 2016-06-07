@@ -9,6 +9,7 @@
 #import "STAlertController.h"
 #import "STAlertTypeViewController.h"
 #import "QuartzCore/QuartzCore.h"
+#import "NewLandingViewController.h"
 
 #define defaultDuration 0.25
 #define defaultshowDuration 3
@@ -230,7 +231,12 @@
     } else if (rootViewController.presentedViewController) {
         UIViewController* presentedViewController = rootViewController.presentedViewController;
         return [self topViewControllerWithRootViewController:presentedViewController];
-    } else {
+    } else if([rootViewController isKindOfClass:[NewLandingViewController class]]) {
+        if([rootViewController.view.subviews containsObject:[rootViewController tabBarController].view])
+            return [self topViewControllerWithRootViewController:[rootViewController tabBarController]];
+        else
+            return rootViewController;
+    }else {
         return rootViewController;
     }
 }
