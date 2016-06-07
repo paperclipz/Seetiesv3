@@ -30,4 +30,7 @@
 -(void)showIntroView;
 
 -(void)reloadTabbar;
+
+-(void)showPushNotificationView:(NSString*)pushNotificationCode;
+
 @end

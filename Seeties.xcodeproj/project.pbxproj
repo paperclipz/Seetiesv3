@@ -1151,6 +1151,9 @@
 		8AF3E79F1CD1BEC200F2C66B /* CT3_InviteFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF3E79D1CD1BEC200F2C66B /* CT3_InviteFriendViewController.xib */; };
 		8AF428741C8D3F070050289F /* DealHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF428731C8D3F070050289F /* DealHeaderView.m */; };
 		8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF428751C8D3F140050289F /* DealHeaderView.xib */; };
+		8AF5C31B1D0563CB00E6673E /* STAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF5C3171D0563CB00E6673E /* STAlertController.m */; };
+		8AF5C31C1D0563CB00E6673E /* STAlertTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF5C3191D0563CB00E6673E /* STAlertTypeViewController.m */; };
+		8AF5C31D1D0563CB00E6673E /* STAlertTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF5C31A1D0563CB00E6673E /* STAlertTypeViewController.xib */; };
 		8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */; };
 		8AF6FDC21C5776E1005AAE5D /* LoginPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */; };
 		8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */; };
@@ -2800,6 +2803,11 @@
 		8AF428721C8D3F070050289F /* DealHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealHeaderView.h; sourceTree = "<group>"; };
 		8AF428731C8D3F070050289F /* DealHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealHeaderView.m; sourceTree = "<group>"; };
 		8AF428751C8D3F140050289F /* DealHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealHeaderView.xib; sourceTree = "<group>"; };
+		8AF5C3161D0563CB00E6673E /* STAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertController.h; sourceTree = "<group>"; };
+		8AF5C3171D0563CB00E6673E /* STAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertController.m; sourceTree = "<group>"; };
+		8AF5C3181D0563CB00E6673E /* STAlertTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertTypeViewController.h; sourceTree = "<group>"; };
+		8AF5C3191D0563CB00E6673E /* STAlertTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertTypeViewController.m; sourceTree = "<group>"; };
+		8AF5C31A1D0563CB00E6673E /* STAlertTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAlertTypeViewController.xib; sourceTree = "<group>"; };
 		8AF6FDBE1C5776E1005AAE5D /* LoginPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPageViewController.h; sourceTree = "<group>"; };
 		8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPageViewController.m; sourceTree = "<group>"; };
 		8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginPageViewController.xib; sourceTree = "<group>"; };
@@ -4480,6 +4488,7 @@
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
+				8AF5C3151D0563CB00E6673E /* STAlert */,
 				C25133741CF70C53003E9887 /* GoogleConversionTrackingSDK-iOS-3.4.0 */,
 				8A87FDC01CE0650600CFA719 /* Toast */,
 				8A11D3921CC88DC80023A7ED /* AutoCoding */,
@@ -6054,6 +6063,18 @@
 			path = FeedsModel;
 			sourceTree = "<group>";
 		};
+		8AF5C3151D0563CB00E6673E /* STAlert */ = {
+			isa = PBXGroup;
+			children = (
+				8AF5C3161D0563CB00E6673E /* STAlertController.h */,
+				8AF5C3171D0563CB00E6673E /* STAlertController.m */,
+				8AF5C3181D0563CB00E6673E /* STAlertTypeViewController.h */,
+				8AF5C3191D0563CB00E6673E /* STAlertTypeViewController.m */,
+				8AF5C31A1D0563CB00E6673E /* STAlertTypeViewController.xib */,
+			);
+			path = STAlert;
+			sourceTree = "<group>";
+		};
 		8AF6FDDA1C5A164B005AAE5D /* seetiesProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -6829,6 +6850,7 @@
 				8A1128E81CF69EC100399213 /* MoreFeedbackIcon@3x.png in Resources */,
 				8A112A311CF69EC100399213 /* CollectIndoBtn@2x.png in Resources */,
 				8A0F50B31C0C3B71002B1E22 /* SeShopDetailView.xib in Resources */,
+				8AF5C31D1D0563CB00E6673E /* STAlertTypeViewController.xib in Resources */,
 				8A112B211CF69EC100399213 /* SSDefaultLogo@3x.png in Resources */,
 				8A114CA61BE73F5D006AE3F0 /* PEPhotoCropEditor.bundle in Resources */,
 				8A112A0E1CF69EC100399213 /* ArrowBtn@3x.png in Resources */,
@@ -7991,6 +8013,7 @@
 				C294FD261C9815B500C455C8 /* FilterCategoryModel.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
 				8AC7B6711CE5C102000775CC /* UIView+Extension.m in Sources */,
+				8AF5C31B1D0563CB00E6673E /* STAlertController.m in Sources */,
 				8A9E06541CBF5A70000FB246 /* README.md in Sources */,
 				8AF33A3D1C3F67F5000A2021 /* CTFeedModel.m in Sources */,
 				8A6BB42B1BF0C338005AA1B3 /* MZBlurEffectAdapter.m in Sources */,
@@ -8035,6 +8058,7 @@
 				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,
 				8A114CD31BE73F5D006AE3F0 /* BaseViewController.m in Sources */,
 				8A9E065D1CBF5A70000FB246 /* UIPopoverController+Block.m in Sources */,
+				8AF5C31C1D0563CB00E6673E /* STAlertTypeViewController.m in Sources */,
 				8A0035411C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m in Sources */,
 				8A11D36D1CC7561F0023A7ED /* CT3_ReferalViewController.m in Sources */,
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,
@@ -8342,7 +8366,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
 				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
@@ -8534,7 +8558,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
 				PROVISIONING_PROFILE = "1b8b1a95-f4f6-4dec-b41e-2b0897f4f490";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";

@@ -10,18 +10,38 @@
 #import "UITabBar+Extension.h"
 #import "IntroCoverView.h"
 
+#import "WalletListingViewController.h"
+#import "CT3_InviteFriendViewController.h"
+#import "PromoPopOutViewController.h"
+#import "CT3_NotificationViewController.h"
+#import "PromoPopOutViewController.h"
 
 @interface NewLandingViewController()<UITabBarControllerDelegate>
 {
     
 }
 /*navigation controller*/
+@property (nonatomic)UINavigationController* pushNotificationNavVC;
+
 @property (nonatomic)UINavigationController* firstViewController;
 @property (nonatomic)UINavigationController* secondViewController;
 @property (nonatomic)UINavigationController* thirdViewController;
 @property (nonatomic, strong)IntroCoverView* introView;
 @property (strong, nonatomic) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic,strong)NSArray* arryViewController;
+@property (nonatomic,strong)WalletListingViewController* walletListingViewController;
+@property (nonatomic,strong)CT3_InviteFriendViewController* ct3_InviteFriendViewController;
+@property (nonatomic,strong)CT3_NotificationViewController* ct3_NotificationViewController;
+
+@property (nonatomic,strong)PromoPopOutViewController* promoPopOutViewController;
+@property (nonatomic,strong)STPopupController *popOutController;
+/*navigation controller*/
+
+/*Push Notification Controller*/
+@property (nonatomic)NSArray* arryViewController;
+
+
+/*Push Notification Controller*/
+
 
 @end
 
@@ -34,7 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self initSelfView];
     
     @try {
@@ -195,6 +215,42 @@
 }
 
 #pragma mark - Declaration
+
+-(PromoPopOutViewController*)promoPopOutViewController
+{
+    if (!_promoPopOutViewController) {
+        _promoPopOutViewController = [PromoPopOutViewController new];
+    }
+    
+    return _promoPopOutViewController;
+    
+}
+-(WalletListingViewController*)walletListingViewController
+{
+    if (!_walletListingViewController) {
+        _walletListingViewController = [WalletListingViewController new];
+    }
+    
+    return _walletListingViewController;
+}
+
+-(CT3_InviteFriendViewController*)ct3_InviteFriendViewController
+{
+    if (!_ct3_InviteFriendViewController) {
+        _ct3_InviteFriendViewController = [CT3_InviteFriendViewController new];
+    }
+    
+    return _ct3_InviteFriendViewController;
+}
+
+-(CT3_NotificationViewController*)ct3_NotificationViewController
+{
+    if (!_ct3_NotificationViewController) {
+        _ct3_NotificationViewController = [CT3_NotificationViewController new];
+    }
+    
+    return _ct3_NotificationViewController;
+}
 
 -(UINavigationController*)navLoginViewController
 {
@@ -504,6 +560,74 @@
 
 #pragma mark - Intro View
 
+-(void)showPushNotificationView:(NSString*)pushNotificationCode
+{
+    NSString* str = pushNotificationCode;
+    
+    if (_pushNotificationNavVC) {
+        [self.pushNotificationNavVC dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
+    
+    if (_popOutController) {
+        [_popOutController dismissWithCompletion:nil];
+        _popOutController = nil;
+    }
+    
+    if ([str isEqualToString:CLICK_ACTION_OPEN_WALLET]) {
+        _walletListingViewController = nil;
+        self.pushNotificationNavVC = [[UINavigationController alloc]initWithRootViewController:self.walletListingViewController];
+        [self.pushNotificationNavVC setNavigationBarHidden:YES];
+
+    }
+    else if([str isEqualToString:CLICK_ACTION_OPEN_INVITE_FRIEND])
+    {
+        _ct3_InviteFriendViewController = nil;
+        self.pushNotificationNavVC = [[UINavigationController alloc]initWithRootViewController:self.ct3_InviteFriendViewController];
+        [self.pushNotificationNavVC setNavigationBarHidden:YES];
+        
+    }
+    else if([str isEqualToString:CLICK_ACTION_OPEN_PHONE_VERIFICATION])
+    {
+        _promoPopOutViewController = nil;
+        self.promoPopOutViewController = [PromoPopOutViewController new];
+        [self.promoPopOutViewController setViewType:PopOutViewTypeEnterPhone];
+        [self.promoPopOutViewController setPopOutCondition:PopOutConditionVerifyPhoneNumber];
+        self.popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
+        self.popOutController.containerView.backgroundColor = [UIColor clearColor];
+        [self.popOutController presentInViewController:self];
+        [self.popOutController setNavigationBarHidden:YES];
+    }
+    
+    
+    else if([str isEqualToString:CLICK_ACTION_OPEN_PROMO_CODE])
+    {
+        
+        _promoPopOutViewController = nil;
+        self.promoPopOutViewController = [PromoPopOutViewController new];
+        [self.promoPopOutViewController setViewType:PopOutViewTypeEnterPromo];
+        [self.promoPopOutViewController setPopOutCondition:PopOutConditionNormal];
+        self.popOutController = [[STPopupController alloc]initWithRootViewController:self.promoPopOutViewController];
+        self.popOutController.containerView.backgroundColor = [UIColor clearColor];
+        [self.popOutController presentInViewController:self];
+        [self.popOutController setNavigationBarHidden:YES];
+
+    }
+    
+    else if([str isEqualToString:CLICK_ACTION_OPEN_NOTIFICATION])
+    {
+        _ct3_NotificationViewController = nil;
+        self.pushNotificationNavVC = [[UINavigationController alloc]initWithRootViewController:self.ct3_NotificationViewController];
+        [self.pushNotificationNavVC setNavigationBarHidden:YES];
+    }
+
+    if (![Utils isGuestMode] && ![str isEqualToString:CLICK_ACTION_OPEN_PHONE_VERIFICATION] && ![str isEqualToString:CLICK_ACTION_OPEN_PROMO_CODE]) {
+        [self presentViewController:self.pushNotificationNavVC animated:YES completion:nil];
+
+    }
+    
+}
 -(void)showIntroView
 {
     CGRect frame = [Utils getDeviceScreenSize];

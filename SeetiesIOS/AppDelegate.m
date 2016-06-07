@@ -333,8 +333,17 @@
     }
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
     [PFPush handlePush:userInfo];
     
+    NSString* action = userInfo[@"click_action"];
+    
+    if (action) {
+        
+        [self.landingViewController showPushNotificationView:action];
+    }
+    
+    SLog(@"didReceiveRemoteNotification : %@",userInfo);
     
 //    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
 //    self.window.backgroundColor = [UIColor whiteColor];

@@ -338,5 +338,13 @@ static BOOL IS_SIMULATOR = NO;
 #define PRODUCTION_BASE_PATH @"https://seeties.me/"
 #define DEVELOPMENT_BASE_PATH @"https://itcave2.seeties.me/"
 
+#pragma
+#pragma mark - PUSH NOTIFICATION KEY
 
+#define CLICK_ACTION_OPEN_HOME @"open_home"
+#define CLICK_ACTION_OPEN_WALLET @"open_wallet"
+#define CLICK_ACTION_OPEN_INVITE_FRIEND @"open_invite_friend"
+#define CLICK_ACTION_OPEN_PHONE_VERIFICATION @"open_phone_verification"
+#define CLICK_ACTION_OPEN_PROMO_CODE @"open_promo_code"
+#define CLICK_ACTION_OPEN_NOTIFICATION @"open_notification"
 
