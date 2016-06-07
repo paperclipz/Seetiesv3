@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "UIWindow+Extra.h"
 #import "UIView+Toast.h"
-#import "AMPopTip.h"
+#import "Utils.h"
 
 @implementation MessageManager
 
@@ -23,13 +23,23 @@
 }
 
 +(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom{
-//    [STAlertController popoverErroMessage:message target:target popFrom:popFrom];
-    
+    [self popoverErrorMessage:message target:target popFrom:popFrom direction:AMPopTipDirectionUp duration:2.0f];
+}
+
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom direction:(AMPopTipDirection)direction{
+    [self popoverErrorMessage:message target:target popFrom:popFrom direction:direction duration:2.0f];
+}
+
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom duration:(NSTimeInterval)duration{
+    [self popoverErrorMessage:message target:target popFrom:popFrom direction:AMPopTipDirectionUp duration:duration];
+}
+
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(id)popFrom direction:(AMPopTipDirection)direction duration:(NSTimeInterval)duration{
     AMPopTip *popTip = [AMPopTip popTip];
     popTip.shouldDismissOnTap = YES;
-    popTip.popoverColor = [UIColor colorWithRed:226.0/255.0 green:60.0/255.0 blue:78.0/255.0 alpha:1.0];
+    popTip.popoverColor = SELECTED_RED;
     
-    [popTip showText:message direction:AMPopTipDirectionUp maxWidth:[popFrom frame].size.width inView:[target view] fromFrame:[self getViewRect:popFrom target:target] duration:2.0f];
+    [popTip showText:message direction:direction maxWidth:[popFrom frame].size.width inView:[target view] fromFrame:[self getViewRect:popFrom target:target] duration:duration];
 }
 
 +(CGRect)getViewRect:(UIView *)view target:(id)target{
