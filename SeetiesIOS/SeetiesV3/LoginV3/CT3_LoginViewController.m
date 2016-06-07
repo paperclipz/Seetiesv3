@@ -162,7 +162,7 @@
 - (IBAction)btnLoginClicked:(id)sender {
     
     [self validateBeforeLogin];
-
+    self.loginPageViewController = nil;
     [self.navigationController pushViewController:self.loginPageViewController animated:YES];
 }
 
