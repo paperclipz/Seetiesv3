@@ -1243,6 +1243,10 @@
 		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
+		C21D112C1D06B2E600194C5B /* PostGetDirectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D112A1D06B2E600194C5B /* PostGetDirectionIcon@2x.png */; };
+		C21D112D1D06B2E600194C5B /* PostGetDirectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D112B1D06B2E600194C5B /* PostGetDirectionIcon@3x.png */; };
+		C21D11301D06B3A000194C5B /* UnableToCollect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D112E1D06B3A000194C5B /* UnableToCollect@2x.png */; };
+		C21D11311D06B3A000194C5B /* UnableToCollect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D112F1D06B3A000194C5B /* UnableToCollect@3x.png */; };
 		C22702F11CBF89EE00F9FBF3 /* FilterAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22702E61CBF89EE00F9FBF3 /* FilterAvailabilityCell.m */; };
 		C22702F21CBF89EF00F9FBF3 /* FilterAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22702E71CBF89EE00F9FBF3 /* FilterAvailabilityCell.xib */; };
 		C22702F31CBF89EF00F9FBF3 /* FilterBudgetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22702E91CBF89EE00F9FBF3 /* FilterBudgetCell.m */; };
@@ -2948,6 +2952,10 @@
 		C20872941C59D1FA0063F203 /* PromoOutletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoOutletCell.h; sourceTree = "<group>"; };
 		C20872951C59D1FA0063F203 /* PromoOutletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoOutletCell.m; sourceTree = "<group>"; };
 		C20872961C59D1FA0063F203 /* PromoOutletCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoOutletCell.xib; sourceTree = "<group>"; };
+		C21D112A1D06B2E600194C5B /* PostGetDirectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PostGetDirectionIcon@2x.png"; sourceTree = "<group>"; };
+		C21D112B1D06B2E600194C5B /* PostGetDirectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PostGetDirectionIcon@3x.png"; sourceTree = "<group>"; };
+		C21D112E1D06B3A000194C5B /* UnableToCollect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnableToCollect@2x.png"; sourceTree = "<group>"; };
+		C21D112F1D06B3A000194C5B /* UnableToCollect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnableToCollect@3x.png"; sourceTree = "<group>"; };
 		C22702E51CBF89EE00F9FBF3 /* FilterAvailabilityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterAvailabilityCell.h; sourceTree = "<group>"; };
 		C22702E61CBF89EE00F9FBF3 /* FilterAvailabilityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterAvailabilityCell.m; sourceTree = "<group>"; };
 		C22702E71CBF89EE00F9FBF3 /* FilterAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterAvailabilityCell.xib; sourceTree = "<group>"; };
@@ -3687,6 +3695,8 @@
 		8A1126031CF69EC100399213 /* Pop Up Illustration */ = {
 			isa = PBXGroup;
 			children = (
+				C21D112E1D06B3A000194C5B /* UnableToCollect@2x.png */,
+				C21D112F1D06B3A000194C5B /* UnableToCollect@3x.png */,
 				8A1126041CF69EC100399213 /* CannotRedeemAtThisMomentImg.png */,
 				8A1126051CF69EC100399213 /* EmptyStateImg.png */,
 				8A1126061CF69EC100399213 /* EmptyWalletImg.png */,
@@ -4329,6 +4339,8 @@
 		8A1127D41CF69EC100399213 /* Post Details */ = {
 			isa = PBXGroup;
 			children = (
+				C21D112A1D06B2E600194C5B /* PostGetDirectionIcon@2x.png */,
+				C21D112B1D06B2E600194C5B /* PostGetDirectionIcon@3x.png */,
 				8A1127D51CF69EC100399213 /* FullScreenIcon@2x.png */,
 				8A1127D61CF69EC100399213 /* FullScreenIcon@3x.png */,
 				8A1127D71CF69EC100399213 /* MoreIcon@2x.png */,
@@ -6903,6 +6915,7 @@
 				8A112A261CF69EC100399213 /* ConnectionWeak@3x.png in Resources */,
 				8A1129901CF69EC100399213 /* WalkHome2.png in Resources */,
 				8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */,
+				C21D11301D06B3A000194C5B /* UnableToCollect@2x.png in Resources */,
 				8AFA51F81C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib in Resources */,
 				C2A910131CCDFF31005D517B /* SearchLocationAreaCell.xib in Resources */,
 				8A112B231CF69EC100399213 /* SSFacebookIcon@3x.png in Resources */,
@@ -7099,6 +7112,7 @@
 				8A1129421CF69EC100399213 /* SignUpNameIcon@2x.png in Resources */,
 				C231DEEA1D055C4800A68E54 /* AlertErrorIcon@3x.png in Resources */,
 				8A112A4A1CF69EC100399213 /* FollowIcon@3x.png in Resources */,
+				C21D11311D06B3A000194C5B /* UnableToCollect@3x.png in Resources */,
 				8A11296E1CF69EC100399213 /* TH_TabbarHomeIcon_Active@3x.png in Resources */,
 				8AC8F7251BDA414E00DEF14A /* CollectionListingViewController.xib in Resources */,
 				8A112B011CF69EC100399213 /* WhiteShareIcon@2x.png in Resources */,
@@ -7423,6 +7437,7 @@
 				8A1129221CF69EC100399213 /* ReferSignupIcon@3x.png in Resources */,
 				8A112A391CF69EC100399213 /* CollectTraditonalChineseBtn@2x.png in Resources */,
 				8A112A901CF69EC100399213 /* InviteWhatsappIcon@3x.png in Resources */,
+				C21D112D1D06B2E600194C5B /* PostGetDirectionIcon@3x.png in Resources */,
 				8A112A661CF69EC100399213 /* WelcomeImg.png in Resources */,
 				8A1129851CF69EC100399213 /* BgWalkHome5@2x.jpg in Resources */,
 				8A1128FE1CF69EC100399213 /* NaviCollapseIcon@3x.png in Resources */,
@@ -7573,6 +7588,7 @@
 				8AE478B91CC4E93F0053DB24 /* CustomEmptyView.xib in Resources */,
 				8A112A7A1CF69EC100399213 /* FacebookBtnInactive@3x.png in Resources */,
 				8A11298D1CF69EC100399213 /* BgWalkWallet3@2x.jpg in Resources */,
+				C21D112C1D06B2E600194C5B /* PostGetDirectionIcon@2x.png in Resources */,
 				8A112AD51CF69EC100399213 /* CollectionPhotosOverlay@2x.png in Resources */,
 				8A112B311CF69EC100399213 /* CameraIcon@3x.png in Resources */,
 				8A1128881CF69EC100399213 /* DealsListingGoIcon@3x.png in Resources */,
