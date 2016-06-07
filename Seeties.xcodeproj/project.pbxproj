@@ -35,6 +35,7 @@
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
 		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
+		66AB17D11D06D49A009E37E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66AB17D01D06D49A009E37E9 /* GoogleService-Info.plist */; };
 		8A0035261C4E2F51002BD9A3 /* CTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */; };
 		8A0035271C4E2F51002BD9A3 /* CTWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */; };
 		8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00352A1C4F4BD6002BD9A3 /* DealType_mainTblCell.m */; };
@@ -1407,6 +1408,7 @@
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
 		0D9C815292A4ED6F2408E5E5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66AB17D01D06D49A009E37E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A0035231C4E2F51002BD9A3 /* CTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTWebViewController.h; sourceTree = "<group>"; };
 		8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTWebViewController.m; sourceTree = "<group>"; };
 		8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTWebViewController.xib; sourceTree = "<group>"; };
@@ -5756,6 +5758,7 @@
 				0BE3401F1B73021B00F49625 /* Font */,
 				8AD6C80C1B7096BA0040437E /* Localizable.strings */,
 				8AD6BA951B7060790040437E /* PrefixHeader.pch */,
+				66AB17D01D06D49A009E37E9 /* GoogleService-Info.plist */,
 				8AD6BA5E1B705DF20040437E /* Info.plist */,
 				8AD6BA5F1B705DF20040437E /* main.m */,
 			);
@@ -6922,6 +6925,7 @@
 				8A1129411CF69EC100399213 /* SignUpEmailIcon@3x.png in Resources */,
 				8A1129EC1CF69EC100399213 /* WhiteCollect@3x.png in Resources */,
 				8A1128AA1CF69EC100399213 /* LocationPinGrey@3x.png in Resources */,
+				66AB17D11D06D49A009E37E9 /* GoogleService-Info.plist in Resources */,
 				8A11D3691CC74F070023A7ED /* DealType_ReferFriendTblCell.xib in Resources */,
 				8A112A6A1CF69EC100399213 /* AnnounceLogo@3x.png in Resources */,
 				8A112ABD1CF69EC100399213 /* FullScreenIcon@2x.png in Resources */,
