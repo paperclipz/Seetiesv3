@@ -679,6 +679,7 @@
             else{
 //                [MessageManager showMessageInPopOut:LocalisedString(@"system")  subtitle:LocalisedString(@"Please enter your phone number and country code")];
                 [MessageManager popoverErrorMessage:LocalisedString(@"Please enter your phone number and country code") target:self popFrom:self.ibEnterPhoneTxtField];
+//                [MessageManager showMessage:@"testmessage" Type:STAlertSuccess displayType:STAlertDisplayTypeTop];
 //                [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please enter your phone number and country code") Type:TSMessageNotificationTypeError];
                 return;
             }

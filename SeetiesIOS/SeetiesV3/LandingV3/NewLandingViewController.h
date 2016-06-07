@@ -30,4 +30,7 @@
 -(void)showIntroView;
 
 -(void)reloadTabbar;
+
+
+-(UITabBarController*)tabBarController;
 @end
