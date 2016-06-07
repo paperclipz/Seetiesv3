@@ -78,6 +78,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibErrorView;
 @property (weak, nonatomic) IBOutlet UIView *ibErrorContentView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibErrorIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorDesc;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorDateDay;
@@ -419,14 +420,37 @@
         }
             return self.ibVerifiedView;
             
-        case PopOutViewTypeError:
+        case PopOutViewTypeRedemptionError:
         {
             self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is currently not available for redemption.");
             self.ibErrorDesc.text = LocalisedString(@"This deal can only be redeemed on ");
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            [self.ibErrorIcon setImage:[UIImage imageNamed:@"CannotRedeemAtThisMomentImg.png"]];
             
             [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             NSString *nextAvailability = [self.dealModel getNextAvailableRedemptionDateString];
+            NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
+            
+            if (stringArray.count == 2) {
+                self.ibErrorDateDay.text = stringArray[0];
+                self.ibErrorTime.text = stringArray[1];
+            }
+            else{
+                self.ibErrorDateDay.text = @"";
+                self.ibErrorTime.text = @"";
+            }
+        }
+            return self.ibErrorView;
+            
+        case PopOutViewTypeCollectionError:
+        {
+            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is currently not available to collect");
+            self.ibErrorDesc.text = LocalisedString(@"Please come back on");
+            [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            [self.ibErrorIcon setImage:[UIImage imageNamed:@"UnableToCollect.png"]];
+            
+            [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            NSString *nextAvailability = [self.dealModel getNextAvailableCollectionDateString];
             NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
             
             if (stringArray.count == 2) {
@@ -722,8 +746,9 @@
             
         }
             break;
-            
-        case PopOutViewTypeError:
+          
+        case PopOutViewTypeCollectionError:
+        case PopOutViewTypeRedemptionError:
         {
             if (YES) {
                 [nextVC setViewType:PopOutViewTypeQuit];

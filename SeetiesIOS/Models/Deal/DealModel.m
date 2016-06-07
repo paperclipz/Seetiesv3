@@ -208,6 +208,38 @@
     return @"";
 }
 
+-(NSString*)getNextAvailableCollectionDateString{
+    //Current date time in UTC
+    NSDate *currentDateTime = [[NSDate alloc] init];
+    
+    NSDateFormatter *utcDateFormatter = [[NSDateFormatter alloc] init];
+    [utcDateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [utcDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDateFormatter *localDateFormatter = [[NSDateFormatter alloc] init];
+    [localDateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [localDateFormatter setDateFormat:@"dd MMM yyyy (EEEE)"];
+    
+    NSDateFormatter *localTimeFormatter = [[NSDateFormatter alloc] init];
+    [localTimeFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [localTimeFormatter setDateFormat:@"hh:mmaa"];
+    
+    //Loop to check through collection period date
+    for (NSDictionary *periodDate in self.collection_periods_in_date) {
+        NSDate *fromDate = [utcDateFormatter dateFromString:periodDate[@"from"]];
+        
+        NSComparisonResult compareResult = [currentDateTime compare:fromDate];
+        if (compareResult == NSOrderedAscending) {
+            NSString *dateString = [localDateFormatter stringFromDate:fromDate];
+            NSString *timeString = [localTimeFormatter stringFromDate:fromDate];
+            
+            return [NSString stringWithFormat:@"%@\n%@", dateString, timeString];
+        }
+    }
+    
+    return @"";
+}
+
 -(BOOL)isRedeemable{
     if ([self isWithinOperatingDate:self.periods_in_date]) {
         if ([self isWithinOperationHour:self.period]) {
@@ -219,6 +251,57 @@
     }
     else{
         return false;
+    }
+    
+    return NO;
+}
+
+-(BOOL)isCollectable{
+    if ([self isWithinCollectionPeriod:self.collection_periods_in_date]) {
+        if (self.total_available_vouchers == 0) {
+            return NO;
+        }
+        else{
+            return YES;
+        }
+    }
+    else{
+        return NO;
+    }
+}
+
+-(BOOL)isWithinCollectionPeriod:(NSArray*)arrayPeriods{
+    NSDateFormatter *utcDateTimeFormatter = [[NSDateFormatter alloc] init];
+    [utcDateTimeFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [utcDateTimeFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *currentDate = [[NSDate alloc] init];
+    
+    for (NSDictionary *dateDict in arrayPeriods) {
+        NSDate* fromDate = [Utils isValidDateString:dateDict[@"from"]]? [utcDateTimeFormatter dateFromString:dateDict[@"from"]] : nil;
+        NSDate* toDate = [Utils isValidDateString:dateDict[@"to"]]? [utcDateTimeFormatter dateFromString:dateDict[@"to"]] : nil;
+        
+        if (!fromDate && !toDate) {
+            return YES;
+        }
+        else if (!fromDate && toDate){
+            NSComparisonResult result = [currentDate compare:toDate];
+            return (result == NSOrderedSame || result == NSOrderedAscending)? YES : NO;
+        }
+        else if (fromDate && !toDate){
+            NSComparisonResult result = [currentDate compare:fromDate];
+            return (result == NSOrderedSame || result == NSOrderedDescending)? YES : NO;
+        }
+        else if (fromDate && toDate){
+            NSComparisonResult firstDateResult = [currentDate compare:fromDate];
+            NSComparisonResult lastDateResult = [currentDate compare:toDate];
+            
+            if (firstDateResult == NSOrderedSame || lastDateResult == NSOrderedSame) {
+                return YES;
+            }
+            else if (firstDateResult == NSOrderedDescending && lastDateResult == NSOrderedAscending){
+                return YES;
+            }
+        }
     }
     
     return NO;

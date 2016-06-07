@@ -1321,7 +1321,7 @@
 "Please log in or sign up to continue" = "请登入/注册才可使用此选项喔";
 "Not now" = "再想想";
 "Log in / Sign up" = "登入 / 注册";
-"Phone Number = {!phone number}" = "手机号码 = {!phone number}";
+"Phone Number : {!phone number}" = "手机号码 : {!phone number}";
 "Redeem Voucher" = "领取优惠";
 "Voucher redemptions must be made in front of shop staff" = "您必须在店员面前查证下方可领取此优惠";
 "How to Redeem" = "如何领取";
@@ -1360,7 +1360,7 @@
 "Sold Out" = "已抢光";
 "Deals {!number}" = "优惠券 {!number}";
 "" = "此店相关优惠 {!number";
-"Your phone number has been\nverified" = "手机号码已被认证！";
+"Your phone number has been verified" = "手机号码已被认证！";
 "Suggested Recommendations" = "国内精选推荐";
 "PROMO CODE" = "序号券";
 "Dine in" = "店内用餐";
