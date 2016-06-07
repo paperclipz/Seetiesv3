@@ -35,9 +35,6 @@
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
 		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
-		66C97A3D1D055E2600498F3D /* STAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C97A391D055E2600498F3D /* STAlertController.m */; };
-		66C97A3E1D055E2600498F3D /* STAlertTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C97A3B1D055E2600498F3D /* STAlertTypeViewController.m */; };
-		66C97A3F1D055E2600498F3D /* STAlertTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C97A3C1D055E2600498F3D /* STAlertTypeViewController.xib */; };
 		8A0035261C4E2F51002BD9A3 /* CTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */; };
 		8A0035271C4E2F51002BD9A3 /* CTWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */; };
 		8A00352B1C4F4BD6002BD9A3 /* DealType_mainTblCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A00352A1C4F4BD6002BD9A3 /* DealType_mainTblCell.m */; };
@@ -1154,6 +1151,9 @@
 		8AF3E79F1CD1BEC200F2C66B /* CT3_InviteFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF3E79D1CD1BEC200F2C66B /* CT3_InviteFriendViewController.xib */; };
 		8AF428741C8D3F070050289F /* DealHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF428731C8D3F070050289F /* DealHeaderView.m */; };
 		8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF428751C8D3F140050289F /* DealHeaderView.xib */; };
+		8AF5C31B1D0563CB00E6673E /* STAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF5C3171D0563CB00E6673E /* STAlertController.m */; };
+		8AF5C31C1D0563CB00E6673E /* STAlertTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF5C3191D0563CB00E6673E /* STAlertTypeViewController.m */; };
+		8AF5C31D1D0563CB00E6673E /* STAlertTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF5C31A1D0563CB00E6673E /* STAlertTypeViewController.xib */; };
 		8AF6FDC11C5776E1005AAE5D /* LoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */; };
 		8AF6FDC21C5776E1005AAE5D /* LoginPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */; };
 		8AF6FDCB1C586480005AAE5D /* SignupPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6FDC91C586480005AAE5D /* SignupPageViewController.m */; };
@@ -1243,10 +1243,6 @@
 		C206B7AA1C90319C00786128 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C206B7A81C90319C00786128 /* TermsViewController.xib */; };
 		C20872971C59D1FA0063F203 /* PromoOutletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C20872951C59D1FA0063F203 /* PromoOutletCell.m */; };
 		C20872981C59D1FA0063F203 /* PromoOutletCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20872961C59D1FA0063F203 /* PromoOutletCell.xib */; };
-		C21D112C1D06B2E600194C5B /* PostGetDirectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D112A1D06B2E600194C5B /* PostGetDirectionIcon@2x.png */; };
-		C21D112D1D06B2E600194C5B /* PostGetDirectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D112B1D06B2E600194C5B /* PostGetDirectionIcon@3x.png */; };
-		C21D11301D06B3A000194C5B /* UnableToCollect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D112E1D06B3A000194C5B /* UnableToCollect@2x.png */; };
-		C21D11311D06B3A000194C5B /* UnableToCollect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D112F1D06B3A000194C5B /* UnableToCollect@3x.png */; };
 		C22702F11CBF89EE00F9FBF3 /* FilterAvailabilityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22702E61CBF89EE00F9FBF3 /* FilterAvailabilityCell.m */; };
 		C22702F21CBF89EF00F9FBF3 /* FilterAvailabilityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22702E71CBF89EE00F9FBF3 /* FilterAvailabilityCell.xib */; };
 		C22702F31CBF89EF00F9FBF3 /* FilterBudgetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22702E91CBF89EE00F9FBF3 /* FilterBudgetCell.m */; };
@@ -1411,11 +1407,6 @@
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
 		0D9C815292A4ED6F2408E5E5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66C97A381D055E2600498F3D /* STAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertController.h; sourceTree = "<group>"; };
-		66C97A391D055E2600498F3D /* STAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertController.m; sourceTree = "<group>"; };
-		66C97A3A1D055E2600498F3D /* STAlertTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertTypeViewController.h; sourceTree = "<group>"; };
-		66C97A3B1D055E2600498F3D /* STAlertTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertTypeViewController.m; sourceTree = "<group>"; };
-		66C97A3C1D055E2600498F3D /* STAlertTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAlertTypeViewController.xib; sourceTree = "<group>"; };
 		8A0035231C4E2F51002BD9A3 /* CTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTWebViewController.h; sourceTree = "<group>"; };
 		8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTWebViewController.m; sourceTree = "<group>"; };
 		8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CTWebViewController.xib; sourceTree = "<group>"; };
@@ -2812,6 +2803,11 @@
 		8AF428721C8D3F070050289F /* DealHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealHeaderView.h; sourceTree = "<group>"; };
 		8AF428731C8D3F070050289F /* DealHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealHeaderView.m; sourceTree = "<group>"; };
 		8AF428751C8D3F140050289F /* DealHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DealHeaderView.xib; sourceTree = "<group>"; };
+		8AF5C3161D0563CB00E6673E /* STAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertController.h; sourceTree = "<group>"; };
+		8AF5C3171D0563CB00E6673E /* STAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertController.m; sourceTree = "<group>"; };
+		8AF5C3181D0563CB00E6673E /* STAlertTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertTypeViewController.h; sourceTree = "<group>"; };
+		8AF5C3191D0563CB00E6673E /* STAlertTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertTypeViewController.m; sourceTree = "<group>"; };
+		8AF5C31A1D0563CB00E6673E /* STAlertTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STAlertTypeViewController.xib; sourceTree = "<group>"; };
 		8AF6FDBE1C5776E1005AAE5D /* LoginPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPageViewController.h; sourceTree = "<group>"; };
 		8AF6FDBF1C5776E1005AAE5D /* LoginPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPageViewController.m; sourceTree = "<group>"; };
 		8AF6FDC01C5776E1005AAE5D /* LoginPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginPageViewController.xib; sourceTree = "<group>"; };
@@ -2952,10 +2948,6 @@
 		C20872941C59D1FA0063F203 /* PromoOutletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoOutletCell.h; sourceTree = "<group>"; };
 		C20872951C59D1FA0063F203 /* PromoOutletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoOutletCell.m; sourceTree = "<group>"; };
 		C20872961C59D1FA0063F203 /* PromoOutletCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoOutletCell.xib; sourceTree = "<group>"; };
-		C21D112A1D06B2E600194C5B /* PostGetDirectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PostGetDirectionIcon@2x.png"; sourceTree = "<group>"; };
-		C21D112B1D06B2E600194C5B /* PostGetDirectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PostGetDirectionIcon@3x.png"; sourceTree = "<group>"; };
-		C21D112E1D06B3A000194C5B /* UnableToCollect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnableToCollect@2x.png"; sourceTree = "<group>"; };
-		C21D112F1D06B3A000194C5B /* UnableToCollect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnableToCollect@3x.png"; sourceTree = "<group>"; };
 		C22702E51CBF89EE00F9FBF3 /* FilterAvailabilityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterAvailabilityCell.h; sourceTree = "<group>"; };
 		C22702E61CBF89EE00F9FBF3 /* FilterAvailabilityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterAvailabilityCell.m; sourceTree = "<group>"; };
 		C22702E71CBF89EE00F9FBF3 /* FilterAvailabilityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterAvailabilityCell.xib; sourceTree = "<group>"; };
@@ -3260,18 +3252,6 @@
 				A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		66C97A371D055E2600498F3D /* STAlert */ = {
-			isa = PBXGroup;
-			children = (
-				66C97A381D055E2600498F3D /* STAlertController.h */,
-				66C97A391D055E2600498F3D /* STAlertController.m */,
-				66C97A3A1D055E2600498F3D /* STAlertTypeViewController.h */,
-				66C97A3B1D055E2600498F3D /* STAlertTypeViewController.m */,
-				66C97A3C1D055E2600498F3D /* STAlertTypeViewController.xib */,
-			);
-			path = STAlert;
 			sourceTree = "<group>";
 		};
 		8A0035281C4F2D81002BD9A3 /* DealCell */ = {
@@ -3695,8 +3675,6 @@
 		8A1126031CF69EC100399213 /* Pop Up Illustration */ = {
 			isa = PBXGroup;
 			children = (
-				C21D112E1D06B3A000194C5B /* UnableToCollect@2x.png */,
-				C21D112F1D06B3A000194C5B /* UnableToCollect@3x.png */,
 				8A1126041CF69EC100399213 /* CannotRedeemAtThisMomentImg.png */,
 				8A1126051CF69EC100399213 /* EmptyStateImg.png */,
 				8A1126061CF69EC100399213 /* EmptyWalletImg.png */,
@@ -4339,8 +4317,6 @@
 		8A1127D41CF69EC100399213 /* Post Details */ = {
 			isa = PBXGroup;
 			children = (
-				C21D112A1D06B2E600194C5B /* PostGetDirectionIcon@2x.png */,
-				C21D112B1D06B2E600194C5B /* PostGetDirectionIcon@3x.png */,
 				8A1127D51CF69EC100399213 /* FullScreenIcon@2x.png */,
 				8A1127D61CF69EC100399213 /* FullScreenIcon@3x.png */,
 				8A1127D71CF69EC100399213 /* MoreIcon@2x.png */,
@@ -4512,7 +4488,7 @@
 		8A114B871BE73F5C006AE3F0 /* COMMON */ = {
 			isa = PBXGroup;
 			children = (
-				66C97A371D055E2600498F3D /* STAlert */,
+				8AF5C3151D0563CB00E6673E /* STAlert */,
 				C25133741CF70C53003E9887 /* GoogleConversionTrackingSDK-iOS-3.4.0 */,
 				8A87FDC01CE0650600CFA719 /* Toast */,
 				8A11D3921CC88DC80023A7ED /* AutoCoding */,
@@ -6087,6 +6063,18 @@
 			path = FeedsModel;
 			sourceTree = "<group>";
 		};
+		8AF5C3151D0563CB00E6673E /* STAlert */ = {
+			isa = PBXGroup;
+			children = (
+				8AF5C3161D0563CB00E6673E /* STAlertController.h */,
+				8AF5C3171D0563CB00E6673E /* STAlertController.m */,
+				8AF5C3181D0563CB00E6673E /* STAlertTypeViewController.h */,
+				8AF5C3191D0563CB00E6673E /* STAlertTypeViewController.m */,
+				8AF5C31A1D0563CB00E6673E /* STAlertTypeViewController.xib */,
+			);
+			path = STAlert;
+			sourceTree = "<group>";
+		};
 		8AF6FDDA1C5A164B005AAE5D /* seetiesProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -6862,7 +6850,7 @@
 				8A1128E81CF69EC100399213 /* MoreFeedbackIcon@3x.png in Resources */,
 				8A112A311CF69EC100399213 /* CollectIndoBtn@2x.png in Resources */,
 				8A0F50B31C0C3B71002B1E22 /* SeShopDetailView.xib in Resources */,
-				66C97A3F1D055E2600498F3D /* STAlertTypeViewController.xib in Resources */,
+				8AF5C31D1D0563CB00E6673E /* STAlertTypeViewController.xib in Resources */,
 				8A112B211CF69EC100399213 /* SSDefaultLogo@3x.png in Resources */,
 				8A114CA61BE73F5D006AE3F0 /* PEPhotoCropEditor.bundle in Resources */,
 				8A112A0E1CF69EC100399213 /* ArrowBtn@3x.png in Resources */,
@@ -6915,7 +6903,6 @@
 				8A112A261CF69EC100399213 /* ConnectionWeak@3x.png in Resources */,
 				8A1129901CF69EC100399213 /* WalkHome2.png in Resources */,
 				8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */,
-				C21D11301D06B3A000194C5B /* UnableToCollect@2x.png in Resources */,
 				8AFA51F81C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib in Resources */,
 				C2A910131CCDFF31005D517B /* SearchLocationAreaCell.xib in Resources */,
 				8A112B231CF69EC100399213 /* SSFacebookIcon@3x.png in Resources */,
@@ -7112,7 +7099,6 @@
 				8A1129421CF69EC100399213 /* SignUpNameIcon@2x.png in Resources */,
 				C231DEEA1D055C4800A68E54 /* AlertErrorIcon@3x.png in Resources */,
 				8A112A4A1CF69EC100399213 /* FollowIcon@3x.png in Resources */,
-				C21D11311D06B3A000194C5B /* UnableToCollect@3x.png in Resources */,
 				8A11296E1CF69EC100399213 /* TH_TabbarHomeIcon_Active@3x.png in Resources */,
 				8AC8F7251BDA414E00DEF14A /* CollectionListingViewController.xib in Resources */,
 				8A112B011CF69EC100399213 /* WhiteShareIcon@2x.png in Resources */,
@@ -7437,7 +7423,6 @@
 				8A1129221CF69EC100399213 /* ReferSignupIcon@3x.png in Resources */,
 				8A112A391CF69EC100399213 /* CollectTraditonalChineseBtn@2x.png in Resources */,
 				8A112A901CF69EC100399213 /* InviteWhatsappIcon@3x.png in Resources */,
-				C21D112D1D06B2E600194C5B /* PostGetDirectionIcon@3x.png in Resources */,
 				8A112A661CF69EC100399213 /* WelcomeImg.png in Resources */,
 				8A1129851CF69EC100399213 /* BgWalkHome5@2x.jpg in Resources */,
 				8A1128FE1CF69EC100399213 /* NaviCollapseIcon@3x.png in Resources */,
@@ -7588,7 +7573,6 @@
 				8AE478B91CC4E93F0053DB24 /* CustomEmptyView.xib in Resources */,
 				8A112A7A1CF69EC100399213 /* FacebookBtnInactive@3x.png in Resources */,
 				8A11298D1CF69EC100399213 /* BgWalkWallet3@2x.jpg in Resources */,
-				C21D112C1D06B2E600194C5B /* PostGetDirectionIcon@2x.png in Resources */,
 				8A112AD51CF69EC100399213 /* CollectionPhotosOverlay@2x.png in Resources */,
 				8A112B311CF69EC100399213 /* CameraIcon@3x.png in Resources */,
 				8A1128881CF69EC100399213 /* DealsListingGoIcon@3x.png in Resources */,
@@ -8029,7 +8013,7 @@
 				C294FD261C9815B500C455C8 /* FilterCategoryModel.m in Sources */,
 				8AD6C0D81B706CF30040437E /* PTellUsYourCityViewController.m in Sources */,
 				8AC7B6711CE5C102000775CC /* UIView+Extension.m in Sources */,
-				66C97A3D1D055E2600498F3D /* STAlertController.m in Sources */,
+				8AF5C31B1D0563CB00E6673E /* STAlertController.m in Sources */,
 				8A9E06541CBF5A70000FB246 /* README.md in Sources */,
 				8AF33A3D1C3F67F5000A2021 /* CTFeedModel.m in Sources */,
 				8A6BB42B1BF0C338005AA1B3 /* MZBlurEffectAdapter.m in Sources */,
@@ -8074,7 +8058,7 @@
 				8ABA7DE61C74219E00FB41F4 /* NotificationTableViewController.m in Sources */,
 				8A114CD31BE73F5D006AE3F0 /* BaseViewController.m in Sources */,
 				8A9E065D1CBF5A70000FB246 /* UIPopoverController+Block.m in Sources */,
-				66C97A3E1D055E2600498F3D /* STAlertTypeViewController.m in Sources */,
+				8AF5C31C1D0563CB00E6673E /* STAlertTypeViewController.m in Sources */,
 				8A0035411C4F6E72002BD9A3 /* DealType_DealOTDTblCell.m in Sources */,
 				8A11D36D1CC7561F0023A7ED /* CT3_ReferalViewController.m in Sources */,
 				8AC8F7481BDA414E00DEF14A /* EditCollectionViewController.m in Sources */,
@@ -8276,6 +8260,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				FacebookID_SuffixName = seeties;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8372,6 +8357,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				FacebookID_SuffixName = seeties;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8382,7 +8368,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
 				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
@@ -8468,6 +8454,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				FacebookID_SuffixName = seeties;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8564,6 +8551,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				FacebookID_SuffixName = seeties;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8574,7 +8562,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
 				PRODUCT_NAME = Seeties;
 				PROVISIONING_PROFILE = "1b8b1a95-f4f6-4dec-b41e-2b0897f4f490";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";

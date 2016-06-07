@@ -45,7 +45,7 @@ typedef enum{
 @interface PromoPopOutViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 @property(nonatomic,copy)VoidBlock updateFrame;
 @property id<PromoPopOutDelegate> promoPopOutDelegate;
--(void)setViewType:(PopOutViewType)viewType;
+-(void)setViewType:(PopOutViewType)viewType;// before push set view type
 -(void)setPopOutCondition:(PopOutCondition)popOutCondition;
 -(void)setShopArray:(NSArray<SeShopDetailModel>*)shopArray;
 -(void)setDealModel:(DealModel *)dealModel;

@@ -33,4 +33,6 @@
 
 
 -(UITabBarController*)tabBarController;
+-(void)showPushNotificationView:(NSString*)pushNotificationCode;
+
 @end

@@ -88,16 +88,6 @@
                                             <constraint firstAttribute="width" constant="148" id="ia6-0f-Lxu"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1P-te-wTa">
-                                        <rect key="frame" x="184" y="0.0" width="80" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="1u7-mr-dYz"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="btnDirectCollectClicked:" destination="2bn-Oz-Q3p" eventType="touchUpInside" id="7vZ-6E-SEE"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICB-8E-e31">
                                         <rect key="frame" x="264" y="0.0" width="46" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -106,6 +96,16 @@
                                         </constraints>
                                         <connections>
                                             <action selector="btnCollectToListClicked:" destination="2bn-Oz-Q3p" eventType="touchUpInside" id="0Kk-fD-Qkr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1P-te-wTa">
+                                        <rect key="frame" x="184" y="0.0" width="80" height="60"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="1u7-mr-dYz"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="btnDirectCollectClicked:" destination="2bn-Oz-Q3p" eventType="touchUpInside" id="7vZ-6E-SEE"/>
                                         </connections>
                                     </button>
                                 </subviews>

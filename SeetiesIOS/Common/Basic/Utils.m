@@ -746,6 +746,17 @@
     [popOutController setNavigationBarHidden:YES];
 }
 
++(void)showPromoView:(UIViewController*)viewController{
+    PromoPopOutViewController *popOut = [PromoPopOutViewController new];
+    [popOut setViewType:PopOutViewTypeEnterPhone];
+    [popOut setPopOutCondition:PopOutConditionVerifyPhoneNumber];
+    
+    STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:popOut];
+    popOutController.containerView.backgroundColor = [UIColor clearColor];
+    [popOutController presentInViewController:viewController];
+    [popOutController setNavigationBarHidden:YES];
+}
+
 +(void)showChangeVerifiedPhoneNumber:(UIViewController*)viewController{
     PromoPopOutViewController *popOut = [PromoPopOutViewController new];
     [popOut setViewType:PopOutViewTypeChangeVerifiedPhone];

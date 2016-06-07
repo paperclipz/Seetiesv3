@@ -133,7 +133,7 @@
         NSString* fullURL;
         NSString* strNetworkType;
 
-        if (appendString) {
+        if (appendString && ![appendString isEqualToString:@""]) {
             fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:serverType],appendString];
             
         }
@@ -142,6 +142,7 @@
             fullURL = [self getFullURLwithType:serverType];
         }
         
+        SLog(@"%@",fullURL);
         
         if (IS_SIMULATOR) {
             
