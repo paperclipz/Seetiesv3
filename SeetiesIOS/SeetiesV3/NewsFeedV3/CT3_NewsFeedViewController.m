@@ -1050,6 +1050,20 @@ static NSCache* heightCache = nil;
                 }
                 
                 [cell initData:typeModel.arrPosts];
+                
+                cell.btnCollectionDidClickedBlock = ^(DraftModel* dModel)
+                {
+                    [self showCollectToCollectionView:dModel];
+
+                };
+                
+                cell.btnCollectionQuickClickedBlock = ^(DraftModel* dModel)
+                {
+                    [self requestServerForQuickCollection:dModel];
+                    
+                };
+
+                
                 cell.didSelectPostBlock = ^(DraftModel* model)
                 {
                     [self showPostDetailView:model];

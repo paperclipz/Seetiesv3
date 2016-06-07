@@ -14,4 +14,7 @@
 @property(nonatomic,copy)PostBlock didSelectPostBlock;
 @property(nonatomic,strong)ProfileBlock btnProfileClickedBlock;
 
+
+@property(nonatomic,strong)PostBlock btnCollectionDidClickedBlock;
+@property(nonatomic,strong)PostBlock btnCollectionQuickClickedBlock;
 @end
