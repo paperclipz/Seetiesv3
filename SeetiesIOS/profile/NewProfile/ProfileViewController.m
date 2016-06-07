@@ -1326,7 +1326,10 @@
     //UIImageView* tempImageView = [[UIImageView alloc]initWithFrame:self.backgroundImageView.frame];
     [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.wallpaper] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
-        self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        if (image) {
+              self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        }
+      
         [self setParallaxView];
         
     }];
