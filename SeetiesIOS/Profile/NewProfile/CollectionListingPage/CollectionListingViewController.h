@@ -11,6 +11,7 @@
 #import "EditCollectionViewController.h"
 #import "CollectionViewController.h"
 #import "NewCollectionViewController.h"
+#import "HMSegmentedControl.h"
 
 @class CollectionViewController;
 @interface CollectionListingViewController : CommonViewController <UIScrollViewDelegate>
