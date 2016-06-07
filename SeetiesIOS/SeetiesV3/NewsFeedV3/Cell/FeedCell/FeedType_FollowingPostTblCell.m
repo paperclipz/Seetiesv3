@@ -197,24 +197,24 @@
     [DataManager getPostCollected:feedModel.post_id isCollected:^(BOOL isCollected) {
         
         if (isCollected) {
-            self.ibCollectionImage.image = [UIImage imageNamed:@"CollectedBtn.png"];
+            self.ibCollectionImage.image = [UIImage imageNamed:@"Collected_Btn.png"];
             self.btnQuickCollect.hidden = isCollected;
 
         }
         else{
-            self.ibCollectionImage.image = [UIImage imageNamed:@"CollectBtn.png"];
+            self.ibCollectionImage.image = [UIImage imageNamed:[self getCollectIconName]];
             self.btnQuickCollect.hidden = !isCollected;
 
         }
         
     } PostNotCollectedBlock:^{
         if ([feedModel.collect isEqualToString:@"1"]) {
-            self.ibCollectionImage.image = [UIImage imageNamed:@"CollectedBtn.png"];
+            self.ibCollectionImage.image = [UIImage imageNamed:@"Collected_Btn.png"];
             self.btnQuickCollect.hidden = YES;
 
         }
         else{
-            self.ibCollectionImage.image = [UIImage imageNamed:@"CollectBtn.png"];
+            self.ibCollectionImage.image = [UIImage imageNamed:[self getCollectIconName]];
             self.btnQuickCollect.hidden = NO;
 
         }
@@ -342,5 +342,35 @@
 -(void)changLanguage
 {
     self.lblSuggestQR.text = LocalisedString(@"Suggested local QR");
+}
+
+-(NSString*)getCollectIconName
+{
+
+    NSString* str = [LanguageManager getDeviceAppLanguageCode];
+
+   
+    if ([str isEqualToString:CHINESE_CODE]) {
+        return @"CollectSimplifiedChineseBtn.png";
+    }
+    else if ([str isEqualToString:TAIWAN_CODE]) {
+        return @"CollectTraditonalChineseBtn.png";
+
+    }
+    else if ([str isEqualToString:INDONESIA_CODE]) {
+        return @"CollectIndoBtn.png";
+ 
+    }
+    
+    else if ([str isEqualToString:THAI_CODE]) {
+        return @"CollectThaiBtn.png";
+        
+    }
+    else
+    {
+        return @"CollectBtn.png";
+
+    }
+
 }
 @end
