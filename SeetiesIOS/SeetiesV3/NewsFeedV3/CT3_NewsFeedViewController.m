@@ -72,7 +72,6 @@ static NSCache* heightCache = nil;
     BOOL isMiddleOfLoadingServer;
     BOOL isMiddleOfLoadingHome;
 
-    __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
     __weak IBOutlet UIImageView *ibHeaderBackgroundView;
     __weak IBOutlet NSLayoutConstraint *constTopScrollView;
     BOOL isFirstLoad;
@@ -92,8 +91,6 @@ static NSCache* heightCache = nil;
 @property (weak, nonatomic) IBOutlet UIButton *btnLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
-
-@property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 
 /* Model */
 @property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
@@ -567,7 +564,7 @@ static NSCache* heightCache = nil;
     isMiddleOfLoadingServer = NO;
     isMiddleOfLoadingHome = NO;
     
-    [self initFooterView];
+    [self.ibTableView setupFooterView];
 }
 
 -(void)initTableViewDelegate
@@ -1607,7 +1604,7 @@ static NSCache* heightCache = nil;
             [self.ibTableView reloadData];
 //            [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 
-            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
+            [self.ibTableView stopFooterLoadingView];
 
             if ([Utils isArrayNull:self.arrayNewsFeed]) {
                 [self.ibTableView showEmptyState];
@@ -1952,7 +1949,7 @@ static NSCache* heightCache = nil;
        
         if(![Utils isStringNull:self.newsFeedModels.paging.next])
         {
-            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] startAnimating];
+            [self.ibTableView startFooterLoadingView];
             
             [self requestServerForNewsFeed:self.currentHomeLocationModel.latitude Longtitude:self.currentHomeLocationModel.longtitude];
         }
@@ -1978,14 +1975,6 @@ static NSCache* heightCache = nil;
         // SLog(@"adjustment : %f",adjustment);
         ibHeaderBackgroundView.alpha = adjustment;
     }
-
-}
-
--(void)initFooterView
-{
-    ibActivityIndicator.tag = 10;
-    ibActivityIndicator.hidesWhenStopped = YES;
-    self.ibTableView.tableFooterView = self.ibFooterView;
 
 }
 
