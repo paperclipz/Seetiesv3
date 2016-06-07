@@ -175,11 +175,11 @@
                 }
             }
             
-            if (self.dealModel.total_available_vouchers == 0) {
-                [self setCollectBtnEnabled:NO];
+            if ([self.dealModel isCollectable]) {
+                [self setCollectBtnEnabled:YES];
             }
             else{
-                [self setCollectBtnEnabled:YES];
+                [self setCollectBtnEnabled:NO];
             }
             break;
         }

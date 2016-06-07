@@ -1321,7 +1321,7 @@
 "Please log in or sign up to continue" = "Ups... mohon untuk masuk/daftar untuk melanjutkan";
 "Not now" = "Tidak sekarang";
 "Log in / Sign up" = "Masuk / daftar";
-"Phone Number = {!phone number}" = "Nomor Telepon = {!phone number}";
+"Phone Number : {!phone number}" = "Nomor Telepon : {!phone number}";
 "Redeem Voucher" = "Redeem Voucher";
 "Voucher redemptions must be made in front of shop staff" = "Redeem voucher harus dilakukan di depan staff toko";
 "How to Redeem" = "Cara Redeem";
@@ -1360,7 +1360,7 @@
 "Sold Out" = "Habis";
 "Deals {!number}" = "{!number} Penawaran";
 "" = "Penawaran lainnya dari toko ini or Penawaran lainnya";
-"Your phone number has been\nverified" = "Nomor telepon kamu berhasil diverifikasi";
+"Your phone number has been verified" = "Nomor telepon kamu berhasil diverifikasi";
 "Suggested Recommendations" = "Usulkan rekomendasi lokal";
 "PROMO CODE" = "KODE PROMO";
 "Dine in" = "Makan di tempat";

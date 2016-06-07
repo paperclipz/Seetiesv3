@@ -1324,7 +1324,7 @@
 "Please log in or sign up to continue" = "請登入/註冊才可使用此選項喔";
 "Not now" = "再想想";
 "Log in / Sign up" = "登入 / 註冊";
-"Phone Number = {!phone number}" = "手機號碼 = {!phone number}";
+"Phone Number : {!phone number}" = "手機號碼 : {!phone number}";
 "Redeem Voucher" = "領取優惠";
 "Voucher redemptions must be made in front of shop staff" = "您必須在店員面前查證下方可領取此優惠";
 "How to Redeem" = "如何領取";
@@ -1363,7 +1363,7 @@
 "Sold Out" = "已搶光";
 "Deals {!number}" = "優惠劵 {!number}";
 "" = "此店相關優惠 {!number}";
-"Your phone number has been\nverified" = "手機號碼已被認證！";
+"Your phone number has been verified" = "手機號碼已被認證！";
 "Suggested Recommendations" = "國內精選推薦";
 "PROMO CODE" = "序號劵";
 "Dine in" = "店內用餐";
