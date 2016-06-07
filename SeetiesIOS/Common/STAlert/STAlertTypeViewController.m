@@ -15,8 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIView *testView;
 @property (strong, nonatomic) IBOutlet UIView *popoverView;
 
-//for popover only
-@property(strong, nonatomic)NSTimer *timer;
 @end
 
 @implementation STAlertTypeViewController
@@ -110,19 +108,14 @@
     
     
     if(self.stAlertType != STAlertPopover){
-        [self setupTouchEvent];
         [self setupDisplayType];
+        [self setupTouchEvent];
         
         UILabel *label = [self.view viewWithTag:1];
         label.text = self.message;
     }else{
         [self setupPopoverDisplayType];
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(dismissPopover) userInfo:nil repeats:NO];
     }
-}
-
--(void)dismissPopover{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)setupTouchEvent{
