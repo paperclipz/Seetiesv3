@@ -63,7 +63,7 @@
                                 <outlet property="delegate" destination="-1" id="2wP-RB-elO"/>
                             </connections>
                         </textField>
-                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="8VB-Wc-OFZ">
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="8VB-Wc-OFZ">
                             <rect key="frame" x="215" y="9" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="laa-Yk-0Ch"/>
@@ -116,7 +116,7 @@
                                 <outlet property="delegate" destination="-1" id="slJ-TJ-oY2"/>
                             </connections>
                         </textField>
-                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kaa-1V-FDC">
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kaa-1V-FDC">
                             <rect key="frame" x="250" y="0.0" width="0.0" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="9fW-k2-wug"/>
@@ -169,7 +169,7 @@
                                 <outlet property="delegate" destination="-1" id="qHM-AK-NbN"/>
                             </connections>
                         </textField>
-                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="9gY-RT-fZp">
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="9gY-RT-fZp">
                             <rect key="frame" x="250" y="0.0" width="0.0" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="gWA-Ob-QaL"/>
@@ -284,7 +284,7 @@
                                 <outlet property="delegate" destination="-1" id="j5o-LO-FnD"/>
                             </connections>
                         </textField>
-                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="JUH-2R-Rzc">
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="JUH-2R-Rzc">
                             <rect key="frame" x="250" y="0.0" width="0.0" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="R0q-PE-iQJ"/>
@@ -391,6 +391,6 @@
         <image name="SignUpNameIcon.png" width="12" height="17"/>
         <image name="SignUpPasswordIcon.png" width="14" height="17"/>
         <image name="SignUpReferralIcon.png" width="17" height="17"/>
-        <image name="WrongFill.png" width="30" height="30"/>
+        <image name="WrongFill.png" width="16" height="16"/>
     </resources>
 </document>
