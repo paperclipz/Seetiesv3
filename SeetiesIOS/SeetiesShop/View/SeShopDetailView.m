@@ -513,6 +513,7 @@
     
     
     SePhotoModel* model = self.seShopPhotoModel.photos[indexPath.row];
+    [cell.ibImageView setCustomBackgroundColorForIndexPath:indexPath];
     [cell.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:model.imageURL] completed:^(UIImage *image) {
        
     }];
