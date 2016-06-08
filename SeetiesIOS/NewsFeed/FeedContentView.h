@@ -25,5 +25,6 @@
 
 - (id)initWithFrame:(CGRect)frame withDataDictionary:(NSDictionary *)dataDictionary;
 - (void)reloadView;
+- (void)reloadFollowingButton;
 
 @end

@@ -23,11 +23,14 @@
 #import "FeedCommentView.h"
 #import "CommentViewController.h"
 #import "FeedType_CollectionSuggestedTblCell.h"
+#import "FeedShopLocationView.h"
+#import "FeedRecommendationView.h"
+#import "SeetiesShopViewController.h"
 
 //static int kConstantLeftPadding   = 15;
 //static int kConstantTopPadding    = 15;
 
-@interface FeedV3DetailViewController () <iCarouselDataSource, iCarouselDelegate, UIScrollViewDelegate, FeedContentViewDelegate, IDMPhotoBrowserDelegate, FeedCommentViewDelegate>
+@interface FeedV3DetailViewController () <iCarouselDataSource, iCarouselDelegate, UIScrollViewDelegate, FeedContentViewDelegate, IDMPhotoBrowserDelegate, FeedCommentViewDelegate, FeedShopLocationViewDelegate>
 {
     BOOL isMiddleOfCallingServer;
 }
@@ -36,10 +39,12 @@
 @property(nonatomic,strong)FeedType_CollectionSuggestedTblCell* feedType_CollectionSuggestedTblCell;
 @property (strong, nonatomic) FeedContentView *feedContentView;
 @property (strong, nonatomic) FeedCommentView *feedCommentView;
+@property (strong, nonatomic) FeedShopLocationView *feedShopLocationView;
+@property (strong, nonatomic) FeedRecommendationView *feedRecommendationView;
 /*Feed Details All Views*/
 
-@property(nonatomic,strong)CollectionsModel* postCollectionsModel;
-@property(nonatomic,strong)NSMutableArray<CollectionModel>* arrCollections;
+@property (nonatomic,strong)CollectionsModel* postCollectionsModel;
+@property (nonatomic,strong)NSMutableArray<CollectionModel>* arrCollections;
 
 //bottom view 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -76,6 +81,7 @@
 
 @property (strong, nonatomic) IDMPhotoBrowser *photoBrowser;
 @property (strong, nonatomic) NSMutableArray *imageArray;
+@property (strong, nonatomic) NSMutableArray *allViewSectionArray;
 
 /*Controllers*/
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
@@ -89,6 +95,12 @@
     
     [self initializeLoadingIndicator];
     
+    self.allViewSectionArray = [NSMutableArray new];
+    
+    //initialise all dictionary
+    self.dataDictionary = [NSMutableDictionary new];
+    self.userLikeDataDictionary = [NSMutableDictionary new];
+
     
     // Do any additional setup after loading the view.
     [self.bottomView setFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) - 50, CGRectGetWidth(self.view.frame), 50)];
@@ -102,8 +114,6 @@
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     
     self.currentPointY = CGRectGetMaxY(self.carousel.frame);
-    
-//    [self initializeView];
     
     self.scrollView.canCancelContentTouches = NO;
     [self getDataFromServer];
@@ -152,9 +162,7 @@
 
 - (void)initializeView {
     
-    //nav bar setting
-    self.navBarTitle.text = [self.dataDictionary objectForKey:@"place_name"];
-    self.navBarMoreButton.hidden = [self.dataDictionary objectForKey:@"uid"] == [Utils getUserID];
+    [self updateTopViewLayout];
     
     [self setupCarousel];
     
@@ -163,13 +171,6 @@
     [self updateBottomViewLayout];
     
     [LoadingManager hide];
-    
-    self.imageArray = [NSMutableArray new];
-    
-    for (PhotoModel *photo in self.postDetail.arrPhotos) {
-        IDMPhoto *idmPhoto = [IDMPhoto photoWithURL:[NSURL URLWithString:photo.imageURL]];
-        [self.imageArray addObject:idmPhoto];
-    }
 }
 
 - (void)setupCarousel {
@@ -191,6 +192,13 @@
     
     [self.carousel addSubview:overlayImageView];
     [self.carousel bringSubviewToFront:self.imageCountLabel];
+    
+    self.imageArray = [NSMutableArray new];
+    
+    for (PhotoModel *photo in self.postDetail.arrPhotos) {
+        IDMPhoto *idmPhoto = [IDMPhoto photoWithURL:[NSURL URLWithString:photo.imageURL]];
+        [self.imageArray addObject:idmPhoto];
+    }
 }
 
 - (void)initializeContentSection {
@@ -198,13 +206,12 @@
     self.feedContentView = [[FeedContentView alloc] initWithFrame:CGRectMake(0, self.currentPointY, CGRectGetWidth(self.view.frame), 500) withDataDictionary:self.dataDictionary];
     
     self.feedContentView.delegate = self;
-    
     [self.contentView addSubview:self.feedContentView];
+    [self.allViewSectionArray addObject:self.feedContentView];
+//    [self.feedContentView reloadView];
+//    [self repositionLayout];
     
-    [self.feedContentView reloadView];
-    [self reloadLayout];
-    
-    self.currentPointY += self.feedContentView.frame.size.height + 3;
+//    self.currentPointY += self.feedContentView.frame.size.height + 3;
 }
 
 - (void)initializeCommentSection {
@@ -214,28 +221,62 @@
     self.feedCommentView = [[FeedCommentView alloc] initWithFrame:CGRectMake(0, self.currentPointY, CGRectGetWidth(self.view.frame), 300) withDataDictionary:self.userLikeDataDictionary];
     self.feedCommentView.delegate = self;
     
-    [self.feedCommentView reloadView];
+//    [self.feedCommentView reloadView];
     [self.contentView addSubview:self.feedCommentView];
+    [self.allViewSectionArray addObject:self.feedCommentView];
+
+//    [self repositionLayout];
     
-    [self reloadLayout];
 }
 
-- (void)reloadLayout {
+- (void)initializeShopLocationSection {
+    //shop location
+    self.feedShopLocationView = [[FeedShopLocationView alloc] initWithFrame:CGRectMake(0,self.currentPointY + 5, CGRectGetWidth(self.view.frame), 300) withDataDictionary:self.dataDictionary];
+    
+    self.feedShopLocationView.delegate = self;
+    [self.contentView addSubview:self.feedShopLocationView];
+    [self.allViewSectionArray addObject:self.feedShopLocationView];
+    
+//    [self repositionLayout];
+}
+
+- (void)initializeRecommendationSection {
+    
+    self.feedRecommendationView = [[FeedRecommendationView alloc] initWithFrame:CGRectMake(0, self.currentPointY, CGRectGetWidth(self.view.frame), 300) withDataDictionary:self.dataDictionary];
+    
+//    self.feedRecommendationView
+}
+
+- (void)repositionLayout {
     
     //set this property = "YES" in order to replace contentView frame value calculated by autolayout with user-defined frame value
     self.contentView.translatesAutoresizingMaskIntoConstraints = YES;
     
-    [self.feedCommentView setFrame:CGRectMake(0, CGRectGetMaxY(self.feedContentView.frame), CGRectGetWidth(self.view.frame), 300)];
+//    [self.feedCommentView setFrame:CGRectMake(0, CGRectGetMaxY(self.feedContentView.frame), CGRectGetWidth(self.view.frame), 300)];
     
-    [self.feedContentView reloadView];
-    [self.feedCommentView reloadView];
+//    [self.feedContentView reloadView];
+//    [self.feedCommentView reloadView];
     
+    self.currentPointY = 300; // carousel height = 300, start below that
+    
+    for (UIView *view in self.allViewSectionArray) {
+        view.frame = CGRectMake(view.frame.origin.x, self.currentPointY, view.frame.size.width, view.frame.size.height);
+        
+        self.currentPointY += CGRectGetHeight(view.frame);
+    }
     
     [self.contentView resizeToFitSubviewsHeight];
     [self.view resizeToFitSubviewsHeight];
     
     self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.contentView.frame));
     
+}
+
+- (void)updateTopViewLayout {
+    
+    //nav bar setting
+    self.navBarTitle.text = [self.dataDictionary objectForKey:@"place_name"];
+    self.navBarMoreButton.hidden = [self.dataDictionary objectForKey:@"uid"] == [Utils getUserID];
 }
 
 - (void)updateBottomViewLayout {
@@ -577,6 +618,22 @@
 
 }
 
+#pragma mark - FeedShopLocationDelegate
+
+- (void)viewShopDetailButtonDidClicked:(id)sender {
+    
+    SeetiesShopViewController *shopVC = [[SeetiesShopViewController alloc] init];
+    NSString *shopID = self.dataDictionary[@"seetieshop_id"];
+    
+    if (!shopID || [shopID isEqualToString:@""]) {
+        [shopVC initDataPlaceID:self.dataDictionary[@"place_id"] postID:self.postID];
+    }
+    else {
+        [shopVC initDataWithSeetiesID:shopID];
+    }
+    
+    [self.navigationController pushViewController:shopVC animated:YES];
+}
 
 #pragma mark - API caller
 
@@ -589,7 +646,6 @@
         NSLog(@"Success!");
         
         //dictionary for display content
-        self.dataDictionary = [NSMutableDictionary new];
         
         self.postDetail = [[ConnectionManager dataManager] postDetailModel];
         
@@ -624,6 +680,25 @@
         //following flag
         [self.dataDictionary setObject:self.postDetail.following forKey:@"following"];
         
+        //seeties shop info
+        if (self.postDetail.seetishop_info) {
+            [self.dataDictionary setObject:self.postDetail.seetishop_info.name forKey:@"shop_name"];
+            [self.dataDictionary setObject:self.postDetail.seetishop_info.location.formatted_address forKey:@"shop_address"];
+            NSDictionary *imageDict = self.postDetail.seetishop_info.profile_photo;
+            
+            [self.dataDictionary setObject:imageDict[@"picture"] forKey:@"shop_photo"];
+        }
+        else {
+            [self.dataDictionary setObject:self.postDetail.place_name forKey:@"shop_name"];
+            [self.dataDictionary setObject:self.postDetail.place_formatted_address forKey:@"shop_address"];
+        }
+        
+        [self.dataDictionary setObject:self.postDetail.seetishop_id forKey:@"seetieshop_id"];
+        
+        [self.dataDictionary setObject:self.postDetail.location.place_id forKey:@"place_id"];
+        [self.dataDictionary setObject:self.postDetail.location.lat forKey:@"lat"];
+        [self.dataDictionary setObject:self.postDetail.location.lng forKey:@"lng"];
+        
         [self getUserLikeDataFromServer];
         [self initializeView];
         [self.carousel reloadData];
@@ -650,10 +725,11 @@
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetPostLikes parameter:paramDict appendString:[NSString stringWithFormat:@"%@/like", self.postID] success:^(id object) {
         
 //        NSDictionary *data = (NSDictionary *)object;
-        self.userLikeDataDictionary = [NSMutableDictionary new];
 
         PostDetailLikeModel *postDetailLikeModel = [[ConnectionManager dataManager] postDetailLikeModel];
 
+        [self.userLikeDataDictionary removeAllObjects];
+        
         [self.userLikeDataDictionary setObject:@(postDetailLikeModel.like_count) forKey:@"like_count"];
         [self.userLikeDataDictionary setObject:postDetailLikeModel.like_list forKey:@"like_list"];
         
@@ -694,8 +770,11 @@
         
         [self.arrCollections addObjectsFromArray:self.postCollectionsModel.arrSuggestedCollection];
         
-        [self getAllCollectionData];
-        
+        if (!self.feedType_CollectionSuggestedTblCell) {
+            [self getAllCollectionData];
+        }
+
+        [self repositionLayout];
         
     } failure:^(id object) {
         isMiddleOfCallingServer = false;
@@ -726,8 +805,8 @@
             [self.dataDictionary setObject:content[@"title"] forKey:@"translated_title"];
             [self.dataDictionary setObject:content[@"message"] forKey:@"translated_message"];
             
-//            [self.feedContentView reloadView];
-            [self reloadLayout];
+            [self.feedContentView reloadView];
+            [self repositionLayout];
             
             [LoadingManager hide];
         }
@@ -736,7 +815,6 @@
 
     
     }];
-    
 }
 
 - (void)postFollowingUserData {
@@ -755,7 +833,7 @@
         
         [self.dataDictionary setObject:data[@"data"][@"following"] forKey:@"following"];
         
-        [self.feedContentView reloadView];
+        [self.feedContentView reloadFollowingButton];
         
     } failure:^(id object) {
         
@@ -780,7 +858,9 @@
         
         self.likeButton.selected = [self.dataDictionary[@"like"] boolValue];
         
-        [self.feedCommentView reloadView];
+//        [self.feedCommentView reloadView];
+        
+        [self getUserLikeDataFromServer];
         
     } failure:^(id object) {
         
@@ -794,29 +874,25 @@
                            @"list_size" : @(30),
                            @"page" : @(1) };
     
-//    BOOL isPostLike = [self.dataDictionary[@"like"] boolValue];
     AFNETWORK_TYPE type = AFNETWORK_GET;
     
     [[ConnectionManager Instance] requestServerWith:type serverRequestType:ServerRequestTypeGetPostComments parameter:dict appendString:appendString success:^(id object) {
-        
-//        self.userLikeDataDictionary = [NSMutableDictionary new];
-        
-//        NSDictionary *data = [[NSDictionary alloc]initWithDictionary:object];
-        
-//        [self.dataDictionary removeObjectForKey:@"like"];
-//        [self.dataDictionary setObject:data[@"data"][@"like"] forKey:@"like"];
-//        
-//        self.likeButton.selected = [self.dataDictionary[@"like"] boolValue];
         
         PostDetailCommentModel *model = [[ConnectionManager dataManager] postDetailCommentModel];
         
         [self.userLikeDataDictionary setObject:model.comments forKey:@"comments"];
         
+        if (self.feedCommentView) {
+            [self.feedCommentView reloadView];
+        }
+        else {
+            [self initializeCommentSection];
+            [self initializeShopLocationSection];
+        }
         
-        
-        [self initializeCommentSection];
-        [self requestServerForPostSuggestedCollection];
+        [self repositionLayout];
 
+        [self requestServerForPostSuggestedCollection];
         
     } failure:^(id object) {
         
@@ -830,9 +906,9 @@
     [self.contentView addSubview:self.feedType_CollectionSuggestedTblCell];
     [self.feedType_CollectionSuggestedTblCell adjustToScreenWidth];
     [self.feedType_CollectionSuggestedTblCell setY:self.feedCommentView.frame.size.height + self.feedCommentView.frame.origin.y];
-    [self.contentView resizeToFitSubviewsHeight];
-    [self.view resizeToFitSubviewsHeight];
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.contentView.frame));
+//    [self.contentView resizeToFitSubviewsHeight];
+//    [self.view resizeToFitSubviewsHeight];
+//    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), CGRectGetMaxY(self.contentView.frame));
     
     [self.feedType_CollectionSuggestedTblCell initData:self.arrCollections];
     
@@ -842,6 +918,9 @@
     {
         [weakSelf showCollectionListingView];
     };
+    
+    [self.allViewSectionArray addObject:self.feedType_CollectionSuggestedTblCell];
+//    [self repositionLayout];
 }
 
 -(void)showCollectionListingView

@@ -57,7 +57,8 @@ static int kConstantTopPadding    = 15;
         [self setupFollowingButton];
         [self setupBottomEmptyView];
         
-        [self resizeToFitSubviewsHeight];
+        [self reloadView];
+//        [self resizeToFitSubviewsHeight];
     }
     
     return self;
@@ -93,7 +94,7 @@ static int kConstantTopPadding    = 15;
     _titleLabel.numberOfLines = 0;
     _titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:17];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
-    _titleLabel.textColor = [UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f  blue:51.0f/255.0f  alpha:1.0f];
+    _titleLabel.textColor = ONE_ZERO_TWO_COLOR;
     
     _titleLabel.text = [self.dataDictionary objectForKey:@"title"];
     
@@ -227,6 +228,12 @@ static int kConstantTopPadding    = 15;
     [self resizeToFitSubviewsHeight];
 }
 
+- (void)reloadFollowingButton {
+    
+    self.currentPointY = CGRectGetMinY(self.profileImageView.frame);
+    [self updateFollowingButtonFrame];
+
+}
 
 #pragma mark - set frame method 
 

@@ -23,6 +23,7 @@ static int kConstantTopPadding    = 15;
 @property (strong, nonatomic) UILabel *collectionLabel;
 
 @property (strong, nonatomic) UIImageView *commentImageView;
+@property (strong, nonatomic) UILabel *commentDefaultLabel;
 @property (strong, nonatomic) UIView *commentLabelsView;
 @property (strong, nonatomic) UIView *separatorView;
 @property (strong, nonatomic) UIButton *allActivitesButton;
@@ -54,7 +55,8 @@ static int kConstantTopPadding    = 15;
         [self setupSeperatorView];
         [self setupAllActivitesButton];
         
-        [self resizeToFitSubviewsHeight];
+        [self reloadView];
+//        [self resizeToFitSubviewsHeight];
     }
     
     return self;
@@ -73,7 +75,7 @@ static int kConstantTopPadding    = 15;
 
 - (void)setupLikesSection {
     
-    if ([self.dataDictionary[@"like_count"] integerValue] < 1) { return; }
+//    if ([self.dataDictionary[@"like_count"] integerValue] < 1) { return; }
     
     //image
     self.likesImageView = [[UIImageView alloc]init];
@@ -93,7 +95,6 @@ static int kConstantTopPadding    = 15;
     NSArray *userLikedList = self.dataDictionary[@"like_list"];
     
     [self.linkArray removeAllObjects];
-//    NSMutableArray *excludeLinkArray = [NSMutableArray new];
     
     NSInteger totalLike = [self.dataDictionary[@"like_count"] integerValue];
     
@@ -155,9 +156,9 @@ static int kConstantTopPadding    = 15;
 
 - (void)setupCollectedSection {
     
-    NSInteger totalNumber = [self.dataDictionary[@"collection_count"] integerValue];
-
-    if (totalNumber < 1 || !totalNumber) { return; }
+//    NSInteger totalNumber = [self.dataDictionary[@"collection_count"] integerValue];
+//
+//    if (totalNumber < 1 || !totalNumber) { return; }
     
     self.collectionImageView = [[UIImageView alloc]init];
     self.collectionImageView.image = [UIImage imageNamed:@"PostCollectedIcon.png"];
@@ -175,17 +176,23 @@ static int kConstantTopPadding    = 15;
 
 - (void)setupCommentSection {
     
-    NSArray *allComments = self.dataDictionary[@"comments"];
+//    NSArray *allComments = self.dataDictionary[@"comments"];
     
-    if (allComments && [allComments count] > 0) {
-     
+//    if (allComments && [allComments count] > 0) {
+    
         self.commentImageView = [[UIImageView alloc]init];
         self.commentImageView.image = [UIImage imageNamed:@"PostCommentIcon.png"];
         self.commentImageView.frame = CGRectZero;
         [self addSubview:self.commentImageView];
-        
+    
+        self.commentDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        self.commentDefaultLabel.hidden = YES;
+        self.commentDefaultLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        self.commentDefaultLabel.textColor = ONE_ZERO_TWO_COLOR;
+    
         self.commentLabelsView = [UIView new];
-        
+    
+        [self addSubview:self.commentDefaultLabel];
         [self addSubview:self.commentLabelsView];
         
 //        self.commentTTTLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
@@ -195,7 +202,7 @@ static int kConstantTopPadding    = 15;
 //        [self addSubview:self.commentTTTLabel];
         
         //    self.commentTTTLabel = [TEXT_GRAY_COLOR CGColor];
-    }
+//    }
 }
 
 - (void)setupSeperatorView {
@@ -203,8 +210,9 @@ static int kConstantTopPadding    = 15;
     //for alignment purpose
     self.separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, self.currentPointY, CGRectGetWidth(self.frame), 20)];
 
-    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.separatorView.frame) - 1, CGRectGetWidth(self.separatorView.frame), 1)];
+    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.separatorView.frame) - 1, CGRectGetWidth(self.frame), 1)];
     grayView.backgroundColor = OUTLINE_COLOR;
+    self.separatorView.clipsToBounds = YES;
     
     [self.separatorView addSubview:grayView];
 
@@ -226,6 +234,18 @@ static int kConstantTopPadding    = 15;
     [self addSubview:self.allActivitesButton];
 }
 
+- (BOOL)isNoDataToDisplay {
+    NSInteger totalLike = [self.dataDictionary[@"like_count"] integerValue];
+    NSInteger totalCollections = [self.dataDictionary[@"collection_count"] integerValue];
+    NSArray *commentList = self.dataDictionary[@"comments"];
+
+    if ((!totalLike || totalLike < 1) && (!totalCollections || totalCollections < 1) && (!commentList || commentList.count < 1)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (void)reloadView {
     
     self.currentPointY = 0;
@@ -242,24 +262,47 @@ static int kConstantTopPadding    = 15;
 
 - (void)updateGrayView {
     
-    self.currentPointY += self.grayView.frame.size.height + kConstantTopPadding + 5;
+    self.grayView.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), 1);
+
+    if (![self isNoDataToDisplay]) {
+        self.currentPointY += self.grayView.frame.size.height + kConstantTopPadding + 5;
+    }
 }
 
 - (void)updateLikeSection {
     
-    if (!self.likesImageView) { return; }
+    NSInteger totalLike = [self.dataDictionary[@"like_count"] integerValue];
+    
+//    if (!self.likesImageView) { return; }
     
     self.likesImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 35, 35);
     
-    NSString *labelText = [self formatLikeLabelText];
+    NSString *labelText;
+    
+    if (!totalLike || totalLike == 0) {
+        
+        //        self.likesImageView.frame = CGRectZero;
+        //        self.tttLabel.frame = CGRectZero;
+//        self.tttLabel.text = LocalisedString(@"Be the first to like");
+//        
+//        self.currentPointY += self.tttLabel.frame.size.height + 10;
+        labelText = LocalisedString(@"Be the first to like");
+    }
+    else {
+        labelText = [self formatLikeLabelText];
+
+    }
+    
+//    NSString *labelText = [self formatLikeLabelText];
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15] };
     
     self.tttLabel.text = labelText;
-    self.tttLabel.frame = CGRectMake(CGRectGetMaxX(self.likesImageView.frame) + kConstantLeftPadding, self.currentPointY, CGRectGetWidth(self.frame) - CGRectGetMaxX(self.likesImageView.frame) - kConstantLeftPadding, 35);
+    self.tttLabel.frame = CGRectMake(CGRectGetMaxX(self.likesImageView.frame) + 8, self.currentPointY, CGRectGetWidth(self.frame) - CGRectGetMaxX(self.likesImageView.frame) - kConstantLeftPadding - 8, 35);
     self.tttLabel.activeLinkAttributes = attributes;
     self.tttLabel.linkAttributes = attributes;
     self.tttLabel.inactiveLinkAttributes = attributes;
-    self.tttLabel.userInteractionEnabled=YES;
+    self.tttLabel.userInteractionEnabled = YES;
+    self.tttLabel.numberOfLines = 2;
     self.tttLabel.textColor = ONE_ZERO_TWO_COLOR;
     
     NSMutableArray *activeLinkArray = [self.linkArray copy];
@@ -304,37 +347,58 @@ static int kConstantTopPadding    = 15;
         [self.tttLabel addLinkToURL:[NSURL URLWithString:urlPath] withRange:range];
     }
     
+    [self.tttLabel sizeToFit];
     [self.tttLabel setNeedsDisplay];
     
-    self.currentPointY += self.tttLabel.frame.size.height + 10;
+    [self.tttLabel setFrame:CGRectMake(self.tttLabel.frame.origin.x, self.currentPointY + CGRectGetHeight(self.likesImageView.frame) / 4, self.tttLabel.frame.size.width, self.tttLabel.frame.size.height)];
+    
+    self.currentPointY += self.tttLabel.frame.size.height + 28;
 }
 
 - (void)updateCollectionSection {
     
-    if (!self.collectionImageView) { return; }
+//    if (!self.collectionImageView) { return; }
     
     NSInteger totalNumber = [self.dataDictionary[@"collection_count"] integerValue];
     
     self.collectionImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 35, 35);
 
+    if (!totalNumber || totalNumber == 0) {
+        //        self.collectionImageView.frame = CGRectZero;
+        self.collectionLabel.text = LocalisedString(@"Aww. No one's collected this.");
+        
+    }
+    else {
+        NSString *str = [[NSString alloc] initWithFormat:@"Collected in %li %@", (long)totalNumber, LocalisedString(@"Collections")];
+        
+        self.collectionLabel.text = str;
+    }
     
-    NSString *str = [[NSString alloc] initWithFormat:@"Collected in %li %@", (long)totalNumber, LocalisedString(@"Collections")];
-    
-    self.collectionLabel.text = str;
-    self.collectionLabel.frame = CGRectMake(CGRectGetMaxX(self.collectionImageView.frame) + kConstantLeftPadding, self.currentPointY, CGRectGetWidth(self.frame) - 69, 35);
+    self.collectionLabel.frame = CGRectMake(CGRectGetMaxX(self.collectionImageView.frame) + 8, self.currentPointY, CGRectGetWidth(self.frame) - CGRectGetMaxX(self.collectionImageView.frame) - kConstantLeftPadding - 8, 35);
     
     self.currentPointY += self.collectionImageView.frame.size.height + 10;
 }
 
 - (void)updateCommentSection {
     
-    if (!self.commentImageView) { return; }
-    
-    self.commentImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 35, 35);
+//    if (!self.commentImageView) { return; }
     
     NSArray *rawCommentList = self.dataDictionary[@"comments"];
     NSArray *commentList;
     
+    self.commentImageView.frame = CGRectMake(kConstantLeftPadding, self.currentPointY, 35, 35);
+    
+    if (!rawCommentList || rawCommentList.count < 1) {
+        self.commentDefaultLabel.frame = CGRectMake(CGRectGetMaxX(self.commentImageView.frame) + 8, self.currentPointY, CGRectGetWidth(self.frame) - CGRectGetMaxX(self.commentImageView.frame) - kConstantLeftPadding - 8, 35);
+        self.commentDefaultLabel.hidden = NO;
+        self.commentDefaultLabel.text = LocalisedString(@"Be the first to comment");
+        
+        self.currentPointY += CGRectGetHeight(self.commentDefaultLabel.frame);
+        return;
+    }
+    
+    self.commentDefaultLabel.hidden = YES;
+
     if ([rawCommentList count] > 2) {
         commentList = [[[rawCommentList subarrayWithRange:NSMakeRange(0, 3)] reverseObjectEnumerator] allObjects];
     }
@@ -342,11 +406,11 @@ static int kConstantTopPadding    = 15;
         commentList = [[rawCommentList reverseObjectEnumerator] allObjects];
     }
     
-    if (self.commentLabelsView ) {
+    if (self.commentLabelsView) {
         [[self.commentLabelsView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
     
-    self.commentLabelsView.frame = CGRectMake(CGRectGetMaxX(self.commentImageView.frame) + kConstantLeftPadding, self.currentPointY, CGRectGetWidth(self.frame) - CGRectGetMaxX(self.commentImageView.frame) - kConstantLeftPadding, 35);
+    self.commentLabelsView.frame = CGRectMake(CGRectGetMaxX(self.commentImageView.frame) + 8, self.currentPointY, CGRectGetWidth(self.frame) - CGRectGetMaxX(self.commentImageView.frame) - kConstantLeftPadding - 8, 35);
     
     CGFloat currentPointY = 6;
     
@@ -384,7 +448,7 @@ static int kConstantTopPadding    = 15;
         //message label
         TTTAttributedLabel *messageLabel = [self newAttributedLabel];
         
-        messageLabel.frame = CGRectMake(0, currentPointY, CGRectGetWidth(self.commentLabelsView.frame), 35);
+        messageLabel.frame = CGRectMake(0, currentPointY, CGRectGetWidth(self.commentLabelsView.frame) - kConstantLeftPadding, 35);
 
         NSString *modifiedString = [self extractUserHashTagInMessage:commentDetail.message];
         
@@ -436,14 +500,19 @@ static int kConstantTopPadding    = 15;
     
     [self.commentLabelsView resizeToFitSubviews];
     
-    [self addSubview:self.commentLabelsView];
+//    [self addSubview:self.commentLabelsView];
     
     self.currentPointY += CGRectGetHeight(self.commentLabelsView.frame);
 }
 
 - (void)updateSeparatorView {
     
-    self.separatorView.frame = CGRectMake(0, self.currentPointY, CGRectGetWidth(self.frame) - kConstantLeftPadding * 2, 20);
+    if ([self isNoDataToDisplay]) {
+        self.separatorView.frame = CGRectZero;
+        return;
+    }
+    
+    self.separatorView.frame = CGRectMake(0, self.currentPointY, CGRectGetWidth(self.frame), 20);
     
     self.currentPointY += CGRectGetHeight(self.separatorView.frame);
 }
