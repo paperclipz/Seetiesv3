@@ -60,6 +60,7 @@
 @property(nonatomic)SeetiesShopViewController* seetiesShopViewController;
 
 @property(nonatomic)HomeLocationModel* homeLocationModel;
+@property(nonatomic)HomeLocationModel *originHomeLocationModel;
 @property(nonatomic)DealDetailsViewController* dealDetailsViewController;
 
 @property(nonatomic) GeneralFilterViewController *shopFilterViewController;
@@ -104,6 +105,7 @@
     self.homeLocationModel.longtitude = self.locationLongtitude;
     self.homeLocationModel.place_id = self.placeID;
     self.homeLocationModel.dictAddressComponent = self.addressComponent;
+    self.originHomeLocationModel = self.homeLocationModel;
     self.ibSearchText.text = self.keyword;
     
     
@@ -714,6 +716,12 @@
     }else if(textField == self.ibLocationText){
         if (![self.ibLocationText.text isEqualToString:@""]) {
             [self getGoogleSearchPlaces:textField.text];
+        }
+        else{
+            self.homeLocationModel = self.originHomeLocationModel;
+            [self refreshSearch];
+            self.ibLocationTableView.hidden = YES;
+            self.ibSearchTableView.hidden = YES;
         }
     }
 
