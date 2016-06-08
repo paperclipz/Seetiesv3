@@ -192,15 +192,16 @@
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
    // NSLog(@"applicationWillResignActive");
+    
+    
+    //firebase
+    [[FIRMessaging messaging] disconnect];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
   //  NSLog(@"applicationDidEnterBackground");
-    
-    //firebase
-    [[FIRMessaging messaging] disconnect];
 
 }
 
@@ -439,11 +440,9 @@ NSString* deviceName()
     //if no add this it will cause fail login at 1st time get token
     if(![[FIRInstanceID instanceID] token])
         return;
-    SLog(@"connectToFcm");
     [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
         SLog(@"123");
         if (error != nil) {
-            SLog(@"Unable to connect to FCM. %@", error);
         } else {
             SLog(@"Connected to FCM.");
             NSString *refreshedToken = [[FIRInstanceID instanceID] token];

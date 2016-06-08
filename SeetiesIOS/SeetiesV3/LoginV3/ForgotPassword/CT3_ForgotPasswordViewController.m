@@ -34,6 +34,17 @@
     [self changeLanguage];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
 -(void)changeLanguage{
     self.ibHeaderTitle.text = LocalisedString(@"Forgot Password");
     self.ibInstructionLbl.text = LocalisedString(@"You'll receive instructions to reset your password in your mailbox as soon as we're done here!");
