@@ -105,7 +105,7 @@
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
 @property(nonatomic) NSArray<SeShopDetailModel> *shopArray;
-@property(nonatomic) NSString *selectedCountryCode;
+@property(nonatomic,strong) NSString *selectedCountryCode;
 @property(nonatomic) NSString *enteredPhoneNumber;
 @property(nonatomic) NSString *enteredPromoCode;
 @property(nonatomic) SeShopDetailModel *selectedShop;
@@ -147,8 +147,8 @@
     self.ibPromoCodeText.autocorrectionType = UITextAutocorrectionTypeNo;
     
     [self setMainViewToDisplay];
-   
-    // Do any additional setup after loading the view from its nib.
+    
+      // Do any additional setup after loading the view from its nib.
 //    self.contentSizeInPopup = [self getMainView].frame.size;
 
 }
@@ -216,7 +216,9 @@
 }
 
 -(void)setSelectedCountryCode:(NSString *)selectedCountryCode{
+    
     _selectedCountryCode = selectedCountryCode;
+
 }
 
 -(void)setEnteredPhoneNumber:(NSString *)enteredPhoneNumber{
@@ -366,9 +368,19 @@
         {
             self.ibEnterPhoneTitle.text = LocalisedString(@"Enter Phone Number");
             self.ibEnterPhoneDesc.text = LocalisedString(@"Please verify your phone number to collect the voucher.");
-            self.ibEnterPhoneCountryCodeLbl.text = LocalisedString(@"Select Country Code");
             self.ibEnterPhoneTxtField.placeholder = LocalisedString(@"eg. 1x xxx xxxx");
             [self.ibEnterPhoneConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
+            CountryModel *currentCountryModel = [[DataManager Instance] appInfoModel].countries.current_country;
+            self.selectedCountryCode = [currentCountryModel shortCountryCode];
+            NSString* displayText = [currentCountryModel formattedCountryDisplay];
+            if (displayText) {
+                self.ibEnterPhoneCountryCodeLbl.text = displayText;
+
+            }
+            else{
+                self.ibEnterPhoneCountryCodeLbl.text = LocalisedString(@"Select Country Code");
+            }
+
             
             self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, 470);
             [self.ibEnterPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
@@ -513,8 +525,8 @@
     NSMutableArray *tempArr = [[NSMutableArray alloc] init];
     for (CountryModel *country in countries.countries) {
         if (country.home_filter_display) {
-            NSString *formattedCountryCode = [NSString stringWithFormat:@"%@ (%@)", country.name, country.phone_country_code];
-            [tempArr addObject:formattedCountryCode];
+          //  NSString *formattedCountryCode = [NSString stringWithFormat:@"%@ (%@)", country.name, country.phone_country_code];
+            [tempArr addObject:country.formattedCountryDisplay];
         }
     }
     return tempArr;
@@ -558,7 +570,7 @@
     }
     
     NSArray *formattedCountriesCode;
-
+    
     @try {
         formattedCountriesCode = [self getFormattedCountriesCode];
         
@@ -566,24 +578,29 @@
         
     }
     
+    ActionSheetStringPicker* tempPicker;
+    
     if (formattedCountriesCode) {
         
         CountriesModel *countriesModel = [[DataManager Instance] appInfoModel].countries;
-        [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
-                                                rows:formattedCountriesCode? formattedCountriesCode : [NSArray new]
-                                    initialSelection:0
-                                           doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                               
-                                               CountryModel *countryModel = countriesModel.countries[selectedIndex];
-                                               NSString *countryCode = countryModel.phone_country_code;
-                                               self.selectedCountryCode = [countryCode substringFromIndex:1];
-                                               self.ibEnterPhoneCountryCodeLbl.text = formattedCountriesCode[selectedIndex];
-                                               
-                                           } cancelBlock:^(ActionSheetStringPicker *picker) {
-                                               
-                                           } origin:sender];
-
+        
+        tempPicker = [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
+                                                             rows:formattedCountriesCode? formattedCountriesCode : [NSArray new]
+                                                 initialSelection:0
+                                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                            
+                                                            CountryModel *countryModel = countriesModel.countries[selectedIndex];
+                                                            NSString *countryCode = countryModel.phone_country_code;
+                                                            self.selectedCountryCode = [countryCode substringFromIndex:1];
+                                                            self.ibEnterPhoneCountryCodeLbl.text = formattedCountriesCode[selectedIndex];
+                                                            
+                                                        } cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                            
+                                                        } origin:sender];
+        
     }
+    
+    
     
 }
 

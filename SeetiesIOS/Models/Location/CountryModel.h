@@ -33,5 +33,7 @@
 @property(nonatomic,assign)BOOL home_filter_display;//check whether display on screen
 @property(nonatomic,strong)FilterCurrencyModel *filter_currency;
 @property(nonatomic,strong)InviteFriendModel *invite_friend_banner;
+-(NSString*)formattedCountryDisplay;
+-(NSString*)shortCountryCode;
 
 @end
