@@ -17,8 +17,9 @@
 #import "FBLoginManager.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "ACTReporter.h"
-#import "Firebase.h"
-@import Firebase;
+#import <Firebase/Firebase.h>
+#import <FirebaseMessaging/FirebaseMessaging.h>
+#import <FirebaseInstanceID/FirebaseInstanceID.h>
 
 
 #define FABRIC_API_KEY @"506d5ee5657719d0cbaa94569d3352125456f169"
@@ -83,6 +84,18 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+    
+    
+    
+    //firebase
+    SLog(@"connectToFcm");
+    // [START configure_firebase]
+    [FIRApp configure];
+    // [END configure_firebase]
+    
+    // Add observer for InstanceID token refresh callback.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification)
+                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
 }
 
 -(void)checkCurrentAppLanguage
@@ -125,36 +138,12 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
 
     NSSetUncaughtExceptionHandler(&myExceptionHandler);
-    
-    // Register for remote notifications
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
-        // iOS 7.1 or earlier
-        UIRemoteNotificationType allNotificationTypes =
-        (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
-        [application registerForRemoteNotificationTypes:allNotificationTypes];
-    } else {
-        // iOS 8 or later
-        // [END_EXCLUDE]
-        UIUserNotificationType allNotificationTypes =
-        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-        UIUserNotificationSettings *settings =
-        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }
-    // [START configure_firebase]
-    [FIRApp configure];
-    // [END configure_firebase]
-    
-    // Add observer for InstanceID token refresh callback.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
-                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
     
     //[self requestForApiVersion];
     [self registrationForApi];
@@ -162,7 +151,7 @@
     [self configureSetup];
     [self checkCurrentAppLanguage];
     [self showWindow];
-   
+
     [Crashlytics startWithAPIKey:FABRIC_API_KEY];
 
     [Fabric with:@[CrashlyticsKit]];
@@ -196,7 +185,6 @@
 //        //        UIButton *loginButton = [self.customLoginViewController FBloginButton];
 //        //        [loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
 //    }
-    
     return YES;
 }
 
@@ -213,7 +201,6 @@
     
     //firebase
     [[FIRMessaging messaging] disconnect];
-    NSLog(@"Disconnected from FCM");
 
 }
 
@@ -350,26 +337,12 @@
 
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-
-    [[FIRInstanceID instanceID] setAPNSToken:deviceToken
-type:FIRInstanceIDAPNSTokenTypeUnknown];
+    //firebase
+    [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
 
     [Utils setParseToken:deviceToken];
     
   
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    // If you are receiving a notification message while your app is in the background,
-    // this callback will not be fired till the user taps on the notification launching the application.
-    // TODO: Handle data of notification
-    
-    // Print message ID.
-    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
-    
-    // Pring full message.
-    NSLog(@"%@", userInfo);
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -380,7 +353,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
         NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
     }
 }
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    //firebase
     [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
     [PFPush handlePush:userInfo];
@@ -398,6 +373,20 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
     
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+    
+    // Print message ID.
+    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+    
+    // Pring full message.
+    NSLog(@"%@", userInfo);
+    [self application:application didReceiveRemoteNotification:userInfo];
 }
 
 -(void)showWindow
@@ -447,22 +436,30 @@ NSString* deviceName()
 
 //firebase
 - (void)connectToFcm {
+    //if no add this it will cause fail login at 1st time get token
+    if(![[FIRInstanceID instanceID] token])
+        return;
+    SLog(@"connectToFcm");
     [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
-        NSLog(@"123");
+        SLog(@"123");
         if (error != nil) {
-            NSLog(@"Unable to connect to FCM. %@", error);
+            SLog(@"Unable to connect to FCM. %@", error);
         } else {
-            NSLog(@"Connected to FCM.");
+            SLog(@"Connected to FCM.");
+            NSString *refreshedToken = [[FIRInstanceID instanceID] token];
+            SLog(@"InstanceID token: %@", refreshedToken);
         }
     }];
 }
 
-- (void)tokenRefreshNotification:(NSNotification *)notification {
+//firebase
+//1st time get token
+- (void)tokenRefreshNotification{
     // Note that this callback will be fired everytime a new token is generated, including the first
     // time. So if you need to retrieve the token as soon as it is available this is where that
     // should be done.
     NSString *refreshedToken = [[FIRInstanceID instanceID] token];
-    NSLog(@"InstanceID token: %@", refreshedToken);
+    SLog(@"InstanceID token: %@", refreshedToken);
     
     // Connect to FCM since connection may have failed when attempted before having a token.
     [self connectToFcm];

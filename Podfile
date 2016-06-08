@@ -37,6 +37,8 @@ pod 'FBSDKShareKit'
 
 #pod 'Firebase', '>= 2.5.1'
 pod 'Firebase/Messaging'
+pod 'Firebase/Core'
+pod 'Firebase/Database'
 #================ Possible can be deleted =====================#
 #pod 'DBCamera', '~> 2.4'
 pod 'PureLayout'

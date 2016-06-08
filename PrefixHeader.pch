@@ -89,7 +89,7 @@
 #define IS_IN_DEBUG_MODE
 #endif
 
-//#define IS_IN_DEBUG_MODE
+#define IS_IN_DEBUG_MODE
 
 
 #ifndef IS_IN_DEBUG_MODE
