@@ -17,7 +17,7 @@ typedef void (^HomeLocationRefreshBlock)(HomeLocationModel* model);// include co
 typedef void (^AreaLocationREfreshBlock)(PlaceModel* model, NSString* locationName);
 typedef void (^SearchLocationRefreshBlock)(RecommendationVenueModel* model, NSString* locationName);
 
-@interface SearchLocationViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SearchLocationViewController : CommonViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property(nonatomic,copy)HomeLocationRefreshBlock homeLocationRefreshBlock;
 
