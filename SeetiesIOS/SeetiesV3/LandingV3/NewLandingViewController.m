@@ -15,6 +15,7 @@
 #import "PromoPopOutViewController.h"
 #import "CT3_NotificationViewController.h"
 #import "PromoPopOutViewController.h"
+#import <Firebase/Firebase.h>
 
 @interface NewLandingViewController()<UITabBarControllerDelegate>
 {
@@ -448,11 +449,11 @@
 
 -(void)requestServerForRegisterPushNotification
 {
-    NSData* deviceTokenData = [Utils getParseToken];
-    
+    NSString *refreshedToken = [[FIRInstanceID instanceID] token];
+
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
                            @"device_id" : [Utils getUniqueDeviceIdentifier],
-                           @"device_token" : [deviceTokenData description]?[deviceTokenData description]:@"",
+                           @"device_token" : refreshedToken?refreshedToken:@"",
                            };
 
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostRegisterPushNotification parameter:dict appendString:nil success:^(id object) {

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "DealModel.h"
+#import <SSKeychain/SSKeychain.h>
 
 @implementation Utils
 

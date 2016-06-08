@@ -92,6 +92,7 @@
     // [START configure_firebase]
     [FIRApp configure];
     // [END configure_firebase]
+    [self connectToFcm];
     
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification)
@@ -333,7 +334,7 @@
 //    [FBAppEvents activateApp];
     [FBSDKAppEvents activateApp];
     
-    [self connectToFcm];
+//    [self connectToFcm];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -443,7 +444,6 @@ NSString* deviceName()
     if(![[FIRInstanceID instanceID] token])
         return;
     [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
-        SLog(@"123");
         if (error != nil) {
         } else {
             SLog(@"Connected to FCM.");
