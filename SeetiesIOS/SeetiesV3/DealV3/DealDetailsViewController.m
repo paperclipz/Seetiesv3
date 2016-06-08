@@ -1051,11 +1051,11 @@
             }
         }
         
-        if (self.dealModel.total_available_vouchers == 0) {
-            [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        if ([self.dealModel isCollectable]) {
+            [self.ibInnerFooterView setBackgroundColor:DEVICE_COLOR];
         }
         else{
-            [self.ibInnerFooterView setBackgroundColor:DEVICE_COLOR];
+            [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         }
         
     }
@@ -1165,9 +1165,21 @@
             }
         }
         
-        if (self.dealModel.total_available_vouchers == 0) {
+        if (![self.dealModel isCollectable]) {
+            if (self.dealModel.total_available_vouchers != 0) {
+                self.promoPopOutViewController = nil;
+                [self.promoPopOutViewController setViewType:PopOutViewTypeCollectionError];
+                [self.promoPopOutViewController setDealModel:self.dealModel];
+                
+                STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+                popupController.containerView.backgroundColor = [UIColor clearColor];
+                [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                [popupController presentInViewController:self];
+                [popupController setNavigationBarHidden:YES];
+            }
             return;
         }
+        
         if (self.dealModel.shops.count == 1) {
             SeShopDetailModel *shopModel = [self.dealModel.shops objectAtIndex:0];
             [self requestServerToCollectVoucher:shopModel];
@@ -1201,7 +1213,7 @@
         }
         else{
             self.promoPopOutViewController = nil;
-            [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+            [self.promoPopOutViewController setViewType:PopOutViewTypeRedemptionError];
             [self.promoPopOutViewController setDealModel:self.dealModel];
             
             STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];

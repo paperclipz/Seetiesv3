@@ -431,7 +431,7 @@
     else{
         
         self.promoPopOutViewController = nil;
-        [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+        [self.promoPopOutViewController setViewType:PopOutViewTypeRedemptionError];
         [self.promoPopOutViewController setDealModel:deal];
         
         STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];

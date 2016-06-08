@@ -783,7 +783,18 @@
                 }
             }
             
-            if (dealModel.total_available_vouchers == 0) {
+            if (![dealModel isCollectable]) {
+                if (dealModel.total_available_vouchers != 0) {
+                    self.promoPopOutViewController = nil;
+                    [self.promoPopOutViewController setViewType:PopOutViewTypeCollectionError];
+                    [self.promoPopOutViewController setDealModel:dealModel];
+                    
+                    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+                    popupController.containerView.backgroundColor = [UIColor clearColor];
+                    [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                    [popupController presentInViewController:self];
+                    [popupController setNavigationBarHidden:YES];
+                }
                 return;
             }
             
@@ -823,7 +834,7 @@
             }
             else{
                 self.promoPopOutViewController = nil;
-                [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+                [self.promoPopOutViewController setViewType:PopOutViewTypeRedemptionError];
                 [self.promoPopOutViewController setDealModel:dealModel];
                 
                 STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];

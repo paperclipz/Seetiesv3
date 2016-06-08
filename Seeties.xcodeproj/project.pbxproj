@@ -1258,6 +1258,10 @@
 		C22703021CBF932D00F9FBF3 /* PostFilterSortCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703001CBF932D00F9FBF3 /* PostFilterSortCell.xib */; };
 		C22703061CBF949D00F9FBF3 /* PostFilterCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */; };
 		C22703071CBF949D00F9FBF3 /* PostFilterCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */; };
+		C2274F631D07D0D100FF31DE /* PostGetDirectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2274F611D07D0D100FF31DE /* PostGetDirectionIcon@2x.png */; };
+		C2274F641D07D0D100FF31DE /* PostGetDirectionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2274F621D07D0D100FF31DE /* PostGetDirectionIcon@3x.png */; };
+		C2274F671D07D11500FF31DE /* UnableToCollect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2274F651D07D11500FF31DE /* UnableToCollect@2x.png */; };
+		C2274F681D07D11500FF31DE /* UnableToCollect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2274F661D07D11500FF31DE /* UnableToCollect@3x.png */; };
 		C22903831CFD80FE00070F29 /* CT3_FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22903811CFD80FE00070F29 /* CT3_FeedbackViewController.m */; };
 		C22903841CFD80FE00070F29 /* CT3_FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22903821CFD80FE00070F29 /* CT3_FeedbackViewController.xib */; };
 		C22903871CFD9D2C00070F29 /* ReferDefaultImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22903851CFD9D2C00070F29 /* ReferDefaultImg@2x.png */; };
@@ -2971,6 +2975,10 @@
 		C22703031CBF949D00F9FBF3 /* PostFilterCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostFilterCategoryCell.h; sourceTree = "<group>"; };
 		C22703041CBF949D00F9FBF3 /* PostFilterCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostFilterCategoryCell.m; sourceTree = "<group>"; };
 		C22703051CBF949D00F9FBF3 /* PostFilterCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFilterCategoryCell.xib; sourceTree = "<group>"; };
+		C2274F611D07D0D100FF31DE /* PostGetDirectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PostGetDirectionIcon@2x.png"; sourceTree = "<group>"; };
+		C2274F621D07D0D100FF31DE /* PostGetDirectionIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PostGetDirectionIcon@3x.png"; sourceTree = "<group>"; };
+		C2274F651D07D11500FF31DE /* UnableToCollect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnableToCollect@2x.png"; sourceTree = "<group>"; };
+		C2274F661D07D11500FF31DE /* UnableToCollect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnableToCollect@3x.png"; sourceTree = "<group>"; };
 		C22903801CFD80FE00070F29 /* CT3_FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CT3_FeedbackViewController.h; sourceTree = "<group>"; };
 		C22903811CFD80FE00070F29 /* CT3_FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CT3_FeedbackViewController.m; sourceTree = "<group>"; };
 		C22903821CFD80FE00070F29 /* CT3_FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CT3_FeedbackViewController.xib; sourceTree = "<group>"; };
@@ -3690,6 +3698,8 @@
 				8A11260E1CF69EC100399213 /* PopUpDropDownBlue@3x.png */,
 				8A11260F1CF69EC100399213 /* SuccessfulRedeemImg.png */,
 				8A1126101CF69EC100399213 /* ThankYouImg.png */,
+				C2274F651D07D11500FF31DE /* UnableToCollect@2x.png */,
+				C2274F661D07D11500FF31DE /* UnableToCollect@3x.png */,
 				8A1126111CF69EC100399213 /* VerifyPhoneNumberImg.png */,
 			);
 			path = "Pop Up Illustration";
@@ -4327,6 +4337,8 @@
 				8A1127DA1CF69EC100399213 /* PostCollectedIcon@3x.png */,
 				8A1127DB1CF69EC100399213 /* PostCommentIcon@2x.png */,
 				8A1127DC1CF69EC100399213 /* PostCommentIcon@3x.png */,
+				C2274F611D07D0D100FF31DE /* PostGetDirectionIcon@2x.png */,
+				C2274F621D07D0D100FF31DE /* PostGetDirectionIcon@3x.png */,
 				8A1127DD1CF69EC100399213 /* PostLikeIcon@2x.png */,
 				8A1127DE1CF69EC100399213 /* PostLikeIcon@3x.png */,
 				8A1127DF1CF69EC100399213 /* PostLocationIcon@2x.png */,
@@ -6909,6 +6921,7 @@
 				8A112A261CF69EC100399213 /* ConnectionWeak@3x.png in Resources */,
 				8A1129901CF69EC100399213 /* WalkHome2.png in Resources */,
 				8AF428761C8D3F140050289F /* DealHeaderView.xib in Resources */,
+				C2274F671D07D11500FF31DE /* UnableToCollect@2x.png in Resources */,
 				8AFA51F81C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.xib in Resources */,
 				C2A910131CCDFF31005D517B /* SearchLocationAreaCell.xib in Resources */,
 				8A112B231CF69EC100399213 /* SSFacebookIcon@3x.png in Resources */,
@@ -7106,6 +7119,7 @@
 				8A1129421CF69EC100399213 /* SignUpNameIcon@2x.png in Resources */,
 				C231DEEA1D055C4800A68E54 /* AlertErrorIcon@3x.png in Resources */,
 				8A112A4A1CF69EC100399213 /* FollowIcon@3x.png in Resources */,
+				C2274F681D07D11500FF31DE /* UnableToCollect@3x.png in Resources */,
 				8A11296E1CF69EC100399213 /* TH_TabbarHomeIcon_Active@3x.png in Resources */,
 				8AC8F7251BDA414E00DEF14A /* CollectionListingViewController.xib in Resources */,
 				8A112B011CF69EC100399213 /* WhiteShareIcon@2x.png in Resources */,
@@ -7430,6 +7444,7 @@
 				8A1129221CF69EC100399213 /* ReferSignupIcon@3x.png in Resources */,
 				8A112A391CF69EC100399213 /* CollectTraditonalChineseBtn@2x.png in Resources */,
 				8A112A901CF69EC100399213 /* InviteWhatsappIcon@3x.png in Resources */,
+				C2274F641D07D0D100FF31DE /* PostGetDirectionIcon@3x.png in Resources */,
 				8A112A661CF69EC100399213 /* WelcomeImg.png in Resources */,
 				8A1129851CF69EC100399213 /* BgWalkHome5@2x.jpg in Resources */,
 				8A1128FE1CF69EC100399213 /* NaviCollapseIcon@3x.png in Resources */,
@@ -7580,6 +7595,7 @@
 				8AE478B91CC4E93F0053DB24 /* CustomEmptyView.xib in Resources */,
 				8A112A7A1CF69EC100399213 /* FacebookBtnInactive@3x.png in Resources */,
 				8A11298D1CF69EC100399213 /* BgWalkWallet3@2x.jpg in Resources */,
+				C2274F631D07D0D100FF31DE /* PostGetDirectionIcon@2x.png in Resources */,
 				8A112AD51CF69EC100399213 /* CollectionPhotosOverlay@2x.png in Resources */,
 				8A112B311CF69EC100399213 /* CameraIcon@3x.png in Resources */,
 				8A1128881CF69EC100399213 /* DealsListingGoIcon@3x.png in Resources */,
@@ -8267,6 +8283,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				FacebookID_SuffixName = seeties;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8363,6 +8380,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				FacebookID_SuffixName = seeties;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8459,6 +8477,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				FacebookID_SuffixName = seeties;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;
@@ -8555,6 +8574,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 				);
 				FacebookID_SuffixName = seeties;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SeetiesIOS/Info.plist;

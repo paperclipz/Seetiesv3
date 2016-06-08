@@ -336,15 +336,17 @@
     [self connectToFcm];
 }
 
-
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+
     //firebase
     [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
 
+
     [Utils setParseToken:deviceToken];
     
-  
-}
+    SLog(@"%@",[deviceToken description]);
+    
+   }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {
