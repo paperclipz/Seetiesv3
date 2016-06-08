@@ -61,6 +61,7 @@ PODS:
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - SSKeychain (1.4.0)
   - STPopup (1.6.2)
   - SVPullToRefresh (0.4.1)
   - TSMessages (0.9.13):
@@ -95,6 +96,7 @@ DEPENDENCIES:
   - Parse
   - PureLayout
   - SDWebImage
+  - SSKeychain
   - STPopup
   - SVPullToRefresh
   - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
@@ -141,6 +143,7 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SSKeychain: c71293fa57216a40ab06c23f4085387583293de4
   STPopup: dca530d01343df997c5ed42a7465355cd5cbf01d
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   TSMessages: 6e403b790139636c15ab4f51946537095e03e79c

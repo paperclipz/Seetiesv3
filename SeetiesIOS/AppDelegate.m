@@ -319,24 +319,10 @@
     
     [Utils setParseToken:deviceToken];
     
-        SLog(@"%@",[deviceToken description]);
+    SLog(@"%@",[deviceToken description]);
     
-        NSDictionary* dict = @{@"token" :@"",
-                             @"device_id" : [Utils getUniqueDeviceIdentifier],
-                               @"device_token" : [deviceToken description],
-                             };
-    
-        [MessageManager showMessage:[NSString stringWithFormat:@"device_id : %@",[Utils getUniqueDeviceIdentifier]] SubTitle:[NSString stringWithFormat:@"device_token : %@",[deviceToken description]] Type:TSMessageNotificationTypeMessage];
-    
-    
-        [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostRegisterPushNotification parameter:dict appendString:nil success:^(id object) {
-    
-            NSLog(@"%@",object);
-    
-        } failure:^(id object) {
-            
-        }];
-}
+   }
+
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {
         NSLog(@"Push notifications are not supported in the iOS Simulator.");
