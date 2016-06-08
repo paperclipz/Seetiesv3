@@ -315,14 +315,13 @@
     [FBSDKAppEvents activateApp];
 }
 
-
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-
     
     [Utils setParseToken:deviceToken];
     
-  
-}
+    SLog(@"%@",[deviceToken description]);
+    
+   }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {

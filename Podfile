@@ -36,6 +36,8 @@ pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 
 #pod 'Firebase', '>= 2.5.1'
+pod 'SSKeychain'
+
 #================ Possible can be deleted =====================#
 #pod 'DBCamera', '~> 2.4'
 pod 'PureLayout'

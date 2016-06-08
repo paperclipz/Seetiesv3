@@ -335,6 +335,7 @@
     
     [self requestServerForUserInfo];
     [Utils requestServerForNotificationCount];
+    [self requestServerForRegisterPushNotification];
 }
 
 -(ProfileViewController*)profileViewController
@@ -444,6 +445,25 @@
 }
 
 #pragma mark - Request Server
+
+-(void)requestServerForRegisterPushNotification
+{
+    NSData* deviceTokenData = [Utils getParseToken];
+    
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                           @"device_id" : [Utils getUniqueDeviceIdentifier],
+                           @"device_token" : [deviceTokenData description]?[deviceTokenData description]:@"",
+                           };
+
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostRegisterPushNotification parameter:dict appendString:nil success:^(id object) {
+        
+        NSLog(@"%@",object);
+        
+    } failure:^(id object) {
+        
+    }];
+
+}
 
 -(void)requestServerForCountry
 {
