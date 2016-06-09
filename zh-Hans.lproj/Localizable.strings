@@ -1087,7 +1087,7 @@
 "Continue with" = "";
 "Log in" = "登入";
 "Sign up" = "注册";
-"" = "或";
+"or" = "或";
 "Continue as guest" = "跳过登入";
 "Terms of use" = "服务条款";
 "&" = "与";

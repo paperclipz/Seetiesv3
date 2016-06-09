@@ -804,7 +804,7 @@
 "Account"= "Akun";
 "Email Address"= "Email";
 "Change Password"= "Ganti Kata Sandi";
-"Connect to Facebook"= "terhubung dengan Facebook";
+"Connect to Facebook"= "Terhubung dengan Facebook";
 "Connect to Instagram"= "Sambungkan dengan Instagram";
 "Others"= "Lainnya";
 "Delete Account"= "Hapus Akun";
@@ -1087,7 +1087,7 @@
 "Continue with" = "Lanjutkan dengan";
 "Log in" = "Masuk";
 "Sign up" = "Daftar";
-"" = "atau";
+"or" = "atau";
 "Continue as guest" = "Lanjut sebagai tamu";
 "Terms of use" = "Syarat Penggunaan";
 "&" = "&";

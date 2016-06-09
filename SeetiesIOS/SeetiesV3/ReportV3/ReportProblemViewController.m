@@ -141,7 +141,7 @@
             self.lblOneDesc.text = LocalisedString(@"The shop could not be found in the area specified");
 
             self.lblTwoTitle.text = LocalisedString(@"Inaccurate information");
-            self.txtTwoDesc.placeholder = LocalisedString(@"Shop information provided is inaccurate (eg.Business hours, address etc.)");
+            self.txtTwoDesc.placeholder = LocalisedString(@"Shop information provided is inaccurate (eg. Business hours, address etc.)");
 
             break;
             
@@ -150,7 +150,7 @@
             
             self.ibHeaderTitle.text = LocalisedString(@"Report this");
             self.lblOneTitle.text = LocalisedString(@"Deal is not available");
-            self.lblOneDesc.text = LocalisedString(@"The deal is not available in the shop promoted.");
+            self.lblOneDesc.text = LocalisedString(@"The deal is not available in the shop promoted");
             
             self.lblTwoTitle.text = LocalisedString(@"Deal is different value");
             self.txtTwoDesc.text = LocalisedString(@"The deal does not reflect the promoted value");

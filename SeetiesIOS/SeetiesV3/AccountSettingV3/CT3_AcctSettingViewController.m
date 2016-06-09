@@ -103,14 +103,14 @@
     switch (section) {
         case 0:
             
-            title = @"Language";
+            title = LocalisedString(@"Language");
             break;
         case 1:
-            title = @"Account";
+            title = LocalisedString(@"Account");
 
             break;
         case 2:
-            title = @"Others";
+            title = LocalisedString(@"Others");
 
             break;
             
