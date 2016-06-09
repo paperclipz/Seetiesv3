@@ -18,6 +18,8 @@
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic)NewLandingViewController* landingViewController;
+//get firebase token
++(NSString *)getFirebaseToken;
 //- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 
 //com.Seeties.SeetiesIOS.Live

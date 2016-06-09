@@ -17,15 +17,15 @@
 #import "FBLoginManager.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "ACTReporter.h"
-#import <Firebase/Firebase.h>
-#import <FirebaseMessaging/FirebaseMessaging.h>
-#import <FirebaseInstanceID/FirebaseInstanceID.h>
+@import Firebase;
+@import FirebaseInstanceID;
+@import FirebaseMessaging;
 
 
 #define FABRIC_API_KEY @"506d5ee5657719d0cbaa94569d3352125456f169"
 
 @interface AppDelegate ()
-
+@property(nonatomic, strong) NSString *firebaseToken;
 @end
 
 
@@ -449,8 +449,20 @@ NSString* deviceName()
             SLog(@"Connected to FCM.");
             NSString *refreshedToken = [[FIRInstanceID instanceID] token];
             SLog(@"InstanceID token: %@", refreshedToken);
+            self.firebaseToken = refreshedToken;
         }
     }];
+}
+
+/*
+ in otr class
+ [[FIRInstanceID instanceID] token]
+ this method cant get token
+ so below this method is for get token from this class
+ */
++(NSString *)getFirebaseToken{
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    return appdelegate.firebaseToken;
 }
 
 //firebase
