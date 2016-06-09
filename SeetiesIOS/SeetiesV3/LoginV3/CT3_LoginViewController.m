@@ -14,8 +14,9 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "FBLoginManager.h"
+#import "TTTAttributedLabel.h"
 
-@interface CT3_LoginViewController ()
+@interface CT3_LoginViewController ()<TTTAttributedLabelDelegate>
 {
     NSArray* imageArray;
     int varietyImageAnimationIndex;
@@ -37,6 +38,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblContinueWith;
 @property (weak, nonatomic) IBOutlet UIButton *btnContinue;
+
+@property (weak, nonatomic) IBOutlet UILabel *ibOrLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *ibTermLabel;
 @end
 
 @implementation CT3_LoginViewController
@@ -495,6 +499,36 @@
 
     self.lblContinueWith.text = LocalisedString(@"Continue with");
 
+    self.ibOrLabel.text = LocalisedString(@"or");
+    
+    NSString *term = LocalisedString(@"Terms of use");
+    NSString *and = LocalisedString(@"&");
+    NSString *privacy = LocalisedString(@"Privacy Notice");
+    
+    
+    self.ibTermLabel.text = [NSString stringWithFormat:@"%@ %@ %@", term, and, privacy];
+    self.ibTermLabel.highlightedTextColor = [UIColor whiteColor];
+    self.ibTermLabel.delegate = self;
+    
+    NSRange range = [self.ibTermLabel.text rangeOfString:term];
+    [self.ibTermLabel addLinkToURL:[NSURL URLWithString:@"https://seeties.me/terms"] withRange:range];
+    
+    range = [self.ibTermLabel.text rangeOfString:privacy];
+    [self.ibTermLabel addLinkToURL:[NSURL URLWithString:@"https://seeties.me/privacy"] withRange:range];
+    
+    self.ibTermLabel.linkAttributes = @{(id)kCTForegroundColorAttributeName: [UIColor whiteColor],
+                                  NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
+    self.ibTermLabel.activeLinkAttributes = @{(id)kCTForegroundColorAttributeName: [UIColor whiteColor],
+                                              NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)};
+}
+
+- (void)attributedLabel:(__unused TTTAttributedLabel *)label
+   didSelectLinkWithURL:(NSURL *)url {
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+-(void)attributedLabel:(TTTAttributedLabel *)label didLongPressLinkWithURL:(NSURL *)url atPoint:(CGPoint)point{
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 @end
