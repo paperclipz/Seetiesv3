@@ -382,7 +382,7 @@
         }
         else
         {
-            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign up or Log in", nil];//@"Notification Settings"
+            NSArray *firstItemsArray = [[NSArray alloc] initWithObjects:@"Sign Up or Log In", nil];//@"Notification Settings"
             
             NSArray *secondItemsArray;
             if ([ [ UIScreen mainScreen ] bounds ].size.height > 480) {
@@ -549,7 +549,7 @@
             break;
             
         }
-           CASE(@"Sign up or Log in")
+           CASE(@"Sign Up or Log In")
         {
             imageName = @"MoreSignUpOrLogInIcon";
             image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",imageName]];

@@ -95,7 +95,7 @@
 
 -(void)initSelfView
 {
-    self.lblUserName.placeholder = LocalisedString(@"username/ email address");
+    self.lblUserName.placeholder = LocalisedString(@"Username / Email Address");
     self.lblPassword.placeholder = LocalisedString(@"password");
     
     [Utils setRoundBorder:self.ibUserContentView color:LINE_COLOR borderRadius:self.ibUserContentView.frame.size.height/2 borderWidth:1.0f];
@@ -108,7 +108,7 @@
 
 -(void)changeLanguage
 {
-    self.lblUserName.placeholder = LocalisedString(@"username/ email address");
+    self.lblUserName.placeholder = LocalisedString(@"username / email address");
     self.lblPassword.placeholder = LocalisedString(@"password");
 
     self.lblTitle.text = LocalisedString(@"Log in");
