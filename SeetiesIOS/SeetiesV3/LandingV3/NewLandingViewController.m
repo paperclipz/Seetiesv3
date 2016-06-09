@@ -609,7 +609,7 @@
         [self.pushNotificationNavVC setNavigationBarHidden:YES];
         
     }
-    else if([str isEqualToString:CLICK_ACTION_OPEN_PHONE_VERIFICATION])
+    else if([str isEqualToString:CLICK_ACTION_OPEN_PHONE_VERIFICATION] && ![Utils isPhoneNumberVerified])
     {
         _promoPopOutViewController = nil;
         self.promoPopOutViewController = [PromoPopOutViewController new];
@@ -642,8 +642,16 @@
         self.pushNotificationNavVC = [[UINavigationController alloc]initWithRootViewController:self.ct3_NotificationViewController];
         [self.pushNotificationNavVC setNavigationBarHidden:YES];
     }
+    
+    else if([str isEqualToString:CLICK_ACTION_OPEN_HOME])
+    {
+        self.tabBarController.selectedIndex = 0;
+        [self.firstViewController popToRootViewControllerAnimated:NO];
+        [self.secondViewController popToRootViewControllerAnimated:NO];
+        [self.thirdViewController popToRootViewControllerAnimated:NO];
+    }
 
-    if (![Utils isGuestMode] && ![str isEqualToString:CLICK_ACTION_OPEN_PHONE_VERIFICATION] && ![str isEqualToString:CLICK_ACTION_OPEN_PROMO_CODE]) {
+    if (![Utils isGuestMode] && ![str isEqualToString:CLICK_ACTION_OPEN_HOME] && ![str isEqualToString:CLICK_ACTION_OPEN_PROMO_CODE] && ![str isEqualToString:CLICK_ACTION_OPEN_PHONE_VERIFICATION]) {
         [self presentViewController:self.pushNotificationNavVC animated:YES completion:nil];
 
     }
