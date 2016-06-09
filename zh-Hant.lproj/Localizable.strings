@@ -1090,7 +1090,7 @@
 "Continue with" = "";
 "Log in" = "登入";
 "Sign up" = "註冊";
-"" = "或";
+"or" = "或";
 "Continue as guest" = "跳過登入";
 "Terms of use" = "服務條款";
 "&" = "與";

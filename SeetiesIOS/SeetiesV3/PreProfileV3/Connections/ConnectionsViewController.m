@@ -10,12 +10,11 @@
 #import "CAPSPageMenu.h"
 
 @interface ConnectionsViewController ()<UIScrollViewDelegate>
-@property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
-@property (nonatomic, strong) CAPSPageMenu *cAPSPageMenu;
-@property (weak, nonatomic) IBOutlet UIView *ibContentView;
 @property (weak, nonatomic) IBOutlet UILabel *ibHeaderTitle;
-
+@property (weak, nonatomic) IBOutlet UIView *ibSegmentedView;
+@property(nonatomic) HMSegmentedControl *segmentedControl;
+@property(nonatomic) NSArray *arrViewControllers;
 @end
 
 @implementation ConnectionsViewController
@@ -31,60 +30,52 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)InitSelfView{
-    //self.ibScrollView.contentSize = CGSizeMake(850, 50);
-    
-    [self.ibContentView adjustToScreenWidth];
-
-    [self.ibContentView addSubview:self.cAPSPageMenu.view];
     
     self.ibHeaderTitle.text = LocalisedString(@"Connections");
+    [self initSegmentedControlViewInView:self.ibScrollView ContentView:self.ibSegmentedView ViewControllers:self.arrViewControllers];
 }
-- (IBAction)ConnectionsSegmentedControl:(UISegmentedControl *)sender
+
+-(void)initSegmentedControlViewInView:(UIScrollView*)view ContentView:(UIView*)contentView ViewControllers:(NSArray*)arryViewControllers
 {
-    switch (sender.selectedSegmentIndex) {
-        case 0:
-            NSLog(@"Follower was selected");
-            [self.ibScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-            break;
-        case 1:
-            NSLog(@"Following was selected");
-            [self.ibScrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:YES];
-            break;
-        default:
-            break;
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    view.delegate = self;
+    
+    
+    NSMutableArray* arrTitles = [NSMutableArray new];
+    
+    for (int i = 0; i<arryViewControllers.count; i++) {
+        
+        UIViewController* vc = arryViewControllers[i];
+        [view addSubview:vc.view];
+        [arrTitles addObject:vc.title];
+        vc.view.frame = CGRectMake(i*frame.size.width, 0, view.frame.size.width, view.frame.size.height);
     }
+    
+    view.contentSize = CGSizeMake(frame.size.width*arryViewControllers.count , view.frame.size.height);
+    
+    
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
+    self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : TEXT_GRAY_COLOR,
+                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : ONE_ZERO_TWO_COLOR,
+                                                          NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+    
+    self.segmentedControl.sectionTitles = arrTitles;
+    self.segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectionIndicatorColor = DEVICE_COLOR;
+    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    
+    [contentView addSubview:self.segmentedControl];
+    
+    [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+        [view scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
+    }];
+    
 }
 
 #pragma mark - Declaration
-
--(CAPSPageMenu*)cAPSPageMenu
-{
-    if(!_cAPSPageMenu)
-    {
-        CGRect deviceFrame = [Utils getDeviceScreenSize];
-        
-        NSArray *controllerArray = @[self.FollowerConnectionsTabViewController,self.FollowingConnectionsTabViewController];
-        NSDictionary *parameters = @{
-                                     CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
-                                     CAPSPageMenuOptionViewBackgroundColor: [UIColor colorWithRed:246.0/255.0 green:246.0/255.0 blue:246.0/255.0 alpha:1.0],
-                                     CAPSPageMenuOptionSelectionIndicatorColor: DEVICE_COLOR,
-                                     CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor clearColor],
-                                     CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.0],
-                                     CAPSPageMenuOptionMenuHeight: @(40.0),
-                                     CAPSPageMenuOptionMenuItemWidth: @(deviceFrame.size.width/2 - 20),
-                                     CAPSPageMenuOptionCenterMenuItems: @(YES),
-                                     CAPSPageMenuOptionUnselectedMenuItemLabelColor:TEXT_GRAY_COLOR,
-                                     CAPSPageMenuOptionSelectedMenuItemLabelColor:DEVICE_COLOR,
-                                     };
-        
-        _cAPSPageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllerArray frame:CGRectMake(0.0, 0.0, self.ibContentView.frame.size.width, self.ibContentView.frame.size.height) options:parameters];
-        _cAPSPageMenu.view.backgroundColor = [UIColor whiteColor];
-        //_cAPSPageMenu.delegate = self;
-    }
-    return _cAPSPageMenu;
-}
-
-
 
 -(ConnectionsTabViewController*)FollowerConnectionsTabViewController{
     if(!_FollowerConnectionsTabViewController)
@@ -110,9 +101,9 @@
     if(!_FollowingConnectionsTabViewController)
     {
         _FollowingConnectionsTabViewController = [ConnectionsTabViewController new];
+        _FollowingConnectionsTabViewController.title = LocalisedString(@"Following");
         _FollowingConnectionsTabViewController.usersListingType = UsersListingTypeFollowing;
         _FollowingConnectionsTabViewController.userID = self.userID;
-        _FollowingConnectionsTabViewController.title = LocalisedString(@"Following");
 
         __weak typeof (self)weakSelf = self;
         
@@ -135,5 +126,20 @@
         _profileViewController = [ProfileViewController new];
     
     return _profileViewController;
+}
+
+-(NSArray *)arrViewControllers{
+    if (!_arrViewControllers) {
+        _arrViewControllers = @[self.FollowerConnectionsTabViewController, self.FollowingConnectionsTabViewController];
+    }
+    return _arrViewControllers;
+}
+
+#pragma mark - UIScrollViewDelegate
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger page = scrollView.contentOffset.x / pageWidth;
+    
+    [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
 }
 @end

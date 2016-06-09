@@ -739,7 +739,7 @@
 -(void)voucherCollectRedeemClicked:(DealModel *)dealModel{
     // checking for guest mode
     if ([Utils isGuestMode]) {
-        [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"Please log in or sign up to continue") message:@"" cancelButtonTitle:LocalisedString(@"Not now") otherButtonTitles:@[@"Log in / Sign up"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
             if (buttonIndex == 1) {
                 [Utils showLogin];
@@ -1261,7 +1261,7 @@
 //        }
         
 //        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
-        [MessageManager showMessage:LocalisedString(@"Collected in Voucher Wallet") Type:STAlertSuccess];
+        [MessageManager showMessage:LocalisedString(@"Succesfully collected into your voucher wallet.") Type:STAlertSuccess];
         [self RequestServerForVouchersCount];
         [self.ibVoucherTable reloadData];
         self.isCollecting = NO;
