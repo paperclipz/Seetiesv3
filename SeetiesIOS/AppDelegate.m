@@ -362,16 +362,22 @@
     //firebase
     [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
 
-    [PFPush handlePush:userInfo];
+//    [PFPush handlePush:userInfo];
     
-    NSString* action = userInfo[@"click_action"];
-    
-    if (action) {
-        
-        [self.landingViewController showPushNotificationView:action];
-    }
-    
+
     SLog(@"didReceiveRemoteNotification : %@",userInfo);
+    
+    if([application applicationState] == UIApplicationStateInactive || [application applicationState] == UIApplicationStateBackground)
+    {
+        NSString* action = userInfo[@"click_action"];
+        
+        if (action) {
+            
+            [self.landingViewController showPushNotificationView:action];
+        }
+    }else{
+        
+    }
     
 //    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
 //    self.window.backgroundColor = [UIColor whiteColor];
