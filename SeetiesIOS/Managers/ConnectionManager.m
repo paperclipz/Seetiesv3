@@ -523,6 +523,7 @@
         case ServerRequestTypeGetPostDetail:
         case ServerRequeetTypeGetTranslatePost:
         case ServerRequestTypeGetPostComments:
+        case ServerRequestTypeGetNearbyPost:
         case ServerRequestTypePostSaveDraft:
             str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
             
@@ -701,6 +702,7 @@
             str = [NSString stringWithFormat:@"%@/%@/post", API_VERION_URL, [Utils getUserID]];
             break;
             
+        case ServerRequestTypePostCollectState:
         case ServerRequestTypePostCollectionFriendSuggestion:
             str = [NSString stringWithFormat:@"%@/%@/collections", API_VERION_URL, [Utils getUserID]];
             break;
@@ -1392,6 +1394,14 @@
             break;
             
             
+        }
+            
+        case ServerRequestTypeGetNearbyPost:
+        {
+            NSDictionary* dict = obj;
+            self.dataManager.nearbyRecommendationModel = [[NearbyRecommendationModel alloc]initWithDictionary:dict error:&error];
+            
+            break;
         }
             
         default:

@@ -17,6 +17,10 @@
 
 @end
 
+@protocol NearbyRecommendationDetailModel <NSObject>
+
+@end
+
 @interface PostDetailModel : JSONModel
 
 @end
@@ -59,3 +63,20 @@
 @property (strong, nonatomic) UserModel *author_info;
 
 @end
+
+@interface NearbyRecommendationModel : JSONModel
+
+@property (strong, nonatomic) NSArray<NearbyRecommendationDetailModel> *recommendationPosts;
+
+@end
+
+@interface NearbyRecommendationDetailModel : JSONModel
+
+@property (strong, nonatomic) NSString *place_name;
+@property (strong, nonatomic) NSString *post_id;
+@property (strong, nonatomic) NSArray<PhotoModel> *photos;
+@property (strong, nonatomic) UserModel *user_info;
+
+@end
+
+

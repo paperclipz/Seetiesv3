@@ -161,6 +161,8 @@ typedef enum
     ServerRequestTypeGetPostLikes,
     ServerRequestTypeGetPostComments,
     ServerRequestTypeGetPostCollectSuggestion,
+    ServerRequestTypeGetNearbyPost,
+    ServerRequestTypePostCollectState,
     //** PostDetail **//
     
     /*register notification*/

@@ -110,6 +110,7 @@ typedef void(^CompletionVoidBlock) (void);
 
 @property(nonatomic,strong)PostDetailLikeModel *postDetailLikeModel;
 @property(nonatomic,strong)PostDetailCommentModel *postDetailCommentModel;
+@property(nonatomic,strong)NearbyRecommendationModel *nearbyRecommendationModel;
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;

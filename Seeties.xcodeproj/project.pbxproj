@@ -1320,6 +1320,8 @@
 		C2C157171C574BB6007608FC /* PromoPopOutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C157151C574BB6007608FC /* PromoPopOutViewController.xib */; };
 		C2E6D7561CDA052C00B53BF4 /* InviteFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6D7551CDA052C00B53BF4 /* InviteFriendModel.m */; };
 		C7023C231CF2BFFD00A2DF04 /* FBLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */; };
+		C7067DB21D07F15E0086E273 /* FeedRecommendationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DB11D07F15E0086E273 /* FeedRecommendationView.m */; };
+		C7067DB71D082FAF0086E273 /* FeedRecommendationSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DB61D082FAF0086E273 /* FeedRecommendationSubView.m */; };
 		C71B5E181CBE3BED00B4FA91 /* FriendSuggestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */; };
 		C74C08D61CF59ABA00386330 /* TranslationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C74C08D51CF59ABA00386330 /* TranslationModel.m */; };
 		C74C08E21CF59C3F00386330 /* CollectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C74C08D81CF59C3F00386330 /* CollectButton.m */; };
@@ -3043,6 +3045,10 @@
 		C3EC7EBA0E9EAE542E3D7CC0 /* Pods-Seeties.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seeties.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seeties/Pods-Seeties.release.xcconfig"; sourceTree = "<group>"; };
 		C7023C211CF2BFFD00A2DF04 /* FBLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginManager.h; sourceTree = "<group>"; };
 		C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginManager.m; sourceTree = "<group>"; };
+		C7067DB01D07F15E0086E273 /* FeedRecommendationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedRecommendationView.h; sourceTree = "<group>"; };
+		C7067DB11D07F15E0086E273 /* FeedRecommendationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedRecommendationView.m; sourceTree = "<group>"; };
+		C7067DB51D082FAF0086E273 /* FeedRecommendationSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedRecommendationSubView.h; sourceTree = "<group>"; };
+		C7067DB61D082FAF0086E273 /* FeedRecommendationSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedRecommendationSubView.m; sourceTree = "<group>"; };
 		C71B5E161CBE3BED00B4FA91 /* FriendSuggestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSuggestionModel.h; sourceTree = "<group>"; };
 		C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSuggestionModel.m; sourceTree = "<group>"; };
 		C74C08D41CF59ABA00386330 /* TranslationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationModel.h; sourceTree = "<group>"; };
@@ -5826,11 +5832,15 @@
 				C7EF60F51CFC40790086327B /* FeedCommentView.m */,
 				C750AB9D1D05397F002A8A45 /* FeedShopLocationView.h */,
 				C750AB9E1D05397F002A8A45 /* FeedShopLocationView.m */,
+				C7067DB01D07F15E0086E273 /* FeedRecommendationView.h */,
+				C7067DB11D07F15E0086E273 /* FeedRecommendationView.m */,
 				C74C08DB1CF59C3F00386330 /* FeedV3DetailViewController.h */,
 				C74C08DC1CF59C3F00386330 /* FeedV3DetailViewController.m */,
 				C74C08DD1CF59C3F00386330 /* FeedV3DetailViewController.storyboard */,
 				C74C08DE1CF59C3F00386330 /* iCarousel.h */,
 				C74C08DF1CF59C3F00386330 /* iCarousel.m */,
+				C7067DB51D082FAF0086E273 /* FeedRecommendationSubView.h */,
+				C7067DB61D082FAF0086E273 /* FeedRecommendationSubView.m */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -7863,6 +7873,7 @@
 				8AF33A401C3F6DAF000A2021 /* Location.m in Sources */,
 				8AC8F7241BDA414E00DEF14A /* CollectionListingViewController.m in Sources */,
 				8AC7B6631CE5C102000775CC /* UIImage+Scaling.m in Sources */,
+				C7067DB71D082FAF0086E273 /* FeedRecommendationSubView.m in Sources */,
 				8A114CB51BE73F5D006AE3F0 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				8AC7B6721CE5C102000775CC /* UIView+RoundedCorners.m in Sources */,
 				8A114CD61BE73F5D006AE3F0 /* CommonView.m in Sources */,
@@ -7907,6 +7918,7 @@
 				8ADD47031C4CFD6D00AEAE2B /* AnnouncementModel.m in Sources */,
 				8A9E06591CBF5A70000FB246 /* UIActionSheet+Block.m in Sources */,
 				8AD6C1151B706CF30040437E /* FSOperation.m in Sources */,
+				C7067DB21D07F15E0086E273 /* FeedRecommendationView.m in Sources */,
 				8AFA51E71C47B4AB00E7920E /* SuggestionFeatureCVCell.m in Sources */,
 				8AD6C1161B706CF30040437E /* FSWebLogin.m in Sources */,
 				8A6BB4341BF0C338005AA1B3 /* MZTransition.m in Sources */,

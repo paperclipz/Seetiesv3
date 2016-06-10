@@ -26,11 +26,13 @@
 #import "FeedShopLocationView.h"
 #import "FeedRecommendationView.h"
 #import "SeetiesShopViewController.h"
+#import "AddCollectionDataViewController.h"
+#import "NearByRecommtationViewController.h"
 
 //static int kConstantLeftPadding   = 15;
 //static int kConstantTopPadding    = 15;
 
-@interface FeedV3DetailViewController () <iCarouselDataSource, iCarouselDelegate, UIScrollViewDelegate, FeedContentViewDelegate, IDMPhotoBrowserDelegate, FeedCommentViewDelegate, FeedShopLocationViewDelegate>
+@interface FeedV3DetailViewController () <iCarouselDataSource, iCarouselDelegate, UIScrollViewDelegate, FeedContentViewDelegate, IDMPhotoBrowserDelegate, FeedCommentViewDelegate, FeedShopLocationViewDelegate, FeedRecommendationViewDelegate>
 {
     BOOL isMiddleOfCallingServer;
 }
@@ -242,20 +244,24 @@
 
 - (void)initializeRecommendationSection {
     
-    self.feedRecommendationView = [[FeedRecommendationView alloc] initWithFrame:CGRectMake(0, self.currentPointY, CGRectGetWidth(self.view.frame), 300) withDataDictionary:self.dataDictionary];
+    NearbyRecommendationModel *model = [[ConnectionManager dataManager] nearbyRecommendationModel];
     
-//    self.feedRecommendationView
+    if (model.recommendationPosts.count < 2) {
+        return;
+    }
+    
+    self.feedRecommendationView = [[FeedRecommendationView alloc] initWithFrame:CGRectMake(0, self.currentPointY, CGRectGetWidth(self.view.frame), 300) withModel:model];
+    self.feedRecommendationView.delegate = self;
+    
+    [self.contentView addSubview:self.feedRecommendationView];
+    [self.allViewSectionArray addObject:self.feedRecommendationView];
+    
 }
 
 - (void)repositionLayout {
     
     //set this property = "YES" in order to replace contentView frame value calculated by autolayout with user-defined frame value
     self.contentView.translatesAutoresizingMaskIntoConstraints = YES;
-    
-//    [self.feedCommentView setFrame:CGRectMake(0, CGRectGetMaxY(self.feedContentView.frame), CGRectGetWidth(self.view.frame), 300)];
-    
-//    [self.feedContentView reloadView];
-//    [self.feedCommentView reloadView];
     
     self.currentPointY = 300; // carousel height = 300, start below that
     
@@ -281,7 +287,8 @@
 
 - (void)updateBottomViewLayout {
     
-    self.quickCollectButton.selected = (BOOL)[self.dataDictionary objectForKey:@"collect"];
+    self.quickCollectButton.selected = [self.dataDictionary[@"collect"] boolValue];
+
     [self.quickCollectButton setTitle:self.quickCollectButton.selected ? @"  " : LocalisedString(@"Collect") forState:UIControlStateNormal];
     
     self.likeButton.selected = [self.dataDictionary[@"like"] boolValue];
@@ -368,8 +375,6 @@
                          }];
     }];
     
-    
-    //    }
 }
 
 - (IBAction)commentButtonClicked:(id)sender {
@@ -401,14 +406,20 @@
     [button setUserInteractionEnabled:NO];
     [button setTitle:@"  " forState:UIControlStateNormal];
     
-    //    AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
-    //    [self presentViewController:AddCollectionDataView animated:YES completion:nil];
-    //    [AddCollectionDataView GetPostID:GetPostID GetImageData:[UrlArray objectAtIndex:0]];
-    
+    [self postCollectData];
 }
 
 - (IBAction)allCollectionButtonClicked:(id)sender {
     NSLog(@"all collection pressed!!");
+    
+    AddCollectionDataViewController *AddCollectionDataView = [[AddCollectionDataViewController alloc]init];
+    
+    [self presentViewController:AddCollectionDataView animated:YES completion:nil];
+    
+    PhotoModel *photo = [self.postDetail.arrPhotos objectAtIndex:0];
+    
+    [AddCollectionDataView GetPostID:self.postID GetImageData:photo.imageURL];
+
 }
 
 #pragma mark - routing method
@@ -478,14 +489,12 @@
     self.photoBrowser.usePopAnimation = YES;
     
     [self.view.window.rootViewController presentViewController:self.photoBrowser animated:YES completion:nil];
-
 }
 
 #pragma mark - IDMPhotoDelegate
 
 - (void)photoBrowser:(IDMPhotoBrowser *)photoBrowser didDismissAtPageIndex:(NSUInteger)index {
     [self.carousel scrollToItemAtIndex:index animated:YES];
-
 }
 
 #pragma mark - Scroll view delegate
@@ -506,13 +515,6 @@
     if (contentOffset >= 0 && contentOffset <= imgWidth) {
         self.topNavBarBackgroundImg.alpha = contentOffset / imgWidth;
     }
-    
-//    NSLog(@"carousel x:%f y:%f w:%f h:%f", self.carousel.frame.origin.x, self.carousel.frame.origin.y, self.carousel.frame.size.width,self.carousel.frame.size.height);
-//    
-//    NSLog(@"view x:%f y:%f w:%f h:%f", view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height);
-//
-//    NSLog(@"scrollview y:%f", scrollView.contentOffset.y);
-
 }
 
 #pragma mark - FeedContentDelegate
@@ -533,7 +535,6 @@
     searchTagVC.keyword = [NSString stringWithFormat:@"#%@", [tagsLabel.tags objectAtIndex:index]];
     
     [self.navigationController pushViewController:searchTagVC animated:YES];
-
 }
 
 - (void)profileButtonClicked:(id)sender {
@@ -573,8 +574,6 @@
         else {
             [self postFollowingUserData];
         }
-        
-
     }
     
 }
@@ -604,7 +603,6 @@
         
         [self openProfileWithUserID:userID];
     }
-    
 }
 
 - (void)allActivitiesButtonDidClicked:(id)sender {
@@ -615,7 +613,6 @@
 //    [CommentView GetCommentIDArray:CommentIDArray GetPostIDArray:PostIDArray GetMessageArray:MessageArray GetUser_Comment_uidArray:User_Comment_uidArray GetUser_Comment_nameArray:User_Comment_nameArray GetUser_Comment_usernameArray:User_Comment_usernameArray GetUser_Comment_photoArray:User_Comment_photoArray];
     [CommentView GetRealPostID:self.postID];
     [CommentView GetWhatView:@"Comment"];
-
 }
 
 #pragma mark - FeedShopLocationDelegate
@@ -635,6 +632,24 @@
     [self.navigationController pushViewController:shopVC animated:YES];
 }
 
+#pragma mark - FeedRecommendationViewDelegate 
+
+- (void)seeAllButtonClicked:(id)sender {
+    
+    NearByRecommtationViewController *NearByRecommtationView = [[NearByRecommtationViewController alloc]init];
+    [self presentViewController:NearByRecommtationView animated:YES completion:nil];
+//    [NearByRecommtationView GetLPhoto:PhotoArray_Nearby GetPostID:PostIDArray_Nearby GetPlaceName:PlaceNameArray_Nearby GetUserInfoUrl:UserInfo_UrlArray_Nearby GetUserInfoName:UserInfo_NameArray_Nearby GetTitle:TitleArray_Nearby GetMessage:MessageArray_Nearby GetDistance:DistanceArray_Nearby GetSearchDisplayName:SearchDisplayNameArray_Nearby GetTotalComment:TotalCommentArray_Nearby GetTotalLike:TotalLikeArray_Nearby GetSelfCheckLike:SelfCheckLikeArray_Nearby GetSelfCheckCollect:SelfCheckCollectArray_Nearby];
+
+}
+
+- (void)openPostDetail:(id)sender withPostID:(NSString *)postID {
+    
+}
+
+- (void)openUserProfile:(id)sender withUserID:(NSString *)userID {
+    [self openProfileWithUserID:userID];
+}
+
 #pragma mark - API caller
 
 - (void)getDataFromServer {
@@ -646,7 +661,6 @@
         NSLog(@"Success!");
         
         //dictionary for display content
-        
         self.postDetail = [[ConnectionManager dataManager] postDetailModel];
         
         self.imageCountLabel.text = [NSString stringWithFormat:@"1 / %lu", (unsigned long)self.postDetail.arrPhotos.count];
@@ -719,12 +733,7 @@
     [paramDict setObject:@(30) forKey:@"list_size"];
     [paramDict setObject:@(1) forKey:@"page"];
 
-    
-//    NSDictionary *dict = @{@"token": [Utils getAppToken] };
-    
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetPostLikes parameter:paramDict appendString:[NSString stringWithFormat:@"%@/like", self.postID] success:^(id object) {
-        
-//        NSDictionary *data = (NSDictionary *)object;
 
         PostDetailLikeModel *postDetailLikeModel = [[ConnectionManager dataManager] postDetailLikeModel];
 
@@ -736,15 +745,11 @@
         //total collections
         [self.userLikeDataDictionary setObject:@(self.postDetail.collection_count) forKey:@"collection_count"];
         
-        
         [self getAllCommentData];
         
-
     } failure:^(id object) {
         NSLog(@"ASDF");
     }];
-    
-    
 }
 
 -(void)requestServerForPostSuggestedCollection
@@ -774,6 +779,7 @@
             [self getAllCollectionData];
         }
 
+        [self getRecommendationData];
         [self repositionLayout];
         
     } failure:^(id object) {
@@ -858,8 +864,6 @@
         
         self.likeButton.selected = [self.dataDictionary[@"like"] boolValue];
         
-//        [self.feedCommentView reloadView];
-        
         [self getUserLikeDataFromServer];
         
     } failure:^(id object) {
@@ -900,6 +904,42 @@
 
 }
 
+- (void)getRecommendationData {
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/nearbyposts", self.postID];
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                           @"post_id" : self.postID };
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetNearbyPost parameter:dict appendString:appendString success:^(id object) {
+        
+        if (!self.feedRecommendationView) {
+            [self initializeRecommendationSection];
+        }
+        
+        [self repositionLayout];
+        
+    } failure:^(id object) {
+        
+    }];
+}
+
+- (void)postCollectData {
+    
+    NSString* appendString = [NSString stringWithFormat:@"0/collect"];
+    NSDictionary* dict = @{@"token" : [Utils getAppToken],
+                           @"posts[0][id]" : self.postID };
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePostCollectState parameter:dict appendString:appendString success:^(id object) {
+        
+        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+
+        
+    } failure:^(id object) {
+        
+    }];
+
+}
+
 -(void)getAllCollectionData
 {
     self.feedType_CollectionSuggestedTblCell = [[FeedType_CollectionSuggestedTblCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
@@ -920,12 +960,10 @@
     };
     
     [self.allViewSectionArray addObject:self.feedType_CollectionSuggestedTblCell];
-//    [self repositionLayout];
 }
 
 -(void)showCollectionListingView
 {
-    
     _collectionListingViewController = nil;
     
     [self.collectionListingViewController setTypePostSuggestion:self.postID];

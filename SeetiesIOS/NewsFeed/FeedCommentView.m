@@ -176,33 +176,21 @@ static int kConstantTopPadding    = 15;
 
 - (void)setupCommentSection {
     
-//    NSArray *allComments = self.dataDictionary[@"comments"];
-    
-//    if (allComments && [allComments count] > 0) {
-    
-        self.commentImageView = [[UIImageView alloc]init];
-        self.commentImageView.image = [UIImage imageNamed:@"PostCommentIcon.png"];
-        self.commentImageView.frame = CGRectZero;
-        [self addSubview:self.commentImageView];
-    
-        self.commentDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        self.commentDefaultLabel.hidden = YES;
-        self.commentDefaultLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-        self.commentDefaultLabel.textColor = ONE_ZERO_TWO_COLOR;
-    
-        self.commentLabelsView = [UIView new];
-    
-        [self addSubview:self.commentDefaultLabel];
-        [self addSubview:self.commentLabelsView];
-        
-//        self.commentTTTLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
-//        self.commentTTTLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Regular" size:15];
-//        self.commentTTTLabel.delegate = self;
-//        
-//        [self addSubview:self.commentTTTLabel];
-        
-        //    self.commentTTTLabel = [TEXT_GRAY_COLOR CGColor];
-//    }
+    self.commentImageView = [[UIImageView alloc]init];
+    self.commentImageView.image = [UIImage imageNamed:@"PostCommentIcon.png"];
+    self.commentImageView.frame = CGRectZero;
+    [self addSubview:self.commentImageView];
+
+    self.commentDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.commentDefaultLabel.hidden = YES;
+    self.commentDefaultLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+    self.commentDefaultLabel.textColor = ONE_ZERO_TWO_COLOR;
+
+    self.commentLabelsView = [UIView new];
+
+    [self addSubview:self.commentDefaultLabel];
+    [self addSubview:self.commentLabelsView];
+
 }
 
 - (void)setupSeperatorView {

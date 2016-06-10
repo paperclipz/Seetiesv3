@@ -43,3 +43,18 @@
 
 @end
 
+@implementation NearbyRecommendationModel
+
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{ @"data": @"recommendationPosts" }];
+}
+
+@end
+
+@implementation NearbyRecommendationDetailModel
+
+@end
+
+
+
