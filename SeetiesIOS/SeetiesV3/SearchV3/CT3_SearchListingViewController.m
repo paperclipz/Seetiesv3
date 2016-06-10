@@ -150,8 +150,8 @@
     
     NSString* fontName;
     
-    if ([[LanguageManager getDeviceAppLanguageCode] isEqualToString:TAIWAN_SERVER_NAME] ||
-        [[LanguageManager getDeviceAppLanguageCode] isEqualToString:CHINESE_SERVER_NAME]) {
+    if ([[LanguageManager getDeviceAppLanguageCode] isEqualToString:CHINESE_CODE] ||
+        [[LanguageManager getDeviceAppLanguageCode] isEqualToString:TAIWAN_CODE]) {
         fontName = @"PingFangTC-Regular";
     }
     else{
