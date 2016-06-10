@@ -29,6 +29,7 @@ pod 'YLGIFImage'
 pod 'AFNetworking', '~> 3.0'
 pod 'AMPopTip'
 pod 'Parse'
+pod 'iCarousel'
 
 #facebook SDK
 pod 'FBSDKCoreKit'
