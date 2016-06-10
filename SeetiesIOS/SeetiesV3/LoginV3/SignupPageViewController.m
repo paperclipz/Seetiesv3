@@ -87,7 +87,7 @@
     else if (self.ibReferralCodeTxt.text.length > 0 && self.ibReferralCodeTxt.text.length != 10){
 //        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Referral code should be exactly 10 characters") type:TSMessageNotificationTypeError];
 //        [MessageManager showMessage:LocalisedString(@"Referral code should be exactly 10 characters") Type:STAlertError];
-        [MessageManager popoverErrorMessage:LocalisedString(@"Referral code should be exactly 10 characters") target:self popFrom:self.ibReferralView];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Referral code shall be 10 characters") target:self popFrom:self.ibReferralView];
         
         return NO;
     }

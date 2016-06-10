@@ -78,7 +78,7 @@
     else{
 //        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username / email cannot be empty") Type:TSMessageNotificationTypeError];
 //        [MessageManager showMessage:LocalisedString(@"Username / email cannot be empty") Type:STAlertError];
-        [MessageManager popoverErrorMessage:LocalisedString(@"Username / email cannot be empty") target:self popFrom:self.ibUsernameView];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Username / Email could not be empty") target:self popFrom:self.ibUsernameView];
     }
 }
 
