@@ -106,7 +106,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WKA-fc-85d">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WKA-fc-85d">
                                 <rect key="frame" x="0.0" y="10" width="322" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="OAD-c1-gRy"/>
