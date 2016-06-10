@@ -1481,4 +1481,11 @@
 "Try Again" = "再试试";
 "Redeem now" = "立即领取";
 
-
+"Thank you for your feedback!" = "感谢您的宝贵意见";
+"Invalid email address" = "电邮无效, 请确认再试";
+"Sorry! This voucher is only available for collection on {!date} at {!time}" = "抱歉, 此优惠劵只开放收藏于{!date},{!time}";
+"Okay!" = "好的, 了解!";
+"Username / Email could not be empty" = "用户名 / 电邮不可留白喔";
+"This feature is not available in this region" = "抱歉, 此功能暂时还未开放到这个地区";
+"You've reached your maximum number of redeemable deals" = "已到达收藏上限喔!";
+"Referral code shall be 10 characters" = "邀请码必须是10个字喔";

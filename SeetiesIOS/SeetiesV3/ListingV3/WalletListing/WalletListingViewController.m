@@ -390,7 +390,7 @@
 - (IBAction)emptyBtnClicked:(id)sender {
     HomeModel *homeModel = [[DataManager Instance] homeModel];
     if ([Utils isArrayNull:homeModel.featured_deals]) {
-        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"This feature is not available at your place") cancelButtonTitle:LocalisedString(@"Okay") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"This feature is not available in this region") cancelButtonTitle:LocalisedString(@"Okay") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             [Utils reloadAppView:YES];
         }];
     }

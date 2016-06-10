@@ -1481,5 +1481,11 @@
 "Try Again" = "Coba Lagi";
 "Redeem now" = "Redeem Sekarang";
 
-
-
+"Thank you for your feedback!" = "Terima kasih atas masukannya!";
+"Invalid email address" = "Alamat email salah";
+"Sorry! This voucher is only available for collection on {!date} at {!time}" = "Maaf! Voucher ini hanya tersedia untuk collection pada {!date} di jam {!time}";
+"Okay!" = "OK!";
+"Username / Email could not be empty" = "Nama pengguna/email tidak boleh kosong";
+"This feature is not available in this region" = "Fitur ini tidak tersedia di wilayah ini";
+"You've reached your maximum number of redeemable deals" = "Kamu telah mencapai batas maksimum dari jumlah deals yang bisa di-redeem";
+"Referral code shall be 10 characters" = "Kode referral hanya boleh 10 karakter";
