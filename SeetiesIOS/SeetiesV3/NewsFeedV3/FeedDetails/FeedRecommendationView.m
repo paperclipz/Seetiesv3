@@ -20,7 +20,7 @@ static int kConstantTopPadding    = 15;
 
 @implementation FeedRecommendationView
 
-- (id)initWithFrame:(CGRect)frame withModel:(NearbyRecommendationModel *)model{
+- (id)initWithFrame:(CGRect)frame withModel:(NearbyRecommendationModel *)model isNeedTop:(BOOL)isNeedTop{
     
     self = [super initWithFrame:frame];
     
@@ -28,7 +28,7 @@ static int kConstantTopPadding    = 15;
         self.model = model;
         self.currentPointY = 0;
         
-        [self setupTopGrayView];
+        [self setupTopGrayView:isNeedTop];
         [self setupRecommendationHeader];
         [self setupSeparatorView];
         [self setupRecommendationView];
@@ -40,9 +40,9 @@ static int kConstantTopPadding    = 15;
     return self;
 }
 
-- (void)setupTopGrayView {
+- (void)setupTopGrayView:(BOOL)isNeedTop {
     
-    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 10)];
+    UIView *grayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), isNeedTop?10:0)];
     
     grayView.backgroundColor = OUTLINE_COLOR;
     

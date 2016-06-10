@@ -242,7 +242,7 @@
 //    [self repositionLayout];
 }
 
-- (void)initializeRecommendationSection {
+- (void)initializeRecommendationSection:(BOOL)isNeedTop {
     
     NearbyRecommendationModel *model = [[ConnectionManager dataManager] nearbyRecommendationModel];
     
@@ -250,7 +250,7 @@
         return;
     }
     
-    self.feedRecommendationView = [[FeedRecommendationView alloc] initWithFrame:CGRectMake(0, self.currentPointY, CGRectGetWidth(self.view.frame), 300) withModel:model];
+    self.feedRecommendationView = [[FeedRecommendationView alloc] initWithFrame:CGRectMake(0, self.currentPointY, CGRectGetWidth(self.view.frame), 300) withModel:model isNeedTop:isNeedTop];
     self.feedRecommendationView.delegate = self;
     
     [self.contentView addSubview:self.feedRecommendationView];
@@ -775,15 +775,19 @@
         
         [self.arrCollections addObjectsFromArray:self.postCollectionsModel.arrSuggestedCollection];
         
+        BOOL isNeedTop = NO;
         if (!self.feedType_CollectionSuggestedTblCell) {
             
             if (![Utils isArrayNull:self.arrCollections]) {
                 [self getAllCollectionData];
+                
+                isNeedTop = YES;
 
             }
         }
 
-        [self getRecommendationData];
+        [self getRecommendationData:isNeedTop];
+        
         [self repositionLayout];
         
     } failure:^(id object) {
@@ -908,7 +912,7 @@
 
 }
 
-- (void)getRecommendationData {
+- (void)getRecommendationData:(BOOL)isNeedTop {
     
     NSString* appendString = [NSString stringWithFormat:@"%@/nearbyposts", self.postID];
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
@@ -917,7 +921,7 @@
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetNearbyPost parameter:dict appendString:appendString success:^(id object) {
         
         if (!self.feedRecommendationView) {
-            [self initializeRecommendationSection];
+            [self initializeRecommendationSection:isNeedTop];
         }
         
         [self repositionLayout];

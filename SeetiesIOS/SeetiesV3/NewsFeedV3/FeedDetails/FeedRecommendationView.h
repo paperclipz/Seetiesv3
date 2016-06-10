@@ -22,7 +22,8 @@
 @property (strong, nonatomic) NearbyRecommendationModel *model;
 @property (weak, nonatomic) id<FeedRecommendationViewDelegate> delegate;
 
-- (id)initWithFrame:(CGRect)frame withModel:(NearbyRecommendationModel *)model;
+//- (id)initWithFrame:(CGRect)frame withModel:(NearbyRecommendationModel *)model;
+- (id)initWithFrame:(CGRect)frame withModel:(NearbyRecommendationModel *)model isNeedTop:(BOOL)isNeedTop;
 
 
 @end
