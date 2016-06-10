@@ -83,7 +83,7 @@
 #pragma mark - IBAction
 - (IBAction)btnDoneClicked:(id)sender {
     if ([Utils isStringNull:self.ibEmailTxt.text] || [Utils isStringNull:self.ibFeedbackTxt.text]) {
-        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Email / Experience cannot be nil.") cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:nil];
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Kindly fill in all required fields") cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:nil];
         return;
     }
     
@@ -91,7 +91,7 @@
         [self requestServerToSendFeedback];
     }
     else{
-        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please enter correct email id") cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:nil];
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Invalid email address") cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:nil];
     }
 }
 
@@ -185,7 +185,7 @@
         [LoadingManager hide];
         self.hasSent = YES;
         
-        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Feedback successfully sent") cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Thank you for your feedback!") cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
         

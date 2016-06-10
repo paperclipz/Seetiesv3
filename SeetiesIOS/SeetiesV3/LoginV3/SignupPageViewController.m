@@ -65,14 +65,14 @@
         
 //        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Password should be more than 8 character") type:TSMessageNotificationTypeError];
 //        [MessageManager showMessage:LocalisedString(@"Password should be more than 8 character") Type:STAlertError];
-        [MessageManager popoverErrorMessage:LocalisedString(@"Password should be more than 8 character") target:self popFrom:self.ibContentPassword];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Yikes. Your password must be at least 8 characters.") target:self popFrom:self.ibContentPassword];
         return false;
     }
     else if(self.txtUserName.text.length<=1)
     {
 //        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Username should be more than 1 character") type:TSMessageNotificationTypeError];
 //        [MessageManager showMessage:LocalisedString(@"Username should be more than 1 character") Type:STAlertError];
-        [MessageManager popoverErrorMessage:LocalisedString(@"Username should be more than 1 character") target:self popFrom:self.ibContentUserName];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Oops! It seems like you've missed out your username / password.") target:self popFrom:self.ibContentUserName];
 
         return false;
         
@@ -81,7 +81,7 @@
     {
 //        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Not valid email address") type:TSMessageNotificationTypeError];
 //        [MessageManager showMessage:LocalisedString(@"Not valid email address") Type:STAlertError];
-        [MessageManager popoverErrorMessage:LocalisedString(@"Not valid email address") target:self popFrom:self.ibContentEmail];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Invalid email address") target:self popFrom:self.ibContentEmail];
         return NO;
     }
     else if (self.ibReferralCodeTxt.text.length > 0 && self.ibReferralCodeTxt.text.length != 10){

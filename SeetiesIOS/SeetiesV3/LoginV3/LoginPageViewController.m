@@ -78,14 +78,14 @@
         
 //        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Password should be more than 8 character") Type:TSMessageNotificationTypeError];
 //        [MessageManager showMessage:LocalisedString(@"Password should be more than 8 character") Type:STAlertError];
-        [MessageManager popoverErrorMessage:LocalisedString(@"Password should be more than 8 character") target:self popFrom:self.ibPasswordContentView];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Yikes. Your password must be at least 8 characters.") target:self popFrom:self.ibPasswordContentView];
         return false;
     }
     else if(self.lblUserName.text.length<=1)
     {
 //        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username should be more than 1 character") Type:TSMessageNotificationTypeError];
 //        [MessageManager showMessage:LocalisedString(@"Username should be more than 1 character") Type:STAlertError];
-        [MessageManager popoverErrorMessage:LocalisedString(@"Username should be more than 1 character") target:self popFrom:self.ibUserContentView];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Oops! It seems like you've missed out your username / password.") target:self popFrom:self.ibUserContentView];
         return false;
 
     }

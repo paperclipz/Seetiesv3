@@ -182,7 +182,7 @@
 "PLACENAME" = "PLACE NAME";
 "LOCATIONADDRESS" = "LOCATION ADDRESS";
 
-"Tags" = "TAGS";
+"Tags" = "Tags";
 "TagsDetail" = "comma,separated, tags (e.g., japanese food, jogging track, perfume, salsa, coffee)";
 "AlsoShareto" = "ALSO SHARE TO...";
 "URL" = "URL";
