@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -106,8 +106,8 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WKA-fc-85d">
-                                <rect key="frame" x="0.0" y="10" width="322" height="80"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WKA-fc-85d">
+                                <rect key="frame" x="10" y="10" width="302" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="OAD-c1-gRy"/>
                                 </constraints>
@@ -116,8 +116,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="T1T-BV-Nme" firstAttribute="top" secondItem="3QU-dq-PaH" secondAttribute="top" id="9rr-pf-we2"/>
-                            <constraint firstItem="T1T-BV-Nme" firstAttribute="leading" secondItem="WKA-fc-85d" secondAttribute="leading" id="F0P-2M-kbs"/>
-                            <constraint firstItem="T1T-BV-Nme" firstAttribute="trailing" secondItem="WKA-fc-85d" secondAttribute="trailing" id="Lpf-PE-PuS"/>
+                            <constraint firstItem="T1T-BV-Nme" firstAttribute="leading" secondItem="WKA-fc-85d" secondAttribute="leading" constant="-10" id="F0P-2M-kbs"/>
+                            <constraint firstItem="T1T-BV-Nme" firstAttribute="trailing" secondItem="WKA-fc-85d" secondAttribute="trailing" constant="10" id="Lpf-PE-PuS"/>
                             <constraint firstItem="T1T-BV-Nme" firstAttribute="leading" secondItem="3QU-dq-PaH" secondAttribute="leading" id="N3S-9p-HJz"/>
                             <constraint firstItem="fbb-id-kAp" firstAttribute="top" secondItem="WKA-fc-85d" secondAttribute="bottom" constant="-15" id="gCM-ae-Jew"/>
                             <constraint firstItem="WKA-fc-85d" firstAttribute="top" secondItem="3QU-dq-PaH" secondAttribute="top" constant="10" id="lqf-Uq-CKI"/>

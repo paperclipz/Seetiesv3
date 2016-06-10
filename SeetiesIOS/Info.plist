@@ -23,7 +23,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1.5</string>
+	<string>3.1.6</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -37,7 +37,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3.1.5.4</string>
+	<string>3.1.6.1</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -135,6 +135,10 @@
 		<string>Adriane Text Bold Italic.otf</string>
 		<string>ProximaNovaSoft-Regular.ttf</string>
 		<string>ProximaNovaSoft-Bold.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchImages</key>
 	<array>
@@ -236,9 +240,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
 </dict>
 </plist>
