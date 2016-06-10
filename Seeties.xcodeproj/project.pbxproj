@@ -1118,6 +1118,8 @@
 		8AD6C8291B736C000040437E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8281B736C000040437E /* DataManager.m */; };
 		8AD6C82E1B737A830040437E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C82D1B737A830040437E /* CoreData.framework */; };
 		8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C87D1B74AAE90040437E /* QuartzCore.framework */; };
+		8AD755631D0A8A9C00F41DDB /* TranslationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD755621D0A8A9C00F41DDB /* TranslationModel.m */; };
+		8AD755661D0A8B1900F41DDB /* PostDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD755651D0A8B1900F41DDB /* PostDetailModel.m */; };
 		8ADD47031C4CFD6D00AEAE2B /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */; };
 		8AE478B91CC4E93F0053DB24 /* CustomEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE478B81CC4E93F0053DB24 /* CustomEmptyView.xib */; };
 		8AEDBFA81C2031BA000BD2FF /* ApiVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF781C2031BA000BD2FF /* ApiVersionModel.m */; };
@@ -1354,8 +1356,6 @@
 		C2E6D7561CDA052C00B53BF4 /* InviteFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6D7551CDA052C00B53BF4 /* InviteFriendModel.m */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 		C7023C231CF2BFFD00A2DF04 /* FBLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */; };
-		C7067DDA1D0A7C610086E273 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DCA1D0A7C610086E273 /* FeedViewController.m */; };
-		C7067DDB1D0A7C610086E273 /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7067DCB1D0A7C610086E273 /* FeedViewController.xib */; };
 		C7067DDD1D0A7C610086E273 /* LocationFeedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DCF1D0A7C610086E273 /* LocationFeedDetailViewController.m */; };
 		C7067DEE1D0A7EC60086E273 /* FeedCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DE21D0A7EC60086E273 /* FeedCommentView.m */; };
 		C7067DEF1D0A7EC60086E273 /* FeedContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DE41D0A7EC60086E273 /* FeedContentView.m */; };
@@ -2754,6 +2754,10 @@
 		8AD6C82D1B737A830040437E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8AD6C82F1B737AAB0040437E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8AD6C87D1B74AAE90040437E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8AD755611D0A8A9C00F41DDB /* TranslationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TranslationModel.h; path = SeetiesIOS/MODELS/TranslationModel.h; sourceTree = SOURCE_ROOT; };
+		8AD755621D0A8A9C00F41DDB /* TranslationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TranslationModel.m; path = SeetiesIOS/MODELS/TranslationModel.m; sourceTree = SOURCE_ROOT; };
+		8AD755641D0A8B1900F41DDB /* PostDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostDetailModel.h; path = SeetiesIOS/MODELS/PostDetailModel.h; sourceTree = SOURCE_ROOT; };
+		8AD755651D0A8B1900F41DDB /* PostDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostDetailModel.m; path = SeetiesIOS/MODELS/PostDetailModel.m; sourceTree = SOURCE_ROOT; };
 		8ADD47011C4CFD6D00AEAE2B /* AnnouncementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementModel.h; sourceTree = "<group>"; };
 		8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementModel.m; sourceTree = "<group>"; };
 		8AE478B81CC4E93F0053DB24 /* CustomEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEmptyView.xib; sourceTree = "<group>"; };
@@ -3111,8 +3115,6 @@
 		C2E6D7551CDA052C00B53BF4 /* InviteFriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendModel.m; sourceTree = "<group>"; };
 		C7023C211CF2BFFD00A2DF04 /* FBLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginManager.h; sourceTree = "<group>"; };
 		C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginManager.m; sourceTree = "<group>"; };
-		C7067DCA1D0A7C610086E273 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
-		C7067DCB1D0A7C610086E273 /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
 		C7067DCE1D0A7C610086E273 /* LocationFeedDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationFeedDetailViewController.h; sourceTree = "<group>"; };
 		C7067DCF1D0A7C610086E273 /* LocationFeedDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationFeedDetailViewController.m; sourceTree = "<group>"; };
 		C7067DE11D0A7EC60086E273 /* FeedCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCommentView.h; sourceTree = "<group>"; };
@@ -5902,8 +5904,6 @@
 				8AD6BD931B706CF30040437E /* NearByRecommtationViewController.h */,
 				8AD6BD941B706CF30040437E /* NearByRecommtationViewController.m */,
 				8AD6BD951B706CF30040437E /* NearByRecommtationViewController.xib */,
-				C7067DCA1D0A7C610086E273 /* FeedViewController.m */,
-				C7067DCB1D0A7C610086E273 /* FeedViewController.xib */,
 				C7067DCE1D0A7C610086E273 /* LocationFeedDetailViewController.h */,
 				C7067DCF1D0A7C610086E273 /* LocationFeedDetailViewController.m */,
 			);
@@ -6039,6 +6039,10 @@
 				8AEDBF9B1C2031BA000BD2FF /* SearchModel.m */,
 				8AEDBFA41C2031BA000BD2FF /* TagModel.h */,
 				8AEDBFA51C2031BA000BD2FF /* TagModel.m */,
+				8AD755611D0A8A9C00F41DDB /* TranslationModel.h */,
+				8AD755621D0A8A9C00F41DDB /* TranslationModel.m */,
+				8AD755641D0A8B1900F41DDB /* PostDetailModel.h */,
+				8AD755651D0A8B1900F41DDB /* PostDetailModel.m */,
 				8AFF090F1C9038C400918582 /* ComplexTagModel.h */,
 				8AFF09101C9038C400918582 /* ComplexTagModel.m */,
 				8AEDBFA61C2031BA000BD2FF /* UserDefaultModel.h */,
@@ -7364,7 +7368,6 @@
 				8A11288D1CF69EC100399213 /* DealsListingVoucherWalletBar@2x.png in Resources */,
 				8A1128AE1CF69EC100399213 /* ReportIcon@3x.png in Resources */,
 				8A1129DA1CF69EC100399213 /* ListViewActive@3x.png in Resources */,
-				C7067DDB1D0A7C610086E273 /* FeedViewController.xib in Resources */,
 				8A112A4C1CF69EC100399213 /* FollowingIcon@3x.png in Resources */,
 				8A114CCE1BE73F5D006AE3F0 /* error@2x.png in Resources */,
 				8A1129FD1CF69EC100399213 /* BrushIcon@2x.png in Resources */,
@@ -8068,6 +8071,7 @@
 				8AFA51CF1C47B4AB00E7920E /* GeneralFilterViewController.m in Sources */,
 				8A31CA771C9BA60B00CC5FB9 /* SuggestedPlaceModel.m in Sources */,
 				8AC7B65F1CE5C102000775CC /* UIImage+Extension.m in Sources */,
+				8AD755631D0A8A9C00F41DDB /* TranslationModel.m in Sources */,
 				8AC7B6611CE5C102000775CC /* UIImage+Resize.m in Sources */,
 				8A114CCF1BE73F5D006AE3F0 /* TextFieldValidator.m in Sources */,
 				8AF030C81C5F6EB000817E2F /* PlacesModel.m in Sources */,
@@ -8103,7 +8107,6 @@
 				8A114C951BE73F5D006AE3F0 /* UIImage+FX.m in Sources */,
 				8A11D38D1CC886950023A7ED /* ShareFriendTableViewCell.m in Sources */,
 				8A114CB71BE73F5D006AE3F0 /* BHExpandingTextViewInternal.m in Sources */,
-				C7067DDA1D0A7C610086E273 /* FeedViewController.m in Sources */,
 				8AD6BA661B705DF20040437E /* ViewController.m in Sources */,
 				8AFF085B1C90379000918582 /* SearchLocationViewController.m in Sources */,
 				8A114CD71BE73F5D006AE3F0 /* CommonViewController.m in Sources */,
@@ -8161,6 +8164,7 @@
 				8AF030C51C5F6CE400817E2F /* PlaceModel.m in Sources */,
 				8AEDBFB71C2031BA000BD2FF /* PriceModel.m in Sources */,
 				8A9E065B1CBF5A70000FB246 /* UINavigationController+Block.m in Sources */,
+				8AD755661D0A8B1900F41DDB /* PostDetailModel.m in Sources */,
 				8AF6FE041C5F3EB7005AAE5D /* CountryModel.m in Sources */,
 				8AEDBFB81C2031BA000BD2FF /* ProfileModel.m in Sources */,
 				8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */,

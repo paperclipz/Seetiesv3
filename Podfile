@@ -38,8 +38,6 @@ pod 'FBSDKShareKit'
 
 #pod 'Firebase', '>= 2.5.1'
 pod 'Firebase/Messaging'
-pod 'Firebase/Core'
-pod 'Firebase/Database'
 pod 'SSKeychain'
 
 #================ Possible can be deleted =====================#

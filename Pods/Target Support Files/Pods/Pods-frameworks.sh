@@ -117,6 +117,7 @@ if [[ "$CONFIGURATION" == "Development-SandBox" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/YLGIFImage.framework"
+  install_framework "Pods/iCarousel.framework"
   install_framework "Pods/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Development-Release" ]]; then
@@ -153,6 +154,7 @@ if [[ "$CONFIGURATION" == "Development-Release" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/YLGIFImage.framework"
+  install_framework "Pods/iCarousel.framework"
   install_framework "Pods/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Production-Release" ]]; then
@@ -189,6 +191,7 @@ if [[ "$CONFIGURATION" == "Production-Release" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/YLGIFImage.framework"
+  install_framework "Pods/iCarousel.framework"
   install_framework "Pods/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Production-SandBox" ]]; then
@@ -225,5 +228,6 @@ if [[ "$CONFIGURATION" == "Production-SandBox" ]]; then
   install_framework "Pods/TTTAttributedLabel.framework"
   install_framework "Pods/UITextView_Placeholder.framework"
   install_framework "Pods/YLGIFImage.framework"
+  install_framework "Pods/iCarousel.framework"
   install_framework "Pods/pop.framework"
 fi

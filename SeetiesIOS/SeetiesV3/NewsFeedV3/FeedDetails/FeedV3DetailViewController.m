@@ -776,7 +776,11 @@
         [self.arrCollections addObjectsFromArray:self.postCollectionsModel.arrSuggestedCollection];
         
         if (!self.feedType_CollectionSuggestedTblCell) {
-            [self getAllCollectionData];
+            
+            if (![Utils isArrayNull:self.arrCollections]) {
+                [self getAllCollectionData];
+
+            }
         }
 
         [self getRecommendationData];
