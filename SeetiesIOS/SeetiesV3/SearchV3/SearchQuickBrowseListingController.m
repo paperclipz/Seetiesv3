@@ -112,12 +112,21 @@
     
     view.contentSize = CGSizeMake(frame.size.width*arryViewControllers.count , view.frame.size.height);
     
+    NSString* fontName;
+    
+    if ([[LanguageManager getDeviceAppLanguageCode] isEqualToString:CHINESE_CODE] ||
+        [[LanguageManager getDeviceAppLanguageCode] isEqualToString:TAIWAN_CODE]) {
+        fontName = @"PingFangTC-Regular";
+    }
+    else{
+        fontName = CustomFontNameBold;
+    }
     
     self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
     self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : TEXT_GRAY_COLOR,
-                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+                                                  NSFontAttributeName : [UIFont fontWithName:fontName size:14.0f]};
     self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : ONE_ZERO_TWO_COLOR,
-                                                          NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+                                                          NSFontAttributeName : [UIFont fontWithName:fontName size:14.0f]};
     
     self.segmentedControl.sectionTitles = arrTitles;
     self.segmentedControl.selectedSegmentIndex = 0;
