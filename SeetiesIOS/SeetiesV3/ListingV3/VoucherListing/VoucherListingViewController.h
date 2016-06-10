@@ -19,6 +19,7 @@
 #import "SearchManager.h"
 #import "YLGIFImage.h"
 #import "YLImageView.h"
+#import "HowToRedeemViewController.h"
 
 typedef void (^HomeModelBlock)(HomeLocationModel* model);
 

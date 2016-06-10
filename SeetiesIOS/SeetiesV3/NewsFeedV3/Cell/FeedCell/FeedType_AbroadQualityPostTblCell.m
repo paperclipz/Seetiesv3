@@ -14,8 +14,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ibProfileImage;
 @property (nonatomic,strong)NSArray<DraftModel>* arrPosts;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+
 @end
 @implementation FeedType_AbroadQualityPostTblCell
+
 
 - (void)awakeFromNib {
     // Initialization code
@@ -49,7 +51,6 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.arrPosts.count;
-    
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -61,6 +62,8 @@
     DraftModel* model = self.arrPosts[indexPath.row];
     
     cell.btnProfileClickedBlock = self.btnProfileClickedBlock;
+    cell.btnCollectionDidClickedBlock = self.btnCollectionDidClickedBlock;
+    cell.btnCollectionQuickClickedBlock = self.btnCollectionQuickClickedBlock;
     [cell initData:model];
     return cell;
 }
@@ -78,11 +81,9 @@
 {
     CGRect frame = [Utils getDeviceScreenSize];
     
-    
     float cellSize = frame.size.width - 20;
     
-    return CGSizeMake(cellSize, 404);
+    return CGSizeMake(cellSize, 465);
 }
-
 
 @end

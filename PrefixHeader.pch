@@ -82,12 +82,15 @@
 
 //#import <FacebookSDK/FacebookSDK.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
-
+//#import <Firebase/Firebase.h>
 
 //check whether it uses simulator 
 #if TARGET_IPHONE_SIMULATOR
 #define IS_IN_DEBUG_MODE
 #endif
+
+#define IS_IN_DEBUG_MODE
+
 
 #ifndef IS_IN_DEBUG_MODE
 #undef NSLog

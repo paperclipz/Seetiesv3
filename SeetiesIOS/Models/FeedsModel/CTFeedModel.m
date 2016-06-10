@@ -56,12 +56,8 @@
         
         _arrCollections = [NSMutableArray<CollectionModel> arrayWithArray:arrTemp];
     }
-//    else{
-//        _arrCollections = [NSMutableArray<CollectionModel> new];
-//
-//    }
     
-    return _arrCollections;
+       return _arrCollections;
 }
 
 -(NSArray<ProfileModel*>*)arrSuggestedFeature

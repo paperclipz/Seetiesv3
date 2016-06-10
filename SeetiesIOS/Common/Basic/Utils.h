@@ -308,8 +308,8 @@ typedef enum {
 #define FILIPINES_SERVER_NAME @"tl-PH"
 #define THAI_SERVER_NAME @"th"
 
-#define TAIWAN_STR @"简体中文"
-#define CHINESE_STR @"繁體中文 "
+#define TAIWAN_STR @"繁體中文"
+#define CHINESE_STR @"简体中文"
 #define CHINESE_CENTRAL @"中文 "
 
 #pragma mark - NOTIFICATION

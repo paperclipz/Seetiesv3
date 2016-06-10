@@ -270,7 +270,7 @@
 
     [self reloadData];
     self.ibGuestView.hidden = ![Utils isGuestMode];
-    
+
     if ([Utils isGuestMode]) {
         self.btnNotification.hidden = YES;
         self.ibNotificationCountLbl.hidden = YES;
@@ -285,10 +285,17 @@
         }
         
         if (![Utils isStringNull:self.profileModel.profile_photo_images]) {
-            [self.ibProfileImg sd_setImageCroppedWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images] completed:nil];
+            [self.ibProfileImg sd_setImageCroppedWithURL:[NSURL URLWithString:self.profileModel.profile_photo_images] withPlaceHolder:[Utils getProfilePlaceHolderImage] completed:^(UIImage *image) {
+                
+                if (!image) {
+                    [self.ibProfileImg setImage:[Utils getProfilePlaceHolderImage]];
+
+                }
+
+            }];
         }
         else{
-            [self.ibProfileImg setImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
+            [self.ibProfileImg setImage:[Utils getProfilePlaceHolderImage]];
         }
         
         [self setNotificationCount:notification_Count];

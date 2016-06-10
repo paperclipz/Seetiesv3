@@ -1111,7 +1111,8 @@
             @catch (NSException *exception) {
                 SLog(@"error");
             }
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+//            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:@"Success follow this collection" Type:STAlertSuccess];
         } failure:^(id object) {
             
         }];
@@ -1137,7 +1138,9 @@
                     }
                     @catch (NSException *exception) {
                         SLog(@"error");
-                    }                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                    }
+//                    [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                    [MessageManager showMessage:@"Success unfollow this collection" Type:STAlertSuccess];
                 } failure:^(id object) {
                 }];
                 
@@ -1237,7 +1240,7 @@
     NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
-                           @"uid":self.userID
+                           @"uid":self.userID?self.userID:@""
                            };
     
     [LoadingManager show];
@@ -1318,17 +1321,20 @@
 
     self.btnLink.hidden = [self.userProfileModel.personal_link isNull]?YES:NO;
     [self setFollowButtonSelected:self.userProfileModel.following button:self.btnFollow];
-    [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.profile_photo_images] placeholderImage:[UIImage imageNamed:@"DefaultProfilePic.png"]];
+    [self.ibImgProfilePic sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.profile_photo_images] placeholderImage:[Utils getProfilePlaceHolderImage]];
     
     //UIImageView* tempImageView = [[UIImageView alloc]initWithFrame:self.backgroundImageView.frame];
     [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:self.userProfileModel.wallpaper] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
-        self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        if (image) {
+              self.backgroundImageView.image = [image imageCroppedAndScaledToSize:self.backgroundImageView.bounds.size contentMode:UIViewContentModeScaleAspectFill padToFit:NO];
+        }
+      
         [self setParallaxView];
         
     }];
     
-    self.lblUserName.text = self.userProfileModel.name;
+    self.lblUserName.text = self.userProfileModel.username;
     self.lblUserName_Header.text = self.userProfileModel.name;
     self.lblName.text = self.userProfileModel.name;
     NSString* strFollower = [NSString stringWithFormat:@"%d %@",self.userProfileModel.follower_count,LocalisedString(@"Followers")];

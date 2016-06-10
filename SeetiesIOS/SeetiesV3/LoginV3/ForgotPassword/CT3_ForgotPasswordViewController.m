@@ -34,6 +34,17 @@
     [self changeLanguage];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
 -(void)changeLanguage{
     self.ibHeaderTitle.text = LocalisedString(@"Forgot Password");
     self.ibInstructionLbl.text = LocalisedString(@"You'll receive instructions to reset your password in your mailbox as soon as we're done here!");
@@ -65,7 +76,9 @@
         [self requestServerForResetPassword];
     }
     else{
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username / email cannot be empty") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username / email cannot be empty") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"Username / email cannot be empty") Type:STAlertError];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Username / email cannot be empty") target:self popFrom:self.ibUsernameView];
     }
 }
 
@@ -84,14 +97,17 @@
         [LoadingManager hide];
         self.isRequesting = NO;
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"You should get an email soon.") Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Check your email.") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Check your email.") Type:STAlertSuccess];
         
     } failure:^(id object) {
         
         [LoadingManager hide];
         self.isRequesting = NO;
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please try again") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Are you sure you've registered?") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"Are you sure you've registered?") Type:STAlertError];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Are you sure you've registered?") target:self popFrom:self.ibUsernameView];
         
     }];
 }

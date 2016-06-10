@@ -9,7 +9,9 @@
 #import "CommonViewController.h"
 #import "ConnectionsTabViewController.h"
 #import "ProfileViewController.h"
-@interface ConnectionsViewController : CommonViewController
+#import "HMSegmentedControl.h"
+
+@interface ConnectionsViewController : CommonViewController <UIScrollViewDelegate>
 @property(nonatomic,strong)ConnectionsTabViewController *FollowerConnectionsTabViewController;
 @property(nonatomic,strong)ConnectionsTabViewController *FollowingConnectionsTabViewController;
 @property(nonatomic,strong)NSString* userID;

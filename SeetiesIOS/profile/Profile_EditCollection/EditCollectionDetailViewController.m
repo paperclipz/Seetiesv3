@@ -58,7 +58,9 @@ typedef enum{
 - (IBAction)btnDoneClicked:(id)sender {
     
     if ([self.txtName.text isEqualToString:@""]) {
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 6 characters" type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Collection name must be at least 6 characters" type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:@"Collection name must be at least 6 characters" Type:STAlertError];
+        [MessageManager popoverErrorMessage:@"Collection name must be at least 6 characters" target:self popFrom:self.txtName];
     }else{
         switch (self.pageType) {
             case PageTypeCreateCollection:
@@ -185,6 +187,9 @@ typedef enum{
     _blueEditingTagControl.tagsDeleteButtonColor = TWO_ZERO_FOUR_COLOR;
     _blueEditingTagControl.tagsTextColor = TWO_ZERO_FOUR_COLOR;
     
+    
+    UITextField *tagTextField = _blueEditingTagControl.getCurrentTextField;
+    tagTextField.font = [UIFont systemFontOfSize:15];
     
     [_blueEditingTagControl reloadTagSubviews];
    
@@ -407,7 +412,7 @@ typedef enum{
     NSString* tagStr = tag;
     //[LoadingManager show];
     
-    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetTagsSuggestion parameter:nil appendString:nil success:^(id object) {
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_GET serverRequestType:ServerRequestTypeGetTagsSuggestion parameter:nil appendString:tagStr success:^(id object) {
         
         self.tagList =[[NSMutableArray alloc]initWithArray:[[[ConnectionManager dataManager] tagModel] arrayTag] ];
         [self.ibCollectionTagView reloadData];

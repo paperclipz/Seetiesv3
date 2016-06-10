@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>489225313143-ohk5gopb6lf9n7coqio5qli3no25hllb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.489225313143-ohk5gopb6lf9n7coqio5qli3no25hllb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB_E5lEUrRwCcD3wASluI_-4H4k9BJIkyg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>489225313143</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Seeties.SeetiesIOS.Dev</string>
+	<key>PROJECT_ID</key>
+	<string>test-d3f0e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>test-d3f0e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:489225313143:ios:a5e0d88fc04f78b8</string>
+	<key>DATABASE_URL</key>
+	<string>https://test-d3f0e.firebaseio.com</string>
+</dict>
+</plist>

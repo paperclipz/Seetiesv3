@@ -133,7 +133,7 @@
         NSString* fullURL;
         NSString* strNetworkType;
 
-        if (appendString) {
+        if (appendString && ![appendString isEqualToString:@""]) {
             fullURL = [NSString stringWithFormat:@"%@/%@",[self getFullURLwithType:serverType],appendString];
             
         }
@@ -142,6 +142,7 @@
             fullURL = [self getFullURLwithType:serverType];
         }
         
+        SLog(@"%@",fullURL);
         
         if (IS_SIMULATOR) {
             
@@ -512,6 +513,11 @@
            // return [NSString stringWithFormat:@"https://%@/%@",SERVER_PATH_DEV,str];
             
             break;
+        
+        case ServerRequestTypePostLogFeedback:
+            str = [NSString stringWithFormat:@"%@/system/feedback", API_VERION_URL];
+            break;
+            
         case ServerRequestTypeGetExplore:
             str = [NSString stringWithFormat:@"%@/explore",API_VERION_URL];
             
@@ -520,10 +526,6 @@
         case ServerRequestTypePostCreatePost:
         case ServerRequestTypePostDeletePost:
         case ServerRequestTypeGetPostInfo:
-        case ServerRequestTypeGetPostDetail:
-        case ServerRequeetTypeGetTranslatePost:
-        case ServerRequestTypeGetPostComments:
-        case ServerRequestTypeGetNearbyPost:
         case ServerRequestTypePostSaveDraft:
             str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
             
@@ -580,11 +582,9 @@
         default:
             str = API_VERION_URL;
             break;
-        case ServerRequestTypeGetPostLikes:
+            
         case ServerRequestTypePostLikeAPost:
         case ServerRequestTypeDeleteLikeAPost:
-        case ServerRequestTypeGetPostCollectSuggestion:
-
             str = [NSString stringWithFormat:@"%@/post",API_VERION_URL];
             break;
         case ServerRequestTypeSearchPosts:
@@ -702,7 +702,6 @@
             str = [NSString stringWithFormat:@"%@/%@/post", API_VERION_URL, [Utils getUserID]];
             break;
             
-        case ServerRequestTypePostCollectState:
         case ServerRequestTypePostCollectionFriendSuggestion:
             str = [NSString stringWithFormat:@"%@/%@/collections", API_VERION_URL, [Utils getUserID]];
             break;
@@ -728,6 +727,7 @@
             str = [NSString stringWithFormat:@"%@/push-notifications/register",API_VERION_URL];
             
             break;
+        
     }
     
     return [NSString stringWithFormat:@"https://%@/%@",self.serverPath,str];
@@ -832,7 +832,8 @@
                         break;
                         
                     default:
-                        [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+//                        [MessageManager showMessage:LocalisedString(@"system") SubTitle:dict[@"message"] Type:TSMessageNotificationTypeError];
+                        [MessageManager showMessage:dict[@"message"] Type:STAlertError];
                         break;
                 }
             
@@ -1033,15 +1034,6 @@
         }
             break;
             
-        case ServerRequestTypeGetPostDetail:
-        {
-            NSDictionary* dict = obj[@"data"];
-            
-            self.dataManager.postDetailModel = [[DraftModel alloc]initWithDictionary:dict error:nil];
-            
-        }
-            break;
-            
         case ServerRequestTypePostSaveDraft:
         {
             NSDictionary* dict = obj[@"data"];
@@ -1187,10 +1179,20 @@
             break;
         case ServerRequestTypeGetHomeCountry:
         {
+            
+            NSError *error;
+
             NSDictionary* dict = obj[@"countries"];
             
-            self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:nil];
-            [self.dataManager.countriesModel processShouldDisplay];
+            @try {
+                self.dataManager.countriesModel = [[CountriesModel alloc]initWithDictionary:dict error:&error];
+                [self.dataManager.countriesModel processShouldDisplay];
+
+            } @catch (NSException *exception) {
+                
+                SLog(@"error");
+            }
+            
         }
             break;
             
@@ -1289,16 +1291,16 @@
             break;
             
         case ServerRequestTypeGetAllAppInfo:
-            
+        {
             self.dataManager.appInfoModel = [[AppInfoModel alloc]initWithDictionary:obj error:nil];
             
             if (self.dataManager.appInfoModel.languages) {
                 
                 self.dataManager.languageModels = [LanguageModels new];
-                self.dataManager.languageModels .languages = self.dataManager.appInfoModel.languages;
+                self.dataManager.languageModels.languages = self.dataManager.appInfoModel.languages;
 
             }
-
+        }
             break;
             //        case ServerRequestTypePostProvisioning:
             //
@@ -1358,50 +1360,6 @@
             self.dataManager.friendSuggestionModel = [[FriendSuggestionModel alloc] initWithDictionary:dict error:nil];
             break;
             
-        }
-            
-        case ServerRequeetTypeGetTranslatePost:
-        {
-            NSDictionary *dict = obj[@"data"];
-            self.dataManager.translationModel = [[TranslationModel alloc] initWithDictionary:dict error:nil];
-            break;
-            
-        }
-            
-        case ServerRequestTypeGetPostLikes:
-        {
-            NSDictionary *dict = obj[@"data"];
-            self.dataManager.postDetailLikeModel = [[PostDetailLikeModel alloc] initWithDictionary:dict error:nil];
-            break;
-        }
-            
-        case ServerRequestTypeGetPostComments:
-        {
-            NSDictionary *dict = obj[@"data"];
-            self.dataManager.postDetailCommentModel = [[PostDetailCommentModel alloc] initWithDictionary:dict error:nil];
-            break;
-
-            
-        }
-            
-        case ServerRequestTypeGetPostCollectSuggestion:
-        {
-            NSDictionary* dict = obj[@"data"];
-            self.dataManager.postCollectionsModel = [[CollectionsModel alloc]initWithDictionary:dict error:&error];
-
-//            NSDictionary *dict = obj[@"data"];
-//            self.dataManager.postDetailCommentModel = [[PostDetailCommentModel alloc] initWithDictionary:dict error:nil];
-            break;
-            
-            
-        }
-            
-        case ServerRequestTypeGetNearbyPost:
-        {
-            NSDictionary* dict = obj;
-            self.dataManager.nearbyRecommendationModel = [[NearbyRecommendationModel alloc]initWithDictionary:dict error:&error];
-            
-            break;
         }
             
         default:
@@ -1464,7 +1422,7 @@
             if ([Utils isGuestMode]) {
                 
                 flag = true;
-                [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Please log in or sign up to continue") message:@"" cancelButtonTitle:LocalisedString(@"Not now") otherButtonTitles:@[@"Log in / Sign up"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == 1) {
                         [Utils showLogin];
@@ -1478,7 +1436,7 @@
             if ([Utils isGuestMode]) {
                 flag = true;
                 
-                [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                [UIAlertView showWithTitle:LocalisedString(@"Please log in or sign up to continue") message:@"" cancelButtonTitle:LocalisedString(@"Not now") otherButtonTitles:@[@"Log in / Sign up"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                     
                     if (buttonIndex == 1) {
                         [Utils showLogin];

@@ -11,7 +11,7 @@
 
 @interface NotificationTableViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    int viewType;//1 or 2
+    int viewType;//1 activity or 2 notification
     BOOL isMiddleOfRequestServer;
 }
 
@@ -45,12 +45,16 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-  
+    self.tableView.estimatedRowHeight = [NotificationTableViewCell getHeight];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+
     if (viewType == 1) {
         [self requestServerForFollowingNotifications];
         
     }
     else{
+        
+       
         [self requestServerForNotifications];
         
     }
@@ -67,7 +71,6 @@
     
 }
 
-
 #pragma mark - Declaration
 
 -(NSMutableArray*)arrNotifications
@@ -81,6 +84,7 @@
 
 #pragma mark - Table view data source
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.arrNotifications.count;
@@ -90,43 +94,44 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-        static NSString *CellIdentifier = @"NotificationTableViewCell";
-        NotificationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[NotificationTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        }
+    static NSString *CellIdentifier = @"NotificationTableViewCell";
+    NotificationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[NotificationTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
     
     NotificationModel* model = self.arrNotifications[indexPath.row];
-
+    
     [cell initData:model Type:viewType];
     cell.didSelectPostAtIndexBlock = self.didSelectPostBlock;
     cell.didSelectProfileBlock = self.didSelectProfileBlock;
     
-    
     return cell;
-    
-    
+
+
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (viewType == 2) {
-        return 101;
-    }
+    return UITableViewAutomaticDimension;
 
-    else
-    {
-        NotificationModel* model = self.notificationModels.arrNotifications[indexPath.row];
-        if (model.arrPosts.count == 0) {
-            return 101;
-        }
-        else{
-            return 176;
-
-        }
-    }
+//    if (viewType == 2) {
+//        return UITableViewAutomaticDimension;
+//    }
+//
+//    else
+//    {
+//        NotificationModel* model = self.notificationModels.arrNotifications[indexPath.row];
+//        if (model.arrPosts.count == 0) {
+//            return UITableViewAutomaticDimension;
+//        }
+//        else{
+//            return 192;
+//
+//        }
+//    }
 
 }
 

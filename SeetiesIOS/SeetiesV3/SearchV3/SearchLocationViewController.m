@@ -84,6 +84,28 @@
     }
 }
 
+- (IBAction)btnBackClicked:(id)sender {
+    
+    if (self.ibSearchTable.hidden) {
+        if (self.navigationController) {
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else{
+        self.ibSearchTable.hidden = YES;
+        self.ibHeaderTitle.text = LocalisedString(@"Select Location");
+        self.ibSearchTxtField.text = @"";
+        self.searchModel = nil;
+        [self.ibSearchTable reloadData];
+        if ([self.ibSearchTxtField isFirstResponder]) {
+            [self.ibSearchTxtField resignFirstResponder];
+        }
+    }
+    
+}
+
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -142,6 +164,18 @@
     
     self.ibSearchTable.estimatedRowHeight = [SearchLocationResultCell getHeight];
     self.ibSearchTable.rowHeight = UITableViewAutomaticDimension;
+    
+    [self registerKeyboardNotification];
+}
+
+-(void)registerKeyboardNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -165,6 +199,26 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - KeyboardNotification
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.ibSearchTable.contentInset = contentInsets;
+    self.ibSearchTable.scrollIndicatorInsets = contentInsets;
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.ibSearchTable.contentInset = contentInsets;
+    self.ibSearchTable.scrollIndicatorInsets = contentInsets;
+}
 
 #pragma mark TableView
 
@@ -399,13 +453,17 @@
 }
 
 - (IBAction)searchDidEnd:(id)sender {
-    self.ibSearchTable.hidden = YES;
-    self.ibHeaderTitle.text = LocalisedString(@"Select Location");
+    
 }
 
 - (IBAction)searchDidChange:(UITextField*)sender {
     SLog(@"Search text: %@", sender.text);
     [self getGoogleSearchPlaces];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.ibSearchTxtField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - Declaration

@@ -8,14 +8,17 @@
 
 #import "SignupPageViewController.h"
 
-@interface SignupPageViewController ()
+@interface SignupPageViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
 @property (weak, nonatomic) IBOutlet UIView *ibContentUserName;
+@property (weak, nonatomic) IBOutlet UIImageView *ibStatusUserName;
 @property (weak, nonatomic) IBOutlet UIView *ibContentEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
+@property (weak, nonatomic) IBOutlet UIImageView *ibStatusEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIView *ibContentPassword;
+@property (weak, nonatomic) IBOutlet UIImageView *ibStatusPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignup;
 @property (weak, nonatomic) IBOutlet UILabel *lblSignUp;
 
@@ -23,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibEnterReferralLbl;
 @property (weak, nonatomic) IBOutlet UIView *ibReferralView;
 @property (weak, nonatomic) IBOutlet UITextField *ibReferralCodeTxt;
+@property (weak, nonatomic) IBOutlet UIImageView *ibStatusReferral;
 
 @property(nonatomic) BOOL isChecking;
 
@@ -59,40 +63,162 @@
     
     if (self.txtPassword.text.length <7) {
         
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Password should be more than 8 character") type:TSMessageNotificationTypeError];
-        
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Password should be more than 8 character") type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"Password should be more than 8 character") Type:STAlertError];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Yikes. Your password must be at least 8 characters.") target:self popFrom:self.ibContentPassword];
         return false;
     }
     else if(self.txtUserName.text.length<=1)
     {
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Username should be more than 1 character") type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Username should be more than 1 character") type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"Username should be more than 1 character") Type:STAlertError];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Oops! It seems like you've missed out your username / password.") target:self popFrom:self.ibContentUserName];
 
         return false;
         
     }
     else if(![Utils validateEmail:self.txtEmail.text])
     {
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Not valid email address") type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Not valid email address") type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"Not valid email address") Type:STAlertError];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Invalid email address") target:self popFrom:self.ibContentEmail];
         return NO;
     }
     else if (self.ibReferralCodeTxt.text.length > 0 && self.ibReferralCodeTxt.text.length != 10){
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Referral code should be exactly 10 characters") type:TSMessageNotificationTypeError];
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"system") subtitle:LocalisedString(@"Referral code should be exactly 10 characters") type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"Referral code should be exactly 10 characters") Type:STAlertError];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Referral code should be exactly 10 characters") target:self popFrom:self.ibReferralView];
         
         return NO;
     }
     
     return YES;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
     self.isChecking = NO;
     // Do any additional setup after loading the view from its nib.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+}
+
+- (void)textFieldDidChange:(NSNotification*)notification
+{
+    UITextField *textField = (UITextField*)[notification object];
+    //perform logic here, change button state, etc.
+    
+    switch (textField.tag) {
+        case 1:
+        {
+            if(textField.text.length>=6){
+                [self requestServerToCheckUserRegistrationData:textField.text forField:@"username" fromTextField:textField];
+            }else{
+                [self showStatusForTextField:textField valid:NO showStatus:textField.text.length>0];
+            }
+        }
+            break;
+            
+        case 2:
+        {
+            if([Utils validateEmail:textField.text]){
+                [self requestServerToCheckUserRegistrationData:textField.text forField:@"email" fromTextField:textField];
+            }else{
+                [self showStatusForTextField:textField valid:NO showStatus:textField.text.length>0];
+            }
+        }
+            break;
+            
+        case 3:
+        {
+            if(textField.text.length>=8){
+                [self requestServerToCheckUserRegistrationData:textField.text forField:@"password" fromTextField:textField];
+            }else{
+                [self showStatusForTextField:textField valid:NO showStatus:textField.text.length>0];
+            }
+        }
+            break;
+            
+        case 4:
+        {
+            if(textField.text.length>=10){
+                [self requestServerToCheckUserRegistrationData:textField.text forField:@"referral_code" fromTextField:textField];
+            }else{
+                [self showStatusForTextField:textField valid:NO showStatus:textField.text.length>0];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void)showStatusForTextField:(UITextField *)textField valid:(BOOL)valid showStatus:(BOOL)showStatus{
+    switch (textField.tag) {
+        case 1:
+        {
+            self.ibStatusUserName.image = [self statusImage:valid];
+            self.ibStatusUserName.hidden = !showStatus;
+        }
+            break;
+            
+        case 2:
+        {
+            self.ibStatusEmail.image = [self statusImage:valid];
+            self.ibStatusEmail.hidden = !showStatus;
+        }
+            break;
+            
+        case 3:
+        {
+            self.ibStatusPassword.image = [self statusImage:valid];
+            self.ibStatusPassword.hidden = !showStatus;
+        }
+            break;
+            
+        case 4:
+        {
+            self.ibStatusReferral.image = [self statusImage:valid];
+            self.ibStatusReferral.hidden = !showStatus;
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(UIImage *)statusImage:(BOOL)valid{
+    return [UIImage imageNamed:valid?@"CorrectFill.png":@"WrongFill.png"];
+}
+
+-(void)requestServerToCheckUserRegistrationData:(NSString*)data forField:(NSString*)field fromTextField:(UITextField *)fromTextField{
+    if ([Utils isStringNull:data] || [Utils isStringNull:field]) {
+        return;
+    }
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:@{@"field" : field,
+                                                                                  @"value" : data
+                                                                                  }];
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostCheckUserRegistrationData parameter:dict appendString:nil success:^(id object) {
+        
+        [self showStatusForTextField:fromTextField valid:YES showStatus:YES];
+    } failure:^(id object) {
+        [self showStatusForTextField:fromTextField valid:NO showStatus:YES];
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self changeLanguage];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(void)initSelfView
@@ -165,4 +291,7 @@
     }];
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
 @end

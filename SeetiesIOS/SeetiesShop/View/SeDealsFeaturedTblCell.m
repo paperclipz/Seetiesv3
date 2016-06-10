@@ -37,6 +37,10 @@
     // Configure the view for the selected state
 }
 
+-(void)setCustomIndexPath:(NSIndexPath *)indexPath{
+    [self.ibImageView setCustomBackgroundColorForIndexPath:indexPath];
+}
+
 -(void)initSelfView
 {
     

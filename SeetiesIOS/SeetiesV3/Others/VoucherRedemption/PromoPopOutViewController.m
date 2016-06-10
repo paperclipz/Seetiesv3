@@ -78,6 +78,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ibErrorView;
 @property (weak, nonatomic) IBOutlet UIView *ibErrorContentView;
+@property (weak, nonatomic) IBOutlet UIImageView *ibErrorIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorDesc;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorDateDay;
@@ -104,7 +105,7 @@
 @property(nonatomic,assign)PopOutViewType viewType;
 @property(nonatomic,assign)PopOutCondition popOutCondition;
 @property(nonatomic) NSArray<SeShopDetailModel> *shopArray;
-@property(nonatomic) NSString *selectedCountryCode;
+@property(nonatomic,strong) NSString *selectedCountryCode;
 @property(nonatomic) NSString *enteredPhoneNumber;
 @property(nonatomic) NSString *enteredPromoCode;
 @property(nonatomic) SeShopDetailModel *selectedShop;
@@ -146,8 +147,8 @@
     self.ibPromoCodeText.autocorrectionType = UITextAutocorrectionTypeNo;
     
     [self setMainViewToDisplay];
-   
-    // Do any additional setup after loading the view from its nib.
+    
+      // Do any additional setup after loading the view from its nib.
 //    self.contentSizeInPopup = [self getMainView].frame.size;
 
 }
@@ -215,7 +216,9 @@
 }
 
 -(void)setSelectedCountryCode:(NSString *)selectedCountryCode{
+    
     _selectedCountryCode = selectedCountryCode;
+
 }
 
 -(void)setEnteredPhoneNumber:(NSString *)enteredPhoneNumber{
@@ -365,9 +368,19 @@
         {
             self.ibEnterPhoneTitle.text = LocalisedString(@"Enter Phone Number");
             self.ibEnterPhoneDesc.text = LocalisedString(@"Please verify your phone number to collect the voucher.");
-            self.ibEnterPhoneCountryCodeLbl.text = LocalisedString(@"Select Country Code");
             self.ibEnterPhoneTxtField.placeholder = LocalisedString(@"eg. 1x xxx xxxx");
             [self.ibEnterPhoneConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
+            CountryModel *currentCountryModel = [[DataManager Instance] appInfoModel].countries.current_country;
+            self.selectedCountryCode = [currentCountryModel shortCountryCode];
+            NSString* displayText = [currentCountryModel formattedCountryDisplay];
+            if (displayText) {
+                self.ibEnterPhoneCountryCodeLbl.text = displayText;
+
+            }
+            else{
+                self.ibEnterPhoneCountryCodeLbl.text = LocalisedString(@"Select Country Code");
+            }
+
             
             self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, 470);
             [self.ibEnterPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
@@ -395,7 +408,7 @@
             self.ibEnterVerificationTitle.text = LocalisedString(@"Enter Verification Code");
             [self.ibEnterVerificationResendBtn setTitle:LocalisedString(@"Resend Code") forState:UIControlStateNormal];
             [self.ibEnterVerificationConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
-            self.ibEnterVerificationTxtField.placeholder = LocalisedString(@"Enter 7-digit verification code");
+            self.ibEnterVerificationTxtField.placeholder = LocalisedString(@"Enter verification code");
             
             [self.ibEnterVerificationContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor clearColor] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
@@ -404,7 +417,7 @@
             [self.ibEnterVerificationResendBtn setTitleColor:[UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1] forState:UIControlStateDisabled];
             if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
                 NSString *phoneNumber = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
-                self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." withPlaceHolder:@{@"{!contact number}": phoneNumber?phoneNumber:@""}];
+                self.ibEnterVerificationDesc.text = [LanguageManager stringForKey:@"Please enter the verification code that was sent to {!contact number}" withPlaceHolder:@{@"{!contact number}": phoneNumber?phoneNumber:@""}];
             }
         }
             return self.ibEnterVerificationView;
@@ -419,14 +432,37 @@
         }
             return self.ibVerifiedView;
             
-        case PopOutViewTypeError:
+        case PopOutViewTypeRedemptionError:
         {
             self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is currently not available for redemption.");
             self.ibErrorDesc.text = LocalisedString(@"This deal can only be redeemed on ");
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            [self.ibErrorIcon setImage:[UIImage imageNamed:@"CannotRedeemAtThisMomentImg.png"]];
             
             [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
             NSString *nextAvailability = [self.dealModel getNextAvailableRedemptionDateString];
+            NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
+            
+            if (stringArray.count == 2) {
+                self.ibErrorDateDay.text = stringArray[0];
+                self.ibErrorTime.text = stringArray[1];
+            }
+            else{
+                self.ibErrorDateDay.text = @"";
+                self.ibErrorTime.text = @"";
+            }
+        }
+            return self.ibErrorView;
+            
+        case PopOutViewTypeCollectionError:
+        {
+            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is currently not available to collect");
+            self.ibErrorDesc.text = LocalisedString(@"Please come back on");
+            [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
+            [self.ibErrorIcon setImage:[UIImage imageNamed:@"UnableToCollect.png"]];
+            
+            [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            NSString *nextAvailability = [self.dealModel getNextAvailableCollectionDateString];
             NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
             
             if (stringArray.count == 2) {
@@ -489,11 +525,25 @@
     NSMutableArray *tempArr = [[NSMutableArray alloc] init];
     for (CountryModel *country in countries.countries) {
         if (country.home_filter_display) {
-            NSString *formattedCountryCode = [NSString stringWithFormat:@"%@ (%@)", country.name, country.phone_country_code];
-            [tempArr addObject:formattedCountryCode];
+          //  NSString *formattedCountryCode = [NSString stringWithFormat:@"%@ (%@)", country.name, country.phone_country_code];
+            [tempArr addObject:country.formattedCountryDisplay];
         }
     }
     return tempArr;
+}
+
+-(BOOL)checkVerificationCode:(NSString*)verificationCode{
+    if ([Utils isStringNull:verificationCode]) {
+        [self.popTip showText:LocalisedString(@"Oops... verification code must be 4 digits") direction:AMPopTipDirectionUp maxWidth:self.ibEnterVerificationView.frame.size.width inView:self.ibEnterVerificationView fromFrame:self.ibEnterVerificationTxtField.frame duration:2.0f];
+        return NO;
+    }
+    
+    if (verificationCode.length < 4) {
+        [self.popTip showText:LocalisedString(@"Oops... verification code must be 4 digits") direction:AMPopTipDirectionUp maxWidth:self.ibEnterVerificationView.frame.size.width inView:self.ibEnterVerificationView fromFrame:self.ibEnterVerificationTxtField.frame duration:2.0f];
+        return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark - Declaration
@@ -515,8 +565,12 @@
 
 - (IBAction)selectCountryCodeBtnClicked:(id)sender {
     
+    if ([self.ibEnterPhoneTxtField isFirstResponder]) {
+        [self.ibEnterPhoneTxtField resignFirstResponder];
+    }
+    
     NSArray *formattedCountriesCode;
-
+    
     @try {
         formattedCountriesCode = [self getFormattedCountriesCode];
         
@@ -524,24 +578,29 @@
         
     }
     
+    ActionSheetStringPicker* tempPicker;
+    
     if (formattedCountriesCode) {
         
         CountriesModel *countriesModel = [[DataManager Instance] appInfoModel].countries;
-        [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
-                                                rows:formattedCountriesCode? formattedCountriesCode : [NSArray new]
-                                    initialSelection:0
-                                           doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                               
-                                               CountryModel *countryModel = countriesModel.countries[selectedIndex];
-                                               NSString *countryCode = countryModel.phone_country_code;
-                                               self.selectedCountryCode = [countryCode substringFromIndex:1];
-                                               self.ibEnterPhoneCountryCodeLbl.text = formattedCountriesCode[selectedIndex];
-                                               
-                                           } cancelBlock:^(ActionSheetStringPicker *picker) {
-                                               
-                                           } origin:sender];
-
+        
+        tempPicker = [ActionSheetStringPicker showPickerWithTitle:LocalisedString(@"Select Country Code")
+                                                             rows:formattedCountriesCode? formattedCountriesCode : [NSArray new]
+                                                 initialSelection:0
+                                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                                            
+                                                            CountryModel *countryModel = countriesModel.countries[selectedIndex];
+                                                            NSString *countryCode = countryModel.phone_country_code;
+                                                            self.selectedCountryCode = [countryCode substringFromIndex:1];
+                                                            self.ibEnterPhoneCountryCodeLbl.text = formattedCountriesCode[selectedIndex];
+                                                            
+                                                        } cancelBlock:^(ActionSheetStringPicker *picker) {
+                                                            
+                                                        } origin:sender];
+        
     }
+    
+    
     
 }
 
@@ -659,7 +718,9 @@
                 [nextVC setEnteredPhoneNumber:self.ibEnterPhoneTxtField.text];
             }
             else{
-                [MessageManager showMessageInPopOut:LocalisedString(@"system")  subtitle:LocalisedString(@"Please enter your phone number and country code")];
+//                [MessageManager showMessageInPopOut:LocalisedString(@"system")  subtitle:LocalisedString(@"Please enter your phone number and country code")];
+                [MessageManager popoverErrorMessage:LocalisedString(@"Please enter your phone number and country code") target:self popFrom:self.ibEnterPhoneTxtField];
+//                [MessageManager showMessage:@"testmessage" Type:STAlertSuccess displayType:STAlertDisplayTypeTop];
 //                [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please enter your phone number and country code") Type:TSMessageNotificationTypeError];
                 return;
             }
@@ -686,7 +747,7 @@
                 [nextVC setViewType:PopOutViewTypeVerified];
             }
             else{
-                if (![Utils isStringNull:self.ibEnterVerificationTxtField.text]) {
+                if ([self checkVerificationCode:self.ibEnterVerificationTxtField.text]) {
                     [self requestServerToVerifyTotp];
                 }
                 
@@ -702,8 +763,9 @@
             
         }
             break;
-            
-        case PopOutViewTypeError:
+          
+        case PopOutViewTypeCollectionError:
+        case PopOutViewTypeRedemptionError:
         {
             if (YES) {
                 [nextVC setViewType:PopOutViewTypeQuit];
@@ -915,8 +977,25 @@
         self.hasRequestedPromo = NO;
         
         
-      
-        [self.popTip showText:[NSString stringWithFormat:@"%@",object] direction:AMPopTipDirectionUp maxWidth:self.ibEnterPromoView.frame.size.width inView:self.ibEnterPromoView fromFrame:self.ibPromoCodeText.frame duration:2.0f];
+        
+        
+        if ([ConnectionManager isNetworkAvailable]) {
+            
+            
+            [self.popTip showText:[NSString stringWithFormat:@"%@",object] direction:AMPopTipDirectionUp maxWidth:self.ibEnterPromoView.frame.size.width inView:self.ibEnterPromoView fromFrame:self.ibPromoCodeText.frame duration:2.0f];
+            
+        }
+        else{
+            
+            NSError* error = object;
+            
+            if (error) {
+                [self.popTip showText:[NSString stringWithFormat:@"%@",error.localizedDescription] direction:AMPopTipDirectionUp maxWidth:self.ibEnterPromoView.frame.size.width inView:self.ibEnterPromoView fromFrame:self.ibPromoCodeText.frame duration:2.0f];
+
+            }
+            
+        }
+        
 
     }];
 }

@@ -53,54 +53,21 @@ static const NSString *REFRESH_BLOCK = @"refreshblock";
 
 -(void)showLoading
 {
-    @try {
-        
-        self.customEmptyStateView.loadingView.hidden = NO;
-        self.customEmptyStateView.noResultView.hidden = YES;
-        self.customEmptyStateView.noInternetConnectionView.hidden = YES;
-        if (self.customEmptyStateView.loadingImage) {
-            self.customEmptyStateView.loadingImage.image = [YLGIFImage imageNamed:@"Loading.gif"];
-        }
-        
-    } @catch (NSException *exception) {
-        
-    }
-    
+    [self.customEmptyStateView showLoading];
 }
 
 -(void)showEmptyState
 {
-    @try {
-        self.customEmptyStateView.loadingView.hidden = YES;
-        
-        if ([ConnectionManager isNetworkAvailable]) {
-            self.customEmptyStateView.noInternetConnectionView.hidden = YES;
-            self.customEmptyStateView.noResultView.hidden = NO;
-
-        }
-        else{
-            self.customEmptyStateView.noInternetConnectionView.hidden = NO;
-            self.customEmptyStateView.noResultView.hidden = YES;
-        }
-
-    } @catch (NSException *exception) {
-        
-    }
-    
+    [self.customEmptyStateView showEmptyState];
 }
 
 -(void)hideAll
 {
-    @try {
-        self.customEmptyStateView.loadingView.hidden = YES;
-        self.customEmptyStateView.noResultView.hidden = YES;
-        self.customEmptyStateView.noInternetConnectionView.hidden = YES;
-
-        self.backgroundView = nil;
-        
-    } @catch (NSException *exception) {
-        
-    }
+    
+    [self.customEmptyStateView hideAll];
+    
+    self.backgroundView = nil;
+  
 }
 
 @end

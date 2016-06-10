@@ -150,7 +150,8 @@
             [self.ibTableView reloadData];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
             
-            [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
+//            [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_COLLECTED) type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:LocalisedString(SUCCESSFUL_COLLECTED) Type:STAlertSuccess];
             
         } failure:^(id object) {
             

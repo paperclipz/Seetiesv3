@@ -347,7 +347,7 @@
     
     if ([Utils isGuestMode]) {
         
-        [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"Please log in or sign up to continue") message:@"" cancelButtonTitle:LocalisedString(@"Not now") otherButtonTitles:@[@"Log in / Sign up"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
             if (buttonIndex == 1) {
                 [Utils showLogin];
@@ -469,10 +469,12 @@
         
         if ([statusString isEqualToString:@"ok"]) {
             if ([GetCollectionFollowing isEqualToString:@"0"]) {
-             //  [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+//                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+                [MessageManager showMessage:@"Success follow this collection" Type:STAlertSuccess];
                 GetCollectionFollowing = @"1";
             }else{
-             //   [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+//                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                [MessageManager showMessage:@"Success unfollow this collection" Type:STAlertSuccess];
                 GetCollectionFollowing = @"0";
             }
             

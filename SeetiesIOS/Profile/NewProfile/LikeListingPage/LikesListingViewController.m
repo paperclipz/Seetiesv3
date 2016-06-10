@@ -118,7 +118,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LikeListingCollectionViewCell* cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"LikeListingCollectionViewCell" forIndexPath:indexPath];
-    
+    [cell setNoRoundBorder];
     DraftModel* draftModel = self.arrLikesList[indexPath.row];
     [cell initData:draftModel.arrPhotos[0]];
     [cell setNeedsUpdateConstraints];

@@ -49,14 +49,24 @@
 
 -(void)showEmptyState
 {
+    
     @try {
         self.loadingView.hidden = YES;
-        self.noResultView.hidden = NO;
-        self.noInternetConnectionView.hidden = YES;
-
+        
+        if ([ConnectionManager isNetworkAvailable]) {
+            self.noInternetConnectionView.hidden = YES;
+            self.noResultView.hidden = NO;
+            
+        }
+        else{
+            self.noInternetConnectionView.hidden = NO;
+            self.noResultView.hidden = YES;
+        }
+        
     } @catch (NSException *exception) {
         
     }
+
     
 }
 
@@ -75,14 +85,16 @@
 
 -(void)hideAll
 {
+   
     @try {
         self.loadingView.hidden = YES;
         self.noResultView.hidden = YES;
         self.noInternetConnectionView.hidden = YES;
-
+                
     } @catch (NSException *exception) {
         
     }
+
 }
 
 -(void)awakeFromNib

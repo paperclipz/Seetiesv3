@@ -100,6 +100,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ibReportLbl;
 
 @property (weak, nonatomic) IBOutlet UIView *ibFooterView;
+@property (weak, nonatomic) IBOutlet UIView *ibInnerFooterView;
 @property (weak, nonatomic) IBOutlet UILabel *ibFooterTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *ibFooterIcon;
 
@@ -113,6 +114,8 @@
 @property(nonatomic) BOOL fromHistory;
 @property(nonatomic) NSMutableArray<SeShopDetailModel> *nearbyShopArray;
 @property(nonatomic) NSMutableArray<NSDictionary> *dealAvailabilityArray;
+@property(nonatomic) NSUserDefaults *userDefaults;
+
 @property(nonatomic) PromoPopOutViewController *promoPopOutViewController;
 @property(nonatomic) DealRedeemViewController *dealRedeemViewController;
 @property(nonatomic) SeetiesShopViewController *seetiesShopViewController;
@@ -123,6 +126,7 @@
 @property(nonatomic) ReportProblemViewController *reportProblemViewController;
 @property(nonatomic) PhotoViewController *photoViewController;
 @property(nonatomic) RedemptionHistoryViewController *redemptionHistoryViewController;
+@property(nonatomic) HowToRedeemViewController *howToRedeemViewController;
 
 @end
 
@@ -463,6 +467,20 @@
     return _redemptionHistoryViewController;
 }
 
+-(HowToRedeemViewController *)howToRedeemViewController{
+    if (!_howToRedeemViewController) {
+        _howToRedeemViewController = [HowToRedeemViewController new];
+    }
+    return _howToRedeemViewController;
+}
+
+-(NSUserDefaults *)userDefaults{
+    if (!_userDefaults) {
+        _userDefaults = [NSUserDefaults standardUserDefaults];
+    }
+    return _userDefaults;
+}
+
 #pragma mark - UpdateView
 -(void)updateViewFrame{
     float yAxis = self.ibMainContentView.frame.origin.y;
@@ -473,7 +491,7 @@
         totalHeight += view.frame.size.height;
     }
     
-    self.ibMainContentHeightConstraint.constant = totalHeight;
+    self.ibMainContentHeightConstraint.constant = totalHeight + self.ibFooterView.frame.size.height/2;
     [self.view refreshConstraint];
     
 }
@@ -590,7 +608,7 @@
                 NSInteger numberOfDaysLeft = self.dealModel.redemptionDaysLeft;
                 if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0){
                     [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsVoucherExpireIconRed.png"]];
-                    self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expires in {!day} day(s)" withPlaceHolder:@{@"{!day}": @(numberOfDaysLeft)}];
+                    self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher ends in {!days} days" withPlaceHolder:@{@"{!days}": @(numberOfDaysLeft)}];
                     self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.0f alpha:1];
                     self.ibHeaderNormalExpiryLbl.font = [UIFont boldSystemFontOfSize:14.0f];
                 }
@@ -598,7 +616,7 @@
                     NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.expired_at];
                     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                     [dateFormatter setDateFormat:@"dd MMM yyyy"];
-                    self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expiry date: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]?[dateFormatter stringFromDate:expiredDate]:@""}];
+                    self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]?[dateFormatter stringFromDate:expiredDate]:@""}];
                 }
             }
             else{
@@ -706,7 +724,7 @@
             NSInteger numberOfDaysLeft = self.dealModel.redemptionDaysLeft;
             if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0){
                 [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsVoucherExpireIconRed.png"]];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expires in {!day} day(s)" withPlaceHolder:@{@"{!day}": @(numberOfDaysLeft)}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher ends in {!days} days" withPlaceHolder:@{@"{!days}": @(numberOfDaysLeft)}];
                 self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.0f alpha:1];
                 self.ibHeaderNormalExpiryLbl.font = [UIFont boldSystemFontOfSize:14.0f];
             }
@@ -714,7 +732,7 @@
                 NSDate *expiredDate = [dateFormatter dateFromString:self.dealModel.voucher_info.expired_at];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 [dateFormatter setDateFormat:@"dd MMM yyyy"];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher expiry date: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]?[dateFormatter stringFromDate:expiredDate]:@""}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Voucher ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiredDate]?[dateFormatter stringFromDate:expiredDate]:@""}];
             }
         }
         else{
@@ -733,7 +751,7 @@
             NSInteger numberOfDaysLeft = self.dealModel.collectionDaysLeft;
             if (numberOfDaysLeft < 8 && numberOfDaysLeft > 0){
                 [self.ibHeaderNormalExpiryIcon setImage:[UIImage imageNamed:@"DealsDealEndIconRed.png"]];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deal ends in {!day} day(s)" withPlaceHolder:@{@"{!day}": @(numberOfDaysLeft)}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deals ends in {!days} days" withPlaceHolder:@{@"{!days}": @(numberOfDaysLeft)}];
                 self.ibHeaderNormalExpiryLbl.textColor = [UIColor colorWithRed:232/255.0f green:86/255.0f blue:100/255.0f alpha:1];
                 self.ibHeaderNormalExpiryLbl.font = [UIFont boldSystemFontOfSize:14.0f];
             }
@@ -741,7 +759,7 @@
                 NSDate *expiryDate = [dateFormatter dateFromString:self.dealModel.collection_expired_at];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 [dateFormatter setDateFormat:@"dd MMM yyyy"];
-                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deal ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]?[dateFormatter stringFromDate:expiryDate]:@""}];
+                self.ibHeaderNormalExpiryLbl.text = [LanguageManager stringForKey:@"Deals ends: {!date}" withPlaceHolder:@{@"{!date}": [dateFormatter stringFromDate:expiryDate]?[dateFormatter stringFromDate:expiryDate]:@""}];
                 
             }
         }
@@ -1028,54 +1046,56 @@
         
         if ([self.dealModel.voucher_type isEqualToString:VOUCHER_TYPE_REFERRAL]) {
             if (self.dealCollectionModel && ([self.dealCollectionModel isCampaignExpired] || [self.dealCollectionModel isExceedNumberOfCollectable])) {
-                [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+                [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
                 return;
             }
         }
         
-        if (self.dealModel.total_available_vouchers == 0) {
-            [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        if ([self.dealModel isCollectable]) {
+            [self.ibInnerFooterView setBackgroundColor:DEVICE_COLOR];
         }
         else{
-            [self.ibFooterView setBackgroundColor:DEVICE_COLOR];
+            [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         }
         
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_COLLECTED]){
         if ([self.dealModel isRedeemable]) {
-            [self.ibFooterView setBackgroundColor:BUTTON_REDEEM_ACTIVE_COLOR];
+            [self.ibInnerFooterView setBackgroundColor:BUTTON_REDEEM_ACTIVE_COLOR];
         }
         else{
-            [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+            [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         }
-        [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsNextIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Next");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_REDEEMED]){
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
-        [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsRedeemedIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Redeemed");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_EXPIRED]){
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
-        [self.ibFooterIcon setImage:[UIImage imageNamed:@"RedeemIcon.png"]];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsExpiredIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Expired");
     }
     else if([voucherStatus isEqualToString:VOUCHER_STATUS_CANCELLED]){
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
-        [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsCancelledIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Cancelled");
     }
     else if ([voucherStatus isEqualToString:VOUCHER_STATUS_DELETED]){
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
-        [self.ibFooterIcon setImage:[UIImage imageNamed:@"CollectIcon.png"]];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibFooterIcon setImage:[UIImage imageNamed:@"DealsDeletedIcon.png"]];
         self.ibFooterTitle.text = LocalisedString(@"Deleted");
     }
     else{
         self.ibFooterView.hidden = YES;
-        [self.ibFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
+        [self.ibInnerFooterView setBackgroundColor:BUTTON_DISABLED_COLOR];
         self.ibFooterTitle.text = @"";
     }
+    
+    [Utils setRoundBorder:self.ibInnerFooterView color:[UIColor clearColor] borderRadius:5.0f];
 }
 
 #pragma mark - Delegate
@@ -1102,7 +1122,7 @@
 
 - (IBAction)footerBtnClicked:(id)sender {
     if ([Utils isGuestMode]) {
-        [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"Please log in or sign up to continue") message:@"" cancelButtonTitle:LocalisedString(@"Not now") otherButtonTitles:@[@"Log in / Sign up"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
             if (buttonIndex == 1) {
                 [Utils showLogin];
@@ -1145,9 +1165,21 @@
             }
         }
         
-        if (self.dealModel.total_available_vouchers == 0) {
+        if (![self.dealModel isCollectable]) {
+            if (self.dealModel.total_available_vouchers != 0) {
+                self.promoPopOutViewController = nil;
+                [self.promoPopOutViewController setViewType:PopOutViewTypeCollectionError];
+                [self.promoPopOutViewController setDealModel:self.dealModel];
+                
+                STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+                popupController.containerView.backgroundColor = [UIColor clearColor];
+                [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                [popupController presentInViewController:self];
+                [popupController setNavigationBarHidden:YES];
+            }
             return;
         }
+        
         if (self.dealModel.shops.count == 1) {
             SeShopDetailModel *shopModel = [self.dealModel.shops objectAtIndex:0];
             [self requestServerToCollectVoucher:shopModel];
@@ -1181,7 +1213,7 @@
         }
         else{
             self.promoPopOutViewController = nil;
-            [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+            [self.promoPopOutViewController setViewType:PopOutViewTypeRedemptionError];
             [self.promoPopOutViewController setDealModel:self.dealModel];
             
             STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
@@ -1436,11 +1468,25 @@
             [self.delegate dealUpdated:self.dealModel];
         }
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Succesfully collected into your voucher wallet.") Type:STAlertSuccess];
         int walletCount = [self.dealManager getWalletCount];
         [self.dealManager setWalletCount:walletCount+1];
         [self updateViews];
         self.isProcessing = NO;
+        
+        BOOL shownFirstCollectMsg = [self.userDefaults boolForKey:@"ShownFirstCollectMessage"];
+        if (!shownFirstCollectMsg) {
+            [UIAlertView showWithTitle:LocalisedString(@"Great!") message:LocalisedString(@"You have collected your first voucher! Would you like to know how to redeem it?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    self.howToRedeemViewController = nil;
+                    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.howToRedeemViewController];
+                    [self presentViewController:navController animated:YES completion:nil];
+                }
+            }];
+            [self.userDefaults setBool:YES forKey:@"ShownFirstCollectMessage"];
+        }
+        
     } failure:^(id object) {
         self.isProcessing = NO;
     }];

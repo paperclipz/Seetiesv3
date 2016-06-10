@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "DealModel.h"
 #import <SSKeychain/SSKeychain.h>
+
 @implementation Utils
 
 +(BOOL)isGuestMode
@@ -50,14 +51,20 @@
     BOOL warning = [[defaults objectForKey:FIRST_TIME_SHOW_DEAL_WARNING] boolValue];
 
     NSData* data = [Utils getParseToken];
+
+    BOOL isProduction = [Utils getIsDevelopment];
+
     [defaults synchronize];
     
+    
+    // set back nsdictionary data
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 
     [defaults setBool:walkthrough forKey:FIRST_TIME_SHOW_DEAL_WALKTHROUGH];
     [defaults setBool:warning forKey:FIRST_TIME_SHOW_DEAL_WARNING];
     [Utils setParseToken:data];
+    [Utils setIsDevelopment:isProduction];
     AppDelegate *appdelegate;
     
     appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -222,7 +229,9 @@
 }
 
 +(BOOL)hasReferralCampaign{
-    CountriesModel *countries = [[DataManager Instance] appInfoModel].countries;
+    
+    DataManager* manager = [ConnectionManager dataManager];
+    CountriesModel *countries = manager.appInfoModel.countries;
     if (!countries) {
         return NO;
     }
@@ -676,7 +685,7 @@
     //NSString *UUID = [UIDevice currentDevice].identifierForVendor.UUIDString;
     
     // return UUID;
-
+    
     NSString *appName;
     
     if ([Utils isAppProductionBuild]) {
@@ -685,7 +694,7 @@
     else
     {
         appName = @"Dev";
-
+        
     }
     
     NSString *strApplicationUUID = [SSKeychain passwordForService:appName account:@"SeetiesAccount"];
@@ -699,7 +708,7 @@
     
     return strApplicationUUID;
     
- 
+    
 }
 
 +(NSString*)getDistance:(float)distance Locality:(NSString*)local
@@ -755,6 +764,17 @@
 
 
 +(void)showVerifyPhoneNumber:(UIViewController*)viewController{
+    PromoPopOutViewController *popOut = [PromoPopOutViewController new];
+    [popOut setViewType:PopOutViewTypeEnterPhone];
+    [popOut setPopOutCondition:PopOutConditionVerifyPhoneNumber];
+    
+    STPopupController *popOutController = [[STPopupController alloc]initWithRootViewController:popOut];
+    popOutController.containerView.backgroundColor = [UIColor clearColor];
+    [popOutController presentInViewController:viewController];
+    [popOutController setNavigationBarHidden:YES];
+}
+
++(void)showPromoView:(UIViewController*)viewController{
     PromoPopOutViewController *popOut = [PromoPopOutViewController new];
     [popOut setViewType:PopOutViewTypeEnterPhone];
     [popOut setPopOutCondition:PopOutConditionVerifyPhoneNumber];

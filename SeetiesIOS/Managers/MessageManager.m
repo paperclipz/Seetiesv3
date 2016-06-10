@@ -10,35 +10,77 @@
 #import "AppDelegate.h"
 #import "UIWindow+Extra.h"
 #import "UIView+Toast.h"
+#import "Utils.h"
 
 @implementation MessageManager
 
-+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type
-{
-
-    UIViewController* controller = [UIWindow topMostController];
-    
-    if (controller.navigationController) {
-        controller = controller.navigationController;
-    }
-    
-    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle image:nil type:type duration:TSMessageNotificationDurationAutomatic callback:nil buttonTitle:nil buttonCallback:nil atPosition:[controller isKindOfClass:[UINavigationController class]] ?  TSMessageNotificationPositionNavBarOverlay : TSMessageNotificationPositionTop canBeDismissedByUser:YES];
+//only use STAlertSuccess, STAlertError
++(void)showMessage:(NSString *)message Type:(STAlertType)type{
+    [self showMessage:message Type:type displayType:STAlertDisplayTypeOverlayNavBar];
 }
 
-+(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack
-{
-    UIViewController* controller = [UIWindow topMostController];
-    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle image:nil type:type duration:1.0 callback:^{
-        
-        if (callBack) {
-            callBack();
-        }
-        
-    } buttonTitle:nil buttonCallback:^{
-     
-        
-    } atPosition:TSMessageNotificationPositionTop canBeDismissedByUser:YES];
++(void)showMessage:(NSString*)message Type:(STAlertType)type displayType:(STAlertDisplayType)displayType{
+    [STAlertController presentSTAlertType:type stAlertDisplayType:displayType message:message];
 }
+
+//popover
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(UIView *)popFrom{
+    [self popoverErrorMessage:message target:target popFrom:popFrom direction:AMPopTipDirectionUp duration:2.0f];
+}
+
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(UIView *)popFrom direction:(AMPopTipDirection)direction{
+    [self popoverErrorMessage:message target:target popFrom:popFrom direction:direction duration:2.0f];
+}
+
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(UIView *)popFrom duration:(NSTimeInterval)duration{
+    [self popoverErrorMessage:message target:target popFrom:popFrom direction:AMPopTipDirectionUp duration:duration];
+}
+
++(void)popoverErrorMessage:(NSString *)message target:(id)target popFrom:(UIView *)popFrom direction:(AMPopTipDirection)direction duration:(NSTimeInterval)duration{
+    AMPopTip *popTip = [AMPopTip popTip];
+    popTip.shouldDismissOnTap = YES;
+    popTip.popoverColor = [UIColor colorWithRed:247.0/255.0 green:75.0/255.0 blue:75.0/255.0 alpha:1.0];
+    
+    [popTip showText:message direction:direction maxWidth:[popFrom frame].size.width inView:[target view] fromFrame:[self getViewRect:popFrom target:target] duration:duration];
+}
+
+//get view actual location
++(CGRect)getViewRect:(UIView *)view target:(id)target{
+    CGPoint viewPoint = [view convertPoint:view.bounds.origin toView:[target view]];
+    return CGRectMake(viewPoint.x, viewPoint.y, view.frame.size.width, view.frame.size.height);
+    
+}
+
+//+(void)showMessage:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type
+//{
+//
+//    UIViewController* controller = [UIWindow topMostController];
+//    
+////    if (controller.navigationController) {
+////        controller = controller.navigationController;
+////    }
+//    
+//    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle image:nil type:type duration:TSMessageNotificationDurationAutomatic callback:nil buttonTitle:nil buttonCallback:nil atPosition:[controller.parentViewController isKindOfClass:[UINavigationController class]] ?  TSMessageNotificationPositionNavBarOverlay : TSMessageNotificationPositionTop canBeDismissedByUser:YES];
+//   
+//
+//}
+
+// no used
+//disable by zack
+//+(void)showMessageWithCallBack:(NSString*)title SubTitle:(NSString*)subtitle Type:(TSMessageNotificationType)type ButtonOnClick:(void (^)())callBack
+//{
+//    UIViewController* controller = [UIWindow topMostController];
+//    [TSMessage showNotificationInViewController:controller title:title subtitle:subtitle image:nil type:type duration:1.0 callback:^{
+//
+//        if (callBack) {
+//            callBack();
+//        }
+//
+//    } buttonTitle:nil buttonCallback:^{
+//
+//
+//    } atPosition:TSMessageNotificationPositionTop canBeDismissedByUser:YES];
+//}
 
 +(void)showMessageInPopOut:(NSString*)title subtitle:(NSString*)subtitle{
     [UIAlertView showWithTitle:title message:subtitle cancelButtonTitle:LocalisedString(@"Okay!") otherButtonTitles:nil tapBlock:nil];

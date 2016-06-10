@@ -134,7 +134,8 @@
             [DataManager setCollectionFollowing:colModel.collection_id isFollowing:following];
             [self.ibCollectionView reloadData];
             
-            [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_FOLLOWED) type:TSMessageNotificationTypeSuccess];
+//            [TSMessage showNotificationWithTitle:LocalisedString(SUCCESSFUL_FOLLOWED) type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:LocalisedString(SUCCESSFUL_FOLLOWED) Type:STAlertSuccess];
             
         } failure:^(id object) {
             

@@ -61,7 +61,8 @@
             
             if (error) {
                 NSLog(@"Process error");
-                [MessageManager showMessage:LocalisedString(@"system") SubTitle:@"Facebook Login Failed!" Type:TSMessageNotificationTypeError];
+//                [MessageManager showMessage:LocalisedString(@"system") SubTitle:@"Facebook Login Failed!" Type:TSMessageNotificationTypeError];
+                [MessageManager showMessage:@"Facebook Login Failed!" Type:STAlertError];
             
             } else {
                 

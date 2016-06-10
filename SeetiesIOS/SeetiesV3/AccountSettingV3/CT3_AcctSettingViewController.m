@@ -87,28 +87,30 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 52.0f;
+    return 44.0f;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    DealHeaderView* view = [DealHeaderView initializeCustomView];
-    view.backgroundColor = GREY_APP_COLOR;
-    view.btnSeeMore.hidden = YES;
-    [view.btnDeals setTitleColor:TEXT_GRAY_COLOR forState:UIControlStateNormal];
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.ibTableView.frame.size.width, 44)];
+    header.backgroundColor = [UIColor colorWithRed:247/255.0f green:247/255.0f blue:247/255.0f alpha:1];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 15, header.frame.size.width, 21)];
+    [label setFont:[UIFont boldSystemFontOfSize:13]];
+    label.textColor = [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1];
+    
     NSString* title;
     
     switch (section) {
         case 0:
             
-            title = @"Language";
+            title = LocalisedString(@"Language");
             break;
         case 1:
-            title = @"Account";
+            title = LocalisedString(@"Account");
 
             break;
         case 2:
-            title = @"Others";
+            title = LocalisedString(@"Others");
 
             break;
             
@@ -116,9 +118,9 @@
             break;
     }
     
-    [view.btnDeals setTitle:LocalisedString(title) forState:UIControlStateNormal];
-    
-    return view;
+    label.text = title;
+    [header addSubview:label];
+    return header;
 }
 
 #pragma mark - TableView Delegate
@@ -316,11 +318,20 @@
 
             break;
         case 1:
-            if (indexPath.row == 1) {
-                [self showChangePasswordView];
+            switch (indexPath.row) {
+                case 0:
+                    [self showChangeEmail];
+                    break;
+                    
+                case 1:
+                    [self showChangePasswordView];
+                    break;
+                    
+                default:
+                    break;
             }
-            
             break;
+            
         case 2:
             
             break;
@@ -449,7 +460,50 @@
                                           origin:self.view];
 }
 
+-(void)showChangeEmail{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalisedString(@"Email Address") message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        NSString *currentEmail = [[DataManager Instance] currentUserProfileModel].email;
+        textField.text = currentEmail;
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:LocalisedString(@"Cancel") style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *doneAction = [UIAlertAction actionWithTitle:LocalisedString(@"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *newEmail = alert.textFields[0].text;
+        if ([self validateEmail:newEmail]) {
+            [self requestServerToChangeEmail:newEmail];
+        }
+    }];
+    
+    [alert addAction:cancelAction];
+    [alert addAction:doneAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
 
+-(BOOL)validateEmail:(NSString *)email
+{
+    if ([Utils isStringNull:email]) {
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Email cannot be empty.") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Email cannot be empty.") Type:STAlertError];
+        return NO;
+    }
+    
+    NSString *emailRegex = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+    
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    BOOL validEmail = [emailTest evaluateWithObject:email];
+
+    if (!validEmail) {
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Please enter correct email id") Type:TSMessageNotificationTypeError];
+        [MessageManager showMessage:LocalisedString(@"Please enter correct email id") Type:STAlertError];
+    }
+    
+    return validEmail;
+}
 
 #pragma mark - Request Server
 -(void)requestServerToUpdateUserInfoFacebook:(NSString*)fbID facebookToken:(NSString*)fbToken
@@ -647,6 +701,23 @@
         
         
     }];
+}
+
+-(void)requestServerToChangeEmail:(NSString*)email{
+    NSString *userId = [Utils getUserID];
+    NSDictionary *dict = @{@"uid": userId,
+                           @"token": [Utils getAppToken],
+                           @"email": email? email : @""};
+    
+    [LoadingManager show];
+    
+    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostUpdateUser parameter:dict appendString:userId success:^(id object) {
+        [LoadingManager hide];
+        [self.ibTableView reloadData];
+    } failure:^(id object) {
+        [LoadingManager hide];
+    }];
+    
 }
 
 -(void)changeLanguage

@@ -17,17 +17,25 @@
 #import "FBLoginManager.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "ACTReporter.h"
+@import Firebase;
+@import FirebaseInstanceID;
+@import FirebaseMessaging;
+
 
 #define FABRIC_API_KEY @"506d5ee5657719d0cbaa94569d3352125456f169"
 
 @interface AppDelegate ()
-
+@property(nonatomic, strong) NSString *firebaseToken;
 @end
+
 
 @implementation AppDelegate
 
 -(void)registrationForApi
 {
+    
+   // [FIRApp configure];
+
     // ****************************************************************************
     // Uncomment and fill in with your Parse credentials:
     // [Parse setApplicationId:@"UDy6JpDrh7N6mWznTYusRruA8a1VrCLK2s5gCXZo" clientKey:@"cDs5Sml0kIzwplNSMOnXgV5LnJiAP0UK1Z2K5pZm"];
@@ -76,6 +84,19 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+    
+    
+    
+    //firebase
+    SLog(@"connectToFcm");
+    // [START configure_firebase]
+    [FIRApp configure];
+    // [END configure_firebase]
+    [self connectToFcm];
+    
+    // Add observer for InstanceID token refresh callback.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification)
+                                                 name:kFIRInstanceIDTokenRefreshNotification object:nil];
 }
 
 -(void)checkCurrentAppLanguage
@@ -118,13 +139,12 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window makeKeyAndVisible];
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
 
     NSSetUncaughtExceptionHandler(&myExceptionHandler);
-    
- 
     
     //[self requestForApiVersion];
     [self registrationForApi];
@@ -132,7 +152,7 @@
     [self configureSetup];
     [self checkCurrentAppLanguage];
     [self showWindow];
-   
+
     [Crashlytics startWithAPIKey:FABRIC_API_KEY];
 
     [Fabric with:@[CrashlyticsKit]];
@@ -166,7 +186,6 @@
 //        //        UIButton *loginButton = [self.customLoginViewController FBloginButton];
 //        //        [loginButton setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
 //    }
-    
     return YES;
 }
 
@@ -174,12 +193,17 @@
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
    // NSLog(@"applicationWillResignActive");
+    
+    
+    //firebase
+    [[FIRMessaging messaging] disconnect];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
   //  NSLog(@"applicationDidEnterBackground");
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -309,31 +333,21 @@
     // Call the 'activateApp' method to log an app event for use in analytics and advertising reporting.
 //    [FBAppEvents activateApp];
     [FBSDKAppEvents activateApp];
+    
+//    [self connectToFcm];
 }
-
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
-    [Utils setParseToken:deviceToken];
+    //firebase
+    [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
 
-//    SLog(@"%@",[deviceToken description]);
-//    
-//    NSDictionary* dict = @{@"token" :@"",
-//                         @"device_id" : [Utils getUniqueDeviceIdentifier],
-//                           @"device_token" : [deviceToken description],
-//                         };
-//    
-//    [MessageManager showMessage:[NSString stringWithFormat:@"device_id : %@",[Utils getUniqueDeviceIdentifier]] SubTitle:[NSString stringWithFormat:@"device_token : %@",[deviceToken description]] Type:TSMessageNotificationTypeMessage];
-//    
-//    
-//    [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostRegisterPushNotification parameter:dict appendString:nil success:^(id object) {
-//
-//        NSLog(@"%@",object);
-//        
-//    } failure:^(id object) {
-//        
-//    }];
-}
+
+    [Utils setParseToken:deviceToken];
+    
+    SLog(@"%@",[deviceToken description]);
+    
+   }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {
@@ -343,14 +357,46 @@
         NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
     }
 }
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+    //firebase
+    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
+
+//    [PFPush handlePush:userInfo];
     
-    SLog(@"didReceiveRemoteNotification : %@",[userInfo description]);
+
+    SLog(@"didReceiveRemoteNotification : %@",userInfo);
+    
+    if([application applicationState] == UIApplicationStateInactive || [application applicationState] == UIApplicationStateBackground)
+    {
+        NSString* action = userInfo[@"click_action"];
+        
+        if (action) {
+            
+            [self.landingViewController showPushNotificationView:action];
+        }
+    }else{
+        
+    }
+    
 //    self.window.rootViewController = self.landingV2ViewController;//self.landingV2ViewController
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
     
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
+    
+    // Print message ID.
+    NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
+    
+    // Pring full message.
+    NSLog(@"%@", userInfo);
+    [self application:application didReceiveRemoteNotification:userInfo];
 }
 
 -(void)showWindow
@@ -396,5 +442,47 @@ NSString* deviceName()
     }
     
     return _landingViewController;
+}
+
+//firebase
+- (void)connectToFcm {
+    //if no add this it will cause fail login at 1st time get token
+    if(![[FIRInstanceID instanceID] token])
+        return;
+    [[FIRMessaging messaging] connectWithCompletion:^(NSError * _Nullable error) {
+        if (error != nil) {
+        } else {
+            SLog(@"Connected to FCM.");
+            NSString *refreshedToken = [[FIRInstanceID instanceID] token];
+            SLog(@"InstanceID token: %@", refreshedToken);
+            self.firebaseToken = refreshedToken;
+        }
+    }];
+}
+
+/*
+ in otr class
+ [[FIRInstanceID instanceID] token]
+ this method cant get token
+ so below this method is for get token from this class
+ */
++(NSString *)getFirebaseToken{
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    return appdelegate.firebaseToken;
+}
+
+//firebase
+//1st time get token
+- (void)tokenRefreshNotification{
+    // Note that this callback will be fired everytime a new token is generated, including the first
+    // time. So if you need to retrieve the token as soon as it is available this is where that
+    // should be done.
+    NSString *refreshedToken = [[FIRInstanceID instanceID] token];
+    SLog(@"InstanceID token: %@", refreshedToken);
+    
+    // Connect to FCM since connection may have failed when attempted before having a token.
+    [self connectToFcm];
+    
+    // TODO: If necessary send token to appliation server.
 }
 @end

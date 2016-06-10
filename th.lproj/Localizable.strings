@@ -1088,7 +1088,7 @@
 "Continue with" = "เข้าใช้ผ่าน";
 "Log in" = "เข้าระบบ";
 "Sign up" = "ลงทะเบียน";
-"" = "หรือ";
+"or" = "หรือ";
 "Continue as guest" = "เข้าใช้โดยไม่ลงทะเบียน";
 "Terms of use" = "ข้อตกลง";
 "&" = "&";
@@ -1228,8 +1228,8 @@
 "eg. 1x xxx xxxx" = "89 - XXX - XXXX";
 "Confirm" = "คอนเฟิร์ม ";
 "Enter Verification Code" = "พิมพ์รหัสยืนยัน ";
-"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "โปรดพิมพ์รหัสยืนยัน 7 ตัว ส่งไปที่ {!contact number} รหัสยืนยันมีอายุนาน 30 นาที ";
-"Enter 7-digit verification code" = "พิมพ์รหัสยืนยัน 7 ตัว ";
+"Please enter the verification code that was sent to {!contact number}" = "โปรดพิมพ์รหัสยืนยันส่งไปที่ {!contact number}";
+"Enter verification code" = "พิมพ์รหัสยืนยัน";
 "Resend Code" = "ขอรหัสยืนยันอีกครั้ง ";
 "Confirm" = "คอนเฟิร์ม ";
 "The verification code entered is invalid. Please check and try again." = "รหัสยืนยันไม่ถูกต้อง โปรดตรวจสอบและลองใหม่อีกครั้ง ";
@@ -1321,7 +1321,7 @@
 "Please log in or sign up to continue" = "เข้าระบบหรือลงทะเบียนเพื่อใช้งานต่อ";
 "Not now" = "ทีหลัง";
 "Log in / Sign up" = "เข้าระบบ/ลงทะเบียน";
-"Phone Number = {!phone number}" = "หมายเลขโทรศัพท์: {!phone number}";
+"Phone Number : {!phone number}" = "หมายเลขโทรศัพท์: {!phone number}";
 "Redeem Voucher" = "แลก voucher";
 "Voucher redemptions must be made in front of shop staff" = "ต้องแลก voucher ต่อหน้าพนักงาน";
 "How to Redeem" = "วิธีการแลก";
@@ -1360,7 +1360,7 @@
 "Sold Out" = "หมดแล้ว";
 "Deals {!number}" = "{!number} ดีล ";
 "" = "{!number} ดีลเพิ่มเติมจากร้านนี้ ";
-"Your phone number has been\nverified" = "ยืนยันหมายเลขโทรศัพท์เรียบร้อย";
+"Your phone number has been verified" = "ยืนยันหมายเลขโทรศัพท์เรียบร้อย";
 "Suggested Recommendations" = "รีวิวแนะนำใกล้ตัว";
 "PROMO CODE" = "รหัสโปรโมชัน";
 "Dine in" = "ที่ร้าน";
@@ -1397,8 +1397,8 @@
 "Announcement" = "ประกาศ";
 "Seeties is all about deals and places - discover and collect awesome deals from your favourite shops to eat, play and hangout. \n{Seeties URL}  " = "Seeties แอพรวมดีลและรีวิวน่าสนใจ ให้คุณหาและเก็บดีลโดนๆ จากร้านโปรด ไม่ว่าจะอยากชิม ชิล หรือช็อป {Seeties URL}  ";
 "Check out my profile on Seeties! \n{Profile URL} " = "ดูโปรไฟล์ของฉันบน Seeties ที่ {Profile URL} ";
-"Oops… verification code must be 7 digits" = "";
+"Oops... verification code must be 4 digits" = "อุปส์! รหัสยืนยันต้องมี 4 หลัก";
 "Collect Now" = "เก็บก่อน";
 "Pay Later" = "ใช้ทีหลัง";
 "Collect Now, Pay at Shop" = "เก็บก่อน ใช้ทีหลัง";
-
+"Next" = "ถัดไป";

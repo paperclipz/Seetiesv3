@@ -74,7 +74,6 @@ static NSCache* heightCache = nil;
     BOOL isMiddleOfLoadingServer;
     BOOL isMiddleOfLoadingHome;
 
-    __weak IBOutlet UIActivityIndicatorView *ibActivityIndicator;
     __weak IBOutlet UIImageView *ibHeaderBackgroundView;
     __weak IBOutlet NSLayoutConstraint *constTopScrollView;
     BOOL isFirstLoad;
@@ -94,8 +93,6 @@ static NSCache* heightCache = nil;
 @property (weak, nonatomic) IBOutlet UIButton *btnLocation;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITableView *ibTableView;
-
-@property (strong, nonatomic) IBOutlet UIView *ibFooterView;
 
 /* Model */
 @property(nonatomic,strong)NSMutableArray* arrayNewsFeed;
@@ -569,7 +566,7 @@ static NSCache* heightCache = nil;
     isMiddleOfLoadingServer = NO;
     isMiddleOfLoadingHome = NO;
     
-    [self initFooterView];
+    [self.ibTableView setupFooterView];
 }
 
 -(void)initTableViewDelegate
@@ -1052,6 +1049,20 @@ static NSCache* heightCache = nil;
                 }
                 
                 [cell initData:typeModel.arrPosts];
+                
+                cell.btnCollectionDidClickedBlock = ^(DraftModel* dModel)
+                {
+                    [self showCollectToCollectionView:dModel];
+
+                };
+                
+                cell.btnCollectionQuickClickedBlock = ^(DraftModel* dModel)
+                {
+                    [self requestServerForQuickCollection:dModel];
+                    
+                };
+
+                
                 cell.didSelectPostBlock = ^(DraftModel* model)
                 {
                     [self showPostDetailView:model];
@@ -1194,7 +1205,7 @@ static NSCache* heightCache = nil;
                     case AnnouncementType_Promo:
                     {
                         if ([Utils isGuestMode]) {
-                            [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                            [UIAlertView showWithTitle:LocalisedString(@"Please log in or sign up to continue") message:@"" cancelButtonTitle:LocalisedString(@"Now now") otherButtonTitles:@[@"Log in / Sign up"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                                 
                                 if (buttonIndex == 1) {
                                     [Utils showLogin];
@@ -1320,7 +1331,7 @@ static NSCache* heightCache = nil;
                     case AnnouncementType_Promo:
                     {
                         if ([Utils isGuestMode]) {
-                            [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                            [UIAlertView showWithTitle:LocalisedString(@"Please log in or sign up to continue") message:@"" cancelButtonTitle:LocalisedString(@"Now now") otherButtonTitles:@[@"Log in / Sign up"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
                                 
                                 if (buttonIndex == 1) {
                                     [Utils showLogin];
@@ -1542,7 +1553,7 @@ static NSCache* heightCache = nil;
 -(void)requestServerForQuickCollection:(DraftModel*)model
 {
     
-    NSDictionary* dictPost =  @{@"id": model.post_id};
+    NSDictionary* dictPost =  @{@"id": model.post_id?model.post_id:@""};
 
     
     NSArray* array = @[dictPost];
@@ -1556,7 +1567,8 @@ static NSCache* heightCache = nil;
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePutCollectPost parameter:dict appendString:appendString success:^(id object) {
 
         model.collect = @"1";
-        [TSMessage showNotificationInViewController:self title:LocalisedString(@"System") subtitle:LocalisedString(@"Successfully collected to default Collection") type:TSMessageNotificationTypeSuccess];
+//        [TSMessage showNotificationInViewController:self title:LocalisedString(@"System") subtitle:LocalisedString(@"Successfully collected to default Collection") type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Successfully collected to default Collection") Type:STAlertSuccess];
         [self.ibTableView reloadData];
         
     } failure:^(id object) {
@@ -1600,7 +1612,7 @@ static NSCache* heightCache = nil;
             [self.ibTableView reloadData];
 //            [self.ibTableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 
-            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] stopAnimating];
+            [self.ibTableView stopFooterLoadingView];
 
             if ([Utils isArrayNull:self.arrayNewsFeed]) {
                 [self.ibTableView showEmptyState];
@@ -1771,13 +1783,13 @@ static NSCache* heightCache = nil;
     
     CLLocation* location  = [[SearchManager Instance]getAppLocation];
     
-    NSDictionary* dict = @{@"lat" : model.latitude,
-                           @"lng" : model.longtitude,
-                           @"place_id" : model.place_id,
+    NSDictionary* dict = @{@"lat" : model.latitude?model.latitude:@"",
+                           @"lng" : model.longtitude?model.longtitude:@"",
+                           @"place_id" : model.place_id?model.place_id:@"",
                            @"current_lat" : @(location.coordinate.latitude),
                            @"current_lng" : @(location.coordinate.longitude),
-                           @"last_updated" : lastUpdatedDateTime,
-                           @"last_location_updated" : lastUpdatedLocation,
+                           @"last_updated" : lastUpdatedDateTime?lastUpdatedDateTime:@"",
+                           @"last_location_updated" : lastUpdatedLocation?lastUpdatedLocation:@"",
                            @"token" : [Utils getAppToken],
                            @"type" : model.type?model.type:@"",
                            
@@ -1945,7 +1957,7 @@ static NSCache* heightCache = nil;
        
         if(![Utils isStringNull:self.newsFeedModels.paging.next])
         {
-            [(UIActivityIndicatorView *)[self.ibFooterView viewWithTag:10] startAnimating];
+            [self.ibTableView startFooterLoadingView];
             
             [self requestServerForNewsFeed:self.currentHomeLocationModel.latitude Longtitude:self.currentHomeLocationModel.longtitude];
         }
@@ -1971,14 +1983,6 @@ static NSCache* heightCache = nil;
         // SLog(@"adjustment : %f",adjustment);
         ibHeaderBackgroundView.alpha = adjustment;
     }
-
-}
-
--(void)initFooterView
-{
-    ibActivityIndicator.tag = 10;
-    ibActivityIndicator.hidesWhenStopped = YES;
-    self.ibTableView.tableFooterView = self.ibFooterView;
 
 }
 

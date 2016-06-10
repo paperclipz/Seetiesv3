@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -11,6 +11,8 @@
                 <outlet property="btnLogin" destination="oL5-oP-BVN" id="4h6-w9-NYH"/>
                 <outlet property="btnSignup" destination="Q1X-vP-vhI" id="PPx-0V-cUI"/>
                 <outlet property="ibImageView" destination="jdf-nV-fNL" id="wuo-Tj-fjL"/>
+                <outlet property="ibOrLabel" destination="WHu-ND-0o9" id="sAJ-K6-kYc"/>
+                <outlet property="ibTermLabel" destination="aRb-Kr-MAb" id="ePT-Pr-UEk"/>
                 <outlet property="lblContinueWith" destination="7rR-Qc-xUn" id="SJk-Wz-aWv"/>
                 <outlet property="lblFacebook" destination="vcG-kC-xi2" id="rvv-T7-FOL"/>
                 <outlet property="lblInstagram" destination="t6b-cD-pS6" id="or3-kt-Sfe"/>
@@ -45,7 +47,7 @@
                         <action selector="btnFacebookClicked:" destination="-1" eventType="touchUpInside" id="3yr-uW-qV3"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oL5-oP-BVN">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oL5-oP-BVN">
                     <rect key="frame" x="192" y="526" width="151" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="w1L-YD-FrP"/>
@@ -84,7 +86,7 @@
                         <action selector="btnSignupClicked:" destination="-1" eventType="touchUpInside" id="k8u-zD-Wt1"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Use &amp; Privacy Notice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRb-Kr-MAb">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Use &amp; Privacy Notice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRb-Kr-MAb" customClass="TTTAttributedLabel">
                     <rect key="frame" x="10" y="638" width="355" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="FfH-Zc-IyI"/>

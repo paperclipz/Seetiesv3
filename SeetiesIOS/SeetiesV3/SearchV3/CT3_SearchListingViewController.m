@@ -60,6 +60,7 @@
 @property(nonatomic)SeetiesShopViewController* seetiesShopViewController;
 
 @property(nonatomic)HomeLocationModel* homeLocationModel;
+@property(nonatomic)HomeLocationModel *originHomeLocationModel;
 @property(nonatomic)DealDetailsViewController* dealDetailsViewController;
 
 @property(nonatomic) GeneralFilterViewController *shopFilterViewController;
@@ -104,6 +105,7 @@
     self.homeLocationModel.longtitude = self.locationLongtitude;
     self.homeLocationModel.place_id = self.placeID;
     self.homeLocationModel.dictAddressComponent = self.addressComponent;
+    self.originHomeLocationModel = self.homeLocationModel;
     self.ibSearchText.text = self.keyword;
     
     
@@ -148,8 +150,8 @@
     
     NSString* fontName;
     
-    if ([[LanguageManager getDeviceAppLanguageCode] isEqualToString:TAIWAN_SERVER_NAME] ||
-        [[LanguageManager getDeviceAppLanguageCode] isEqualToString:CHINESE_SERVER_NAME]) {
+    if ([[LanguageManager getDeviceAppLanguageCode] isEqualToString:CHINESE_CODE] ||
+        [[LanguageManager getDeviceAppLanguageCode] isEqualToString:TAIWAN_CODE]) {
         fontName = @"PingFangTC-Regular";
     }
     else{
@@ -715,6 +717,12 @@
         if (![self.ibLocationText.text isEqualToString:@""]) {
             [self getGoogleSearchPlaces:textField.text];
         }
+        else{
+            self.homeLocationModel = self.originHomeLocationModel;
+            [self refreshSearch];
+            self.ibLocationTableView.hidden = YES;
+            self.ibSearchTableView.hidden = YES;
+        }
     }
 
     return YES;
@@ -946,7 +954,8 @@
             
         } errorBlock:^(NSString *status) {
             
-            [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"No Internet Connection" type:TSMessageNotificationTypeWarning];
+//            [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"No Internet Connection" type:TSMessageNotificationTypeWarning];
+            [MessageManager showMessage:@"No Internet Connection" Type:STAlertError];
             [LoadingManager hide];
         }];
     }

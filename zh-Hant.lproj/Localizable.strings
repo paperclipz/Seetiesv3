@@ -1090,7 +1090,7 @@
 "Continue with" = "";
 "Log in" = "登入";
 "Sign up" = "註冊";
-"" = "或";
+"or" = "或";
 "Continue as guest" = "跳過登入";
 "Terms of use" = "服務條款";
 "&" = "與";
@@ -1231,8 +1231,8 @@
 "eg. 1x xxx xxxx" = "例 = 1x xxx xxxx";
 "Confirm" = "確認";
 "Enter Verification Code" = "輸入驗證碼";
-"Please enter the 7-digit verification code that was sent to {!contact number} Code will expire in 30mins." = "驗證碼訊息已發送到{!contact number}。 此驗證碼將在30分鐘後失效";
-"Enter 7-digit verification code" = "7位數驗證碼";
+"Please enter the verification code that was sent to {!contact number}" = "驗證碼訊息已發送到{!contact number}。";
+"Enter verification code" = "輸入驗證碼";
 "Resend Code" = "申請重發";
 "Confirm" = "確認";
 "The verification code entered is invalid. Please check and try again." = "驗證碼無效, 請重新輸入";
@@ -1324,7 +1324,7 @@
 "Please log in or sign up to continue" = "請登入/註冊才可使用此選項喔";
 "Not now" = "再想想";
 "Log in / Sign up" = "登入 / 註冊";
-"Phone Number = {!phone number}" = "手機號碼 = {!phone number}";
+"Phone Number : {!phone number}" = "手機號碼 : {!phone number}";
 "Redeem Voucher" = "領取優惠";
 "Voucher redemptions must be made in front of shop staff" = "您必須在店員面前查證下方可領取此優惠";
 "How to Redeem" = "如何領取";
@@ -1363,7 +1363,7 @@
 "Sold Out" = "已搶光";
 "Deals {!number}" = "優惠劵 {!number}";
 "" = "此店相關優惠 {!number}";
-"Your phone number has been\nverified" = "手機號碼已被認證！";
+"Your phone number has been verified" = "手機號碼已被認證！";
 "Suggested Recommendations" = "國內精選推薦";
 "PROMO CODE" = "序號劵";
 "Dine in" = "店內用餐";
@@ -1400,7 +1400,7 @@
 "Announcement" = "公告";
 "Seeties is all about deals and places - discover and collect awesome deals from your favourite shops to eat, play and hangout. \n{Seeties URL}  " = "Seeties 囊括了無數的精選優惠。快來收藏你所喜愛的優惠劵與發掘吃喝玩樂新店家吧!\n{Seeties URL}  ";
 "Check out my profile on Seeties! \n{Profile URL} " = "我在Seeties創建了個人主頁喔, 快來看看吧!\n{Profile URL} ";
-"Oops… verification code must be 7 digits" = "哎唷... 驗證碼只能是7位數喔!";
+"Oops... verification code must be 4 digits" = "哎唷... 驗證碼只能是4位數喔!";
 "Collect Now" = "努力";
 "Pay Later" = "加載中";
 "Collect Now, Pay at Shop" = "努力加載中...";
@@ -1447,7 +1447,7 @@
 "Sign Up with Seeties!" = "加入Seeties!";
 "Join Seeties to enjoy awesome deals around your city! " = "快來加入Seeties以獲取各種精選優惠吧!";
 //======CHANGE======//
-"Hey you can use my referral code to sign up and get GOODIES! \n'{!referral_code}'.\n{!Seeties URL}" = "好康來報到! 使用我的邀請碼加入Seeties便可獲取好康喔! \n'{!referral_code}'. \n{!Seeties URL}";
+"Dei, use my referral code to sign up and get goodies weyh! \n'{!referral_code}'.\n{!Seeties URL}" = "好康來報到! 使用我的邀請碼加入Seeties便可獲取好康喔! \n'{!referral_code}'. \n{!Seeties URL}";
 "Sharing is caring!\nSign up with Seeties today.\n{!Seeties URL}" = "快來與我加入Seeties以發掘更多好康吧!\n{!Seeties URL}";
 //======CHANGE======//
 "Version {!version number}\n- Invite friends & get rewards\n- Fix bugs" = "版本 {!version number}\n- 邀請好友, 獲取好康\n- 系統整頓";
@@ -1456,7 +1456,33 @@
 "Email" = "電郵";
 "Feedback" = "您的意見";
 "Include Screenshot" = "附加截圖";
-"REFERRAL" = "邀請回饋";
+"REWARD" = "邀請回饋";
+"Share via" = "分享到";
+"Open with" = "使用";
+"Deals ends in {!days} days" = "還剩{!days}日";
+"Deals ends: {!date}" = "優惠截止於{!date}";
+"Voucher ends in {!days} days" = "還剩{!date}日";
+"Voucher ends: {!date}" = "優惠劵截止於{!date}";
+"Are you sure you've registered?" = "確定你曾加入Seeties?";
+"Check your email." = "請查看電郵";
+"Your post has been successfully posted." = "貼文已成功發表";
+"Enable your GPS to improve your location" = "請啟動手機定位功能以尋獲準確位置";
+"Go to Settings" = "啟動定位功能";
+"Next" = "下一步";
+"Great!" = "太棒了!";
+"You have collected your first voucher! Would you like to know how to redeem it?" = "您已成功收藏一張優惠劵喔! 想不想知道領取方式呢?";
+"Yes" = "去看看";
+"No" = "下次吧";
+"Play!" = "練習領取";
+"Seeties.me" = "Seeties.me";
+"Wonderland" = "Seeties樂園";
+"Demonstration on voucher redeem." = "這是一張優惠劵樣品";
+"Sample" = "優惠劵樣品";
+"Experience the swipe to redeem" = "練習領取方式";
+"Are you ready?" = "準備好了沒";
+"All set to swipe and redeem?" = "是不是迫不及待想領取優惠劵了呢?";
+"Try Again" = "再試試";
+"Redeem now" = "立即領取";
 
 
 

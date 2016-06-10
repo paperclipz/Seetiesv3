@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,8 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConnectionsViewController">
             <connections>
-                <outlet property="ibContentView" destination="kVX-WN-CiW" id="mu8-Zr-HTB"/>
                 <outlet property="ibHeaderTitle" destination="36a-2e-GHr" id="BY1-yh-VF8"/>
+                <outlet property="ibScrollView" destination="Dxh-V6-9bH" id="TAi-hF-oY6"/>
+                <outlet property="ibSegmentedView" destination="kVX-WN-CiW" id="eRh-Sv-7EX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -56,17 +57,32 @@
                         <constraint firstAttribute="bottom" secondItem="36a-2e-GHr" secondAttribute="bottom" id="bY3-u5-LXN"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVX-WN-CiW">
-                    <rect key="frame" x="0.0" y="63" width="600" height="537"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVX-WN-CiW" userLabel="segmented view">
+                    <rect key="frame" x="0.0" y="63" width="600" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="K71-r9-u2L"/>
+                    </constraints>
                 </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dxh-V6-9bH" userLabel="scroll view">
+                    <rect key="frame" x="0.0" y="113" width="600" height="487"/>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="X6c-9G-9ol"/>
+                    </connections>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Dxh-V6-9bH" firstAttribute="top" secondItem="kVX-WN-CiW" secondAttribute="bottom" id="3iy-2b-9tD"/>
+                <constraint firstAttribute="trailing" secondItem="Dxh-V6-9bH" secondAttribute="trailing" id="4sg-56-aYl"/>
                 <constraint firstAttribute="bottom" secondItem="kVX-WN-CiW" secondAttribute="bottom" id="8l1-Lm-0pj"/>
                 <constraint firstAttribute="trailing" secondItem="Veu-cS-x9U" secondAttribute="trailing" id="AFY-MK-bnM"/>
                 <constraint firstItem="Veu-cS-x9U" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Apw-ML-mpf"/>
                 <constraint firstItem="kVX-WN-CiW" firstAttribute="top" secondItem="Veu-cS-x9U" secondAttribute="bottom" constant="-1" id="IiB-es-lAl"/>
+                <constraint firstAttribute="bottom" secondItem="Dxh-V6-9bH" secondAttribute="bottom" id="Itn-0I-7iV"/>
+                <constraint firstItem="Dxh-V6-9bH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PzI-mr-zCi"/>
+                <constraint firstItem="Dxh-V6-9bH" firstAttribute="leading" secondItem="kVX-WN-CiW" secondAttribute="leading" id="R6U-82-NVZ"/>
                 <constraint firstItem="kVX-WN-CiW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SU8-wQ-QA9"/>
                 <constraint firstItem="Veu-cS-x9U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WaB-qE-sHV"/>
                 <constraint firstAttribute="trailing" secondItem="kVX-WN-CiW" secondAttribute="trailing" id="ksQ-hq-m6c"/>
@@ -77,6 +93,8 @@
                 <mask key="constraints">
                     <exclude reference="AFY-MK-bnM"/>
                     <exclude reference="lyA-bL-v02"/>
+                    <exclude reference="8l1-Lm-0pj"/>
+                    <exclude reference="R6U-82-NVZ"/>
                 </mask>
             </variation>
         </view>

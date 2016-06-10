@@ -1,7 +1,5 @@
 platform :ios, '8.0'
 
-target 'Seeties' do
-
 pod 'TTTAttributedLabel'
 use_frameworks!
 pod 'JSONModel'
@@ -37,7 +35,12 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 
+#pod 'Firebase', '>= 2.5.1'
+pod 'Firebase/Messaging'
+pod 'Firebase/Core'
+pod 'Firebase/Database'
 pod 'SSKeychain'
+
 #================ Possible can be deleted =====================#
 #pod 'DBCamera', '~> 2.4'
 pod 'PureLayout'
@@ -55,5 +58,3 @@ pod 'PureLayout'
 #pod 'pop', '~> 1.0'
 #pod 'GoogleMaps'
 #pod 'LPGoogleFunctions'
-
-end

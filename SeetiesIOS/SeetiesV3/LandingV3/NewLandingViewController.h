@@ -30,4 +30,9 @@
 -(void)showIntroView;
 
 -(void)reloadTabbar;
+
+
+-(UITabBarController*)tabBarController;
+-(void)showPushNotificationView:(NSString*)pushNotificationCode;
+
 @end

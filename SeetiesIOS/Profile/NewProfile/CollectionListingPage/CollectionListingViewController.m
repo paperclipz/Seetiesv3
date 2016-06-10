@@ -10,12 +10,13 @@
 
 @interface CollectionListingViewController ()
 {
-    
-    __weak IBOutlet NSLayoutConstraint *scrollViewTopConstraint;
     NSString* seetiesID;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *ibSegmentedControl;
+@property (weak, nonatomic) IBOutlet UIView *ibSegmentedControlView;
+@property(nonatomic) HMSegmentedControl *segmentedControl;
+@property(nonatomic) NSArray *arrViewControllers;
+
 @property(nonatomic,assign)ProfileViewType profileType;
 @property(nonatomic,assign)CollectionListingType collectionListingType;
 @property(nonatomic,strong)ProfileModel* profileModel;
@@ -30,35 +31,10 @@
 
 
 - (IBAction)btnAddMoreClicked:(id)sender {
-    
-//    _newCollectionViewController = nil;
-
-    //[self.navigationController pushViewController:self.newCollectionViewController animated:YES];
-//    [self presentViewController:self.newCollectionViewController animated:YES completion:nil];
-    
     _collectionDetailController = nil;
     [self.collectionDetailController initDataWithUserID:[Utils getUserID]];
     [self.navigationController presentViewController:self.collectionDetailController animated:YES completion:nil];
 }
-
-- (IBAction)btnSegmentedClicked:(id)sender {
-    
-    UISegmentedControl* segmentedControl = (UISegmentedControl*)sender;
-    
-    CGRect frame = self.ibScrollView.frame;
-    frame.origin.x = frame.size.width * segmentedControl.selectedSegmentIndex;
-    frame.origin.y = 0;
-    [self.ibScrollView scrollRectToVisible:frame animated:YES];
-    
-    if (self.profileType == ProfileViewTypeOwn && segmentedControl.selectedSegmentIndex == 0) {
-        self.btnAddMore.hidden = NO;
-    }
-    else{
-        self.btnAddMore.hidden = YES;
-
-    }
-}
-
 
 -(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page
 {
@@ -101,7 +77,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSelfView];
-    [self changeLanguage];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -113,37 +88,51 @@
 -(void)initSelfView
 {
     self.ibScrollView.delegate = self;
-    [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
-    scrollViewTopConstraint.constant = 0;
-
-    CGRect frame = [Utils getDeviceScreenSize];
-    [self.ibScrollView setWidth:frame.size.width];
-    [self.myCollectionListingViewController.view setWidth:frame.size.width];
-    [self.myCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
-    [self.ibScrollView addSubview:self.myCollectionListingViewController.view];
-    self.ibScrollView.contentSize = CGSizeMake(frame.size.width, self.ibScrollView.frame.size.height);
-
-
-    if (self.viewPage == 2)
-    {
-        scrollViewTopConstraint.constant = 46;
-        self.ibSegmentedControl.hidden = NO;
-        [self.followingCollectionListingViewController.view setWidth:frame.size.width];
-        [self.followingCollectionListingViewController.view setHeight:self.ibScrollView.frame.size.height];
-        [self.ibScrollView addSubview:self.followingCollectionListingViewController.view];
-        self.ibScrollView.contentSize = CGSizeMake(frame.size.width*2, self.ibScrollView.frame.size.height);
-        self.ibScrollView.pagingEnabled = YES;
-        [self.followingCollectionListingViewController.view setX:self.myCollectionListingViewController.view.frame.size.width];
-    }
-    else{
-        self.ibSegmentedControl.hidden = YES;
-
-    }
-    
+    [self initSegmentedControlViewInView:self.ibScrollView ContentView:self.ibSegmentedControlView ViewControllers:self.arrViewControllers];
 
     self.btnAddMore.hidden = self.profileType == ProfileViewTypeOthers;
     
     [self initViewData];
+}
+
+-(void)initSegmentedControlViewInView:(UIScrollView*)view ContentView:(UIView*)contentView ViewControllers:(NSArray*)arryViewControllers
+{
+    
+    CGRect frame = [Utils getDeviceScreenSize];
+    view.delegate = self;
+    
+    
+    NSMutableArray* arrTitles = [NSMutableArray new];
+    
+    for (int i = 0; i<arryViewControllers.count; i++) {
+        
+        UIViewController* vc = arryViewControllers[i];
+        [view addSubview:vc.view];
+        [arrTitles addObject:vc.title];
+        vc.view.frame = CGRectMake(i*frame.size.width, 0, view.frame.size.width, view.frame.size.height);
+    }
+    
+    view.contentSize = CGSizeMake(frame.size.width*arryViewControllers.count , view.frame.size.height);
+    
+    
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
+    self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : TEXT_GRAY_COLOR,
+                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : ONE_ZERO_TWO_COLOR,
+                                                          NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+    
+    self.segmentedControl.sectionTitles = arrTitles;
+    self.segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.selectionIndicatorColor = DEVICE_COLOR;
+    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    
+    [contentView addSubview:self.segmentedControl];
+    
+    [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+        [view scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
+    }];
+    
 }
 
 -(void)initViewData
@@ -214,6 +203,7 @@
     if(!_myCollectionListingViewController)
     {
         _myCollectionListingViewController = [CollectionListingTabViewController new];
+        _myCollectionListingViewController.title = LocalisedString(@"Collections");
         _myCollectionListingViewController.profileType = self.profileType;
         //my collection is used for my own collection , suggested collection and trending collection
         _myCollectionListingViewController.collectionListingType = self.collectionListingType == CollectionListingTypeMyOwn?CollectionListingTypeMyOwn:self.collectionListingType;
@@ -242,6 +232,7 @@
     if(!_followingCollectionListingViewController)
     {
         _followingCollectionListingViewController = [CollectionListingTabViewController new];
+        _followingCollectionListingViewController.title = LocalisedString(@"Following Collections");
         _followingCollectionListingViewController.profileType = ProfileViewTypeOthers;
         _followingCollectionListingViewController.collectionListingType = CollectionListingTypeFollowing;
         _followingCollectionListingViewController.userID = self.profileModel.uid;
@@ -286,17 +277,20 @@
     return _collectionViewController;
 }
 
+-(NSArray *)arrViewControllers{
+    if (!_arrViewControllers) {
+        _arrViewControllers = @[self.myCollectionListingViewController, self.followingCollectionListingViewController];
+    }
+    return _arrViewControllers;
+}
 
 #pragma mark - UIScroll View Delegate
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger page = scrollView.contentOffset.x / pageWidth;
     
-    CGFloat width = scrollView.frame.size.width;
-    NSInteger page = (scrollView.contentOffset.x + (0.5f * width)) / width;
-    
-    
-    self.ibSegmentedControl.selectedSegmentIndex = page;
-    
+    [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
 }
 
 
@@ -323,10 +317,4 @@
     [self.navigationController pushViewController:self.collectionViewController animated:YES];
 }
 
--(void)changeLanguage
-{
-    [self.ibSegmentedControl setTitle:LocalisedString(@"Collections") forSegmentAtIndex:0];
-    [self.ibSegmentedControl setTitle:LocalisedString(@"Following Collections") forSegmentAtIndex:1];
-
-}
 @end

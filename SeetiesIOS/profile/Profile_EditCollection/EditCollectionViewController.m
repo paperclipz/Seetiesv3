@@ -255,7 +255,8 @@
 
         [LoadingManager hide];
 
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success Create New Collections" type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:@"Success Create New Collections" Type:STAlertSuccess];
         
     } failure:^(id object) {
         [LoadingManager hide];
@@ -312,7 +313,8 @@
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePostCreateCollection parameter:finalDict appendString:appendString success:^(id object) {
 
         
-        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Success Saved Collections" type:TSMessageNotificationTypeSuccess];
+//        [TSMessage showNotificationInViewController:self title:@"system" subtitle:@"Success Saved Collections" type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:@"Success Saved Collections" Type:STAlertSuccess];
         [LoadingManager hide];
         
          [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICAION_TYPE_REFRESH_COLLECTION object:nil];
@@ -421,7 +423,8 @@
 
 -(void)successFullyDeletedCollection
 {
-    [TSMessage showNotificationWithTitle:@"system" subtitle:LocalisedString(@"Successfully Deleted Collection") type:TSMessageNotificationTypeSuccess];
+//    [TSMessage showNotificationWithTitle:@"system" subtitle:LocalisedString(@"Successfully Deleted Collection") type:TSMessageNotificationTypeSuccess];
+    [MessageManager showMessage:LocalisedString(@"Successfully Deleted Collection") Type:STAlertSuccess];
     [self btnBackWithRefresh];
 }
 

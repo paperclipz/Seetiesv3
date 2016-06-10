@@ -27,4 +27,18 @@
     }
     return _arrArea;
 }
+
+-(NSString*)formattedCountryDisplay
+{
+    
+    NSString *formattedCountryCode = [NSString stringWithFormat:@"%@ (%@)", self.name, self.phone_country_code];
+
+    return formattedCountryCode;
+}
+
+-(NSString*)shortCountryCode
+{
+    return [self.country_code substringFromIndex:1];
+
+}
 @end

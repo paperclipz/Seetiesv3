@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="STAlertTypeViewController">
+            <connections>
+                <outlet property="errorView" destination="JJT-AY-hgt" id="pPN-q7-N6o"/>
+                <outlet property="popoverView" destination="vYH-cN-7Bn" id="YRr-0U-82j"/>
+                <outlet property="successView" destination="i5M-Pr-FkT" id="0Ec-Dl-7Rn"/>
+                <outlet property="testView" destination="iTg-ET-C8D" id="REb-Hl-LyZ"/>
+                <outlet property="view" destination="DGI-eQ-1HO" id="WzD-qv-KmF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlertTickIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="a7d-Nz-Nrg">
+                    <rect key="frame" x="10" y="0.0" width="30" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="ZpJ-uk-sVR"/>
+                        <constraint firstAttribute="height" constant="30" id="je0-S0-1Mo"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="je0-S0-1Mo"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sD-xd-rrv">
+                    <rect key="frame" x="50" y="0.0" width="530" height="80"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.41176470590000003" green="0.74509803919999995" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="1sD-xd-rrv" firstAttribute="leading" secondItem="a7d-Nz-Nrg" secondAttribute="trailing" constant="10" id="7tZ-aF-mdN"/>
+                <constraint firstItem="a7d-Nz-Nrg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Fwf-RF-OlP"/>
+                <constraint firstAttribute="bottom" secondItem="1sD-xd-rrv" secondAttribute="bottom" id="LJD-OQ-hyv"/>
+                <constraint firstAttribute="bottom" secondItem="a7d-Nz-Nrg" secondAttribute="bottom" id="Rep-jJ-4ih"/>
+                <constraint firstItem="1sD-xd-rrv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bRg-7G-REF"/>
+                <constraint firstItem="a7d-Nz-Nrg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="o7B-lf-r2c"/>
+                <constraint firstAttribute="trailing" secondItem="1sD-xd-rrv" secondAttribute="trailing" constant="20" id="tmK-hD-mbK"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="448" y="267"/>
+        </view>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="JJT-AY-hgt">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlertErrorIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="16k-Hh-vmf">
+                    <rect key="frame" x="10" y="0.0" width="30" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="24c-8v-r9J"/>
+                        <constraint firstAttribute="width" constant="30" id="FCo-Bw-R1w"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="24c-8v-r9J"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yle-Td-0oX">
+                    <rect key="frame" x="68" y="0.0" width="510" height="80"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="yle-Td-0oX" secondAttribute="trailing" constant="20" id="1Ho-a9-pTS"/>
+                <constraint firstItem="yle-Td-0oX" firstAttribute="leading" secondItem="16k-Hh-vmf" secondAttribute="trailing" constant="10" id="2lq-kD-NTc"/>
+                <constraint firstItem="yle-Td-0oX" firstAttribute="top" secondItem="JJT-AY-hgt" secondAttribute="top" id="M2D-uW-4TP"/>
+                <constraint firstItem="16k-Hh-vmf" firstAttribute="leading" secondItem="JJT-AY-hgt" secondAttribute="leading" constant="10" id="eoN-ws-SfR"/>
+                <constraint firstAttribute="bottom" secondItem="yle-Td-0oX" secondAttribute="bottom" id="hnM-oS-U3t"/>
+                <constraint firstItem="16k-Hh-vmf" firstAttribute="top" secondItem="JJT-AY-hgt" secondAttribute="top" id="lpe-hz-Yhy"/>
+                <constraint firstAttribute="bottom" secondItem="16k-Hh-vmf" secondAttribute="bottom" id="qil-VB-UHz"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="448" y="418"/>
+        </view>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="DGI-eQ-1HO">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="448" y="113"/>
+        </view>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iTg-ET-C8D">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="448" y="572"/>
+        </view>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="vYH-cN-7Bn">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahK-xj-xBI">
+                    <rect key="frame" x="10" y="10" width="580" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailingMargin" secondItem="ahK-xj-xBI" secondAttribute="trailing" id="2cC-Sj-Yo2"/>
+                <constraint firstAttribute="bottom" secondItem="ahK-xj-xBI" secondAttribute="bottom" constant="10" id="6hh-hW-fDT"/>
+                <constraint firstAttribute="bottomMargin" secondItem="ahK-xj-xBI" secondAttribute="bottom" id="FJ0-ML-qd7"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="top" secondItem="vYH-cN-7Bn" secondAttribute="top" id="NqY-DH-2wR"/>
+                <constraint firstAttribute="bottom" secondItem="ahK-xj-xBI" secondAttribute="bottom" id="UG0-yx-Wza"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="top" secondItem="vYH-cN-7Bn" secondAttribute="top" constant="10" id="V3U-BO-AOB"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="leading" secondItem="vYH-cN-7Bn" secondAttribute="leading" constant="10" id="Ze1-cP-fUb"/>
+                <constraint firstAttribute="trailing" secondItem="ahK-xj-xBI" secondAttribute="trailing" constant="10" id="mBg-ju-Sp7"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="top" secondItem="vYH-cN-7Bn" secondAttribute="topMargin" id="oQT-vL-FGw"/>
+                <constraint firstAttribute="trailing" secondItem="ahK-xj-xBI" secondAttribute="trailing" constant="10" id="qH8-gP-JTh"/>
+                <constraint firstItem="ahK-xj-xBI" firstAttribute="leading" secondItem="vYH-cN-7Bn" secondAttribute="leadingMargin" id="u7u-bp-kql"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="2cC-Sj-Yo2"/>
+                    <exclude reference="FJ0-ML-qd7"/>
+                    <exclude reference="NqY-DH-2wR"/>
+                    <exclude reference="UG0-yx-Wza"/>
+                    <exclude reference="mBg-ju-Sp7"/>
+                    <exclude reference="oQT-vL-FGw"/>
+                    <exclude reference="u7u-bp-kql"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="448" y="701"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AlertErrorIcon.png" width="22" height="22"/>
+        <image name="AlertTickIcon.png" width="22" height="22"/>
+    </resources>
+</document>

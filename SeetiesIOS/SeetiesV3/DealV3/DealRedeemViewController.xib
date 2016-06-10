@@ -10,23 +10,15 @@
             <connections>
                 <outlet property="ibBottomDesc" destination="LSE-Hl-Y7Q" id="Mie-2Y-Ujw"/>
                 <outlet property="ibBottomView" destination="FRX-IV-Orm" id="ahs-Qx-1Fi"/>
+                <outlet property="ibCloseBtn" destination="pDY-W6-TMS" id="wtK-Xj-Cwr"/>
                 <outlet property="ibDealTitle" destination="NSW-gB-Hig" id="oSU-AR-CNO"/>
                 <outlet property="ibDescBorderView" destination="TGy-Uf-mib" id="fcu-Ya-lNF"/>
-                <outlet property="ibFirstImage" destination="CSs-d2-WPy" id="spu-Ay-1SU"/>
-                <outlet property="ibFirstInstruction" destination="SEp-Ox-QE7" id="Tfb-6O-ZDB"/>
-                <outlet property="ibFirstNumber" destination="VdU-do-Rmn" id="8zj-Vl-am4"/>
-                <outlet property="ibFooterInstruction" destination="fqx-ed-me2" id="zFe-Wk-gq4"/>
-                <outlet property="ibGifContentView" destination="NyM-yg-0uv" id="b82-Aq-rEJ"/>
                 <outlet property="ibGuideIndicatorImg" destination="kQJ-WD-d7j" id="aU8-WD-bNL"/>
                 <outlet property="ibHeaderTitle" destination="gSA-o2-hwg" id="5do-ox-Lil"/>
                 <outlet property="ibHowToRedeem" destination="WeQ-96-aWT" id="Cu7-1K-nR2"/>
-                <outlet property="ibHowToRedeemTitle" destination="QAX-OX-g48" id="rg0-SO-UuV"/>
-                <outlet property="ibHowToRedeemTopConstraint" destination="3RI-BM-yfY" id="mfn-vw-nLK"/>
+                <outlet property="ibHowToRedeemLine" destination="eID-2a-vwh" id="hrI-xL-LNS"/>
                 <outlet property="ibImgDeal" destination="rl7-kF-Y0H" id="6xD-yk-Zz6"/>
                 <outlet property="ibRedeemDateTime" destination="fKC-ir-Fsh" id="Oor-si-8oP"/>
-                <outlet property="ibSecondImage" destination="WV8-AW-nus" id="cgs-gH-Rui"/>
-                <outlet property="ibSecondInstruction" destination="Nbh-Yu-PDh" id="WZo-LU-O6F"/>
-                <outlet property="ibSecondNumber" destination="KXK-42-mBG" id="LAZ-Xe-y6g"/>
                 <outlet property="ibShopAddress" destination="c6E-GE-W0p" id="2Dn-yc-tce"/>
                 <outlet property="ibShopImg" destination="2oY-5p-x83" id="jA5-QN-a4B"/>
                 <outlet property="ibShopTitle" destination="urr-dD-1Yo" id="GSB-RQ-Xus"/>
@@ -34,10 +26,8 @@
                 <outlet property="ibSwipeBtn" destination="tId-o4-9uj" id="f86-CR-0tL"/>
                 <outlet property="ibSwipeToRedeem" destination="Ar0-rK-F4X" id="kBj-HM-RiL"/>
                 <outlet property="ibSwipeView" destination="DGd-Lh-xup" id="VXc-9Q-x2r"/>
-                <outlet property="ibThirdImage" destination="xsJ-g9-SAT" id="Ch9-o9-Tcr"/>
-                <outlet property="ibThirdInstruction" destination="1H2-3h-owz" id="OYg-vV-lgO"/>
-                <outlet property="ibThirdNumber" destination="QHv-DZ-OJ4" id="7br-LJ-HI1"/>
                 <outlet property="ibTopConstraint" destination="YKe-xz-1Rl" id="4tz-zP-vC5"/>
+                <outlet property="ibTutorialCloseBtn" destination="BUO-Pe-XnD" id="7Xw-Bg-73J"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -118,7 +108,7 @@
                             <rect key="frame" x="3" y="68" width="313" height="157"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rl7-kF-Y0H">
-                                    <rect key="frame" x="0.0" y="0.0" width="313" height="156"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="313" height="157"/>
                                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
                             </subviews>
@@ -132,7 +122,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSW-gB-Hig">
-                            <rect key="frame" x="15" y="235" width="289" height="69"/>
+                            <rect key="frame" x="15" y="234" width="289" height="70"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -168,20 +158,20 @@
                     <rect key="frame" x="28" y="386" width="319" height="107"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DealRedeemCardDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="bwF-Qu-mY0">
-                            <rect key="frame" x="0.0" y="0.0" width="319" height="107"/>
+                            <rect key="frame" x="0.0" y="0.0" width="319" height="106"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsS-C4-sNW" userLabel="swipe bg">
-                            <rect key="frame" x="20" y="26" width="279" height="55"/>
+                            <rect key="frame" x="20" y="25" width="279" height="55"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeToRedeemSwipeIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="LR4-8K-3va">
-                                    <rect key="frame" x="69" y="15" width="25" height="25"/>
+                                    <rect key="frame" x="55" y="15" width="25" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="Lui-mr-7Pq"/>
                                         <constraint firstAttribute="width" constant="25" id="mEY-2k-WGt"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to Redeem" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ar0-rK-F4X">
-                                    <rect key="frame" x="102" y="19" width="127" height="18"/>
+                                    <rect key="frame" x="88" y="19" width="127" height="18"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -212,13 +202,13 @@
                                 <constraint firstAttribute="height" constant="55" id="KPW-DG-oIg"/>
                                 <constraint firstItem="LR4-8K-3va" firstAttribute="centerY" secondItem="xsS-C4-sNW" secondAttribute="centerY" id="NqX-L0-M2e"/>
                                 <constraint firstItem="DGd-Lh-xup" firstAttribute="leading" secondItem="xsS-C4-sNW" secondAttribute="leading" constant="5" id="VNY-gR-piG"/>
-                                <constraint firstItem="LR4-8K-3va" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xsS-C4-sNW" secondAttribute="leading" constant="10" id="dIa-vR-MCx"/>
-                                <constraint firstAttribute="trailing" secondItem="Ar0-rK-F4X" secondAttribute="trailing" constant="50" id="sZl-BS-uMm"/>
+                                <constraint firstItem="LR4-8K-3va" firstAttribute="leading" secondItem="xsS-C4-sNW" secondAttribute="leading" constant="55" id="dIa-vR-MCx"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ar0-rK-F4X" secondAttribute="trailing" constant="8" id="sZl-BS-uMm"/>
                                 <constraint firstItem="Ar0-rK-F4X" firstAttribute="leading" secondItem="LR4-8K-3va" secondAttribute="trailing" constant="8" id="u3t-T4-ibg"/>
                             </constraints>
                         </view>
-                        <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indicator_hand.png" translatesAutoresizingMaskIntoConstraints="NO" id="kQJ-WD-d7j" userLabel="guide finger">
-                            <rect key="frame" x="34" y="53" width="43" height="43"/>
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IndicatorHand.png" translatesAutoresizingMaskIntoConstraints="NO" id="kQJ-WD-d7j" userLabel="guide finger">
+                            <rect key="frame" x="34" y="52" width="43" height="43"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="43" id="J2v-H8-7EM"/>
                                 <constraint firstAttribute="height" constant="43" id="bvJ-uy-X6d"/>
@@ -228,18 +218,18 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="kQJ-WD-d7j" firstAttribute="centerY" secondItem="DGd-Lh-xup" secondAttribute="centerY" constant="20" id="54h-Za-2WL"/>
-                        <constraint firstItem="kQJ-WD-d7j" firstAttribute="centerX" secondItem="DGd-Lh-xup" secondAttribute="centerX" constant="10" id="CIJ-T1-Iww"/>
                         <constraint firstAttribute="bottom" secondItem="bwF-Qu-mY0" secondAttribute="bottom" id="Db1-Vk-oNG"/>
                         <constraint firstItem="bwF-Qu-mY0" firstAttribute="leading" secondItem="FRX-IV-Orm" secondAttribute="leading" id="FKu-np-Bgf"/>
                         <constraint firstAttribute="width" secondItem="FRX-IV-Orm" secondAttribute="height" multiplier="3:1" id="RgJ-nT-5Ss"/>
                         <constraint firstItem="bwF-Qu-mY0" firstAttribute="top" secondItem="FRX-IV-Orm" secondAttribute="top" id="ZFj-8f-9Ve"/>
+                        <constraint firstItem="xsS-C4-sNW" firstAttribute="leading" secondItem="kQJ-WD-d7j" secondAttribute="trailing" constant="-57" id="a4t-fM-dXP"/>
                         <constraint firstItem="xsS-C4-sNW" firstAttribute="leading" secondItem="FRX-IV-Orm" secondAttribute="leading" constant="20" id="ft5-Bg-ffO"/>
                         <constraint firstAttribute="trailing" secondItem="xsS-C4-sNW" secondAttribute="trailing" constant="20" id="g45-wG-ENC"/>
                         <constraint firstAttribute="trailing" secondItem="bwF-Qu-mY0" secondAttribute="trailing" id="yGb-jO-mAX"/>
                         <constraint firstItem="xsS-C4-sNW" firstAttribute="centerY" secondItem="FRX-IV-Orm" secondAttribute="centerY" id="yaC-1X-AJG"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Redeem Voucher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSA-o2-hwg" userLabel="title">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Redeem Voucher" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSA-o2-hwg" userLabel="title">
                     <rect key="frame" x="118" y="45" width="139" height="20"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -278,8 +268,20 @@
                         <action selector="btnBackClicked:" destination="-1" eventType="touchUpInside" id="vor-PK-bkB"/>
                     </connections>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUO-Pe-XnD" userLabel="tutorial close button">
+                    <rect key="frame" x="319" y="16" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ESY-dL-lCv"/>
+                        <constraint firstAttribute="width" constant="40" id="y1L-Py-vAe"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" image="CloseIcon.png"/>
+                    <connections>
+                        <action selector="btnTutorialCloseClicked:" destination="-1" eventType="touchUpInside" id="Ier-jY-rFe"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must redeem in front of a shop personnel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSE-Hl-Y7Q">
-                    <rect key="frame" x="43" y="501" width="289" height="36"/>
+                    <rect key="frame" x="43" y="500" width="289" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -303,6 +305,7 @@
                 <constraint firstItem="TGy-Uf-mib" firstAttribute="height" secondItem="FRX-IV-Orm" secondAttribute="height" constant="-30" id="TNH-LH-PxA"/>
                 <constraint firstItem="LSE-Hl-Y7Q" firstAttribute="top" secondItem="FRX-IV-Orm" secondAttribute="bottom" constant="8" id="Tgu-Zi-Njd"/>
                 <constraint firstItem="pDY-W6-TMS" firstAttribute="leading" secondItem="6yp-Fc-qax" secondAttribute="leading" id="WVb-Fm-bm1"/>
+                <constraint firstAttribute="trailing" secondItem="BUO-Pe-XnD" secondAttribute="trailing" constant="16" id="Wmi-TZ-3gY"/>
                 <constraint firstItem="pDY-W6-TMS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="YKe-xz-1Rl"/>
                 <constraint firstAttribute="trailing" secondItem="FRX-IV-Orm" secondAttribute="trailing" constant="28" id="Z8S-Mg-LZg"/>
                 <constraint firstItem="6yp-Fc-qax" firstAttribute="top" secondItem="pDY-W6-TMS" secondAttribute="bottom" id="ZHI-8l-Qdb"/>
@@ -316,219 +319,23 @@
                 <constraint firstItem="6yp-Fc-qax" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="lX2-Vd-vC8"/>
                 <constraint firstItem="6yp-Fc-qax" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pUC-hP-WGl"/>
                 <constraint firstAttribute="trailing" secondItem="ORX-Vq-Sxe" secondAttribute="trailing" id="rcR-0R-upG"/>
+                <constraint firstItem="BUO-Pe-XnD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="wGk-TE-d5r"/>
                 <constraint firstAttribute="bottom" secondItem="WeQ-96-aWT" secondAttribute="bottom" constant="19" id="xEW-Ai-Ezj"/>
                 <constraint firstItem="gSA-o2-hwg" firstAttribute="centerY" secondItem="pDY-W6-TMS" secondAttribute="centerY" id="xbL-bC-ALj"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="413.5" y="328.5"/>
         </view>
-        <view contentMode="scaleToFill" id="NyM-yg-0uv">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SwipeToRedeemBg.png" translatesAutoresizingMaskIntoConstraints="NO" id="ODq-Hw-C5g" userLabel="bg image">
-                    <rect key="frame" x="0.0" y="60" width="320" height="508"/>
-                </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6oN-ht-Kh6" userLabel="header">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0d-qJ-cFY" userLabel="close btn">
-                            <rect key="frame" x="260" y="0.0" width="60" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="h0d-qJ-cFY" secondAttribute="height" multiplier="1:1" id="GJ1-3W-7Yd"/>
-                            </constraints>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <state key="normal" image="CloseIconGrey.png"/>
-                            <connections>
-                                <action selector="btnHowToRedeemCloseClicked:" destination="-1" eventType="touchUpInside" id="7Rb-Jg-sPh"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Redeem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-OX-g48">
-                            <rect key="frame" x="8" y="19" width="244" height="21"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="QAX-OX-g48" firstAttribute="leading" secondItem="6oN-ht-Kh6" secondAttribute="leading" constant="8" id="Fg3-De-dzH"/>
-                        <constraint firstAttribute="trailing" secondItem="h0d-qJ-cFY" secondAttribute="trailing" id="Iiw-2R-nk1"/>
-                        <constraint firstAttribute="height" constant="60" id="Jl3-Vq-lKl"/>
-                        <constraint firstAttribute="bottom" secondItem="h0d-qJ-cFY" secondAttribute="bottom" id="U1y-r3-6cm"/>
-                        <constraint firstItem="QAX-OX-g48" firstAttribute="centerY" secondItem="6oN-ht-Kh6" secondAttribute="centerY" id="Wjg-pm-mXb"/>
-                        <constraint firstItem="h0d-qJ-cFY" firstAttribute="leading" secondItem="QAX-OX-g48" secondAttribute="trailing" constant="8" id="eox-ZK-BiV"/>
-                        <constraint firstItem="h0d-qJ-cFY" firstAttribute="top" secondItem="6oN-ht-Kh6" secondAttribute="top" id="wbI-j9-w8r"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUu-Iw-0ZD" userLabel="first view">
-                    <rect key="frame" x="0.0" y="68" width="320" height="167"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HowToRedeem1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="CSs-d2-WPy" userLabel="first image" customClass="YLImageView">
-                            <rect key="frame" x="75" y="8" width="195" height="98"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="CSs-d2-WPy" secondAttribute="height" multiplier="2:1" id="pRG-Wa-69S"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdU-do-Rmn" userLabel="first number">
-                            <rect key="frame" x="75" y="17" width="30" height="30"/>
-                            <color key="backgroundColor" red="0.30588235294117649" green="0.15686274509803921" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="1R9-jG-bqu"/>
-                                <constraint firstAttribute="height" constant="30" id="Ibf-4C-WRe"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you order" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEp-Ox-QE7" userLabel="first instruction">
-                            <rect key="frame" x="35" y="112" width="250" height="20"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SEp-Ox-QE7" secondAttribute="bottom" constant="6" id="1b7-P5-nmL"/>
-                        <constraint firstItem="VdU-do-Rmn" firstAttribute="centerY" secondItem="CSs-d2-WPy" secondAttribute="centerY" constant="-25" id="2Bx-Gb-9kZ"/>
-                        <constraint firstAttribute="width" secondItem="lUu-Iw-0ZD" secondAttribute="height" multiplier="1:0.52" id="2UO-EL-FA3"/>
-                        <constraint firstItem="CSs-d2-WPy" firstAttribute="leading" secondItem="lUu-Iw-0ZD" secondAttribute="leading" constant="75" id="LlH-UA-Zdg"/>
-                        <constraint firstAttribute="trailing" secondItem="CSs-d2-WPy" secondAttribute="trailing" constant="50" id="NUR-PL-ote"/>
-                        <constraint firstItem="SEp-Ox-QE7" firstAttribute="leading" secondItem="lUu-Iw-0ZD" secondAttribute="leading" constant="35" id="SbK-MU-1Js"/>
-                        <constraint firstAttribute="trailing" secondItem="SEp-Ox-QE7" secondAttribute="trailing" constant="35" id="Zle-rg-fii"/>
-                        <constraint firstItem="VdU-do-Rmn" firstAttribute="leading" secondItem="CSs-d2-WPy" secondAttribute="leading" id="eE8-yD-gra"/>
-                        <constraint firstItem="CSs-d2-WPy" firstAttribute="top" secondItem="lUu-Iw-0ZD" secondAttribute="top" constant="8" id="n3n-9s-yut"/>
-                        <constraint firstItem="SEp-Ox-QE7" firstAttribute="top" secondItem="CSs-d2-WPy" secondAttribute="bottom" constant="6" id="r2n-2m-BZw"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IBI-cW-0RN" userLabel="second view">
-                    <rect key="frame" x="0.0" y="219" width="320" height="128"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXK-42-mBG" userLabel="second number">
-                            <rect key="frame" x="125" y="53" width="30" height="30"/>
-                            <color key="backgroundColor" red="0.30588235289999999" green="0.15686274510000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="KTU-l4-z1s"/>
-                                <constraint firstAttribute="width" constant="30" id="n4U-kr-4QQ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flash the redeem voucher screen" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nbh-Yu-PDh" userLabel="second instruction">
-                            <rect key="frame" x="163" y="48" width="138" height="39"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HowToRedeem2.gif" translatesAutoresizingMaskIntoConstraints="NO" id="WV8-AW-nus" userLabel="second image" customClass="YLImageView">
-                            <rect key="frame" x="30" y="8" width="120" height="120"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="WV8-AW-nus" secondAttribute="height" multiplier="1:1" id="XlJ-VO-R2Z"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="Nbh-Yu-PDh" firstAttribute="centerY" secondItem="KXK-42-mBG" secondAttribute="centerY" id="4CH-bZ-5O1"/>
-                        <constraint firstItem="WV8-AW-nus" firstAttribute="leading" secondItem="IBI-cW-0RN" secondAttribute="leading" constant="30" id="5nV-9V-4x9"/>
-                        <constraint firstAttribute="bottom" secondItem="WV8-AW-nus" secondAttribute="bottom" id="7TJ-cs-2QV"/>
-                        <constraint firstItem="WV8-AW-nus" firstAttribute="top" secondItem="IBI-cW-0RN" secondAttribute="top" constant="8" id="9Gs-43-FhL"/>
-                        <constraint firstItem="KXK-42-mBG" firstAttribute="centerY" secondItem="WV8-AW-nus" secondAttribute="centerY" id="B6q-5Y-Ydc"/>
-                        <constraint firstItem="Nbh-Yu-PDh" firstAttribute="leading" secondItem="KXK-42-mBG" secondAttribute="trailing" constant="8" id="ETH-9g-F2d"/>
-                        <constraint firstAttribute="width" secondItem="IBI-cW-0RN" secondAttribute="height" multiplier="1:0.4" id="S7a-Ds-B2V"/>
-                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Nbh-Yu-PDh" secondAttribute="trailing" constant="8" id="bTE-Ik-Swe"/>
-                        <constraint firstItem="KXK-42-mBG" firstAttribute="leading" secondItem="WV8-AW-nus" secondAttribute="trailing" constant="-25" id="mwG-Gb-Qgl"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oI8-wg-HhM" userLabel="third view">
-                    <rect key="frame" x="0.0" y="355" width="320" height="99"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HowToRedeem3.gif" translatesAutoresizingMaskIntoConstraints="NO" id="xsJ-g9-SAT" userLabel="third image" customClass="YLImageView">
-                            <rect key="frame" x="122" y="5" width="188" height="94"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="xsJ-g9-SAT" secondAttribute="height" multiplier="2:1" id="lRu-k2-gCk"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHv-DZ-OJ4" userLabel="third number">
-                            <rect key="frame" x="117" y="27" width="30" height="30"/>
-                            <color key="backgroundColor" red="0.30588235289999999" green="0.15686274510000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="9mr-Fw-QRd"/>
-                                <constraint firstAttribute="width" constant="30" id="FBi-qA-sWc"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe right to redeem in front of a shop personnel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1H2-3h-owz" userLabel="third instruction">
-                            <rect key="frame" x="9" y="-6" width="100" height="96"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="QHv-DZ-OJ4" firstAttribute="centerY" secondItem="xsJ-g9-SAT" secondAttribute="centerY" constant="-10" id="0Yh-vj-vcU"/>
-                        <constraint firstItem="1H2-3h-owz" firstAttribute="centerY" secondItem="QHv-DZ-OJ4" secondAttribute="centerY" id="5PO-jD-vRe"/>
-                        <constraint firstAttribute="trailing" secondItem="xsJ-g9-SAT" secondAttribute="trailing" constant="10" id="A74-7w-tDT"/>
-                        <constraint firstItem="QHv-DZ-OJ4" firstAttribute="leading" secondItem="1H2-3h-owz" secondAttribute="trailing" constant="8" id="Cb0-bx-nvG"/>
-                        <constraint firstItem="xsJ-g9-SAT" firstAttribute="leading" secondItem="QHv-DZ-OJ4" secondAttribute="trailing" constant="-25" id="Fij-eP-CZb"/>
-                        <constraint firstItem="1H2-3h-owz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oI8-wg-HhM" secondAttribute="leading" constant="8" id="FyX-PB-Bak"/>
-                        <constraint firstItem="xsJ-g9-SAT" firstAttribute="top" secondItem="oI8-wg-HhM" secondAttribute="top" constant="5" id="KkI-jh-pcF"/>
-                        <constraint firstAttribute="width" secondItem="oI8-wg-HhM" secondAttribute="height" multiplier="1:0.31" id="dHZ-F9-ekP"/>
-                        <constraint firstAttribute="bottom" secondItem="xsJ-g9-SAT" secondAttribute="bottom" id="jPB-Zz-33r"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Only one redemption per swipe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqx-ed-me2">
-                    <rect key="frame" x="47" y="529" width="226" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="4nh-5k-EMH"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="lUu-Iw-0ZD" firstAttribute="top" secondItem="6oN-ht-Kh6" secondAttribute="bottom" constant="8" id="3RI-BM-yfY"/>
-                <constraint firstAttribute="trailing" secondItem="oI8-wg-HhM" secondAttribute="trailing" id="6rl-jp-m1H"/>
-                <constraint firstItem="ODq-Hw-C5g" firstAttribute="top" secondItem="6oN-ht-Kh6" secondAttribute="bottom" id="AfK-wS-Gvo"/>
-                <constraint firstItem="ODq-Hw-C5g" firstAttribute="leading" secondItem="NyM-yg-0uv" secondAttribute="leading" id="E5v-a7-Psh"/>
-                <constraint firstAttribute="bottom" secondItem="fqx-ed-me2" secondAttribute="bottom" constant="18" id="E6C-Qc-IpJ"/>
-                <constraint firstItem="IBI-cW-0RN" firstAttribute="top" secondItem="lUu-Iw-0ZD" secondAttribute="bottom" constant="-16" id="GBZ-d3-zNK"/>
-                <constraint firstItem="6oN-ht-Kh6" firstAttribute="leading" secondItem="NyM-yg-0uv" secondAttribute="leading" id="Jkc-ri-di9"/>
-                <constraint firstItem="fqx-ed-me2" firstAttribute="centerX" secondItem="NyM-yg-0uv" secondAttribute="centerX" id="TbK-yY-u8N"/>
-                <constraint firstItem="oI8-wg-HhM" firstAttribute="top" secondItem="IBI-cW-0RN" secondAttribute="bottom" constant="8" id="TzR-oF-o5l"/>
-                <constraint firstAttribute="trailing" secondItem="IBI-cW-0RN" secondAttribute="trailing" id="bwn-eH-468"/>
-                <constraint firstAttribute="trailing" secondItem="6oN-ht-Kh6" secondAttribute="trailing" id="kJI-Y4-02E"/>
-                <constraint firstItem="6oN-ht-Kh6" firstAttribute="top" secondItem="NyM-yg-0uv" secondAttribute="top" id="kJs-26-1CS"/>
-                <constraint firstItem="IBI-cW-0RN" firstAttribute="leading" secondItem="NyM-yg-0uv" secondAttribute="leading" id="pGc-bd-rbV"/>
-                <constraint firstAttribute="trailing" secondItem="lUu-Iw-0ZD" secondAttribute="trailing" id="rel-ut-DeZ"/>
-                <constraint firstItem="oI8-wg-HhM" firstAttribute="leading" secondItem="NyM-yg-0uv" secondAttribute="leading" id="tHo-m5-eb3"/>
-                <constraint firstAttribute="bottom" secondItem="ODq-Hw-C5g" secondAttribute="bottom" id="v7f-cf-fL5"/>
-                <constraint firstItem="lUu-Iw-0ZD" firstAttribute="leading" secondItem="NyM-yg-0uv" secondAttribute="leading" id="vQ0-Zy-n8I"/>
-                <constraint firstAttribute="trailing" secondItem="ODq-Hw-C5g" secondAttribute="trailing" id="wUo-JZ-F5j"/>
-            </constraints>
-            <point key="canvasLocation" x="994" y="127"/>
-        </view>
     </objects>
     <resources>
         <image name="CloseIcon.png" width="40" height="40"/>
-        <image name="CloseIconGrey.png" width="15" height="15"/>
         <image name="DealRedeemCardDown.png" width="1162" height="402"/>
         <image name="DealRedeemCardUp.png" width="1162" height="1162"/>
-        <image name="HowToRedeem1.gif" width="438" height="249"/>
-        <image name="HowToRedeem2.gif" width="229" height="319"/>
-        <image name="HowToRedeem3.gif" width="323" height="190"/>
+        <image name="IndicatorHand.png" width="48" height="48"/>
         <image name="SSBlueDirectionIcon.png" width="26" height="26"/>
         <image name="SsDefaultDisplayPhoto.png" width="30" height="30"/>
         <image name="SwipeToRedeemBg.png" width="1242" height="2208"/>
         <image name="SwipeToRedeemRedeemIcon.png" width="22" height="20"/>
         <image name="SwipeToRedeemSwipeIcon.png" width="10" height="9"/>
-        <image name="indicator_hand.png" width="43" height="43"/>
     </resources>
 </document>

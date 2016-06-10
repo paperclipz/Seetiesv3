@@ -12,4 +12,6 @@
 -(void)initData:(DraftModel*)model;
 @property(nonatomic,strong)ProfileBlock btnProfileClickedBlock;
 
+@property(nonatomic,strong)PostBlock btnCollectionDidClickedBlock;
+@property(nonatomic,strong)PostBlock btnCollectionQuickClickedBlock;
 @end

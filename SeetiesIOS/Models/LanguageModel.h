@@ -13,10 +13,10 @@
 
 @interface LanguageModel : Model
 
-@property (nonatomic,strong)NSString* language_code;
-@property (nonatomic,strong)NSString* caption;
-@property (nonatomic,strong)NSString* langID;
-@property (nonatomic,strong)NSString* origin_caption;
+@property (nonatomic,strong)NSString* language_code;    //eg: zh_TW
+@property (nonatomic,strong)NSString* caption;      //eg: Traditional Chinese
+@property (nonatomic,strong)NSString* langID;   //eg: 530d5e9b642440d128000018
+@property (nonatomic,strong)NSString* origin_caption;   //eg: 简体中文
 
 @end
 

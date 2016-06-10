@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -9,12 +9,16 @@
             <connections>
                 <outlet property="btnSignup" destination="ctA-7N-xdd" id="Vmr-7D-vcL"/>
                 <outlet property="ibContentEmail" destination="gXW-ye-LGA" id="rvY-5A-5SJ"/>
-                <outlet property="ibContentPassword" destination="Xzj-FW-ITz" id="FVa-qA-qSL"/>
+                <outlet property="ibContentPassword" destination="Xzj-FW-ITz" id="PBS-an-EZz"/>
                 <outlet property="ibContentUserName" destination="4cB-T3-ToF" id="des-Tk-kqQ"/>
                 <outlet property="ibEnterReferralLbl" destination="Duo-lC-1DN" id="k3c-cI-yfy"/>
                 <outlet property="ibInitialReferralView" destination="Qoi-Cj-DCs" id="Cwp-DE-5hR"/>
                 <outlet property="ibReferralCodeTxt" destination="Eri-Qt-ADv" id="crO-zI-kff"/>
                 <outlet property="ibReferralView" destination="lR8-P7-x9b" id="ai5-Sm-bqk"/>
+                <outlet property="ibStatusEmail" destination="9gY-RT-fZp" id="AIp-2c-O9m"/>
+                <outlet property="ibStatusPassword" destination="Kaa-1V-FDC" id="Lrv-L1-Tnz"/>
+                <outlet property="ibStatusReferral" destination="JUH-2R-Rzc" id="K34-XF-SsH"/>
+                <outlet property="ibStatusUserName" destination="8VB-Wc-OFZ" id="UDd-MI-R1j"/>
                 <outlet property="lblSignUp" destination="76a-zH-vXs" id="Jlp-9Y-8xI"/>
                 <outlet property="txtEmail" destination="LhL-Ut-mef" id="cLU-rr-PEl"/>
                 <outlet property="txtPassword" destination="uIJ-pw-yqq" id="IUW-9J-9vm"/>
@@ -48,28 +52,46 @@
                                 <constraint firstAttribute="height" constant="40" id="6xQ-a3-yW4"/>
                             </constraints>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mBy-bi-nPJ">
-                            <rect key="frame" x="58" y="9" width="167" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mBy-bi-nPJ">
+                            <rect key="frame" x="58" y="9" width="157" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="M1e-Ng-Zct"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="2wP-RB-elO"/>
+                            </connections>
                         </textField>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="8VB-Wc-OFZ">
+                            <rect key="frame" x="215" y="9" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="laa-Yk-0Ch"/>
+                                <constraint firstAttribute="height" constant="30" id="xxc-48-dvs"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="Omw-Um-rNe"/>
                         <constraint firstItem="mBy-bi-nPJ" firstAttribute="centerY" secondItem="YfN-ew-MVI" secondAttribute="centerY" id="SBf-7k-vEF"/>
+                        <constraint firstAttribute="trailing" secondItem="8VB-Wc-OFZ" secondAttribute="trailing" constant="5" id="Tgz-me-7E3"/>
                         <constraint firstAttribute="width" constant="240" id="VRa-P8-pCH"/>
+                        <constraint firstItem="8VB-Wc-OFZ" firstAttribute="leading" secondItem="mBy-bi-nPJ" secondAttribute="trailing" id="Vs0-Oh-IQw"/>
                         <constraint firstItem="YfN-ew-MVI" firstAttribute="leading" secondItem="4cB-T3-ToF" secondAttribute="leading" constant="10" id="bDw-ug-IXk"/>
                         <constraint firstAttribute="trailing" secondItem="mBy-bi-nPJ" secondAttribute="trailing" constant="25" id="djl-V1-UnS"/>
                         <constraint firstItem="mBy-bi-nPJ" firstAttribute="leading" secondItem="YfN-ew-MVI" secondAttribute="trailing" constant="8" id="e1J-y3-b6b"/>
                         <constraint firstItem="YfN-ew-MVI" firstAttribute="centerY" secondItem="4cB-T3-ToF" secondAttribute="centerY" id="kV3-mu-MqT"/>
+                        <constraint firstItem="8VB-Wc-OFZ" firstAttribute="top" secondItem="4cB-T3-ToF" secondAttribute="top" id="nPy-2e-g5e"/>
+                        <constraint firstAttribute="bottom" secondItem="8VB-Wc-OFZ" secondAttribute="bottom" id="pkx-Qx-53E"/>
+                        <constraint firstItem="8VB-Wc-OFZ" firstAttribute="centerY" secondItem="4cB-T3-ToF" secondAttribute="centerY" id="uA5-Il-AVv"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="VRa-P8-pCH"/>
+                            <exclude reference="djl-V1-UnS"/>
+                            <exclude reference="nPy-2e-g5e"/>
+                            <exclude reference="pkx-Qx-53E"/>
                         </mask>
                     </variation>
                 </view>
@@ -83,21 +105,36 @@
                                 <constraint firstAttribute="width" constant="40" id="vLN-I4-qVP"/>
                             </constraints>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uIJ-pw-yqq">
-                            <rect key="frame" x="58" y="9" width="167" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uIJ-pw-yqq">
+                            <rect key="frame" x="58" y="9" width="157" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="4lT-XS-lM0"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="slJ-TJ-oY2"/>
+                            </connections>
                         </textField>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kaa-1V-FDC">
+                            <rect key="frame" x="250" y="0.0" width="0.0" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="9fW-k2-wug"/>
+                                <constraint firstAttribute="height" constant="30" id="BZh-2L-YS0"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="Kaa-1V-FDC" firstAttribute="top" secondItem="Xzj-FW-ITz" secondAttribute="top" id="ALm-yC-Gow"/>
+                        <constraint firstItem="Kaa-1V-FDC" firstAttribute="leading" secondItem="uIJ-pw-yqq" secondAttribute="trailing" id="EDT-68-LUo"/>
                         <constraint firstItem="uIJ-pw-yqq" firstAttribute="centerY" secondItem="l8l-sh-2H0" secondAttribute="centerY" id="EfM-PO-Wzw"/>
                         <constraint firstItem="l8l-sh-2H0" firstAttribute="leading" secondItem="Xzj-FW-ITz" secondAttribute="leading" constant="10" id="FFr-AN-JmR"/>
                         <constraint firstItem="uIJ-pw-yqq" firstAttribute="leading" secondItem="l8l-sh-2H0" secondAttribute="trailing" constant="8" id="M4u-hp-Fxv"/>
+                        <constraint firstAttribute="bottom" secondItem="Kaa-1V-FDC" secondAttribute="bottom" id="U3g-RJ-8Aq"/>
                         <constraint firstAttribute="height" constant="48" id="VXd-GV-QcM"/>
+                        <constraint firstItem="Kaa-1V-FDC" firstAttribute="centerY" secondItem="Xzj-FW-ITz" secondAttribute="centerY" id="kFQ-U8-fAL"/>
+                        <constraint firstAttribute="trailing" secondItem="Kaa-1V-FDC" secondAttribute="trailing" constant="5" id="lXQ-fz-o58"/>
                         <constraint firstAttribute="trailing" secondItem="uIJ-pw-yqq" secondAttribute="trailing" constant="25" id="ogl-gc-Gac"/>
                         <constraint firstItem="l8l-sh-2H0" firstAttribute="centerY" secondItem="Xzj-FW-ITz" secondAttribute="centerY" id="uSu-WZ-iFz"/>
                         <constraint firstAttribute="width" constant="240" id="y8c-5a-fci"/>
@@ -105,6 +142,9 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="y8c-5a-fci"/>
+                            <exclude reference="ogl-gc-Gac"/>
+                            <exclude reference="ALm-yC-Gow"/>
+                            <exclude reference="U3g-RJ-8Aq"/>
                         </mask>
                     </variation>
                 </view>
@@ -118,28 +158,46 @@
                                 <constraint firstAttribute="height" constant="40" id="eg7-fW-swT"/>
                             </constraints>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email addres" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LhL-Ut-mef">
-                            <rect key="frame" x="58" y="9" width="167" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email addres" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LhL-Ut-mef">
+                            <rect key="frame" x="58" y="9" width="157" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="oGi-Mh-ISN"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="qHM-AK-NbN"/>
+                            </connections>
                         </textField>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="9gY-RT-fZp">
+                            <rect key="frame" x="250" y="0.0" width="0.0" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="gWA-Ob-QaL"/>
+                                <constraint firstAttribute="height" constant="30" id="jen-GR-kYk"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="9gY-RT-fZp" firstAttribute="top" secondItem="gXW-ye-LGA" secondAttribute="top" id="0Po-Ma-C1s"/>
+                        <constraint firstAttribute="trailing" secondItem="9gY-RT-fZp" secondAttribute="trailing" constant="5" id="6kF-fe-lKC"/>
+                        <constraint firstAttribute="bottom" secondItem="9gY-RT-fZp" secondAttribute="bottom" id="D83-pV-bJD"/>
                         <constraint firstItem="ii3-Tp-bSo" firstAttribute="leading" secondItem="gXW-ye-LGA" secondAttribute="leading" constant="10" id="Wed-GH-FiN"/>
                         <constraint firstAttribute="height" constant="48" id="XOU-3g-veP"/>
+                        <constraint firstItem="9gY-RT-fZp" firstAttribute="leading" secondItem="LhL-Ut-mef" secondAttribute="trailing" id="aEM-ZM-sQu"/>
                         <constraint firstItem="ii3-Tp-bSo" firstAttribute="centerY" secondItem="gXW-ye-LGA" secondAttribute="centerY" id="b0n-kB-4sp"/>
                         <constraint firstAttribute="width" constant="240" id="c6i-kg-FWe"/>
                         <constraint firstItem="LhL-Ut-mef" firstAttribute="centerY" secondItem="ii3-Tp-bSo" secondAttribute="centerY" id="e3a-61-ryq"/>
+                        <constraint firstItem="9gY-RT-fZp" firstAttribute="centerY" secondItem="gXW-ye-LGA" secondAttribute="centerY" id="eAv-ia-v8Y"/>
                         <constraint firstAttribute="trailing" secondItem="LhL-Ut-mef" secondAttribute="trailing" constant="25" id="qoV-4V-u7G"/>
                         <constraint firstItem="LhL-Ut-mef" firstAttribute="leading" secondItem="ii3-Tp-bSo" secondAttribute="trailing" constant="8" id="tgg-wx-qOi"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="c6i-kg-FWe"/>
+                            <exclude reference="qoV-4V-u7G"/>
+                            <exclude reference="0Po-Ma-C1s"/>
+                            <exclude reference="D83-pV-bJD"/>
                         </mask>
                     </variation>
                 </view>
@@ -215,28 +273,46 @@
                                 <constraint firstAttribute="width" constant="40" id="cAI-GS-LgE"/>
                             </constraints>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="referral code (optional)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Eri-Qt-ADv">
-                            <rect key="frame" x="58" y="9" width="167" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="referral code (optional)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Eri-Qt-ADv">
+                            <rect key="frame" x="58" y="9" width="157" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="VTD-BT-nEQ"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="j5o-LO-FnD"/>
+                            </connections>
                         </textField>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WrongFill.png" translatesAutoresizingMaskIntoConstraints="NO" id="JUH-2R-Rzc">
+                            <rect key="frame" x="250" y="0.0" width="0.0" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="R0q-PE-iQJ"/>
+                                <constraint firstAttribute="height" constant="30" id="wvY-Aq-ORi"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="Ofg-ak-8gz"/>
+                        <constraint firstAttribute="bottom" secondItem="JUH-2R-Rzc" secondAttribute="bottom" id="QV7-ok-T2d"/>
+                        <constraint firstAttribute="trailing" secondItem="JUH-2R-Rzc" secondAttribute="trailing" constant="5" id="WRl-dR-2Cs"/>
                         <constraint firstAttribute="width" constant="240" id="avs-On-yBQ"/>
                         <constraint firstItem="Eri-Qt-ADv" firstAttribute="leading" secondItem="7RO-Ez-iOE" secondAttribute="trailing" constant="8" id="cUg-hz-Okl"/>
                         <constraint firstAttribute="trailing" secondItem="Eri-Qt-ADv" secondAttribute="trailing" constant="25" id="fCW-ZQ-DSe"/>
+                        <constraint firstItem="JUH-2R-Rzc" firstAttribute="top" secondItem="lR8-P7-x9b" secondAttribute="top" id="hcm-fI-34k"/>
                         <constraint firstItem="Eri-Qt-ADv" firstAttribute="centerY" secondItem="7RO-Ez-iOE" secondAttribute="centerY" id="iIP-6F-vb4"/>
+                        <constraint firstItem="JUH-2R-Rzc" firstAttribute="centerY" secondItem="lR8-P7-x9b" secondAttribute="centerY" id="jlb-Ab-Fed"/>
                         <constraint firstItem="7RO-Ez-iOE" firstAttribute="centerY" secondItem="lR8-P7-x9b" secondAttribute="centerY" id="sac-t2-dZh"/>
+                        <constraint firstItem="JUH-2R-Rzc" firstAttribute="leading" secondItem="Eri-Qt-ADv" secondAttribute="trailing" id="waB-3p-ziA"/>
                         <constraint firstItem="7RO-Ez-iOE" firstAttribute="leading" secondItem="lR8-P7-x9b" secondAttribute="leading" constant="10" id="xbj-j3-KM3"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="avs-On-yBQ"/>
+                            <exclude reference="fCW-ZQ-DSe"/>
+                            <exclude reference="QV7-ok-T2d"/>
+                            <exclude reference="hcm-fI-34k"/>
                         </mask>
                     </variation>
                 </view>
@@ -315,5 +391,6 @@
         <image name="SignUpNameIcon.png" width="12" height="17"/>
         <image name="SignUpPasswordIcon.png" width="14" height="17"/>
         <image name="SignUpReferralIcon.png" width="17" height="17"/>
+        <image name="WrongFill.png" width="16" height="16"/>
     </resources>
 </document>

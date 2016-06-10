@@ -63,6 +63,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self refreshView];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(BOOL)validate
@@ -70,13 +76,16 @@
     
     if (self.lblPassword.text.length <7) {
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Password should be more than 8 character") Type:TSMessageNotificationTypeError];
-        
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Password should be more than 8 character") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"Password should be more than 8 character") Type:STAlertError];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Yikes. Your password must be at least 8 characters.") target:self popFrom:self.ibPasswordContentView];
         return false;
     }
     else if(self.lblUserName.text.length<=1)
     {
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username should be more than 1 character") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Username should be more than 1 character") Type:TSMessageNotificationTypeError];
+//        [MessageManager showMessage:LocalisedString(@"Username should be more than 1 character") Type:STAlertError];
+        [MessageManager popoverErrorMessage:LocalisedString(@"Oops! It seems like you've missed out your username / password.") target:self popFrom:self.ibUserContentView];
         return false;
 
     }
@@ -86,7 +95,7 @@
 
 -(void)initSelfView
 {
-    self.lblUserName.placeholder = LocalisedString(@"username/ email address");
+    self.lblUserName.placeholder = LocalisedString(@"Username / Email Address");
     self.lblPassword.placeholder = LocalisedString(@"password");
     
     [Utils setRoundBorder:self.ibUserContentView color:LINE_COLOR borderRadius:self.ibUserContentView.frame.size.height/2 borderWidth:1.0f];
@@ -99,7 +108,7 @@
 
 -(void)changeLanguage
 {
-    self.lblUserName.placeholder = LocalisedString(@"username/ email address");
+    self.lblUserName.placeholder = LocalisedString(@"username / email address");
     self.lblPassword.placeholder = LocalisedString(@"password");
 
     self.lblTitle.text = LocalisedString(@"Log in");
@@ -134,5 +143,9 @@
 }
 
 
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
 
 @end

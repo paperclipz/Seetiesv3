@@ -29,6 +29,7 @@
 @property (nonatomic) NSString *shopID;
 @property (nonatomic) NSString *dealId;
 @property (nonatomic,assign) int dealViewType;// 1 == seetiesshop id
+@property (nonatomic) NSUserDefaults *userDefaults;
 
 @property (weak, nonatomic) IBOutlet UILabel *ibUserLocationLbl;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitle;
@@ -68,6 +69,7 @@
 @property (nonatomic) SearchLocationViewController *searchLocationViewController;
 @property (nonatomic) CT3_SearchListingViewController *ct3_SearchListingViewController;
 @property (nonatomic) RedemptionHistoryViewController *redemptionHistoryViewController;
+@property (nonatomic) HowToRedeemViewController *howtoRedeemViewController;
 
 @end
 
@@ -604,6 +606,21 @@
     return _redemptionHistoryViewController;
 }
 
+-(NSUserDefaults *)userDefaults{
+    if (!_userDefaults) {
+        _userDefaults = [NSUserDefaults standardUserDefaults];
+    }
+    
+    return _userDefaults;
+}
+
+-(HowToRedeemViewController *)howtoRedeemViewController{
+    if (!_howtoRedeemViewController) {
+        _howtoRedeemViewController = [HowToRedeemViewController new];
+    }
+    return _howtoRedeemViewController;
+}
+
 #pragma mark - TableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if ([Utils isArrayNull:self.dealsArray]) {
@@ -722,7 +739,7 @@
 -(void)voucherCollectRedeemClicked:(DealModel *)dealModel{
     // checking for guest mode
     if ([Utils isGuestMode]) {
-        [UIAlertView showWithTitle:LocalisedString(@"Please Login First") message:@"" cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:LocalisedString(@"Please log in or sign up to continue") message:@"" cancelButtonTitle:LocalisedString(@"Not now") otherButtonTitles:@[@"Log in / Sign up"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
             
             if (buttonIndex == 1) {
                 [Utils showLogin];
@@ -766,7 +783,18 @@
                 }
             }
             
-            if (dealModel.total_available_vouchers == 0) {
+            if (![dealModel isCollectable]) {
+                if (dealModel.total_available_vouchers != 0) {
+                    self.promoPopOutViewController = nil;
+                    [self.promoPopOutViewController setViewType:PopOutViewTypeCollectionError];
+                    [self.promoPopOutViewController setDealModel:dealModel];
+                    
+                    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
+                    popupController.containerView.backgroundColor = [UIColor clearColor];
+                    [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+                    [popupController presentInViewController:self];
+                    [popupController setNavigationBarHidden:YES];
+                }
                 return;
             }
             
@@ -806,7 +834,7 @@
             }
             else{
                 self.promoPopOutViewController = nil;
-                [self.promoPopOutViewController setViewType:PopOutViewTypeError];
+                [self.promoPopOutViewController setViewType:PopOutViewTypeRedemptionError];
                 [self.promoPopOutViewController setDealModel:dealModel];
                 
                 STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:self.promoPopOutViewController];
@@ -1232,7 +1260,8 @@
 //            model.total_available_vouchers = dealModel.total_available_vouchers;
 //        }
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Collected in Voucher Wallet") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Succesfully collected into your voucher wallet.") Type:STAlertSuccess];
         [self RequestServerForVouchersCount];
         [self.ibVoucherTable reloadData];
         self.isCollecting = NO;
@@ -1242,6 +1271,18 @@
                 [self.ibVoucherTable reloadData];
 
             }];
+        }
+        
+        BOOL shownFirstCollectMsg = [self.userDefaults boolForKey:@"ShownFirstCollectMessage"];
+        if (!shownFirstCollectMsg) {
+            [UIAlertView showWithTitle:LocalisedString(@"Great!") message:LocalisedString(@"You have collected your first voucher! Would you like to know how to redeem it?") cancelButtonTitle:LocalisedString(@"No") otherButtonTitles:@[LocalisedString(@"Yes")] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    self.howtoRedeemViewController = nil;
+                    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.howtoRedeemViewController];
+                    [self presentViewController:navController animated:YES completion:nil];
+                }
+            }];
+            [self.userDefaults setBool:YES forKey:@"ShownFirstCollectMessage"];
         }
         
     } failure:^(id object) {

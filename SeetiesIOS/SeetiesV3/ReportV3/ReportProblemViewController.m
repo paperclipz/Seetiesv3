@@ -141,7 +141,7 @@
             self.lblOneDesc.text = LocalisedString(@"The shop could not be found in the area specified");
 
             self.lblTwoTitle.text = LocalisedString(@"Inaccurate information");
-            self.txtTwoDesc.placeholder = LocalisedString(@"Shop information provided is inaccurate (eg.Business hours, address etc.)");
+            self.txtTwoDesc.placeholder = LocalisedString(@"Shop information provided is inaccurate (eg. Business hours, address etc.)");
 
             break;
             
@@ -150,7 +150,7 @@
             
             self.ibHeaderTitle.text = LocalisedString(@"Report this");
             self.lblOneTitle.text = LocalisedString(@"Deal is not available");
-            self.lblOneDesc.text = LocalisedString(@"The deal is not available in the shop promoted.");
+            self.lblOneDesc.text = LocalisedString(@"The deal is not available in the shop promoted");
             
             self.lblTwoTitle.text = LocalisedString(@"Deal is different value");
             self.txtTwoDesc.text = LocalisedString(@"The deal does not reflect the promoted value");
@@ -261,7 +261,8 @@
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostReportShop parameter:dict appendString:appendString success:^(id object) {
         
         
-        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+//        [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+        [MessageManager showMessage:LocalisedString(@"Thank you for your feedback!") Type:STAlertSuccess];
         
         [self.navigationController popViewControllerAnimated:YES];
 
@@ -287,7 +288,8 @@
         
         [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostReportDeal parameter:dict appendString:appendString success:^(id object) {
 
-            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+//            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:LocalisedString(@"Thank you for your feedback!") Type:STAlertSuccess];
 
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -315,7 +317,8 @@
         
         [[ConnectionManager Instance] requestServerWith:AFNETWORK_POST serverRequestType:ServerRequestTypePostReportPost parameter:dict appendString:appendString success:^(id object) {
 
-            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+//            [MessageManager showMessage:LocalisedString(@"system") SubTitle:LocalisedString(@"Report successfully") Type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:LocalisedString(@"Thank you for your feedback!") Type:STAlertSuccess];
             
             [self.navigationController popViewControllerAnimated:YES];
             

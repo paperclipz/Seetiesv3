@@ -664,7 +664,8 @@
                 }
                 else
                 {
-                    [MessageManager showMessage:LocalisedString(@"system") SubTitle:MessageString Type:TSMessageNotificationTypeError];
+//                    [MessageManager showMessage:LocalisedString(@"system") SubTitle:MessageString Type:TSMessageNotificationTypeError];
+                    [MessageManager showMessage:MessageString Type:STAlertError];
                 }
 
             }
@@ -1628,7 +1629,8 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:GetCollectCheck forKey:@"PostToDetail_Collect"];
             [defaults synchronize];
-            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+//            [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+            [MessageManager showMessage:@"Success add to Collections" Type:STAlertSuccess];
         }
     }else if(connection == theConnection_NearbyPost){
         NSString *GetData = [[NSString alloc] initWithBytes: [webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
@@ -1913,10 +1915,12 @@
         
         if ([statusString isEqualToString:@"ok"]) {
             if ([GetCollectionFollowing isEqualToString:@"0"]) {
-                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+//                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success follow this collection" type:TSMessageNotificationTypeSuccess];
+                [MessageManager showMessage:@"Success follow this collection" Type:STAlertSuccess];
                 GetCollectionFollowing = @"1";
             }else{
-                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+//                [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success unfollow this collection" type:TSMessageNotificationTypeSuccess];
+                [MessageManager showMessage:@"Success unfollow this collection" Type:STAlertSuccess];
                 GetCollectionFollowing = @"0";
             }
             
