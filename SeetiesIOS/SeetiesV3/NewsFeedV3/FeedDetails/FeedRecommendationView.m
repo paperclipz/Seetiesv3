@@ -62,16 +62,19 @@ static int kConstantTopPadding    = 15;
     
     [self addSubview:recommendationLabel];
     
-    UIButton *seeAllButton = [[UIButton alloc] init];
-    
-    [seeAllButton setTitle:LocalisedString(@"See all") forState:UIControlStateNormal];
-    [seeAllButton setFrame:CGRectMake(CGRectGetMaxX(recommendationLabel.frame) + 5, self.currentPointY, 70, 35)];
-    [seeAllButton setTitleColor:DEVICE_COLOR forState:UIControlStateNormal];
-    [seeAllButton addTarget:self action:@selector(seeAllButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    seeAllButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
-    
-    [self addSubview:seeAllButton];
+    if ([self.model.recommendationPosts count] > 1) {
+
+        UIButton *seeAllButton = [[UIButton alloc] init];
+        
+        [seeAllButton setTitle:LocalisedString(@"See all") forState:UIControlStateNormal];
+        [seeAllButton setFrame:CGRectMake(CGRectGetMaxX(recommendationLabel.frame) + 5, self.currentPointY, 70, 35)];
+        [seeAllButton setTitleColor:DEVICE_COLOR forState:UIControlStateNormal];
+        [seeAllButton addTarget:self action:@selector(seeAllButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        seeAllButton.titleLabel.font = [UIFont fontWithName:@"ProximaNovaSoft-Bold" size:15];
+        
+        [self addSubview:seeAllButton];
+    }
     
     self.currentPointY += recommendationLabel.frame.size.height + 5;
 }

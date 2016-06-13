@@ -46,6 +46,9 @@
     if (text) {
         tempText = text;
     }
+    
+    tempText = [tempText stringByDecodingXMLEntities];
+    
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.minimumLineHeight = 21.0f;
     paragraph.maximumLineHeight = 21.0f;

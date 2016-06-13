@@ -346,35 +346,6 @@
     //    }
     //    else{
     [self postLikePostData];
-    
-    [UIView animateWithDuration:0.1 animations:^{
-        self.likeButton.layer.transform = CATransform3DMakeScale(0.6, 0.6, 1.0);
-    }completion:^(BOOL finished) {
-        
-        [UIView animateWithDuration:0.1
-                              delay:0.0
-             usingSpringWithDamping:0.8
-              initialSpringVelocity:1.0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^
-         {
-             self.likeButton.layer.transform = CATransform3DMakeScale(1.1, 1.1, 1.0);
-         }
-                         completion:^(BOOL finished) {
-                             
-                             [UIView animateWithDuration:0.1
-                                                   delay:0.0
-                                  usingSpringWithDamping:0.3
-                                   initialSpringVelocity:1.0
-                                                 options:UIViewAnimationOptionCurveEaseInOut
-                                              animations:^
-                              {
-                                  self.likeButton.layer.transform = CATransform3DIdentity;
-                              }
-                                              completion:nil];
-                         }];
-    }];
-    
 }
 
 - (IBAction)commentButtonClicked:(id)sender {
@@ -402,11 +373,12 @@
     
     if (button.selected) { return; }
     
-    [button setSelected:YES];
-    [button setUserInteractionEnabled:NO];
-    [button setTitle:@"  " forState:UIControlStateNormal];
-    
     [self postCollectData];
+    
+//    [button setSelected:YES];
+//    [button setUserInteractionEnabled:NO];
+//    [button setTitle:@"  " forState:UIControlStateNormal];
+    
 }
 
 - (IBAction)allCollectionButtonClicked:(id)sender {
@@ -420,6 +392,42 @@
     
     [AddCollectionDataView GetPostID:self.postID GetImageData:photo.imageURL];
 
+}
+
+- (void)animateLikeButton {
+    
+    //    if (self.likeButton.selected) {
+    //        [self postLikePostData];
+    //
+    //    }
+    //    else{
+    [UIView animateWithDuration:0.1 animations:^{
+        self.likeButton.layer.transform = CATransform3DMakeScale(0.6, 0.6, 1.0);
+    }completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.1
+                              delay:0.0
+             usingSpringWithDamping:0.8
+              initialSpringVelocity:1.0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+         {
+             self.likeButton.layer.transform = CATransform3DMakeScale(1.1, 1.1, 1.0);
+         }
+                         completion:^(BOOL finished) {
+                             
+                             [UIView animateWithDuration:0.1
+                                                   delay:0.0
+                                  usingSpringWithDamping:0.3
+                                   initialSpringVelocity:1.0
+                                                 options:UIViewAnimationOptionCurveEaseInOut
+                                              animations:^
+                              {
+                                  self.likeButton.layer.transform = CATransform3DIdentity;
+                              }
+                                              completion:nil];
+                         }];
+    }];
 }
 
 #pragma mark - routing method
@@ -856,6 +864,19 @@
 
 -(void)postLikePostData
 {
+    
+    if ([Utils isGuestMode]) {
+        
+        [UIAlertView showWithTitle:LocalisedString(@"system") message:LocalisedString(@"Please Login To Like") cancelButtonTitle:LocalisedString(@"Cancel") otherButtonTitles:@[@"OK"] tapBlock:^(UIAlertView * _Nonnull alertView, NSInteger buttonIndex) {
+            
+            if (buttonIndex == 1) {
+                [Utils showLogin];
+                
+            }
+        }];
+        return;
+    }
+    
     NSString* appendString = [NSString stringWithFormat:@"%@/like", self.postID];
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
                            @"post_id" : self.postID };
@@ -872,6 +893,7 @@
         
         self.likeButton.selected = [self.dataDictionary[@"like"] boolValue];
         
+        [self animateLikeButton];
         [self getUserLikeDataFromServer];
         
     } failure:^(id object) {
@@ -933,13 +955,23 @@
 
 - (void)postCollectData {
     
-    NSString* appendString = [NSString stringWithFormat:@"0/collect"];
+    NSDictionary* dictPost =  @{@"id": self.postID ? self.postID : @""};
+    
+    NSArray* array = @[dictPost];
+    
+    NSString* appendString = [NSString stringWithFormat:@"%@/collections/0/collect", [Utils getUserID]];
     NSDictionary* dict = @{@"token" : [Utils getAppToken],
-                           @"posts[0][id]" : self.postID };
+                           @"posts" : array };
     
     [[ConnectionManager Instance] requestServerWith:AFNETWORK_PUT serverRequestType:ServerRequestTypePostCollectState parameter:dict appendString:appendString success:^(id object) {
-        
-        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
+
+        [self.quickCollectButton setSelected:YES];
+        [self.quickCollectButton setUserInteractionEnabled:NO];
+        [self.quickCollectButton setTitle:@"  " forState:UIControlStateNormal];
+
+        [MessageManager showMessage:LocalisedString(@"Successfully collected to default Collection") Type:STAlertSuccess];
+
+//        [TSMessage showNotificationInViewController:self title:@"" subtitle:@"Success add to Collections" type:TSMessageNotificationTypeSuccess];
 
         
     } failure:^(id object) {
