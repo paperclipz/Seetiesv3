@@ -81,7 +81,7 @@ static int kConstantMarginSpacing = 10;
     self.userProfileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kConstantMarginSpacing, self.currentPointY, 35, 35)];
     self.userProfileImageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    [self.userProfileImageView sd_setImageWithURL:[NSURL URLWithString:self.model.user_info.profile_photo]];
+    [self.userProfileImageView sd_setImageWithURL:[NSURL URLWithString:self.model.user_info.profile_photo] placeholderImage:[Utils getProfilePlaceHolderImage]];
     
     [Utils setRoundBorder:self.userProfileImageView color:LINE_COLOR borderRadius:self.userProfileImageView.frame.size.width / 2];
 
