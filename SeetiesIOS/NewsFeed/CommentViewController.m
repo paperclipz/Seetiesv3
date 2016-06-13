@@ -111,6 +111,8 @@
     NSMutableArray *CollectionIDArray;
     NSMutableArray *CollectionUserIDArray;
     NSMutableArray *CollectionUserProfileArray;
+    
+    BOOL isPosted;
 }
 @end
 
@@ -368,6 +370,10 @@
 //    //[self presentViewController:ListingDetail animated:NO completion:nil];
 //    [self dismissViewControllerAnimated:NO completion:nil];
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(userDidPostedComment:)]) {
+        [self.delegate userDidPostedComment:isPosted];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)GetRealPostID:(NSString *)PostID{
@@ -446,7 +452,7 @@
         ShowNoDataView.hidden = YES;
         CollectionsScroll.hidden = YES;
     }else if([GetWhatView isEqualToString:@"Comment"]){
-        ///[TextString becomeFirstResponder];
+        [TextString becomeFirstResponder];
         MainScroll.hidden = NO;
         toolBar.hidden = NO;
         if ([GetMessageArray count] == 0) {
@@ -872,6 +878,8 @@
         GetMentionsString = @"";
         GetMentionsUID = @"";
         GetMessage = @"";
+        
+        isPosted = YES;
         [self GetCommentData];
         
 
