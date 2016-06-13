@@ -16,6 +16,7 @@
 #import "DealDetailsViewController.h"
 #import "CAPSPageMenu.h"
 #import "HMSegmentedControl.h"
+#import "FeedV3DetailViewController.h"
 
 @interface CT3_SearchListingViewController ()<UIScrollViewDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
 
@@ -1258,10 +1259,16 @@
         
         _PostsListingTableViewController.didSelectPostsRowBlock = ^(NSString* postid)
         {
-            _feedV2DetailViewController = nil;
-            [weakSelf.feedV2DetailViewController GetPostID:postid];
-            [weakSelf.navigationController pushViewController:weakSelf.feedV2DetailViewController animated:YES];
+//            _feedV2DetailViewController = nil;
+//            [weakSelf.feedV2DetailViewController GetPostID:postid];
+//            [weakSelf.navigationController pushViewController:weakSelf.feedV2DetailViewController animated:YES];
             
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"FeedV3DetailViewController" bundle:nil];
+            FeedV3DetailViewController *detailVC = [sb instantiateViewControllerWithIdentifier:@"FeedV3DetailViewController"];
+            detailVC.postID = postid;
+            
+            [weakSelf.navigationController pushViewController:detailVC animated:YES];
+
         };
         
         _PostsListingTableViewController.didSelectUserRowBlock = ^(NSString* userid)

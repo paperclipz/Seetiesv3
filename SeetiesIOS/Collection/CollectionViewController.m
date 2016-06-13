@@ -12,6 +12,7 @@
 #import "CT3_SearchListingViewController.h"
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
+#import "FeedV3DetailViewController.h"
 
 @interface CollectionViewController (){
 
@@ -1432,10 +1433,16 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
   //  self.leveyTabBarController.tabBar.frame = CGRectMake(0, screenHeight, screenWidth, 50);
     
-    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+//    FeedV2DetailViewController *vc = [[FeedV2DetailViewController alloc] initWithNibName:@"FeedV2DetailViewController" bundle:nil];
+//    
+//    [self.navigationController pushViewController:vc animated:YES];
+//    [vc GetPostID:[Content_arrID objectAtIndex:getbuttonIDN]];
     
-    [self.navigationController pushViewController:vc animated:YES];
-    [vc GetPostID:[Content_arrID objectAtIndex:getbuttonIDN]];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"FeedV3DetailViewController" bundle:nil];
+    FeedV3DetailViewController *detailVC = [sb instantiateViewControllerWithIdentifier:@"FeedV3DetailViewController"];
+    detailVC.postID = [Content_arrID objectAtIndex:getbuttonIDN];
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
     
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

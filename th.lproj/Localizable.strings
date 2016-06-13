@@ -1402,3 +1402,15 @@
 "Pay Later" = "ใช้ทีหลัง";
 "Collect Now, Pay at Shop" = "เก็บก่อน ใช้ทีหลัง";
 "Next" = "ถัดไป";
+
+"Thank you for your feedback!" = "ขอบคุณสำหรับความคิดเห็น";
+"Invalid email address" = "อีเมล์ไม่ถูกต้อง";
+"Sorry! This voucher is only available for collection on {!date} at {!time}" = "ขออภัย! Vocher นี้สามารถเก็บสะสมได้วันที่  {!date} เวลา {!time}";
+//=============CHANGE=================//
+"Sorry! This voucher is only available for collection on \n{!date} at {!time}" = "ขออภัย! Vocher นี้สามารถเก็บสะสมได้วันที่ \n{!date} เวลา {!time}";
+//=============CHANGE=================//
+"Okay!" = "โอเค!";
+"Username / Email could not be empty" = "ชื่อผู้ใช้/อีเมล์ ";
+"This feature is not available in this region" = "";
+"You've reached your maximum number of redeemable deals" = "";
+"Referral code shall be 10 characters" = "";

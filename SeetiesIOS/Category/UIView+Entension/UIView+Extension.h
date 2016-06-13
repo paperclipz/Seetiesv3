@@ -24,6 +24,8 @@
 -(void)setRoundedBorder; // full round
 -(void)setStandardBorder;// 4 side border curve
 -(void)setSquareBorder;
+-(void)resizeToFitSubviews;
+-(void)resizeToFitSubviewsHeight;
 
 @end
 

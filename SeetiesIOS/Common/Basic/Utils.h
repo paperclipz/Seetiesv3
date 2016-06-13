@@ -79,7 +79,8 @@ typedef enum {
     
     CollectionListingTypeMyOwn,
     CollectionListingTypeFollowing,
-    CollectionListingTypeSuggestion,
+    CollectionListingTypeSuggestion,//user suggestion
+    CollectionListingTypePostSuggestion,
     CollectionListingTypeTrending,
     CollectionListingTypeSeetiesShop
     

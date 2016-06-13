@@ -113,6 +113,12 @@
 @end
 @implementation CollectionsModel
 
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
+
+
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc
     

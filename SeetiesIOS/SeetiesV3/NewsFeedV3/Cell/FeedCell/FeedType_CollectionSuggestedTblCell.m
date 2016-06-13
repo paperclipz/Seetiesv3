@@ -10,6 +10,7 @@
 #import "CollectionsCollectionViewCell.h"
 
 @interface FeedType_CollectionSuggestedTblCell()<UICollectionViewDataSource,UICollectionViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UICollectionView *ibCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *ibTitle;
 @property (weak, nonatomic) IBOutlet UILabel *ibSeeAll;
@@ -26,6 +27,12 @@
     // Drawing code
 }
 */
+
+-(void)reloadData
+{
+    [self.ibCollectionView reloadData];
+}
+
 - (IBAction)btnSeeAllClicked:(id)sender {
     
     if (self.btnSeeAllSuggestedCollectionClickBlock) {
@@ -40,6 +47,7 @@
     self.ibSeeAll.text = LocalisedString(@"See all");
     
     self.arrCollections = array;
+    
     [self.ibCollectionView reloadData];
 }
 
@@ -82,7 +90,7 @@
     
     CGRect frame = [Utils getDeviceScreenSize];
     
-    return CGSizeMake(frame.size.width-50, 190);
+    return CGSizeMake(frame.size.width - (self.arrCollections.count<=1?16:50), 190);
 }
 
 #pragma mark - CollectionView Delegate

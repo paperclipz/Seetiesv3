@@ -19,6 +19,8 @@ typedef void (^DidSelectCollectionRowBlock)(CollectionModel* model);
 
 
 @property(nonatomic,strong)NSString* userID;
+@property(nonatomic,strong)NSString* postID;
+
 -(void)reloadView;
 -(void)refreshRequest;
 

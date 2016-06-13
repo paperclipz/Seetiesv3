@@ -102,6 +102,32 @@
     
 }
 
+-(void)resizeToFitSubviews
+{
+    float w = 0;
+    float h = 0;
+    
+    for (UIView *v in [self subviews]) {
+        float fw = v.frame.origin.x + v.frame.size.width;
+        float fh = v.frame.origin.y + v.frame.size.height;
+        w = MAX(fw, w);
+        h = MAX(fh, h);
+    }
+    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, w, h)];
+}
+
+-(void)resizeToFitSubviewsHeight
+{
+    float h = 0;
+    
+    for (UIView *v in [self subviews]) {
+        float fh = v.frame.origin.y + v.frame.size.height;
+        h = MAX(fh, h);
+    }
+    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, h)];
+}
+
+
 @end
 
 @implementation UIView(BackgroundColor)

@@ -11,6 +11,7 @@
 @interface CollectionListingViewController ()
 {
     NSString* seetiesID;
+    __weak IBOutlet NSLayoutConstraint *constSegmentedControlViewHeight;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UIView *ibSegmentedControlView;
@@ -23,6 +24,7 @@
 @property(nonatomic,assign)int viewPage;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddMore;
 @property (strong, nonatomic)EditCollectionDetailViewController *collectionDetailController;
+@property (strong, nonatomic) NSString* postID;
 
 @end
 
@@ -57,6 +59,13 @@
 {
     [self setType:type ProfileModel:model NumberOfPage:page];
     self.collectionListingType = collType;
+}
+
+-(void)setTypePostSuggestion:(NSString*)postID
+{
+    self.collectionListingType = CollectionListingTypePostSuggestion;
+    self.viewPage = 1;
+    self.postID = postID;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -118,12 +127,19 @@
     self.segmentedControl.selectionIndicatorColor = DEVICE_COLOR;
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
     self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    
     [contentView addSubview:self.segmentedControl];
     
     [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
         [view scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
     }];
+    
+    if (self.viewPage == 1) {
+        constSegmentedControlViewHeight.constant = 0;
+        
+    }
+    else{
+        constSegmentedControlViewHeight.constant = 50.0f;
+    }
     
 }
 
@@ -133,6 +149,11 @@
     if (self.collectionListingType == CollectionListingTypeSeetiesShop) {
         
         self.lblTitle.text = LocalisedString(@"SeetiShop Collections");
+
+    }
+    else if(self.collectionListingType == CollectionListingTypePostSuggestion)
+    {
+        self.lblTitle.text = LocalisedString(@"Suggested Collections");
 
     }
     else
@@ -196,6 +217,8 @@
         _myCollectionListingViewController.collectionListingType = self.collectionListingType == CollectionListingTypeMyOwn?CollectionListingTypeMyOwn:self.collectionListingType;
         
         _myCollectionListingViewController.userID = self.profileModel.uid;
+        _myCollectionListingViewController.postID = self.postID;
+
         __weak typeof (self)weakSelf = self;
         _myCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(CollectionModel* model)
         {
@@ -221,6 +244,8 @@
         _followingCollectionListingViewController.profileType = ProfileViewTypeOthers;
         _followingCollectionListingViewController.collectionListingType = CollectionListingTypeFollowing;
         _followingCollectionListingViewController.userID = self.profileModel.uid;
+        _followingCollectionListingViewController.postID = self.postID;
+
         __weak typeof (self)weakSelf = self;
         
         _followingCollectionListingViewController.didSelectEdiCollectionRowBlock = ^(CollectionModel* model)
@@ -262,7 +287,15 @@
 
 -(NSArray *)arrViewControllers{
     if (!_arrViewControllers) {
-        _arrViewControllers = @[self.myCollectionListingViewController, self.followingCollectionListingViewController];
+        
+        if (self.viewPage == 1) {
+            _arrViewControllers = @[self.myCollectionListingViewController];
+
+        }
+        else{
+            _arrViewControllers = @[self.myCollectionListingViewController, self.followingCollectionListingViewController];
+
+        }
     }
     return _arrViewControllers;
 }

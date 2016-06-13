@@ -1157,7 +1157,7 @@
                 style.cornerRadius = 12;
                 
                 // present the toast with the new style
-                [self.view makeToast:LocalisedString(@"You Have Exceed The Number To Collect")
+                [self.view makeToast:LocalisedString(@"You've reached your maximum number of redeemable deals")
                             duration:3.0
                             position:CSToastPositionBottom
                                style:style];

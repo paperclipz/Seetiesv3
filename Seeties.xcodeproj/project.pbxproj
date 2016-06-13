@@ -1118,6 +1118,8 @@
 		8AD6C8291B736C000040437E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C8281B736C000040437E /* DataManager.m */; };
 		8AD6C82E1B737A830040437E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C82D1B737A830040437E /* CoreData.framework */; };
 		8AD6C87E1B74AAE90040437E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD6C87D1B74AAE90040437E /* QuartzCore.framework */; };
+		8AD755631D0A8A9C00F41DDB /* TranslationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD755621D0A8A9C00F41DDB /* TranslationModel.m */; };
+		8AD755661D0A8B1900F41DDB /* PostDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD755651D0A8B1900F41DDB /* PostDetailModel.m */; };
 		8ADD47031C4CFD6D00AEAE2B /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */; };
 		8AE478B91CC4E93F0053DB24 /* CustomEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE478B81CC4E93F0053DB24 /* CustomEmptyView.xib */; };
 		8AEDBFA81C2031BA000BD2FF /* ApiVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AEDBF781C2031BA000BD2FF /* ApiVersionModel.m */; };
@@ -1354,6 +1356,14 @@
 		C2E6D7561CDA052C00B53BF4 /* InviteFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6D7551CDA052C00B53BF4 /* InviteFriendModel.m */; };
 		C5AFD557B47280FB16C39985 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9C815292A4ED6F2408E5E5 /* Pods.framework */; };
 		C7023C231CF2BFFD00A2DF04 /* FBLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */; };
+		C7067DDD1D0A7C610086E273 /* LocationFeedDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DCF1D0A7C610086E273 /* LocationFeedDetailViewController.m */; };
+		C7067DEE1D0A7EC60086E273 /* FeedCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DE21D0A7EC60086E273 /* FeedCommentView.m */; };
+		C7067DEF1D0A7EC60086E273 /* FeedContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DE41D0A7EC60086E273 /* FeedContentView.m */; };
+		C7067DF01D0A7EC60086E273 /* FeedRecommendationSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DE61D0A7EC60086E273 /* FeedRecommendationSubView.m */; };
+		C7067DF11D0A7EC60086E273 /* FeedRecommendationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DE81D0A7EC60086E273 /* FeedRecommendationView.m */; };
+		C7067DF21D0A7EC60086E273 /* FeedShopLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DEA1D0A7EC60086E273 /* FeedShopLocationView.m */; };
+		C7067DF31D0A7EC60086E273 /* FeedV3DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7067DEC1D0A7EC60086E273 /* FeedV3DetailViewController.m */; };
+		C7067DF41D0A7EC60086E273 /* FeedV3DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7067DED1D0A7EC60086E273 /* FeedV3DetailViewController.storyboard */; };
 		C71B5E181CBE3BED00B4FA91 /* FriendSuggestionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */; };
 		C75015FE1CD0A7640048C279 /* EditProfileV3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75015FB1CD0A7640048C279 /* EditProfileV3ViewController.m */; };
 		C75015FF1CD0A7640048C279 /* EditProfileV3ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C75015FC1CD0A7640048C279 /* EditProfileV3ViewController.storyboard */; };
@@ -2744,6 +2754,10 @@
 		8AD6C82D1B737A830040437E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8AD6C82F1B737AAB0040437E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8AD6C87D1B74AAE90040437E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8AD755611D0A8A9C00F41DDB /* TranslationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TranslationModel.h; path = SeetiesIOS/MODELS/TranslationModel.h; sourceTree = SOURCE_ROOT; };
+		8AD755621D0A8A9C00F41DDB /* TranslationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TranslationModel.m; path = SeetiesIOS/MODELS/TranslationModel.m; sourceTree = SOURCE_ROOT; };
+		8AD755641D0A8B1900F41DDB /* PostDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostDetailModel.h; path = SeetiesIOS/MODELS/PostDetailModel.h; sourceTree = SOURCE_ROOT; };
+		8AD755651D0A8B1900F41DDB /* PostDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostDetailModel.m; path = SeetiesIOS/MODELS/PostDetailModel.m; sourceTree = SOURCE_ROOT; };
 		8ADD47011C4CFD6D00AEAE2B /* AnnouncementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementModel.h; sourceTree = "<group>"; };
 		8ADD47021C4CFD6D00AEAE2B /* AnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementModel.m; sourceTree = "<group>"; };
 		8AE478B81CC4E93F0053DB24 /* CustomEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomEmptyView.xib; sourceTree = "<group>"; };
@@ -3101,6 +3115,21 @@
 		C2E6D7551CDA052C00B53BF4 /* InviteFriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendModel.m; sourceTree = "<group>"; };
 		C7023C211CF2BFFD00A2DF04 /* FBLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginManager.h; sourceTree = "<group>"; };
 		C7023C221CF2BFFD00A2DF04 /* FBLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginManager.m; sourceTree = "<group>"; };
+		C7067DCE1D0A7C610086E273 /* LocationFeedDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationFeedDetailViewController.h; sourceTree = "<group>"; };
+		C7067DCF1D0A7C610086E273 /* LocationFeedDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationFeedDetailViewController.m; sourceTree = "<group>"; };
+		C7067DE11D0A7EC60086E273 /* FeedCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCommentView.h; sourceTree = "<group>"; };
+		C7067DE21D0A7EC60086E273 /* FeedCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCommentView.m; sourceTree = "<group>"; };
+		C7067DE31D0A7EC60086E273 /* FeedContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedContentView.h; sourceTree = "<group>"; };
+		C7067DE41D0A7EC60086E273 /* FeedContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedContentView.m; sourceTree = "<group>"; };
+		C7067DE51D0A7EC60086E273 /* FeedRecommendationSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedRecommendationSubView.h; sourceTree = "<group>"; };
+		C7067DE61D0A7EC60086E273 /* FeedRecommendationSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedRecommendationSubView.m; sourceTree = "<group>"; };
+		C7067DE71D0A7EC60086E273 /* FeedRecommendationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedRecommendationView.h; sourceTree = "<group>"; };
+		C7067DE81D0A7EC60086E273 /* FeedRecommendationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedRecommendationView.m; sourceTree = "<group>"; };
+		C7067DE91D0A7EC60086E273 /* FeedShopLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedShopLocationView.h; sourceTree = "<group>"; };
+		C7067DEA1D0A7EC60086E273 /* FeedShopLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedShopLocationView.m; sourceTree = "<group>"; };
+		C7067DEB1D0A7EC60086E273 /* FeedV3DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedV3DetailViewController.h; sourceTree = "<group>"; };
+		C7067DEC1D0A7EC60086E273 /* FeedV3DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedV3DetailViewController.m; sourceTree = "<group>"; };
+		C7067DED1D0A7EC60086E273 /* FeedV3DetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FeedV3DetailViewController.storyboard; sourceTree = "<group>"; };
 		C71B5E161CBE3BED00B4FA91 /* FriendSuggestionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSuggestionModel.h; sourceTree = "<group>"; };
 		C71B5E171CBE3BED00B4FA91 /* FriendSuggestionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSuggestionModel.m; sourceTree = "<group>"; };
 		C75015FA1CD0A7640048C279 /* EditProfileV3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileV3ViewController.h; sourceTree = "<group>"; };
@@ -5875,6 +5904,8 @@
 				8AD6BD931B706CF30040437E /* NearByRecommtationViewController.h */,
 				8AD6BD941B706CF30040437E /* NearByRecommtationViewController.m */,
 				8AD6BD951B706CF30040437E /* NearByRecommtationViewController.xib */,
+				C7067DCE1D0A7C610086E273 /* LocationFeedDetailViewController.h */,
+				C7067DCF1D0A7C610086E273 /* LocationFeedDetailViewController.m */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -6008,6 +6039,10 @@
 				8AEDBF9B1C2031BA000BD2FF /* SearchModel.m */,
 				8AEDBFA41C2031BA000BD2FF /* TagModel.h */,
 				8AEDBFA51C2031BA000BD2FF /* TagModel.m */,
+				8AD755611D0A8A9C00F41DDB /* TranslationModel.h */,
+				8AD755621D0A8A9C00F41DDB /* TranslationModel.m */,
+				8AD755641D0A8B1900F41DDB /* PostDetailModel.h */,
+				8AD755651D0A8B1900F41DDB /* PostDetailModel.m */,
 				8AFF090F1C9038C400918582 /* ComplexTagModel.h */,
 				8AFF09101C9038C400918582 /* ComplexTagModel.m */,
 				8AEDBFA61C2031BA000BD2FF /* UserDefaultModel.h */,
@@ -6302,6 +6337,7 @@
 		8AFA51811C47B4AB00E7920E /* NewsFeedV3 */ = {
 			isa = PBXGroup;
 			children = (
+				C7067DE01D0A7E220086E273 /* FeedDetails */,
 				8AFA51821C47B4AB00E7920E /* Cell */,
 				8AFA51B21C47B4AB00E7920E /* CT3_NewsFeedViewController.h */,
 				8AFA51B31C47B4AB00E7920E /* CT3_NewsFeedViewController.m */,
@@ -6646,6 +6682,26 @@
 			path = VoucherRedemption;
 			sourceTree = "<group>";
 		};
+		C7067DE01D0A7E220086E273 /* FeedDetails */ = {
+			isa = PBXGroup;
+			children = (
+				C7067DE11D0A7EC60086E273 /* FeedCommentView.h */,
+				C7067DE21D0A7EC60086E273 /* FeedCommentView.m */,
+				C7067DE31D0A7EC60086E273 /* FeedContentView.h */,
+				C7067DE41D0A7EC60086E273 /* FeedContentView.m */,
+				C7067DE51D0A7EC60086E273 /* FeedRecommendationSubView.h */,
+				C7067DE61D0A7EC60086E273 /* FeedRecommendationSubView.m */,
+				C7067DE71D0A7EC60086E273 /* FeedRecommendationView.h */,
+				C7067DE81D0A7EC60086E273 /* FeedRecommendationView.m */,
+				C7067DE91D0A7EC60086E273 /* FeedShopLocationView.h */,
+				C7067DEA1D0A7EC60086E273 /* FeedShopLocationView.m */,
+				C7067DEB1D0A7EC60086E273 /* FeedV3DetailViewController.h */,
+				C7067DEC1D0A7EC60086E273 /* FeedV3DetailViewController.m */,
+				C7067DED1D0A7EC60086E273 /* FeedV3DetailViewController.storyboard */,
+			);
+			path = FeedDetails;
+			sourceTree = "<group>";
+		};
 		C71B5E151CBE3B9100B4FA91 /* FriendSuggestion */ = {
 			isa = PBXGroup;
 			children = (
@@ -6790,6 +6846,7 @@
 				8A0F50C31C0C3F14002B1E22 /* SeShopDetailTableViewCell.xib in Resources */,
 				8A1129721CF69EC100399213 /* TH_TabbarMeIcon_Active@3x.png in Resources */,
 				8AC8F7371BDA414E00DEF14A /* ProfileCollectionPageTableViewCell.xib in Resources */,
+				C7067DF41D0A7EC60086E273 /* FeedV3DetailViewController.storyboard in Resources */,
 				8A112B341CF69EC100399213 /* SelectPhotoArrow@2x.png in Resources */,
 				8A1128F11CF69EC100399213 /* MoreTourGuideIcon@2x.png in Resources */,
 				8A1129881CF69EC100399213 /* BgWalkLanding@3x.jpg in Resources */,
@@ -7815,12 +7872,14 @@
 				8A0F50B11C0C3B5B002B1E22 /* SeShopDetailView.m in Sources */,
 				0B6AEA6C1C47B7CF009B7D33 /* ConnectionsViewController.m in Sources */,
 				8AC8F7281BDA414E00DEF14A /* PostListingViewController.m in Sources */,
+				C7067DF11D0A7EC60086E273 /* FeedRecommendationView.m in Sources */,
 				8AFB068A1CA140E300DAEE22 /* ReportProblemViewController.m in Sources */,
 				8AD6C0B91B706CF30040437E /* ShowFollowerAndFollowingViewController.m in Sources */,
 				8AC7B6571CE5C102000775CC /* NSString+ChangeAsciiString.m in Sources */,
 				8A114C7D1BE73F5D006AE3F0 /* BKCardNumberLabel.m in Sources */,
 				8AFA51F71C47B4AB00E7920E /* FeedType_SuggestionFetureTblCell.m in Sources */,
 				8AC8F74A1BDA414E00DEF14A /* EditCollectionTableViewCell.m in Sources */,
+				C7067DF01D0A7EC60086E273 /* FeedRecommendationSubView.m in Sources */,
 				8A6BB42F1BF0C338005AA1B3 /* MZFormSheetPresentationViewController.m in Sources */,
 				8AF6FE071C5F3F36005AAE5D /* CountriesModel.m in Sources */,
 				8AD6C0BE1B706CF30040437E /* FeedV2DetailViewController.m in Sources */,
@@ -7903,6 +7962,7 @@
 				8AFA51D91C47B4AB00E7920E /* VoucherListingViewController.m in Sources */,
 				8A114CA11BE73F5D006AE3F0 /* LanguageManager.m in Sources */,
 				8AEDBFAE1C2031BA000BD2FF /* DraftModel.m in Sources */,
+				C7067DEF1D0A7EC60086E273 /* FeedContentView.m in Sources */,
 				8A6CCA3E1C17E5A800BCD54E /* SeShopFeatureTableViewCell.m in Sources */,
 				8AC7B6581CE5C102000775CC /* NSString+Extra.m in Sources */,
 				C25A8B981C74872F0046F80A /* RedemptionTypeView.m in Sources */,
@@ -7969,6 +8029,7 @@
 				8AFA51E91C47B4AB00E7920E /* FeedType_AbroadQualityPostTblCell.m in Sources */,
 				8AFA51DF1C47B4AB00E7920E /* WalletVoucherCell.m in Sources */,
 				8AEDBFBC1C2031BA000BD2FF /* SeShopDetailModel.m in Sources */,
+				C7067DF21D0A7EC60086E273 /* FeedShopLocationView.m in Sources */,
 				8A6BB4311BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerInteractiveAnimator.m in Sources */,
 				8AD6C0BC1B706CF30040437E /* CommentViewController.m in Sources */,
 				8ABA51F91C10329600A3DC15 /* PhotoViewController.m in Sources */,
@@ -8010,6 +8071,7 @@
 				8AFA51CF1C47B4AB00E7920E /* GeneralFilterViewController.m in Sources */,
 				8A31CA771C9BA60B00CC5FB9 /* SuggestedPlaceModel.m in Sources */,
 				8AC7B65F1CE5C102000775CC /* UIImage+Extension.m in Sources */,
+				8AD755631D0A8A9C00F41DDB /* TranslationModel.m in Sources */,
 				8AC7B6611CE5C102000775CC /* UIImage+Resize.m in Sources */,
 				8A114CCF1BE73F5D006AE3F0 /* TextFieldValidator.m in Sources */,
 				8AF030C81C5F6EB000817E2F /* PlacesModel.m in Sources */,
@@ -8064,6 +8126,7 @@
 				8AEDBFBB1C2031BA000BD2FF /* SeShopCategoryModel.m in Sources */,
 				8A6BB4301BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerAnimator.m in Sources */,
 				8A114CAA1BE73F5D006AE3F0 /* CRZoomScrollView.m in Sources */,
+				C7067DDD1D0A7C610086E273 /* LocationFeedDetailViewController.m in Sources */,
 				8A114C801BE73F5D006AE3F0 /* BKForwardingTextField.m in Sources */,
 				8AD6C0AB1B706CF30040437E /* InviteFrenViewController.m in Sources */,
 				8A114CD41BE73F5D006AE3F0 /* CommonCollectionViewCell.m in Sources */,
@@ -8075,6 +8138,7 @@
 				8AEDBFB61C2031BA000BD2FF /* PostModel.m in Sources */,
 				8AF6FDEF1C5B08A3005AAE5D /* DealRedeemViewController.m in Sources */,
 				8AEDBFAB1C2031BA000BD2FF /* RecommendationModel.m in Sources */,
+				C7067DEE1D0A7EC60086E273 /* FeedCommentView.m in Sources */,
 				8AD6C8291B736C000040437E /* DataManager.m in Sources */,
 				8A509D6A1C9911CD004C74C7 /* FeedType_headerTblCell.m in Sources */,
 				8A6BB42D1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationControllerAnimator.m in Sources */,
@@ -8100,10 +8164,12 @@
 				8AF030C51C5F6CE400817E2F /* PlaceModel.m in Sources */,
 				8AEDBFB71C2031BA000BD2FF /* PriceModel.m in Sources */,
 				8A9E065B1CBF5A70000FB246 /* UINavigationController+Block.m in Sources */,
+				8AD755661D0A8B1900F41DDB /* PostDetailModel.m in Sources */,
 				8AF6FE041C5F3EB7005AAE5D /* CountryModel.m in Sources */,
 				8AEDBFB81C2031BA000BD2FF /* ProfileModel.m in Sources */,
 				8A3757B01B842F74009DB7D4 /* SearchManager.m in Sources */,
 				8AFF09111C9038C400918582 /* ComplexTagModel.m in Sources */,
+				C7067DF31D0A7EC60086E273 /* FeedV3DetailViewController.m in Sources */,
 				8AF6FDD61C589C64005AAE5D /* MessageManager.m in Sources */,
 				8A3F35661BF5E89D002B704C /* SuggestedCollectionPostsViewController.m in Sources */,
 				8AC7B66C1CE5C102000775CC /* UITableView+LongPressReorder.m in Sources */,

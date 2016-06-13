@@ -25,6 +25,8 @@
 #import "FacebookModel.h"
 #import "UsersModel.h"
 #import "DealsModel.h"
+#import "TranslationModel.h"
+#import "PostDetailModel.h"
 
 @class FacebookModel;
 @class  DraftsModel;
@@ -66,6 +68,8 @@ typedef void(^CompletionVoidBlock) (void);
 @property(nonatomic,strong)CollectionModel* collectionModels;
 @property(nonatomic,strong)DraftModel* editPostModel;
 @property(nonatomic,strong)DraftModel* savedDraftModel;
+@property(nonatomic,strong)DraftModel* postDetailModel;
+@property(nonatomic,strong)TranslationModel* translationModel;
 
 @property(nonatomic,strong)TagModel* tagModel;
 
@@ -74,6 +78,7 @@ typedef void(^CompletionVoidBlock) (void);
 // /  ================================== model for "ME" from proifle page. has additional follow and following ===================================== ///
 @property(nonatomic,strong)ProfileModel* currentUserProfileModel;//
 
+@property(nonatomic,strong)CollectionsModel* postCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userFollowingCollectionsModel;
 @property(nonatomic,strong)CollectionsModel* userSuggestedCollectionsModel;
@@ -101,6 +106,11 @@ typedef void(^CompletionVoidBlock) (void);
 /* ================================ Notification ================================ */
 @property(nonatomic,strong)DealCollectionModel* dealCollectionModel;
 
+/* ============================== Post Detail ============================ */
+
+@property(nonatomic,strong)PostDetailLikeModel *postDetailLikeModel;
+@property(nonatomic,strong)PostDetailCommentModel *postDetailCommentModel;
+@property(nonatomic,strong)NearbyRecommendationModel *nearbyRecommendationModel;
 
 +(RecommendationModel*)getSampleRecommendation;
 +(EditPhotoModel*)getSampleEditPhotoModel;

@@ -45,6 +45,8 @@ typedef enum
     ServerRequestTypeGetGeoIP,
     ServerRequestTypeGetCategories,
     ServerRequestTypeGetPlacesSuggestion,
+    ServerRequestTypeGetPostDetail,
+    ServerRequeetTypeGetTranslatePost,
     
     // ========== Collection ========== //
     ServerRequestTypeGetCollectionInfo,
@@ -156,10 +158,16 @@ typedef enum
     ServerRequestTypePostUserProfile,
     //** EditProfile **//
     
-    //** Register Notification **//
+    //** PostDetail **//
+    ServerRequestTypeGetPostLikes,
+    ServerRequestTypeGetPostComments,
+    ServerRequestTypeGetPostCollectSuggestion,
+    ServerRequestTypeGetNearbyPost,
+    ServerRequestTypePostCollectState,
+    //** PostDetail **//
+    
+    /*register notification*/
     ServerRequestTypePostRegisterPushNotification,
-    //** Register Notification **//
-
     
 }ServerRequestType;
 

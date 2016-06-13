@@ -59,6 +59,8 @@
 #import "UIButton+Activity.h"
 #import "UIImageView+Extension.h"
 
+#import "FeedV3DetailViewController.h"
+
 static NSCache* heightCache = nil;
 #define TopBarHeight 64.0f
 #define NUMBER_OF_SECTION 2
@@ -1470,11 +1472,17 @@ static NSCache* heightCache = nil;
 
 -(void)showPostDetailView:(DraftModel*)draftModel
 {
-    _feedV2DetailViewController = nil;
-    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
-        
-        [self.feedV2DetailViewController GetPostID:draftModel.post_id];
-    }];
+//    _feedV2DetailViewController = nil;
+//    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
+//        
+//        [self.feedV2DetailViewController GetPostID:draftModel.post_id];
+//    }];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"FeedV3DetailViewController" bundle:nil];
+    FeedV3DetailViewController *detailVC = [sb instantiateViewControllerWithIdentifier:@"FeedV3DetailViewController"];
+    detailVC.postID = draftModel.post_id;
+
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 -(void)showCollectioPageView:(CollectionModel*)model
 {
