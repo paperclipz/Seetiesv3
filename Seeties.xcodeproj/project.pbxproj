@@ -8459,7 +8459,7 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
 				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
@@ -8654,9 +8654,9 @@
 					"$(PROJECT_DIR)/SeetiesIOS/framework",
 					"$(PROJECT_DIR)/SeetiesIOS/Common/GoogleConversionTrackingSDK-iOS-3.4.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Seeties.SeetiesIOS.Live;
 				PRODUCT_NAME = Seeties;
-				PROVISIONING_PROFILE = "1b8b1a95-f4f6-4dec-b41e-2b0897f4f490";
+				PROVISIONING_PROFILE = "314c5866-7443-435b-86e5-405485079021";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeetiesIOS/Share/SeetiesIOS-Bridging-Header.h";
 			};
 			name = "Production-SandBox";
