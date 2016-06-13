@@ -9,7 +9,7 @@
 #import "LikesListingViewController.h"
 #import "LikeListingCollectionViewCell.h"
 #import "ListingHeaderView.h"
-
+#import "FeedV3DetailViewController.h"
 
 @interface LikesListingViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
@@ -129,13 +129,20 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    _feedV2DetailViewController = nil;
-    
+//    _feedV2DetailViewController = nil;
+//    
     DraftModel* model = self.arrLikesList[indexPath.row];
-    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
-        [_feedV2DetailViewController GetPostID:model.post_id];
-        
-    }];
+//    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
+//        [_feedV2DetailViewController GetPostID:model.post_id];
+//        
+//    }];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"FeedV3DetailViewController" bundle:nil];
+    FeedV3DetailViewController *detailVC = [sb instantiateViewControllerWithIdentifier:@"FeedV3DetailViewController"];
+    detailVC.postID = model.post_id;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

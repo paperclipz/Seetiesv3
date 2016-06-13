@@ -20,6 +20,7 @@
 #import "UIActivityViewController+Extension.h"
 #import "CustomItemSource.h"
 #import "EditProfileV3ViewController.h"
+#import "FeedV3DetailViewController.h"
 
 @interface ProfileViewController ()<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIScrollViewDelegate>
 {
@@ -1537,7 +1538,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 #pragma mark - SHOW POST DETAILS
 -(void)showPostDetailView:(NSIndexPath*)indexPath forType:(int)type// 1 for post 2 for likes
 {
-    _feedV2DetailViewController = nil;
+//    _feedV2DetailViewController = nil;
     DraftModel* model;
 
     if (type == 1) {
@@ -1547,10 +1548,17 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
         model = arrLikes[indexPath.row];
     }
     
-    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
-        [_feedV2DetailViewController GetPostID:model.post_id];
-        
-    }];
+//    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES onCompletion:^{
+//        [_feedV2DetailViewController GetPostID:model.post_id];
+//        
+//    }];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"FeedV3DetailViewController" bundle:nil];
+    FeedV3DetailViewController *detailVC = [sb instantiateViewControllerWithIdentifier:@"FeedV3DetailViewController"];
+    detailVC.postID = model.post_id;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
+
 }
 -(void)SaveProfileData{
 

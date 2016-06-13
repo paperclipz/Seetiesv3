@@ -9,6 +9,7 @@
 #import "SuggestedCollectionPostsViewController.h"
 #import "SuggestedCollectionPostTableViewCell.h"
 #import "UITableviewPaging.h"
+#import "FeedV3DetailViewController.h"
 
 @interface SuggestedCollectionPostsViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -284,9 +285,15 @@
 -(void)showPostDetailView:(NSIndexPath*)indexPath
 {
     DraftModel* model = self.arrPostList[indexPath.row];
-    [self.feedV2DetailViewController GetPostID:model.post_id];
-    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES];
+//    [self.feedV2DetailViewController GetPostID:model.post_id];
+//    [self.navigationController pushViewController:self.feedV2DetailViewController animated:YES];
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"FeedV3DetailViewController" bundle:nil];
+    FeedV3DetailViewController *detailVC = [sb instantiateViewControllerWithIdentifier:@"FeedV3DetailViewController"];
+    detailVC.postID = model.post_id;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
+
 }
 
 #pragma mark - UIScrollView Delegate

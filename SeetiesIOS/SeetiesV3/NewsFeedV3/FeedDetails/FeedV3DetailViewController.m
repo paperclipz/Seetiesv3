@@ -45,8 +45,9 @@
 @property (strong, nonatomic) FeedRecommendationView *feedRecommendationView;
 /*Feed Details All Views*/
 
-@property (nonatomic,strong)CollectionsModel* postCollectionsModel;
-@property (nonatomic,strong)NSMutableArray<CollectionModel>* arrCollections;
+@property (strong, nonatomic) DraftModel *postDetail;
+@property (strong, nonatomic) CollectionsModel* postCollectionsModel;
+@property (strong, nonatomic) NSMutableArray<CollectionModel>* arrCollections;
 
 //bottom view 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -55,29 +56,27 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 
-
-@property (weak, nonatomic) IBOutlet iCarousel *carousel;
-@property (weak, nonatomic) IBOutlet UILabel *imageCountLabel;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
 //top view
 @property (weak, nonatomic) IBOutlet UIView *topNavBar;
 @property (weak, nonatomic) IBOutlet UILabel *navBarTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *topNavBarBackgroundImg;
 @property (weak, nonatomic) IBOutlet UIButton *navBarMoreButton;
 
-
+//layout
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet iCarousel *carousel;
+@property (weak, nonatomic) IBOutlet UILabel *imageCountLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IDMPhotoBrowser *photoBrowser;
 
+//etc
 @property (strong, nonatomic) NSMutableDictionary *dataDictionary;
 @property (strong, nonatomic) NSMutableDictionary *userLikeDataDictionary;
 @property (strong, nonatomic) NSMutableDictionary *userCommentDataDictionary;
-@property (strong, nonatomic) DraftModel *postDetail;
 
 @property (assign, nonatomic) BOOL isTranslatedText;
 @property (assign, nonatomic) int currentPointY;
 
-@property (strong, nonatomic) IDMPhotoBrowser *photoBrowser;
 @property (strong, nonatomic) NSMutableArray *imageArray;
 @property (strong, nonatomic) NSMutableArray *allViewSectionArray;
 
@@ -1114,12 +1113,10 @@
 
 -(void)showCollectioPageView:(CollectionModel*)model
 {
-    
     _displayCollectionViewController = nil;
     [self.navigationController pushViewController:self.displayCollectionViewController animated:YES onCompletion:^{
         [self.displayCollectionViewController GetCollectionID:model.collection_id GetPermision:@"Others" GetUserUid:model.user_info.uid];
     }];
-    
 }
 
 @end
