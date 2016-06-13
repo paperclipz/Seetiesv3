@@ -32,7 +32,7 @@
 //static int kConstantLeftPadding   = 15;
 //static int kConstantTopPadding    = 15;
 
-@interface FeedV3DetailViewController () <iCarouselDataSource, iCarouselDelegate, UIScrollViewDelegate, FeedContentViewDelegate, IDMPhotoBrowserDelegate, FeedCommentViewDelegate, FeedShopLocationViewDelegate, FeedRecommendationViewDelegate>
+@interface FeedV3DetailViewController () <iCarouselDataSource, iCarouselDelegate, UIScrollViewDelegate, FeedContentViewDelegate, IDMPhotoBrowserDelegate, FeedCommentViewDelegate, FeedShopLocationViewDelegate, FeedRecommendationViewDelegate, CommentViewControllerDelegate>
 {
     BOOL isMiddleOfCallingServer;
 }
@@ -69,10 +69,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
-
-
-@property (strong, nonatomic) EmptyStateView *loadingView;
-
 @property (strong, nonatomic) NSMutableDictionary *dataDictionary;
 @property (strong, nonatomic) NSMutableDictionary *userLikeDataDictionary;
 @property (strong, nonatomic) NSMutableDictionary *userCommentDataDictionary;
@@ -104,7 +100,6 @@
     self.dataDictionary = [NSMutableDictionary new];
     self.userLikeDataDictionary = [NSMutableDictionary new];
 
-    
     // Do any additional setup after loading the view.
     [self.bottomView setFrame:CGRectMake(0, CGRectGetHeight(self.view.frame) - 50, CGRectGetWidth(self.view.frame), 50)];
     [self.topNavBar setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 64)];
@@ -120,7 +115,6 @@
     
     self.scrollView.canCancelContentTouches = NO;
     [self getDataFromServer];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -359,7 +353,7 @@
 }
 
 - (IBAction)commentButtonClicked:(id)sender {
-    
+    [self openCommentWithSection:@"Comment"];
 }
 
 - (IBAction)shareButtonClicked:(id)sender {
@@ -454,6 +448,45 @@
     [self.navigationController pushViewController:profileVC animated:YES onCompletion:^{
         [profileVC initDataWithUserID:userID];
     }];
+}
+
+- (void)openCommentWithSection:(NSString *)sectionName {
+    CommentViewController *CommentView = [[CommentViewController alloc]init];
+    
+    CommentView.delegate = self;
+    
+    [self presentViewController:CommentView animated:YES completion:nil];
+    
+    PostDetailCommentModel *model = [[ConnectionManager dataManager] postDetailCommentModel];
+    
+    NSMutableArray *CommentIDArray, *PostIDArray, *MessageArray, *User_Comment_uidArray, *User_Comment_nameArray, *User_Comment_usernameArray, *User_Comment_photoArray;
+    
+    CommentIDArray = [NSMutableArray new];
+    PostIDArray = [NSMutableArray new];
+    MessageArray = [NSMutableArray new];
+    User_Comment_uidArray = [NSMutableArray new];
+    User_Comment_nameArray = [NSMutableArray new];
+    User_Comment_usernameArray = [NSMutableArray new];
+    User_Comment_photoArray = [NSMutableArray new];
+    
+    if (model.comments.count > 0) {
+        
+        for (CommentDetailModel *comment in model.comments) {
+            [CommentIDArray addObject:comment.comment_id];
+            [PostIDArray addObject:comment.post_id];
+            [MessageArray addObject:comment.message];
+            
+            [User_Comment_uidArray addObject:comment.author_info.userUID];
+            [User_Comment_nameArray addObject:comment.author_info.name];
+            [User_Comment_usernameArray addObject:comment.author_info.username];
+            [User_Comment_photoArray addObject:comment.author_info.profile_photo];
+        }
+        
+    }
+    
+    [CommentView GetCommentIDArray:CommentIDArray GetPostIDArray:PostIDArray GetMessageArray:MessageArray GetUser_Comment_uidArray:User_Comment_uidArray GetUser_Comment_nameArray:User_Comment_nameArray GetUser_Comment_usernameArray:User_Comment_usernameArray GetUser_Comment_photoArray:User_Comment_photoArray];
+    [CommentView GetRealPostID:self.postID];
+    [CommentView GetWhatView:sectionName];
 }
 
 #pragma mark - iCarousel Data Source
@@ -608,12 +641,7 @@
             [self openProfileWithUserID:userID];
         }
         else {
-            CommentViewController *CommentView = [[CommentViewController alloc]init];
-
-            [self presentViewController:CommentView animated:YES completion:nil];
-//            [CommentView GetCommentIDArray:CommentIDArray GetPostIDArray:PostIDArray GetMessageArray:MessageArray GetUser_Comment_uidArray:User_Comment_uidArray GetUser_Comment_nameArray:User_Comment_nameArray GetUser_Comment_usernameArray:User_Comment_usernameArray GetUser_Comment_photoArray:User_Comment_photoArray];
-            [CommentView GetRealPostID:self.postID];
-            [CommentView GetWhatView:@"Like"];
+            [self openCommentWithSection:@"Like"];
         }
         
     }
@@ -624,13 +652,7 @@
 }
 
 - (void)allActivitiesButtonDidClicked:(id)sender {
-    
-    CommentViewController *CommentView = [[CommentViewController alloc]init];
-
-    [self presentViewController:CommentView animated:YES completion:nil];
-//    [CommentView GetCommentIDArray:CommentIDArray GetPostIDArray:PostIDArray GetMessageArray:MessageArray GetUser_Comment_uidArray:User_Comment_uidArray GetUser_Comment_nameArray:User_Comment_nameArray GetUser_Comment_usernameArray:User_Comment_usernameArray GetUser_Comment_photoArray:User_Comment_photoArray];
-    [CommentView GetRealPostID:self.postID];
-    [CommentView GetWhatView:@"Comment"];
+    [self openCommentWithSection:@"Comment"];
 }
 
 #pragma mark - FeedShopLocationDelegate
@@ -656,16 +678,78 @@
     
     NearByRecommtationViewController *NearByRecommtationView = [[NearByRecommtationViewController alloc]init];
     [self presentViewController:NearByRecommtationView animated:YES completion:nil];
-//    [NearByRecommtationView GetLPhoto:PhotoArray_Nearby GetPostID:PostIDArray_Nearby GetPlaceName:PlaceNameArray_Nearby GetUserInfoUrl:UserInfo_UrlArray_Nearby GetUserInfoName:UserInfo_NameArray_Nearby GetTitle:TitleArray_Nearby GetMessage:MessageArray_Nearby GetDistance:DistanceArray_Nearby GetSearchDisplayName:SearchDisplayNameArray_Nearby GetTotalComment:TotalCommentArray_Nearby GetTotalLike:TotalLikeArray_Nearby GetSelfCheckLike:SelfCheckLikeArray_Nearby GetSelfCheckCollect:SelfCheckCollectArray_Nearby];
+    
+    NearbyRecommendationModel *model = [[ConnectionManager dataManager] nearbyRecommendationModel];
+
+    NSMutableArray *PhotoArray_Nearby, *PostIDArray_Nearby, *PlaceNameArray_Nearby, *UserInfo_UrlArray_Nearby, *UserInfo_NameArray_Nearby, *TitleArray_Nearby, *MessageArray_Nearby, *DistanceArray_Nearby, *SearchDisplayNameArray_Nearby, *TotalCommentArray_Nearby, *TotalLikeArray_Nearby, *SelfCheckLikeArray_Nearby, *SelfCheckCollectArray_Nearby;
+    
+    PhotoArray_Nearby = [NSMutableArray new];
+    PostIDArray_Nearby = [NSMutableArray new];
+    PlaceNameArray_Nearby = [NSMutableArray new];
+    UserInfo_UrlArray_Nearby = [NSMutableArray new];
+    UserInfo_NameArray_Nearby = [NSMutableArray new];
+    TitleArray_Nearby = [NSMutableArray new];
+    MessageArray_Nearby = [NSMutableArray new];
+    DistanceArray_Nearby = [NSMutableArray new];
+    SearchDisplayNameArray_Nearby = [NSMutableArray new];
+    TotalCommentArray_Nearby = [NSMutableArray new];
+    TotalLikeArray_Nearby = [NSMutableArray new];
+    SelfCheckLikeArray_Nearby = [NSMutableArray new];
+    SelfCheckCollectArray_Nearby = [NSMutableArray new];
+    
+    for (NearbyRecommendationDetailModel *detail in model.recommendationPosts) {
+        
+        NSString *userLanguageCode = [LanguageManager getDeviceAppLanguageCode];
+
+        NSString *languageCode = detail.content_languages[0]; //default language
+        
+        for (NSString *code in detail.content_languages) {
+            if ([code isEqualToString:userLanguageCode]) {
+                languageCode = code;
+            }
+        }
+        
+        [PhotoArray_Nearby addObjectsFromArray:[detail.photos valueForKey:@"imageURL"]];
+        [PostIDArray_Nearby addObject:detail.post_id];
+        [PlaceNameArray_Nearby addObject:detail.place_name];
+        [UserInfo_UrlArray_Nearby addObject:detail.user_info.profile_photo];
+        [UserInfo_NameArray_Nearby addObject:detail.user_info.username];
+        [TitleArray_Nearby addObject:detail.title[languageCode] ? detail.title[languageCode] : @""];
+        [MessageArray_Nearby addObject:detail.message[languageCode] ? detail.message[languageCode] : @""];
+        [DistanceArray_Nearby addObject:@(detail.location.distance)];
+        [SearchDisplayNameArray_Nearby addObject:detail.location.search_display_name];
+        [TotalCommentArray_Nearby addObject:detail.total_comments];
+        [TotalLikeArray_Nearby addObject:detail.total_like];
+        [SelfCheckLikeArray_Nearby addObject:detail.like];
+        [SelfCheckCollectArray_Nearby addObject:detail.collect];
+        
+    }
+    
+    [NearByRecommtationView GetLPhoto:PhotoArray_Nearby GetPostID:PostIDArray_Nearby GetPlaceName:PlaceNameArray_Nearby GetUserInfoUrl:UserInfo_UrlArray_Nearby GetUserInfoName:UserInfo_NameArray_Nearby GetTitle:TitleArray_Nearby GetMessage:MessageArray_Nearby GetDistance:DistanceArray_Nearby GetSearchDisplayName:SearchDisplayNameArray_Nearby GetTotalComment:TotalCommentArray_Nearby GetTotalLike:TotalLikeArray_Nearby GetSelfCheckLike:SelfCheckLikeArray_Nearby GetSelfCheckCollect:SelfCheckCollectArray_Nearby];
 
 }
 
 - (void)openPostDetail:(id)sender withPostID:(NSString *)postID {
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"FeedV3DetailViewController" bundle:nil];
+    FeedV3DetailViewController *detailVC = [sb instantiateViewControllerWithIdentifier:@"FeedV3DetailViewController"];
+    detailVC.postID = postID;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (void)openUserProfile:(id)sender withUserID:(NSString *)userID {
     [self openProfileWithUserID:userID];
+}
+
+#pragma mark - CommentViewControllerDelegate
+
+- (void)userDidPostedComment:(BOOL)isPosted {
+    
+    if (isPosted) {
+        [LoadingManager show];
+        [self getAllCommentData];
+    }
 }
 
 #pragma mark - API caller
@@ -935,6 +1019,8 @@
         }
         
         [self repositionLayout];
+        
+        [LoadingManager hide];
 
         [self requestServerForPostSuggestedCollection];
         

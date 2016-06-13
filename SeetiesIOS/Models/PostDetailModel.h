@@ -8,6 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 #import "UsersModel.h"
+#import "Location.h"
 
 @protocol LikeDetailModel <NSObject>
 
@@ -76,6 +77,14 @@
 @property (strong, nonatomic) NSString *post_id;
 @property (strong, nonatomic) NSArray<PhotoModel> *photos;
 @property (strong, nonatomic) UserModel *user_info;
+@property (strong, nonatomic) Location *location;
+@property (strong, nonatomic) NSDictionary *title;
+@property (strong, nonatomic) NSDictionary *message;
+@property (strong, nonatomic) NSString *like;
+@property (strong, nonatomic) NSString *total_like;
+@property (strong, nonatomic) NSString *total_comments;
+@property (strong, nonatomic) NSString *collect;
+@property (strong, nonatomic) NSArray *content_languages;
 
 @end
 

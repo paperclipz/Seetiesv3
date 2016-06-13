@@ -1484,6 +1484,9 @@
 "Thank you for your feedback!" = "感谢您的宝贵意见";
 "Invalid email address" = "电邮无效, 请确认再试";
 "Sorry! This voucher is only available for collection on {!date} at {!time}" = "抱歉, 此优惠劵只开放收藏于{!date},{!time}";
+//=============CHANGE=================//
+"Sorry! This voucher is only available for collection on \n{!date} at {!time}" = "抱歉, 此优惠劵只开放收藏于\n{!date},{!time}";
+//=============CHANGE=================//
 "Okay!" = "好的, 了解!";
 "Username / Email could not be empty" = "用户名 / 电邮不可留白喔";
 "This feature is not available in this region" = "抱歉, 此功能暂时还未开放到这个地区";

@@ -11,10 +11,18 @@
 #import "LLARingSpinnerView.h"
 #import "ProfileViewController.h"
 @class ProfileViewController;
+
+@protocol CommentViewControllerDelegate <NSObject>
+
+- (void)userDidPostedComment:(BOOL)isPosted;
+
+@end
+
 @interface CommentViewController : UIViewController<UIScrollViewDelegate,BHInputToolbarDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong)ProfileViewController* profileViewController;
 @property (nonatomic, strong) BHInputToolbar *inputToolbar;
+@property (weak, nonatomic) id<CommentViewControllerDelegate> delegate;
 
 -(void)GetCommentIDArray:(NSMutableArray *)CommentIDArray GetPostIDArray:(NSMutableArray *)PostIDArray GetMessageArray:(NSMutableArray *)MessageArray GetUser_Comment_uidArray:(NSMutableArray *)User_Comment_uidArray GetUser_Comment_nameArray:(NSMutableArray *)User_Comment_nameArray GetUser_Comment_usernameArray:(NSMutableArray *)User_Comment_usernameArray GetUser_Comment_photoArray:(NSMutableArray *)User_Comment_photoArray;
 -(void)GetRealPostID:(NSString *)PostID;
