@@ -1,6 +1,0 @@
-framework module BOString {
-  umbrella header "BOString-umbrella.h"
-
-  export *
-  module * { export * }
-}
