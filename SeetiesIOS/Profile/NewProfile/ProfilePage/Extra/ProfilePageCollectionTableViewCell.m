@@ -100,39 +100,39 @@
     self.lblTitle.text = self.model.name;
     self.lblNoOfPost.text = [NSString stringWithFormat:@"%d",self.model.collection_posts_count];
     self.lblNoOfFollower.text = [NSString stringWithFormat:@"%d",self.model.follower_count];
+   
+    self.ibImageViewA.image = [Utils getPlaceHolderImage];
+    self.ibImageViewB.image = [Utils getPlaceHolderImage];
 
+    
     if (![self.model.arrayPost isNull])
     {
         DraftModel* draftModel = self.model.arrayPost[0];
-    
-        if (![draftModel.arrPhotos isNull]) {
-            
-            
-            if (![draftModel.arrPhotos isNull]) {
-                PhotoModel* photoModel1 = draftModel.arrPhotos[0];
-
-                
-                [self.ibImageViewA sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel1.imageURL] completed:nil];
-                //SLog(@"Image A: %@",photoModel1.imageURL);
-
-            }
-            
-        }
         
-        if (self.model.arrayPost.count > 1) {
-            
-            DraftModel* draftModelTwo = self.model.arrayPost[1];
-            
-            if (![draftModelTwo.arrPhotos isNull]) {
-                PhotoModel* photoModel2 = draftModelTwo.arrPhotos[0];
-                
-                [self.ibImageViewB sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel2.imageURL] completed:nil];
+        if (![draftModel.arrPhotos isNull]) {
+            PhotoModel* photoModel1 = draftModel.arrPhotos[0];
 
-               // SLog(@"Image A: %@",photoModel2.imageURL);
+            
+            [self.ibImageViewA sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel1.imageURL] completed:nil];
+            //SLog(@"Image A: %@",photoModel1.imageURL);
 
-            }
         }
     }
+    
+    if (self.model.arrayPost.count > 1) {
+        
+        DraftModel* draftModelTwo = self.model.arrayPost[1];
+        
+        if (![draftModelTwo.arrPhotos isNull]) {
+            PhotoModel* photoModel2 = draftModelTwo.arrPhotos[0];
+            
+            [self.ibImageViewB sd_setImageCroppedWithURL:[NSURL URLWithString:photoModel2.imageURL] completed:nil];
+            
+            // SLog(@"Image A: %@",photoModel2.imageURL);
+            
+        }
+    }
+    
     
     if (self.profileType == ProfileViewTypeOwn) {
         
