@@ -11,6 +11,7 @@
 @interface CollectionListingViewController ()
 {
     NSString* seetiesID;
+    __weak IBOutlet NSLayoutConstraint *constSegmentedControlViewHeight;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *ibScrollView;
 @property (weak, nonatomic) IBOutlet UIView *ibSegmentedControlView;
@@ -126,12 +127,19 @@
     self.segmentedControl.selectionIndicatorColor = DEVICE_COLOR;
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
     self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    
     [contentView addSubview:self.segmentedControl];
     
     [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
         [view scrollRectToVisible:CGRectMake(view.frame.size.width * index, 0, view.frame.size.width, view.frame.size.height) animated:YES];
     }];
+    
+    if (self.viewPage == 1) {
+        constSegmentedControlViewHeight.constant = 0;
+        
+    }
+    else{
+        constSegmentedControlViewHeight.constant = 50.0f;
+    }
     
 }
 
@@ -145,7 +153,7 @@
     }
     else if(self.collectionListingType == CollectionListingTypePostSuggestion)
     {
-        self.lblTitle.text = LocalisedString(@"Collections");
+        self.lblTitle.text = LocalisedString(@"Suggested Collections");
 
     }
     else
@@ -279,7 +287,15 @@
 
 -(NSArray *)arrViewControllers{
     if (!_arrViewControllers) {
-        _arrViewControllers = @[self.myCollectionListingViewController, self.followingCollectionListingViewController];
+        
+        if (self.viewPage == 1) {
+            _arrViewControllers = @[self.myCollectionListingViewController];
+
+        }
+        else{
+            _arrViewControllers = @[self.myCollectionListingViewController, self.followingCollectionListingViewController];
+
+        }
     }
     return _arrViewControllers;
 }

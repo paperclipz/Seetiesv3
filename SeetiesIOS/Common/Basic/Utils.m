@@ -155,7 +155,7 @@
 +(NSString*)getUserID
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:USERID];
+    return [defaults objectForKey:USERID] ? [defaults objectForKey:USERID] : @"";
 }
 
 +(void)setParseToken:(NSData*)data

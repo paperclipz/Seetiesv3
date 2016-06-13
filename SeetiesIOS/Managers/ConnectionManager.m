@@ -582,6 +582,7 @@
         case ServerRequestTypePostProvisioning:
         case ServerRequestTypePostUpdateUser:
         case ServerRequestTypePostUserProfile:
+        case ServerRequestTypePostCollectState:
         default:
             str = API_VERION_URL;
             break;
@@ -707,7 +708,6 @@
             str = [NSString stringWithFormat:@"%@/%@/post", API_VERION_URL, [Utils getUserID]];
             break;
             
-        case ServerRequestTypePostCollectState:
         case ServerRequestTypePostCollectionFriendSuggestion:
             str = [NSString stringWithFormat:@"%@/%@/collections", API_VERION_URL, [Utils getUserID]];
             break;
@@ -1477,6 +1477,7 @@
         case ServerRequestTypePutCollectPost:
         case ServerRequestTypePostFollowUser:
         case ServerRequestTypePostFollowCollection:
+        case ServerRequestTypePostCollectState:
             
             if ([Utils isGuestMode]) {
                 
