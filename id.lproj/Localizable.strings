@@ -1484,6 +1484,9 @@
 "Thank you for your feedback!" = "Terima kasih atas masukannya!";
 "Invalid email address" = "Alamat email salah";
 "Sorry! This voucher is only available for collection on {!date} at {!time}" = "Maaf! Voucher ini hanya tersedia untuk collection pada {!date} di jam {!time}";
+//=============CHANGE=================//
+"Sorry! This voucher is only available for collection on \n{!date} at {!time}" = "Maaf! Voucher ini hanya tersedia untuk collection pada \n{!date} di jam {!time}";
+//=============CHANGE=================//
 "Okay!" = "OK!";
 "Username / Email could not be empty" = "Nama pengguna/email tidak boleh kosong";
 "This feature is not available in this region" = "Fitur ini tidak tersedia di wilayah ini";

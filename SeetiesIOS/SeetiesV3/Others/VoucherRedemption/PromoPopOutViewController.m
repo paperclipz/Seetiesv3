@@ -80,9 +80,6 @@
 @property (weak, nonatomic) IBOutlet UIView *ibErrorContentView;
 @property (weak, nonatomic) IBOutlet UIImageView *ibErrorIcon;
 @property (weak, nonatomic) IBOutlet UILabel *ibErrorTitle;
-@property (weak, nonatomic) IBOutlet UILabel *ibErrorDesc;
-@property (weak, nonatomic) IBOutlet UILabel *ibErrorDateDay;
-@property (weak, nonatomic) IBOutlet UILabel *ibErrorTime;
 @property (weak, nonatomic) IBOutlet UIButton *ibErrorOkBtn;
 
 @property (strong, nonatomic) IBOutlet UIView *ibThankYouView;
@@ -434,45 +431,76 @@
             
         case PopOutViewTypeRedemptionError:
         {
-            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is currently not available for redemption.");
-            self.ibErrorDesc.text = LocalisedString(@"This deal can only be redeemed on ");
+            NSString *nextAvailability = [self.dealModel getNextAvailableRedemptionDateString];
+            NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
+            NSString *date, *time;
+            
+            if (stringArray.count == 2) {
+                date = stringArray[0];
+                time = stringArray[1];
+            }
+            else{
+                date = @"";
+                time = @"";
+            }
+            
+            NSString *errorString = [LanguageManager stringForKey:LocalisedString(@"Sorry! This voucher is only available to redeem on \n{!date} at {!time}") withPlaceHolder:@{@"{!date}":date, @"{!time}":time}];
+            NSMutableAttributedString *attrErrorString = [[NSMutableAttributedString alloc] initWithString:errorString];
+            NSRange dateRange = [errorString rangeOfString:date];
+            NSRange timeRange = [errorString rangeOfString:time];
+            NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+            [paraStyle setLineSpacing:5];
+            [paraStyle setAlignment:NSTextAlignmentCenter];
+            
+            [attrErrorString beginEditing];
+            [attrErrorString addAttribute:NSForegroundColorAttributeName value:DEVICE_COLOR range:dateRange];
+            [attrErrorString addAttribute:NSForegroundColorAttributeName value:DEVICE_COLOR range:timeRange];
+            [attrErrorString addAttribute:NSParagraphStyleAttributeName value:paraStyle range:NSMakeRange(0, errorString.length)];
+            [attrErrorString endEditing];
+            
+            self.ibErrorTitle.attributedText = attrErrorString;
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             [self.ibErrorIcon setImage:[UIImage imageNamed:@"CannotRedeemAtThisMomentImg.png"]];
             
             [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
-            NSString *nextAvailability = [self.dealModel getNextAvailableRedemptionDateString];
-            NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
             
-            if (stringArray.count == 2) {
-                self.ibErrorDateDay.text = stringArray[0];
-                self.ibErrorTime.text = stringArray[1];
-            }
-            else{
-                self.ibErrorDateDay.text = @"";
-                self.ibErrorTime.text = @"";
-            }
         }
             return self.ibErrorView;
             
         case PopOutViewTypeCollectionError:
         {
-            self.ibErrorTitle.text = LocalisedString(@"Sorry! This voucher is currently not available to collect");
-            self.ibErrorDesc.text = LocalisedString(@"Please come back on");
+            NSString *nextAvailability = [self.dealModel getNextAvailableCollectionDateString];
+            NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
+            NSString *date, *time;
+            
+            if (stringArray.count == 2) {
+                date = stringArray[0];
+                time = stringArray[1];
+            }
+            else{
+                date = @"";
+                time = @"";
+            }
+            
+            NSString *errorString = [LanguageManager stringForKey:LocalisedString(@"Sorry! This voucher is only available for collection on \n{!date} at {!time}") withPlaceHolder:@{@"{!date}":date, @"{!time}":time}];
+            NSMutableAttributedString *attrErrorString = [[NSMutableAttributedString alloc] initWithString:errorString];
+            NSRange dateRange = [errorString rangeOfString:date];
+            NSRange timeRange = [errorString rangeOfString:time];
+            NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+            [paraStyle setLineSpacing:5];
+            [paraStyle setAlignment:NSTextAlignmentCenter];
+            
+            [attrErrorString beginEditing];
+            [attrErrorString addAttribute:NSForegroundColorAttributeName value:DEVICE_COLOR range:dateRange];
+            [attrErrorString addAttribute:NSForegroundColorAttributeName value:DEVICE_COLOR range:timeRange];
+            [attrErrorString addAttribute:NSParagraphStyleAttributeName value:paraStyle range:NSMakeRange(0, errorString.length)];
+            [attrErrorString endEditing];
+            
+            self.ibErrorTitle.attributedText = attrErrorString;
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             [self.ibErrorIcon setImage:[UIImage imageNamed:@"UnableToCollect.png"]];
             
             [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
-            NSString *nextAvailability = [self.dealModel getNextAvailableCollectionDateString];
-            NSArray *stringArray = [nextAvailability componentsSeparatedByString:@"\n"];
-            
-            if (stringArray.count == 2) {
-                self.ibErrorDateDay.text = stringArray[0];
-                self.ibErrorTime.text = stringArray[1];
-            }
-            else{
-                self.ibErrorDateDay.text = @"";
-                self.ibErrorTime.text = @"";
-            }
         }
             return self.ibErrorView;
             
