@@ -87,6 +87,7 @@
 
 /*Controllers*/
 @property(nonatomic,strong)CollectionListingViewController* collectionListingViewController;
+@property(nonatomic,strong)CollectionViewController* displayCollectionViewController;
 
 @end
 
@@ -136,6 +137,15 @@
 }
 
 #pragma mark - Declaration
+
+-(CollectionViewController*)displayCollectionViewController
+{
+    if (!_displayCollectionViewController) {
+        _displayCollectionViewController = [CollectionViewController new];
+    }
+    
+    return _displayCollectionViewController;
+}
 
 -(CollectionListingViewController*)collectionListingViewController
 {
@@ -999,6 +1009,11 @@
         [weakSelf showCollectionListingView];
     };
     
+    self.feedType_CollectionSuggestedTblCell.didSelectCollectionBlock = ^(CollectionModel* model)
+    {
+        [weakSelf showCollectioPageView:model];
+    };
+    
     [self.allViewSectionArray addObject:self.feedType_CollectionSuggestedTblCell];
 }
 
@@ -1009,6 +1024,16 @@
     [self.collectionListingViewController setTypePostSuggestion:self.postID];
     
     [self.navigationController pushViewController:self.collectionListingViewController animated:YES];
+}
+
+-(void)showCollectioPageView:(CollectionModel*)model
+{
+    
+    _displayCollectionViewController = nil;
+    [self.navigationController pushViewController:self.displayCollectionViewController animated:YES onCompletion:^{
+        [self.displayCollectionViewController GetCollectionID:model.collection_id GetPermision:@"Others" GetUserUid:model.user_info.uid];
+    }];
+    
 }
 
 @end
