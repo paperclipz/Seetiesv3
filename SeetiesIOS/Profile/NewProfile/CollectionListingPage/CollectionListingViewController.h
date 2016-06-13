@@ -14,12 +14,14 @@
 #import "HMSegmentedControl.h"
 
 @class CollectionViewController;
+@class CT3_CollectionViewController;
 @interface CollectionListingViewController : CommonViewController <UIScrollViewDelegate>
 
 @property(nonatomic,strong)CollectionListingTabViewController* myCollectionListingViewController;
 @property(nonatomic,strong)CollectionListingTabViewController* followingCollectionListingViewController;
 @property(nonatomic,strong)EditCollectionViewController* editCollectionViewController;
 @property(nonatomic,strong)CollectionViewController* collectionViewController;
+@property(nonatomic,strong)CT3_CollectionViewController * ct3_CollectionViewController;
 @property(nonatomic,strong)NewCollectionViewController* newCollectionViewController;
 
 -(void)setType:(ProfileViewType)type ProfileModel:(ProfileModel*)model NumberOfPage:(int)page;

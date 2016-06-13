@@ -35,6 +35,10 @@
 		0BE340231B73021B00F49625 /* Adriane Text Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340201B73021B00F49625 /* Adriane Text Bold Italic.otf */; };
 		0BE340241B73021B00F49625 /* ProximaNovaSoft-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */; };
 		0BE340251B73021B00F49625 /* ProximaNovaSoft-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */; };
+		661657C81D0AA9300049706D /* CT3_CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 661657C61D0AA9300049706D /* CT3_CollectionViewController.m */; };
+		661657D91D0AB98A0049706D /* CollectionType_SegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 661657D71D0AB98A0049706D /* CollectionType_SegmentCell.m */; };
+		6616580B1D0E773D0049706D /* Collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6616580A1D0E773D0049706D /* Collection.storyboard */; };
+		6616580E1D0E965B0049706D /* CollectionType_HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6616580D1D0E965B0049706D /* CollectionType_HeaderCell.m */; };
 		66AB17D11D06D49A009E37E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66AB17D01D06D49A009E37E9 /* GoogleService-Info.plist */; };
 		8A0035261C4E2F51002BD9A3 /* CTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */; };
 		8A0035271C4E2F51002BD9A3 /* CTWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0035251C4E2F51002BD9A3 /* CTWebViewController.xib */; };
@@ -1412,6 +1416,13 @@
 		0BE340211B73021B00F49625 /* ProximaNovaSoft-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Bold.ttf"; sourceTree = "<group>"; };
 		0BE340221B73021B00F49625 /* ProximaNovaSoft-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNovaSoft-Regular.ttf"; sourceTree = "<group>"; };
 		0D9C815292A4ED6F2408E5E5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		661657C51D0AA9300049706D /* CT3_CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CT3_CollectionViewController.h; path = CollectionV3/CT3_CollectionViewController.h; sourceTree = "<group>"; };
+		661657C61D0AA9300049706D /* CT3_CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CT3_CollectionViewController.m; path = CollectionV3/CT3_CollectionViewController.m; sourceTree = "<group>"; };
+		661657D61D0AB98A0049706D /* CollectionType_SegmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionType_SegmentCell.h; path = CollectionV3/Cell/CollectionType_SegmentCell.h; sourceTree = "<group>"; };
+		661657D71D0AB98A0049706D /* CollectionType_SegmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionType_SegmentCell.m; path = CollectionV3/Cell/CollectionType_SegmentCell.m; sourceTree = "<group>"; };
+		6616580A1D0E773D0049706D /* Collection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Collection.storyboard; path = CollectionV3/View/Collection.storyboard; sourceTree = "<group>"; };
+		6616580C1D0E965B0049706D /* CollectionType_HeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionType_HeaderCell.h; path = CollectionV3/Cell/CollectionType_HeaderCell.h; sourceTree = "<group>"; };
+		6616580D1D0E965B0049706D /* CollectionType_HeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionType_HeaderCell.m; path = CollectionV3/Cell/CollectionType_HeaderCell.m; sourceTree = "<group>"; };
 		66AB17D01D06D49A009E37E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A0035231C4E2F51002BD9A3 /* CTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTWebViewController.h; sourceTree = "<group>"; };
 		8A0035241C4E2F51002BD9A3 /* CTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTWebViewController.m; sourceTree = "<group>"; };
@@ -3262,6 +3273,36 @@
 				A6BFDB1BE373200E64D8CBE7 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		661657C41D0AA8590049706D /* CollectionV3 */ = {
+			isa = PBXGroup;
+			children = (
+				661658091D0E64120049706D /* View */,
+				661657CA1D0AB3860049706D /* Cell */,
+				661657C51D0AA9300049706D /* CT3_CollectionViewController.h */,
+				661657C61D0AA9300049706D /* CT3_CollectionViewController.m */,
+			);
+			name = CollectionV3;
+			sourceTree = "<group>";
+		};
+		661657CA1D0AB3860049706D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				661657D61D0AB98A0049706D /* CollectionType_SegmentCell.h */,
+				661657D71D0AB98A0049706D /* CollectionType_SegmentCell.m */,
+				6616580C1D0E965B0049706D /* CollectionType_HeaderCell.h */,
+				6616580D1D0E965B0049706D /* CollectionType_HeaderCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		661658091D0E64120049706D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6616580A1D0E773D0049706D /* Collection.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		8A0035281C4F2D81002BD9A3 /* DealCell */ = {
@@ -6183,6 +6224,7 @@
 		8AFA514B1C47B4AB00E7920E /* SeetiesV3 */ = {
 			isa = PBXGroup;
 			children = (
+				661657C41D0AA8590049706D /* CollectionV3 */,
 				8A11D37D1CC886950023A7ED /* ShareV3 */,
 				8A11D3641CC749250023A7ED /* InviteFriendV3 */,
 				8A9ABA501CA52B890067FACA /* IntroV3 */,
@@ -6902,6 +6944,7 @@
 				8A1128CC1CF69EC100399213 /* HomeSearchIcon@3x.png in Resources */,
 				8A112AEC1CF69EC100399213 /* PostSmallPin@3x.png in Resources */,
 				8AD6C11B1B706CF30040437E /* poweredByFoursquare_gray@2x.png in Resources */,
+				6616580B1D0E773D0049706D /* Collection.storyboard in Resources */,
 				8A112A4F1CF69EC100399213 /* LikedIcon@2x.png in Resources */,
 				8A112A621CF69EC100399213 /* SuggestedCollectionsOverlay@3x.png in Resources */,
 				8A112ACA1CF69EC100399213 /* PostOverlay@3x.png in Resources */,
@@ -7910,6 +7953,7 @@
 				0B6AEA861C48ED6A009B7D33 /* SettingsTableViewCell.m in Sources */,
 				8AFA51ED1C47B4AB00E7920E /* FeedType_CollectionSuggestedTblCell.m in Sources */,
 				0BC8A0E91C0D4AD500EB8548 /* SeCollectionView.m in Sources */,
+				661657C81D0AA9300049706D /* CT3_CollectionViewController.m in Sources */,
 				8A9E06581CBF5A70000FB246 /* MFMessageComposeViewController+Block.m in Sources */,
 				8AFF085F1C90379000918582 /* SearchQuickBrowseListingController.m in Sources */,
 				8A6BB42C1BF0C338005AA1B3 /* MZFormSheetContentSizingNavigationController.m in Sources */,
@@ -7963,10 +8007,12 @@
 				8AEDBFAF1C2031BA000BD2FF /* EditPhotoModel.m in Sources */,
 				8ABA7DEC1C7421FC00FB41F4 /* NotificationTableViewCell.m in Sources */,
 				8A84C8D61C800A0C006A0D76 /* DealCollectionModel.m in Sources */,
+				661657D91D0AB98A0049706D /* CollectionType_SegmentCell.m in Sources */,
 				8AFA51DD1C47B4AB00E7920E /* WalletListingViewController.m in Sources */,
 				8A5CFE171C7C6D42004E2CBA /* CollectionListingSinglePageViewController.m in Sources */,
 				8AFA51E31C47B4AB00E7920E /* AbroadQualityPostCVCell.m in Sources */,
 				8AFA51E91C47B4AB00E7920E /* FeedType_AbroadQualityPostTblCell.m in Sources */,
+				6616580E1D0E965B0049706D /* CollectionType_HeaderCell.m in Sources */,
 				8AFA51DF1C47B4AB00E7920E /* WalletVoucherCell.m in Sources */,
 				8AEDBFBC1C2031BA000BD2FF /* SeShopDetailModel.m in Sources */,
 				8A6BB4311BF0C338005AA1B3 /* MZFormSheetPresentationViewControllerInteractiveAnimator.m in Sources */,

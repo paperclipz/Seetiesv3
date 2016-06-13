@@ -25,6 +25,7 @@
 @property(nonatomic,strong)NSString* wallpaper;
 @property(nonatomic,strong)NSString* dob;
 @property(nonatomic,strong)NSString* profile_photo_images;
+@property(nonatomic,strong)NSString* profile_photo;//use in CT3_CollectionViewController
 @property(nonatomic,strong)NSString* gender;
 @property(nonatomic,assign)BOOL following;
 @property(nonatomic,strong)NSString* uid;

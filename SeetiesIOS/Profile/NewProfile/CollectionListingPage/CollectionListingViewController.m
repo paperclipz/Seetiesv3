@@ -7,6 +7,7 @@
 //
 
 #import "CollectionListingViewController.h"
+#import "CT3_CollectionViewController.h"
 
 @interface CollectionListingViewController ()
 {
@@ -106,12 +107,21 @@
     
     view.contentSize = CGSizeMake(frame.size.width*arryViewControllers.count , view.frame.size.height);
     
+    NSString* fontName;
+    
+    if ([[LanguageManager getDeviceAppLanguageCode] isEqualToString:CHINESE_CODE] ||
+        [[LanguageManager getDeviceAppLanguageCode] isEqualToString:TAIWAN_CODE]) {
+        fontName = @"PingFangTC-Regular";
+    }
+    else{
+        fontName = CustomFontNameBold;
+    }
     
     self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
     self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : TEXT_GRAY_COLOR,
-                                                  NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+                                                  NSFontAttributeName : [UIFont fontWithName:fontName size:14.0f]};
     self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : ONE_ZERO_TWO_COLOR,
-                                                          NSFontAttributeName : [UIFont fontWithName:CustomFontNameBold size:14.0f]};
+                                                          NSFontAttributeName : [UIFont fontWithName:fontName size:14.0f]};
     
     self.segmentedControl.sectionTitles = arrTitles;
     self.segmentedControl.selectedSegmentIndex = 0;
@@ -260,6 +270,16 @@
     return _collectionViewController;
 }
 
+-(CT3_CollectionViewController*)ct3_CollectionViewController
+{
+    if (!_ct3_CollectionViewController) {
+//        _ct3_CollectionViewController = [CT3_CollectionViewController new];
+        _ct3_CollectionViewController = StoryBoardNameAndViewControlIdentifier(Storyboard_Collection, @"CT3_CollectionViewController");
+    }
+    
+    return _ct3_CollectionViewController;
+}
+
 -(NSArray *)arrViewControllers{
     if (!_arrViewControllers) {
         _arrViewControllers = @[self.myCollectionListingViewController, self.followingCollectionListingViewController];
@@ -287,17 +307,20 @@
 
 -(void)showCollectionDisplayViewWithCollectionID:(CollectionModel*)colModel
 {
-    _collectionViewController = nil;
-    if ([colModel.user_info.uid isEqualToString:[Utils getUserID]]) {
-        [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:colModel.user_info.uid];
-
-    }
-    else{
-        
-     [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"Others" GetUserUid:colModel.user_info.uid];
-    }
-
-    [self.navigationController pushViewController:self.collectionViewController animated:YES];
+//    _collectionViewController = nil;
+//    if ([colModel.user_info.uid isEqualToString:[Utils getUserID]]) {
+//        [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"self" GetUserUid:colModel.user_info.uid];
+//
+//    }
+//    else{
+//        
+//     [self.collectionViewController GetCollectionID:colModel.collection_id GetPermision:@"Others" GetUserUid:colModel.user_info.uid];
+//    }
+//
+//    [self.navigationController pushViewController:self.collectionViewController animated:YES];
+    _ct3_CollectionViewController = nil;
+    [self.ct3_CollectionViewController getCollectionByID:colModel.collection_id];
+    [self.navigationController pushViewController:self.ct3_CollectionViewController animated:YES];
 }
 
 @end
