@@ -315,4 +315,14 @@ typedef enum {
 +(void)startNotification;
 +(void)requestServerForNotificationCount;
 
+
+#pragma mark - ColorHex
++(UIColor*)colorWithHexString:(NSString*)hex;
+
+
+#pragma mark - Storyboard
+#define StoryBoardNameAndViewControlIdentifier(storyboardName, identifier) [[UIStoryboard storyboardWithName:storyboardName bundle:nil] instantiateViewControllerWithIdentifier:identifier]
+
+#define Storyboard_Collection @"Collection"
+
 @end
