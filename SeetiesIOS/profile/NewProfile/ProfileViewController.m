@@ -272,6 +272,12 @@
 
 -(void)initSelfView
 {
+    //default label to blank
+    self.lblUserName.text = @"";
+    self.lblName.text = @"";
+    self.lblLocation.text = @"";
+    [self.btnLink setTitle:@"" forState:UIControlStateNormal];
+    
     labelFrame = self.lblUserName_Header.frame;
     self.ibImgViewOtherPadding.alpha = 0;
     self.lblUserName_Header.alpha = 0;

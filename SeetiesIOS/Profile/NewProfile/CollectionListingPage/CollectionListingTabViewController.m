@@ -237,7 +237,7 @@
     NSDictionary* dict = @{@"page":self.userCollectionsModel.page?@(self.userCollectionsModel.page + 1):@1,
                            @"list_size":@(ARRAY_LIST_SIZE),
                            @"token":[Utils getAppToken],
-                           @"uid":self.userID
+                           @"uid":self.userID?self.userID:@""
                            };
     [self.ibTableView showLoading];
 
@@ -327,7 +327,7 @@
         self.userCollectionsModel = [[ConnectionManager dataManager]postCollectionsModel];
         
         [self.arrCollections addObjectsFromArray:self.userCollectionsModel.arrSuggestedCollection];
-        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_result,LocalisedString(@"Collections")];
+        self.lblCount.text = [NSString stringWithFormat:@"%d %@",self.userCollectionsModel.total_collections,LocalisedString(@"Collections")];
         [self.ibTableView reloadData];
         
         if ([Utils isArrayNull:self.arrCollections]) {
