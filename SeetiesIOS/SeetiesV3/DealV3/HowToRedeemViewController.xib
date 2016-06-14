@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -42,12 +42,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpn-1V-YOh" userLabel="next btn">
-                            <rect key="frame" x="504" y="14" width="80" height="33"/>
+                            <rect key="frame" x="504" y="16" width="80" height="29"/>
                             <color key="backgroundColor" red="0.16078431369999999" green="0.71372549019999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="Vxs-hO-WNs"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <state key="normal" title="Next">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -83,7 +83,7 @@
                     <rect key="frame" x="0.0" y="68" width="600" height="312"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HowToRedeem1.gif" translatesAutoresizingMaskIntoConstraints="NO" id="0fc-LV-Fbf" userLabel="first image" customClass="YLImageView">
-                            <rect key="frame" x="75" y="8" width="475" height="238"/>
+                            <rect key="frame" x="75" y="8" width="475" height="237.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="0fc-LV-Fbf" secondAttribute="height" multiplier="2:1" id="Sdt-hG-Hgf"/>
                             </constraints>
@@ -100,7 +100,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you order" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HU6-m7-lgi" userLabel="first instruction">
-                            <rect key="frame" x="35" y="252" width="530" height="20"/>
+                            <rect key="frame" x="35" y="251.5" width="530" height="20"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -170,7 +170,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVj-6e-W70" userLabel="third number">
-                            <rect key="frame" x="223" y="71" width="30" height="30"/>
+                            <rect key="frame" x="218" y="71" width="30" height="30"/>
                             <color key="backgroundColor" red="0.30588235289999999" green="0.15686274510000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="Hvb-p7-Slv"/>
@@ -181,7 +181,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe right to redeem in front of a shop personnel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6e-BZ-WLa" userLabel="third instruction">
-                            <rect key="frame" x="21" y="8" width="194" height="170"/>
+                            <rect key="frame" x="16" y="8" width="194" height="170"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="dGh-aw-IZZ"/>
@@ -204,7 +204,7 @@
                         <constraint firstAttribute="bottom" secondItem="m3r-Jd-d23" secondAttribute="bottom" id="ChZ-h6-cFo"/>
                         <constraint firstItem="q6e-BZ-WLa" firstAttribute="top" secondItem="cVb-Gb-Ms0" secondAttribute="top" constant="8" id="DmD-BA-eVn"/>
                         <constraint firstItem="WVj-6e-W70" firstAttribute="leading" secondItem="q6e-BZ-WLa" secondAttribute="trailing" constant="8" id="MC3-NN-AtC"/>
-                        <constraint firstItem="m3r-Jd-d23" firstAttribute="leading" secondItem="WVj-6e-W70" secondAttribute="trailing" constant="-25" id="NBq-He-dP9"/>
+                        <constraint firstItem="m3r-Jd-d23" firstAttribute="leading" secondItem="WVj-6e-W70" secondAttribute="trailing" constant="-20" id="NBq-He-dP9"/>
                         <constraint firstAttribute="width" secondItem="cVb-Gb-Ms0" secondAttribute="height" multiplier="1:0.31" id="NZk-Je-fL7"/>
                         <constraint firstItem="WVj-6e-W70" firstAttribute="centerY" secondItem="m3r-Jd-d23" secondAttribute="centerY" constant="-10" id="NgZ-Wk-I4V"/>
                         <constraint firstItem="m3r-Jd-d23" firstAttribute="top" secondItem="cVb-Gb-Ms0" secondAttribute="top" constant="5" id="SoP-R9-Muk"/>
