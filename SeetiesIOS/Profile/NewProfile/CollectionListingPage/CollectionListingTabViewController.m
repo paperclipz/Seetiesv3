@@ -19,6 +19,7 @@
 @property(nonatomic,strong)CollectionsModel* userCollectionsModel;
 @property(nonatomic,strong)NSMutableArray* arrCollections;
 @property (weak, nonatomic) IBOutlet UILabel *lblCount;
+@property (strong, nonatomic) IBOutlet UIView *ibTableHeaderView;
 @end
 
 @implementation CollectionListingTabViewController
@@ -91,6 +92,7 @@
     
     [self.ibTableView setupCustomEmptyView];
     [self initTableViewWithDelegate:self];
+    self.ibTableView.tableHeaderView = self.ibTableHeaderView;
 }
 
 -(void)initTableViewWithDelegate:(id)delegate
