@@ -340,7 +340,7 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
     //firebase
-    [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeSandbox];
+    [[FIRInstanceID instanceID] setAPNSToken:deviceToken type:FIRInstanceIDAPNSTokenTypeUnknown];
 
 
     [Utils setParseToken:deviceToken];
@@ -370,7 +370,7 @@
     if([application applicationState] == UIApplicationStateInactive || [application applicationState] == UIApplicationStateBackground)
     {
         NSString* action = userInfo[@"click_action"];
-        
+
         if (action) {
             
             [self.landingViewController showPushNotificationView:action];

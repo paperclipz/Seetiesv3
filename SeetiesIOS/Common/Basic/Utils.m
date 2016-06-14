@@ -610,9 +610,14 @@
     return [UIColor lightGrayColor];
 }
 
-+(UIImage*)getPlaceHolderImage
++(UIImage*)getBlueBackgroundImage
 {
     return [UIImage imageNamed:@"EmptyBlueImg.png"];
+}
+
++(UIImage*)getPlaceHolderImage
+{
+    return [UIImage imageNamed:@"EmptyGreyImg.png"];
 }
 
 +(UIImage*)getProfilePlaceHolderImage

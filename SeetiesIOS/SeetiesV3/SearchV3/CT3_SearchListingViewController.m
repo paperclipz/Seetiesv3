@@ -1094,12 +1094,19 @@
 {
     _seetiesShopViewController = nil;
     
-    if (![Utils isStringNull:model.location.location_id]) {
+     if (![Utils isStringNull:model.seetishop_id]) {
+     
+         [self.seetiesShopViewController initDataWithSeetiesID:model.seetishop_id];
+         [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
+
+     }
+
+        else if (![Utils isStringNull:model.location.location_id]) {
         [self.seetiesShopViewController initDataWithSeetiesID:model.location.location_id];
         [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 
     }
-    else if(![Utils isStringNull:model.post_id] && ![Utils isStringNull:model.post_id]){
+    else if(![Utils isStringNull:model.place_id] && ![Utils isStringNull:model.post_id]){
         [self.seetiesShopViewController initDataPlaceID:model.place_id postID:model.post_id];
         [self.navigationController pushViewController:self.seetiesShopViewController animated:YES];
 
