@@ -7,12 +7,15 @@
 //
 
 #import "CollectionType_HeaderCell.h"
+#import "CollectionType_Header_TagCell.h"
 
 @interface CollectionType_HeaderCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *coverImgView;
 @property (weak, nonatomic) IBOutlet UIImageView *cover2ImgView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImgView;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentDetailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentDescLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *tagCollectionView;
 @property (weak, nonatomic) IBOutlet UIButton *actionBtn;
 
@@ -39,7 +42,9 @@
     
     
     [self.avatarImgView sd_setImageWithURL:[NSURL URLWithString:collectionModel.user_info.profile_photo] placeholderImage:[Utils getProfilePlaceHolderImage]];
-    
+    self.contentLabel.text = self.collectionModel.name;
+    self.contentDetailLabel.text = [[NSString alloc]initWithFormat:@"by %@ • %d %@", self.collectionModel.user_info.name, self.collectionModel.follower_count, LocalisedString(@"Followers")];
+    self.contentDescLabel.text = self.collectionModel.postDesc;
     
     
     if(collectionModel.arrayPost.count>0){
@@ -57,8 +62,58 @@
             }
         }
     }
+    
+    [self.tagCollectionView reloadData];
 }
 
+#pragma mark - CollectionView
+
+-(NSInteger)numberOfSectionsInCollectionView:
+(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView
+    numberOfItemsInSection:(NSInteger)section
+{
+    return [self.collectionModel.tagList count];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    CollectionType_Header_TagCell *cell = (CollectionType_Header_TagCell *) [self collectionView:collectionView cellForItemAtIndexPath:indexPath];
+//    
+//    if (cell == nil) {
+//        CollectionType_Header_TagCell *cell = [collectionView
+//                                               dequeueReusableCellWithReuseIdentifier:@"cell"
+//                                               forIndexPath:indexPath];
+//    
+//    [cell.tagBtn setTitle:[self.collectionModel.tagList objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+    
+//    }
+    
+//    CGSize CellSize = [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize withHorizontalFittingPriority:UILayoutPriorityDefaultHigh verticalFittingPriority:UILayoutPriorityDefaultLow];
+    
+    
+    return CGSizeMake(100, 100);
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                 cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CollectionType_Header_TagCell *cell = [collectionView
+                                            dequeueReusableCellWithReuseIdentifier:@"Cell"
+                                            forIndexPath:indexPath];
+    
+    [cell.tagBtn setTitle:[self.collectionModel.tagList objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+    
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
 
 
 #pragma mark - Localize
@@ -74,46 +129,7 @@
     [Utils setRoundBorder:self.avatarImgView color:[UIColor whiteColor] borderRadius:self.avatarImgView.frame.size.width/2 borderWidth:2];
     [Utils setRoundBorder:self.actionBtn color:UIColorFromRGB(204, 204, 204, 1) borderRadius:self.actionBtn.frame.size.height/2];
     
-    [self styleContentLabel];
 }
 
--(void)styleContentLabel{
-    NSString *title = self.collectionModel.name;
-    NSString *authorName = self.collectionModel.user_info.name;
-    int followerCount = self.collectionModel.follower_count;
-    NSString *desc = self.collectionModel.postDesc;
-    
-    
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
-    
-    if(title && title.length>0){
-        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-//        [style setLineSpacing:8];
-        [style setAlignment:NSTextAlignmentCenter];
-        [attributedString addAttribute:NSParagraphStyleAttributeName
-                                 value:style
-                                 range:NSMakeRange(0, attributedString.length)];
-        
-        NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:CustomFontNameBold size:17],
-                                     NSParagraphStyleAttributeName:style,
-                                     };
-        [attributedString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:title attributes:attributes]];
-    }
-    
-    if(authorName && authorName.length>0){
-        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-        [style setLineSpacing:8];
-        [style setAlignment:NSTextAlignmentCenter];
-        [attributedString addAttribute:NSParagraphStyleAttributeName
-                                 value:style
-                                 range:NSMakeRange(0, attributedString.length)];
-        
-        NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:CustomFontName size:13],
-                                     NSParagraphStyleAttributeName:style,
-                                     };
-        [attributedString appendAttributedString:[[NSMutableAttributedString alloc] initWithString:[] attributes:attributes]];
-    }
-    
-}
 
 @end

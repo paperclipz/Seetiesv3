@@ -174,6 +174,21 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSString *cellIdentifier;
+//    switch (indexPath.section) {
+//        case 0:{
+//            cellIdentifier = @"HeaderCell";
+//            CollectionType_HeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//            if(cell == nil) {
+//                cell = [[CollectionType_HeaderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+//            }
+//            [cell process:self.collectionModel];
+//        }
+//            break;
+//            
+//        default:
+//            break;
+//    }
     return UITableViewAutomaticDimension;
 }
 
