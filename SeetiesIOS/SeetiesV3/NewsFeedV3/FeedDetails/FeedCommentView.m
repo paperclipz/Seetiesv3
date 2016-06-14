@@ -252,9 +252,9 @@ static int kConstantTopPadding    = 15;
     
     self.grayView.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), 1);
 
-    if (![self isNoDataToDisplay]) {
+//    if (![self isNoDataToDisplay]) {
         self.currentPointY += self.grayView.frame.size.height + kConstantTopPadding + 5;
-    }
+//    }
 }
 
 - (void)updateLikeSection {
@@ -495,10 +495,10 @@ static int kConstantTopPadding    = 15;
 
 - (void)updateSeparatorView {
     
-    if ([self isNoDataToDisplay]) {
-        self.separatorView.frame = CGRectZero;
-        return;
-    }
+//    if ([self isNoDataToDisplay]) {
+//        self.separatorView.frame = CGRectZero;
+//        return;
+//    }
     
     self.separatorView.frame = CGRectMake(0, self.currentPointY, CGRectGetWidth(self.frame), 20);
     
