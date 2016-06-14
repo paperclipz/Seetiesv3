@@ -75,6 +75,93 @@
 
 @implementation VoucherListingViewController
 
+-(void)animateCountUp:(VoidBlock)completionBlock
+{
+    int radius = self.ibWalletCountLbl.frame.size.height/2;
+    CAShapeLayer *circle = [CAShapeLayer layer];
+    // Make a circular shape
+    circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius)
+                                             cornerRadius:radius].CGPath;
+    // Center the shape in self.view
+    circle.position = CGPointMake(0,
+                                  0);
+    
+    // Configure the apperence of the circle
+    circle.fillColor = [UIColor clearColor].CGColor;
+    circle.strokeColor = [UIColor whiteColor].CGColor;
+    circle.lineWidth = 3;
+    
+    // Add to parent layer
+    [self.ibWalletCountLbl.layer addSublayer:circle];
+    
+    // Configure animation
+    [CATransaction begin];
+    
+    CABasicAnimation *drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    drawAnimation.duration            = 0.5; // "animate over 10 seconds or so.."
+    drawAnimation.repeatCount         = 1.0;  // Animate only once..
+    
+    // Animate from no part of the stroke being drawn to the entire stroke being drawn
+    drawAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
+    drawAnimation.toValue   = [NSNumber numberWithFloat:1.0f];
+    
+    // Experiment with timing to get the appearence to look the way you want
+    drawAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    
+    
+    [CATransaction setCompletionBlock:^{
+        
+        [UIView animateWithDuration:0.1 animations:^{
+            self.ibWalletCountLbl.layer.transform = CATransform3DMakeScale(0.6, 0.6, 1.0);
+            
+        }completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:0.1
+                                  delay:0.0
+                 usingSpringWithDamping:0.8
+                  initialSpringVelocity:1.0
+                                options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^
+             {
+                 self.ibWalletCountLbl.layer.transform = CATransform3DMakeScale(1.1, 1.1, 1.0);
+             }
+                             completion:^(BOOL finished) {
+                                 
+                                 [UIView animateWithDuration:0.1
+                                                       delay:0.0
+                                      usingSpringWithDamping:0.3
+                                       initialSpringVelocity:1.0
+                                                     options:UIViewAnimationOptionCurveEaseInOut
+                                                  animations:^
+                                  {
+                                      self.ibWalletCountLbl.layer.transform = CATransform3DIdentity;
+                                      
+                                      if (completionBlock) {
+                                          completionBlock();
+                                      };
+
+                                  }
+                                                  completion:^(BOOL finished) {
+                                                     
+                                                      [circle removeFromSuperlayer];
+                                                      
+                                                      
+                                                  }];
+                             }];
+        }];
+        
+        
+    }];
+    
+    // Add the animation to the circle
+    [circle addAnimation:drawAnimation forKey:@"drawCircleAnimation"];
+    
+    [CATransaction commit];
+    
+    
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -83,7 +170,8 @@
     self.isCollecting = NO;
     isDealCollectionLoading = NO;
     [self initSelfView];
-}
+    
+    }
 
 -(void)initSelfView{
     [self.ibVoucherTable registerNib:[UINib nibWithNibName:@"VoucherCell" bundle:nil] forCellReuseIdentifier:@"VoucherCell"];
@@ -663,6 +751,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     DealModel *dealModel = [self.dealsArray objectAtIndex:indexPath.row];
     self.dealDetailsViewController = nil;
     if (self.dealViewType == 6) {
@@ -1300,7 +1389,18 @@
         NSDictionary *dict = object[@"data"];
         int count = (int)[dict[@"count"] integerValue];
         NSString *countString = count < 100? [NSString stringWithFormat:@"%d", count] : @"99+";
-        self.ibWalletCountLbl.text = countString;
+        
+        if (![ self.ibWalletCountLbl.text isEqualToString:countString]) {
+            [self animateCountUp:^{
+                
+                self.ibWalletCountLbl.text = countString;
+            }];
+        }
+        else{
+            self.ibWalletCountLbl.text = countString;
+        }
+        
+        
         [self.dealManager setWalletCount:count];
     } failure:^(id object) {
         
