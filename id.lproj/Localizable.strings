@@ -1148,9 +1148,10 @@
 "x-TIME-USE" = "x KALI PEMAKAIAN";
 "Expires in {!number} day(s)" = "Kadaluarsa dalam {!number} hari";
 "Redeem" = "Redeem";
-"Sorry! This voucher is currently not available for redemption." = "Maaf, untuk sementara voucher ini tidak dapat ditukarkan";
-"This deal can only be redeemed on " = "Penawaran ini hanya dapat ditukarkan pada";
-"{!date}, {!time}" = "{!date}, {!time}";
+"Sorry! This voucher is only available to redeem on {!date} at {!time}" = "Maaf, redeem hanya bisa dilakukan pada {!date} pukul {!time}";
+//================Change==============//
+"Sorry! This voucher is only available to redeem on \n{!date} at {!time}" = "Maaf, redeem hanya bisa dilakukan pada \n{!date} pukul {!time}";
+//================Change==============//
 "Okay!" = "Oke!";
 "Select Location" = "Pilih Lokasi";
 "Look for a location" = "";
@@ -1470,7 +1471,7 @@
 "You have collected your first voucher! Would you like to know how to redeem it?" = "Kamu baru saja mengumpulkan voucher pertamamu! Ingin tahu bagaimana cara redeem vouchernya?";
 "Yes" = "Ya";
 "No" = "Tidak";
-"Play!" = "Coba sekarang!";
+"Play!" = "Coba!";
 "Seeties.me" = "Seeties.me";
 "Wonderland" = "Wonderland";
 "Demonstration on voucher redeem." = "Demo untuk redeem vouher";

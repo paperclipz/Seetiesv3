@@ -249,7 +249,7 @@
             
             self.ibPromoCodeText.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             [self.view refreshConstraint];
-            [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibEnterPromoContentView color:[UIColor clearColor] borderRadius:8.0f];
             [Utils setRoundBorder: self.ibPromoCodeText color:[UIColor clearColor] borderRadius:self.ibPromoCodeText.frame.size.height/2];
         }
             return self.ibEnterPromoView;
@@ -346,7 +346,7 @@
             self.ibChangeVerifiedPhoneDescLbl.text = LocalisedString(@"Your phone number has been verified");
             [self.ibChangeVerifiedPhoneBtn setTitle:LocalisedString(@"Change Phone Number") forState:UIControlStateNormal];
             
-            [self.ibChangeVerifiedPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibChangeVerifiedPhoneContentView color:[UIColor clearColor] borderRadius:8.0f];
             ProfileModel* model = [[ConnectionManager dataManager]getCurrentUserProfileModel];
             
             if (![Utils isStringNull:model.contact_no]) {
@@ -380,7 +380,7 @@
 
             
             self.contentSizeInPopup = CGSizeMake(self.view.frame.size.width, 470);
-            [self.ibEnterPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibEnterPhoneContentView color:[UIColor clearColor] borderRadius:8.0f];
             [Utils setRoundBorder:self.ibEnterPhoneTxtField color:[UIColor clearColor] borderRadius:self.ibEnterPhoneTxtField.frame.size.height/2];
             [Utils setRoundBorder:self.ibEnterPhoneCountryCodeView color:DEVICE_COLOR borderRadius:self.ibEnterPhoneCountryCodeView.frame.size.height/2];
         }
@@ -392,7 +392,7 @@
             [self.ibConfirmPhoneChangeBtn setTitle:LocalisedString(@"Change Phone Number") forState:UIControlStateNormal];
             [self.ibConfirmPhoneBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
             
-            [self.ibConfirmPhoneContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibConfirmPhoneContentView color:[UIColor clearColor] borderRadius:8.0f];
             [Utils setRoundBorder:self.ibConfirmPhoneChangeBtn color:DEVICE_COLOR borderRadius:self.ibConfirmPhoneChangeBtn.frame.size.height/2];
             if (![Utils isStringNull:self.selectedCountryCode] && ![Utils isStringNull:self.enteredPhoneNumber]) {
                 self.ibConfirmPhoneNumberLbl.text = [NSString stringWithFormat:@"+%@%@", self.selectedCountryCode, self.enteredPhoneNumber];
@@ -407,7 +407,7 @@
             [self.ibEnterVerificationConfirmBtn setTitle:LocalisedString(@"Confirm") forState:UIControlStateNormal];
             self.ibEnterVerificationTxtField.placeholder = LocalisedString(@"Enter verification code");
             
-            [self.ibEnterVerificationContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibEnterVerificationContentView color:[UIColor clearColor] borderRadius:8.0f];
             [Utils setRoundBorder:self.ibEnterVerificationTxtField color:[UIColor clearColor] borderRadius:self.ibEnterVerificationTxtField.frame.size.height/2];
             [Utils setRoundBorder:self.ibEnterVerificationResendBtn color:DEVICE_COLOR borderRadius:self.ibEnterVerificationResendBtn.frame.size.height/2];
             [self.ibEnterVerificationResendBtn setTitleColor:DEVICE_COLOR forState:UIControlStateNormal];
@@ -425,7 +425,7 @@
             self.ibVerifiedDesc.text = LocalisedString(@"Thank you for verifying your phone number!");
             [self.ibVerifiedOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             
-            [self.ibVerifiedContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibVerifiedContentView color:[UIColor clearColor] borderRadius:8.0f];
         }
             return self.ibVerifiedView;
             
@@ -462,7 +462,7 @@
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             [self.ibErrorIcon setImage:[UIImage imageNamed:@"CannotRedeemAtThisMomentImg.png"]];
             
-            [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibErrorContentView color:[UIColor clearColor] borderRadius:8.0f];
             
         }
             return self.ibErrorView;
@@ -500,7 +500,7 @@
             [self.ibErrorOkBtn setTitle:LocalisedString(@"Okay!") forState:UIControlStateNormal];
             [self.ibErrorIcon setImage:[UIImage imageNamed:@"UnableToCollect.png"]];
             
-            [self.ibErrorContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibErrorContentView color:[UIColor clearColor] borderRadius:8.0f];
         }
             return self.ibErrorView;
             
@@ -538,7 +538,7 @@
             
         default:
         {
-            [self.ibEnterPromoContentView setRoundedCorners:UIRectCornerAllCorners radius:8.0f];
+            [Utils setRoundBorder:self.ibEnterPromoContentView color:[UIColor clearColor] borderRadius:8.0f];
         }
             return self.ibEnterPromoView;
     }

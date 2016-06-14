@@ -51,7 +51,7 @@
     [self.ibFirstNumber setRoundedBorder];
     [self.ibSecondNumber setRoundedBorder];
     [self.ibThirdNumber setRoundedBorder];
-    [Utils setRoundBorder:self.ibNextBtn color:[UIColor clearColor] borderRadius:self.ibNextBtn.frame.size.height/2];
+    [Utils setRoundBorder:self.ibNextBtn color:[UIColor clearColor] borderRadius:self.ibNextBtn.frame.size.height/2 - 1];
     
     self.ibFirstImage.image = [YLGIFImage imageNamed:@"HowToRedeem1.gif"];
     self.ibSecondImage.image = [YLGIFImage imageNamed:@"HowToRedeem2.gif"];
