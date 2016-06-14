@@ -166,6 +166,11 @@
         [self.arrShop shuffledArray];
         [self InitNearByViewData];
         
+        
+        if ([Utils isArrayNull:self.arrShop]) {
+            [self setHeight:0];
+        }
+        
         if (self.viewDidFinishLoadBlock) {
             self.viewDidFinishLoadBlock();
         }

@@ -28,7 +28,7 @@
     NSString* imageURL = data[@"image"];
     
     if (imageURL) {
-        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[Utils getPlaceHolderImage]];
+        [self.ibImageView sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[Utils getBlueBackgroundImage]];
     }
 }
 

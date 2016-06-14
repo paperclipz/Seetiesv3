@@ -20,7 +20,7 @@
 -(void)initDataForHome:(AnnouncementModel*)model
 {
     self.announcementModel = model;
-    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.announcementModel.photo] withPlaceHolder:[Utils getPlaceHolderImage] completed:nil];
+    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.announcementModel.photo] withPlaceHolder:[Utils getBlueBackgroundImage] completed:nil];
 
 }
 
@@ -28,7 +28,7 @@
 {
 
     self.newsFeedModel = model.newsFeedData;
-    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedModel.image] withPlaceHolder:[Utils getPlaceHolderImage] completed:nil];
+    [self.ibImageView sd_setImageCroppedWithURL:[NSURL URLWithString:self.newsFeedModel.image] withPlaceHolder:[Utils getBlueBackgroundImage] completed:nil];
 
 }
 /*

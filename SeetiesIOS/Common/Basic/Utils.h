@@ -193,6 +193,7 @@ typedef enum {
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius;
 +(void)setRoundBorder:(UIView*)view color:(UIColor*)color borderRadius:(float)borderRadius borderWidth:(float)borderWidth;
 +(UIImage*)getPlaceHolderImage;
++(UIImage*)getBlueBackgroundImage;
 +(UIImage*)getProfilePlaceHolderImage;
 +(UIImage*)getShopPlaceHolderImage;
 +(UIImage*)getCoverPlaceHolderImage;
